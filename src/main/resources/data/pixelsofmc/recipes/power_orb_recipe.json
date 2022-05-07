@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BRB",
+    "RNR",
+    "BRB"
+  ],
+  "key": {
+    "B": {
+      "item": "pixelsofmc:bio_compound"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:power_orb",
+    "count": 1
+  }
+}

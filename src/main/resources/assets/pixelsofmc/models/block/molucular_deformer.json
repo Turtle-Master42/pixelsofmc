@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "pixelsofmc:blocks/power_cell_up",
+    "up": "pixelsofmc:blocks/power_cell_up",
+    "north": "pixelsofmc:blocks/machine_side",
+    "east": "pixelsofmc:blocks/machine_up",
+    "south": "pixelsofmc:blocks/machine_up",
+    "west": "pixelsofmc:blocks/machine_up",
+    "particle": "pixelsofmc:blocks/power_cell_up"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "pixelsofmc:splitter_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": {
+    "item": "minecraft:iron_ingot"
+  }
+}

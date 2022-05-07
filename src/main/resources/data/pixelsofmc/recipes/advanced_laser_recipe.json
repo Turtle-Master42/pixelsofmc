@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HPH",
+    "CBC",
+    "EAE"
+  ],
+  "key": {
+    "H": {
+      "item": "pixelsofmc:heat_restistant_casing"
+    },
+    "P": {
+      "item": "pixelsofmc:power_cell"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "B": {
+      "item": "minecraft:beacon"
+    },
+    "E": {
+      "item": "pixelsofmc:heat_resistant_plating"
+    },
+    "A": {
+      "item": "minecraft:amethyst_cluster"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:advanced_laser",
+    "count": 1
+  }
+}

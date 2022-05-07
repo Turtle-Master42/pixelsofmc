@@ -1,0 +1,17 @@
+{
+  "parent": "forge:item/default",
+  "loader": "forge:composite",
+  "parts": {
+    "part1": {
+      "loader": "forge:obj",
+      "model": "pixelsofmc:models/item/ball_mill.obj",
+      "ambientToFullbright": true,
+      "textures": {
+        "#m_1": "pixelsofmc:blocks/ball_mill"
+      }
+    }
+  },
+  "textures": {
+    "particle": "pixelsofmc:blocks/ball_mill"
+  }
+}

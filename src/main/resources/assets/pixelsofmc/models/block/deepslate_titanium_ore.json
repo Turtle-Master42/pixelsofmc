@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "up": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "north": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "east": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "south": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "west": "pixelsofmc:blocks/deepslate_titanium_ore",
+    "particle": "pixelsofmc:blocks/deepslate_titanium_ore"
+  }
+}

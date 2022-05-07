@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "RFR",
+    "III"
+  ],
+  "key": {
+    "N": {
+      "tag": "forge:nuggets/netherite"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "F": {
+      "item": "pixelsofmc:fire_proof_compound"
+    },
+    "I": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:micro_chip",
+    "count": 1
+  }
+}

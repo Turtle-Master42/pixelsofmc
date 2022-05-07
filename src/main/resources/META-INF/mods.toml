@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="Academic Free License v3.0"
+
+[[mods]]
+modId="pixelsofmc"
+version="0.0.1-1.18.2"
+displayName="The Pixels of Minecraft"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
+displayURL="https://mcreator.net"
+authors="Turtle-Master42, MCreator"
+description='''
+WIP
+'''
+
+[[dependencies.pixelsofmc]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

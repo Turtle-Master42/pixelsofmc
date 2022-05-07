@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/pixel_splitter"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/pixel_splitter",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/pixel_splitter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/pixel_splitter",
+      "y": 270
+    }
+  }
+}

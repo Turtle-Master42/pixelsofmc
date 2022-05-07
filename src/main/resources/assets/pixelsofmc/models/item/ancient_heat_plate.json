@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:items/ancient_heat_resistant_plating"
+  }
+}
