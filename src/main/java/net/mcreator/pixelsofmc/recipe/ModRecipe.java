@@ -14,11 +14,11 @@ public class ModRecipe {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = 
 			DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PixelsOfMcMod.MOD_ID);
 	
-	public static final RegistryObject<RecipeSerializer<MolucularSplitterRecipe>> MOLUCULAR_SPLITTER_SERIALIZER =
-			SERIALIZERS.register("splitter_recipe", () -> MolucularSplitterRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<PixelSplitterRecipe>> PIXEL_SPLITTER_SERIALIZER =
+			SERIALIZERS.register("pixel_splitting", () -> PixelSplitterRecipe.Serializer.INSTANCE);
 	
-	public static void register(IEventBus eventBus) {
-		SERIALIZERS.register(eventBus);
+	public static void register(IEventBus bus) {
+		SERIALIZERS.register(bus);
 		
 	}
 	

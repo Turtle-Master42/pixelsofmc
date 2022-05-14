@@ -1,7 +1,9 @@
 package net.mcreator.pixelsofmc.block.entity;
 
+import net.mcreator.pixelsofmc.PixelsOfMcMod;
 import net.mcreator.pixelsofmc.init.PixelsOfMcModBlockEntities;
 import net.mcreator.pixelsofmc.init.PixelsOfMcModItems;
+import net.mcreator.pixelsofmc.recipe.PixelSplitterRecipe;
 import net.mcreator.pixelsofmc.world.inventory.PixelSplitterGuiMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,11 +18,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -31,10 +30,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.Optional;
 import java.util.Random;
 
 public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -43,8 +43,32 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
+    protected final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 72 / 9;
+
     public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(PixelsOfMcModBlockEntities.PIXEL_SPLITTER.get(), pWorldPosition, pBlockState);
+        this.data = new ContainerData() {
+            public int get(int index) {
+                switch (index) {
+                    case 0: return PixelSplitterBlockEntity.this.progress;
+                    case 1: return PixelSplitterBlockEntity.this.maxProgress;
+                    default: return 0;
+                }
+            }
+
+            public void set(int index, int value) {
+                switch(index) {
+                    case 0: PixelSplitterBlockEntity.this.progress = value; break;
+                    case 1: PixelSplitterBlockEntity.this.maxProgress = value; break;
+                }
+            }
+
+            public int getCount() {
+                return 2;
+            }
+        };
     }
 
     @Override
@@ -55,7 +79,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new PixelSplitterGuiMenu(pContainerId, pInventory, this);
+        return new PixelSplitterGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -83,6 +107,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
+        tag.putInt("pixel_splitter.progress", progress);
         super.saveAdditional(tag);
     }
 
@@ -90,6 +115,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+        progress = nbt.getInt("pixel_splitter.progress");
     }
 
     public void drops() {
@@ -102,30 +128,74 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity) && hasNotReachedStackLimit(pBlockEntity)) {
-            craftItem(pBlockEntity);
+        SimpleContainer inventory = new SimpleContainer(pBlockEntity.itemHandler.getSlots());
+        if(hasRecipe(pBlockEntity)) {
+            pBlockEntity.progress++;
+            setChanged(pLevel, pPos, pState);
+            if(pBlockEntity.progress > pBlockEntity.maxProgress) {
+                PixelsOfMcMod.LOGGER.info(speedUpgradeAmount(inventory));
+                craftItem(pBlockEntity);
+            }
+        } else {
+            pBlockEntity.resetProgress();
+            setChanged(pLevel, pPos, pState);
         }
     }
 
-    private static void craftItem(PixelSplitterBlockEntity entity) {
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.itemHandler.extractItem(1, 1, false);
-        entity.itemHandler.extractItem(2, 1, false);
-
-        entity.itemHandler.setStackInSlot(3, new ItemStack(PixelsOfMcModItems.HEAT_RESISTANT_PLATING.get(),
-                entity.itemHandler.getStackInSlot(3).getCount() + 1));
-    }
-
     private static boolean hasRecipe(PixelSplitterBlockEntity entity) {
-        boolean hasItemInWaterSlot = PotionUtils.getPotion(entity.itemHandler.getStackInSlot(0)) == Potions.WATER;
-        boolean hasItemInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem() == PixelsOfMcModItems.ANCIENT_HEAT_PLATE.get();
-        boolean hasItemInSecondSlot = entity.itemHandler.getStackInSlot(2).getItem() == PixelsOfMcModItems.FIRE_PROOF_COMPOUND.get();
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
 
-        return hasItemInWaterSlot && hasItemInFirstSlot && hasItemInSecondSlot;
+        Optional<PixelSplitterRecipe> match = level.getRecipeManager()
+                .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
+
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                && hasToolsInToolSlot(entity);
     }
 
-    private static boolean hasNotReachedStackLimit(PixelSplitterBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(3).getCount() < entity.itemHandler.getStackInSlot(3).getMaxStackSize();
+    private static boolean hasToolsInToolSlot(PixelSplitterBlockEntity entity) {
+        return entity.itemHandler.getStackInSlot(1).getItem() == PixelsOfMcModItems.CIRCLE_SAW.get();
+    }
+
+    private static void craftItem(PixelSplitterBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        Optional<PixelSplitterRecipe> match = level.getRecipeManager()
+                .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
+
+        if(match.isPresent()) {
+            entity.itemHandler.extractItem(0,1, false);
+            entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null);
+
+            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(2).getCount() + 1));
+
+            entity.resetProgress();
+        }
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+    }
+
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
+        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
+    }
+
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
+    }
+
+    private static int speedUpgradeAmount(SimpleContainer inventory) {
+        return inventory.getItem(3).getCount();
     }
 
 }

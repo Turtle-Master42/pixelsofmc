@@ -23,10 +23,15 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - imageWidth) / 2;
+        int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
 
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
+
+        if(menu.isCrafting()) {
+            blit(pPoseStack, x + 54, y + 43, 0, 168, menu.getScaledProgress(), 13);
+            blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgress2());
+        }
 
     }
 

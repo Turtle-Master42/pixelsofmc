@@ -2,6 +2,7 @@ package net.mcreator.pixelsofmc.block;
 
 import net.mcreator.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.mcreator.pixelsofmc.init.PixelsOfMcModBlockEntities;
+import net.mcreator.pixelsofmc.init.PixelsOfMcModTabs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -27,11 +28,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class PixelSplitterBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-	
-	
-	public PixelSplitterBlock() {
-		super(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion());
-	}
+
+
+    public PixelSplitterBlock(Properties properties) {
+        super(properties);
+    }
 	
 
     private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 14, 16);

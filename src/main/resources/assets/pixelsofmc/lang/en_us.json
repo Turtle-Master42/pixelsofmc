@@ -1,5 +1,5 @@
 {
-
+//items
   "item.pixelsofmc.bio_plastic_sheet": "Bio Plastic Sheet",
   "item.pixelsofmc.copper_wire": "Copper Wire",
   "item.pixelsofmc.empty_jar": "Empty Jar",
@@ -28,17 +28,26 @@
   "item.pixelsofmc.jarof_pixels": "Jar of Pixels",
   "item.pixelsofmc.jar_of_pixels_iron": "Jar Of Iron Pixels",
   "item.pixelsofmc.normal_circuit_board": "Normal Circuit Board",
+  "item.pixelsofmc.raw_titanium": "Raw Titanium",
 
-  "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
+//machines
   "block.pixelsofmc.molucular_deformer": "Molucular Deformer",
-  "block.pixelsofmc.titanium_block": "Block of Titanium",
   "block.pixelsofmc.machine_block": "Machine Block",
   "block.pixelsofmc.molucular_splitter": "Molucular Splitter",
   "block.pixelsofmc.large_power_cell": "Large Power Cell",
   "block.pixelsofmc.test": "Test",
   "block.pixelsofmc.ball_mill": "Ball Mill",
-  "block.pixelsofmc.heat_restistant_casing": "Heat Restistant Casing",
-  "block.pixelsofmc.titanium_ore": "Titanium Ore",
 
-  "itemGroup.tabpixels_of_minecraft_tab": "Pixels of Minecraft"
+  "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
+
+//blocks
+  "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
+  "block.pixelsofmc.titanium_block": "Block of Titanium",
+  "block.pixelsofmc.heat_resistant_casing": "Heat Resistant Casing",
+  "block.pixelsofmc.titanium_ore": "Titanium Ore",
+  "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
+  "block.pixelsofmc.end_titanium_ore": "Endstone Titanium Ore",
+
+//tabs
+  "itemGroup.tabpixels_of_minecraft_tab": "The Pixels of Minecraft"
 }

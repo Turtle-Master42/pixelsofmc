@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:titanium_ingot",
+          "name": "pixelsofmc:raw_titanium",
           "weight": 1,
           "conditions": [
             {

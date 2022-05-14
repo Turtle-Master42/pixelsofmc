@@ -30,8 +30,8 @@ public class PixelsOfMcModBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>> MACHINE_BLOCK = register("machine_block", PixelsOfMcModBlocks.MACHINE_BLOCK,
 			MachineBlockBlockEntity::new);
 
-	public static final RegistryObject<BlockEntityType<?>> PIXEL_SPLITTER = register("pixel_splitter", PixelsOfMcModBlocks.PIXEL_SPLITTER,
-			PixelSplitterBlockEntity::new);
+	public static final RegistryObject<BlockEntityType<PixelSplitterBlockEntity>> PIXEL_SPLITTER =
+			REGISTRY.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterBlockEntity::new, PixelsOfMcModBlocks.PIXEL_SPLITTER.get()).build(null));
 
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block,
 			BlockEntityType.BlockEntitySupplier<?> supplier) {
