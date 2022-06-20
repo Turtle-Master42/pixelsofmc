@@ -1,4 +1,5 @@
 {
+  "group": "netherite_ingot",
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",

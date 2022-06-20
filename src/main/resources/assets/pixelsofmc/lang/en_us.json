@@ -17,26 +17,31 @@
   "item.pixelsofmc.bio_compound": "Bio Compound",
   "item.pixelsofmc.repelling_compound": "Repelling Compound",
   "item.pixelsofmc.heat_resistant_plating": "Heat Resistant Plating",
+  "item.pixelsofmc.raw_titanium": "Raw Titanium",
   "item.pixelsofmc.titanium_ingot": "Titanium Ingot",
   "item.pixelsofmc.simple_circuit_board": "Simple Circuit Board",
   "item.pixelsofmc.ancient_heat_plate": "Ancient Heat Resistant Plate",
   "item.pixelsofmc.netherite_nugget": "Netherite Nugget",
   "item.pixelsofmc.fire_proof_compound": "Fire Proof Compound",
   "item.pixelsofmc.jar_of_pixels_plants": "Jar Of Biological Pixels",
-  "item.pixelsofmc.coppernugget": "Coppernugget",
+  "item.pixelsofmc.copper_nugget": "Copper Nugget",
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
   "item.pixelsofmc.jarof_pixels": "Jar of Pixels",
   "item.pixelsofmc.jar_of_pixels_iron": "Jar Of Iron Pixels",
   "item.pixelsofmc.normal_circuit_board": "Normal Circuit Board",
-  "item.pixelsofmc.raw_titanium": "Raw Titanium",
+  "item.pixelsofmc.titanium_plating": "Titanium Plating",
+  "item.pixelsofmc.refined_heat_resistant_plating": "Refined Heat Resistant Plating",
+  "item.pixelsofmc.iron_dust": "Iron Dust",
+  "item.pixelsofmc.steel_dust": "Steel Dust",
+  "item.pixelsofmc.coal_dust": "Coal Dust",
+  "item.pixelsofmc.titanium_dust": "Titanium Dust",
+  "item.pixelsofmc.titanium_diboride_dust": "Refined Netherite Dust",
+  "item.pixelsofmc.titanium_diboride_ingot": "Refined Netherite Ingot",
+  "item.pixelsofmc.speed_upgrade": "Speed Upgrade",
+  "item.pixelsofmc.energy_upgrade": "Energy Upgrade",
 
-//machines
-  "block.pixelsofmc.molucular_deformer": "Molucular Deformer",
+  //machines
   "block.pixelsofmc.machine_block": "Machine Block",
-  "block.pixelsofmc.molucular_splitter": "Molucular Splitter",
-  "block.pixelsofmc.large_power_cell": "Large Power Cell",
-  "block.pixelsofmc.test": "Test",
-  "block.pixelsofmc.ball_mill": "Ball Mill",
 
   "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
 
@@ -49,5 +54,13 @@
   "block.pixelsofmc.end_titanium_ore": "Endstone Titanium Ore",
 
 //tabs
-  "itemGroup.tabpixels_of_minecraft_tab": "The Pixels of Minecraft"
+  "itemGroup.tabpixels_of_minecraft_tab": "The Pixels of Minecraft",
+
+//tooltips
+  "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
+
+  "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
+  "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",
+  "tooltip.pixelsofmc.noalt": "§7Press §r§b§i[ALT]§r§7 for placement info"
+
 }

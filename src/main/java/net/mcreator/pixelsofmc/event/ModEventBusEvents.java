@@ -1,7 +1,5 @@
 package net.mcreator.pixelsofmc.event;
 
-import net.mcreator.pixelsofmc.recipe.MolucularSplitterRecipe;
-
 import net.mcreator.pixelsofmc.recipe.PixelSplitterRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;

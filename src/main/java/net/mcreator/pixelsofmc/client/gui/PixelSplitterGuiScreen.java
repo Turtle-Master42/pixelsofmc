@@ -32,6 +32,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
             blit(pPoseStack, x + 54, y + 43, 0, 168, menu.getScaledProgress(), 13);
             blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgress2());
         }
+        blit(pPoseStack, x + 11, y + 22, 185, 0, 10, menu.getScaledEnergy());
 
     }
 

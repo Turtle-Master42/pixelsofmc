@@ -12,6 +12,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
@@ -22,7 +25,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public PixelSplitterGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
     public PixelSplitterGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -31,6 +34,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
         blockEntity = ((PixelSplitterBlockEntity) entity);
         this.level = inv.player.level;
         this.data = data;
+
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -54,17 +58,27 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
+        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 73; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
 
     public int getScaledProgress2() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
+        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 18; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+    }
+
+    public int getScaledEnergy() { //energy test
+        int energy = this.data.get(5); //stored energy
+        int maxEnergy = this.data.get(3);  // Max Energy
+        int progressArrowSize = 44; // This is the height in pixels of your arrow
+
+        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

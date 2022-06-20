@@ -3,6 +3,7 @@ package net.mcreator.pixelsofmc.block.entity;
 import net.mcreator.pixelsofmc.PixelsOfMcMod;
 import net.mcreator.pixelsofmc.init.PixelsOfMcModBlockEntities;
 import net.mcreator.pixelsofmc.init.PixelsOfMcModItems;
+import net.mcreator.pixelsofmc.network.PixelEnergyStorage;
 import net.mcreator.pixelsofmc.recipe.PixelSplitterRecipe;
 import net.mcreator.pixelsofmc.world.inventory.PixelSplitterGuiMenu;
 import net.minecraft.core.BlockPos;
@@ -10,6 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -19,10 +21,13 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -33,6 +38,9 @@ import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.Random;
 
+
+import static net.minecraft.core.particles.ParticleTypes.*;
+
 public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
         @Override
@@ -40,12 +48,20 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             setChanged();
         }
     };
-
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+
+    private final PixelEnergyStorage energyStorage = createEnergy();
+    private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
+
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72 / 9;
+    private int maxProgress = 72;
+    private int speedUpgrade = 1;
+    private final int capacity = 128000;
+    private final int maxReceive = 4096;
+    private int energyConsumption = 256;
+
 
     public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(PixelsOfMcModBlockEntities.PIXEL_SPLITTER.get(), pWorldPosition, pBlockState);
@@ -54,6 +70,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
                 switch (index) {
                     case 0: return PixelSplitterBlockEntity.this.progress;
                     case 1: return PixelSplitterBlockEntity.this.maxProgress;
+                    case 2: return PixelSplitterBlockEntity.this.speedUpgrade;
+                    case 3: return PixelSplitterBlockEntity.this.capacity;
+                    case 4: return PixelSplitterBlockEntity.this.maxReceive;
+                    case 5: return PixelSplitterBlockEntity.this.energyStorage.getEnergyStored();
                     default: return 0;
                 }
             }
@@ -62,11 +82,12 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
                 switch(index) {
                     case 0: PixelSplitterBlockEntity.this.progress = value; break;
                     case 1: PixelSplitterBlockEntity.this.maxProgress = value; break;
+                    case 2: PixelSplitterBlockEntity.this.speedUpgrade = value; break;
                 }
             }
 
             public int getCount() {
-                return 2;
+                return 6;
             }
         };
     }
@@ -88,6 +109,9 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return lazyItemHandler.cast();
         }
+        if (cap == CapabilityEnergy.ENERGY) {
+            return energy.cast();
+        }
 
         return super.getCapability(cap, side);
     }
@@ -102,20 +126,26 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     public void invalidateCaps()  {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        energy.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("inventory", itemHandler.serializeNBT());
-        tag.putInt("pixel_splitter.progress", progress);
+        tag.put("Inventory", itemHandler.serializeNBT());
+        tag.put("Energy", energyStorage.serializeNBT());
+        tag.putInt("progress", progress);
+        tag.putInt("speedUpgrade", speedUpgrade);
+        tag.putInt("powerCapacity", capacity);
         super.saveAdditional(tag);
     }
 
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-        progress = nbt.getInt("pixel_splitter.progress");
+        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
+        energyStorage.deserializeNBT(nbt.get("Energy"));
+        progress = nbt.getInt("progress");
+        speedUpgrade = nbt.getInt("speedUpgrade");
     }
 
     public void drops() {
@@ -126,15 +156,17 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
+            //---RECIPE---//
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-        SimpleContainer inventory = new SimpleContainer(pBlockEntity.itemHandler.getSlots());
         if(hasRecipe(pBlockEntity)) {
+            pBlockEntity.speedUpgradeCheck();
             pBlockEntity.progress++;
+            pBlockEntity.energyStorage.consumeEnergy(256);
+            if (pLevel.isClientSide) {PixelsOfMcMod.LOGGER.info(hasPower(pBlockEntity));}
             setChanged(pLevel, pPos, pState);
-            if(pBlockEntity.progress > pBlockEntity.maxProgress) {
-                PixelsOfMcMod.LOGGER.info(speedUpgradeAmount(inventory));
-                craftItem(pBlockEntity);
+            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+                   craftItem(pBlockEntity);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -161,6 +193,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         return entity.itemHandler.getStackInSlot(1).getItem() == PixelsOfMcModItems.CIRCLE_SAW.get();
     }
 
+    private static boolean hasPower(PixelSplitterBlockEntity entity) {
+        return entity.energyStorage.getEnergyStored() < 256;
+    }
+
     private static void craftItem(PixelSplitterBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
@@ -173,17 +209,29 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
 
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
-            entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null);
-
+            entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null); //saw
+            if (entity.itemHandler.getStackInSlot(1).getDamageValue() > entity.itemHandler.getStackInSlot(1).getMaxDamage()) { //removes saw if needed
+                entity.itemHandler.extractItem(1,1, false);
+            }
             entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(2).getCount() + 1));
 
+            entity.activeParticles(level);
             entity.resetProgress();
+            entity.errorEnergyReset();
         }
     }
 
     private void resetProgress() {
         this.progress = 0;
+    }
+
+    private void speedUpgradeCheck() {
+        if (this.itemHandler.getStackInSlot(3).getItem() == PixelsOfMcModItems.SPEED_UPGRADE.get()) {
+            this.speedUpgrade = Math.round( this.maxProgress / 10 * this.itemHandler.getStackInSlot(3).getCount() );
+        } else {
+            this.speedUpgrade = 0;
+        }
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
@@ -194,8 +242,33 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
     }
 
-    private static int speedUpgradeAmount(SimpleContainer inventory) {
-        return inventory.getItem(3).getCount();
+    public void activeParticles(LevelAccessor world) {
+        int x = this.getBlockPos().getX();
+        int y = this.getBlockPos().getY();
+        int z = this.getBlockPos().getZ();
+        if (world instanceof ServerLevel _level)
+            _level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
+    }
+
+    //---ENERGY---//
+    private PixelEnergyStorage createEnergy() {
+        return new PixelEnergyStorage(capacity, maxReceive) {
+            @Override
+            protected void onEnergyChanged() {setChanged();}
+
+            @Override
+            public int receiveEnergy(int maxReceive, boolean simulate) {
+                final int e = super.receiveEnergy(maxReceive, simulate);
+                return e;
+            }
+        };
+    }
+
+    private void errorEnergyReset() {
+        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
+            energyStorage.setEnergy(0);
+            PixelsOfMcMod.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
+        }
     }
 
 }
