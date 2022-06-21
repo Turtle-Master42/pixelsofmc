@@ -37,11 +37,11 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
-            this.addSlot(new SlotItemHandler(handler, 1, 80, 18));
-            this.addSlot(new ModResultSlot(handler, 2, 125, 41));
             this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
+            this.addSlot(new ModResultSlot(handler, 2, 125, 41));
+            this.addSlot(new SlotItemHandler(handler, 1, 80, 18));
+            this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
         });
 
         addDataSlots(data);

@@ -163,8 +163,6 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             pBlockEntity.speedUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(256);
-            if (pLevel.isClientSide) {PixelsOfMcMod.LOGGER.info(hasPower(pBlockEntity));}
-            setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                    craftItem(pBlockEntity);
             }
