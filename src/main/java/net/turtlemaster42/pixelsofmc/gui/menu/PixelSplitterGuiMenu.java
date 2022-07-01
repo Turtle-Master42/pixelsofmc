@@ -4,8 +4,8 @@ import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.gui.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.ModSpeedUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModBlocks;
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModMenuType;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +26,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
     }
 
     public PixelSplitterGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(PixelsOfMcModMenuType.PIXEL_SPLITTER_MENU.get(), pContainerId);
+        super(POMmenuType.PIXEL_SPLITTER_MENU.get(), pContainerId);
         checkContainerSize(inv, 5);
         blockEntity = ((PixelSplitterBlockEntity) entity);
         this.level = inv.player.level;
@@ -132,7 +132,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, PixelsOfMcModBlocks.PIXEL_SPLITTER.get());
+                pPlayer, POMblocks.PIXEL_SPLITTER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

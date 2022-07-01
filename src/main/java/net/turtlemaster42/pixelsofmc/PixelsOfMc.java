@@ -20,41 +20,41 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModRecipe;
+import net.turtlemaster42.pixelsofmc.init.POMrecipes;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
 import java.util.function.BiConsumer;
 
-@Mod(PixelsOfMcMod.MOD_ID)
-public class PixelsOfMcMod {
+@Mod(PixelsOfMc.MOD_ID)
+public class PixelsOfMc {
     public static final String MOD_ID = "pixelsofmc";
-	public static final Logger LOGGER = LogManager.getLogger(PixelsOfMcMod.class);
+	public static final Logger LOGGER = LogManager.getLogger(PixelsOfMc.class);
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static int messageID = 0;
 
-	public PixelsOfMcMod() {
-		PixelsOfMcModTabs.load();
+	public PixelsOfMc() {
+		POMtabs.load();
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		PixelsOfMcModBlocks.REGISTRY.register(bus);
-		PixelsOfMcModItems.REGISTRY.register(bus);
-		PixelsOfMcModMenuType.MENUS.register(bus);
+		POMblocks.BLOCKS.register(bus);
+		POMitems.ITEMS.register(bus);
+		POMmenuType.MENUS.register(bus);
 
-		PixelsOfMcModRecipe.register(bus);
+		POMrecipes.register(bus);
 		
-		PixelsOfMcModBlockEntities.REGISTRY.register(bus);
+		POMblockEntities.BLOCK_ENTITIES.register(bus);
 
 		bus.addListener(this::clientSetup);
 
 	}
 	
     private void clientSetup(final FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(PixelsOfMcModBlocks.PIXEL_SPLITTER.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
 
-		MenuScreens.register(PixelsOfMcModMenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
+		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 
     }
 

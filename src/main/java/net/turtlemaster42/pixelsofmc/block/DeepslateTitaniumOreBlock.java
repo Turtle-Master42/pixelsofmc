@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModBlocks;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class DeepslateTitaniumOreBlock extends Block {
 	public DeepslateTitaniumOreBlock() {
@@ -27,7 +27,7 @@ public class DeepslateTitaniumOreBlock extends Block {
 
 	@Override
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-		return new ItemStack(PixelsOfMcModBlocks.DEEPSLATE_TITANIUM_ORE.get());
+		return new ItemStack(POMblocks.DEEPSLATE_TITANIUM_ORE.get());
 	}
 
 	@Override

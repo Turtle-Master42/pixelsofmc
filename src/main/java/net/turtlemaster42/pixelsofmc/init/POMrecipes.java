@@ -2,7 +2,7 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -10,9 +10,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
 
-public class PixelsOfMcModRecipe {
+public class POMrecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = 
-			DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PixelsOfMcMod.MOD_ID);
+			DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PixelsOfMc.MOD_ID);
 	
 	public static final RegistryObject<RecipeSerializer<PixelSplitterRecipe>> PIXEL_SPLITTER_SERIALIZER =
 			SERIALIZERS.register("pixel_splitting", () -> PixelSplitterRecipe.Serializer.INSTANCE);

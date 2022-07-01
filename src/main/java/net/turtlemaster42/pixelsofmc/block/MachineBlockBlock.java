@@ -1,7 +1,6 @@
 
 package net.turtlemaster42.pixelsofmc.block;
 
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -32,11 +31,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
-import net.turtlemaster42.pixelsofmc.procedures.MachineBlockOnBlockRightClickedProcedure;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.procedures.MachineBlockBlockDestroyedByPlayerProcedure;
-import net.turtlemaster42.pixelsofmc.procedures.MachineBlockBlockAddedProcedure;
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModBlocks;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
 
 import javax.annotation.Nullable;
@@ -98,8 +95,8 @@ public class MachineBlockBlock extends Block
 	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, player, willHarvest, fluid);
 		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), player);
-		PixelsOfMcMod.LOGGER.info(retval);
-		PixelsOfMcMod.LOGGER.info(blockstate.getBlock());
+		PixelsOfMc.LOGGER.info(retval);
+		PixelsOfMc.LOGGER.info(blockstate.getBlock());
 		return retval;
 	}
 
@@ -117,7 +114,8 @@ public class MachineBlockBlock extends Block
 		}
 		BlockState mainState = world.getBlockState(mainPos);
 		//TODO: Use proper ray trace result, currently is using the one we got but we probably should make one with correct position information
-		if (!world.isClientSide()) {PixelsOfMcMod.LOGGER.info("succes");}
+		if (!world.isClientSide()) {
+			PixelsOfMc.LOGGER.info("succes");}
 		return mainState.getBlock().use(mainState, world, mainPos, player, hand, hit);
 	}
 
@@ -138,7 +136,7 @@ public class MachineBlockBlock extends Block
 
 	@OnlyIn(Dist.CLIENT)
 	public static void registerRenderLayer() {
-		ItemBlockRenderTypes.setRenderLayer(PixelsOfMcModBlocks.MACHINE_BLOCK.get(), renderType -> renderType == RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMblocks.MACHINE_BLOCK.get(), renderType -> renderType == RenderType.translucent());
 	}
 
 }

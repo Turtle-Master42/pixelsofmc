@@ -6,13 +6,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.CreativeModeTab;
 
-public class PixelsOfMcModTabs {
+public class POMtabs {
 	public static CreativeModeTab PIXELS_OF_MINECRAFT_TAB;
 
 	public static void load() {
 		PIXELS_OF_MINECRAFT_TAB = new CreativeModeTab("pixels_of_minecraft_tab") {
 			public ItemStack makeIcon() {
-				return new ItemStack(PixelsOfMcModItems.HEAT_RESISTANT_PLATING.get());
+				return new ItemStack(POMitems.HEAT_RESISTANT_PLATING.get());
 			}
 
 			@OnlyIn(Dist.CLIENT)

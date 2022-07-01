@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class book1 extends Item {
 
@@ -19,7 +19,7 @@ public class book1 extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (world.isClientSide) {
-            PixelsOfMcMod.PROXY.openBookGUI(itemStack);
+            PixelsOfMc.PROXY.openBookGUI(itemStack);
         }
         return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, itemStack);
     }

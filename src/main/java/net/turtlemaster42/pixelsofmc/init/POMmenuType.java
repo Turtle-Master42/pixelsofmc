@@ -1,6 +1,6 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -11,9 +11,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class PixelsOfMcModMenuType {
+public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.CONTAINERS, PixelsOfMcMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.CONTAINERS, PixelsOfMc.MOD_ID);
 
     public static final RegistryObject<MenuType<PixelSplitterGuiMenu>> PIXEL_SPLITTER_MENU =
             registerMenuType(PixelSplitterGuiMenu::new, "pixel_splitter_menu");

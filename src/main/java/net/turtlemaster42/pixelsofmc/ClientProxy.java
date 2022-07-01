@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.turtlemaster42.pixelsofmc.gui.book.GuiBook1;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = PixelsOfMcMod.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = PixelsOfMc.MOD_ID, value = Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
 
 

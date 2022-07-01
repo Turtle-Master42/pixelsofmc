@@ -2,7 +2,7 @@ package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -70,7 +70,7 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<PixelSplitterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMcMod.MOD_ID,"pixel_splitting");
+                new ResourceLocation(PixelsOfMc.MOD_ID,"pixel_splitting");
 
         public PixelSplitterRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));

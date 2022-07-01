@@ -16,7 +16,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 
-import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModBlocks;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class MachineBlockBlockDestroyedByPlayerProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -45,7 +45,7 @@ public class MachineBlockBlockDestroyedByPlayerProcedure {
 				}
 
 				private void run() {
-					if (PixelsOfMcModBlocks.MACHINE_BLOCK.get() == (world.getBlockState(new BlockPos(
+					if (POMblocks.MACHINE_BLOCK.get() == (world.getBlockState(new BlockPos(
 							entity.level
 									.clip(new ClipContext(entity.getEyePosition(1f), entity.getEyePosition(1f).add(entity.getViewVector(1f).scale(5)),
 											ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity))

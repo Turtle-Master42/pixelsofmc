@@ -2,7 +2,7 @@ package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMcMod.MOD_ID, "textures/pixel_splitter_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
 
     public PixelSplitterGuiScreen(PixelSplitterGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
