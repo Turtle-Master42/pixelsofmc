@@ -69,7 +69,7 @@ public class PixelsOfMcModBlocks {
 	public static final RegistryObject<Block> MACHINE_BLOCK = REGISTRY.register("machine_block", () -> new MachineBlockBlock());
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()), PixelsOfMcModTabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter", "tooltip.pixelsofmc.noshift", "", "tooltip.pixelsofmc.noctrl", "", "tooltip.pixelsofmc.noalt");
+                    .noOcclusion()), PixelsOfMcModTabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter", "tooltip.pixelsofmc.noshift", "tooltip.pixelsofmc.block.pixel_splitter2", "tooltip.pixelsofmc.noctrl", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "tooltip.pixelsofmc.noalt");
 
 
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -85,9 +85,9 @@ public class PixelsOfMcModBlocks {
     }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block,
-                                                                     CreativeModeTab tab, String tooltipKey, String shiftTooltip, String tooltipKey2, String ctrlTooltip, String tooltipKey3, String altTooltip) {
+                                                                     CreativeModeTab tab, String tooltipKeyShift, String noShift, String tooltipKeyCtrl, String noCtrl, String tooltipKeyAlt, String noAlt) {
         RegistryObject<T> toReturn = REGISTRY.register(name, block);
-        registerBlockItem(name, toReturn, tab, tooltipKey, shiftTooltip, tooltipKey2, ctrlTooltip, tooltipKey3, altTooltip);
+        registerBlockItem(name, toReturn, tab, tooltipKeyShift, noShift, tooltipKeyCtrl, noCtrl, tooltipKeyAlt, noAlt);
         return toReturn;
     }
 

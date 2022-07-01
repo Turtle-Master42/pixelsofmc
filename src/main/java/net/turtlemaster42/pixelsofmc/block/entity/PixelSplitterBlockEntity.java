@@ -57,10 +57,13 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 72;
-    private int speedUpgrade = 1;
+    private int speedUpgrade = 0;
+
+    private int speedUpgradeAmount = 0;
+    private int energyUpgrade = 0;
     private final int capacity = 128000;
     private final int maxReceive = 4096;
-    private int energyConsumption = 256;
+    private static final int energyConsumption = 256;
 
 
     public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -153,18 +156,22 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
-
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
+
+
             //---RECIPE---//
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity)) {
+            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
             pBlockEntity.speedUpgradeCheck();
+            pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(256);
+            pBlockEntity.energyStorage.consumeEnergy(speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount);
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                    craftItem(pBlockEntity);
+                   PixelsOfMcMod.LOGGER.info(pBlockEntity.energyUpgrade);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -192,7 +199,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean hasPower(PixelSplitterBlockEntity entity) {
-        return entity.energyStorage.getEnergyStored() < 256;
+        return entity.energyStorage.getEnergyStored() < (energyConsumption - entity.energyUpgrade);
     }
 
     private static void craftItem(PixelSplitterBlockEntity entity) {
@@ -226,9 +233,16 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
 
     private void speedUpgradeCheck() {
         if (this.itemHandler.getStackInSlot(3).getItem() == PixelsOfMcModItems.SPEED_UPGRADE.get()) {
-            this.speedUpgrade = Math.round( this.maxProgress / 10 * this.itemHandler.getStackInSlot(3).getCount() );
+            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(3).getCount();
         } else {
             this.speedUpgrade = 0;
+        }
+    }
+    private void energyUpgradeCheck() {
+        if (this.itemHandler.getStackInSlot(4).getItem() == PixelsOfMcModItems.ENERGY_UPGRADE.get()) {
+            this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(4).getCount();
+        } else {
+            this.energyUpgrade = 0;
         }
     }
 
@@ -248,7 +262,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             _level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
     }
 
+
+
     //---ENERGY---//
+
     private PixelEnergyStorage createEnergy() {
         return new PixelEnergyStorage(capacity, maxReceive) {
             @Override
@@ -264,6 +281,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
+            PixelsOfMcMod.LOGGER.error("Energy " + energyStorage.getEnergyStored() + " is higher than max " + energyStorage.getMaxEnergyStored());
             energyStorage.setEnergy(0);
             PixelsOfMcMod.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
         }

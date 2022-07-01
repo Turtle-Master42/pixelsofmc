@@ -63,6 +63,7 @@ public class PixelsOfMcModItemModelProvider extends ItemModelProvider {
         //other
         simpleItem(PixelsOfMcModItems.SPEED_UPGRADE.get());
         simpleItem(PixelsOfMcModItems.ENERGY_UPGRADE.get());
+        simpleItem(PixelsOfMcModItems.BOOK_1.get());
 
 
 

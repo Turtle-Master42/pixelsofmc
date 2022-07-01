@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
+import net.minecraftforge.fml.DistExecutor;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -32,6 +33,7 @@ public class PixelsOfMcMod {
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static int messageID = 0;
 
 	public PixelsOfMcMod() {

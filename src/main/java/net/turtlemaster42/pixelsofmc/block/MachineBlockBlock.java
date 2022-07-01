@@ -1,6 +1,7 @@
 
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -31,12 +32,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 
+import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
 import net.turtlemaster42.pixelsofmc.procedures.MachineBlockOnBlockRightClickedProcedure;
 import net.turtlemaster42.pixelsofmc.procedures.MachineBlockBlockDestroyedByPlayerProcedure;
 import net.turtlemaster42.pixelsofmc.procedures.MachineBlockBlockAddedProcedure;
 import net.turtlemaster42.pixelsofmc.init.PixelsOfMcModBlocks;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Collections;
 
@@ -61,10 +64,6 @@ public class MachineBlockBlock extends Block
 		return true;
 	}
 
-	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return 0;
-	}
-
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
 		return new ItemStack(Blocks.AIR);
 	}
@@ -80,34 +79,46 @@ public class MachineBlockBlock extends Block
 		return Collections.singletonList(new ItemStack(Blocks.AIR));
 	}
 
+	public static BlockPos getMainBlockPos(BlockGetter world, BlockPos thisPos) {
+		return thisPos;
+	}
+	@Deprecated
 	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
 		super.onPlace(blockstate, world, pos, oldState, moving);
-		MachineBlockBlockAddedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+		if (!world.isClientSide()) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity != null)
+				blockEntity.getTileData().putDouble("mainX", pos.getX());
+				blockEntity.getTileData().putDouble("mainY", pos.getY());
+				blockEntity.getTileData().putDouble("mainZ", pos.getZ());
+				world.sendBlockUpdated(pos, blockstate, blockstate, 3);
+		}
 	}
 
-	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
-		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
+	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, player, willHarvest, fluid);
+		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), player);
+		PixelsOfMcMod.LOGGER.info(retval);
+		PixelsOfMcMod.LOGGER.info(blockstate.getBlock());
 		return retval;
 	}
 
-	public void attack(BlockState blockstate, Level world, BlockPos pos, Player entity) {
-		super.attack(blockstate, world, pos, entity);
-		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
+	public void attack(BlockState blockstate, Level world, BlockPos pos, Player player) {
+		super.attack(blockstate, world, pos, player);
+		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), player);
 	}
-
-	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-		super.use(blockstate, world, pos, entity, hand, hit);
-		int x = pos.getX();
-		int y = pos.getY();
-		int z = pos.getZ();
-		double hitX = hit.getLocation().x;
-		double hitY = hit.getLocation().y;
-		double hitZ = hit.getLocation().z;
-		Direction direction = hit.getDirection();
-
-		MachineBlockOnBlockRightClickedProcedure.execute(world, x, y, z, entity);
-		return InteractionResult.SUCCESS;
+	@Deprecated
+	@Nullable
+	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		super.use(blockstate, world, pos, player, hand, hit);
+		BlockPos mainPos = pos.above();
+		if (mainPos == null) {
+			return InteractionResult.FAIL;
+		}
+		BlockState mainState = world.getBlockState(mainPos);
+		//TODO: Use proper ray trace result, currently is using the one we got but we probably should make one with correct position information
+		if (!world.isClientSide()) {PixelsOfMcMod.LOGGER.info("succes");}
+		return mainState.getBlock().use(mainState, world, mainPos, player, hand, hit);
 	}
 
 	public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
