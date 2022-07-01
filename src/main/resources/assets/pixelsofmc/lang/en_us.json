@@ -39,6 +39,7 @@
   "item.pixelsofmc.titanium_diboride_ingot": "Refined Netherite Ingot",
   "item.pixelsofmc.speed_upgrade": "Speed Upgrade",
   "item.pixelsofmc.energy_upgrade": "Energy Upgrade",
+  "item.pixelsofmc.book_1": "The Laws of Squares I",
 
   //machines
   "block.pixelsofmc.machine_block": "Machine Block",
@@ -54,10 +55,15 @@
   "block.pixelsofmc.end_titanium_ore": "Endstone Titanium Ore",
 
 //tabs
-  "itemGroup.tabpixels_of_minecraft_tab": "The Pixels of Minecraft",
+  "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
+
+//books
+  "book.pixelsofmc_guide_book_1.title":  "The Laws of Squares I",
+  "book.pixelsofmc_guide_book_1.root": "",
 
 //tooltips
   "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
+  "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking\nto check if everything is\nstill working",
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
   "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",

@@ -7,10 +7,12 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.item.Item;
 import net.turtlemaster42.pixelsofmc.PixelsOfMcMod;
+import net.turtlemaster42.pixelsofmc.item.*;
 
 public class PixelsOfMcModItems {
 	public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMcMod.MOD_ID);
 
+	public static final RegistryObject<Item> BOOK_1 = REGISTRY.register("book_1", () -> new book1(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> JAR_OF_PIXELS = REGISTRY.register("jar_of_pixels",
 			() -> new Item(new Item.Properties().tab(PixelsOfMcModTabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> ADVANCED_LASER = REGISTRY.register("advanced_laser",
