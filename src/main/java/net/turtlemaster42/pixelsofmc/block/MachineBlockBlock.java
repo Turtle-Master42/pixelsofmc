@@ -104,8 +104,8 @@ public class MachineBlockBlock extends Block
 		super.attack(blockstate, world, pos, player);
 		MachineBlockBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), player);
 	}
-	@Deprecated
 	@Nullable
+	@Deprecated
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, player, hand, hit);
 		BlockPos mainPos = pos.above();
@@ -113,9 +113,6 @@ public class MachineBlockBlock extends Block
 			return InteractionResult.FAIL;
 		}
 		BlockState mainState = world.getBlockState(mainPos);
-		//TODO: Use proper ray trace result, currently is using the one we got but we probably should make one with correct position information
-		if (!world.isClientSide()) {
-			PixelsOfMc.LOGGER.info("succes");}
 		return mainState.getBlock().use(mainState, world, mainPos, player, hand, hit);
 	}
 

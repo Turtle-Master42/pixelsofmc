@@ -1,0 +1,8 @@
+Licensed by: Creative Commons (CC-BY-SA 3.0):
+https://creativecommons.org/licenses/by-sa/3.0/
+
+ModItems registration implemenation from BlakeBr0 / Mystical Agriculture:
+Under MIT-License: https://github.com/BlakeBr0/MysticalAgriculture/blob/1.18/LICENSE
+
+EnergyInfoArea, InfoArea by BluSunrize from ImmersiveEngineering under MIT-License:
+https://github.com/BluSunrize/ImmersiveEngineering/blob/1.18.2/LICENSE

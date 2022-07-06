@@ -9,13 +9,37 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.util.MouseUtil;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
 
+    private EnergyInfoArea EnergyInfoArea;
+
     public PixelSplitterGuiScreen(PixelSplitterGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        assignEnergyInfoArea();
+    }
+
+    @Override
+    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 8, 19, 16, 50)) {
+            renderTooltip(pPoseStack, EnergyInfoArea.getTooltips(),
+                    Optional.empty(),pMouseX - x, pMouseY - y);
+        }
     }
 
     @Override
@@ -36,10 +60,19 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
 
     }
 
+
+    private void assignEnergyInfoArea() {
+        EnergyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) +  156, ((height - imageHeight) / 2) + 13, menu.blockEntity.energyStorage);
+    }
     @Override
     public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
         renderBackground(pPoseStack);
         super.render(pPoseStack, mouseX, mouseY, delta);
         renderTooltip(pPoseStack, mouseX, mouseY);
+    }
+
+
+    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }

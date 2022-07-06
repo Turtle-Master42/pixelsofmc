@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.gui;
+package net.turtlemaster42.pixelsofmc.gui.slots;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;

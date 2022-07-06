@@ -1,8 +1,13 @@
 package net.turtlemaster42.pixelsofmc.block.entity;
 
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
@@ -48,18 +53,28 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             setChanged();
         }
     };
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    private final PixelEnergyStorage energyStorage = createEnergy();
-    private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
+    public final PixelEnergyStorage energyStorage = new PixelEnergyStorage(capacity, maxReceive) {
+        @Override
+        protected void onEnergyChanged() {
+            setChanged();
+            POMmessages.sendToClients(new PacketSyncEnergyToClient(this.getEnergyStored(), worldPosition));
+        }
+
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            final int e = super.receiveEnergy(maxReceive, simulate);
+            return e;
+        }
+    };
+    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
 
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 72;
     private int speedUpgrade = 0;
-
-    private int speedUpgradeAmount = 0;
     private int energyUpgrade = 0;
     private final int capacity = 128000;
     private final int maxReceive = 4096;
@@ -113,7 +128,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             return lazyItemHandler.cast();
         }
         if (cap == CapabilityEnergy.ENERGY) {
-            return energy.cast();
+            return lazyEnergyHandler.cast();
         }
 
         return super.getCapability(cap, side);
@@ -123,13 +138,14 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
     }
 
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
-        energy.invalidate();
+        lazyEnergyHandler.invalidate();
     }
 
     @Override
@@ -139,6 +155,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         tag.putInt("progress", progress);
         tag.putInt("speedUpgrade", speedUpgrade);
         tag.putInt("powerCapacity", capacity);
+        tag.putInt("energy", energyStorage.getEnergyStored());
         super.saveAdditional(tag);
     }
 
@@ -149,6 +166,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         energyStorage.deserializeNBT(nbt.get("Energy"));
         progress = nbt.getInt("progress");
         speedUpgrade = nbt.getInt("speedUpgrade");
+        energyStorage.setEnergy(nbt.getInt("energy"));
     }
 
     public void drops() {
@@ -160,18 +178,23 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     }
 
 
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+
             //---RECIPE---//
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity)) {
+        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
             pBlockEntity.speedUpgradeCheck();
             pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount);
+            pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                    craftItem(pBlockEntity);
-                   PixelsOfMc.LOGGER.info(pBlockEntity.energyUpgrade);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -199,7 +222,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean hasPower(PixelSplitterBlockEntity entity) {
-        return entity.energyStorage.getEnergyStored() < (energyConsumption - entity.energyUpgrade);
+        return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
     }
 
     private static void craftItem(PixelSplitterBlockEntity entity) {
@@ -269,7 +292,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     private PixelEnergyStorage createEnergy() {
         return new PixelEnergyStorage(capacity, maxReceive) {
             @Override
-            protected void onEnergyChanged() {setChanged();}
+            protected void onEnergyChanged() {
+                setChanged();
+                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.getEnergyStored(), worldPosition));
+            }
 
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -285,6 +311,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             energyStorage.setEnergy(0);
             PixelsOfMc.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
         }
+    }
+
+    public void setEnergyLevel(int energyLevel) {
+        this.energyStorage.setEnergy(energyLevel);
     }
 
 }

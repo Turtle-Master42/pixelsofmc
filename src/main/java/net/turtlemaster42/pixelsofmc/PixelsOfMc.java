@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc;
 
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -49,6 +50,10 @@ public class PixelsOfMc {
 
 		bus.addListener(this::clientSetup);
 
+	}
+
+	private void setup(final FMLCommonSetupEvent event) {
+		POMmessages.register();
 	}
 	
     private void clientSetup(final FMLClientSetupEvent event) {

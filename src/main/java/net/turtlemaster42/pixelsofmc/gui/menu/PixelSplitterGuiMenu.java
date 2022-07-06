@@ -1,10 +1,9 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
-import net.turtlemaster42.pixelsofmc.gui.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,7 +16,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class PixelSplitterGuiMenu extends AbstractContainerMenu {
-    private final PixelSplitterBlockEntity blockEntity;
+    public final PixelSplitterBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
@@ -40,7 +39,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
             this.addSlot(new ModResultSlot(handler, 2, 125, 41));
-            this.addSlot(new SlotItemHandler(handler, 1, 80, 18));
+            this.addSlot(new ModRestrictedSlot(handler, 1, 80, 18, POMitems.CIRCLE_SAW));
             this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
         });
 
