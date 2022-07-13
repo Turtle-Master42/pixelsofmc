@@ -37,7 +37,7 @@ public class EnergyInfoArea extends InfoArea {
         int stored = (int)(height*(energy.getEnergyStored()/(float)energy.getMaxEnergyStored()));
         fillGradient(
                 transform,
-                area.getX(), area.getY()+(height-stored),
+                area.getX(), area.getY()+(height - stored),
                 area.getX() + area.getWidth(), area.getY() +area.getHeight(),
                 0xffb51500, 0xff600b00
         );

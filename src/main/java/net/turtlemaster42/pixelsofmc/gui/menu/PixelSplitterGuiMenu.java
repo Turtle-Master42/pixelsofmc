@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
+import net.turtlemaster42.pixelsofmc.gui.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class PixelSplitterGuiMenu extends AbstractContainerMenu {
+public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final PixelSplitterBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
@@ -146,5 +147,10 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
+    }
+
+    @Override
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
     }
 }

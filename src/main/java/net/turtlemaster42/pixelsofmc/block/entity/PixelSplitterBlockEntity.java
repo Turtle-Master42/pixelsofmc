@@ -1,8 +1,7 @@
 package net.turtlemaster42.pixelsofmc.block.entity;
 
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.LevelAccessor;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -16,7 +15,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -24,15 +25,15 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -43,10 +44,20 @@ import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.Random;
 
-
 import static net.minecraft.core.particles.ParticleTypes.*;
 
-public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvider {
+
+public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvider, IEnergyHandlingBlockEntity {
+
+    protected final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 72;
+    private int speedUpgrade = 0;
+    private int energyUpgrade = 0;
+    private final int capacity = 1024000;
+    private final int maxReceive = 4096;
+    private static final int energyConsumption = 256;
+
     private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -70,15 +81,6 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-
-    protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 72;
-    private int speedUpgrade = 0;
-    private int energyUpgrade = 0;
-    private final int capacity = 128000;
-    private final int maxReceive = 4096;
-    private static final int energyConsumption = 256;
 
 
     public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -187,7 +189,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             //---RECIPE---//
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
+        if(hasRecipe(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
             pBlockEntity.speedUpgradeCheck();
             pBlockEntity.energyUpgradeCheck();

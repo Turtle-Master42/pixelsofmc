@@ -4,9 +4,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Position;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkEvent;
+import net.turtlemaster42.pixelsofmc.block.entity.IEnergyHandlingBlockEntity;
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.IEnergyMenu;
 
 import java.util.function.Supplier;
 
@@ -33,11 +36,11 @@ public class PacketSyncEnergyToClient {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE CLIENT YES
-            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof PixelSplitterBlockEntity blockEntity) {
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IEnergyHandlingBlockEntity blockEntity) {
                 blockEntity.setEnergyLevel(energy);
 
-                if(Minecraft.getInstance().player.containerMenu instanceof PixelSplitterGuiMenu menu &&
-                        menu.blockEntity.getBlockPos().equals(pos)) {
+                if(Minecraft.getInstance().player.containerMenu instanceof IEnergyMenu menu &&
+                        menu.getBlockEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }
             }

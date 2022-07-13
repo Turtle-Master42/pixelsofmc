@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
@@ -49,7 +50,9 @@ public class PixelsOfMc {
 		POMblockEntities.BLOCK_ENTITIES.register(bus);
 
 		bus.addListener(this::clientSetup);
+		bus.addListener(this::setup);
 
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {

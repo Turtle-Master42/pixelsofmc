@@ -1,24 +1,23 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.item.TooltipFlag;
 
 import java.util.Optional;
 
 public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
-
     private EnergyInfoArea EnergyInfoArea;
 
     public PixelSplitterGuiScreen(PixelSplitterGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -57,13 +56,10 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
             blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgress2());
         }
         blit(pPoseStack, x + 11, y + 22, 185, 0, 10, menu.getScaledEnergy());
+        EnergyInfoArea.draw(pPoseStack);
 
     }
 
-
-    private void assignEnergyInfoArea() {
-        EnergyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) +  156, ((height - imageHeight) / 2) + 13, menu.blockEntity.energyStorage);
-    }
     @Override
     public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
         renderBackground(pPoseStack);
@@ -71,6 +67,10 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         renderTooltip(pPoseStack, mouseX, mouseY);
     }
 
+    private void assignEnergyInfoArea() {
+        EnergyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) +  156,
+                ((height - imageHeight) / 2) + 13, menu.blockEntity.energyStorage);
+    }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
