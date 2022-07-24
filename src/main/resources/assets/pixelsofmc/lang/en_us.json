@@ -39,7 +39,29 @@
   "item.pixelsofmc.titanium_diboride_ingot": "Refined Netherite Ingot",
   "item.pixelsofmc.speed_upgrade": "Speed Upgrade",
   "item.pixelsofmc.energy_upgrade": "Energy Upgrade",
+  "item.pixelsofmc.steel_ingot": "Steel Ingot",
   "item.pixelsofmc.book_1": "The Laws of Squares I",
+
+  //elements
+  "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
+  "item.pixelsofmc.uranium_dust": "Uranium Dust",
+
+  "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
+  "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
+  "item.pixelsofmc.calcium_ingot": "Calcium Ingot",
+  "item.pixelsofmc.chromium_ingot": "Chromium Ingot",
+  "item.pixelsofmc.cobalt_ingot": "Cobalt Ingot",
+  "item.pixelsofmc.gallium_ingot": "Gallium Ingot",
+  "item.pixelsofmc.lithium_ingot": "Lithium Ingot",
+  "item.pixelsofmc.magnesium_ingot": "Magnesium Ingot",
+  "item.pixelsofmc.manganese_ingot": "Manganese Ingot",
+  "item.pixelsofmc.nickel_ingot": "Nickel Ingot",
+  "item.pixelsofmc.potassium_ingot": "Potassium Ingot",
+  "item.pixelsofmc.scandium_ingot": "Scandium Ingot",
+  "item.pixelsofmc.sodium_ingot": "Sodium Ingot",
+  "item.pixelsofmc.vanadium_ingot": "Vanadium Ingot",
+  "item.pixelsofmc.zinc_ingot": "Zinc Ingot",
+
 
   //machines
   "block.pixelsofmc.machine_block": "Machine Block",

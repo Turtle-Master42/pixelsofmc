@@ -185,6 +185,13 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag compound = saveWithoutMetadata();
+        load(compound);
+
+        return compound;
+    }
 
             //---RECIPE---//
 
@@ -220,7 +227,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean hasToolsInToolSlot(PixelSplitterBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(1).getItem() == POMitems.CIRCLE_SAW.get();
+        return entity.itemHandler.getStackInSlot(1).getItem() == POMitems.TITANIUM_CIRCLE_SAW.get();
     }
 
     private static boolean hasPower(PixelSplitterBlockEntity entity) {

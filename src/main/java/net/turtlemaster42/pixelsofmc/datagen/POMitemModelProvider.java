@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +23,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.IRON_DUST.get());
         simpleItem(POMitems.TITANIUM_DUST.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
+        simpleItem(POMitems.URANIUM_DUST.get());
         //plastic
         simpleItem(POMitems.BIO_COMPOUND.get());
         simpleItem(POMitems.BIO_PLASTIC_SHEET.get());
@@ -38,7 +40,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ADVANCED_LASER.get());
         simpleItem(POMitems.MICRO_CHIP.get());
         simpleItem(POMitems.COPPER_WIRE.get());
-        simpleItem(POMitems.CIRCLE_SAW.get());
+        simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         //plates
         simpleItem(POMitems.ANCIENT_HEAT_PLATE.get());
         simpleItem(POMitems.HEAT_RESISTANT_PLATING.get());
@@ -52,6 +55,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_NUGGET.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
         simpleItem(POMitems.STEEL_INGOT.get());
+        simpleItem(POMitems.URANIUM_INGOT.get());
         //jar
         simpleItem(POMitems.EMPTY_JAR.get());
         simpleItem(POMitems.JAR_OF_PIXELS_COPPER.get());
@@ -64,7 +68,28 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.SPEED_UPGRADE.get());
         simpleItem(POMitems.ENERGY_UPGRADE.get());
         simpleItem(POMitems.BOOK_1.get());
+        //elements
+        simpleItem(POMitems.BORON_CUBE.get());
+        simpleItem(POMitems.CARBON_CUBE.get());
+        simpleItem(POMitems.DENSE_CARBON_CUBE.get());
+        simpleItem(POMitems.SILICON_CUBE.get());
+        simpleItem(POMitems.ALUMINIUM_INGOT.get());
+        simpleItem(POMitems.BERYLLIUM_INGOT.get());
+        simpleItem(POMitems.CALCIUM_INGOT.get());
+        simpleItem(POMitems.COBALT_INGOT.get());
+        simpleItem(POMitems.CHROMIUM_INGOT.get());
+        simpleItem(POMitems.GALLIUM_INGOT.get());
+        simpleItem(POMitems.LITHIUM_INGOT.get());
+        simpleItem(POMitems.MANGANESE_INGOT.get());
+        simpleItem(POMitems.MAGNESIUM_INGOT.get());
+        simpleItem(POMitems.NICKEL_INGOT.get());
+        simpleItem(POMitems.POTASSIUM_INGOT.get());
+        simpleItem(POMitems.SCANDIUM_INGOT.get());
+        simpleItem(POMitems.SODIUM_INGOT.get());
+        simpleItem(POMitems.VANADIUM_INGOT.get());
+        simpleItem(POMitems.ZINC_INGOT.get());
 
+        simpleItem(POMitems.BIT_PIXEL.get());
 
 
     }

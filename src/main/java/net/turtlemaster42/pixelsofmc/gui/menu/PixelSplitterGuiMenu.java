@@ -40,7 +40,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
             this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
             this.addSlot(new ModResultSlot(handler, 2, 125, 41));
-            this.addSlot(new ModRestrictedSlot(handler, 1, 80, 18, POMitems.CIRCLE_SAW));
+            this.addSlot(new ModRestrictedSlot(handler, 1, 80, 18, POMitems.TITANIUM_CIRCLE_SAW));
             this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
         });
 

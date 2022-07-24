@@ -43,7 +43,7 @@ public class POMblocks {
     public static final RegistryObject<Block> TITANIUM_ORE = registerBlock("titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(5f, 6f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
-    public static final RegistryObject<Block> ENDSTONE_TITANIUM_ORE = registerBlock("end_titanium_ore",
+    public static final RegistryObject<Block> ENDSTONE_TITANIUM_ORE = registerBlock("endstone_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE)
                     .strength(5f, 10f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
     public static final RegistryObject<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
@@ -53,7 +53,11 @@ public class POMblocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(5f, 10f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
-	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", () -> new MachineBlockBlock());
+    public static final RegistryObject<Block> TITANIUM_DIBORIDE_BLOCK = registerBlock("titanium_diboride_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", () -> new MachineBlock());
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter", "tooltip.pixelsofmc.noshift", "tooltip.pixelsofmc.block.pixel_splitter2", "tooltip.pixelsofmc.noctrl", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "tooltip.pixelsofmc.noalt");
@@ -63,7 +67,7 @@ public class POMblocks {
 	public static class ClientSideHandler {
 		@SubscribeEvent
 		public static void clientSetup(FMLClientSetupEvent event) {
-			MachineBlockBlock.registerRenderLayer();
+			MachineBlock.registerRenderLayer();
 		}
 	}
 

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NIN",
+    "ISI",
+    "NIN"
+  ],
+  "key": {
+    "N": {
+      "tag": "pixelsofmc:titanium_nugget"
+    },
+    "I": {
+      "tag": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "S": {
+      "tag": "pixelsofmc:titanium_diboride_plating"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:titanium_diboride_circle_saw",
+    "count": 1
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "pixelsofmc:blocks/titanium_block",
-    "particle": "pixelsofmc:blocks/titanium_block"
-  }
-}
