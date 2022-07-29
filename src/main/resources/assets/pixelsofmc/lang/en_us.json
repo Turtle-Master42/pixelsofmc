@@ -4,7 +4,8 @@
   "item.pixelsofmc.copper_wire": "Copper Wire",
   "item.pixelsofmc.empty_jar": "Empty Jar",
   "item.pixelsofmc.jar_of_pixels_emerald": "Jar Of Emerald Pixels",
-  "item.pixelsofmc.circle_saw": "Circle Saw",
+  "item.pixelsofmc.titanium_circle_saw": "Titanium Circle Saw",
+  "item.pixelsofmc.titanium_diboride_circle_saw": "Refined Netherite Circle Saw",
   "item.pixelsofmc.jar_of_pixels_diamond": "Jar Of Diamond Pixels",
   "item.pixelsofmc.repelling_plastic": "Repelling Plastic",
   "item.pixelsofmc.fire_proof_plastic": "Fire Proof Plastic",
@@ -46,11 +47,17 @@
   "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
 
+  "item.pixelsofmc.boron_cube": "Boron Cube",
+  "item.pixelsofmc.carbon_cube": "Carbon Cube",
+  "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
+  "item.pixelsofmc.silicon_cube": "Silicon Cube",
+
   "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
   "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
   "item.pixelsofmc.calcium_ingot": "Calcium Ingot",
   "item.pixelsofmc.chromium_ingot": "Chromium Ingot",
   "item.pixelsofmc.cobalt_ingot": "Cobalt Ingot",
+  "item.pixelsofmc.zinc_ingot": "Zinc Ingot",
   "item.pixelsofmc.gallium_ingot": "Gallium Ingot",
   "item.pixelsofmc.lithium_ingot": "Lithium Ingot",
   "item.pixelsofmc.magnesium_ingot": "Magnesium Ingot",
@@ -60,8 +67,21 @@
   "item.pixelsofmc.scandium_ingot": "Scandium Ingot",
   "item.pixelsofmc.sodium_ingot": "Sodium Ingot",
   "item.pixelsofmc.vanadium_ingot": "Vanadium Ingot",
-  "item.pixelsofmc.zinc_ingot": "Zinc Ingot",
-
+  "item.pixelsofmc.rubidium_ingot": "Rubidium Ingot",
+  "item.pixelsofmc.strontium_ingot": "Strontium Ingot",
+  "item.pixelsofmc.yttrium_ingot": "Yttrium Ingot",
+  "item.pixelsofmc.zirconium_ingot": "Zirconium Ingot",
+  "item.pixelsofmc.niobium_ingot": "Niobium Ingot",
+  "item.pixelsofmc.molybdenum_ingot": "Molybdenum Ingot",
+  "item.pixelsofmc.technetium_ingot": "Technetium Ingot",
+  "item.pixelsofmc.ruthenium_ingot": "Ruthenium Ingot",
+  "item.pixelsofmc.rhodium_ingot": "Rhodium Ingot",
+  "item.pixelsofmc.palladium_ingot": "Palladium Ingot",
+  "item.pixelsofmc.silver_ingot": "Silver Ingot",
+  "item.pixelsofmc.cadmium_ingot": "Cadmium Ingot",
+  "item.pixelsofmc.indium_ingot": "Indium Ingot",
+  "item.pixelsofmc.tin_ingot": "Tin Ingot",
+  "item.pixelsofmc.antimony_ingot": "Antimony Ingot",
 
   //machines
   "block.pixelsofmc.machine_block": "Machine Block",
@@ -74,7 +94,8 @@
   "block.pixelsofmc.heat_resistant_casing": "Heat Resistant Casing",
   "block.pixelsofmc.titanium_ore": "Titanium Ore",
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
-  "block.pixelsofmc.end_titanium_ore": "Endstone Titanium Ore",
+  "block.pixelsofmc.endstone_titanium_ore": "Endstone Titanium Ore",
+  "block.pixelsofmc.titanium_diboride_block": "Titanium Diboride Block",
 
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
@@ -85,7 +106,7 @@
 
 //tooltips
   "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
-  "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking\nto check if everything is\nstill working",
+  "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking to check if everything is\nstill working",
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
   "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",

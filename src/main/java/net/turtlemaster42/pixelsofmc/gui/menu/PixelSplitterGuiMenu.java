@@ -1,7 +1,7 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
-import net.turtlemaster42.pixelsofmc.gui.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -52,7 +52,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         return data.get(0) > 0;
     }
 
-    public int getScaledProgress() {
+    public int getScaledProgressOne() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
@@ -61,7 +61,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
 
-    public int getScaledProgress2() {
+    public int getScaledProgressTwo() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades

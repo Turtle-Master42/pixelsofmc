@@ -3,8 +3,6 @@ be able to make everything out of thin air using
 things that are technically able to be done in the
 real world, with a litle bit of a minecraft twist.
 <NEWLINE>
-<NEWLINE>
-<NEWLINE>
 It aims to explain the nature of how minecraft
 works, at least, that is how the players inside
 the game see it.
@@ -14,3 +12,5 @@ work.
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
+<NEWLINE>
+yeet

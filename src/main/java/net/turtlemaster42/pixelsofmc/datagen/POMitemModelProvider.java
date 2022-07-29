@@ -73,6 +73,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.CARBON_CUBE.get());
         simpleItem(POMitems.DENSE_CARBON_CUBE.get());
         simpleItem(POMitems.SILICON_CUBE.get());
+
         simpleItem(POMitems.ALUMINIUM_INGOT.get());
         simpleItem(POMitems.BERYLLIUM_INGOT.get());
         simpleItem(POMitems.CALCIUM_INGOT.get());
@@ -88,6 +89,22 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.SODIUM_INGOT.get());
         simpleItem(POMitems.VANADIUM_INGOT.get());
         simpleItem(POMitems.ZINC_INGOT.get());
+        simpleItem(POMitems.RUBIDIUM_INGOT.get());
+        simpleItem(POMitems.STRONTIUM_INGOT.get());
+        simpleItem(POMitems.YTTRIUM_INGOT.get());
+        simpleItem(POMitems.ZIRCONIUM_INGOT.get());
+        simpleItem(POMitems.NIOBIUM_INGOT.get());
+        simpleItem(POMitems.MOLYBDENUM_INGOT.get());
+        simpleItem(POMitems.TECHNETIUM_INGOT.get());
+        simpleItem(POMitems.RUTHENIUM_INGOT.get());
+        simpleItem(POMitems.RHODIUM_INGOT.get());
+        simpleItem(POMitems.PALLADIUM_INGOT.get());
+        simpleItem(POMitems.SILVER_INGOT.get());
+        simpleItem(POMitems.CADMIUM_INGOT.get());
+        simpleItem(POMitems.INDIUM_INGOT.get());
+        simpleItem(POMitems.TIN_INGOT.get());
+        simpleItem(POMitems.ANTIMONY_INGOT.get());
+
 
         simpleItem(POMitems.BIT_PIXEL.get());
 

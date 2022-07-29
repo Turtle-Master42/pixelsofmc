@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
-    private EnergyInfoArea EnergyInfoArea;
+    private EnergyInfoArea energyInfoArea;
 
     public PixelSplitterGuiScreen(PixelSplitterGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -35,9 +35,13 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 8, 19, 16, 50)) {
-            renderTooltip(pPoseStack, EnergyInfoArea.getTooltips(),
-                    Optional.empty(),pMouseX - x, pMouseY - y);
+        renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
+    }
+
+    private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
+            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
 
@@ -52,11 +56,11 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 54, y + 43, 0, 168, menu.getScaledProgress(), 13);
-            blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgress2());
+            blit(pPoseStack, x + 54, y + 43, 0, 168, menu.getScaledProgressOne(), 13);
+            blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgressTwo());
         }
         blit(pPoseStack, x + 11, y + 22, 185, 0, 10, menu.getScaledEnergy());
-        EnergyInfoArea.draw(pPoseStack);
+        energyInfoArea.draw(pPoseStack);
 
     }
 
@@ -68,8 +72,8 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
     }
 
     private void assignEnergyInfoArea() {
-        EnergyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) +  156,
-                ((height - imageHeight) / 2) + 13, menu.blockEntity.energyStorage);
+        energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 8,
+                ((height - imageHeight) / 2) + 3, menu.blockEntity.getEnergyStorage());
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

@@ -2,14 +2,10 @@ package net.turtlemaster42.pixelsofmc.network;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Position;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.turtlemaster42.pixelsofmc.block.entity.IEnergyHandlingBlockEntity;
-import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 
 import java.util.function.Supplier;
 

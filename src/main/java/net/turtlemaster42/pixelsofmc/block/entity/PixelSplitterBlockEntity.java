@@ -2,11 +2,13 @@ package net.turtlemaster42.pixelsofmc.block.entity;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
@@ -32,13 +34,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.openjdk.nashorn.internal.objects.annotations.Property;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -47,7 +49,7 @@ import java.util.Random;
 import static net.minecraft.core.particles.ParticleTypes.*;
 
 
-public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvider, IEnergyHandlingBlockEntity {
+public class PixelSplitterBlockEntity extends AbstractMachineEntity {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -62,25 +64,47 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if(!level.isClientSide()) {
+                POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
+            }
         }
     };
 
-    public final PixelEnergyStorage energyStorage = new PixelEnergyStorage(capacity, maxReceive) {
-        @Override
-        protected void onEnergyChanged() {
-            setChanged();
-            POMmessages.sendToClients(new PacketSyncEnergyToClient(this.getEnergyStored(), worldPosition));
-        }
+    @Override
+    public void setHandler(ItemStackHandler handler) {
+        copyHandlerContents(handler);
+    }
 
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            final int e = super.receiveEnergy(maxReceive, simulate);
-            return e;
+    private void copyHandlerContents(ItemStackHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
         }
-    };
+    }
+
+    @Override
+    public ItemStackHandler getItemStackHandler() {
+        return this.itemHandler;
+    }
+
+    public final PixelEnergyStorage energyStorage = createEnergyStorage();
+
+    @NotNull
+    public PixelEnergyStorage createEnergyStorage() {
+        return new PixelEnergyStorage(capacity, maxReceive) {
+            @Override
+            public void onEnergyChanged() {
+                setChanged();
+                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
+            }
+            @Override
+            public int receiveEnergy(int maxReceive, boolean simulate) {
+                return super.receiveEnergy(maxReceive, simulate);
+            }
+        };
+    }
+
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-
 
 
     public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -111,6 +135,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             }
         };
     }
+
 
     @Override
     public Component getDisplayName() {
@@ -153,11 +178,10 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("Inventory", itemHandler.serializeNBT());
-        tag.put("Energy", energyStorage.serializeNBT());
         tag.putInt("progress", progress);
         tag.putInt("speedUpgrade", speedUpgrade);
         tag.putInt("powerCapacity", capacity);
-        tag.putInt("energy", energyStorage.getEnergyStored());
+        tag.putInt("Energy", energyStorage.getEnergyStored());
         super.saveAdditional(tag);
     }
 
@@ -165,10 +189,9 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        energyStorage.deserializeNBT(nbt.get("Energy"));
         progress = nbt.getInt("progress");
         speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("energy"));
+        energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
     public void drops() {
@@ -185,6 +208,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    @NotNull
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compound = saveWithoutMetadata();
@@ -196,14 +220,18 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             //---RECIPE---//
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity)) {
+        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
             pBlockEntity.speedUpgradeCheck();
             pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
+            if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
+                pState.setValue(BlockStateProperties.LIT, true);
+            }
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                    craftItem(pBlockEntity);
+                    pState.setValue(BlockStateProperties.LIT, false);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -221,7 +249,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         Optional<PixelSplitterRecipe> match = level.getRecipeManager()
                 .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 1)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && hasToolsInToolSlot(entity);
     }
@@ -253,7 +281,6 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
             entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(2).getCount() + 1));
 
-            entity.activeParticles(level);
             entity.resetProgress();
             entity.errorEnergyReset();
         }
@@ -282,37 +309,22 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
         return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
     }
 
-    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
+        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount() + count;
     }
 
     public void activeParticles(LevelAccessor world) {
         int x = this.getBlockPos().getX();
         int y = this.getBlockPos().getY();
         int z = this.getBlockPos().getZ();
-        if (world instanceof ServerLevel _level)
-            _level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
+        if (world instanceof ServerLevel level)
+            level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
     }
 
 
 
     //---ENERGY---//
 
-    private PixelEnergyStorage createEnergy() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            protected void onEnergyChanged() {
-                setChanged();
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.getEnergyStored(), worldPosition));
-            }
-
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                final int e = super.receiveEnergy(maxReceive, simulate);
-                return e;
-            }
-        };
-    }
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
@@ -325,5 +337,7 @@ public class PixelSplitterBlockEntity extends BlockEntity implements MenuProvide
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
+
+    public IEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 
 public class POMmessages {
     private static SimpleChannel INSTANCE;
@@ -29,6 +30,12 @@ public class POMmessages {
                 .decoder(PacketSyncEnergyToClient::new)
                 .encoder(PacketSyncEnergyToClient::toBytes)
                 .consumer(PacketSyncEnergyToClient::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncItemStackToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncItemStackToClient::new)
+                .encoder(PacketSyncItemStackToClient::toBytes)
+                .consumer(PacketSyncItemStackToClient::handle)
                 .add();
     }
 

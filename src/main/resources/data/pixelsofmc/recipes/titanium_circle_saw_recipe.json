@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NIN",
+    "ISI",
+    "NIN"
+  ],
+  "key": {
+    "N": {
+      "tag": "forge:nuggets/titanium"
+    },
+    "I": {
+      "tag": "forge:ingots/titanium"
+    },
+    "S": {
+      "tag": "forge:plates/titanium"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:titanium_circle_saw",
+    "count": 1
+  }
+}

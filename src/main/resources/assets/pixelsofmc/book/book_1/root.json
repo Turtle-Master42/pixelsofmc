@@ -1,7 +1,7 @@
 {
   "parent": "",
   "text": "root.txt",
-  "title": "",
+  "title": "The Pixels of MC",
   "title_locale": "book.pixelsofmc_guide_book_1.root",
   "linked_page_buttons": [],
   "images": [
@@ -20,30 +20,30 @@
   "item_renders": [
     {
       "item" : "pixelsofmc:bio_compound",
-      "x": 90,
-      "y": 70,
+      "x": 110,
+      "y": 50,
       "page" : 0,
-      "scale": 2.5
+      "scale": 2
     },
     {
       "item" : "pixelsofmc:fire_proof_compound",
-      "x": 110,
-      "y": 70,
+      "x": 130,
+      "y": 50,
       "page" : 0,
-      "scale": 2.5
+      "scale": 2
     },
     {
       "item" : "pixelsofmc:repelling_compound",
-      "x": 130,
-      "y": 70,
+      "x": 150,
+      "y": 50,
       "page" : 0,
-      "scale": 2.5
+      "scale": 2
     }
   ],
   "recipes": [
     {
-      "recipe": "pixelsofmc:advanced_circuit_board_recipe",
-      "shapeless": true,
+      "recipe": "pixelsofmc:advanced_circuit_board",
+      "shapeless": false,
       "x": 210,
       "y": 110,
       "page": 1,
