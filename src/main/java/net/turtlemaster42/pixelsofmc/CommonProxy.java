@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static net.turtlemaster42.pixelsofmc.PixelsOfMc.MOD_ID;
 

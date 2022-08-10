@@ -72,8 +72,8 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
     }
 
     private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 8,
-                ((height - imageHeight) / 2) + 3, menu.blockEntity.getEnergyStorage());
+        energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
+                ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

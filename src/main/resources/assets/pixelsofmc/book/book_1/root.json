@@ -85,6 +85,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
+      "linked_page": "elements.json",
       "hover_text": "book.citadel_book.hover_text_pillager_example"
     },
     {

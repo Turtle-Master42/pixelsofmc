@@ -6,3 +6,6 @@ Under MIT-License: https://github.com/BlakeBr0/MysticalAgriculture/blob/1.18/LIC
 
 EnergyInfoArea, InfoArea by BluSunrize from ImmersiveEngineering under MIT-License:
 https://github.com/BluSunrize/ImmersiveEngineering/blob/1.18.2/LICENSE
+
+accessorRenderType, ClientTickHandler, RenderHelper by Vazkii from Botania under Botania's Custom License:
+https://github.com/VazkiiMods/Botania/blob/a138014769376a909d3045da7f4583682d4e079b/LICENSE.txt

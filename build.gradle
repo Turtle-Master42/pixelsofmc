@@ -175,6 +175,14 @@ repositories {
 apply plugin: 'org.spongepowered.mixin'
 mixin {
     add sourceSets.main, "citadel.refmap.json"
+    add sourceSets.main, "pixelofmc.refmap.json"
+
+    config "pixelsofmc.mixins.json"
+}
+
+minecraft {
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
 }
 
 dependencies {

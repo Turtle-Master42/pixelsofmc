@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "pixelsofmc:block/chiseled_stone_brick_corner_left",
+    "up": "pixelsofmc:block/chiseled_stone_brick_corner_right",
+    "north": "pixelsofmc:block/chiseled_stone_brick_corner_right",
+    "east": "pixelsofmc:block/chiseled_stone_brick_corner_dleft",
+    "south": "pixelsofmc:block/chiseled_stone_brick_corner_dright",
+    "west": "pixelsofmc:block/chiseled_stone_brick_corner_left",
+
+    "particle": "pixelsofmc:block/chiseled_stone_brick_corner_right"
+  }
+}

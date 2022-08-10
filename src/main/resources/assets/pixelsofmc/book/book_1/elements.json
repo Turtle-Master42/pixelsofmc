@@ -1,0 +1,500 @@
+{
+  "parent": "root.txt",
+  "text": "elements.txt",
+  "title": "Elements",
+  "title_locale": "",
+  "linked_page_buttons": [],
+  "images": [],
+  "item_renders": [],
+  "recipes": [],
+  "tabula_renders": [],
+  "entity_renders": [],
+  "entity_buttons": [
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 26,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.hydrogen_canister"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 42,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.lithium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 58,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.sodium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.potassium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.rubidium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.caesium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 30,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.francium_ingot"
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 42,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.beryllium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 58,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.magnesium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.calcium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.strontium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.barium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 46,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.radium_ingot"
+    },
+
+
+    {
+      "entity": "minecraft:item",
+      "x": 63,
+      "y": 115,
+      "page" : 0,
+      "scale": 0.375,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": ""
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 63,
+      "y": 131,
+      "page" : 0,
+      "scale": 0.375,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": ""
+    },
+
+
+    {
+      "entity": "minecraft:item",
+      "x": 70,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.scandium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 70,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.yttrium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 70,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.lutetium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 70,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 86,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.titanium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 86,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.zirconium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 86,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.hafnium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 86,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 102,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.vanadium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 102,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.niobium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 102,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.tantalum_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 102,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 118,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.chromium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 118,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.molybdenum_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 118,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.tungsten_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 118,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 134,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.manganese_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 134,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.technetium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 134,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.rhenium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 134,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 150,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.iron_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 150,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.ruthenium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 150,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.osmium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 150,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    },
+
+    {
+      "entity": "minecraft:item",
+      "x": 166,
+      "y": 74,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.cobalt_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 166,
+      "y": 90,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.rhodium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 166,
+      "y": 106,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc.iridium_ingot"
+    },
+    {
+      "entity": "minecraft:item",
+      "x": 166,
+      "y": 122,
+      "page" : 0,
+      "scale": 0.75,
+      "entity_scale": 1,
+      "offset_x": 0,
+      "offset_y": 0,
+      "hover_text": "item.pixelsofmc."
+    }
+
+
+  ]
+}

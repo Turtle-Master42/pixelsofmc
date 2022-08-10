@@ -58,6 +58,12 @@ public class POMblocks {
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
 	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", () -> new MachineBlock());
+
+    public static final RegistryObject<Block> CHISELED_STONE_BRICK_CORNER = registerBlock("chiseled_stone_brick_corner",
+            () -> new ChiseledStoneBricksCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+    public static final RegistryObject<Block> CHISELED_STONE_BRICK_PILLAR = registerBlock("chiseled_stone_brick_pillar",
+            () -> new ChiseledStoneBrickPillar(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter", "tooltip.pixelsofmc.noshift", "tooltip.pixelsofmc.block.pixel_splitter2", "tooltip.pixelsofmc.noctrl", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "tooltip.pixelsofmc.noalt");

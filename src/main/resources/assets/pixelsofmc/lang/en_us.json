@@ -46,11 +46,16 @@
   //elements
   "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
+  "item.pixelsofmc.sulfur": "Sulfur",
 
   "item.pixelsofmc.boron_cube": "Boron Cube",
   "item.pixelsofmc.carbon_cube": "Carbon Cube",
   "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
   "item.pixelsofmc.silicon_cube": "Silicon Cube",
+  "item.pixelsofmc.sulfur_cube": "Sulfur Cube",
+  "item.pixelsofmc.hydrogen_canister": "Hydrogen Canister",
+  "item.pixelsofmc.helium_canister": "Helium Canister",
+  "item.pixelsofmc.oxygen_canister": "Oxygen Canister",
 
   "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
   "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
@@ -82,6 +87,39 @@
   "item.pixelsofmc.indium_ingot": "Indium Ingot",
   "item.pixelsofmc.tin_ingot": "Tin Ingot",
   "item.pixelsofmc.antimony_ingot": "Antimony Ingot",
+
+  "item.pixelsofmc.caesium_ingot": "Caesium Ingot",
+  "item.pixelsofmc.barium_ingot": "Barium Ingot",
+  "item.pixelsofmc.lanthanum_ingot": "Lanthanum Ingot",
+  "item.pixelsofmc.cerium_ingot": "Cerium Ingot",
+  "item.pixelsofmc.praseodymium_ingot": "Praseodymium Ingot",
+  "item.pixelsofmc.neodymium_ingot": "Neodymium Ingot",
+  "item.pixelsofmc.promethium_ingot": "Promethium Ingot",
+  "item.pixelsofmc.samarium_ingot": "Samarium Ingot",
+  "item.pixelsofmc.europium_ingot": "Europium Ingot",
+  "item.pixelsofmc.gadolinium_ingot": "Gadolinium Ingot",
+  "item.pixelsofmc.terbium_ingot": "Terbium Ingot",
+  "item.pixelsofmc.dysprosium_ingot": "Dysprosium Ingot",
+  "item.pixelsofmc.holmium_ingot": "Holmium Ingot",
+  "item.pixelsofmc.erbium_ingot": "Erbium Ingot",
+  "item.pixelsofmc.thulium_ingot": "Thulium Ingot",
+  "item.pixelsofmc.ytterbium_ingot": "Ytterbium Ingot",
+  "item.pixelsofmc.lutetium_ingot": "Lutetium Ingot",
+  "item.pixelsofmc.hafnium_ingot": "Hafnium Ingot",
+  "item.pixelsofmc.tantalum_ingot": "Tantalum Ingot",
+  "item.pixelsofmc.tungsten_ingot": "Tungsten Ingot",
+  "item.pixelsofmc.rhenium_ingot": "Rhenium Ingot",
+  "item.pixelsofmc.osmium_ingot": "Osmium Ingot",
+  "item.pixelsofmc.iridium_ingot": "Iridium Ingot",
+  "item.pixelsofmc.platinum_ingot": "Platinum Ingot",
+  "item.pixelsofmc.mercury_ingot": "Mercury Ingot",
+  "item.pixelsofmc.thallium_ingot": "Thallium Ingot",
+  "item.pixelsofmc.lead_ingot": "Lead Ingot",
+  "item.pixelsofmc.bismuth_ingot": "Bismuth Ingot",
+  "item.pixelsofmc.polonium_ingot": "Polonium Ingot",
+
+
+
 
   //machines
   "block.pixelsofmc.machine_block": "Machine Block",

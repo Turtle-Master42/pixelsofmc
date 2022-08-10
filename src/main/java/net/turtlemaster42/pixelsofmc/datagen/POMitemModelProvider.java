@@ -24,6 +24,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_DUST.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
         simpleItem(POMitems.URANIUM_DUST.get());
+        simpleItem(POMitems.SULFUR.get());
         //plastic
         simpleItem(POMitems.BIO_COMPOUND.get());
         simpleItem(POMitems.BIO_PLASTIC_SHEET.get());
@@ -73,6 +74,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.CARBON_CUBE.get());
         simpleItem(POMitems.DENSE_CARBON_CUBE.get());
         simpleItem(POMitems.SILICON_CUBE.get());
+        simpleItem(POMitems.SULFUR_CUBE.get());
+        simpleItem(POMitems.HYDROGEN_CANISTER.get());
+        simpleItem(POMitems.HELIUM_CANISTER.get());
+        simpleItem(POMitems.OXYGEN_CANISTER.get());
 
         simpleItem(POMitems.ALUMINIUM_INGOT.get());
         simpleItem(POMitems.BERYLLIUM_INGOT.get());
@@ -104,6 +109,36 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.INDIUM_INGOT.get());
         simpleItem(POMitems.TIN_INGOT.get());
         simpleItem(POMitems.ANTIMONY_INGOT.get());
+        simpleItem(POMitems.CAESIUM_INGOT.get());
+        simpleItem(POMitems.BARIUM_INGOT.get());
+        simpleItem(POMitems.LANTHANUM_INGOT.get());
+        simpleItem(POMitems.CERIUM_INGOT.get());
+        simpleItem(POMitems.PRASEODYMIUM_INGOT.get());
+        simpleItem(POMitems.NEODYMIUM_INGOT.get());
+        simpleItem(POMitems.PROMETHIUM_INGOT.get());
+        simpleItem(POMitems.SAMARIUM_INGOT.get());
+        simpleItem(POMitems.EUROPIUM_INGOT.get());
+        simpleItem(POMitems.GADOLINIUM_INGOT.get());
+        simpleItem(POMitems.TERBIUM_INGOT.get());
+        simpleItem(POMitems.DYSPROSIUM_INGOT.get());
+        simpleItem(POMitems.HOLMIUM_INGOT.get());
+        simpleItem(POMitems.ERBIUM_INGOT.get());
+        simpleItem(POMitems.THULIUM_INGOT.get());
+        simpleItem(POMitems.YTTERBIUM_INGOT.get());
+        simpleItem(POMitems.LUTETIUM_INGOT.get());
+        simpleItem(POMitems.HAFNIUM_INGOT.get());
+        simpleItem(POMitems.TANTALUM_INGOT.get());
+        simpleItem(POMitems.TUNGSTEN_INGOT.get());
+        simpleItem(POMitems.RHENIUM_INGOT.get());
+        simpleItem(POMitems.OSMIUM_INGOT.get());
+        simpleItem(POMitems.IRIDIUM_INGOT.get());
+        simpleItem(POMitems.PLATINUM_INGOT.get());
+        simpleItem(POMitems.MERCURY_INGOT.get());
+        simpleItem(POMitems.THALLIUM_INGOT.get());
+        simpleItem(POMitems.LEAD_INGOT.get());
+        simpleItem(POMitems.BISMUTH_INGOT.get());
+        simpleItem(POMitems.POLONIUM_INGOT.get());
+
 
 
         simpleItem(POMitems.BIT_PIXEL.get());

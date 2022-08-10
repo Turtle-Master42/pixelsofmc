@@ -28,7 +28,13 @@ public class EnergyInfoArea extends InfoArea {
     }
 
     public List<Component> getTooltips() {
-        return List.of(new TextComponent(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE"));
+        if (energy.getMaxEnergyStored() > 999999) {
+            return List.of(new TextComponent((energy.getEnergyStored()/1000)+"/"+(energy.getMaxEnergyStored()/1000)+" kFE"));
+        } else if (energy.getMaxEnergyStored() > 999999999) {
+            return List.of(new TextComponent((energy.getEnergyStored()/1000000)+"/"+(energy.getMaxEnergyStored()/1000000)+" mFE"));
+        } else {
+            return List.of(new TextComponent(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE"));
+        }
     }
 
     @Override

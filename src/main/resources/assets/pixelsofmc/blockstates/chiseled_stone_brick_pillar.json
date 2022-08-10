@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar"
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_pillar",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

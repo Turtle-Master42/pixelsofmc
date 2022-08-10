@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minecraft:block/chiseled_stone_bricks",
+    "up": "minecraft:block/chiseled_stone_bricks",
+    "north": "pixelsofmc:block/chiseled_stone_brick_pillar",
+    "east": "pixelsofmc:block/chiseled_stone_brick_pillar",
+    "south": "pixelsofmc:block/chiseled_stone_brick_pillar",
+    "west": "pixelsofmc:block/chiseled_stone_brick_pillar",
+
+    "particle": "pixelsofmc:block/chiseled_stone_brick_pillar"
+  }
+}

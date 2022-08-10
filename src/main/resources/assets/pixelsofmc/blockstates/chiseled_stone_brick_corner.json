@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_corner"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_corner",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_corner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/chiseled_stone_brick_corner",
+      "y": 270
+    }
+  }
+}

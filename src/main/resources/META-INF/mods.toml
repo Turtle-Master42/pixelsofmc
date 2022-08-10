@@ -6,9 +6,9 @@ license="Academic Free License v3.0"
 modId="pixelsofmc"
 version="0.0.2-1.18.2"
 displayName="The Pixels of Minecraft"
-credits=""
+credits="Special thanks to KaupenJoe (https://www.youtube.com/c/TKaupenjoe) and his awesome community, without them I would not have been able to make this mod. \nSome parts of this mod make use of code from other mods, the details can be found in the CREDITS.txt on github."
 displayURL=""
-authors="Turtle-Master42, MCreator"
+authors="Turtle-Master42"
 description='''
 WIP
 '''
