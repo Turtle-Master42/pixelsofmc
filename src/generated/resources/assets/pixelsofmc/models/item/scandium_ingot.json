@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/scandium_ingot"
+    "layer0": "pixelsofmc:items/elements/scandium_ingot"
   }
 }

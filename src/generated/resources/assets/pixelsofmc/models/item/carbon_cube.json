@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/carbon_cube"
+    "layer0": "pixelsofmc:items/elements/carbon_cube"
   }
 }

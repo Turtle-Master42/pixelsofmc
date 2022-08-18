@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
@@ -21,6 +22,7 @@ public class PixelSplitterEntityRenderer implements BlockEntityRenderer<PixelSpl
                        MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0.5 ,0.5);
+
 
         int seed = pBlockEntity.getBlockPos()
                 .getX() + pBlockEntity.getBlockPos()

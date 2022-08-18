@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EDE",
+    "GAG",
+    "FCB"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic_sheet"
+    },
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_layered_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:micro_chip"
+    },
+    "E": {
+      "item": "pixelsofmc:titanium_nugget"
+    },
+    "F": {
+      "item": "pixelsofmc:redstone_counter"
+    },
+    "G": {
+      "item": "pixelsofmc:simple_circuit_board"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:normal_circuit_board"
+  }
+}

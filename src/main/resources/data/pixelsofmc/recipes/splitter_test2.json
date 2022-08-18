@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    }
+  ],
+  "output": {
+    "item": "pixelsofmc:titanium_diboride_nugget"
+  },
+  "count": 10,
+  "chance": 0.5
+}

@@ -7,5 +7,7 @@
   ],
   "output": {
     "item": "pixelsofmc:heat_resistant_plating"
-  }
+  },
+  "count": 2,
+  "chance": 0.5
 }

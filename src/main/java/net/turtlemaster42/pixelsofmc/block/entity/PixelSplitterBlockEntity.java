@@ -249,7 +249,7 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
         Optional<PixelSplitterRecipe> match = level.getRecipeManager()
                 .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 1)
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && hasToolsInToolSlot(entity);
     }
@@ -278,8 +278,10 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
             if (entity.itemHandler.getStackInSlot(1).getDamageValue() > entity.itemHandler.getStackInSlot(1).getMaxDamage()) { //removes saw if needed
                 entity.itemHandler.extractItem(1,1, false);
             }
-            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(2).getCount() + 1));
+            if (match.get().getOutputChance() >= Math.random()) {
+                entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
+                        entity.itemHandler.getStackInSlot(2).getCount() + (match.get().getOutputCount())));
+            }
 
             entity.resetProgress();
             entity.errorEnergyReset();
@@ -310,7 +312,7 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
-        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount() + count;
+        return inventory.getItem(2).getMaxStackSize() >= inventory.getItem(2).getCount() + count;
     }
 
     public void activeParticles(LevelAccessor world) {

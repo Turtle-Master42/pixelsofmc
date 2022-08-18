@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.world.item.Items;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -18,21 +19,28 @@ public class POMblockLootTables extends BlockLoot {
     protected void addTables() {
         this.dropSelf(POMblocks.TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
+        this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
+        this.dropSelf(POMblocks.SMOOTH_STONE_BRICKS.get());
+        this.dropSelf(POMblocks.CHISELED_STONE_BRICK_CORNER.get());
+        this.dropSelf(POMblocks.CHISELED_STONE_BRICK_PILLAR.get());
+        this.dropSelf(POMblocks.FIRE_TRAP_BLOCK.get());
+        this.dropSelf(POMblocks.HEAT_RESISTANT_CASING.get());
+        this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
+        this.dropSelf(POMblocks.BALL_MILL.get());
 
-        this.add(POMblocks.TITANIUM_ORE.get(),
-                (block) -> createOreDrop(POMblocks.TITANIUM_ORE.get(), POMitems.RAW_TITANIUM.get()));
-        this.add(POMblocks.DEEPSLATE_TITANIUM_ORE.get(),
-                (block) -> createOreDrop(POMblocks.DEEPSLATE_TITANIUM_ORE.get(), POMitems.RAW_TITANIUM.get()));
-        this.add(POMblocks.ENDSTONE_TITANIUM_ORE.get(),
-                (block) -> createOreDrop(POMblocks.ENDSTONE_TITANIUM_ORE.get(), POMitems.RAW_TITANIUM.get()));
-/*
-        LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(ModBlocks.CUCUMBER_PLANT.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CucumberPlantBlock.AGE, 5));
+        this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
 
-        this.add(ModBlocks.CUCUMBER_PLANT.get(), createCropDrops(ModBlocks.CUCUMBER_PLANT.get(), ModItems.CUCUMBER.get(),
-                ModItems.CUCUMBER_SEEDS.get(), lootitemcondition$builder));
- */
+
+        this.add(POMblocks.TITANIUM_ORE.get(), (block) -> {
+            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
+        });
+        this.add(POMblocks.DEEPSLATE_TITANIUM_ORE.get(), (block) -> {
+            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
+        });
+        this.add(POMblocks.ENDSTONE_TITANIUM_ORE.get(), (block) -> {
+            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
+        });
+
     }
 
     @Override

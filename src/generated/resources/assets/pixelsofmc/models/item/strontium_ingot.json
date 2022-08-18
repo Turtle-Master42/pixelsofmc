@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/strontium_ingot"
+    "layer0": "pixelsofmc:items/elements/strontium_ingot"
   }
 }

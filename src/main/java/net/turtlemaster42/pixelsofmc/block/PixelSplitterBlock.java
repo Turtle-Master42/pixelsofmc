@@ -1,11 +1,15 @@
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.PushReaction;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.minecraft.core.BlockPos;
@@ -27,6 +31,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -76,6 +81,38 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Deprecated
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.BLOCK;
+    }
+
+
+    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState oldState, boolean moving) {
+        super.onPlace(pState, pLevel, pPos, oldState, moving);
+        if (!pLevel.isClientSide()) {
+            pLevel.setBlock(pPos.above(1), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), 2);
+            pLevel.setBlock(pPos.above(2), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), 2);
+
+            setMainPos(pLevel, new BlockPos(pPos.getX(), pPos.getY() + 1, pPos.getZ()), pPos);
+            setMainPos(pLevel, new BlockPos(pPos.getX(), pPos.getY() + 2, pPos.getZ()), pPos);
+
+        }
+    }
+
+
+    public void setMainPos(Level pLevel, BlockPos pPos, BlockPos mainPos) {
+        BlockEntity pBlockentity = pLevel.getBlockEntity(pPos);
+
+        assert pBlockentity != null;
+        pBlockentity.getTileData().putInt("mainX", mainPos.getX());
+        pBlockentity.getTileData().putInt("mainY", mainPos.getY());
+        pBlockentity.getTileData().putInt("mainZ", mainPos.getZ());
+
+        PixelsOfMc.LOGGER.info("mainPos: " + mainPos);
+        PixelsOfMc.LOGGER.info("blockPos: " + pPos);
+
     }
 
     @Override

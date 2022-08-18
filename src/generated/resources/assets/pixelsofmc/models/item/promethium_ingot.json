@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/promethium_ingot"
+    "layer0": "pixelsofmc:items/elements/promethium_ingot"
   }
 }

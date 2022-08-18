@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/osmium_ingot"
+    "layer0": "pixelsofmc:items/elements/osmium_ingot"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/caesium_ingot"
+    "layer0": "pixelsofmc:items/elements/caesium_ingot"
   }
 }

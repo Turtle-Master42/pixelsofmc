@@ -10,6 +10,12 @@
   "item.pixelsofmc.repelling_plastic": "Repelling Plastic",
   "item.pixelsofmc.fire_proof_plastic": "Fire Proof Plastic",
   "item.pixelsofmc.micro_chip": "Micro Chip",
+  "item.pixelsofmc.dragon_eye": "Eye of the Dragon",
+  "item.pixelsofmc.redstone_counter": "Redstone Counter",
+  "item.pixelsofmc.ender_sensor": "Ender Sensor",
+  "item.pixelsofmc.diamond_lens": "Diamond Lens",
+  "item.pixelsofmc.redstone_layered_wire": "Redstone Layered Wire",
+
   "item.pixelsofmc.titanium_nugget": "Titanium Nugget",
   "item.pixelsofmc.power_orb": "Power Orb",
   "item.pixelsofmc.power_cell": "Power Cell",
@@ -42,6 +48,7 @@
   "item.pixelsofmc.energy_upgrade": "Energy Upgrade",
   "item.pixelsofmc.steel_ingot": "Steel Ingot",
   "item.pixelsofmc.book_1": "The Laws of Squares I",
+  "item.pixelsofmc.titanium_diboride_nugget": "Refined Netherite Nugget",
 
   //elements
   "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
@@ -53,9 +60,15 @@
   "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
   "item.pixelsofmc.silicon_cube": "Silicon Cube",
   "item.pixelsofmc.sulfur_cube": "Sulfur Cube",
+  "item.pixelsofmc.phosphorus_cube": "Phosphorus Cube",
   "item.pixelsofmc.hydrogen_canister": "Hydrogen Canister",
   "item.pixelsofmc.helium_canister": "Helium Canister",
   "item.pixelsofmc.oxygen_canister": "Oxygen Canister",
+  "item.pixelsofmc.neon_canister": "Neon Canister",
+  "item.pixelsofmc.xenon_canister": "Xenon Canister",
+  "item.pixelsofmc.argon_canister": "Argon Canister",
+  "item.pixelsofmc.chlorine_canister": "Chlorine Canister",
+  "item.pixelsofmc.nitrogen_canister": "Nitrogen Canister",
 
   "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
   "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
@@ -119,12 +132,11 @@
   "item.pixelsofmc.polonium_ingot": "Polonium Ingot",
 
 
-
-
   //machines
   "block.pixelsofmc.machine_block": "Machine Block",
 
   "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
+  "block.pixelsofmc.ball_mill": "Ball Mill",
 
 //blocks
   "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
@@ -134,6 +146,11 @@
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.pixelsofmc.endstone_titanium_ore": "Endstone Titanium Ore",
   "block.pixelsofmc.titanium_diboride_block": "Titanium Diboride Block",
+
+  "block.pixelsofmc.smooth_stone_bricks": "Smooth Stone Bricks",
+  "block.pixelsofmc.chiseled_stone_brick_pillar": "Chiseled Stone Brick Pillar",
+  "block.pixelsofmc.chiseled_stone_brick_corner": "Chiseled Stone Brick Corner",
+  "block.pixelsofmc.fire_trap_block": "Tire Trap",
 
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
@@ -145,6 +162,10 @@
 //tooltips
   "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
   "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking to check if everything is\nstill working",
+
+  "tooltip.pixelsofmc.block.ball_mill": "§7use to mix dusts together and turn soft things into dust",
+
+  "tooltip.pixelsofmc.energy.dot": ",",
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
   "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",

@@ -1,13 +1,19 @@
 {
   "replace": false,
   "values": [
-    "pixelsofmc:large_power_cell",
     "pixelsofmc:heat_resistant_casing",
     "pixelsofmc:deepslate_titanium_ore",
     "pixelsofmc:titanium_ore",
     "pixelsofmc:titanium_block",
     "pixelsofmc:raw_titanium_block",
     "pixelsofmc:pixel_splitter",
-    "pixelsofmc:end_titanium_ore"
+    "pixelsofmc:chiseled_stone_brick_pillar",
+    "pixelsofmc:chiseled_stone_brick_corner",
+    "pixelsofmc:titanium_diboride_block",
+    "pixelsofmc:smooth_stone_bricks",
+    "pixelsofmc:fire_trap_block",
+    "pixelsofmc:ball_mill",
+    "pixelsofmc:machine_block",
+    "pixelsofmc:endstone_titanium_ore"
   ]
 }

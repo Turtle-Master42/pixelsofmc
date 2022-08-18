@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "CCC",
-    "CCC"
+    "TTT",
+    "TTT",
+    "TTT"
   ],
   "key": {
-    "C": {
+    "T": {
       "item": "pixelsofmc:titanium_ingot"
     }
   },

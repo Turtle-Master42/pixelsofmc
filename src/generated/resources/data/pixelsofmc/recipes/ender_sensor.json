@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_nugget"
+    },
+    "B": {
+      "item": "pixelsofmc:copper_nugget"
+    },
+    "C": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:ender_sensor"
+  }
+}

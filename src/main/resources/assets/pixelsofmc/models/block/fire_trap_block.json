@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "pixelsofmc:block/smooth_stone_bricks",
+    "up": "pixelsofmc:block/smooth_stone_bricks",
+    "north": "pixelsofmc:block/fire_trap_front",
+    "east": "pixelsofmc:block/smooth_stone_bricks",
+    "south": "pixelsofmc:block/smooth_stone_bricks",
+    "west": "pixelsofmc:block/smooth_stone_bricks",
+
+    "particle": "pixelsofmc:block/smooth_stone_bricks"
+  }
+}

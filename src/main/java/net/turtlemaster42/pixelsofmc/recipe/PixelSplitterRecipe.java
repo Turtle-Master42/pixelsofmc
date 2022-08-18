@@ -18,45 +18,57 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
+    private final int count;
+    private final float chance;
 
     public PixelSplitterRecipe(ResourceLocation id, ItemStack output,
-                                   NonNullList<Ingredient> recipeItems) {
+                                   NonNullList<Ingredient> recipeItems, int count, float chance) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
+        this.count = count;
+        this.chance = chance;
     }
 
-    @java.lang.Override
+    @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
         return recipeItems.get(0).test(pContainer.getItem(0));
     }
 
-    @java.lang.Override
+    public int getOutputCount() {
+        return count;
+    }
+
+    public float getOutputChance() {
+        return chance;
+    }
+
+    @Override
     public ItemStack assemble(SimpleContainer pContainer) {
         return output;
     }
 
-    @java.lang.Override
+    @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;
     }
 
-    @java.lang.Override
+    @Override
     public ItemStack getResultItem() {
         return output.copy();
     }
 
-    @java.lang.Override
+    @Override
     public ResourceLocation getId() {
         return id;
     }
 
-    @java.lang.Override
+    @Override
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
-    @java.lang.Override
+    @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
     }
@@ -74,6 +86,8 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
 
         public PixelSplitterRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
+            int count = GsonHelper.getAsInt(json, "count");
+            float chance = GsonHelper.getAsFloat(json, "chance");
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
@@ -82,22 +96,26 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new PixelSplitterRecipe(id, output, inputs);
+            return new PixelSplitterRecipe(id, output, inputs, count, chance);
         }
 
         public PixelSplitterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
+            int count = buf.readInt();
+            float chance = buf.readFloat();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buf));
             }
 
             ItemStack output = buf.readItem();
-            return new PixelSplitterRecipe(id, output, inputs);
+            return new PixelSplitterRecipe(id, output, inputs, count, chance);
         }
 
         public void toNetwork(FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
+            buf.writeInt(recipe.getOutputCount());
+            buf.writeFloat(recipe.getOutputChance());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }

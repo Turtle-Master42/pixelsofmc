@@ -17,8 +17,6 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.function.BiConsumer;
 
 public class POMchestLootTables extends ChestLoot {
-    private static final ResourceLocation CUSTOM_CHEST_LOOT =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "chests/custom_chest_loot");
 
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> p_124363_) {

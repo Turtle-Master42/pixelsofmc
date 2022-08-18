@@ -1,0 +1,6 @@
+{
+    "parent": "block/fire_trap_block",
+    "textures": {
+        "south": "block/redstone_block"
+    }
+}

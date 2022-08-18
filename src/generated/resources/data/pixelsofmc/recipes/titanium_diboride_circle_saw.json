@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_nugget"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "C": {
+      "item": "pixelsofmc:refined_heat_resistant_plating"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:titanium_diboride_circle_saw"
+  }
+}

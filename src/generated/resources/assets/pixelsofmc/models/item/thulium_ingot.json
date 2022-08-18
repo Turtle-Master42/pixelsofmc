@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/thulium_ingot"
+    "layer0": "pixelsofmc:items/elements/thulium_ingot"
   }
 }

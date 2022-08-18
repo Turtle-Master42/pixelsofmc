@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/yttrium_ingot"
+    "layer0": "pixelsofmc:items/elements/yttrium_ingot"
   }
 }

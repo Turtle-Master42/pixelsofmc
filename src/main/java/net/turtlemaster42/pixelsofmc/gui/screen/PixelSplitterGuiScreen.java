@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.MachineProgressArea;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -19,6 +20,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
     private EnergyInfoArea energyInfoArea;
+    private MachineProgressArea progressArea;
 
     public PixelSplitterGuiScreen(PixelSplitterGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -28,6 +30,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
     protected void init() {
         super.init();
         assignEnergyInfoArea();
+        assignProgressInfoArea();
     }
 
     @Override
@@ -36,6 +39,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         int y = (height - imageHeight) / 2;
 
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
+        renderProgressArea(pPoseStack, pMouseX, pMouseY, x, y);
     }
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
@@ -44,6 +48,14 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
+
+    private void renderProgressArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 0, 0, 10, 10)) {
+            renderTooltip(pPoseStack, progressArea.getTooltips(),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
+    }
+
 
     @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
@@ -74,6 +86,11 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
+    }
+
+    private void assignProgressInfoArea() {
+        progressArea = new MachineProgressArea(((width - imageWidth) / 2),
+                ((height - imageHeight) / 2), menu.getProgress(), menu.getMaxProgress(), 10, 44);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

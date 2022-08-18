@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "titanium_ingot",
+  "pattern": [
+    "TTT",
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "pixelsofmc:titanium_nugget"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:titanium_ingot"
+  }
+}

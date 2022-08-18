@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/helium_canister"
+    "layer0": "pixelsofmc:items/elements/helium_canister"
   }
 }

@@ -78,6 +78,16 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
     }
 
+    public int getProgress() {
+        return this.data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return this.data.get(1);
+    }
+
+
+
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
     // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
