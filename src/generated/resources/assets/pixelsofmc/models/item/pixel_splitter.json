@@ -1,6 +1,3 @@
 {
-  "parent": "pixelsofmc:block/pixel_splitter",
-  "textures": {
-    "all": "pixelsofmc:block/pixel_splitter"
-  }
+  "parent": "pixelsofmc:block/pixel_splitter"
 }

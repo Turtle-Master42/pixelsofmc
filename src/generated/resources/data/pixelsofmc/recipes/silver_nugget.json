@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:silver_ingot"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:silver_nugget",
+    "count": 9
+  }
+}

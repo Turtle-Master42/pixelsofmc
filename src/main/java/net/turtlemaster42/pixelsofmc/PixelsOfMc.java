@@ -4,6 +4,8 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
+import net.turtlemaster42.pixelsofmc.gui.screen.BallMillGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -66,6 +68,7 @@ public class PixelsOfMc {
         ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
 
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
+		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {

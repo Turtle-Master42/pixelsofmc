@@ -77,6 +77,42 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
+        ShapelessRecipeBuilder.shapeless(POMitems.STEEL_NUGGET.get(), 9)
+                .requires(POMitems.STEEL_INGOT.get())
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.STEEL_INGOT.get())
+                .define('T', POMitems.STEEL_NUGGET.get())
+                .pattern("TTT")
+                .pattern("TTT")
+                .pattern("TTT")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer, POMitems.STEEL_INGOT.getId() + "_from_nugget");
+
+        ShapelessRecipeBuilder.shapeless(POMitems.SILVER_NUGGET.get(), 9)
+                .requires(POMitems.SILVER_INGOT.get())
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.SILVER_INGOT.get())
+                .define('N', POMitems.SILVER_NUGGET.get())
+                .pattern("NNN")
+                .pattern("NNN")
+                .pattern("NNN")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), 9)
+                .requires(POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .define('T', POMitems.TITANIUM_DIBORIDE_NUGGET.get())
+                .pattern("TTT")
+                .pattern("TTT")
+                .pattern("TTT")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer, POMitems.TITANIUM_DIBORIDE_INGOT.getId() + "_from_nugget");
+
 
 
 
@@ -108,6 +144,23 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
+
+        ShapedRecipeBuilder.shaped(POMitems.COPPER_WIRE.get(), 2)
+                .define('A', POMitems.COPPER_NUGGET.get())
+                .define('B', Items.STICK)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.SILVER_WIRE.get(), 2)
+                .define('A', POMitems.SILVER_NUGGET.get())
+                .define('B', Items.STICK)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(POMitems.REDSTONE_COUNTER.get())
                 .define('A', POMitems.TITANIUM_NUGGET.get())
                 .define('B', Items.GOLD_NUGGET)
@@ -126,8 +179,25 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.DRAGON_SENSOR.get())
+                .define('A', POMitems.TITANIUM_DIBORIDE_NUGGET.get())
+            .define('B', POMitems.SILVER_NUGGET.get())
+                .define('C', POMitems.DRAGON_EYE.get())
+                .pattern("ABA")
+                .pattern("ACA")
+                .pattern("ABA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(POMitems.DIAMOND_LENS.get())
                 .define('A', POMitems.TITANIUM_NUGGET.get())
+                .define('B', Items.DIAMOND)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND_LENS.get())
+                .define('A', POMitems.TITANIUM_DIBORIDE_NUGGET.get())
                 .define('B', Items.DIAMOND)
                 .pattern("AAA")
                 .pattern("ABA")

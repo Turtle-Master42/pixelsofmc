@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Block;
 
+import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -20,6 +21,8 @@ public class POMblockEntities {
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterBlockEntity>> PIXEL_SPLITTER =
 			BLOCK_ENTITIES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterBlockEntity::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<BallMillBlockEntity>> BALL_MILL =
+			BLOCK_ENTITIES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillBlockEntity::new, POMblocks.BALL_MILL.get()).build(null));
 
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block,
 			BlockEntityType.BlockEntitySupplier<?> supplier) {

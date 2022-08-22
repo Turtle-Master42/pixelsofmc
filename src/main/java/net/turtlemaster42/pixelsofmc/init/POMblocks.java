@@ -77,7 +77,7 @@ public class POMblocks {
 
     public static final RegistryObject<Block> BALL_MILL = registerBlock("ball_mill",
             () -> new BallMillBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill", "tooltip.pixelsofmc.noshift", "", "", "", "");
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
 
 
 
@@ -85,7 +85,6 @@ public class POMblocks {
 	public static class ClientSideHandler {
 		@SubscribeEvent
 		public static void clientSetup(FMLClientSetupEvent event) {
-			MachineBlock.registerRenderLayer();
 		}
 	}
 

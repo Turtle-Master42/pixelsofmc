@@ -1,0 +1,19 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ingredients": [
+    {
+      "item": "minecraft:coal_block"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:coal"
+    }
+  ],
+  "output": {
+    "item": "pixelsofmc:coal_dust"
+  },
+  "count": 11,
+  "chance": 0.9
+}

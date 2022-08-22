@@ -1,9 +1,11 @@
 package net.turtlemaster42.pixelsofmc.gui.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.energy.IEnergyStorage;
 
 import java.util.List;
@@ -27,24 +29,35 @@ public class EnergyInfoArea extends InfoArea {
         this.energy = energy;
     }
 
-    public List<Component> getTooltips() {
-        if (energy.getMaxEnergyStored() > 999999) {
+    public List<Component> getTooltips(String maxEnergy) {
+        if (Screen.hasShiftDown()) {
             return List.of(
-                    new TextComponent(
-                            (energy.getEnergyStored()/1000) + "," +
-                                    ((energy.getEnergyStored()/10) - ((energy.getEnergyStored()/1000)*100)
-                                    + "/" + (energy.getMaxEnergyStored()/1000) + "," + "0"
-                                            +" kFE")
-                    ));
-        } else if (energy.getMaxEnergyStored() > 999999999) {
-            return List.of(
-                    new TextComponent(
-                            (energy.getEnergyStored()/1000000) + "," +
-                                    ((energy.getEnergyStored()/10000) - ((energy.getEnergyStored()/1000000)*100)
-                                            + "/" + (energy.getMaxEnergyStored()/1000000) + "," + "0"
-                                            +" mFE")
+                    new TextComponent("§6"+energy.getEnergyStored()+"§r§7 FE"),
+                    new TextComponent("§e"+energy.getMaxEnergyStored()+"§r§7 FE")
 
-            ));
+            );
+        }
+        if (energy.getMaxEnergyStored() >= 1000000) {
+            return List.of(
+                    new TextComponent(
+                            ("§6"+energy.getEnergyStored()/1000) + "." +
+                                    ((energy.getEnergyStored()/10) - ((energy.getEnergyStored()/1000)*100)+"§r§7 KFE"
+                    )),
+                    new TextComponent(
+                            ("§e"+ maxEnergy)),
+                    new TextComponent("§3dddddddd")
+
+            );
+        } else if (energy.getMaxEnergyStored() >= 1000000000) {
+            return List.of(
+                    new TextComponent(
+                            ("§6"+energy.getEnergyStored()/1000000) + "." +
+                                    ((energy.getEnergyStored()/10000) - ((energy.getEnergyStored()/1000000)*100)+"§r§7 MFE"
+                                    )),
+                    new TextComponent(
+                            ("§e"+ maxEnergy))
+
+            );
         } else {
             return List.of(new TextComponent(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE"));
         }

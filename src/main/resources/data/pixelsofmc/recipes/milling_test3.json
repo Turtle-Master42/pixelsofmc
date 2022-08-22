@@ -1,0 +1,19 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_dust"
+    },
+    {
+      "item": "pixelsofmc:coal_dust"
+    },
+    {
+      "item": "pixelsofmc:coal_dust"
+    }
+  ],
+  "output": {
+    "item": "pixelsofmc:titanium_diboride_dust"
+  },
+  "count": 2,
+  "chance": 1
+}

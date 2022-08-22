@@ -43,11 +43,17 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ADVANCED_LASER.get());
         simpleItem(POMitems.MICRO_CHIP.get());
         simpleItem(POMitems.COPPER_WIRE.get());
+        simpleItem(POMitems.SILVER_WIRE.get());
         simpleItem(POMitems.REDSTONE_COUNTER.get());
         simpleItem(POMitems.REDSTONE_LAYERED_WIRE.get());
         simpleItem(POMitems.DRAGON_EYE.get());
+        simpleItem(POMitems.VOID_EYE.get());
         simpleItem(POMitems.DIAMOND_LENS.get());
+        simpleItem(POMitems.VIOLET_DIAMOND_LENS.get());
+        simpleItem(POMitems.RED_DIAMOND_LENS.get());
         simpleItem(POMitems.ENDER_SENSOR.get());
+        simpleItem(POMitems.DRAGON_SENSOR.get());
+        simpleItem(POMitems.VOID_SENSOR.get());
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         //plates
@@ -57,6 +63,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_PLATING.get());
         //metals
         simpleItem(POMitems.COPPER_NUGGET.get());
+        simpleItem(POMitems.SILVER_NUGGET.get());
         simpleItem(POMitems.NETHERITE_NUGGET.get());
         simpleItem(POMitems.RAW_TITANIUM.get());
         elementItem(POMitems.TITANIUM_INGOT.get());
@@ -64,6 +71,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET.get());
         simpleItem(POMitems.STEEL_INGOT.get());
+        simpleItem(POMitems.STEEL_NUGGET.get());
         elementItem(POMitems.URANIUM_INGOT.get());
         //jar
         simpleItem(POMitems.EMPTY_JAR.get());
@@ -155,14 +163,21 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.LEAD_INGOT.get());
         elementItem(POMitems.BISMUTH_INGOT.get());
         elementItem(POMitems.POLONIUM_INGOT.get());
+        elementItem(POMitems.FRANCIUM_INGOT.get());
+        elementItem(POMitems.RADIUM_INGOT.get());
+        elementItem(POMitems.ACTINIUM_INGOT.get());
+        elementItem(POMitems.THORIUM_INGOT.get());
+        elementItem(POMitems.PROTACTINIUM_INGOT.get());
+        elementItem(POMitems.NEPTUNIUM_INGOT.get());
+        elementItem(POMitems.AMERICIUM_INGOT.get());
+        elementItem(POMitems.CURIUM_INGOT.get());
+        elementItem(POMitems.BERKELIUM_INGOT.get());
+        elementItem(POMitems.CALIFORNIUM_INGOT.get());
+        elementItem(POMitems.EINSTEINIUM_INGOT.get());
 
 
 
         simpleItem(POMitems.BIT_PIXEL.get());
-
-
-
-
 
 
         simpleBlock(POMblocks.TITANIUM_BLOCK.get());
@@ -172,8 +187,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.RAW_TITANIUM_BLOCK.get());
         simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         simpleBlock(POMblocks.HEAT_RESISTANT_CASING.get());
-
-        simpleBlock(POMblocks.PIXEL_SPLITTER.get());
 
         simpleBlock(POMblocks.SMOOTH_STONE_BRICKS.get());
 

@@ -1,8 +1,10 @@
 
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -16,10 +18,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -35,6 +33,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -51,6 +50,15 @@ public class MachineBlock extends Block implements EntityBlock {
 		return true;
 	}
 
+	@Deprecated
+	public RenderShape getRenderShape(BlockState pState) {
+		return RenderShape.INVISIBLE;
+	}
+	@Deprecated
+	public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+		return 1.0F;
+	}
+
 	public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
 		return true;
 	}
@@ -58,23 +66,25 @@ public class MachineBlock extends Block implements EntityBlock {
 	public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pLevel, BlockPos pPos, Player pPlayer) {
 		BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
-		assert blockEntity != null;
 		int mainX = blockEntity.getTileData().getInt("mainX");
 		int mainY = blockEntity.getTileData().getInt("mainY");
 		int mainZ = blockEntity.getTileData().getInt("mainZ");
 
 		BlockPos mainPos = new BlockPos(mainX, mainY, mainZ);
-		BlockState mainState = pLevel.getBlockState(mainPos);
-
-		Level level = Objects.requireNonNull(pLevel.getBlockEntity(pPos)).getLevel();
-
-		PixelsOfMc.LOGGER.info(level);
-		PixelsOfMc.LOGGER.info(pPlayer.getLevel());
-		PixelsOfMc.LOGGER.info(pLevel);
+		if (mainPos == null) {
+			return ItemStack.EMPTY;
+		}
+		if (blockEntity == null) {
+			return ItemStack.EMPTY;
+		}
+		PixelsOfMc.LOGGER.info(mainX);
+		PixelsOfMc.LOGGER.info(mainY);
+		PixelsOfMc.LOGGER.info(mainZ);
+		PixelsOfMc.LOGGER.info(blockEntity);
 		PixelsOfMc.LOGGER.info(mainPos);
-		PixelsOfMc.LOGGER.info(mainState);
 
-		return new ItemStack(mainState.getBlock());
+		BlockState mainState = pLevel.getBlockState(mainPos);
+		return mainState.getBlock().getCloneItemStack(mainState, pTarget, pLevel, mainPos, pPlayer);
 	}
 
 	@Deprecated
@@ -131,6 +141,7 @@ public class MachineBlock extends Block implements EntityBlock {
 
 			if (mainPos.equals(pPos)) {
 				PixelsOfMc.LOGGER.warn("This Machine Block does not have a connected block!");
+				pLevel.destroyBlock(pPos, false);
 				return InteractionResult.FAIL;
 			} else {
 
@@ -166,11 +177,6 @@ public class MachineBlock extends Block implements EntityBlock {
 		super.triggerEvent(state, world, pos, eventID, eventParam);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static void registerRenderLayer() {
-		ItemBlockRenderTypes.setRenderLayer(POMblocks.MACHINE_BLOCK.get(), renderType -> renderType == RenderType.translucent());
 	}
 
 	public BlockPos getMainPos(Level pLevel, BlockPos pPos) {

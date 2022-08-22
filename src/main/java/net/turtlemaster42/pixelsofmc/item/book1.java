@@ -22,11 +22,6 @@ public class book1 extends Item {
         if (world.isClientSide) {
             PixelsOfMc.PROXY.openBookGUI(itemStack);
         }
-        player.startSleeping(player.getOnPos());
         return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, itemStack);
-    }
-
-    public UseAnim getUseAnimation(ItemStack p_43417_) {
-        return UseAnim.SPEAR;
     }
 }

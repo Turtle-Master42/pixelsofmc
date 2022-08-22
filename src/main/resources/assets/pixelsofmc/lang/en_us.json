@@ -2,6 +2,7 @@
 //items
   "item.pixelsofmc.bio_plastic_sheet": "Bio Plastic Sheet",
   "item.pixelsofmc.copper_wire": "Copper Wire",
+  "item.pixelsofmc.silver_wire": "Silver Wire",
   "item.pixelsofmc.empty_jar": "Empty Jar",
   "item.pixelsofmc.jar_of_pixels_emerald": "Jar Of Emerald Pixels",
   "item.pixelsofmc.titanium_circle_saw": "Titanium Circle Saw",
@@ -11,9 +12,14 @@
   "item.pixelsofmc.fire_proof_plastic": "Fire Proof Plastic",
   "item.pixelsofmc.micro_chip": "Micro Chip",
   "item.pixelsofmc.dragon_eye": "Eye of the Dragon",
+  "item.pixelsofmc.void_eye": "Eye of the Void",
   "item.pixelsofmc.redstone_counter": "Redstone Counter",
   "item.pixelsofmc.ender_sensor": "Ender Sensor",
+  "item.pixelsofmc.dragon_sensor": "Dragon Sensor",
+  "item.pixelsofmc.void_sensor": "Void Sensor",
   "item.pixelsofmc.diamond_lens": "Diamond Lens",
+  "item.pixelsofmc.violet_diamond_lens": "Violet Diamond Lens",
+  "item.pixelsofmc.red_diamond_lens": "Red Diamond Lens",
   "item.pixelsofmc.redstone_layered_wire": "Redstone Layered Wire",
 
   "item.pixelsofmc.titanium_nugget": "Titanium Nugget",
@@ -32,6 +38,7 @@
   "item.pixelsofmc.fire_proof_compound": "Fire Proof Compound",
   "item.pixelsofmc.jar_of_pixels_plants": "Jar Of Biological Pixels",
   "item.pixelsofmc.copper_nugget": "Copper Nugget",
+  "item.pixelsofmc.silver_nugget": "Silver Nugget",
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
   "item.pixelsofmc.jarof_pixels": "Jar of Pixels",
   "item.pixelsofmc.jar_of_pixels_iron": "Jar Of Iron Pixels",
@@ -69,6 +76,9 @@
   "item.pixelsofmc.argon_canister": "Argon Canister",
   "item.pixelsofmc.chlorine_canister": "Chlorine Canister",
   "item.pixelsofmc.nitrogen_canister": "Nitrogen Canister",
+  "item.pixelsofmc.radon_canister": "Radon Canister",
+  "item.pixelsofmc.krypton_canister": "Krypton Canister",
+  "item.pixelsofmc.bromine_canister": "Bromine Canister",
 
   "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
   "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
@@ -130,6 +140,17 @@
   "item.pixelsofmc.lead_ingot": "Lead Ingot",
   "item.pixelsofmc.bismuth_ingot": "Bismuth Ingot",
   "item.pixelsofmc.polonium_ingot": "Polonium Ingot",
+  "item.pixelsofmc.francium_ingot": "Francium Ingot",
+  "item.pixelsofmc.radium_ingot": "Radium Ingot",
+  "item.pixelsofmc.actinium_ingot": "Actinium Ingot",
+  "item.pixelsofmc.thorium_ingot": "Thorium Ingot",
+  "item.pixelsofmc.protactinium_ingot": "Protactinium Ingot",
+  "item.pixelsofmc.neptunium_ingot": "Neptunium Ingot",
+  "item.pixelsofmc.americium_ingot": "Americium Ingot",
+  "item.pixelsofmc.curium_ingot": "Curium Ingot",
+  "item.pixelsofmc.berkelium_ingot": "Berkelium Ingot",
+  "item.pixelsofmc.californium_ingot": "Californium Ingot",
+  "item.pixelsofmc.einsteinium_ingot": "Einsteinium Ingot",
 
 
   //machines
@@ -163,9 +184,10 @@
   "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
   "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking to check if everything is\nstill working",
 
-  "tooltip.pixelsofmc.block.ball_mill": "§7use to mix dusts together and turn soft things into dust",
+  "tooltip.pixelsofmc.block.ball_mill.shift": "§7Used to mix dusts together and crush down soft material",
+  "tooltip.pixelsofmc.block.ball_mill.alt": "§7This machine requires a §r§c3x3x2§r§7 area.",
 
-  "tooltip.pixelsofmc.energy.dot": ",",
+  "tooltip.pixelsofmc.energy.dot": ".",
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
   "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",

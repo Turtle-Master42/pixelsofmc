@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block.entity;
 
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -139,7 +140,7 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent("Pixel Splitter");
+        return new TranslatableComponent("block.pixelsofmc.pixel_splitter" + " d");
     }
 
     @Nullable

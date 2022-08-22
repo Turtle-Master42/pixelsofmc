@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "NNN",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "pixelsofmc:silver_nugget"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:silver_ingot"
+  }
+}

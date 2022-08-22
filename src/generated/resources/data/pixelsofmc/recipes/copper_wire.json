@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "NNN",
-    "NSN",
-    "NNN"
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "key": {
-    "N": {
-      "tag": "forge:nuggets/copper"
+    "A": {
+      "item": "pixelsofmc:copper_nugget"
     },
-    "S": {
+    "B": {
       "item": "minecraft:stick"
     }
   },
   "result": {
     "item": "pixelsofmc:copper_wire",
-    "count": 1
+    "count": 2
   }
 }

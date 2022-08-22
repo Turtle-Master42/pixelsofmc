@@ -44,7 +44,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
-            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
+            renderTooltip(pPoseStack, energyInfoArea.getTooltips("1.02§r§7 MFE"),
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
@@ -71,8 +71,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
             blit(pPoseStack, x + 54, y + 43, 0, 168, menu.getScaledProgressOne(), 13);
             blit(pPoseStack, x + 85, y + 37, 73, 168, 7, menu.getScaledProgressTwo());
         }
-        blit(pPoseStack, x + 11, y + 22, 185, 0, 10, menu.getScaledEnergy());
-        energyInfoArea.draw(pPoseStack);
+        blit(pPoseStack, x + 11, y + 22, 185, 1, 10, menu.getScaledEnergy());
 
     }
 
