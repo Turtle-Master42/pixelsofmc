@@ -29,12 +29,11 @@ public class EnergyInfoArea extends InfoArea {
         this.energy = energy;
     }
 
-    public List<Component> getTooltips(String maxEnergy) {
+    public List<Component> getTooltips() {
         if (Screen.hasShiftDown()) {
             return List.of(
                     new TextComponent("§6"+energy.getEnergyStored()+"§r§7 FE"),
                     new TextComponent("§e"+energy.getMaxEnergyStored()+"§r§7 FE")
-
             );
         }
         if (energy.getMaxEnergyStored() >= 1000000) {
@@ -44,10 +43,7 @@ public class EnergyInfoArea extends InfoArea {
                                     ((energy.getEnergyStored()/10) - ((energy.getEnergyStored()/1000)*100)+"§r§7 KFE"
                     )),
                     new TextComponent(
-                            ("§e"+ maxEnergy)),
-                    new TextComponent("§3dddddddd")
-
-            );
+                            ("§e"+ (float) (energy.getMaxEnergyStored() / 10000) /100) + "§r§7 MFE"));
         } else if (energy.getMaxEnergyStored() >= 1000000000) {
             return List.of(
                     new TextComponent(
@@ -55,11 +51,11 @@ public class EnergyInfoArea extends InfoArea {
                                     ((energy.getEnergyStored()/10000) - ((energy.getEnergyStored()/1000000)*100)+"§r§7 MFE"
                                     )),
                     new TextComponent(
-                            ("§e"+ maxEnergy))
-
-            );
+                            ("§e"+ (float) (energy.getMaxEnergyStored() / 10000000) /100) + "§r§7 GFE"));
         } else {
-            return List.of(new TextComponent(energy.getEnergyStored()+"/"+energy.getMaxEnergyStored()+" FE"));
+            return List.of(
+                    new TextComponent("§6"+energy.getEnergyStored()+"§r§7 FE"),
+                    new TextComponent("§e"+energy.getMaxEnergyStored()+"§r§7 FE"));
         }
     }
 

@@ -120,6 +120,17 @@ public class BallMillBlock extends BaseEntityBlock {
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof BallMillBlockEntity) {
+                ((BallMillBlockEntity) blockEntity).drops();
+            }
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
 
 
     @Deprecated
@@ -127,7 +138,7 @@ public class BallMillBlock extends BaseEntityBlock {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
 
-            setMachineBlock(pLevel, new BlockPos(pPos.getX(),pPos.getY()+1,pPos.getZ()), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), pPos);
+            setMachineBlock(pLevel, new BlockPos(pPos.getX(),pPos.getY()+1,pPos.getZ()), POMblocks.MACHINE_ENERGY_BLOCK.get().defaultBlockState(), pPos);
             setMachineBlock(pLevel, new BlockPos(pPos.getX()+1,pPos.getY(),pPos.getZ()), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), pPos);
             setMachineBlock(pLevel, new BlockPos(pPos.getX()-1,pPos.getY(),pPos.getZ()), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), pPos);
             setMachineBlock(pLevel, new BlockPos(pPos.getX(),pPos.getY(),pPos.getZ()+1), POMblocks.MACHINE_BLOCK.get().defaultBlockState(), pPos);
@@ -181,6 +192,6 @@ public class BallMillBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, POMblockEntities.BALL_MILL.get(),
-                BallMillBlockEntity::tick);
+                pLevel.isClientSide ? BallMillBlockEntity::clientTick : BallMillBlockEntity::serverTick);
     }
 }

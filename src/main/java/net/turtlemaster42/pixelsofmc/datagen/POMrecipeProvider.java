@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -115,6 +116,35 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
 
+        ShapedRecipeBuilder.shaped(POMitems.HAMMER.get())
+                .define('A', Items.NETHERITE_INGOT)
+                .define('B', Items.STICK)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.SCREWDRIVER.get())
+                .define('A', POMitems.BIO_PLASTIC_SHEET.get())
+                .define('B', POMitems.NETHERITE_NUGGET.get())
+                .pattern("B")
+                .pattern("B")
+                .pattern("A")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.WIRECUTTER.get())
+                .define('A', POMitems.BIO_PLASTIC_SHEET.get())
+                .define('B', POMitems.NETHERITE_NUGGET.get())
+                .pattern(" B ")
+                .pattern("A A")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapelessRecipeBuilder.shapeless(POMitems.CLEANING_CLOTH.get())
+                .requires(ItemTags.CARPETS)
+                .requires(Items.STRING)
+                .requires(Items.STRING)
+                .requires(Items.BLUE_DYE)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
 
 
         ShapedRecipeBuilder.shaped(POMitems.TITANIUM_CIRCLE_SAW.get())

@@ -1,19 +1,16 @@
 {
   "type": "pixelsofmc:ball_milling",
-  "ingredients": [
+  "dubble_chance": 0.5,
+  "inputs": [
     {
-      "item": "minecraft:coal_block"
-    },
-    {
-      "item": "minecraft:coal"
-    },
-    {
-      "item": "minecraft:coal"
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:coal"
+      }
     }
   ],
   "output": {
+    "count": 1,
     "item": "pixelsofmc:coal_dust"
-  },
-  "count": 11,
-  "chance": 0.9
+  }
 }

@@ -34,6 +34,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.FIRE_PROOF_PLASTIC.get());
         simpleItem(POMitems.REPELLING_COMPOUND.get());
         simpleItem(POMitems.REPELLING_PLASTIC.get());
+        handheldItem(POMitems.SCREWDRIVER.get());
+        handheldItem(POMitems.WIRECUTTER.get());
+        handheldItem(POMitems.HAMMER.get());
+        handheldItem(POMitems.CLEANING_CLOTH.get());
         //circuit
         simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD.get());
         simpleItem(POMitems.NORMAL_CIRCUIT_BOARD.get());
@@ -178,6 +182,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
 
         simpleItem(POMitems.BIT_PIXEL.get());
+        simpleItem(POMitems.PIXEL.get());
 
 
         simpleBlock(POMblocks.TITANIUM_BLOCK.get());

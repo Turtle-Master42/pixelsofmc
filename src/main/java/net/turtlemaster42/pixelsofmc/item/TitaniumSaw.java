@@ -11,10 +11,7 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class TitaniumSaw extends Item implements Vanishable {
-
     public TitaniumSaw(Properties properties) {
         super(properties);
     }
-
-
 }

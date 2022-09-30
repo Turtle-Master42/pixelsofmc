@@ -68,17 +68,9 @@ public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMen
         int maxEnergy = this.data.get(3);  // Max Energy
         int progressArrowSize = 44; // This is the height in pixels of your arrow
 
+
         return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
     }
-
-    public int getProgress() {
-        return this.data.get(0);
-    }
-
-    public int getMaxProgress() {
-        return this.data.get(1);
-    }
-
 
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

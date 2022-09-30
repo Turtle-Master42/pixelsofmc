@@ -38,6 +38,8 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
 
 
+
+
     public PixelSplitterBlock(Properties properties) {
         super(properties);
     }

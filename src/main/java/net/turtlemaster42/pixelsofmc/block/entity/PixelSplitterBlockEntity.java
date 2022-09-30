@@ -308,6 +308,14 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
         }
     }
 
+
+
+
+    public int getProgress() {return progress;}
+
+    public int getMaxProgress() {return maxProgress;}
+
+
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
     }

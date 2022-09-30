@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "star_stage=0": {
+      "model": "pixelsofmc:block/fusion_core_block_small"
+    },
+    "star_stage=1": {
+      "model": "pixelsofmc:block/fusion_core_block_big"
+    },
+    "star_stage=2": {
+      "model": "pixelsofmc:block/fusion_core_block_neutron"
+    },
+    "star_stage=3": {
+      "model": "pixelsofmc:block/fusion_core_block_black_hole"
+    }
+  }
+}

@@ -29,6 +29,7 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.BALL_MILL.get());
 
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);
 
 
         this.add(POMblocks.TITANIUM_ORE.get(), (block) -> {

@@ -3,19 +3,33 @@
   "text": "root.txt",
   "title": "The Pixels of MC",
   "title_locale": "book.pixelsofmc_guide_book_1.root",
-  "linked_page_buttons": [],
-  "images": [
+  "linked_page_buttons": [
     {
-      "texture": "citadel:textures/citadel_logo.png",
-      "x": 20,
-      "y": 0,
-      "page" : 0,
-      "scale": 0.6,
-      "u": 0,
-      "v": 0,
-      "width": 256,
-      "height": 83
+      "linked_page": "elements.json",
+      "text": "Elements",
+      "x": 105,
+      "y": 5,
+      "scale": 0.5,
+      "page": 1
+    },
+    {
+      "linked_page": "elements.json",
+      "text": "Laws of Minecraft Physics",
+      "x": 105,
+      "y": 25,
+      "page": 1,
+      "scale": 0.5
+    },
+    {
+      "linked_page": "elements.json",
+      "text": "Elements",
+      "x": 105,
+      "y": 45,
+      "page": 1,
+      "scale": 0.5
     }
+  ],
+  "images": [
   ],
   "item_renders": [
     {
@@ -40,41 +54,9 @@
       "scale": 2
     }
   ],
-  "recipes": [
-    {
-      "recipe": "pixelsofmc:advanced_circuit_board",
-      "shapeless": false,
-      "x": 210,
-      "y": 110,
-      "page": 1,
-      "scale": 1.3
-    }
-  ],
+  "recipes": [],
   "tabula_renders": [],
-  "entity_renders": [
-    {
-      "entity": "minecraft:bee",
-      "x": 163,
-      "y": 120,
-      "page" : 1,
-      "scale": 1.7,
-      "rot_x": 30,
-      "rot_y": 135,
-      "rot_z": 0,
-      "follow_cursor": true
-    },
-    {
-      "entity": "minecraft:skeleton",
-      "x": 30,
-      "y": 138,
-      "page" : 1,
-      "scale": 0.9,
-      "rot_x": 30,
-      "rot_y": 225,
-      "rot_z": 0,
-      "follow_cursor": false
-    }
-  ],
+  "entity_renders": [],
   "entity_buttons": [
     {
       "entity": "minecraft:pillager",

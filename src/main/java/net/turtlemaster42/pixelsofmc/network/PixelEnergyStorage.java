@@ -1,11 +1,15 @@
 package net.turtlemaster42.pixelsofmc.network;
 
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.energy.EnergyStorage;
 
 public class PixelEnergyStorage extends EnergyStorage {
 
     public PixelEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer, 0);
+    }
+    public PixelEnergyStorage(int capacity, int maxTransfer, int maxExtract) {
+        super(capacity, maxTransfer, maxExtract);
     }
 
     // Override this to (for example) call setChanged() on your block entity
@@ -26,6 +30,7 @@ public class PixelEnergyStorage extends EnergyStorage {
         int rc = super.extractEnergy(maxExtract, simulate);
         if (rc > 0 && !simulate) {
             onEnergyChanged();
+            return rc;
         }
         return rc;
     }

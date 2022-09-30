@@ -1,19 +1,22 @@
 {
   "type": "pixelsofmc:ball_milling",
-  "ingredients": [
+  "dubble_chance": 0,
+  "inputs": [
     {
-      "item": "minecraft:coal"
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:coal_dust"
+      }
     },
     {
-      "item": "minecraft:coal"
-    },
-    {
-      "item": "minecraft:coal"
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_dust"
+      }
     }
   ],
   "output": {
-    "item": "pixelsofmc:coal_dust"
-  },
-  "count": 4,
-  "chance": 1
+    "count": 2,
+    "item": "pixelsofmc:titanium_diboride_dust"
+  }
 }

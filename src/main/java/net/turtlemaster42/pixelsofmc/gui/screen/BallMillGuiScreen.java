@@ -41,11 +41,10 @@ public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> 
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
-            renderTooltip(pPoseStack, energyInfoArea.getTooltips("1.02§r§7 MFE"),
+            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
-
 
 
     @Override

@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Vanishable;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -43,6 +44,14 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> REPELLING_PLASTIC = ITEMS.register("repelling_plastic",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth",
+			() -> new Item(new Item.Properties().durability(144).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver",
+			() -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter",
+			() -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer",
+			() -> new Item(new Item.Properties().durability(512).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 	public static final RegistryObject<Item> SIMPLE_CIRCUIT_BOARD = ITEMS.register("simple_circuit_board",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -139,13 +148,10 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).stacksTo(8)));
 	public static final RegistryObject<Item> ENERGY_UPGRADE = ITEMS.register("energy_upgrade",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).stacksTo(8)));
-
 	public static final RegistryObject<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> URANIUM_DUST = ITEMS.register("uranium_dust",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
@@ -187,7 +193,6 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 
-
 	public static final RegistryObject<Item> ALUMINIUM_INGOT = ITEMS.register("aluminium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> BERYLLIUM_INGOT = ITEMS.register("beryllium_ingot",
@@ -218,52 +223,36 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> ZINC_INGOT = ITEMS.register("zinc_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> RUBIDIUM_INGOT = ITEMS.register("rubidium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> STRONTIUM_INGOT = ITEMS.register("strontium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> YTTRIUM_INGOT = ITEMS.register("yttrium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> NIOBIUM_INGOT = ITEMS.register("niobium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item> MOLYBDENUM_INGOT = ITEMS.register("molybdenum_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  TECHNETIUM_INGOT = ITEMS.register("technetium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  RUTHENIUM_INGOT = ITEMS.register("ruthenium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  RHODIUM_INGOT = ITEMS.register("rhodium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  PALLADIUM_INGOT = ITEMS.register("palladium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  SILVER_INGOT = ITEMS.register("silver_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  CADMIUM_INGOT = ITEMS.register("cadmium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  INDIUM_INGOT = ITEMS.register("indium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  TIN_INGOT = ITEMS.register("tin_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  ANTIMONY_INGOT = ITEMS.register("antimony_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-
 	public static final RegistryObject<Item>  CAESIUM_INGOT = ITEMS.register("caesium_ingot",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item>  BARIUM_INGOT = ITEMS.register("barium_ingot",
@@ -349,6 +338,9 @@ public class POMitems {
 	//test
 	public static final RegistryObject<Item> BIT_PIXEL = ITEMS.register("bit_pixel",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+
+	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel",
+			() -> new Pixel(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);

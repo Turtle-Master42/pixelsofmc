@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -10,53 +9,69 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BallMillRecipe implements Recipe<SimpleContainer> {
+public class BallMillRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final ItemStack output;
-    private final NonNullList<Ingredient> recipeItems;
-    private final int count;
+    private final List<CountedIngredient> recipeItems;
     private final float chance;
 
     public BallMillRecipe(ResourceLocation id, ItemStack output,
-                               NonNullList<Ingredient> recipeItems, int count, float chance) {
+                          List<CountedIngredient> recipeItems, float chance) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
-        this.count = count;
         this.chance = chance;
     }
 
+//enderio
     @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        if(recipeItems.get(0).test(pContainer.getItem(0)) &&
-                recipeItems.get(1).test(pContainer.getItem(1)) &&
-                recipeItems.get(2).test(pContainer.getItem(2))) {
-            return true;
+    public boolean matches(SimpleContainer container, Level level) {
+        boolean[] matched = new boolean[3];
+
+        // Iterate over the slots
+        for (int i = 0; i < 3; i++) {
+            // Iterate over the inputs
+            for (int j = 0; j < 3; j++) {
+                // If this ingredient has been matched already, continue
+                if (matched[j])
+                    continue;
+
+                if (j < recipeItems.size()) {
+                    // If we expect an input, test we have a match for it.
+                    if (recipeItems.get(j).test(container.getItem(i))) {
+                        matched[j] = true;
+                    }
+                } else if (container.getItem(i) == ItemStack.EMPTY) {
+                    // If we don't expect an input, make sure we have a blank for it.
+                    matched[j] = true;
+                }
+            }
         }
 
-        return false;
-    }
+        // If we matched all our ingredients, we win!
+        for (int i = 0; i < 3; i++) {
+            if (!matched[i])
+                return false;
+        }
 
-    public int getOutputCount() {
-        return count;
-    }
-
-    public float getOutputChance() {
-        return chance;
-    }
-
-    @Override
-    public boolean isSpecial() {
         return true;
     }
 
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return recipeItems;
+
+    public int getOutputCount() {
+        return output.getCount();
+    }
+
+    public float getDubbleChance() {
+        return chance;
     }
 
     @Override
@@ -65,13 +80,12 @@ public class BallMillRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
-        return true;
-    }
-
-    @Override
     public ItemStack getResultItem() {
         return output.copy();
+    }
+
+    public List<CountedIngredient> getInputs() {
+        return recipeItems;
     }
 
     @Override
@@ -101,43 +115,47 @@ public class BallMillRecipe implements Recipe<SimpleContainer> {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"ball_milling");
 
         public BallMillRecipe fromJson(ResourceLocation id, JsonObject json) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
-            int count = GsonHelper.getAsInt(json, "count");
-            float chance = GsonHelper.getAsFloat(json, "chance");
+            //output
+            ItemStack output = CraftingHelper.getItemStack(json.getAsJsonObject("output"), false);
+            //chance
+            float chance = GsonHelper.getAsFloat(json, "dubble_chance");
 
-            JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(3, Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+            //inputs
+            JsonArray jsonInputs = json.getAsJsonArray("inputs");
+            List<CountedIngredient> inputs = new ArrayList<>(jsonInputs.size());
+            for (int i = 0; i < jsonInputs.size(); i++) {
+                inputs.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
             }
-
-            return new BallMillRecipe(id, output, inputs, count, chance);
+            return new BallMillRecipe(id, output, inputs, chance);
         }
 
         public BallMillRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-            int count = buf.readInt();
-            float chance = buf.readFloat();
+            try {
+                List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
 
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
+                float chance = buf.readFloat();
+                ItemStack output = buf.readItem();
+
+                return new BallMillRecipe(id, output, inputs, chance);
+            } catch (Exception ex) {
+                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                throw ex;
             }
-
-            ItemStack output = buf.readItem();
-            return new BallMillRecipe(id, output, inputs, count, chance);
         }
 
         public void toNetwork(FriendlyByteBuf buf, BallMillRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
+            try {
+                buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
+                buf.writeItem(recipe.output);
 
-            buf.writeInt(recipe.getOutputCount());
-            buf.writeFloat(recipe.getOutputChance());
 
-            for (Ingredient ing : recipe.getIngredients()) {
-                ing.toNetwork(buf);
+                buf.writeInt(recipe.getOutputCount());
+                buf.writeFloat(recipe.getDubbleChance());
+
+            } catch (Exception ex) {
+                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                throw ex;
             }
-            buf.writeItemStack(recipe.getResultItem(), false);
         }
 
         public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
@@ -157,5 +175,6 @@ public class BallMillRecipe implements Recipe<SimpleContainer> {
         private static <G> Class<G> castClass(Class<?> cls) {
             return (Class<G>)cls;
         }
+
     }
 }

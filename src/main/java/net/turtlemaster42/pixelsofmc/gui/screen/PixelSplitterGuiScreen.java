@@ -44,7 +44,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
-            renderTooltip(pPoseStack, energyInfoArea.getTooltips("1.02§r§7 MFE"),
+            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
@@ -89,7 +89,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
 
     private void assignProgressInfoArea() {
         progressArea = new MachineProgressArea(((width - imageWidth) / 2),
-                ((height - imageHeight) / 2), menu.getProgress(), menu.getMaxProgress(), 10, 44);
+                ((height - imageHeight) / 2), menu.blockEntity.getProgress(), menu.blockEntity.getMaxProgress(), 10, 44);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

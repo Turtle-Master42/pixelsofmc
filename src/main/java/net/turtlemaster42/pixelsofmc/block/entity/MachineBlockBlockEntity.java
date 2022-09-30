@@ -56,9 +56,4 @@ public class MachineBlockBlockEntity extends BlockEntity {
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
 	}
-
-	public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
-
-	}
-
 }

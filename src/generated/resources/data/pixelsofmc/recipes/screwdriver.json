@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "B",
+    "A"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic_sheet"
+    },
+    "B": {
+      "item": "pixelsofmc:netherite_nugget"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:screwdriver"
+  }
+}

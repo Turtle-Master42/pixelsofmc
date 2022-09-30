@@ -10,8 +10,8 @@ import java.util.List;
 
 public class MachineProgressArea extends InfoArea {
 
-    int progress;
-    int maxProgress;
+    private final int progress;
+    private final int maxProgress;
 
     public MachineProgressArea(int xMin, int yMin, int progress, int maxProgress)  {
         this(xMin,yMin,progress,maxProgress,8,64);
@@ -24,14 +24,10 @@ public class MachineProgressArea extends InfoArea {
     }
 
     public List<Component> getTooltips() {
-            return List.of(new TextComponent(progress + "/" + maxProgress));
+            return List.of(new TextComponent((100/maxProgress * progress) +"%"));
 
     }
-
-
 
     @Override
-    public void draw(PoseStack transform) {
-
-    }
+    public void draw(PoseStack transform) {}
 }

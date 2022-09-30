@@ -13,17 +13,14 @@ package net.turtlemaster42.pixelsofmc.block.entity;
         import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
         import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
         import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
-        import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
         import net.minecraft.core.BlockPos;
         import net.minecraft.core.Direction;
         import net.minecraft.nbt.CompoundTag;
         import net.minecraft.network.chat.Component;
-        import net.minecraft.network.chat.TextComponent;
         import net.minecraft.network.protocol.Packet;
         import net.minecraft.network.protocol.game.ClientGamePacketListener;
         import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
         import net.minecraft.world.Containers;
-        import net.minecraft.world.MenuProvider;
         import net.minecraft.world.SimpleContainer;
         import net.minecraft.world.entity.player.Inventory;
         import net.minecraft.world.entity.player.Player;
@@ -40,11 +37,12 @@ package net.turtlemaster42.pixelsofmc.block.entity;
         import net.minecraftforge.items.CapabilityItemHandler;
         import net.minecraftforge.items.IItemHandler;
         import net.minecraftforge.items.ItemStackHandler;
+        import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
         import org.jetbrains.annotations.NotNull;
         import org.jetbrains.annotations.Nullable;
-        import org.openjdk.nashorn.internal.objects.annotations.Property;
 
         import javax.annotation.Nonnull;
+        import java.util.List;
         import java.util.Optional;
         import java.util.Random;
 
@@ -55,9 +53,8 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 120;
     private int speedUpgrade = 0;
-    private int energyUpgrade = 0;
     private final int capacity = 1024000;
     private final int maxReceive = 4096;
     private static final int energyConsumption = 512;
@@ -221,13 +218,21 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
 
     //---RECIPE---//
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillBlockEntity pBlockEntity) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, BallMillBlockEntity e) {
+        e.tick(level, blockPos, blockState, e);
+    }
+
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, BallMillBlockEntity e) {
+        e.tick(level, blockPos, blockState, e);
+    }
+
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillBlockEntity pBlockEntity) {
+        getEnergyFromEnergyMachineBlock(Direction.UP);
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
-            pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
+            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
             if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
                 pState.setValue(BlockStateProperties.LIT, true);
             }
@@ -251,7 +256,8 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
         Optional<BallMillRecipe> match = level.getRecipeManager()
                 .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
+        return match.isPresent()
+                && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && hasToolsInToolSlot(entity);
     }
@@ -261,8 +267,10 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
     }
 
     private static boolean hasPower(BallMillBlockEntity entity) {
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
+        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
+        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
+
 
     private static void craftItem(BallMillBlockEntity entity) {
         Level level = entity.level;
@@ -275,14 +283,28 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
                 .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            entity.itemHandler.extractItem(0,1, false);
-            entity.itemHandler.extractItem(1,1, false);
-            entity.itemHandler.extractItem(2,1, false);
-            entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //saw
-            if (entity.itemHandler.getStackInSlot(1).getDamageValue() > entity.itemHandler.getStackInSlot(1).getMaxDamage()) { //removes saw if needed
-                entity.itemHandler.extractItem(1,1, false);
+            List<CountedIngredient> recipeItems = match.get().getInputs();
+            boolean[] matched = new boolean[3];
+
+            // Iterate over the slots -p-
+            for (int p = 0; p < 3; p++) {
+                // Iterate over the inputs -q-
+                for (int q = 0; q < recipeItems.size(); q++) {
+                    if (matched[q])
+                        continue;
+                    if (recipeItems.get(q).test(inventory.getItem(p))) {
+                        entity.itemHandler.extractItem(p, recipeItems.get(q).count(), false);
+                        matched[q] = true;
+                    }
+                }
             }
-            if (match.get().getOutputChance() >= Math.random()) {
+
+            entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //saw
+
+            if (match.get().getDubbleChance() >= Math.random()) {
+                entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
+                        entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount() * 2)));
+            } else {
                 entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
                         entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
             }
@@ -292,9 +314,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
         }
     }
 
-    private void resetProgress() {
-        this.progress = 0;
-    }
+    private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
         if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
@@ -303,12 +323,15 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
             this.speedUpgrade = 0;
         }
     }
-    private void energyUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE.get()) {
-            this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(6).getCount();
-        } else {
-            this.energyUpgrade = 0;
-        }
+
+    private int energyUpgrade() {
+        int amount = this.itemHandler.getStackInSlot(6).getCount();
+        return energyConsumption / 10 * amount;
+    }
+
+    private int speedUpgrade() {
+        int amount = this.itemHandler.getStackInSlot(5).getCount();
+        return maxProgress / 10 * amount;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
@@ -325,6 +348,29 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
         int z = this.getBlockPos().getZ();
         if (world instanceof ServerLevel level)
             level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
+    }
+
+
+
+    //cyclic
+    public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
+        if (extractSide == null) {
+            return;
+        }
+        BlockPos posTarget = this.worldPosition.relative(extractSide);
+        BlockEntity tile = level.getBlockEntity(posTarget);
+        if (tile != null) {
+            IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, extractSide.getOpposite()).orElse(null);
+            if (EnergyHandlerFrom != null) {
+                //ok go
+                int extractSim = EnergyHandlerFrom.extractEnergy(maxReceive, true);
+                if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
+                    //actually extract energy for real, whatever it accepted
+                    EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
+                    POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), worldPosition));
+                }
+            }
+        }
     }
 
 

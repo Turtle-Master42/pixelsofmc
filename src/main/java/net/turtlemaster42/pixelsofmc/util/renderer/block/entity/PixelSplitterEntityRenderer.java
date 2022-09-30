@@ -23,7 +23,6 @@ public class PixelSplitterEntityRenderer implements BlockEntityRenderer<PixelSpl
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0.5 ,0.5);
 
-
         int seed = pBlockEntity.getBlockPos()
                 .getX() + pBlockEntity.getBlockPos()
                 .getY() + pBlockEntity.getBlockPos()

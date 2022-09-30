@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 
 import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.entity.MachineEnergyBlockBlockEntity;
 import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
@@ -18,6 +19,9 @@ public class POMblockEntities {
 
 	public static final RegistryObject<BlockEntityType<?>> MACHINE_BLOCK = register("machine_block", POMblocks.MACHINE_BLOCK,
 			MachineBlockBlockEntity::new);
+
+	public static final RegistryObject<BlockEntityType<MachineEnergyBlockBlockEntity>> MACHINE_ENERGY_BLOCK =
+			BLOCK_ENTITIES.register("machine_energy_block.json", () -> BlockEntityType.Builder.of(MachineEnergyBlockBlockEntity::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterBlockEntity>> PIXEL_SPLITTER =
 			BLOCK_ENTITIES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterBlockEntity::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
