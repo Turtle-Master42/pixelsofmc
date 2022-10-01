@@ -2,6 +2,8 @@ package net.turtlemaster42.pixelsofmc.util.renderer.block.entity;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3d;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;

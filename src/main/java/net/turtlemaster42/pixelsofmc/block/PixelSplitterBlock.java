@@ -122,9 +122,6 @@ public class PixelSplitterBlock extends BaseEntityBlock {
             double d0 = (double)pPos.getX() + 0.5D;
             double d1 = (double)pPos.getY();
             double d2 = (double)pPos.getZ() + 0.5D;
-            if (pRand.nextDouble() < 0.1D) {
-                pLevel.playLocalSound(d0, d1, d2, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            }
 
             Direction direction = pState.getValue(FACING);
             Direction.Axis direction$axis = direction.getAxis();

@@ -1,52 +1,55 @@
 package net.turtlemaster42.pixelsofmc.block.entity;
 
-        import net.minecraft.network.chat.TranslatableComponent;
-        import net.minecraft.server.level.ServerLevel;
-        import net.minecraft.world.level.LevelAccessor;
-        import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-        import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-        import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
-        import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
-        import net.turtlemaster42.pixelsofmc.init.POMitems;
-        import net.turtlemaster42.pixelsofmc.init.POMmessages;
-        import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-        import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
-        import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-        import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
-        import net.minecraft.core.BlockPos;
-        import net.minecraft.core.Direction;
-        import net.minecraft.nbt.CompoundTag;
-        import net.minecraft.network.chat.Component;
-        import net.minecraft.network.protocol.Packet;
-        import net.minecraft.network.protocol.game.ClientGamePacketListener;
-        import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-        import net.minecraft.world.Containers;
-        import net.minecraft.world.SimpleContainer;
-        import net.minecraft.world.entity.player.Inventory;
-        import net.minecraft.world.entity.player.Player;
-        import net.minecraft.world.inventory.AbstractContainerMenu;
-        import net.minecraft.world.inventory.ContainerData;
-        import net.minecraft.world.item.*;
-        import net.minecraft.world.level.Level;
-        import net.minecraft.world.level.block.entity.BlockEntity;
-        import net.minecraft.world.level.block.state.BlockState;
-        import net.minecraftforge.common.capabilities.Capability;
-        import net.minecraftforge.common.util.LazyOptional;
-        import net.minecraftforge.energy.CapabilityEnergy;
-        import net.minecraftforge.energy.IEnergyStorage;
-        import net.minecraftforge.items.CapabilityItemHandler;
-        import net.minecraftforge.items.IItemHandler;
-        import net.minecraftforge.items.ItemStackHandler;
-        import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
-        import org.jetbrains.annotations.NotNull;
-        import org.jetbrains.annotations.Nullable;
 
-        import javax.annotation.Nonnull;
-        import java.util.List;
-        import java.util.Optional;
-        import java.util.Random;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
+import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
-        import static net.minecraft.core.particles.ParticleTypes.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+import static net.minecraft.core.particles.ParticleTypes.*;
+import static net.turtlemaster42.pixelsofmc.block.BallMillBlock.FACING;
 
 
 public class BallMillBlockEntity extends AbstractMachineEntity {
@@ -227,7 +230,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillBlockEntity pBlockEntity) {
-        getEnergyFromEnergyMachineBlock(Direction.UP);
+        getEnergyFromEnergyMachineBlock(pState.getValue(FACING));
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
@@ -367,7 +370,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
                 if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
                     //actually extract energy for real, whatever it accepted
                     EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
-                    POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), worldPosition));
+                    POMmessages.sendToClients(new PacketSyncEnergyToClient(energyStorage.getEnergyStored(), worldPosition));
                 }
             }
         }
@@ -389,7 +392,6 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
-
     public IEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }
