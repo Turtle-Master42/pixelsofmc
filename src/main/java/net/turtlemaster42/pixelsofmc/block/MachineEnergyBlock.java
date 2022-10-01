@@ -134,7 +134,7 @@ import java.util.Collections;
                     pLevel.destroyBlock(pPos, false);
                     return InteractionResult.FAIL;
                 } else {
-                    pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
+                    //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
                     return mainState.getBlock().use(mainState, pLevel, mainPos, pPlayer, hand, hit);
                 }
             } else {
