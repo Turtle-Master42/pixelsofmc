@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +23,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
 import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -141,30 +139,31 @@ public class BallMillBlock extends BaseEntityBlock {
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
-            BlockState dMACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
-            BlockState dMACHINE_ENERGY_BLOCK = POMblocks.MACHINE_ENERGY_BLOCK.get().defaultBlockState();
+            BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
+            BlockState MACHINE_ENERGY_BLOCK = POMblocks.MACHINE_ENERGY_BLOCK.get().defaultBlockState();
 
             //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
             Direction direction = pState.getValue(FACING);
 
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, dMACHINE_ENERGY_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, dMACHINE_BLOCK, pPos);
+            //these are the location based on the default (NORTH) direction, they get turned automatically
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ENERGY_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, MACHINE_BLOCK, pPos);
 
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 0, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 0, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, -1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, -1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 1, dMACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, -1, dMACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, -1, MACHINE_BLOCK, pPos);
         }
     }
 

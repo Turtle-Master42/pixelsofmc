@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.util.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,5 +50,16 @@ public class BigMachineBlockUtil {
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to set the main position of block at {} which is part of block at {}",pPos, mainPos);
         }
+    }
+
+    public static BlockPos getMainPos(Level pLevel, BlockPos pPos) {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+
+        assert blockEntity != null;
+        int mainX = blockEntity.getTileData().getInt("mainX");
+        int mainY = blockEntity.getTileData().getInt("mainY");
+        int mainZ = blockEntity.getTileData().getInt("mainZ");
+
+        return new BlockPos(mainX, mainY, mainZ);
     }
 }

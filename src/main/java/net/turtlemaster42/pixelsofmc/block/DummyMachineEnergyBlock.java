@@ -27,35 +27,20 @@ import net.minecraft.core.BlockPos;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.entity.MachineEnergyBlockBlockEntity;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Collections;
 
-    public class MachineEnergyBlock extends Block implements EntityBlock {
-        public MachineEnergyBlock() {
+    public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
+        public DummyMachineEnergyBlock() {
             super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).dynamicShape().strength(2f, 3600000f).noOcclusion()
                     .isRedstoneConductor((bs, br, bp) -> false));
         }
 
-        public boolean shouldDisplayFluidOverlay(BlockState state, BlockAndTintGetter world, BlockPos pos, FluidState fluidstate) {
-            return true;
-        }
-
-        @Deprecated
-        public RenderShape getRenderShape(BlockState pState) {
-            return RenderShape.INVISIBLE;
-        }
-        @Deprecated
-        public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-            return 1.0F;
-        }
-
-        public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-            return true;
-        }
-
         public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pLevel, BlockPos pPos, Player pPlayer) {
+
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
             int mainX = blockEntity.getTileData().getInt("mainX");
@@ -80,44 +65,14 @@ import java.util.Collections;
             return mainState.getBlock().getCloneItemStack(mainState, pTarget, pLevel, mainPos, pPlayer);
         }
 
-        @Deprecated
-        public PushReaction getPistonPushReaction(BlockState state) {
-            return PushReaction.BLOCK;
-        }
-
-        @Deprecated
-        public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-            List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-            if (!dropsOriginal.isEmpty())
-                return dropsOriginal;
-            return Collections.singletonList(new ItemStack(Blocks.AIR));
-        }
-
-        @Deprecated
-        public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
-            super.onPlace(blockstate, world, pos, oldState, moving);
-            if (!world.isClientSide()) {
-                BlockEntity blockEntity = world.getBlockEntity(pos);
-                if (blockEntity != null)
-                    blockEntity.getTileData().putInt("mainX", pos.getX());
-                blockEntity.getTileData().putInt("mainY", pos.getY());
-                blockEntity.getTileData().putInt("mainZ", pos.getZ());
-                world.sendBlockUpdated(pos, blockstate, blockstate, 3);
-            }
-        }
-
         public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
-
             pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-
             if (!pLevel.isClientSide()) {
-                BlockPos mainPos = getMainPos(pLevel, pPos);
+                BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
                 BlockState mainState = pLevel.getBlockState(mainPos);
-
                 if (!pPlayer.isCreative()) {
                     popResource(pLevel, pPos, pLevel.getBlockState(mainPos).getBlock().getCloneItemStack(pLevel, mainPos, mainState));
                 }
-
                 pLevel.destroyBlock(mainPos, false);
             }
         }
@@ -127,7 +82,7 @@ import java.util.Collections;
         public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand hand, BlockHitResult hit) {
             super.use(pState, pLevel, pPos, pPlayer, hand, hit);
             if (!pLevel.isClientSide()) {
-                BlockPos mainPos = getMainPos(pLevel, pPos);
+                BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
                 BlockState mainState = pLevel.getBlockState(mainPos);
                 if (mainPos.equals(pPos)) {
                     PixelsOfMc.LOGGER.warn("This Machine Block does not have a connected block!");
@@ -139,16 +94,6 @@ import java.util.Collections;
                 }
             } else {
                 return InteractionResult.SUCCESS;
-            }
-        }
-
-        @Deprecated
-        public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-            BlockPos mainPos = getMainPos(pLevel, pPos);
-            BlockState mainState = pLevel.getBlockState(mainPos);
-
-            if (mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
-                pLevel.destroyBlock(pPos, false);
             }
         }
 
@@ -167,17 +112,6 @@ import java.util.Collections;
             super.triggerEvent(state, world, pos, eventID, eventParam);
             BlockEntity blockEntity = world.getBlockEntity(pos);
             return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
-        }
-
-        public BlockPos getMainPos(Level pLevel, BlockPos pPos) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-
-            assert blockEntity != null;
-            int mainX = blockEntity.getTileData().getInt("mainX");
-            int mainY = blockEntity.getTileData().getInt("mainY");
-            int mainZ = blockEntity.getTileData().getInt("mainZ");
-
-            return new BlockPos(mainX, mainY, mainZ);
         }
 
         @Override

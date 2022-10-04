@@ -57,8 +57,8 @@ public class POMblocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
-	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", MachineBlock::new);
-    public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", MachineEnergyBlock::new);
+	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
+    public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
 
     public static final RegistryObject<Block> CHISELED_STONE_BRICK_CORNER = registerBlock("chiseled_stone_brick_corner",
             () -> new ChiseledStoneBricksCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);

@@ -230,7 +230,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillBlockEntity pBlockEntity) {
-        getEnergyFromEnergyMachineBlock(pState.getValue(FACING));
+        getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
