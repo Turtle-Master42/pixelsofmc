@@ -279,11 +279,11 @@ public class GrinderBlockEntity extends AbstractMachineEntity {
 
             entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItems(0).getItem(),
                     entity.itemHandler.getStackInSlot(1).getCount() + (match.get().getOutputsCount(0))));
-            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItems(1).getItem(),
+            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItems(0).getItem(),
                     entity.itemHandler.getStackInSlot(2).getCount() + (match.get().getOutputsCount(1))));
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItems(2).getItem(),
+            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItems(0).getItem(),
                     entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputsCount(2))));
-            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItems(3).getItem(),
+            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItems(0).getItem(),
                     entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputsCount(3))));
 
 

@@ -60,7 +60,7 @@ public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> 
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 47, y + 19, 0, 168, menu.getScaledProgressOne(), 51);
         }
-        blit(pPoseStack, x + 11, y + 22, 185, 1, 10, menu.getScaledEnergy());
+        blit(pPoseStack, x + 11, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
 
     }
 

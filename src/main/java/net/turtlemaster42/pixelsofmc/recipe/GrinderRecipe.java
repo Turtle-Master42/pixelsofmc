@@ -49,7 +49,7 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
     public ItemStack getResultItems(int index) {
-        return outputs.get(index).getItems()[index];
+        return outputs.get(index).getItems()[0];
     }
 
     @Override

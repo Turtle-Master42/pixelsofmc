@@ -53,11 +53,11 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         return data.get(0) > 0;
     }
 
-    public int getScaledProgressOne() {
+    public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
-        int progressArrowSize = 82; // This is the height in pixels of your arrow
+        int progressArrowSize = 51; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
