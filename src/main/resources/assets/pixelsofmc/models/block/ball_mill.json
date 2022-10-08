@@ -3,7 +3,7 @@
 	"texture_size": [160, 160],
 	"textures": {
 		"0": "pixelsofmc:block/ball_mill",
-		"particle": "pixelsofmc:block/big_machine_particle"
+		"particle": "block/anvil_top"
 	},
 	"elements": [
 		{
@@ -98,8 +98,8 @@
 			}
 		},
 		{
-			"from": [-10, 0, -8],
-			"to": [-6, 32, 24],
+			"from": [-9.9, 0.1, -7.9],
+			"to": [-6, 31.9, 23.9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
 				"north": {"uv": [10.8, 11.2, 11.2, 14.4], "texture": "#0"},

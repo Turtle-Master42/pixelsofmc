@@ -14,4 +14,5 @@ public abstract class BaseRecipe implements Recipe<SimpleContainer> {
     public boolean isSpecial() {
         return true;
     }
+
 }

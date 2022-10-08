@@ -3,7 +3,7 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "pixelsofmc:block/pixel_splitter",
-		"particle": "pixelsofmc:block/pixel_splitter"
+		"particle": "minecraft:block/anvil_top"
 	},
 	"elements": [
 		{

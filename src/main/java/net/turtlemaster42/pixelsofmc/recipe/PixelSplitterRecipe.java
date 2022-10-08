@@ -14,38 +14,21 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
+public class PixelSplitterRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
-    private final int count;
-    private final float chance;
 
     public PixelSplitterRecipe(ResourceLocation id, ItemStack output,
-                                   NonNullList<Ingredient> recipeItems, int count, float chance) {
+                                   NonNullList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
-        this.count = count;
-        this.chance = chance;
     }
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
         return recipeItems.get(0).test(pContainer.getItem(0));
-    }
-
-    public int getOutputCount() {
-        return count;
-    }
-
-    public float getOutputChance() {
-        return chance;
-    }
-
-    @Override
-    public boolean isSpecial() {
-        return true;
     }
 
     @Override
@@ -56,11 +39,6 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
         return output;
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
-        return true;
     }
 
     @Override
@@ -96,8 +74,6 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
 
         public PixelSplitterRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
-            int count = GsonHelper.getAsInt(json, "count");
-            float chance = GsonHelper.getAsFloat(json, "chance");
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
@@ -106,26 +82,22 @@ public class PixelSplitterRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new PixelSplitterRecipe(id, output, inputs, count, chance);
+            return new PixelSplitterRecipe(id, output, inputs);
         }
 
         public PixelSplitterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-            int count = buf.readInt();
-            float chance = buf.readFloat();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buf));
             }
 
             ItemStack output = buf.readItem();
-            return new PixelSplitterRecipe(id, output, inputs, count, chance);
+            return new PixelSplitterRecipe(id, output, inputs);
         }
 
         public void toNetwork(FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
-            buf.writeInt(recipe.getOutputCount());
-            buf.writeFloat(recipe.getOutputChance());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }

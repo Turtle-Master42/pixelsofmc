@@ -2,6 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "pixelsofmc:block/machine_casing",
-    "particle": "pixelsofmc:block/big_machine_particle"
+    "particle": "minecraft:block/anvil_top"
   }
 }

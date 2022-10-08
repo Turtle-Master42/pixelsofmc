@@ -9,6 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
 
 public class POMrecipes {
@@ -20,6 +21,9 @@ public class POMrecipes {
 
 	public static final RegistryObject<RecipeSerializer<BallMillRecipe>> BALL_MILLING_SERIALIZER =
 			SERIALIZERS.register("ball_milling", () -> BallMillRecipe.Serializer.INSTANCE);
+
+	public static final RegistryObject<RecipeSerializer<GrinderRecipe>> GRINDING_SERIALIZER =
+			SERIALIZERS.register("grinding", () -> GrinderRecipe.Serializer.INSTANCE);
 	
 	public static void register(IEventBus bus) {
 		SERIALIZERS.register(bus);

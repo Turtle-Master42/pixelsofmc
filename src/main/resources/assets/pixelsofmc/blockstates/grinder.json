@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/grinder",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/grinder",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/grinder",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/grinder"
+    }
+  }
+}

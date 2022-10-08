@@ -27,6 +27,7 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.HEAT_RESISTANT_CASING.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
+        this.dropSelf(POMblocks.GRINDER.get());
 
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);

@@ -180,8 +180,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.EINSTEINIUM_INGOT.get());
 
 
-
-        simpleItem(POMitems.BIT_PIXEL.get());
         simpleItem(POMitems.PIXEL.get());
 
 
@@ -196,6 +194,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.SMOOTH_STONE_BRICKS.get());
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
+        complexBlock(POMblocks.GRINDER.get());
 
 
     }

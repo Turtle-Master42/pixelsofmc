@@ -1,37 +1,25 @@
 package net.turtlemaster42.pixelsofmc.block.entity;
 
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -39,29 +27,38 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
+import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.recipe.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.openjdk.nashorn.internal.objects.annotations.Property;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import static net.minecraft.core.particles.ParticleTypes.*;
+import static net.turtlemaster42.pixelsofmc.block.GrinderBlock.FACING;
 
 
-public class PixelSplitterBlockEntity extends AbstractMachineEntity {
+public class GrinderBlockEntity extends AbstractMachineEntity {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 120;
     private int speedUpgrade = 0;
-    private int energyUpgrade = 0;
     private final int capacity = 1024000;
     private final int maxReceive = 4096;
     private static final int energyConsumption = 256;
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(7) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -108,26 +105,26 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
 
-    public PixelSplitterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMblockEntities.PIXEL_SPLITTER.get(), pWorldPosition, pBlockState);
+    public GrinderBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMblockEntities.GRINDER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return PixelSplitterBlockEntity.this.progress;
-                    case 1: return PixelSplitterBlockEntity.this.maxProgress;
-                    case 2: return PixelSplitterBlockEntity.this.speedUpgrade;
-                    case 3: return PixelSplitterBlockEntity.this.capacity;
-                    case 4: return PixelSplitterBlockEntity.this.maxReceive;
-                    case 5: return PixelSplitterBlockEntity.this.energyStorage.getEnergyStored();
+                    case 0: return GrinderBlockEntity.this.progress;
+                    case 1: return GrinderBlockEntity.this.maxProgress;
+                    case 2: return GrinderBlockEntity.this.speedUpgrade;
+                    case 3: return GrinderBlockEntity.this.capacity;
+                    case 4: return GrinderBlockEntity.this.maxReceive;
+                    case 5: return GrinderBlockEntity.this.energyStorage.getEnergyStored();
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: PixelSplitterBlockEntity.this.progress = value; break;
-                    case 1: PixelSplitterBlockEntity.this.maxProgress = value; break;
-                    case 2: PixelSplitterBlockEntity.this.speedUpgrade = value; break;
+                    case 0: GrinderBlockEntity.this.progress = value; break;
+                    case 1: GrinderBlockEntity.this.maxProgress = value; break;
+                    case 2: GrinderBlockEntity.this.speedUpgrade = value; break;
                 }
             }
 
@@ -140,13 +137,13 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.pixel_splitter" + " d");
+        return new TranslatableComponent("block.pixelsofmc.grinder");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new PixelSplitterGuiMenu(pContainerId, pInventory, this, this.data);
+        return new GrinderGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -218,21 +215,27 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
         return compound;
     }
 
-            //---RECIPE---//
+    //---RECIPE---//
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterBlockEntity pBlockEntity) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, GrinderBlockEntity e) {
+        e.tick(level, blockPos, blockState, e);
+    }
+
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, GrinderBlockEntity e) {
+        e.tick(level, blockPos, blockState, e);
+    }
+
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, GrinderBlockEntity pBlockEntity) {
+        getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
+
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
+            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
-            pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
-            if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
-                pState.setValue(BlockStateProperties.LIT, true);
-            }
+            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
+
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
-                   craftItem(pBlockEntity);
-                    pState.setValue(BlockStateProperties.LIT, false);
+                craftItem(pBlockEntity);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -240,94 +243,113 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
         }
     }
 
-    private static boolean hasRecipe(PixelSplitterBlockEntity entity) {
+    private static boolean hasRecipe(GrinderBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<PixelSplitterRecipe> match = level.getRecipeManager()
-                .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
+        Optional<GrinderRecipe> match = level.getRecipeManager()
+                .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 1)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                && hasToolsInToolSlot(entity);
+        return match.isPresent()
+                && canInsertAmountIntoOutputSlots(inventory, match);
     }
 
-    private static boolean hasToolsInToolSlot(PixelSplitterBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(1).getItem() == POMitems.TITANIUM_CIRCLE_SAW.get();
+    private static boolean hasPower(GrinderBlockEntity entity) {
+        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
+        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
-    private static boolean hasPower(PixelSplitterBlockEntity entity) {
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
-    }
 
-    private static void craftItem(PixelSplitterBlockEntity entity) {
+    private static void craftItem(GrinderBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<PixelSplitterRecipe> match = level.getRecipeManager()
-                .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
+        Optional<GrinderRecipe> match = level.getRecipeManager()
+                .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            entity.itemHandler.extractItem(0,1, false);
-            entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null); //saw
-            if (entity.itemHandler.getStackInSlot(1).getDamageValue() > entity.itemHandler.getStackInSlot(1).getMaxDamage()) { //removes saw if needed
-                entity.itemHandler.extractItem(1,1, false);
-            }
-                entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(2).getCount() + 1));
+
+            entity.itemHandler.extractItem(0, 1, false);
+
+            entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItems(0).getItem(),
+                    entity.itemHandler.getStackInSlot(1).getCount() + (match.get().getOutputsCount(0))));
+            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItems(1).getItem(),
+                    entity.itemHandler.getStackInSlot(2).getCount() + (match.get().getOutputsCount(1))));
+            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItems(2).getItem(),
+                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputsCount(2))));
+            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItems(3).getItem(),
+                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputsCount(3))));
+
 
             entity.resetProgress();
             entity.errorEnergyReset();
         }
     }
 
-    private void resetProgress() {
-        this.progress = 0;
-    }
+    private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(3).getItem() == POMitems.SPEED_UPGRADE.get()) {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(3).getCount();
+        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
+            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
         } else {
             this.speedUpgrade = 0;
         }
     }
-    private void energyUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(4).getItem() == POMitems.ENERGY_UPGRADE.get()) {
-            this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(4).getCount();
-        } else {
-            this.energyUpgrade = 0;
+
+    private int energyUpgrade() {
+        int amount = this.itemHandler.getStackInSlot(6).getCount();
+        return energyConsumption / 10 * amount;
+    }
+
+    private int speedUpgrade() {
+        int amount = this.itemHandler.getStackInSlot(5).getCount();
+        return maxProgress / 10 * amount;
+    }
+
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, List<CountedIngredient> outputs) {
+        return inventory.getItem(1).getItem() == outputs.get(0).getItems()[0].getItem()
+                && inventory.getItem(2).getItem() == outputs.get(1).getItems()[1].getItem()
+                && inventory.getItem(3).getItem() == outputs.get(2).getItems()[2].getItem()
+                && inventory.getItem(4).getItem() == outputs.get(3).getItems()[3].getItem()
+
+                || inventory.getItem(1).isEmpty()
+                && inventory.getItem(2).isEmpty()
+                && inventory.getItem(3).isEmpty()
+                && inventory.getItem(4).isEmpty();
+    }
+
+    private static boolean canInsertAmountIntoOutputSlots(SimpleContainer inventory, Optional<GrinderRecipe> match) {
+        return inventory.getItem(1).getMaxStackSize() >= inventory.getItem(1).getCount() + match.get().getOutputsCount(0) &&
+                inventory.getItem(2).getMaxStackSize() >= inventory.getItem(2).getCount() + match.get().getOutputsCount(1) &&
+                inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount() + match.get().getOutputsCount(2) &&
+                inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + match.get().getOutputsCount(3);
+    }
+
+    //cyclic
+    public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
+        if (extractSide == null) {
+            return;
         }
-    }
-
-
-
-
-    public int getProgress() {return progress;}
-
-    public int getMaxProgress() {return maxProgress;}
-
-
-    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
-    }
-
-    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
-        return inventory.getItem(2).getMaxStackSize() >= inventory.getItem(2).getCount() + count;
-    }
-
-    public void activeParticles(LevelAccessor world) {
-        int x = this.getBlockPos().getX();
-        int y = this.getBlockPos().getY();
-        int z = this.getBlockPos().getZ();
-        if (world instanceof ServerLevel level)
-            level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
+        BlockPos posTarget = this.worldPosition.relative(extractSide);
+        BlockEntity tile = level.getBlockEntity(posTarget);
+        if (tile != null) {
+            IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, extractSide.getOpposite()).orElse(null);
+            if (EnergyHandlerFrom != null) {
+                //ok go
+                int extractSim = EnergyHandlerFrom.extractEnergy(maxReceive, true);
+                if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
+                    //actually extract energy for real, whatever it accepted
+                    EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
+                    POMmessages.sendToClients(new PacketSyncEnergyToClient(energyStorage.getEnergyStored(), worldPosition));
+                }
+            }
+        }
     }
 
 
@@ -350,3 +372,5 @@ public class PixelSplitterBlockEntity extends AbstractMachineEntity {
     public IEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }
+
+

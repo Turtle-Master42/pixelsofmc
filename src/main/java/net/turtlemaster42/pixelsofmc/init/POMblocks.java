@@ -80,6 +80,11 @@ public class POMblocks {
             () -> new BallMillBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
 
+    public static final RegistryObject<Block> GRINDER = registerBlock("grinder",
+            () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
+
+
     public static final RegistryObject<Block> FUSION_CORE = registerBlock("fusion_core",
             () -> new FusionCore(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
