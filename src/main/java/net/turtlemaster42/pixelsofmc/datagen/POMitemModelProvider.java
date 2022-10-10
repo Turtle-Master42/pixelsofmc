@@ -39,9 +39,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         handheldItem(POMitems.HAMMER.get());
         handheldItem(POMitems.CLEANING_CLOTH.get());
         //circuit
-        simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD.get());
-        simpleItem(POMitems.NORMAL_CIRCUIT_BOARD.get());
-        simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD.get());
+        simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_1.get());
+        simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1.get());
+        simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1.get());
+        simpleItem(POMitems.MOVING_PARTS.get());
         simpleItem(POMitems.POWER_CELL.get());
         simpleItem(POMitems.POWER_ORB.get());
         simpleItem(POMitems.ADVANCED_LASER.get());
@@ -58,6 +59,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ENDER_SENSOR.get());
         simpleItem(POMitems.DRAGON_SENSOR.get());
         simpleItem(POMitems.VOID_SENSOR.get());
+        simpleItem(POMitems.TITANIUM_GEAR.get());
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         //plates
@@ -77,14 +79,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.STEEL_INGOT.get());
         simpleItem(POMitems.STEEL_NUGGET.get());
         elementItem(POMitems.URANIUM_INGOT.get());
-        //jar
-        simpleItem(POMitems.EMPTY_JAR.get());
-        simpleItem(POMitems.JAR_OF_PIXELS_COPPER.get());
-        simpleItem(POMitems.JAR_OF_PIXELS_DIAMOND.get());
-        simpleItem(POMitems.JAR_OF_PIXELS_EMERALD.get());
-        simpleItem(POMitems.JAR_OF_PIXELS_IRON.get());
-        simpleItem(POMitems.JAR_OF_PIXELS_PLANTS.get());
-        simpleItem(POMitems.JAR_OF_PIXELS.get());
+
         //other
         simpleItem(POMitems.SPEED_UPGRADE.get());
         simpleItem(POMitems.ENERGY_UPGRADE.get());
@@ -191,7 +186,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         simpleBlock(POMblocks.HEAT_RESISTANT_CASING.get());
 
-        simpleBlock(POMblocks.SMOOTH_STONE_BRICKS.get());
+        simpleBlock(POMblocks.SIMPLE_CASING_1.get());
+        simpleBlock(POMblocks.ADVANCED_CASING_1.get());
+        simpleBlock(POMblocks.PERFECTED_CASING_1.get());
+
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());

@@ -18,11 +18,11 @@ public class POMitems {
 	public static final RegistryObject<Item> BOOK_1 = ITEMS.register("book_1", () -> new book1(new Item.Properties().stacksTo(1).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new Test(new Item.Properties().stacksTo(1).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).rarity(Rarity.UNCOMMON)));
 
-	public static final RegistryObject<Item> JAR_OF_PIXELS = ITEMS.register("jar_of_pixels",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> TITANIUM_PLATING = ITEMS.register("titanium_plating",
+			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> TITANIUM_GEAR = ITEMS.register("titanium_gear",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> HEAT_RESISTANT_PLATING = ITEMS.register("heat_resistant_plating",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
@@ -45,19 +45,19 @@ public class POMitems {
 	public static final RegistryObject<Item> REPELLING_PLASTIC = ITEMS.register("repelling_plastic",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth",
-			() -> new Item(new Item.Properties().durability(144).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+			() -> new CraftDepleatable(new Item.Properties().durability(144).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver",
-			() -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+			() -> new CraftDepleatable(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter",
-			() -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+			() -> new CraftDepleatable(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer",
-			() -> new Item(new Item.Properties().durability(512).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+			() -> new CraftDepleatable(new Item.Properties().durability(512).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
-	public static final RegistryObject<Item> SIMPLE_CIRCUIT_BOARD = ITEMS.register("simple_circuit_board",
+	public static final RegistryObject<Item> SIMPLE_CIRCUIT_BOARD_1 = ITEMS.register("simple_circuit_board_1",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> NORMAL_CIRCUIT_BOARD = ITEMS.register("normal_circuit_board",
+	public static final RegistryObject<Item> ADVANCED_CIRCUIT_BOARD_1 = ITEMS.register("advanced_circuit_board_1",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> ADVANCED_CIRCUIT_BOARD = ITEMS.register("advanced_circuit_board",
+	public static final RegistryObject<Item> PERFECTED_CIRCUIT_BOARD_1 = ITEMS.register("perfected_circuit_board_1",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> MICRO_CHIP = ITEMS.register("micro_chip",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -68,6 +68,9 @@ public class POMitems {
 	public static final RegistryObject<Item> DRAGON_EYE = ITEMS.register("dragon_eye",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> VOID_EYE = ITEMS.register("void_eye",
+			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+
+	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> REDSTONE_COUNTER = ITEMS.register("redstone_counter",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -93,10 +96,10 @@ public class POMitems {
 
 
 	public static final RegistryObject<Item> TITANIUM_CIRCLE_SAW = ITEMS.register("titanium_circle_saw",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).durability(256)));
+			() -> new Saw(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).durability(256)));
 
 	public static final RegistryObject<Item> TITANIUM_DIBORIDE_CIRCLE_SAW = ITEMS.register("titanium_diboride_circle_saw",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).durability(2048)));
+			() -> new Saw(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).durability(2048)));
 
 	public static final RegistryObject<Item> RAW_TITANIUM = ITEMS.register("raw_titanium",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -108,18 +111,6 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 
-	public static final RegistryObject<Item> EMPTY_JAR = ITEMS.register("empty_jar",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> JAR_OF_PIXELS_IRON = ITEMS.register("jar_of_pixels_iron",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> JAR_OF_PIXELS_PLANTS = ITEMS.register("jar_of_pixels_plants",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> JAR_OF_PIXELS_COPPER = ITEMS.register("jar_of_pixels_copper",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> JAR_OF_PIXELS_DIAMOND = ITEMS.register("jar_of_pixels_diamond",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> JAR_OF_PIXELS_EMERALD = ITEMS.register("jar_of_pixels_emerald",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> SILVER_NUGGET = ITEMS.register("silver_nugget",
@@ -335,9 +326,6 @@ public class POMitems {
 			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 
-	//test
-	public static final RegistryObject<Item> BIT_PIXEL = ITEMS.register("bit_pixel",
-			() -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel",
 			() -> new Pixel(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));

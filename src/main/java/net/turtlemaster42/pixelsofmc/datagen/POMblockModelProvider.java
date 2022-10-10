@@ -27,7 +27,10 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(POMblocks.HEAT_RESISTANT_CASING.get());
         simpleBlock(POMblocks.RAW_TITANIUM_BLOCK.get());
         simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
-        simpleBlock(POMblocks.SMOOTH_STONE_BRICKS.get());
+
+        simpleBlock(POMblocks.SIMPLE_CASING_1.get());
+        simpleBlock(POMblocks.ADVANCED_CASING_1.get());
+        simpleBlock(POMblocks.PERFECTED_CASING_1.get());
 
     }
 

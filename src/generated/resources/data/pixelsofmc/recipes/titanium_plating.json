@@ -1,16 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AA",
-    "AA"
-  ],
-  "key": {
-    "A": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "pixelsofmc:titanium_ingot"
+    },
+    {
+      "item": "pixelsofmc:titanium_ingot"
+    },
+    {
+      "item": "pixelsofmc:hammer"
     }
-  },
+  ],
   "result": {
-    "item": "pixelsofmc:titanium_plating",
-    "count": 2
+    "item": "pixelsofmc:titanium_plating"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_plating"
+    },
+    {
+      "item": "pixelsofmc:titanium_plating"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:titanium_gear"
+  }
+}

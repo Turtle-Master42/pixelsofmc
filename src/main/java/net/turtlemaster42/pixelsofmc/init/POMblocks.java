@@ -60,6 +60,7 @@ public class POMblocks {
 	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
 
+    /*
     public static final RegistryObject<Block> CHISELED_STONE_BRICK_CORNER = registerBlock("chiseled_stone_brick_corner",
             () -> new ChiseledStoneBricksCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
@@ -71,6 +72,7 @@ public class POMblocks {
 
     public static final RegistryObject<Block> FIRE_TRAP_BLOCK = registerBlock("fire_trap_block",
             () -> new FireTrapBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    */
 
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -88,6 +90,19 @@ public class POMblocks {
     public static final RegistryObject<Block> FUSION_CORE = registerBlock("fusion_core",
             () -> new FusionCore(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+
+    public static final RegistryObject<Block> SIMPLE_CASING_1 = registerBlock("simple_casing_1",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f, 12f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    public static final RegistryObject<Block> ADVANCED_CASING_1 = registerBlock("advanced_casing_1",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f, 12f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    public static final RegistryObject<Block> PERFECTED_CASING_1 = registerBlock("perfected_casing_1",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f, 12f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+
 
 
 

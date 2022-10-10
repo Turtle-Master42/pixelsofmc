@@ -20,17 +20,20 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
-        this.dropSelf(POMblocks.SMOOTH_STONE_BRICKS.get());
-        this.dropSelf(POMblocks.CHISELED_STONE_BRICK_CORNER.get());
-        this.dropSelf(POMblocks.CHISELED_STONE_BRICK_PILLAR.get());
-        this.dropSelf(POMblocks.FIRE_TRAP_BLOCK.get());
         this.dropSelf(POMblocks.HEAT_RESISTANT_CASING.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());
 
+        this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
+        this.dropSelf(POMblocks.ADVANCED_CASING_1.get());
+        this.dropSelf(POMblocks.PERFECTED_CASING_1.get());
+
+
+
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.FUSION_CORE.get(), Items.AIR);
 
 
         this.add(POMblocks.TITANIUM_ORE.get(), (block) -> {

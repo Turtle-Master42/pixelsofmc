@@ -4,6 +4,7 @@
     "pixelsofmc:heat_resistant_casing",
     "pixelsofmc:deepslate_titanium_ore",
     "pixelsofmc:titanium_ore",
+    "pixelsofmc:endstone_titanium_ore",
     "pixelsofmc:titanium_block",
     "pixelsofmc:raw_titanium_block",
     "pixelsofmc:pixel_splitter",
@@ -13,7 +14,12 @@
     "pixelsofmc:smooth_stone_bricks",
     "pixelsofmc:fire_trap_block",
     "pixelsofmc:ball_mill",
+    "pixelsofmc:grinder",
     "pixelsofmc:machine_block",
-    "pixelsofmc:endstone_titanium_ore"
+    "pixelsofmc:machine_energy_block",
+    "pixelsofmc:simple_casing_1",
+    "pixelsofmc:advanced_casing_1",
+    "pixelsofmc:perfected_casing_1"
+
   ]
 }

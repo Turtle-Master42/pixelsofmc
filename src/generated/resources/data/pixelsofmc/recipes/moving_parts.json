@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_plating"
+    },
+    {
+      "item": "pixelsofmc:titanium_gear"
+    },
+    {
+      "item": "pixelsofmc:titanium_gear"
+    },
+    {
+      "item": "pixelsofmc:copper_wire"
+    },
+    {
+      "item": "pixelsofmc:copper_wire"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "pixelsofmc:screwdriver"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:moving_parts"
+  }
+}
