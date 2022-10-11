@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:compacting/titanium_diboride_nugget_to_titanium_diboride_ingot_compacting"
+    ]
+  },
+  "criteria": {
+    "": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          null
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pixelsofmc:compacting/titanium_diboride_nugget_to_titanium_diboride_ingot_compacting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ]
+}

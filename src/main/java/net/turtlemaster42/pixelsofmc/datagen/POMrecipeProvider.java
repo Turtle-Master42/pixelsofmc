@@ -1,19 +1,23 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class POMrecipeProvider extends RecipeProvider implements IConditionBuilder {
+    private final HashMap<String, Integer> PATH_COUNT = new HashMap<>();
     public POMrecipeProvider(DataGenerator pGenerator) {
         super(pGenerator);
     }
@@ -114,7 +118,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get())
                 .define('A', POMitems.TITANIUM_NUGGET.get())
                 .define('B', POMitems.TITANIUM_DIBORIDE_INGOT.get())
-                .define('C', POMitems.REFINED_HEAT_RESISTANT_PLATING.get())
+                .define('C', POMitems.TITANIUM_DIBORIDE_PLATING.get())
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
@@ -177,7 +181,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(POMitems.REDSTONE_LAYERED_WIRE.get())
+        ShapedRecipeBuilder.shaped(POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('B', Items.REDSTONE)
                 .define('C', POMitems.COPPER_WIRE.get())
                 .pattern(" B ")
@@ -229,7 +233,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(POMitems.ADVANCED_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
                 .define('B', Items.REDSTONE)
-                .define('C', POMitems.REDSTONE_LAYERED_WIRE.get())
+                .define('C', POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('D', POMitems.MICRO_CHIP.get())
                 .define('E', POMitems.TITANIUM_NUGGET.get())
                 .define('F', POMitems.REDSTONE_COUNTER.get())
@@ -242,7 +246,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(POMitems.PERFECTED_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
                 .define('B', POMitems.DIAMOND_LENS.get())
-                .define('C', POMitems.REDSTONE_LAYERED_WIRE.get())
+                .define('C', POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('D', POMitems.MICRO_CHIP.get())
                 .define('E', POMitems.COPPER_WIRE.get())
                 .define('F', POMitems.ENDER_SENSOR.get())
@@ -309,16 +313,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), output, xp, smeltingTime)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, ("smelting/"+output+extra));
+                .save(consumer, toRL("smelting/"+output+extra));
     }
+
+    //Immersive Engineering
     private void SimpleSmeltingRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra)
     {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), output, xp, smeltingTime)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "smelting/"+output+extra);
+                .save(consumer, toRL("smelting/"+output+extra));
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), output, xp, smeltingTime/2)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "smelting/"+output+extra+"_from_blasting");
+                .save(consumer, toRL("smelting/"+output+extra+"_from_blasting"));
     }
 
     private void SimpleCompactingRecipe(ItemLike input, ItemLike output, Consumer<FinishedRecipe> consumer)
@@ -329,11 +335,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("TTT")
                 .pattern("TTT")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + input.asItem() + "_to_" + output.asItem() + "_compacting" );
+                .save(consumer, toRL("compacting/" + input.asItem() + "_to_" + output.asItem() + "_compacting" ));
         ShapelessRecipeBuilder.shapeless(input, 9)
                 .requires(output)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + output.asItem() + "_to_" + input.asItem() + "_compacting" );
+                .save(consumer, toRL("compacting/" + output.asItem() + "_to_" + input.asItem() + "_compacting" ));
 
     }
 
@@ -345,22 +351,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("TTT")
                 .pattern("TTT")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + nugget + "_to_" + ingot + "_compacting");
+                .save(consumer, toRL("compacting/" + nugget + "_to_" + ingot + "_compacting"));
         ShapedRecipeBuilder.shaped(block, 1)
                 .define('T', ingot)
                 .pattern("TTT")
                 .pattern("TTT")
                 .pattern("TTT")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + ingot + "_to_" + block.asItem()  + "_compacting");
+                .save(consumer, toRL("compacting/" + ingot + "_to_" + block.asItem()  + "_compacting"));
         ShapelessRecipeBuilder.shapeless(nugget, 9)
                 .requires(ingot)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + ingot + "_to_" + nugget + "_compacting");
+                .save(consumer, toRL("compacting/" + ingot + "_to_" + nugget + "_compacting"));
         ShapelessRecipeBuilder.shapeless(ingot, 9)
                 .requires(block)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, "compacting/" + block.asItem() + "_to_" + ingot + "_compacting");
+                .save(consumer, toRL("compacting/" + block.asItem() + "_to_" + ingot + "_compacting"));
 
     }
 
@@ -374,5 +380,20 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
+    }
+
+    //Immersive Engineering
+    private ResourceLocation toRL(String string)
+    {
+        if(!string.contains("/"))
+            string = "crafting/"+string;
+        if(PATH_COUNT.containsKey(string))
+        {
+            int count = PATH_COUNT.get(string)+1;
+            PATH_COUNT.put(string, count);
+            return new ResourceLocation(PixelsOfMc.MOD_ID, string+count);
+        }
+        PATH_COUNT.put(string, 1);
+        return new ResourceLocation(PixelsOfMc.MOD_ID, string);
     }
 }

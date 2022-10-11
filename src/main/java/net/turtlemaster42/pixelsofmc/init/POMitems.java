@@ -26,7 +26,7 @@ public class POMitems {
 	//circuit parts
 	public static final RegistryObject<Item> COPPER_WIRE = ITEMS.register("copper_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> SILVER_WIRE = ITEMS.register("silver_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> REDSTONE_LAYERED_WIRE = ITEMS.register("redstone_layered_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> REDSTONE_LAYERED_COPPER_WIRE = ITEMS.register("redstone_layered_copper_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> POWER_ORB = ITEMS.register("power_orb", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> MICRO_CHIP = ITEMS.register("micro_chip", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> REDSTONE_COUNTER = ITEMS.register("redstone_counter", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -61,9 +61,9 @@ public class POMitems {
 	//crafting ingredients
 	public static final RegistryObject<Item> TITANIUM_GEAR = ITEMS.register("titanium_gear", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> TITANIUM_PLATING = ITEMS.register("titanium_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> ANCIENT_HEAT_PLATE = ITEMS.register("ancient_heat_plate", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
-	public static final RegistryObject<Item> HEAT_RESISTANT_PLATING = ITEMS.register("heat_resistant_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
-	public static final RegistryObject<Item> REFINED_HEAT_RESISTANT_PLATING = ITEMS.register("refined_heat_resistant_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> RUSTED_PLATING = ITEMS.register("rusted_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> NETHERITE_PLATING = ITEMS.register("netherite_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_PLATING = ITEMS.register("titanium_diboride_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 
 	//machine parts
 	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));

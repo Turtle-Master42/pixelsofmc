@@ -12,7 +12,7 @@ public class POMtabs {
 	public static void load() {
 		PIXELS_OF_MINECRAFT_TAB = new CreativeModeTab("pixels_of_minecraft_tab") {
 			public ItemStack makeIcon() {
-				return new ItemStack(POMitems.HEAT_RESISTANT_PLATING.get());
+				return new ItemStack(POMitems.NETHERITE_PLATING.get());
 			}
 
 			@OnlyIn(Dist.CLIENT)

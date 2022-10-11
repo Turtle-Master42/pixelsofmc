@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "BCB",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:copper_wire"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:redstone_layered_copper_wire"
+  }
+}

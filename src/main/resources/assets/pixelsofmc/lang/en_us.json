@@ -43,9 +43,9 @@
 
   "item.pixelsofmc.titanium_gear": "Titanium Gear",
   "item.pixelsofmc.titanium_plating": "Titanium Plating",
-  "item.pixelsofmc.ancient_heat_plate": "Ancient Heat Resistant Plate",
-  "item.pixelsofmc.heat_resistant_plating": "Heat Resistant Plating",
-  "item.pixelsofmc.refined_heat_resistant_plating": "Pure Heat Resistant Plating",
+  "item.pixelsofmc.rusted_plating": "Rusted Plate",
+  "item.pixelsofmc.netherite_plating": "Netherite Plating",
+  "item.pixelsofmc.titanium_diboride_plating": "Pure Netherite Plating",
 
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.power_cell": "Power Cell",

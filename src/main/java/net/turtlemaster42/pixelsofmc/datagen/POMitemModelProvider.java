@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.world.level.block.Block;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.minecraft.data.DataGenerator;
@@ -12,6 +11,7 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+
 public class POMitemModelProvider extends ItemModelProvider {
     public POMitemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, PixelsOfMc.MOD_ID, existingFileHelper);
@@ -19,71 +19,85 @@ public class POMitemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        //dust
-        simpleItem(POMitems.COAL_DUST.get());
-        simpleItem(POMitems.STEEL_DUST.get());
-        simpleItem(POMitems.IRON_DUST.get());
-        simpleItem(POMitems.TITANIUM_DUST.get());
-        simpleItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
-        simpleItem(POMitems.URANIUM_DUST.get());
-        simpleItem(POMitems.SULFUR.get());
-        //plastic
+
+        simpleItem(POMitems.BOOK_1.get());
+
         simpleItem(POMitems.BIO_COMPOUND.get());
         simpleItem(POMitems.BIO_PLASTIC.get());
         simpleItem(POMitems.FIRE_PROOF_COMPOUND.get());
         simpleItem(POMitems.FIRE_PROOF_PLASTIC.get());
         simpleItem(POMitems.REPELLING_COMPOUND.get());
         simpleItem(POMitems.REPELLING_PLASTIC.get());
-        handheldItem(POMitems.SCREWDRIVER.get());
-        handheldItem(POMitems.WIRECUTTER.get());
-        handheldItem(POMitems.HAMMER.get());
-        handheldItem(POMitems.CLEANING_CLOTH.get());
-        //circuit
-        simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_1.get());
-        simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1.get());
-        simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1.get());
-        simpleItem(POMitems.MOVING_PARTS.get());
-        simpleItem(POMitems.POWER_CELL.get());
-        simpleItem(POMitems.POWER_ORB.get());
-        simpleItem(POMitems.ADVANCED_LASER.get());
-        simpleItem(POMitems.MICRO_CHIP.get());
+
         simpleItem(POMitems.COPPER_WIRE.get());
         simpleItem(POMitems.SILVER_WIRE.get());
+        simpleItem(POMitems.REDSTONE_LAYERED_COPPER_WIRE.get());
+        simpleItem(POMitems.POWER_ORB.get());
+        simpleItem(POMitems.MICRO_CHIP.get());
         simpleItem(POMitems.REDSTONE_COUNTER.get());
-        simpleItem(POMitems.REDSTONE_LAYERED_WIRE.get());
         simpleItem(POMitems.DRAGON_EYE.get());
         simpleItem(POMitems.VOID_EYE.get());
-        simpleItem(POMitems.DIAMOND_LENS.get());
-        simpleItem(POMitems.VIOLET_DIAMOND_LENS.get());
-        simpleItem(POMitems.RED_DIAMOND_LENS.get());
         simpleItem(POMitems.ENDER_SENSOR.get());
         simpleItem(POMitems.DRAGON_SENSOR.get());
         simpleItem(POMitems.VOID_SENSOR.get());
-        simpleItem(POMitems.TITANIUM_GEAR.get());
-        simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
-        simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
-        //plates
-        simpleItem(POMitems.ANCIENT_HEAT_PLATE.get());
-        simpleItem(POMitems.HEAT_RESISTANT_PLATING.get());
-        simpleItem(POMitems.REFINED_HEAT_RESISTANT_PLATING.get());
-        simpleItem(POMitems.TITANIUM_PLATING.get());
-        //metals
-        simpleItem(POMitems.COPPER_NUGGET.get());
-        simpleItem(POMitems.SILVER_NUGGET.get());
-        simpleItem(POMitems.NETHERITE_NUGGET.get());
+        simpleItem(POMitems.DIAMOND_LENS.get());
+        simpleItem(POMitems.VIOLET_DIAMOND_LENS.get());
+        simpleItem(POMitems.RED_DIAMOND_LENS.get());
+
+        simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_1.get());
+        simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1.get());
+        simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1.get());
+
         simpleItem(POMitems.RAW_TITANIUM.get());
         elementItem(POMitems.TITANIUM_INGOT.get());
-        simpleItem(POMitems.TITANIUM_NUGGET.get());
-        simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
-        simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET.get());
         simpleItem(POMitems.STEEL_INGOT.get());
-        simpleItem(POMitems.STEEL_NUGGET.get());
-        elementItem(POMitems.URANIUM_INGOT.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
 
-        //other
+        simpleItem(POMitems.COPPER_NUGGET.get());
+        simpleItem(POMitems.SILVER_NUGGET.get());
+        simpleItem(POMitems.STEEL_NUGGET.get());
+        simpleItem(POMitems.TITANIUM_NUGGET.get());
+        simpleItem(POMitems.NETHERITE_NUGGET.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET.get());
+
+        simpleItem(POMitems.TITANIUM_GEAR.get());
+        simpleItem(POMitems.TITANIUM_PLATING.get());
+        simpleItem(POMitems.RUSTED_PLATING.get());
+        simpleItem(POMitems.NETHERITE_PLATING.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_PLATING.get());
+
+        simpleItem(POMitems.MOVING_PARTS.get());
+        simpleItem(POMitems.POWER_CELL.get());
+        simpleItem(POMitems.ADVANCED_LASER.get());
+        simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
+
         simpleItem(POMitems.SPEED_UPGRADE.get());
         simpleItem(POMitems.ENERGY_UPGRADE.get());
-        simpleItem(POMitems.BOOK_1.get());
+
+        handheldItem(POMitems.CLEANING_CLOTH.get());
+        handheldItem(POMitems.SCREWDRIVER.get());
+        handheldItem(POMitems.WIRECUTTER.get());
+        handheldItem(POMitems.HAMMER.get());
+
+        simpleItem(POMitems.IRON_DUST.get());
+        simpleItem(POMitems.STEEL_DUST.get());
+        simpleItem(POMitems.COAL_DUST.get());
+        simpleItem(POMitems.TITANIUM_DUST.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
+        simpleItem(POMitems.URANIUM_DUST.get());
+
+        simpleItem(POMitems.SULFUR.get());
+
+
+
+
+
+
+
+        //other
+
+
         //elements
         elementItem(POMitems.BORON_CUBE.get());
         elementItem(POMitems.CARBON_CUBE.get());
@@ -167,6 +181,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.ACTINIUM_INGOT.get());
         elementItem(POMitems.THORIUM_INGOT.get());
         elementItem(POMitems.PROTACTINIUM_INGOT.get());
+        elementItem(POMitems.URANIUM_INGOT.get());
         elementItem(POMitems.NEPTUNIUM_INGOT.get());
         elementItem(POMitems.AMERICIUM_INGOT.get());
         elementItem(POMitems.CURIUM_INGOT.get());
@@ -223,4 +238,5 @@ public class POMitemModelProvider extends ItemModelProvider {
         return withExistingParent(block.getRegistryName().getPath(), new ResourceLocation(PixelsOfMc.MOD_ID,
                 "block/" + block.getRegistryName().getPath()));
     }
+
 }
