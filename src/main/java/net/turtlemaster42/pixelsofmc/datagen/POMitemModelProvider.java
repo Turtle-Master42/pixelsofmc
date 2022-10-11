@@ -29,7 +29,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.SULFUR.get());
         //plastic
         simpleItem(POMitems.BIO_COMPOUND.get());
-        simpleItem(POMitems.BIO_PLASTIC_SHEET.get());
+        simpleItem(POMitems.BIO_PLASTIC.get());
         simpleItem(POMitems.FIRE_PROOF_COMPOUND.get());
         simpleItem(POMitems.FIRE_PROOF_PLASTIC.get());
         simpleItem(POMitems.REPELLING_COMPOUND.get());

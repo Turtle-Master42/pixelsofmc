@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "pixelsofmc:endstone_titanium_ore"
+  },
+  "result": "pixelsofmc:titanium_ingot",
+  "experience": 0.5,
+  "cookingtime": 10
+}

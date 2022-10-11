@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "AAA",
-    "ABA",
-    "AAA"
+    "TTT",
+    "TTT",
+    "TTT"
   ],
   "key": {
-    "A": {
+    "T": {
       "item": "pixelsofmc:copper_nugget"
-    },
-    "B": {
-      "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "pixelsofmc:copper_wire"
+    "item": "minecraft:copper_ingot"
   }
 }

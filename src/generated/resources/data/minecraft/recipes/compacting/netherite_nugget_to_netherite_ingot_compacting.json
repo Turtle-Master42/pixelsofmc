@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "B",
-    "B",
-    "A"
+    "TTT",
+    "TTT",
+    "TTT"
   ],
   "key": {
-    "A": {
-      "item": "pixelsofmc:bio_plastic"
-    },
-    "B": {
+    "T": {
       "item": "pixelsofmc:netherite_nugget"
     }
   },
   "result": {
-    "item": "pixelsofmc:screwdriver"
+    "item": "minecraft:netherite_ingot"
   }
 }

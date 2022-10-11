@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 10,
-  "cookingtime": 200,
-  "ingredient": {
-    "item": "pixelsofmc:bio_compound"
-  },
-  "result": "pixelsofmc:bio_plastic_sheet"
-}

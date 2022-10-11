@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "AAA",
-    "ABA",
-    "AAA"
+    "TTT",
+    "TTT",
+    "TTT"
   ],
   "key": {
-    "A": {
+    "T": {
       "item": "pixelsofmc:silver_nugget"
-    },
-    "B": {
-      "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "pixelsofmc:silver_wire"
+    "item": "pixelsofmc:silver_ingot"
   }
 }

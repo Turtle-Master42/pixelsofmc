@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BBB",
-    "BAB",
-    "BBB"
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "key": {
     "A": {
-      "item": "minecraft:netherite_ingot"
+      "item": "pixelsofmc:titanium_ingot"
     },
     "B": {
-      "item": "pixelsofmc:titanium_ingot"
+      "item": "minecraft:netherite_ingot"
     }
   },
   "result": {
