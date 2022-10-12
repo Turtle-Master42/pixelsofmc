@@ -7,16 +7,16 @@
   ],
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_diboride_nugget"
+      "item": "pixelsofmc:netherite_plating"
     },
     "B": {
-      "item": "pixelsofmc:silver_nugget"
+      "item": "minecraft:netherite_block"
     },
     "C": {
-      "item": "pixelsofmc:dragon_eye"
+      "item": "minecraft:obsidian"
     }
   },
   "result": {
-    "item": "pixelsofmc:dragon_sensor"
+    "item": "pixelsofmc:heat_resistant_casing"
   }
 }

@@ -2,21 +2,21 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ABA",
-    "BCB",
+    "ACA",
     "ABA"
   ],
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_nugget"
+      "tag": "forge:glass"
     },
     "B": {
-      "item": "pixelsofmc:copper_nugget"
+      "item": "pixelsofmc:netherite_plating"
     },
     "C": {
-      "item": "minecraft:ender_eye"
+      "item": "pixelsofmc:power_orb"
     }
   },
   "result": {
-    "item": "pixelsofmc:ender_sensor"
+    "item": "pixelsofmc:power_cell"
   }
 }

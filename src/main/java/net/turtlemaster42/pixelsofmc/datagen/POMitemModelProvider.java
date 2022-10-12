@@ -91,14 +91,6 @@ public class POMitemModelProvider extends ItemModelProvider {
 
 
 
-
-
-
-
-        //other
-
-
-        //elements
         elementItem(POMitems.BORON_CUBE.get());
         elementItem(POMitems.CARBON_CUBE.get());
         simpleItem(POMitems.DENSE_CARBON_CUBE.get());
@@ -189,10 +181,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.CALIFORNIUM_INGOT.get());
         elementItem(POMitems.EINSTEINIUM_INGOT.get());
 
-
         simpleItem(POMitems.PIXEL.get());
 
 
+        
         simpleBlock(POMblocks.TITANIUM_BLOCK.get());
         simpleBlock(POMblocks.ENDSTONE_TITANIUM_ORE.get());
         simpleBlock(POMblocks.DEEPSLATE_TITANIUM_ORE.get());
@@ -204,7 +196,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.SIMPLE_CASING_1.get());
         simpleBlock(POMblocks.ADVANCED_CASING_1.get());
         simpleBlock(POMblocks.PERFECTED_CASING_1.get());
-
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());

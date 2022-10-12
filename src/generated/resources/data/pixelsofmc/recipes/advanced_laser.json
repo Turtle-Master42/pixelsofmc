@@ -1,32 +1,31 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "HPH",
-    "CBC",
-    "EAE"
+    "ABA",
+    "CDC",
+    "EFE"
   ],
   "key": {
-    "H": {
+    "A": {
       "item": "pixelsofmc:heat_resistant_casing"
     },
-    "P": {
+    "B": {
       "item": "pixelsofmc:power_cell"
     },
     "C": {
       "item": "minecraft:copper_ingot"
     },
-    "B": {
+    "D": {
       "item": "minecraft:beacon"
     },
     "E": {
-      "item": "pixelsofmc:heat_resistant_plating"
+      "item": "pixelsofmc:netherite_plating"
     },
-    "A": {
-      "item": "minecraft:amethyst_cluster"
+    "F": {
+      "item": "pixelsofmc:power_orb"
     }
   },
   "result": {
-    "item": "pixelsofmc:advanced_laser",
-    "count": 1
+    "item": "pixelsofmc:advanced_laser"
   }
 }
