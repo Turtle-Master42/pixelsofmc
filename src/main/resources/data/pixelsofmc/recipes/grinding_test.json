@@ -1,14 +1,12 @@
 {
   "type": "pixelsofmc:grinding",
   "dubble_chance": 0,
-  "input": [
-    {
+  "input": {
       "count": 1,
       "ingredient": {
         "item": "minecraft:coal"
       }
-    }
-  ],
+  },
   "outputs": [
     {
       "count": 2,

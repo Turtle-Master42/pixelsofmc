@@ -313,10 +313,10 @@ public class GrinderBlockEntity extends AbstractMachineEntity {
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, List<CountedIngredient> outputs) {
-        return inventory.getItem(1).getItem() == outputs.get(0).getItems()[0].getItem()
-                && inventory.getItem(2).getItem() == outputs.get(1).getItems()[1].getItem()
-                && inventory.getItem(3).getItem() == outputs.get(2).getItems()[2].getItem()
-                && inventory.getItem(4).getItem() == outputs.get(3).getItems()[3].getItem()
+        return inventory.getItem(1).getItem() == outputs.get(0).asItem()
+                && inventory.getItem(2).getItem() == outputs.get(1).asItem()
+                && inventory.getItem(3).getItem() == outputs.get(2).asItem()
+                && inventory.getItem(4).getItem() == outputs.get(3).asItem()
 
                 || inventory.getItem(1).isEmpty()
                 && inventory.getItem(2).isEmpty()

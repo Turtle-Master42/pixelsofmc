@@ -80,6 +80,10 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
         return matchingStacks;
     }
 
+    public Item asItem() {
+        return ingredient.getItems()[0].getItem();
+    }
+
     @Override
     public boolean test(@Nullable ItemStack itemStack) {
         return ingredient.test(itemStack) && itemStack.getCount() >= count;

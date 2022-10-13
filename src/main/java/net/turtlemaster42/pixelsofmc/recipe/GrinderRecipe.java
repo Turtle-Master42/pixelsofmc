@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -21,11 +22,11 @@ import java.util.List;
 
 public class GrinderRecipe extends BaseRecipe {
     private final ResourceLocation id;
-    private final List<CountedIngredient> recipeItem;
+    private final Ingredient recipeItem;
     private final List<CountedIngredient> outputs;
     private final float chance;
 
-    public GrinderRecipe(ResourceLocation id, List<CountedIngredient> recipeItem,
+    public GrinderRecipe(ResourceLocation id, Ingredient recipeItem,
                           List<CountedIngredient> outputs, float chance) {
         this.id = id;
         this.recipeItem = recipeItem;
@@ -35,7 +36,7 @@ public class GrinderRecipe extends BaseRecipe {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        return recipeItem.get(0).test(pContainer.getItem(0));
+        return recipeItem.test(pContainer.getItem(0));
     }
 
     @Override
@@ -63,7 +64,7 @@ public class GrinderRecipe extends BaseRecipe {
 
 
     public ItemStack getInput() {
-        return recipeItem.get(0).getItems()[0];
+        return recipeItem.getItems()[0];
     }
 
     public List<CountedIngredient> getOutputs() {
@@ -104,11 +105,8 @@ public class GrinderRecipe extends BaseRecipe {
                 outputs.add(i, CountedIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
             }
             //input
-            JsonArray jsonInputs = json.getAsJsonArray("input");
-            List<CountedIngredient> input = new ArrayList<>(jsonInputs.size());
-            for (int i = 0; i < jsonInputs.size(); i++) {
-                input.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
-            }
+            JsonArray jsonInput = GsonHelper.getAsJsonArray(json, "input");
+            Ingredient input = Ingredient.fromJson(jsonInput.get(0));
 
             //chance
             float chance = GsonHelper.getAsFloat(json, "dubble_chance");
@@ -119,7 +117,7 @@ public class GrinderRecipe extends BaseRecipe {
 
         public GrinderRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
-                List<CountedIngredient> input = buf.readList(CountedIngredient::fromNetwork);
+                Ingredient input = Ingredient.fromNetwork(buf);
                 List<CountedIngredient> outputs = buf.readList(CountedIngredient::fromNetwork);
 
                 float chance = buf.readFloat();
@@ -133,7 +131,7 @@ public class GrinderRecipe extends BaseRecipe {
 
         public void toNetwork(FriendlyByteBuf buf, GrinderRecipe recipe) {
             try {
-                buf.writeCollection(recipe.recipeItem, (buffer, ing) -> ing.toNetwork(buffer));
+                buf.writeItemStack(recipe.getInput(), false);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
 
                 buf.writeFloat(recipe.getDubbleChance());
