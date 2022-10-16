@@ -6,7 +6,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -34,7 +33,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.WARPED_ROOTS)
                 .requires(Items.KELP)
                 .requires(Items.KELP)
-                .requires(Items.SLIME_BALL)
+                .requires(Tags.Items.SLIMEBALLS)
+                .requires(Tags.Items.EGGS)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
         ShapelessRecipeBuilder.shapeless(POMitems.FIRE_PROOF_COMPOUND.get(), 2)
@@ -57,8 +57,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.CHORUS_FRUIT)
                 .requires(Items.DRAGON_BREATH)
                 .requires(Items.POPPED_CHORUS_FRUIT)
-                .requires(Items.ENDER_PEARL)
-                .requires(Items.ENDER_PEARL)
+                .requires(Tags.Items.ENDER_PEARLS)
+                .requires(Tags.Items.ENDER_PEARLS)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
@@ -78,7 +78,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(POMitems.HAMMER.get())
                 .define('A', Items.NETHERITE_INGOT)
-                .define('B', Items.STICK)
+                .define('B', Tags.Items.RODS_WOODEN)
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
@@ -100,9 +100,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer);
         ShapelessRecipeBuilder.shapeless(POMitems.CLEANING_CLOTH.get())
                 .requires(ItemTags.CARPETS)
-                .requires(Items.STRING)
-                .requires(Items.STRING)
-                .requires(Items.BLUE_DYE)
+                .requires(Tags.Items.STRING)
+                .requires(Tags.Items.STRING)
+                .requires(Tags.Items.DYES_BLUE)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
@@ -147,7 +147,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(POMitems.DRAGON_EYE.get())
                 .define('B', Items.ENDER_EYE)
                 .define('C', Items.DRAGON_BREATH)
-                .define('D', Items.NETHER_STAR)
+                .define('D', Tags.Items.NETHER_STARS)
                 .pattern(" C ")
                 .pattern("BDB")
                 .pattern(" C ")
