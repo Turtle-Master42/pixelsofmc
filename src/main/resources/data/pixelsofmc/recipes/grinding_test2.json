@@ -1,0 +1,21 @@
+{
+  "type": "pixelsofmc:grinding",
+  "dubble_chance": 0,
+  "input": {
+    "item": "pixelsofmc:titanium_diboride_dust"
+  },
+  "outputs": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:coal_dust"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_dust"
+      }
+    }
+  ]
+}

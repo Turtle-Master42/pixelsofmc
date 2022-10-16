@@ -12,28 +12,28 @@ import net.turtlemaster42.pixelsofmc.block.tile.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class POMtiles {
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, PixelsOfMc.MOD_ID);
 
 	public static final RegistryObject<BlockEntityType<?>> MACHINE_BLOCK = register("machine_block", POMblocks.MACHINE_BLOCK,
 			MachineBlockTile::new);
 
 	public static final RegistryObject<BlockEntityType<MachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
-			BLOCK_ENTITIES.register("machine_energy_block.json", () -> BlockEntityType.Builder.of(MachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
+			TILES.register("machine_energy_block.json", () -> BlockEntityType.Builder.of(MachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterTile>> PIXEL_SPLITTER =
-			BLOCK_ENTITIES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
+			TILES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BallMillTile>> BALL_MILL =
-			BLOCK_ENTITIES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillTile::new, POMblocks.BALL_MILL.get()).build(null));
+			TILES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillTile::new, POMblocks.BALL_MILL.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<GrinderTile>> GRINDER =
-			BLOCK_ENTITIES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
+			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
 
 
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block,
 			BlockEntityType.BlockEntitySupplier<?> supplier) {
-		return BLOCK_ENTITIES.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
+		return TILES.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
 	public static void register(IEventBus bus) {
-		BLOCK_ENTITIES.register(bus);
+		TILES.register(bus);
 	}
 }

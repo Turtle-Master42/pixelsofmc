@@ -51,7 +51,7 @@ public class PixelsOfMc {
 
 		POMrecipes.register(bus);
 		
-		POMtiles.BLOCK_ENTITIES.register(bus);
+		POMtiles.TILES.register(bus);
 
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::registerRenderers);

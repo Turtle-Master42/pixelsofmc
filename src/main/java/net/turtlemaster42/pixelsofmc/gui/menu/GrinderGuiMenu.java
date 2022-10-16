@@ -38,10 +38,10 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 4, 111, 9));
-            this.addSlot(new ModResultSlot(handler, 3, 111, 27));
-            this.addSlot(new ModResultSlot(handler, 2, 111, 45));
-            this.addSlot(new ModResultSlot(handler, 1, 111, 63));
+            this.addSlot(new ModResultSlot(handler, 1, 111, 9));
+            this.addSlot(new ModResultSlot(handler, 2, 111, 27));
+            this.addSlot(new ModResultSlot(handler, 3, 111, 45));
+            this.addSlot(new ModResultSlot(handler, 4, 111, 63));
             this.addSlot(new SlotItemHandler(handler, 0, 43, 36));
         });
 

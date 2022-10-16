@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -251,8 +252,7 @@ public class GrinderTile extends AbstractMachineTile {
         Optional<GrinderRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent()
-                && canInsertAmountIntoOutputSlots(inventory, match);
+        return match.isPresent();
     }
 
     private static boolean hasPower(GrinderTile entity) {
@@ -272,18 +272,25 @@ public class GrinderTile extends AbstractMachineTile {
                 .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
+            List<CountedIngredient> outputs = match.get().getOutputs();
+            boolean[] matched = new boolean[4];
+
+            // Iterate over the slots -p-
+            for (int p = 1; p < 4; p++) {
+                // Iterate over the inputs -q-
+                for (int q = 0; q < outputs.size(); q++) {
+
+                    if (matched[q])
+                        continue;
+                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), match.get().getResultItems(q).getItem(), outputs.get(q).count(), p)) {
+                        entity.itemHandler.setStackInSlot(p, new ItemStack(match.get().getResultItems(q).getItem(),
+                                entity.itemHandler.getStackInSlot(p).getCount() + (match.get().getOutputsCount(q))));
+                        matched[q] = true;
+                    }
+                }
+            }
 
             entity.itemHandler.extractItem(0, 1, false);
-
-            entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItems(0).getItem(),
-                    entity.itemHandler.getStackInSlot(1).getCount() + (match.get().getOutputsCount(0))));
-            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItems(0).getItem(),
-                    entity.itemHandler.getStackInSlot(2).getCount() + (match.get().getOutputsCount(1))));
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItems(0).getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputsCount(2))));
-            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItems(0).getItem(),
-                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputsCount(3))));
-
 
             entity.resetProgress();
             entity.errorEnergyReset();
@@ -310,23 +317,31 @@ public class GrinderTile extends AbstractMachineTile {
         return maxProgress / 10 * amount;
     }
 
-    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, List<CountedIngredient> outputs) {
-        return inventory.getItem(1).getItem() == outputs.get(0).asItem()
-                && inventory.getItem(2).getItem() == outputs.get(1).asItem()
-                && inventory.getItem(3).getItem() == outputs.get(2).asItem()
-                && inventory.getItem(4).getItem() == outputs.get(3).asItem()
 
-                || inventory.getItem(1).isEmpty()
-                && inventory.getItem(2).isEmpty()
-                && inventory.getItem(3).isEmpty()
-                && inventory.getItem(4).isEmpty();
+    private static boolean canInsertItemIntoSlot(ItemStack stack, Item item, int count, int slot) {
+        if (item == stack.getItem() || stack.isEmpty()) {
+            return stack.getCount() + count <= stack.getMaxStackSize();
+        }
+        return false;
     }
 
-    private static boolean canInsertAmountIntoOutputSlots(SimpleContainer inventory, Optional<GrinderRecipe> match) {
-        return inventory.getItem(1).getMaxStackSize() >= inventory.getItem(1).getCount() + match.get().getOutputsCount(0) &&
-                inventory.getItem(2).getMaxStackSize() >= inventory.getItem(2).getCount() + match.get().getOutputsCount(1) &&
-                inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount() + match.get().getOutputsCount(2) &&
-                inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + match.get().getOutputsCount(3);
+    private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {
+        boolean[] matched = new boolean[4];
+
+        // Iterate over the slots -p-
+        for (int p = 1; p < 4; p++) {
+            // Iterate over the inputs -q-
+            for (int q = 0; q < match.getOutputs().size(); q++) {
+
+                if (matched[q])
+                    continue;
+                if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), match.getResultItems(q).getItem(), match.getOutputs().get(q).count(), p)) {
+                    matched[q] = true;
+                }
+            }
+        }
+
+        return matched[0] && matched[1] && matched[2] && matched[3];
     }
 
     //cyclic
@@ -350,21 +365,15 @@ public class GrinderTile extends AbstractMachineTile {
         }
     }
 
-
-
     //---ENERGY---//
 
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy " + energyStorage.getEnergyStored() + " is higher than max " + energyStorage.getMaxEnergyStored());
+            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}",energyStorage.getEnergyStored() ,energyStorage.getMaxEnergyStored());
             energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
+            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
         }
-    }
-
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
     }
 
     public IEnergyStorage getEnergyStorage() { return energyStorage; }
