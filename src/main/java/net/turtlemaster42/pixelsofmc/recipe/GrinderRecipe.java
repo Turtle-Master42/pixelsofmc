@@ -63,8 +63,8 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
 
-    public ItemStack getInput() {
-        return recipeItem.getItems()[0];
+    public Ingredient getInput() {
+        return recipeItem;
     }
 
     public List<CountedIngredient> getOutputs() {
@@ -105,8 +105,7 @@ public class GrinderRecipe extends BaseRecipe {
                 outputs.add(i, CountedIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
             }
             //input
-            JsonArray jsonInput = GsonHelper.getAsJsonArray(json, "input");
-            Ingredient input = Ingredient.fromJson(jsonInput.get(0));
+            Ingredient input = Ingredient.fromJson(json.get("input"));
 
             //chance
             float chance = GsonHelper.getAsFloat(json, "dubble_chance");
@@ -131,7 +130,7 @@ public class GrinderRecipe extends BaseRecipe {
 
         public void toNetwork(FriendlyByteBuf buf, GrinderRecipe recipe) {
             try {
-                buf.writeItemStack(recipe.getInput(), false);
+                recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
 
                 buf.writeFloat(recipe.getDubbleChance());

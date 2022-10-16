@@ -100,6 +100,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
+                onEnergyChanged();
                 return super.receiveEnergy(maxReceive, simulate);
             }
         };
