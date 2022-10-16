@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.entity;
+package net.turtlemaster42.pixelsofmc.block.tile;
 
 
 import net.minecraft.network.chat.TranslatableComponent;
@@ -7,7 +7,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
@@ -52,7 +52,7 @@ import static net.minecraft.core.particles.ParticleTypes.*;
 import static net.turtlemaster42.pixelsofmc.block.BallMillBlock.FACING;
 
 
-public class BallMillBlockEntity extends AbstractMachineEntity {
+public class BallMillTile extends AbstractMachineTile {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -110,26 +110,26 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
 
-    public BallMillBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMblockEntities.BALL_MILL.get(), pWorldPosition, pBlockState);
+    public BallMillTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.BALL_MILL.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return BallMillBlockEntity.this.progress;
-                    case 1: return BallMillBlockEntity.this.maxProgress;
-                    case 2: return BallMillBlockEntity.this.speedUpgrade;
-                    case 3: return BallMillBlockEntity.this.capacity;
-                    case 4: return BallMillBlockEntity.this.maxReceive;
-                    case 5: return BallMillBlockEntity.this.energyStorage.getEnergyStored();
+                    case 0: return BallMillTile.this.progress;
+                    case 1: return BallMillTile.this.maxProgress;
+                    case 2: return BallMillTile.this.speedUpgrade;
+                    case 3: return BallMillTile.this.capacity;
+                    case 4: return BallMillTile.this.maxReceive;
+                    case 5: return BallMillTile.this.energyStorage.getEnergyStored();
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: BallMillBlockEntity.this.progress = value; break;
-                    case 1: BallMillBlockEntity.this.maxProgress = value; break;
-                    case 2: BallMillBlockEntity.this.speedUpgrade = value; break;
+                    case 0: BallMillTile.this.progress = value; break;
+                    case 1: BallMillTile.this.maxProgress = value; break;
+                    case 2: BallMillTile.this.speedUpgrade = value; break;
                 }
             }
 
@@ -222,15 +222,15 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
 
     //---RECIPE---//
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, BallMillBlockEntity e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, BallMillTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, BallMillBlockEntity e) {
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, BallMillTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillBlockEntity pBlockEntity) {
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
@@ -250,7 +250,7 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
         }
     }
 
-    private static boolean hasRecipe(BallMillBlockEntity entity) {
+    private static boolean hasRecipe(BallMillTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -266,17 +266,17 @@ public class BallMillBlockEntity extends AbstractMachineEntity {
                 && hasToolsInToolSlot(entity);
     }
 
-    private static boolean hasToolsInToolSlot(BallMillBlockEntity entity) {
+    private static boolean hasToolsInToolSlot(BallMillTile entity) {
         return entity.itemHandler.getStackInSlot(3).getItem() == POMitems.TITANIUM_CIRCLE_SAW.get();
     }
 
-    private static boolean hasPower(BallMillBlockEntity entity) {
+    private static boolean hasPower(BallMillTile entity) {
         int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
 
-    private static void craftItem(BallMillBlockEntity entity) {
+    private static void craftItem(BallMillTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {

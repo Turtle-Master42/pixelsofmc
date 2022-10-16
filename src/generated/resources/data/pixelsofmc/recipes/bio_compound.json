@@ -20,7 +20,10 @@
       "item": "minecraft:kelp"
     },
     {
-      "item": "minecraft:slime_ball"
+      "tag": "forge:slimeballs"
+    },
+    {
+      "tag": "forge:eggs"
     }
   ],
   "result": {

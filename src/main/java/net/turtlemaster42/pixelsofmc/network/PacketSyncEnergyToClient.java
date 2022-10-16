@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.block.entity.IEnergyHandlingBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.IEnergyHandlingTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 
 import java.util.function.Supplier;
@@ -32,7 +32,7 @@ public class PacketSyncEnergyToClient {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE CLIENT YES
-            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IEnergyHandlingBlockEntity blockEntity) {
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IEnergyHandlingTile blockEntity) {
                 blockEntity.setEnergyLevel(energy);
 
                 if(Minecraft.getInstance().player.containerMenu instanceof IEnergyMenu menu &&

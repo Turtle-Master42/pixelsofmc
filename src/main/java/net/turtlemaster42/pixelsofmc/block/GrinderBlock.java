@@ -23,8 +23,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.entity.GrinderBlockEntity;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.block.tile.GrinderTile;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
@@ -113,8 +113,8 @@ public class GrinderBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof GrinderBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (GrinderBlockEntity)entity, pPos);
+            if(entity instanceof GrinderTile) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (GrinderTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -127,8 +127,8 @@ public class GrinderBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof GrinderBlockEntity) {
-                ((GrinderBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof GrinderTile) {
+                ((GrinderTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -171,13 +171,13 @@ public class GrinderBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new GrinderBlockEntity(pPos, pState);
+        return new GrinderTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMblockEntities.GRINDER.get(),
-                pLevel.isClientSide ? GrinderBlockEntity::clientTick : GrinderBlockEntity::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.GRINDER.get(),
+                pLevel.isClientSide ? GrinderTile::clientTick : GrinderTile::serverTick);
     }
 }

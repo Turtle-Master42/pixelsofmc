@@ -5,13 +5,13 @@
       "tag": "minecraft:carpets"
     },
     {
-      "item": "minecraft:string"
+      "tag": "forge:string"
     },
     {
-      "item": "minecraft:string"
+      "tag": "forge:string"
     },
     {
-      "item": "minecraft:blue_dye"
+      "tag": "forge:dyes/blue"
     }
   ],
   "result": {

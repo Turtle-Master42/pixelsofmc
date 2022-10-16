@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.entity;
+package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class MachineEnergyBlockBlockEntity extends BlockEntity {
+public class MachineEnergyBlockTile extends BlockEntity {
         protected final ContainerData data;
 
         private final int capacity = 40960;
@@ -50,14 +50,14 @@ public class MachineEnergyBlockBlockEntity extends BlockEntity {
 
         private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
-        public MachineEnergyBlockBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-            super(POMblockEntities.MACHINE_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
+        public MachineEnergyBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
+            super(POMtiles.MACHINE_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
             this.data = new ContainerData() {
 
                 @Override
                 public int get(int index) {
                     switch (index) {
-                        case 0: return MachineEnergyBlockBlockEntity.this.energyStorage.getEnergyStored();
+                        case 0: return MachineEnergyBlockTile.this.energyStorage.getEnergyStored();
                         default: return 0;
                     }
                 }

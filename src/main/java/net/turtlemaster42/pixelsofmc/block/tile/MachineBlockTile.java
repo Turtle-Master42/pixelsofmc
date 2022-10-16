@@ -1,22 +1,21 @@
-package net.turtlemaster42.pixelsofmc.block.entity;
+package net.turtlemaster42.pixelsofmc.block.tile;
 
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class MachineBlockBlockEntity extends BlockEntity {
+public class MachineBlockTile extends BlockEntity {
 	protected final ContainerData data;
 
 
 	public BlockPos mainPos = null;
 
-	public MachineBlockBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-		super(POMblockEntities.MACHINE_BLOCK.get(), pWorldPosition, pBlockState);
+	public MachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
+		super(POMtiles.MACHINE_BLOCK.get(), pWorldPosition, pBlockState);
 		this.data = new ContainerData() {
 
 			@Override

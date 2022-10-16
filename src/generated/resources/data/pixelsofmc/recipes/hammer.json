@@ -9,7 +9,7 @@
       "item": "minecraft:netherite_ingot"
     },
     "B": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

@@ -1,26 +1,21 @@
-package net.turtlemaster42.pixelsofmc.util.renderer.block.entity;
+package net.turtlemaster42.pixelsofmc.util.renderer.block.tile;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3d;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 
-import java.util.Random;
-
-public class PixelSplitterEntityRenderer implements BlockEntityRenderer<PixelSplitterBlockEntity> {
-    public PixelSplitterEntityRenderer(BlockEntityRendererProvider.Context context) {
+public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplitterTile> {
+    public PixelSplitterTileRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
-    public void render(PixelSplitterBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack,
+    public void render(PixelSplitterTile pBlockEntity, float pPartialTick, PoseStack pPoseStack,
                        MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0.5 ,0.5);

@@ -4,13 +4,12 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
 import net.turtlemaster42.pixelsofmc.gui.screen.BallMillGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.GrinderGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.entity.PixelSplitterEntityRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -52,7 +51,7 @@ public class PixelsOfMc {
 
 		POMrecipes.register(bus);
 		
-		POMblockEntities.BLOCK_ENTITIES.register(bus);
+		POMtiles.BLOCK_ENTITIES.register(bus);
 
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::registerRenderers);
@@ -74,8 +73,8 @@ public class PixelsOfMc {
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		event.registerBlockEntityRenderer(POMblockEntities.PIXEL_SPLITTER.get(),
-				PixelSplitterEntityRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(),
+				PixelSplitterTileRenderer::new);
 	}
 
 	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

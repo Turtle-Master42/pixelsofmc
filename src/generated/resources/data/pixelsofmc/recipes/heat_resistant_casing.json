@@ -10,10 +10,10 @@
       "item": "pixelsofmc:netherite_plating"
     },
     "B": {
-      "item": "minecraft:netherite_block"
+      "item": "minecraft:obsidian"
     },
     "C": {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:netherite_block"
     }
   },
   "result": {

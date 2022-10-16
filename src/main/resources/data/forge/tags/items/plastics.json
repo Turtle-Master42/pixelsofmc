@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "pixelsofmc:bio_plastic_sheet"
+    "pixelsofmc:bio_plastic",
+    "pixelsofmc:fire_proof_plastic",
+    "pixelsofmc:repelling_plastic"
   ]
 }

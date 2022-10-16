@@ -23,8 +23,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
@@ -112,8 +112,8 @@ public class BallMillBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof BallMillBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (BallMillBlockEntity)entity, pPos);
+            if(entity instanceof BallMillTile) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (BallMillTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -126,8 +126,8 @@ public class BallMillBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof BallMillBlockEntity) {
-                ((BallMillBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof BallMillTile) {
+                ((BallMillTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -170,13 +170,13 @@ public class BallMillBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new BallMillBlockEntity(pPos, pState);
+        return new BallMillTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMblockEntities.BALL_MILL.get(),
-                pLevel.isClientSide ? BallMillBlockEntity::clientTick : BallMillBlockEntity::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.BALL_MILL.get(),
+                pLevel.isClientSide ? BallMillTile::clientTick : BallMillTile::serverTick);
     }
 }

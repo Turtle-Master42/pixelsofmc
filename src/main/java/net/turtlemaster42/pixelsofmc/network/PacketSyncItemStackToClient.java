@@ -1,10 +1,9 @@
 package net.turtlemaster42.pixelsofmc.network;
 
 
-import net.turtlemaster42.pixelsofmc.block.entity.IInventoryHandlingBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.IInventoryHandlingTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
@@ -48,7 +47,7 @@ public class PacketSyncItemStackToClient {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE CLIENT YES
-            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IInventoryHandlingBlockEntity blockEntity) {
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IInventoryHandlingTile blockEntity) {
                 blockEntity.setHandler(this.itemStackHandler);
             }
         });

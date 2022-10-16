@@ -5,7 +5,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.*;
 
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.Material;
@@ -20,11 +19,8 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.core.BlockPos;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.entity.MachineBlockBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.MachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	public DummyMachineBlock() {
@@ -63,7 +59,7 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	}
 
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new MachineBlockBlockEntity(pos, state);
+		return new MachineBlockTile(pos, state);
 	}
 
 	@Deprecated

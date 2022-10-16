@@ -1,6 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
-import net.turtlemaster42.pixelsofmc.block.entity.BallMillBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -17,7 +17,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
-    public final BallMillBlockEntity blockEntity;
+    public final BallMillTile blockEntity;
     private final Level level;
     private final ContainerData data;
 
@@ -28,7 +28,7 @@ public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMen
     public BallMillGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.BALL_MILL_MENU.get(), pContainerId);
         checkContainerSize(inv, 7);
-        blockEntity = ((BallMillBlockEntity) entity);
+        blockEntity = ((BallMillTile) entity);
         this.level = inv.player.level;
         this.data = data;
 

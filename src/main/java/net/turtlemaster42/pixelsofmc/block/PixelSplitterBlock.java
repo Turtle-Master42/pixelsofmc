@@ -3,13 +3,11 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.turtlemaster42.pixelsofmc.block.entity.PixelSplitterBlockEntity;
-import net.turtlemaster42.pixelsofmc.init.POMblockEntities;
+import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -95,8 +93,8 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof PixelSplitterBlockEntity) {
-                ((PixelSplitterBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof PixelSplitterTile) {
+                ((PixelSplitterTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -107,8 +105,8 @@ public class PixelSplitterBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof PixelSplitterBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (PixelSplitterBlockEntity)entity, pPos);
+            if(entity instanceof PixelSplitterTile) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (PixelSplitterTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -141,13 +139,13 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new PixelSplitterBlockEntity(pPos, pState);
+        return new PixelSplitterTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMblockEntities.PIXEL_SPLITTER.get(),
-                PixelSplitterBlockEntity::tick);
+        return createTickerHelper(pBlockEntityType, POMtiles.PIXEL_SPLITTER.get(),
+                PixelSplitterTile::tick);
     }
 }

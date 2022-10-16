@@ -6,17 +6,13 @@ import net.minecraft.world.level.block.*;
 
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
@@ -26,14 +22,12 @@ import net.minecraft.core.BlockPos;
 
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.entity.MachineEnergyBlockBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.MachineEnergyBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Collections;
 
-    public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
+public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
         public DummyMachineEnergyBlock() {
             super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).dynamicShape().strength(2f, 3600000f).noOcclusion()
                     .isRedstoneConductor((bs, br, bp) -> false));
@@ -104,7 +98,7 @@ import java.util.Collections;
         }
 
         public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-            return new MachineEnergyBlockBlockEntity(pos, state);
+            return new MachineEnergyBlockTile(pos, state);
         }
 
         @Deprecated

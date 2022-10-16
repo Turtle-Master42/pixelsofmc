@@ -255,7 +255,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(POMitems.SILVER_NUGGET.get(), Items.STICK, POMitems.SILVER_WIRE.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_INGOT.get(), Items.NETHERITE_INGOT, POMblocks.SIMPLE_CASING_1.get(), pFinishedRecipeConsumer);
 
-        SimpleFullCrossRecipe(POMitems.NETHERITE_PLATING.get(), Items.NETHERITE_BLOCK, Items.OBSIDIAN, POMblocks.HEAT_RESISTANT_CASING.get(), pFinishedRecipeConsumer);
+        SimpleFullCrossRecipe(POMitems.NETHERITE_PLATING.get(), Items.OBSIDIAN, Items.NETHERITE_BLOCK, POMblocks.HEAT_RESISTANT_CASING.get(), pFinishedRecipeConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), pFinishedRecipeConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_NUGGET.get(), Items.GOLD_NUGGET, Items.REDSTONE_BLOCK, POMitems.REDSTONE_COUNTER.get(), pFinishedRecipeConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_NUGGET.get(), POMitems.COPPER_NUGGET.get(), Items.ENDER_EYE, POMitems.ENDER_SENSOR.get(), pFinishedRecipeConsumer);

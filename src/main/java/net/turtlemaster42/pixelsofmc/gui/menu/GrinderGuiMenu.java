@@ -1,6 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
-import net.turtlemaster42.pixelsofmc.block.entity.GrinderBlockEntity;
+import net.turtlemaster42.pixelsofmc.block.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -16,7 +16,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
-    public final GrinderBlockEntity blockEntity;
+    public final GrinderTile blockEntity;
     private final Level level;
     private final ContainerData data;
 
@@ -27,7 +27,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
     public GrinderGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.GRINDER_MENU.get(), pContainerId);
         checkContainerSize(inv, 7);
-        blockEntity = ((GrinderBlockEntity) entity);
+        blockEntity = ((GrinderTile) entity);
         this.level = inv.player.level;
         this.data = data;
 
