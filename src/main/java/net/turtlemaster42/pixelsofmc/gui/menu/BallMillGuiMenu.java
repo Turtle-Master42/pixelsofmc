@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final BallMillTile blockEntity;
@@ -40,7 +41,7 @@ public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMen
             this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
             this.addSlot(new ModResultSlot(handler, 4, 129, 36));
-            this.addSlot(new ModRestrictedSlot(handler, 3, 80, 36, POMitems.TITANIUM_CIRCLE_SAW));
+            this.addSlot(new ModTagRestrictedSlot(handler, 3, 80, 36,  () -> POMtags.Items.CIRCLE_SAW));
             this.addSlot(new SlotItemHandler(handler, 2, 31, 14));
             this.addSlot(new SlotItemHandler(handler, 1, 31, 36));
             this.addSlot(new SlotItemHandler(handler, 0, 31, 58));

@@ -15,9 +15,11 @@ public class POMdataGen {
             DataGenerator generator = event.getGenerator();
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-            generator.addProvider( new POMrecipeProvider(generator));
-            generator.addProvider( new POMlootTableProvider(generator));
-            generator.addProvider( new POMblockModelProvider(generator, existingFileHelper));
-            generator.addProvider( new POMitemModelProvider(generator, existingFileHelper));
+
+            generator.addProvider(new POMrecipeProvider(generator));
+            generator.addProvider(new POMlootTableProvider(generator));
+            generator.addProvider(new POMblockModelProvider(generator, existingFileHelper));
+            generator.addProvider(new POMitemModelProvider(generator, existingFileHelper));
+            generator.addProvider(new POMitemTagProvider(generator, existingFileHelper));
     }
 }

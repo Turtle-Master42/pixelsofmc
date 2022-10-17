@@ -176,6 +176,18 @@ f8650372793fe7949adacf06f46c4fece0cb07cc assets/pixelsofmc/models/item/void_sens
 310bc14e9cdfd848b62ab610c3e582d838b2e5f8 assets/pixelsofmc/models/item/yttrium_ingot.json
 e16fcb98ff28b513a08d8438c1ad4431cabdd8c1 assets/pixelsofmc/models/item/zinc_ingot.json
 a84f1b5baaf71083eb3ea2af6368de59fe5d4fd3 assets/pixelsofmc/models/item/zirconium_ingot.json
+5ce67288fe9c0d0a261ce5c5a69a2e5ef65786f4 data/forge/tags/items/dusts.json
+b9559c4821b0b1d6f5e3011e42967ee60e221b07 data/forge/tags/items/dusts/coal.json
+4ad317fdfe75a5276014080808f07f98d29e03c0 data/forge/tags/items/ingots.json
+8abe2e1662efee8558f4542257b32917fe38a822 data/forge/tags/items/ingots/titanium.json
+f3997652025bdabda3595ef59f59d5d8d98e36e2 data/forge/tags/items/nether_stars.json
+ce0f58f2c021d8a53ae7fd4e2ef8bfaf57ba83eb data/forge/tags/items/nuggets.json
+631864d97bc6cde7a75d11f14ef168948bd6c257 data/forge/tags/items/nuggets/copper.json
+b40dc25b066f1ec658c68d001f48da25e4149d10 data/forge/tags/items/nuggets/netherite.json
+5e8d9ed461dae263cf27ff55c37fcbaba8b6e89b data/forge/tags/items/nuggets/silver.json
+b93234ceb7e25fe53141493b905f256085363195 data/forge/tags/items/nuggets/steel.json
+c75abbe1920c6bd13f663f3b02bf76b1f2860324 data/forge/tags/items/nuggets/titanium.json
+96b789c3aae6209f35621ab8aaabead8b5442012 data/forge/tags/items/slimeballs.json
 f46ee06d26bc0edfdc914b46157a8d51342c779c data/pixelsofmc/advancements/recipes/misc/compacting/copper_nugget_to_copper_ingot_compacting.json
 710fe654010d0e35cf2d26349b133f25c301d015 data/pixelsofmc/advancements/recipes/misc/compacting/netherite_nugget_to_netherite_ingot_compacting.json
 991b129c5a1d55189b369a0c7d350ccc8d48696c data/pixelsofmc/advancements/recipes/misc/smelting/netherite_ingot.json
@@ -312,3 +324,4 @@ f59929ebf0e1d4bb15c97754db99a67dc3f73158 data/pixelsofmc/recipes/titanium_dibori
 99fa8391dbf7b81d6bf60acf34449850e1ce8e72 data/pixelsofmc/recipes/titanium_plating.json
 4134f17ebe521bbbc365e2787b1c57758810e3b7 data/pixelsofmc/recipes/violet_diamond_lens.json
 ee90c4ffa57e17dbe0cdd749535ea026768bf62e data/pixelsofmc/recipes/wirecutter.json
+56f0f966c0aa50e3acf5b275206abe637fb2b99c data/pixelsofmc/tags/items/circle_saw.json

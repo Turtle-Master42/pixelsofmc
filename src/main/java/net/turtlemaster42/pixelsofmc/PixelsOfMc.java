@@ -50,6 +50,7 @@ public class PixelsOfMc {
 		POMmenuType.MENUS.register(bus);
 
 		POMrecipes.register(bus);
+		POMtags.register();
 		
 		POMtiles.TILES.register(bus);
 
