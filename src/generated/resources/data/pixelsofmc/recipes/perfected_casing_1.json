@@ -3,7 +3,7 @@
   "pattern": [
     "BCB",
     "DAD",
-    "BEB"
+    "BCB"
   ],
   "key": {
     "A": {
@@ -13,13 +13,10 @@
       "item": "pixelsofmc:titanium_plating"
     },
     "C": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:diamond_block"
     },
     "D": {
       "item": "pixelsofmc:advanced_circuit_board_1"
-    },
-    "E": {
-      "item": "pixelsofmc:bio_plastic"
     }
   },
   "result": {

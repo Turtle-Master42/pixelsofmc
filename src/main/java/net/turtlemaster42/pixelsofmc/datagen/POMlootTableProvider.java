@@ -27,7 +27,6 @@ public class POMlootTableProvider extends LootTableProvider {
         super(pGenerator);
     }
 
-
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         return loot_tables;

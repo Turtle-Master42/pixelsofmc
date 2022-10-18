@@ -238,12 +238,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(POMblocks.PERFECTED_CASING_1.get())
                 .define('A', POMblocks.ADVANCED_CASING_1.get())
                 .define('B', POMitems.TITANIUM_PLATING.get())
-                .define('C', Items.DIAMOND)
+                .define('C', Items.DIAMOND_BLOCK)
                 .define('D', POMitems.ADVANCED_CIRCUIT_BOARD_1.get())
-                .define('E', POMitems.BIO_PLASTIC.get())
                 .pattern("BCB")
                 .pattern("DAD")
-                .pattern("BEB")
+                .pattern("BCB")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
@@ -253,7 +252,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), Items.DIAMOND, POMitems.VIOLET_DIAMOND_LENS.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.COPPER_NUGGET.get(), Items.STICK, POMitems.COPPER_WIRE.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.SILVER_NUGGET.get(), Items.STICK, POMitems.SILVER_WIRE.get(), pFinishedRecipeConsumer);
-        SimpleSurroundRecipe(POMitems.TITANIUM_INGOT.get(), Items.NETHERITE_INGOT, POMblocks.SIMPLE_CASING_1.get(), pFinishedRecipeConsumer);
+        SimpleSurroundRecipe(POMitems.TITANIUM_INGOT.get(), Items.NETHERITE_BLOCK, POMblocks.SIMPLE_CASING_1.get(), pFinishedRecipeConsumer);
 
         SimpleFullCrossRecipe(POMitems.NETHERITE_PLATING.get(), Items.OBSIDIAN, Items.NETHERITE_BLOCK, POMblocks.HEAT_RESISTANT_CASING.get(), pFinishedRecipeConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), pFinishedRecipeConsumer);

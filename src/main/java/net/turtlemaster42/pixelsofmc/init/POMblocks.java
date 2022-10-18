@@ -59,6 +59,7 @@ public class POMblocks {
 
 	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
+    public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);
 
     /*
     public static final RegistryObject<Block> CHISELED_STONE_BRICK_CORNER = registerBlock("chiseled_stone_brick_corner",

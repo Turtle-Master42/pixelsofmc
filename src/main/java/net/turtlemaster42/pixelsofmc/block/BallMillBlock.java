@@ -141,6 +141,7 @@ public class BallMillBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
             BlockState MACHINE_ENERGY_BLOCK = POMblocks.MACHINE_ENERGY_BLOCK.get().defaultBlockState();
+            BlockState MACHINE_ITEM_BLOCK = POMblocks.MACHINE_ITEM_BLOCK.get().defaultBlockState();
 
             //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
             Direction direction = pState.getValue(FACING);
@@ -149,7 +150,7 @@ public class BallMillBlock extends BaseEntityBlock {
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ENERGY_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_ITEM_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, MACHINE_BLOCK, pPos);

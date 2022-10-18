@@ -13,7 +13,6 @@ public class BigMachineBlockUtil {
     public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos mainPos) {
         setMachineBlock(pLevel, direction, Xoffset, Yoffset, Zoffset, pState, mainPos, 2);
     }
-
     public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos mainPos, int flags) {
         int X = mainPos.getX();
         int Y = mainPos.getY();

@@ -7,6 +7,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -232,6 +233,8 @@ public class BallMillTile extends AbstractMachineTile {
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
+        getItemFromItemMachineBlock(pState.getValue(FACING), 0);
+
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
@@ -267,7 +270,7 @@ public class BallMillTile extends AbstractMachineTile {
     }
 
     private static boolean hasToolsInToolSlot(BallMillTile entity) {
-        return entity.itemHandler.getStackInSlot(3).getItem() == POMitems.TITANIUM_CIRCLE_SAW.get();
+        return entity.itemHandler.getStackInSlot(3).is(POMtags.Items.CIRCLE_SAW);
     }
 
     private static boolean hasPower(BallMillTile entity) {
@@ -372,6 +375,25 @@ public class BallMillTile extends AbstractMachineTile {
                     //actually extract energy for real, whatever it accepted
                     EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
                     POMmessages.sendToClients(new PacketSyncEnergyToClient(energyStorage.getEnergyStored(), worldPosition));
+                }
+            }
+        }
+    }
+
+    public void getItemFromItemMachineBlock(Direction extractSide, int slot) {
+        if (extractSide == null) {
+            return;
+        }
+        BlockPos posTarget = this.worldPosition.relative(extractSide);
+        BlockEntity tile = level.getBlockEntity(posTarget);
+        if (tile != null) {
+            IItemHandler ItemHandlerFrom = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, extractSide.getOpposite()).orElse(null);
+            if (ItemHandlerFrom != null) {
+                //ok go
+                ItemStack extractSim = ItemHandlerFrom.extractItem(slot, ItemHandlerFrom.getStackInSlot(0).getCount(), true);
+                if (!extractSim.isEmpty() && itemHandler.insertItem(slot, extractSim, true).getCount() != extractSim.getCount()) {
+                    //actually extract item for real, whatever it accepted
+                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(slot, extractSim, false).getCount(), false);
                 }
             }
         }

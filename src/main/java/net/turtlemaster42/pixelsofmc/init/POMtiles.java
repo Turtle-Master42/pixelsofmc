@@ -18,7 +18,10 @@ public class POMtiles {
 			MachineBlockTile::new);
 
 	public static final RegistryObject<BlockEntityType<MachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
-			TILES.register("machine_energy_block.json", () -> BlockEntityType.Builder.of(MachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
+			TILES.register("machine_energy_block", () -> BlockEntityType.Builder.of(MachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<MachineItemBlockTile>> MACHINE_ITEM_BLOCK =
+			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(MachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
+
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterTile>> PIXEL_SPLITTER =
 			TILES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));

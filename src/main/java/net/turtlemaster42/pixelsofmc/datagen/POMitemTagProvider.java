@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -49,6 +48,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
         tag(POMtags.Items.NUGGET_NETHERITE).add(POMitems.NETHERITE_NUGGET.get());
 
         tag(POMtags.Items.DUST_COAL).add(POMitems.COAL_DUST.get());
+        tag(POMtags.Items.DUST_TITANIUM).add(POMitems.TITANIUM_DUST.get());
     }
 
 }
