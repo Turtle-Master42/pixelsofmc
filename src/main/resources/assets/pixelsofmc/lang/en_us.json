@@ -170,6 +170,8 @@
   "block.pixelsofmc.ball_mill": "Ball Mill",
   "block.pixelsofmc.grinder": "Grinder",
 
+  "block.pixelsofmc.sds_controller": "SDS Fusion Generator Controller",
+
 //blocks
   "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
   "block.pixelsofmc.titanium_block": "Block of Titanium",
@@ -181,7 +183,8 @@
   "block.pixelsofmc.simple_casing_1": "Simple Casing I",
   "block.pixelsofmc.advanced_casing_1": "Advanced Casing I",
   "block.pixelsofmc.perfected_casing_1": "Perfected Casing I",
-  "block.pixelsofmc.heat_resistant_casing": "Heat Resistant Casing",
+  "block.pixelsofmc.strong_casing": "Strong Casing",
+  "block.pixelsofmc.reinforced_casing": "Reinforced Casing",
 
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",

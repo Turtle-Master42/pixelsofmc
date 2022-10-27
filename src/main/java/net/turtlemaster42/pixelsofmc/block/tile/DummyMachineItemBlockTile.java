@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,14 +13,16 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class MachineItemBlockTile extends BlockEntity {
+public class DummyMachineItemBlockTile extends BlockEntity {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
@@ -29,6 +32,28 @@ public class MachineItemBlockTile extends BlockEntity {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
         }
+        /*
+        @Override
+        @Nonnull
+        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+            PixelsOfMc.LOGGER.info("inserting");
+
+            BlockPos posTarget = BigMachineBlockUtil.getMainPos(level, worldPosition);
+            BlockEntity tile = level.getBlockEntity(posTarget);
+            if (tile != null) {
+                IItemHandler ItemHandlerFrom = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP).orElse(null);
+                if (ItemHandlerFrom != null) {
+                    PixelsOfMc.LOGGER.info(ItemHandlerFrom.isItemValid(slot, stack));
+                    PixelsOfMc.LOGGER.info("slot: {}, stack: {}", slot, stack);
+                    if (ItemHandlerFrom.isItemValid(slot, stack)) {
+                        return Item;
+                    }
+                }
+            }
+            return ItemStack.EMPTY;
+            }
+         */
     };
 
     private void copyHandlerContents(ItemStackHandler handler) {
@@ -37,13 +62,11 @@ public class MachineItemBlockTile extends BlockEntity {
         }
     }
 
-
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    public MachineItemBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.MACHINE_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
+    public DummyMachineItemBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.MACHINE_ITEM_BLOCK.get(), pWorldPosition, pBlockState);
     }
-
 
     @Nonnull
     @Override
@@ -84,12 +107,5 @@ public class MachineItemBlockTile extends BlockEntity {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-    private BlockPos getMainPos() {
-        int mainX = this.getTileData().getInt("mainX");
-        int mainY = this.getTileData().getInt("mainY");
-        int mainZ = this.getTileData().getInt("mainZ");
-        return new BlockPos(mainX, mainY, mainZ);
     }
 }

@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class MachineEnergyBlockTile extends BlockEntity {
+public class DummyMachineEnergyBlockTile extends BlockEntity {
         protected final ContainerData data;
 
         private final int capacity = 40960;
@@ -50,14 +50,14 @@ public class MachineEnergyBlockTile extends BlockEntity {
 
         private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
-        public MachineEnergyBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        public DummyMachineEnergyBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
             super(POMtiles.MACHINE_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
             this.data = new ContainerData() {
 
                 @Override
                 public int get(int index) {
                     switch (index) {
-                        case 0: return MachineEnergyBlockTile.this.energyStorage.getEnergyStored();
+                        case 0: return DummyMachineEnergyBlockTile.this.energyStorage.getEnergyStored();
                         default: return 0;
                     }
                 }
@@ -108,22 +108,5 @@ public class MachineEnergyBlockTile extends BlockEntity {
             super.load(nbt);
             energyStorage.setEnergy(nbt.getInt("Energy"));
         }
-
-        private BlockPos getMainPos() {
-            int mainX = this.getTileData().getInt("mainX");
-            int mainY = this.getTileData().getInt("mainY");
-            int mainZ = this.getTileData().getInt("mainZ");
-            return new BlockPos(mainX, mainY, mainZ);
-        }
-
-
-        //---ENERGY---//
-
-        public void setEnergyLevel(int energyLevel) {
-            this.energyStorage.setEnergy(energyLevel);
-        }
-
-        public IEnergyStorage getEnergyStorage() { return energyStorage; }
-
     }
 

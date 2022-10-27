@@ -19,7 +19,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.core.BlockPos;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.tile.MachineBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
@@ -59,7 +59,7 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	}
 
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new MachineBlockTile(pos, state);
+		return new DummyMachineBlockTile(pos, state);
 	}
 
 	@Deprecated

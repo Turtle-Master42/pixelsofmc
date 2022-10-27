@@ -22,7 +22,7 @@ import net.minecraft.core.BlockPos;
 
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.tile.MachineEnergyBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.DummyMachineEnergyBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 import javax.annotation.Nullable;
@@ -98,7 +98,7 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
         }
 
         public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-            return new MachineEnergyBlockTile(pos, state);
+            return new DummyMachineEnergyBlockTile(pos, state);
         }
 
         @Deprecated

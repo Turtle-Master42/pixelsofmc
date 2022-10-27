@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -252,7 +253,7 @@ public class GrinderTile extends AbstractMachineTile {
         Optional<GrinderRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent();
+        return match.isPresent() && canInsertIntoOutputSlot(entity, match.get());
     }
 
     private static boolean hasPower(GrinderTile entity) {
@@ -275,21 +276,22 @@ public class GrinderTile extends AbstractMachineTile {
             List<CountedIngredient> outputs = match.get().getOutputs();
             boolean[] matched = new boolean[4];
 
-            // Iterate over the slots -p-
-            for (int p = 1; p < 4; p++) {
-                // Iterate over the inputs -q-
-                for (int q = 0; q < outputs.size(); q++) {
-
+            // Iterate over the inputs -q-
+            for (int q = 0; q < outputs.size(); q++) {
+                ItemStack newStack;
+                newStack = match.get().getResultItems(q);
+                // Iterate over the slots -p-
+                for (int p = 1; p < 5; p++) {
                     if (matched[q])
                         continue;
-                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), match.get().getResultItems(q).getItem(), outputs.get(q).count(), p)) {
-                        entity.itemHandler.setStackInSlot(p, new ItemStack(match.get().getResultItems(q).getItem(),
-                                entity.itemHandler.getStackInSlot(p).getCount() + (match.get().getOutputsCount(q))));
-                        matched[q] = true;
+                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), newStack.getItem())) {
+                        newStack = entity.itemHandler.insertItem(p, newStack, false);
+                        if (newStack.isEmpty()) {
+                            matched[q] = true;
+                        }
                     }
                 }
             }
-
             entity.itemHandler.extractItem(0, 1, false);
 
             entity.resetProgress();
@@ -318,30 +320,45 @@ public class GrinderTile extends AbstractMachineTile {
     }
 
 
-    private static boolean canInsertItemIntoSlot(ItemStack stack, Item item, int count, int slot) {
-        if (item == stack.getItem() || stack.isEmpty()) {
-            return stack.getCount() + count <= stack.getMaxStackSize();
-        }
-        return false;
+    private static boolean canInsertItemIntoSlot(ItemStack stack, Item item) {
+        return item == stack.getItem() || stack.isEmpty();
     }
 
     private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {
         boolean[] matched = new boolean[4];
+        boolean[] matchNeeded = new boolean[4];
+        ItemStack[] newStackInSlot = new ItemStack[5];
+        ItemStack newStack;
 
-        // Iterate over the slots -p-
-        for (int p = 1; p < 4; p++) {
-            // Iterate over the inputs -q-
-            for (int q = 0; q < match.getOutputs().size(); q++) {
+        // Makes sure that newStackInSlot[] is not null
+        for (int i = 1; i < 5; i++)
+            newStackInSlot[i] = ItemStack.EMPTY;
 
+        // Iterate over the inputs -q-
+        for (int q = 0; q < match.getOutputs().size(); q++) {
+            matchNeeded[q] = true;
+            newStack = match.getResultItems(q);
+            // Iterate over the slots -p-
+            for (int p = 1; p < 5; p++) {
                 if (matched[q])
                     continue;
-                if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), match.getResultItems(q).getItem(), match.getOutputs().get(q).count(), p)) {
-                    matched[q] = true;
+                ItemStack[] stackInSlot = new ItemStack[5];
+                stackInSlot[p] = entity.itemHandler.getStackInSlot(p);
+                if (stackInSlot[p].isEmpty())
+                    stackInSlot[p] = newStackInSlot[p];
+                if (canInsertItemIntoSlot(stackInSlot[p], newStack.getItem())) {
+                    newStackInSlot[p] = newStack;
+                    newStack = entity.itemHandler.insertItem(p, newStack, true);
+                    if (newStack.isEmpty()) {
+                        matched[q] = true;
+                    }
                 }
             }
         }
-
-        return matched[0] && matched[1] && matched[2] && matched[3];
+        return matched[0] == matchNeeded[0]
+                && matched[1] == matchNeeded[1]
+                && matched[2] == matchNeeded[2]
+                && matched[3] == matchNeeded[3];
     }
 
     //cyclic

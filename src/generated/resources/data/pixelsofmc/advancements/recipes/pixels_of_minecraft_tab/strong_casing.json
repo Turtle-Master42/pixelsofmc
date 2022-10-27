@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "pixelsofmc:heat_resistant_casing"
+      "pixelsofmc:strong_casing"
     ]
   },
   "criteria": {
@@ -17,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "pixelsofmc:heat_resistant_casing"
+        "recipe": "pixelsofmc:strong_casing"
       }
     }
   },

@@ -15,12 +15,12 @@ public class POMtiles {
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, PixelsOfMc.MOD_ID);
 
 	public static final RegistryObject<BlockEntityType<?>> MACHINE_BLOCK = register("machine_block", POMblocks.MACHINE_BLOCK,
-			MachineBlockTile::new);
+			DummyMachineBlockTile::new);
 
-	public static final RegistryObject<BlockEntityType<MachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
-			TILES.register("machine_energy_block", () -> BlockEntityType.Builder.of(MachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
-	public static final RegistryObject<BlockEntityType<MachineItemBlockTile>> MACHINE_ITEM_BLOCK =
-			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(MachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
+			TILES.register("machine_energy_block", () -> BlockEntityType.Builder.of(DummyMachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> MACHINE_ITEM_BLOCK =
+			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
 
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterTile>> PIXEL_SPLITTER =
@@ -30,6 +30,10 @@ public class POMtiles {
 
 	public static final RegistryObject<BlockEntityType<GrinderTile>> GRINDER =
 			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
+			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get()).build(null));
+
 
 
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block,

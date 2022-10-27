@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.turtlemaster42.pixelsofmc.block.tile.MachineItemBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.DummyMachineItemBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
@@ -38,8 +38,8 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof MachineItemBlockTile) {
-                ((MachineItemBlockTile) blockEntity).drops();
+            if (blockEntity instanceof DummyMachineItemBlockTile) {
+                ((DummyMachineItemBlockTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -53,7 +53,7 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
     }
 
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new MachineItemBlockTile(pos, state);
+        return new DummyMachineItemBlockTile(pos, state);
     }
 
     @Deprecated

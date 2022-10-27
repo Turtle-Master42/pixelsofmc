@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:heat_resistant_casing"
+          "name": "pixelsofmc:reinforced_casing"
         }
       ],
       "conditions": [

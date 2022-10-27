@@ -34,9 +34,15 @@ public class POMblocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
 	//public static final RegistryObject<Block> MOLUCULAR_DEFORMER = REGISTRY.register("molucular_deformer", () -> new MolucularDeformerBlock());
 
-    public static final RegistryObject<Block> HEAT_RESISTANT_CASING = registerBlock("heat_resistant_casing",
+    public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+
+
     public static final RegistryObject<Block> DEEPSLATE_TITANIUM_ORE = registerBlock("deepslate_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE)
                     .strength(5.5f, 6f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
@@ -86,6 +92,11 @@ public class POMblocks {
     public static final RegistryObject<Block> GRINDER = registerBlock("grinder",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
+
+    public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
+            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
 
 
     public static final RegistryObject<Block> FUSION_CORE = registerBlock("fusion_core",

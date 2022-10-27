@@ -10,6 +10,8 @@ import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
+import net.turtlemaster42.pixelsofmc.world.WorldEvent;
+import net.turtlemaster42.pixelsofmc.world.feature.POMplaceFeatures;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 

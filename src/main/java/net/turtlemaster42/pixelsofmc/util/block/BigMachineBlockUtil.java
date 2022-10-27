@@ -38,6 +38,30 @@ public class BigMachineBlockUtil {
         }
     }
 
+    //use offset numbers based on the default (NORTH) direction
+    public static BlockPos rotateBlockPosOnDirection(Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockPos mainPos) {
+        int X = mainPos.getX();
+        int Y = mainPos.getY();
+        int Z = mainPos.getZ();
+        if (direction == Direction.NORTH) {
+            BlockPos newPos = new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
+            return newPos;
+        } else if (direction == Direction.EAST) {
+            BlockPos newPos = new BlockPos(X - Zoffset, Y + Yoffset, Z + Xoffset);
+            return newPos;
+        } else if (direction == Direction.SOUTH) {
+            BlockPos newPos = new BlockPos(X - Xoffset, Y + Yoffset, Z - Zoffset);
+            return newPos;
+        } else if (direction == Direction.WEST) {
+            BlockPos newPos = new BlockPos(X + Zoffset, Y + Yoffset, Z - Xoffset);
+            return newPos;
+        } else {
+            PixelsOfMc.LOGGER.error("fail while trying to chance position");
+            return null;
+        }
+    }
+
+
     public static void setMainPos(Level pLevel, BlockPos pPos, BlockPos mainPos) {
         BlockEntity pBlockentity = pLevel.getBlockEntity(pPos);
         if (pLevel.isClientSide) {return;}

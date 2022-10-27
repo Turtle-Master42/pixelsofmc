@@ -42,9 +42,9 @@ public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMen
             this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
             this.addSlot(new ModResultSlot(handler, 4, 129, 36));
             this.addSlot(new ModTagRestrictedSlot(handler, 3, 80, 36,  () -> POMtags.Items.CIRCLE_SAW));
-            this.addSlot(new SlotItemHandler(handler, 2, 31, 14));
+            this.addSlot(new SlotItemHandler(handler, 0, 31, 14));
             this.addSlot(new SlotItemHandler(handler, 1, 31, 36));
-            this.addSlot(new SlotItemHandler(handler, 0, 31, 58));
+            this.addSlot(new SlotItemHandler(handler, 2, 31, 58));
         });
 
         addDataSlots(data);

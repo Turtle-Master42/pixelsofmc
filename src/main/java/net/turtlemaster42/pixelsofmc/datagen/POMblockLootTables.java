@@ -20,7 +20,6 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
-        this.dropSelf(POMblocks.HEAT_RESISTANT_CASING.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());
@@ -28,6 +27,8 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());
         this.dropSelf(POMblocks.PERFECTED_CASING_1.get());
+        this.dropSelf(POMblocks.STRONG_CASING.get());
+        this.dropSelf(POMblocks.REINFORCED_CASING.get());
 
 
 

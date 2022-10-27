@@ -191,11 +191,12 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.TITANIUM_ORE.get());
         simpleBlock(POMblocks.RAW_TITANIUM_BLOCK.get());
         simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
-        simpleBlock(POMblocks.HEAT_RESISTANT_CASING.get());
 
         simpleBlock(POMblocks.SIMPLE_CASING_1.get());
         simpleBlock(POMblocks.ADVANCED_CASING_1.get());
         simpleBlock(POMblocks.PERFECTED_CASING_1.get());
+        simpleBlock(POMblocks.STRONG_CASING.get());
+        simpleBlock(POMblocks.REINFORCED_CASING.get());
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());

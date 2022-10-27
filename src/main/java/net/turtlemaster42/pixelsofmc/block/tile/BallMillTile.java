@@ -5,6 +5,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -39,6 +40,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import org.jetbrains.annotations.NotNull;
@@ -233,7 +235,10 @@ public class BallMillTile extends AbstractMachineTile {
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
+        getItemFromItemMachineBlock(pState.getValue(FACING), 4); //first tries to input into saw slot, then tries the input slots
         getItemFromItemMachineBlock(pState.getValue(FACING), 0);
+        getItemFromItemMachineBlock(pState.getValue(FACING), 1);
+        getItemFromItemMachineBlock(pState.getValue(FACING), 2);
 
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
@@ -344,20 +349,9 @@ public class BallMillTile extends AbstractMachineTile {
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(4).getItem() == output.getItem() || inventory.getItem(4).isEmpty();
     }
-
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
         return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
     }
-
-    public void activeParticles(LevelAccessor world) {
-        int x = this.getBlockPos().getX();
-        int y = this.getBlockPos().getY();
-        int z = this.getBlockPos().getZ();
-        if (world instanceof ServerLevel level)
-            level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
-    }
-
-
 
     //cyclic
     public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
@@ -380,6 +374,7 @@ public class BallMillTile extends AbstractMachineTile {
         }
     }
 
+    //todo, needs to be changed so it cant have things in the DummyMachineItemBlock if there cant be inputted into the machine itself
     public void getItemFromItemMachineBlock(Direction extractSide, int slot) {
         if (extractSide == null) {
             return;
@@ -390,7 +385,7 @@ public class BallMillTile extends AbstractMachineTile {
             IItemHandler ItemHandlerFrom = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, extractSide.getOpposite()).orElse(null);
             if (ItemHandlerFrom != null) {
                 //ok go
-                ItemStack extractSim = ItemHandlerFrom.extractItem(slot, ItemHandlerFrom.getStackInSlot(0).getCount(), true);
+                ItemStack extractSim = ItemHandlerFrom.extractItem(0, ItemHandlerFrom.getStackInSlot(0).getCount(), true);
                 if (!extractSim.isEmpty() && itemHandler.insertItem(slot, extractSim, true).getCount() != extractSim.getCount()) {
                     //actually extract item for real, whatever it accepted
                     ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(slot, extractSim, false).getCount(), false);
@@ -398,7 +393,6 @@ public class BallMillTile extends AbstractMachineTile {
             }
         }
     }
-
 
 
     //---ENERGY---//

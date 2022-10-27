@@ -8,13 +8,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class MachineBlockTile extends BlockEntity {
+public class DummyMachineBlockTile extends BlockEntity {
 	protected final ContainerData data;
 
 
 	public BlockPos mainPos = null;
 
-	public MachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
+	public DummyMachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(POMtiles.MACHINE_BLOCK.get(), pWorldPosition, pBlockState);
 		this.data = new ContainerData() {
 
