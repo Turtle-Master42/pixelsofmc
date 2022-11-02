@@ -1,7 +1,10 @@
 {
-  "type": "pixelsofmc:ball_milling",
+  "type": "pixelsofmc:grinding",
   "dubble_chance": 0,
-  "inputs": [
+  "input": {
+    "item": "minecraft:blackstone"
+  },
+  "outputs": [
     {
       "count": 2,
       "ingredient": {
@@ -11,12 +14,8 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:titanium_dust"
+        "item": "pixelsofmc:iron_dust"
       }
     }
-  ],
-  "output": {
-    "count": 2,
-    "item": "pixelsofmc:titanium_diboride_dust"
-  }
+  ]
 }

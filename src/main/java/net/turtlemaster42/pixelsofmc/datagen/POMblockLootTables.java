@@ -23,6 +23,7 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());
+        this.dropSelf(POMblocks.SDS_CONTROLLER.get());
 
         this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());

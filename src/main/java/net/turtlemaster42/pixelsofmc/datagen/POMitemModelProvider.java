@@ -80,12 +80,23 @@ public class POMitemModelProvider extends ItemModelProvider {
         handheldItem(POMitems.WIRECUTTER.get());
         handheldItem(POMitems.HAMMER.get());
 
-        simpleItem(POMitems.IRON_DUST.get());
-        simpleItem(POMitems.STEEL_DUST.get());
-        simpleItem(POMitems.COAL_DUST.get());
-        simpleItem(POMitems.TITANIUM_DUST.get());
-        simpleItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
-        simpleItem(POMitems.URANIUM_DUST.get());
+        dustItem(POMitems.IRON_DUST.get());
+        dustItem(POMitems.STEEL_DUST.get());
+        dustItem(POMitems.COAL_DUST.get());
+        dustItem(POMitems.TITANIUM_DUST.get());
+        dustItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
+        dustItem(POMitems.URANIUM_DUST.get());
+
+        dustItem(POMitems.ALUMINIUM_DUST.get());
+        dustItem(POMitems.BORON_DUST.get());
+        dustItem(POMitems.CALCIUM_DUST.get());
+        dustItem(POMitems.GOLD_DUST.get());
+        dustItem(POMitems.MERCURY_SULFIDE_DUST.get());
+        dustItem(POMitems.POTASSIUM_DUST.get());
+        dustItem(POMitems.SILICON_DUST.get());
+        dustItem(POMitems.SODIUM_DUST.get());
+        dustItem(POMitems.SULFUR_DUST.get());
+
 
         simpleItem(POMitems.SULFUR.get());
 
@@ -201,6 +212,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());
 
+        simpleBlock(POMblocks.SDS_CONTROLLER.get());
+
 
     }
 
@@ -214,6 +227,12 @@ public class POMitemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getRegistryName().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"items/elements/" + item.getRegistryName().getPath()));
+    }
+
+    private ItemModelBuilder dustItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(PixelsOfMc.MOD_ID,"items/dusts/" + item.getRegistryName().getPath()));
     }
 
     private ItemModelBuilder handheldItem(Item item) {

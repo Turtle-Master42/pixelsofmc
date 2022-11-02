@@ -1,0 +1,27 @@
+{
+  "type": "pixelsofmc:grinding",
+  "dubble_chance": 0,
+  "input": {
+    "item": "minecraft:netherrack"
+  },
+  "outputs": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:mercury_sulfide_dust"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:gold_dust"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:silicon_dust"
+      }
+    }
+  ]
+}

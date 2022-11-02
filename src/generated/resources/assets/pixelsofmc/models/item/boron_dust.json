@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:items/dusts/steel_dust"
+    "layer0": "pixelsofmc:items/dusts/boron_dust"
   }
 }

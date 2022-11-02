@@ -67,6 +67,17 @@
   "item.pixelsofmc.titanium_dust": "Titanium Dust",
   "item.pixelsofmc.titanium_diboride_dust": "Pure Netherite Dust",
 
+  "item.pixelsofmc.aluminium_dust": "Aluminium Dust",
+  "item.pixelsofmc.boron_dust": "Boron Dust",
+  "item.pixelsofmc.calcium_dust": "Calcium Dust",
+  "item.pixelsofmc.gold_dust": "Gold Dust",
+  "item.pixelsofmc.mercury_sulfide_dust": "Mercury Sulfide Dust",
+  "item.pixelsofmc.potassium_dust": "Potassium Dust",
+  "item.pixelsofmc.silicon_dust": "Silicon Dust",
+  "item.pixelsofmc.sodium_dust": "Sodium Dust",
+  "item.pixelsofmc.sulfur_dust": "Sulfur Dust",
+
+
   //elements
   "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",

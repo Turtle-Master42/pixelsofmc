@@ -12,6 +12,7 @@ import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -22,6 +23,9 @@ public class POMmenuType {
             registerMenuType(BallMillGuiMenu::new, "ball_mill_menu");
     public static final RegistryObject<MenuType<GrinderGuiMenu>> GRINDER_MENU =
             registerMenuType(GrinderGuiMenu::new, "grinder_menu");
+
+    public static final RegistryObject<MenuType<SDSFusionControllerGuiMenu>> SDS_CONTROLLER_MENU =
+            registerMenuType(SDSFusionControllerGuiMenu::new, "sds_controller_menu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                  String name) {

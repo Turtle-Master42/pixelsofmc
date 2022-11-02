@@ -33,6 +33,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(POMblocks.STRONG_CASING.get());
         simpleBlock(POMblocks.REINFORCED_CASING.get());
 
+        simpleBlock(POMblocks.SDS_CONTROLLER.get());
+
     }
 
     public ModelFile flowerPotCross(String name) {

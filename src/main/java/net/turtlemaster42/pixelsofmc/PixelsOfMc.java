@@ -7,6 +7,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.turtlemaster42.pixelsofmc.gui.screen.BallMillGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.GrinderGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
+import net.turtlemaster42.pixelsofmc.gui.screen.SDSFusionControllerGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
@@ -73,6 +74,7 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
+		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
