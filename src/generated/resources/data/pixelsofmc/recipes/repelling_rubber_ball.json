@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:repelling_compound"
+    },
+    "B": {
+      "item": "pixelsofmc:repelling_compound"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:repelling_rubber_ball"
+  }
+}

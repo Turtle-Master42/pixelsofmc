@@ -15,6 +15,13 @@ public class POMtags {
         private static void init() {}
 
         public static final TagKey<Item> CIRCLE_SAW = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "circle_saw"));
+        public static final TagKey<Item> MILLING_BALL = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "milling_ball"));
+        public static final TagKey<Item> BALL_1 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_1"));
+        public static final TagKey<Item> BALL_2 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_2"));
+        public static final TagKey<Item> BALL_3 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_3"));
+        public static final TagKey<Item> BALL_4 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_4"));
+        public static final TagKey<Item> BALL_5 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_5"));
+        public static final TagKey<Item> BALL_6 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_6"));
 
         public static final TagKey<Item> INGOT_TITANIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "ingots/titanium"));
 

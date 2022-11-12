@@ -21,6 +21,35 @@ public class POMitemTagProvider extends ItemTagsProvider {
     protected void addTags() {
 
         tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
+        tag(POMtags.Items.MILLING_BALL)
+                .add(POMitems.RUBBER_BALL.get())
+                .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
+                .add(POMitems.REPELLING_RUBBER_BALL.get())
+                .add(POMitems.NETHERITE_BALL.get())
+                .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
+
+        tag(POMtags.Items.BALL_1)
+                .add(POMitems.RUBBER_BALL.get())
+                .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
+                .add(POMitems.REPELLING_RUBBER_BALL.get());
+        tag(POMtags.Items.BALL_2)
+                .add(POMitems.RUBBER_BALL.get())
+                .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
+                .add(POMitems.REPELLING_RUBBER_BALL.get())
+                .add(POMitems.NETHERITE_BALL.get())
+                .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
+        tag(POMtags.Items.BALL_3)
+                .add(POMitems.NETHERITE_BALL.get())
+                .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
+        tag(POMtags.Items.BALL_4)
+                .add(POMitems.NETHERITE_BALL.get())
+                .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
+        tag(POMtags.Items.BALL_5)
+                .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
+
 
         tag(Tags.Items.DUSTS)
                 .addTag(POMtags.Items.DUST_COAL)

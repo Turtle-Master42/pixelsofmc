@@ -32,14 +32,13 @@ import java.util.function.Supplier;
 
 public class POMblocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
-	//public static final RegistryObject<Block> MOLUCULAR_DEFORMER = REGISTRY.register("molucular_deformer", () -> new MolucularDeformerBlock());
 
     public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
     public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
 
 
 
@@ -61,7 +60,7 @@ public class POMblocks {
 
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_BLOCK = registerBlock("titanium_diboride_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
 
 	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
@@ -171,6 +170,22 @@ public class POMblocks {
                                                                             CreativeModeTab tab) {
         return POMitems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties().tab(tab)));
+    }
+
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, boolean fireProof) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItem(name, toReturn, tab, fireProof);
+        return toReturn;
+    }
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
+                                                                            CreativeModeTab tab, Boolean fireProof) {
+        if (fireProof) {
+            return POMitems.ITEMS.register(name, () -> new BlockItem(block.get(),
+                    new Item.Properties().tab(tab).fireResistant()));
+        } else {
+            return POMitems.ITEMS.register(name, () -> new BlockItem(block.get(),
+                    new Item.Properties().tab(tab)));
+        }
     }
 
     public static void register(IEventBus eventBus) {

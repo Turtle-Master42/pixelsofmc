@@ -124,7 +124,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer);
 
         ShapelessRecipeBuilder.shapeless(POMitems.MOVING_PARTS.get())
-                .requires(POMitems.TITANIUM_PLATING.get())
+                .requires(POMitems.BIO_PLASTIC.get())
+                .requires(POMitems.BIO_PLASTIC.get())
                 .requires(POMitems.TITANIUM_GEAR.get())
                 .requires(POMitems.TITANIUM_GEAR.get())
                 .requires(POMitems.COPPER_WIRE.get())
@@ -262,6 +263,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFullCrossRecipe(POMitems.TITANIUM_NUGGET.get(), POMitems.TITANIUM_INGOT.get(), POMitems.TITANIUM_PLATING.get(), POMitems.TITANIUM_CIRCLE_SAW.get(), pFinishedRecipeConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get(), pFinishedRecipeConsumer);
 
+        SimpleCrossRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_COMPOUND.get(), POMitems.RUBBER_BALL.get(), pFinishedRecipeConsumer);
+        SimpleCrossRecipe(POMitems.FIRE_PROOF_COMPOUND.get(), POMitems.FIRE_PROOF_COMPOUND.get(), POMitems.FIRE_PROOF_RUBBER_BALL.get(), pFinishedRecipeConsumer);
+        SimpleCrossRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_RUBBER_BALL.get(), pFinishedRecipeConsumer);
+        SimpleCrossRecipe(POMitems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT, POMitems.NETHERITE_BALL.get(), pFinishedRecipeConsumer);
+        SimpleCrossRecipe(POMitems.TITANIUM_NUGGET.get(), POMitems.TITANIUM_INGOT.get(), POMitems.TITANIUM_BALL.get(), pFinishedRecipeConsumer);
+        SimpleCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), pFinishedRecipeConsumer);
 
         //compacting
 
@@ -367,6 +374,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void SimpleCrossRecipe(ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer)
+    {
+        ShapedRecipeBuilder.shaped(output)
+                .define('A', sides)
+                .define('B', middle)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

@@ -36,11 +36,11 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new ModResultSlot(handler, 4, 129, 36));
-            this.addSlot(new SlotItemHandler(handler, 0, 34, 31));
-            this.addSlot(new SlotItemHandler(handler, 1, 52, 31));
-            this.addSlot(new SlotItemHandler(handler, 2, 34, 49));
-            this.addSlot(new SlotItemHandler(handler, 3, 52, 49));
+            this.addSlot(new ModResultSlot(handler, 4, 125, 40));
+            this.addSlot(new SlotItemHandler(handler, 0, 35, 32));
+            this.addSlot(new SlotItemHandler(handler, 1, 53, 32));
+            this.addSlot(new SlotItemHandler(handler, 2, 35, 50));
+            this.addSlot(new SlotItemHandler(handler, 3, 53, 50));
         });
 
         addDataSlots(data);
@@ -86,7 +86,7 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 7;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {

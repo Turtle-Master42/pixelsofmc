@@ -101,7 +101,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile {
 
 
     public SDSFusionControllerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.BALL_MILL.get(), pWorldPosition, pBlockState);
+        super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {

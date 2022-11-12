@@ -235,7 +235,7 @@ public class BallMillTile extends AbstractMachineTile {
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
-        getItemFromItemMachineBlock(pState.getValue(FACING), 4); //first tries to input into saw slot, then tries the input slots
+        getItemFromItemMachineBlock(pState.getValue(FACING), 4); //first tries to input into ball slot, then tries the input slots
         getItemFromItemMachineBlock(pState.getValue(FACING), 0);
         getItemFromItemMachineBlock(pState.getValue(FACING), 1);
         getItemFromItemMachineBlock(pState.getValue(FACING), 2);
@@ -275,7 +275,7 @@ public class BallMillTile extends AbstractMachineTile {
     }
 
     private static boolean hasToolsInToolSlot(BallMillTile entity) {
-        return entity.itemHandler.getStackInSlot(3).is(POMtags.Items.CIRCLE_SAW);
+        return entity.itemHandler.getStackInSlot(3).is(POMtags.Items.MILLING_BALL);
     }
 
     private static boolean hasPower(BallMillTile entity) {

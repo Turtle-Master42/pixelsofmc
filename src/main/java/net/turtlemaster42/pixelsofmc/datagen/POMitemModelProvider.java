@@ -80,6 +80,13 @@ public class POMitemModelProvider extends ItemModelProvider {
         handheldItem(POMitems.WIRECUTTER.get());
         handheldItem(POMitems.HAMMER.get());
 
+        simpleItem(POMitems.RUBBER_BALL.get());
+        simpleItem(POMitems.FIRE_PROOF_RUBBER_BALL.get());
+        simpleItem(POMitems.REPELLING_RUBBER_BALL.get());
+        simpleItem(POMitems.NETHERITE_BALL.get());
+        simpleItem(POMitems.TITANIUM_BALL.get());
+        simpleItem(POMitems.TITANIUM_DIBORIDE_BALL.get());
+
         dustItem(POMitems.IRON_DUST.get());
         dustItem(POMitems.STEEL_DUST.get());
         dustItem(POMitems.COAL_DUST.get());
@@ -88,14 +95,18 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.URANIUM_DUST.get());
 
         dustItem(POMitems.ALUMINIUM_DUST.get());
+        dustItem(POMitems.ANCIENT_DEBRIS_DUST.get());
         dustItem(POMitems.BORON_DUST.get());
         dustItem(POMitems.CALCIUM_DUST.get());
         dustItem(POMitems.GOLD_DUST.get());
         dustItem(POMitems.MERCURY_SULFIDE_DUST.get());
+        dustItem(POMitems.MINERAL_GRIT.get());
+        dustItem(POMitems.NETHERITE_DUST.get());
         dustItem(POMitems.POTASSIUM_DUST.get());
         dustItem(POMitems.SILICON_DUST.get());
         dustItem(POMitems.SODIUM_DUST.get());
         dustItem(POMitems.SULFUR_DUST.get());
+        dustItem(POMitems.TITANIUM_OXIDE_DUST.get());
 
 
         simpleItem(POMitems.SULFUR.get());

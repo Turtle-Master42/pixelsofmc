@@ -12,7 +12,7 @@
 
   "item.pixelsofmc.copper_wire": "Copper Wire",
   "item.pixelsofmc.silver_wire": "Silver Wire",
-  "item.pixelsofmc.redstone_layered_wire": "Redstone Layered Wire",
+  "item.pixelsofmc.redstone_layered_copper_wire": "Redstone Layered Copper Wire",
   "item.pixelsofmc.power_orb": "Power Orb",
   "item.pixelsofmc.micro_chip": "Micro Chip",
   "item.pixelsofmc.redstone_counter": "Redstone Counter",
@@ -61,6 +61,13 @@
   "item.pixelsofmc.hammer": "Hammer",
   "item.pixelsofmc.wirecutter": "Wirecutter",
 
+  "item.pixelsofmc.rubber_ball": "Rubber Ball",
+  "item.pixelsofmc.fire_proof_rubber_ball": "Fire Proof Rubber Ball",
+  "item.pixelsofmc.repelling_rubber_ball": "Repelling Rubber Ball",
+  "item.pixelsofmc.netherite_ball": "Netherite Ball",
+  "item.pixelsofmc.titanium_ball": "Titanium Ball",
+  "item.pixelsofmc.titanium_diboride_ball": "Pure Netherite Ball",
+
   "item.pixelsofmc.iron_dust": "Iron Dust",
   "item.pixelsofmc.steel_dust": "Steel Dust",
   "item.pixelsofmc.coal_dust": "Coal Dust",
@@ -68,14 +75,18 @@
   "item.pixelsofmc.titanium_diboride_dust": "Pure Netherite Dust",
 
   "item.pixelsofmc.aluminium_dust": "Aluminium Dust",
+  "item.pixelsofmc.ancient_debris_dust": "Ancient Debris Dust",
   "item.pixelsofmc.boron_dust": "Boron Dust",
   "item.pixelsofmc.calcium_dust": "Calcium Dust",
   "item.pixelsofmc.gold_dust": "Gold Dust",
   "item.pixelsofmc.mercury_sulfide_dust": "Mercury Sulfide Dust",
+  "item.pixelsofmc.mineral_grit": "Mineral Grit",
+  "item.pixelsofmc.netherite_dust": "Netherite Dust",
   "item.pixelsofmc.potassium_dust": "Potassium Dust",
   "item.pixelsofmc.silicon_dust": "Silicon Dust",
   "item.pixelsofmc.sodium_dust": "Sodium Dust",
   "item.pixelsofmc.sulfur_dust": "Sulfur Dust",
+  "item.pixelsofmc.titanium_oxide_dust": "Titanium Oxide Dust",
 
 
   //elements

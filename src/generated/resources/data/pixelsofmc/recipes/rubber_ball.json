@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_compound"
+    },
+    "B": {
+      "item": "pixelsofmc:bio_compound"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:rubber_ball"
+  }
+}
