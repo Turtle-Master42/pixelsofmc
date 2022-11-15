@@ -37,6 +37,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get());
         tag(POMtags.Items.BALL_2)
+                .addTag(Tags.Items.STONE)
+                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.RUBBER_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get())
@@ -44,6 +46,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.TITANIUM_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_3)
+                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
