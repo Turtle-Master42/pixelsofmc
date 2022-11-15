@@ -33,7 +33,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -283,13 +283,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile {
 
             entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //saw
 
-            if (match.get().getDubbleChance() >= Math.random()) {
-                entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount() * 2)));
-            } else {
                 entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
                         entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
-            }
+
 
             entity.resetProgress();
             entity.errorEnergyReset();

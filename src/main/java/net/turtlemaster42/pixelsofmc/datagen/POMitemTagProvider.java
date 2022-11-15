@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeItemTagsProvider;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -22,6 +23,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         tag(POMtags.Items.MILLING_BALL)
+                .addTag(Tags.Items.STONE)
+                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.RUBBER_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get())

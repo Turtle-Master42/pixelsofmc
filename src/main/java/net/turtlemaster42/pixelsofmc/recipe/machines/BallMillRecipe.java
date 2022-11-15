@@ -2,10 +2,12 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -20,15 +22,14 @@ import java.util.List;
 public class BallMillRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final ItemStack output;
+    private final NonNullList<Ingredient> ball;
     private final List<CountedIngredient> recipeItems;
-    private final float chance;
-
-    public BallMillRecipe(ResourceLocation id, ItemStack output,
-                          List<CountedIngredient> recipeItems, float chance) {
+    public BallMillRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> ball,
+                          List<CountedIngredient> recipeItems) {
         this.id = id;
         this.output = output;
+        this.ball = ball;
         this.recipeItems = recipeItems;
-        this.chance = chance;
     }
 
 //enderio
@@ -62,6 +63,9 @@ public class BallMillRecipe extends BaseRecipe {
                 return false;
         }
 
+        if (!ball.get(0).test(container.getItem(3)) || ball.size() > 1)
+            return false;
+
         return true;
     }
 
@@ -70,8 +74,8 @@ public class BallMillRecipe extends BaseRecipe {
         return output.getCount();
     }
 
-    public float getDubbleChance() {
-        return chance;
+    public NonNullList<Ingredient> getBall() {
+        return ball;
     }
 
     @Override
@@ -117,8 +121,6 @@ public class BallMillRecipe extends BaseRecipe {
         public BallMillRecipe fromJson(ResourceLocation id, JsonObject json) {
             //output
             ItemStack output = CraftingHelper.getItemStack(json.getAsJsonObject("output"), false);
-            //chance
-            float chance = GsonHelper.getAsFloat(json, "dubble_chance");
 
             //inputs
             JsonArray jsonInputs = json.getAsJsonArray("inputs");
@@ -126,17 +128,30 @@ public class BallMillRecipe extends BaseRecipe {
             for (int i = 0; i < jsonInputs.size(); i++) {
                 inputs.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
             }
-            return new BallMillRecipe(id, output, inputs, chance);
+
+            JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ball");
+            NonNullList<Ingredient> ball = NonNullList.withSize(1, Ingredient.EMPTY);
+
+            for (int j = 0; j < ball.size(); j++) {
+                ball.set(j, Ingredient.fromJson(ingredients.get(j)));
+            }
+
+
+            return new BallMillRecipe(id, output, ball, inputs);
         }
 
         public BallMillRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
                 List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
 
-                float chance = buf.readFloat();
+                NonNullList<Ingredient> ball = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
+                for (int i = 0; i < inputs.size(); i++) {
+                    ball.set(i, Ingredient.fromNetwork(buf));
+                }
+
                 ItemStack output = buf.readItem();
 
-                return new BallMillRecipe(id, output, inputs, chance);
+                return new BallMillRecipe(id, output, ball, inputs);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
                 throw ex;
@@ -146,11 +161,13 @@ public class BallMillRecipe extends BaseRecipe {
         public void toNetwork(FriendlyByteBuf buf, BallMillRecipe recipe) {
             try {
                 buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
+                buf.writeInt(recipe.getIngredients().size());
+                for (Ingredient ing : recipe.getIngredients()) {
+                    ing.toNetwork(buf);
+                }
                 buf.writeItem(recipe.output);
 
-
                 buf.writeInt(recipe.getOutputCount());
-                buf.writeFloat(recipe.getDubbleChance());
 
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);

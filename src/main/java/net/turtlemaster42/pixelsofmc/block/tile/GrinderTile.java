@@ -59,10 +59,10 @@ public class GrinderTile extends AbstractMachineTile {
     private final ItemStackHandler itemHandler = new ItemStackHandler(7) {
         @Override
         protected void onContentsChanged(int slot) {
-            setChanged();
             if(!level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
+            setChanged();
         }
     };
 
@@ -89,12 +89,13 @@ public class GrinderTile extends AbstractMachineTile {
         return new PixelEnergyStorage(capacity, maxReceive) {
             @Override
             public void onEnergyChanged() {
-                setChanged();
                 POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
+                setChanged();
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
                 onEnergyChanged();
+                setChanged();
                 return super.receiveEnergy(maxReceive, simulate);
             }
         };
@@ -292,6 +293,8 @@ public class GrinderTile extends AbstractMachineTile {
                 }
             }
             entity.itemHandler.extractItem(0, 1, false);
+
+            setChanged(entity.level, entity.worldPosition, entity.getBlockState());
 
             entity.resetProgress();
             entity.errorEnergyReset();

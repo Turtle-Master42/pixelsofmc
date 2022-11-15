@@ -1,6 +1,5 @@
 {
   "type": "pixelsofmc:ball_milling",
-  "dubble_chance": 0.5,
   "inputs": [
     {
       "count": 1,
@@ -12,5 +11,8 @@
   "output": {
     "count": 1,
     "item": "pixelsofmc:coal_dust"
-  }
+  },
+  "ball": [{
+    "tag": "pixelsofmc:ball_2"
+  }]
 }

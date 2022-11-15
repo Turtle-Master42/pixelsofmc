@@ -5,7 +5,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
-import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -63,10 +62,10 @@ public class BallMillTile extends AbstractMachineTile {
     private final ItemStackHandler itemHandler = new ItemStackHandler(7) {
         @Override
         protected void onContentsChanged(int slot) {
-            setChanged();
             if(!level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
+            setChanged();
         }
     };
 
@@ -93,12 +92,13 @@ public class BallMillTile extends AbstractMachineTile {
         return new PixelEnergyStorage(capacity, maxReceive) {
             @Override
             public void onEnergyChanged() {
-                setChanged();
                 POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
+                setChanged();
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
                 onEnergyChanged();
+                setChanged();
                 return super.receiveEnergy(maxReceive, simulate);
             }
         };
@@ -265,12 +265,7 @@ public class BallMillTile extends AbstractMachineTile {
 
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                && hasToolsInToolSlot(entity);
-    }
-
-    private static boolean hasToolsInToolSlot(BallMillTile entity) {
-        return entity.itemHandler.getStackInSlot(3).is(POMtags.Items.MILLING_BALL);
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
     }
 
     private static boolean hasPower(BallMillTile entity) {
@@ -306,16 +301,17 @@ public class BallMillTile extends AbstractMachineTile {
                 }
             }
 
-            entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //saw
-
-            if (match.get().getDubbleChance() >= Math.random()) {
-                entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount() * 2)));
+            if (entity.itemHandler.getStackInSlot(3).isDamageableItem()) {
+                entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //ball
             } else {
-                entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
+                entity.itemHandler.getStackInSlot(3).shrink(1);
             }
 
+            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
+
+
+            setChanged(entity.level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
             entity.errorEnergyReset();
         }
