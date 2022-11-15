@@ -1,0 +1,28 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "dubble_chance": 0,
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:mercury_sulfide_dust"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_diboride_dust"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_oxide_dust"
+      }
+    }
+  ],
+  "output": {
+    "count": 3,
+    "item": "pixelsofmc:ancient_debris_dust"
+  }
+}

@@ -2,10 +2,7 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 
 
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -15,7 +12,7 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -40,7 +37,6 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import org.jetbrains.annotations.NotNull;
@@ -51,7 +47,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import static net.minecraft.core.particles.ParticleTypes.*;
 import static net.turtlemaster42.pixelsofmc.block.BallMillBlock.FACING;
 
 

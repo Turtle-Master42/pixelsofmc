@@ -11,7 +11,7 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

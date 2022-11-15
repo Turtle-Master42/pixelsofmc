@@ -77,18 +77,18 @@ public class POMitems {
 	public static final RegistryObject<Item> ENERGY_UPGRADE = ITEMS.register("energy_upgrade", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).stacksTo(8)));
 
 	//tools
-	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new CraftDepleatable(new Item.Properties().durability(144).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new CraftDepleatable(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new CraftDepleatable(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new CraftDepleatable(new Item.Properties().durability(512).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new Item(new Item.Properties().durability(144).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new Item(new Item.Properties().durability(256).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new Item(new Item.Properties().durability(512).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 
 	//milling balls
-	public static final RegistryObject<Item> RUBBER_BALL = ITEMS.register("rubber_ball", () -> new CraftDepleatable(new Item.Properties().durability(100).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> FIRE_PROOF_RUBBER_BALL = ITEMS.register("fire_proof_rubber_ball", () -> new CraftDepleatable(new Item.Properties().durability(120).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
-	public static final RegistryObject<Item> REPELLING_RUBBER_BALL = ITEMS.register("repelling_rubber_ball", () -> new CraftDepleatable(new Item.Properties().durability(80).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> NETHERITE_BALL = ITEMS.register("netherite_ball", () -> new CraftDepleatable(new Item.Properties().durability(300).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
-	public static final RegistryObject<Item> TITANIUM_BALL = ITEMS.register("titanium_ball", () -> new CraftDepleatable(new Item.Properties().durability(250).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
-	public static final RegistryObject<Item> TITANIUM_DIBORIDE_BALL = ITEMS.register("titanium_diboride_ball", () -> new CraftDepleatable(new Item.Properties().durability(500).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> RUBBER_BALL = ITEMS.register("rubber_ball", () -> new Item(new Item.Properties().durability(100).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> FIRE_PROOF_RUBBER_BALL = ITEMS.register("fire_proof_rubber_ball", () -> new Item(new Item.Properties().durability(120).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> REPELLING_RUBBER_BALL = ITEMS.register("repelling_rubber_ball", () -> new Item(new Item.Properties().durability(80).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> NETHERITE_BALL = ITEMS.register("netherite_ball", () -> new Item(new Item.Properties().durability(300).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+	public static final RegistryObject<Item> TITANIUM_BALL = ITEMS.register("titanium_ball", () -> new Item(new Item.Properties().durability(250).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_BALL = ITEMS.register("titanium_diboride_ball", () -> new Item(new Item.Properties().durability(500).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 
 
 

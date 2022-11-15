@@ -8,9 +8,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.GrinderRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.DamageToolRecipeSerializer;
+import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 
 public class POMrecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = 
@@ -24,6 +25,10 @@ public class POMrecipes {
 
 	public static final RegistryObject<RecipeSerializer<GrinderRecipe>> GRINDING_SERIALIZER =
 			SERIALIZERS.register("grinding", () -> GrinderRecipe.Serializer.INSTANCE);
+
+
+	public static final RegistryObject<DamageToolRecipeSerializer> DAMAGE_TOOL_SERIALIZER =
+			SERIALIZERS.register("damage_tool", DamageToolRecipeSerializer::new);
 	
 	public static void register(IEventBus bus) {
 		SERIALIZERS.register(bus);

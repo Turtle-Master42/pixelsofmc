@@ -10,6 +10,7 @@ import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
 import net.turtlemaster42.pixelsofmc.gui.screen.SDSFusionControllerGuiScreen;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import net.turtlemaster42.pixelsofmc.world.WorldEvent;
 import net.turtlemaster42.pixelsofmc.world.feature.POMplaceFeatures;
@@ -70,6 +71,7 @@ public class PixelsOfMc {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
 
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
@@ -78,8 +80,8 @@ public class PixelsOfMc {
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(),
-				PixelSplitterTileRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.SDS_CONTROLLER.get(), FusionCoreRenderer::new);
 	}
 
 	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

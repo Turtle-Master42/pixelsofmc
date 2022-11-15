@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

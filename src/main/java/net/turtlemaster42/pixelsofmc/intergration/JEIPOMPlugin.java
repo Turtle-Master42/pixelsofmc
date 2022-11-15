@@ -9,7 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

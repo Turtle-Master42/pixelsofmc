@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "dubble_chance": 0,
+  "inputs": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:gold_dust"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:ancient_debris_dust"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "pixelsofmc:netherite_dust"
+  }
+}

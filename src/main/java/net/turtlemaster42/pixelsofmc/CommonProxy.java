@@ -6,9 +6,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 
 import static net.turtlemaster42.pixelsofmc.PixelsOfMc.MOD_ID;
 

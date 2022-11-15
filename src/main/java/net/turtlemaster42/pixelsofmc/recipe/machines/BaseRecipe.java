@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.crafting.Recipe;
