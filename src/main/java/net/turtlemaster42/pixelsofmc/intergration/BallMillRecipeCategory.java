@@ -74,7 +74,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
             builder.addSlot(RecipeIngredientRole.INPUT, 31, 58).addIngredients(recipe.getInputs().get(2).ingredient());
         }
         //grinding ball input
-        builder.addSlot(RecipeIngredientRole.INPUT, 80, 36).addIngredients(Ingredient.of(POMitems.TITANIUM_CIRCLE_SAW.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 80, 36).addIngredients(recipe.getBall().get(0));
 
         //output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 129, 36).addItemStack(recipe.getResultItem());

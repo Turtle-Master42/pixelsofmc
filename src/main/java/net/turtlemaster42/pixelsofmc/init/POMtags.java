@@ -12,6 +12,9 @@ public class POMtags {
     public static void register() {Items.init();}
 
     public static class Items {
+
+        String METAL = "steel";
+
         private static void init() {}
 
         public static final TagKey<Item> CIRCLE_SAW = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "circle_saw"));
@@ -31,8 +34,25 @@ public class POMtags {
         public static final TagKey<Item> NUGGET_STEEL = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/steel"));
         public static final TagKey<Item> NUGGET_TITANIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/titanium"));
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/netherite"));
+        public static final TagKey<Item> NUGGET_TITANIUM_DIBORIDE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/titanium_diboride"));
+
+
 
         public static final TagKey<Item> DUST_TITANIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/titanium"));
         public static final TagKey<Item> DUST_COAL = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_ALUMINIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_BORON = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_CALCIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_GOLD = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_IRON = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_MERCURY_SULFIDE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_POTASSIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_SILICON = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_SODIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_SULFUR = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_TITANIUM_DIBORIDE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_TITANIUM_OXIDE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
     }
 }

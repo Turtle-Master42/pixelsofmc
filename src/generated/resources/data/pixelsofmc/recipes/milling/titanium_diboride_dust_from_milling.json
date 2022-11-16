@@ -2,23 +2,25 @@
   "type": "pixelsofmc:ball_milling",
   "inputs": [
     {
-      "count": 2,
       "ingredient": {
         "item": "pixelsofmc:boron_dust"
-      }
+      },
+      "count": 2
     },
     {
-      "count": 1,
       "ingredient": {
         "item": "pixelsofmc:titanium_dust"
-      }
+      },
+      "count": 1
+    }
+  ],
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_4"
     }
   ],
   "output": {
-    "count": 2,
-    "item": "pixelsofmc:titanium_diboride_dust"
-  },
-  "ball": [{
-    "tag": "pixelsofmc:ball_4"
-  }]
+    "item": "pixelsofmc:titanium_diboride_dust",
+    "count": 2
+  }
 }

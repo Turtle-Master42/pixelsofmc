@@ -3,9 +3,13 @@ package net.turtlemaster42.pixelsofmc.datagen;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -13,8 +17,14 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.turtlemaster42.pixelsofmc.init.POMrecipes;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
+import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipeBuilder;
+import net.turtlemaster42.pixelsofmc.recipe.DamageToolRecipe;
+import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class POMrecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -248,6 +258,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer);
 
 
+        //milling
+        BallMill(POMitems.MERCURY_SULFIDE_DUST.get(), 1, POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.TITANIUM_OXIDE_DUST.get(), 3, POMitems.ANCIENT_DEBRIS_DUST.get(), 3, POMtags.Items.BALL_5, pFinishedRecipeConsumer);
+        BallMill(POMitems.GOLD_DUST.get(), 2, POMitems.ANCIENT_DEBRIS_DUST.get(), 2, POMitems.NETHERITE_DUST.get(), 1, POMtags.Items.BALL_4, pFinishedRecipeConsumer);
+        BallMill(POMitems.BORON_DUST.get(), 2, POMitems.TITANIUM_DUST.get(), 1, POMitems.TITANIUM_DIBORIDE_DUST.get(), 2, POMtags.Items.BALL_4, pFinishedRecipeConsumer);
+
 
         SimpleSurroundRecipe(POMitems.TITANIUM_NUGGET.get(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), Items.DIAMOND, POMitems.VIOLET_DIAMOND_LENS.get(), pFinishedRecipeConsumer);
@@ -389,6 +404,26 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
+
+    private void BallMill(ItemLike input1, int count1, ItemLike input2, int count2, ItemLike input3, int count3, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
+        new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1), CountedIngredient.of(count2, input2), CountedIngredient.of(count3, input3)), output, outputCount, Ingredient.of(ball))
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void BallMill(ItemLike input1, int count1, ItemLike input2, int count2, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
+        new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1), CountedIngredient.of(count2, input2)), output, outputCount, Ingredient.of(ball))
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void BallMill(ItemLike input1, int count1, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
+        new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1)), output, outputCount, Ingredient.of(ball))
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+
 
 
     //Immersive Engineering
