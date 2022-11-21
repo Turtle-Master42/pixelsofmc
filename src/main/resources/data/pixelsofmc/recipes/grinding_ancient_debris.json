@@ -1,12 +1,12 @@
 {
   "type": "pixelsofmc:grinding",
-  "dubble_chance": 0,
   "input": {
     "item": "minecraft:netherite_scrap"
   },
   "outputs": [
     {
       "count": 1,
+      "chance": 1,
       "ingredient": {
         "item": "pixelsofmc:ancient_debris_dust"
       }

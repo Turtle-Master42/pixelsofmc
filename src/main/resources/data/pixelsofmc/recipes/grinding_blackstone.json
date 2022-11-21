@@ -1,18 +1,19 @@
 {
   "type": "pixelsofmc:grinding",
-  "dubble_chance": 0,
   "input": {
     "item": "minecraft:blackstone"
   },
   "outputs": [
     {
       "count": 2,
+      "chance": 1,
       "ingredient": {
         "item": "pixelsofmc:boron_dust"
       }
     },
     {
       "count": 1,
+      "chance": 1,
       "ingredient": {
         "item": "pixelsofmc:mineral_grit"
       }

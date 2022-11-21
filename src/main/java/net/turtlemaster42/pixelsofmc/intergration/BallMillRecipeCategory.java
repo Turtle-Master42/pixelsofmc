@@ -63,19 +63,12 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
-        //first Input
-        builder.addSlot(RecipeIngredientRole.INPUT, 31, 14).addIngredients(recipe.getInputs().get(0).ingredient());
-        //second input, only of it exists
-        if (recipe.getInputs().size() >= 2) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 31, 36).addIngredients(recipe.getInputs().get(1).ingredient());
-        }
-        //third input, only of it exists
-        if (recipe.getInputs().size() >= 3) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 31, 58).addIngredients(recipe.getInputs().get(2).ingredient());
+        //input
+        for (int p = 0; p < recipe.getInputs().size(); p++ ) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 31, (14*(p+1)+8*p)).addItemStack(recipe.getInput(p));
         }
         //grinding ball input
         builder.addSlot(RecipeIngredientRole.INPUT, 80, 36).addIngredients(recipe.getBall().get(0));
-
         //output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 129, 36).addItemStack(recipe.getResultItem());
     }

@@ -5,6 +5,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -230,7 +231,6 @@ public class BallMillTile extends AbstractMachineTile {
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
-        getItemFromItemMachineBlock(pState.getValue(FACING), 4); //first tries to input into ball slot, then tries the input slots
         getItemFromItemMachineBlock(pState.getValue(FACING), 0);
         getItemFromItemMachineBlock(pState.getValue(FACING), 1);
         getItemFromItemMachineBlock(pState.getValue(FACING), 2);
@@ -359,14 +359,14 @@ public class BallMillTile extends AbstractMachineTile {
                 if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
                     //actually extract energy for real, whatever it accepted
                     EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
-                    POMmessages.sendToClients(new PacketSyncEnergyToClient(energyStorage.getEnergyStored(), worldPosition));
                 }
             }
         }
     }
 
     //todo, needs to be changed so it cant have things in the DummyMachineItemBlock if there cant be inputted into the machine itself
-    public void getItemFromItemMachineBlock(Direction extractSide, int slot) {
+
+    public void getItemFromItemMachineBlock(Direction extractSide, int inputSlot) {
         if (extractSide == null) {
             return;
         }
@@ -377,9 +377,11 @@ public class BallMillTile extends AbstractMachineTile {
             if (ItemHandlerFrom != null) {
                 //ok go
                 ItemStack extractSim = ItemHandlerFrom.extractItem(0, ItemHandlerFrom.getStackInSlot(0).getCount(), true);
-                if (!extractSim.isEmpty() && itemHandler.insertItem(slot, extractSim, true).getCount() != extractSim.getCount()) {
+                if (extractSim.is(POMtags.Items.MILLING_BALL)) {
+                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(3, extractSim, false).getCount(), false);
+                } else if (!extractSim.isEmpty() && itemHandler.insertItem(inputSlot, extractSim, true).getCount() != extractSim.getCount()) {
                     //actually extract item for real, whatever it accepted
-                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(slot, extractSim, false).getCount(), false);
+                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(inputSlot, extractSim, false).getCount(), false);
                 }
             }
         }

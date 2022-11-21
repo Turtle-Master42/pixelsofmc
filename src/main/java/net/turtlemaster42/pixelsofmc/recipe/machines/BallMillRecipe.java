@@ -91,6 +91,9 @@ public class BallMillRecipe extends BaseRecipe {
     public List<CountedIngredient> getInputs() {
         return recipeItems;
     }
+    public ItemStack getInput(int input) {
+        return recipeItems.get(input).getItems()[0];
+    }
 
     @Override
     public ResourceLocation getId() {

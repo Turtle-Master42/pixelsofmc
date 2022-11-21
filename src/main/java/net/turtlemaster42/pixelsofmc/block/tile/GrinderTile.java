@@ -35,6 +35,7 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -272,22 +273,31 @@ public class GrinderTile extends AbstractMachineTile {
         Optional<GrinderRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
 
-        if(match.isPresent()) {
-            List<CountedIngredient> outputs = match.get().getOutputs();
+        if(match.isPresent() && !level.isClientSide) {
+            List<ChanceIngredient> outputs = match.get().getOutputs();
             boolean[] matched = new boolean[4];
 
-            // Iterate over the inputs -q-
-            for (int q = 0; q < outputs.size(); q++) {
+            // Iterate over the outputs -out-
+            for (int out = 0; out < outputs.size(); out++) {
                 ItemStack newStack;
-                newStack = match.get().getResultItems(q);
-                // Iterate over the slots -p-
-                for (int p = 1; p < 5; p++) {
-                    if (matched[q])
+                newStack = match.get().getResultItems(out);
+                // Iterate over the slots -slot-
+                for (int slot = 1; slot < 5; slot++) {
+
+                    // if already matched continue output cycle
+                    if (matched[out])
                         continue;
-                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(p), newStack.getItem())) {
-                        newStack = entity.itemHandler.insertItem(p, newStack, false);
+
+                    //if it can insert it will, otherwise continue slot cycle
+                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(slot), newStack.getItem())) {
+                        PixelsOfMc.LOGGER.info("inserted output {} into slot {}", out, slot);
+                        //inserts items and sets newStack to that what could not be inserted
+                        newStack = entity.itemHandler.insertItem(slot, newStack, false);
+                        PixelsOfMc.LOGGER.info("still needs to input {} of output {}", newStack, out);
+                        // if newStack is empty match = true
                         if (newStack.isEmpty()) {
-                            matched[q] = true;
+                            PixelsOfMc.LOGGER.info("done inserting output {}", out);
+                            matched[out] = true;
                         }
                     }
                 }
@@ -295,7 +305,6 @@ public class GrinderTile extends AbstractMachineTile {
             entity.itemHandler.extractItem(0, 1, false);
 
             setChanged(entity.level, entity.worldPosition, entity.getBlockState());
-
             entity.resetProgress();
             entity.errorEnergyReset();
         }

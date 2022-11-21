@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.network;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.energy.EnergyStorage;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
 
 public class PixelEnergyStorage extends EnergyStorage {
 

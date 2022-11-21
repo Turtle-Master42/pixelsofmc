@@ -204,6 +204,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.EINSTEINIUM_INGOT.get());
 
         simpleItem(POMitems.PIXEL.get());
+        simpleItem(POMitems.TEST_ITEM.get());
 
 
         

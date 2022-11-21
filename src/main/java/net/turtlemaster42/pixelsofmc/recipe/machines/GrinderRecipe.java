@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
@@ -19,15 +20,13 @@ import java.util.List;
 public class GrinderRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final Ingredient recipeItem;
-    private final List<CountedIngredient> outputs;
-    private final float chance;
+    private final List<ChanceIngredient> outputs;
 
     public GrinderRecipe(ResourceLocation id, Ingredient recipeItem,
-                          List<CountedIngredient> outputs, float chance) {
+                          List<ChanceIngredient> outputs) {
         this.id = id;
         this.recipeItem = recipeItem;
         this.outputs = outputs;
-        this.chance = chance;
     }
 
     @Override
@@ -54,16 +53,15 @@ public class GrinderRecipe extends BaseRecipe {
         return id;
     }
 
-    public float getDubbleChance() {
-        return chance;
+    public float OutputChance() {
+        return outputs.get(0).chance();
     }
-
 
     public Ingredient getInput() {
         return recipeItem;
     }
 
-    public List<CountedIngredient> getOutputs() {
+    public List<ChanceIngredient> getOutputs() {
         return outputs;
     }
 
@@ -96,28 +94,22 @@ public class GrinderRecipe extends BaseRecipe {
         public GrinderRecipe fromJson(ResourceLocation id, JsonObject json) {
             //outputs
             JsonArray jsonOutputs = json.getAsJsonArray("outputs");
-            List<CountedIngredient> outputs = new ArrayList<>(jsonOutputs.size());
+            List<ChanceIngredient> outputs = new ArrayList<>(jsonOutputs.size());
             for (int i = 0; i < jsonOutputs.size(); i++) {
-                outputs.add(i, CountedIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
+                outputs.add(i, ChanceIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
             }
             //input
             Ingredient input = Ingredient.fromJson(json.get("input"));
 
-            //chance
-            float chance = GsonHelper.getAsFloat(json, "dubble_chance");
-
-
-            return new GrinderRecipe(id, input, outputs, chance);
+            return new GrinderRecipe(id, input, outputs);
         }
 
         public GrinderRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
                 Ingredient input = Ingredient.fromNetwork(buf);
-                List<CountedIngredient> outputs = buf.readList(CountedIngredient::fromNetwork);
+                List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
 
-                float chance = buf.readFloat();
-
-                return new GrinderRecipe(id, input, outputs, chance);
+                return new GrinderRecipe(id, input, outputs);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
                 throw ex;
@@ -128,8 +120,6 @@ public class GrinderRecipe extends BaseRecipe {
             try {
                 recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
-
-                buf.writeFloat(recipe.getDubbleChance());
 
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
