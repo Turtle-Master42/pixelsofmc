@@ -9,7 +9,6 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
@@ -20,7 +19,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -34,8 +32,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,7 +42,7 @@ import java.util.Random;
 import static net.minecraft.core.particles.ParticleTypes.*;
 
 
-public class PixelSplitterTile extends AbstractMachineTile {
+public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -56,32 +52,6 @@ public class PixelSplitterTile extends AbstractMachineTile {
     private final int capacity = 1024000;
     private final int maxReceive = 4096;
     private static final int energyConsumption = 256;
-
-    private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-            if(!level.isClientSide()) {
-                POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
-            }
-        }
-    };
-
-    @Override
-    public void setHandler(ItemStackHandler handler) {
-        copyHandlerContents(handler);
-    }
-
-    private void copyHandlerContents(ItemStackHandler handler) {
-        for (int i = 0; i < handler.getSlots(); i++) {
-            itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
-        }
-    }
-
-    @Override
-    public ItemStackHandler getItemStackHandler() {
-        return this.itemHandler;
-    }
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -101,8 +71,6 @@ public class PixelSplitterTile extends AbstractMachineTile {
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-
 
     public PixelSplitterTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.PIXEL_SPLITTER.get(), pWorldPosition, pBlockState);
@@ -136,7 +104,7 @@ public class PixelSplitterTile extends AbstractMachineTile {
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.pixel_splitter" + " d");
+        return new TranslatableComponent("block.pixelsofmc.pixel_splitter");
     }
 
     @Nullable
@@ -191,27 +159,9 @@ public class PixelSplitterTile extends AbstractMachineTile {
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @NotNull
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag compound = saveWithoutMetadata();
-        load(compound);
-
-        return compound;
     }
 
             //---RECIPE---//

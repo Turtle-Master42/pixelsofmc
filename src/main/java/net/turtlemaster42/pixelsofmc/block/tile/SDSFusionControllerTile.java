@@ -8,7 +8,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -24,14 +23,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -43,7 +39,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class SDSFusionControllerTile extends AbstractMachineTile {
+public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -51,32 +47,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile {
     private final int capacity = 10240000;
     private final int maxReceive = 32000;
     private static final int energyConsumption = 12000;
-
-    private final ItemStackHandler itemHandler = new ItemStackHandler(5) {
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-            if(!level.isClientSide()) {
-                POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
-            }
-        }
-    };
-
-    @Override
-    public void setHandler(ItemStackHandler handler) {
-        copyHandlerContents(handler);
-    }
-
-    private void copyHandlerContents(ItemStackHandler handler) {
-        for (int i = 0; i < handler.getSlots(); i++) {
-            itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
-        }
-    }
-
-    @Override
-    public ItemStackHandler getItemStackHandler() {
-        return this.itemHandler;
-    }
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -97,8 +67,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile {
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-
 
     public SDSFusionControllerTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState);
@@ -183,27 +151,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile {
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @NotNull
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag compound = saveWithoutMetadata();
-        load(compound);
-
-        return compound;
     }
 
     //---RECIPE---//

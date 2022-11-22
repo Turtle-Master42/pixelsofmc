@@ -8,7 +8,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -24,19 +23,15 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,7 +42,7 @@ import java.util.Optional;
 import static net.turtlemaster42.pixelsofmc.block.GrinderBlock.FACING;
 
 
-public class GrinderTile extends AbstractMachineTile {
+public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -56,32 +51,6 @@ public class GrinderTile extends AbstractMachineTile {
     private final int capacity = 1024000;
     private final int maxReceive = 4096;
     private static final int energyConsumption = 256;
-
-    private final ItemStackHandler itemHandler = new ItemStackHandler(7) {
-        @Override
-        protected void onContentsChanged(int slot) {
-            if(!level.isClientSide()) {
-                POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
-            }
-            setChanged();
-        }
-    };
-
-    @Override
-    public void setHandler(ItemStackHandler handler) {
-        copyHandlerContents(handler);
-    }
-
-    private void copyHandlerContents(ItemStackHandler handler) {
-        for (int i = 0; i < handler.getSlots(); i++) {
-            itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
-        }
-    }
-
-    @Override
-    public ItemStackHandler getItemStackHandler() {
-        return this.itemHandler;
-    }
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -103,7 +72,6 @@ public class GrinderTile extends AbstractMachineTile {
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
 
     public GrinderTile(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -193,27 +161,10 @@ public class GrinderTile extends AbstractMachineTile {
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @NotNull
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag compound = saveWithoutMetadata();
-        load(compound);
-
-        return compound;
     }
 
     //---RECIPE---//
@@ -276,7 +227,6 @@ public class GrinderTile extends AbstractMachineTile {
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
             boolean[] matched = new boolean[4];
-
             // Iterate over the outputs -out-
             for (int out = 0; out < outputs.size(); out++) {
                 ItemStack newStack;
@@ -287,16 +237,12 @@ public class GrinderTile extends AbstractMachineTile {
                     // if already matched continue output cycle
                     if (matched[out])
                         continue;
-
                     //if it can insert it will, otherwise continue slot cycle
                     if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(slot), newStack.getItem())) {
-                        PixelsOfMc.LOGGER.info("inserted output {} into slot {}", out, slot);
                         //inserts items and sets newStack to that what could not be inserted
-                        newStack = entity.itemHandler.insertItem(slot, newStack, false);
-                        PixelsOfMc.LOGGER.info("still needs to input {} of output {}", newStack, out);
+                        newStack = entity.insertItemStack(slot, newStack, false);
                         // if newStack is empty match = true
                         if (newStack.isEmpty()) {
-                            PixelsOfMc.LOGGER.info("done inserting output {}", out);
                             matched[out] = true;
                         }
                     }
@@ -304,7 +250,7 @@ public class GrinderTile extends AbstractMachineTile {
             }
             entity.itemHandler.extractItem(0, 1, false);
 
-            setChanged(entity.level, entity.worldPosition, entity.getBlockState());
+            setChanged(level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
             entity.errorEnergyReset();
         }
@@ -359,7 +305,7 @@ public class GrinderTile extends AbstractMachineTile {
                     stackInSlot[p] = newStackInSlot[p];
                 if (canInsertItemIntoSlot(stackInSlot[p], newStack.getItem())) {
                     newStackInSlot[p] = newStack;
-                    newStack = entity.itemHandler.insertItem(p, newStack, true);
+                    newStack = entity.insertItemStack(p, newStack, true);
                     if (newStack.isEmpty()) {
                         matched[q] = true;
                     }

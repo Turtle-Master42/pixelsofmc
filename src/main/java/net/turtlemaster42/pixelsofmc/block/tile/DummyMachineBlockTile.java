@@ -11,23 +11,16 @@ import org.jetbrains.annotations.NotNull;
 public class DummyMachineBlockTile extends BlockEntity {
 	protected final ContainerData data;
 
-
-	public BlockPos mainPos = null;
-
 	public DummyMachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
 		super(POMtiles.MACHINE_BLOCK.get(), pWorldPosition, pBlockState);
 		this.data = new ContainerData() {
-
 			@Override
 			public int get(int pIndex) {
 				return 0;
 			}
-
 			@Override
 			public void set(int pIndex, int pValue) {
-
 			}
-
 			@Override
 			public int getCount() {
 				return 0;

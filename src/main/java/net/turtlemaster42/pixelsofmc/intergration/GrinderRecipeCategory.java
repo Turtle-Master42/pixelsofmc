@@ -9,41 +9,39 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "ball_milling");
+public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
+    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "grinding");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/ball_mill_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/grinder_gui.png");
 
     private final IDrawable background;
     private final IDrawable icon;
 
-    public BallMillRecipeCategory(IGuiHelper helper) {
+    public GrinderRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 185, 84);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.BALL_MILL.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.GRINDER.get()));
     }
 
     @Override
-    public RecipeType<BallMillRecipe> getRecipeType() {
-        return new RecipeType<>(UID, BallMillRecipe.class);
+    public RecipeType<GrinderRecipe> getRecipeType() {
+        return new RecipeType<>(UID, GrinderRecipe.class);
     }
 
     @Override
     @Deprecated
-    public Class<? extends BallMillRecipe> getRecipeClass() {
-        return BallMillRecipe.class;
+    public Class<? extends GrinderRecipe> getRecipeClass() {
+        return GrinderRecipe.class;
     }
 
     @Override
@@ -54,7 +52,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
 
     @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.pixelsofmc.ball_mill");
+        return new TranslatableComponent("block.pixelsofmc.grinder");
     }
 
     @Override
@@ -71,14 +69,12 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
 
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
+    public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull GrinderRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 31, (14*(p+1)+8*p)).addItemStack(recipe.getInput(p));
+            builder.addSlot(RecipeIngredientRole.INPUT, 43, 36).addIngredients(recipe.getInput());
+        //outputs
+        for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 111, 9*(p*2+1)).addItemStack(recipe.getResultItems(p));
         }
-        //grinding ball input
-        builder.addSlot(RecipeIngredientRole.INPUT, 80, 36).addIngredients(recipe.getBall().get(0));
-        //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 129, 36).addItemStack(recipe.getResultItem());
     }
 }

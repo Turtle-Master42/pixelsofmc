@@ -53,10 +53,6 @@ public class GrinderRecipe extends BaseRecipe {
         return id;
     }
 
-    public float OutputChance() {
-        return outputs.get(0).chance();
-    }
-
     public Ingredient getInput() {
         return recipeItem;
     }
@@ -67,6 +63,10 @@ public class GrinderRecipe extends BaseRecipe {
 
     public int getOutputsCount(int index) {
         return outputs.get(index).count();
+    }
+
+    public float OutputChance(int index) {
+        return outputs.get(index).chance();
     }
 
 

@@ -31,7 +31,6 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         this.level = inv.player.level;
         this.data = data;
 
-
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -44,9 +43,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
             this.addSlot(new ModResultSlot(handler, 4, 111, 63));
             this.addSlot(new SlotItemHandler(handler, 0, 43, 36));
         });
-
         addDataSlots(data);
-
     }
 
     public boolean isCrafting() {
@@ -58,7 +55,6 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 51; // This is the height in pixels of your arrow
-
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
 
@@ -66,8 +62,6 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         int energy = this.data.get(5); //stored energy
         int maxEnergy = this.data.get(3);  // Max Energy
         int progressArrowSize = 44; // This is the height in pixels of your arrow
-
-
         return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
     }
 
