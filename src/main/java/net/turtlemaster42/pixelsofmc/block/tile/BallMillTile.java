@@ -295,7 +295,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
     }
 
-    //cyclic
+    //credits Cyclic
     public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
         if (extractSide == null) {
             return;
@@ -317,6 +317,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     //todo, needs to be changed so it cant have things in the DummyMachineItemBlock if there cant be inputted into the machine itself
 
+    //credits Cyclic
     public void getItemFromItemMachineBlock(Direction extractSide, int inputSlot) {
         if (extractSide == null) {
             return;

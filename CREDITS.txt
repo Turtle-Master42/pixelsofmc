@@ -1,11 +1,23 @@
 Licensed by: Creative Commons (CC-BY-SA 3.0):
 https://creativecommons.org/licenses/by-sa/3.0/
 
-ModItems registration implemenation from BlakeBr0 / Mystical Agriculture:
+Most Code that is gotten or based on something from another creator has a notation above the file or part.
+
+
+ModItems registration implementation from BlakeBr0 / Mystical Agriculture:
 Under MIT-License: https://github.com/BlakeBr0/MysticalAgriculture/blob/1.18/LICENSE
 
-EnergyInfoArea, InfoArea by BluSunrize from ImmersiveEngineering under MIT-License:
+EnergyInfoArea, InfoArea, DamageToolRecipe by BluSunrize from ImmersiveEngineering under MIT-License:
 https://github.com/BluSunrize/ImmersiveEngineering/blob/1.18.2/LICENSE
 
 accessorRenderType, ClientTickHandler, RenderHelper by Vazkii from Botania under Botania's Custom License:
 https://github.com/VazkiiMods/Botania/blob/a138014769376a909d3045da7f4583682d4e079b/LICENSE.txt
+
+ItemColorHandler by Hidoni from CustomizableElytra under MIT-License:
+https://github.com/Hidoni/CustomizableElytra/blob/1.18/LICENSE.txt
+
+getEnergyFromEnergyMachineBlock, getItemFromItemMachineBlock by Lothrazar from Cyclic under MIT license:
+https://github.com/Lothrazar/Cyclic/blob/trunk/1.18/LICENSE.txt
+
+CountedIngredient, matched() in BallMillRecipe by Lothrazar from Cyclic under MIT license:
+https://github.com/SleepyTrousers/EnderIO-Rewrite/blob/dev/1.19.x/LICENSE.txt

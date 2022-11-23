@@ -32,7 +32,7 @@ public class BallMillRecipe extends BaseRecipe {
         this.recipeItems = recipeItems;
     }
 
-//enderio
+    //credits EnderIO
     @Override
     public boolean matches(SimpleContainer container, Level level) {
         boolean[] matched = new boolean[3];

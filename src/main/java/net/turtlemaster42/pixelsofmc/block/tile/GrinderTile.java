@@ -318,7 +318,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                 && matched[3] == matchNeeded[3];
     }
 
-    //cyclic
+    //credits Cyclic
     public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
         if (extractSide == null) {
             return;

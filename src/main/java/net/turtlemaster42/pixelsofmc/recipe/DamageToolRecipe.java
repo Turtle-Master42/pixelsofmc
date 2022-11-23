@@ -1,3 +1,5 @@
+//credits ImmersiveEngineering
+
 package net.turtlemaster42.pixelsofmc.recipe;
 
 import net.minecraft.core.NonNullList;

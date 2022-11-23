@@ -1,4 +1,4 @@
-//immersive Engineering
+//credits ImmersiveEngineering
 
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 

@@ -15,9 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-
-// TODO: Javadocs
-
 /**
  * An ingredient with an item count associated with it.
  */
