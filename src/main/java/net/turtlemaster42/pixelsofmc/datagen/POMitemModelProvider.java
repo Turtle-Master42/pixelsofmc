@@ -49,7 +49,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1.get());
 
         simpleItem(POMitems.RAW_TITANIUM.get());
-        elementItem(POMitems.TITANIUM_INGOT.get());
         simpleItem(POMitems.STEEL_INGOT.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
 
@@ -108,44 +107,43 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.SULFUR_DUST.get());
         dustItem(POMitems.TITANIUM_OXIDE_DUST.get());
 
-
         simpleItem(POMitems.SULFUR.get());
+        simpleItem(POMitems.DENSE_CARBON_CUBE.get());
 
 
 
+        elementItem(POMitems.HYDROGEN_CANISTER.get());
+        elementItem(POMitems.HELIUM_CANISTER.get());
+        elementItem(POMitems.LITHIUM_INGOT.get());
+        elementItem(POMitems.BERYLLIUM_INGOT.get());
         elementItem(POMitems.BORON_CUBE.get());
         elementItem(POMitems.CARBON_CUBE.get());
-        simpleItem(POMitems.DENSE_CARBON_CUBE.get());
+        elementItem(POMitems.NITROGEN_CANISTER.get());
+        elementItem(POMitems.OXYGEN_CANISTER.get());
+        elementItem(POMitems.FLUORINE_CUBE.get());
+        elementItem(POMitems.NEON_CANISTER.get());
+        elementItem(POMitems.SODIUM_INGOT.get());
+        elementItem(POMitems.MAGNESIUM_INGOT.get());
+        elementItem(POMitems.ALUMINIUM_INGOT.get());
         elementItem(POMitems.SILICON_CUBE.get());
         elementItem(POMitems.SULFUR_CUBE.get());
         elementItem(POMitems.PHOSPHORUS_CUBE.get());
-        elementItem(POMitems.HYDROGEN_CANISTER.get());
-        elementItem(POMitems.HELIUM_CANISTER.get());
-        elementItem(POMitems.OXYGEN_CANISTER.get());
-        elementItem(POMitems.RADON_CANISTER.get());
-        elementItem(POMitems.KRYPTON_CANISTER.get());
-        elementItem(POMitems.ARGON_CANISTER.get());
-        elementItem(POMitems.NEON_CANISTER.get());
         elementItem(POMitems.CHLORINE_CANISTER.get());
-        elementItem(POMitems.BROMINE_CANISTER.get());
-        elementItem(POMitems.NITROGEN_CANISTER.get());
-        elementItem(POMitems.XENON_CANISTER.get());
-
-        elementItem(POMitems.ALUMINIUM_INGOT.get());
-        elementItem(POMitems.BERYLLIUM_INGOT.get());
-        elementItem(POMitems.CALCIUM_INGOT.get());
-        elementItem(POMitems.COBALT_INGOT.get());
-        elementItem(POMitems.CHROMIUM_INGOT.get());
-        elementItem(POMitems.GALLIUM_INGOT.get());
-        elementItem(POMitems.LITHIUM_INGOT.get());
-        elementItem(POMitems.MANGANESE_INGOT.get());
-        elementItem(POMitems.MAGNESIUM_INGOT.get());
-        elementItem(POMitems.NICKEL_INGOT.get());
+        elementItem(POMitems.ARGON_CANISTER.get());
         elementItem(POMitems.POTASSIUM_INGOT.get());
+        elementItem(POMitems.CALCIUM_INGOT.get());
         elementItem(POMitems.SCANDIUM_INGOT.get());
-        elementItem(POMitems.SODIUM_INGOT.get());
+        elementItem(POMitems.TITANIUM_INGOT.get());
         elementItem(POMitems.VANADIUM_INGOT.get());
+        elementItem(POMitems.CHROMIUM_INGOT.get());
+        elementItem(POMitems.MANGANESE_INGOT.get());
+        elementItem(POMitems.COBALT_INGOT.get());
+        elementItem(POMitems.NICKEL_INGOT.get());
         elementItem(POMitems.ZINC_INGOT.get());
+        elementItem(POMitems.GALLIUM_INGOT.get());
+        elementItem(POMitems.BROMINE_CANISTER.get());
+        elementItem(POMitems.KRYPTON_CANISTER.get());
+
         elementItem(POMitems.RUBIDIUM_INGOT.get());
         elementItem(POMitems.STRONTIUM_INGOT.get());
         elementItem(POMitems.YTTRIUM_INGOT.get());
@@ -161,6 +159,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.INDIUM_INGOT.get());
         elementItem(POMitems.TIN_INGOT.get());
         elementItem(POMitems.ANTIMONY_INGOT.get());
+        elementItem(POMitems.IODINE_CUBE.get());
+        elementItem(POMitems.XENON_CANISTER.get());
         elementItem(POMitems.CAESIUM_INGOT.get());
         elementItem(POMitems.BARIUM_INGOT.get());
         elementItem(POMitems.LANTHANUM_INGOT.get());
@@ -190,6 +190,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         elementItem(POMitems.LEAD_INGOT.get());
         elementItem(POMitems.BISMUTH_INGOT.get());
         elementItem(POMitems.POLONIUM_INGOT.get());
+        elementItem(POMitems.ASTATINE_CUBE.get());
+        elementItem(POMitems.RADON_CANISTER.get());
         elementItem(POMitems.FRANCIUM_INGOT.get());
         elementItem(POMitems.RADIUM_INGOT.get());
         elementItem(POMitems.ACTINIUM_INGOT.get());
