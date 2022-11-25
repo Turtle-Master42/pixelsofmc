@@ -6,8 +6,10 @@
     }
   ],
   "output": {
-    "item": "pixelsofmc:netherite_plating"
+    "item": "pixelsofmc:pixel"
   },
   "count": 2,
-  "chance": 0.5
+  "R": 98,
+  "G": 57,
+  "B": 49
 }

@@ -6,8 +6,10 @@
     }
   ],
   "output": {
-    "item": "pixelsofmc:titanium_diboride_nugget"
+    "item": "pixelsofmc:pixel"
   },
   "count": 10,
-  "chance": 0.5
+  "R": 56,
+  "G": 55,
+  "B": 65
 }

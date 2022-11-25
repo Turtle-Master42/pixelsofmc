@@ -8,6 +8,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.item.Pixel;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
@@ -208,6 +209,9 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     private static boolean hasPower(PixelSplitterTile entity) {
         return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
     }
+    public static void setColor(ItemStack pStack, int pColor) {
+        pStack.getOrCreateTagElement("display").putInt("color", pColor);
+    }
 
     private static void craftItem(PixelSplitterTile entity) {
         Level level = entity.level;
@@ -222,11 +226,14 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null); //saw
-            if (entity.itemHandler.getStackInSlot(1).getDamageValue() > entity.itemHandler.getStackInSlot(1).getMaxDamage()) { //removes saw if needed
-                entity.itemHandler.extractItem(1,1, false);
+
+            if (match.get().getResultItem().getItem() == POMitems.PIXEL.get()) {
+                ItemStack pixel = new ItemStack(POMitems.PIXEL.get(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
+                setColor(pixel, match.get().getColor().getRGB());
+                entity.itemHandler.setStackInSlot(2, pixel);
+            } else {
+                entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));
             }
-                entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(2).getCount() + 1));
 
             entity.resetProgress();
             entity.errorEnergyReset();

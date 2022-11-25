@@ -21,6 +21,7 @@ import net.turtlemaster42.pixelsofmc.init.POMrecipes;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipeBuilder;
 import net.turtlemaster42.pixelsofmc.recipe.DamageToolRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipeBuilder;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import java.util.HashMap;
@@ -263,7 +264,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(POMitems.GOLD_DUST.get(), 2, POMitems.ANCIENT_DEBRIS_DUST.get(), 2, POMitems.NETHERITE_DUST.get(), 1, POMtags.Items.BALL_4, pFinishedRecipeConsumer);
         BallMill(POMitems.BORON_DUST.get(), 2, POMitems.TITANIUM_DUST.get(), 1, POMitems.TITANIUM_DIBORIDE_DUST.get(), 2, POMtags.Items.BALL_4, pFinishedRecipeConsumer);
 
+        //pixel splitter
+        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 8, 253, 245, 95, pFinishedRecipeConsumer);
 
+
+        //ez crafting
         SimpleSurroundRecipe(POMitems.TITANIUM_NUGGET.get(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), Items.DIAMOND, POMitems.VIOLET_DIAMOND_LENS.get(), pFinishedRecipeConsumer);
         SimpleSurroundRecipe(POMitems.COPPER_NUGGET.get(), Items.STICK, POMitems.COPPER_WIRE.get(), pFinishedRecipeConsumer);
@@ -419,6 +424,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void BallMill(ItemLike input1, int count1, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
         new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1)), output, outputCount, Ingredient.of(ball))
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void PixelSplitting(ItemLike ingredient, ItemLike output, int count, int r, int g, int b, Consumer<FinishedRecipe> consumer) {
+        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
