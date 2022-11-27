@@ -33,19 +33,6 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
             pLevel.destroyBlock(mainPos, false);
         }
     }
-
-    @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof DummyMachineItemBlockTile) {
-                ((DummyMachineItemBlockTile) blockEntity).drops();
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-
     @Deprecated
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);

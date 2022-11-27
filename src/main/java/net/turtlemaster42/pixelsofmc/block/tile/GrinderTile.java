@@ -39,9 +39,6 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-import static net.turtlemaster42.pixelsofmc.block.GrinderBlock.FACING;
-
-
 public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
     protected final ContainerData data;
@@ -70,7 +67,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
             }
         };
     }
-
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
 
@@ -124,7 +120,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         if (cap == CapabilityEnergy.ENERGY) {
             return lazyEnergyHandler.cast();
         }
-
         return super.getCapability(cap, side);
     }
 
@@ -178,8 +173,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, GrinderTile pBlockEntity) {
-        getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
-
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
@@ -316,27 +309,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                 && matched[1] == matchNeeded[1]
                 && matched[2] == matchNeeded[2]
                 && matched[3] == matchNeeded[3];
-    }
-
-    //credits Cyclic
-    public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
-        if (extractSide == null) {
-            return;
-        }
-        BlockPos posTarget = this.worldPosition.relative(extractSide);
-        BlockEntity tile = level.getBlockEntity(posTarget);
-        if (tile != null) {
-            IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, extractSide.getOpposite()).orElse(null);
-            if (EnergyHandlerFrom != null) {
-                //ok go
-                int extractSim = EnergyHandlerFrom.extractEnergy(maxReceive, true);
-                if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
-                    //actually extract energy for real, whatever it accepted
-                    EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
-                    POMmessages.sendToClients(new PacketSyncEnergyToClient(energyStorage.getEnergyStored(), worldPosition));
-                }
-            }
-        }
     }
 
     //---ENERGY---//

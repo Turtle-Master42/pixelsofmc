@@ -10,10 +10,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -22,7 +24,7 @@ public class DummyMachineEnergyBlockTile extends BlockEntity {
         protected final ContainerData data;
 
         private final int capacity = 40960;
-        private final int maxReceive = 4096;
+        private final int maxReceive = 40960;
 
 
 
@@ -38,7 +40,20 @@ public class DummyMachineEnergyBlockTile extends BlockEntity {
                 }
                 @Override
                 public int receiveEnergy(int maxReceive, boolean simulate) {
-                    return super.receiveEnergy(maxReceive, simulate);
+                    //credits Cyclic
+                    BlockPos posTarget = BigMachineBlockUtil.getMainPos(level, worldPosition);
+                    BlockEntity tile = level.getBlockEntity(posTarget);
+                    if (tile != null) {
+                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        if (EnergyHandlerFrom != null) {
+                            //ok go
+                            int receive = EnergyHandlerFrom.receiveEnergy(maxReceive, true);
+                            EnergyHandlerFrom.receiveEnergy(maxReceive, simulate);
+                            energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
+                            return receive;
+                        }
+                    }
+                    return 0;
                 }
 
                 @Override

@@ -33,7 +33,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import org.jetbrains.annotations.NotNull;
@@ -43,8 +42,6 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
-import static net.turtlemaster42.pixelsofmc.block.BallMillBlock.FACING;
 
 
 public class BallMillTile extends AbstractMachineTile<BallMillTile> {
@@ -69,15 +66,16 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
                 setChanged();
+                if (maxReceive > 0 && !simulate) {
+                    onEnergyChanged();
+                }
                 return super.receiveEnergy(maxReceive, simulate);
             }
         };
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
 
     public BallMillTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.BALL_MILL.get(), pWorldPosition, pBlockState);
@@ -107,6 +105,19 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             }
         };
     }
+
+    @Override
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        if (slot == 3) {return stack.is(POMtags.Items.MILLING_BALL);}
+        else if (slot > 3) {return false;}
+        else {return true;}
+    }
+
+    @Override
+    protected boolean isSlotValidOutput(int slot) {
+        return slot == 4;
+    }
+
 
 
     @Override
@@ -181,11 +192,6 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
-        getEnergyFromEnergyMachineBlock(pState.getValue(FACING).getOpposite());
-        getItemFromItemMachineBlock(pState.getValue(FACING), 0);
-        getItemFromItemMachineBlock(pState.getValue(FACING), 1);
-        getItemFromItemMachineBlock(pState.getValue(FACING), 2);
-
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.speedUpgradeCheck();
@@ -293,50 +299,6 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     }
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
         return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
-    }
-
-    //credits Cyclic
-    public void getEnergyFromEnergyMachineBlock(Direction extractSide) {
-        if (extractSide == null) {
-            return;
-        }
-        BlockPos posTarget = this.worldPosition.relative(extractSide);
-        BlockEntity tile = level.getBlockEntity(posTarget);
-        if (tile != null) {
-            IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, extractSide.getOpposite()).orElse(null);
-            if (EnergyHandlerFrom != null) {
-                //ok go
-                int extractSim = EnergyHandlerFrom.extractEnergy(maxReceive, true);
-                if (extractSim > 0 && energyStorage.receiveEnergy(extractSim, true) > 0) {
-                    //actually extract energy for real, whatever it accepted
-                    EnergyHandlerFrom.extractEnergy(energyStorage.receiveEnergy(extractSim, false), false);
-                }
-            }
-        }
-    }
-
-    //todo, needs to be changed so it cant have things in the DummyMachineItemBlock if there cant be inputted into the machine itself
-
-    //credits Cyclic
-    public void getItemFromItemMachineBlock(Direction extractSide, int inputSlot) {
-        if (extractSide == null) {
-            return;
-        }
-        BlockPos posTarget = this.worldPosition.relative(extractSide);
-        BlockEntity tile = level.getBlockEntity(posTarget);
-        if (tile != null) {
-            IItemHandler ItemHandlerFrom = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, extractSide.getOpposite()).orElse(null);
-            if (ItemHandlerFrom != null) {
-                //ok go
-                ItemStack extractSim = ItemHandlerFrom.extractItem(0, ItemHandlerFrom.getStackInSlot(0).getCount(), true);
-                if (extractSim.is(POMtags.Items.MILLING_BALL)) {
-                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(3, extractSim, false).getCount(), false);
-                } else if (!extractSim.isEmpty() && itemHandler.insertItem(inputSlot, extractSim, true).getCount() != extractSim.getCount()) {
-                    //actually extract item for real, whatever it accepted
-                    ItemHandlerFrom.extractItem(0, extractSim.getCount() - itemHandler.insertItem(inputSlot, extractSim, false).getCount(), false);
-                }
-            }
-        }
     }
 
 

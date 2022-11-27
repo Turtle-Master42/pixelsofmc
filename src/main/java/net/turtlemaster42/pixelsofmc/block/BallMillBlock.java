@@ -149,17 +149,17 @@ public class BallMillBlock extends BaseEntityBlock {
             //these are the location based on the default (NORTH) direction, they get turned automatically
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ENERGY_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_ITEM_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ITEM_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, MACHINE_ENERGY_BLOCK, pPos);
 
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, MACHINE_ITEM_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, -1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, -1, MACHINE_BLOCK, pPos);

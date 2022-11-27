@@ -38,6 +38,9 @@ public class POMmessages {
                 .consumer(PacketSyncItemStackToClient::handle)
                 .add();
     }
+    public static <MSG> void sendToServer(MSG message) {
+        INSTANCE.sendToServer(message);
+    }
 
     public static <MSG> void sendToClients(MSG message) {
         INSTANCE.send(PacketDistributor.ALL.noArg(), message);

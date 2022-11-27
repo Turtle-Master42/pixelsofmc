@@ -21,5 +21,8 @@ WIP
     side="BOTH"
 
 
+[modproperties.pixelsofmc]
+configuredBackground="minecraft:textures/block/ancient_debris.png"
+
 
 

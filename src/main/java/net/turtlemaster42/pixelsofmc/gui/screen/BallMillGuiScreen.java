@@ -5,14 +5,12 @@ import com.mojang.blaze3d.vertex.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
-import net.turtlemaster42.pixelsofmc.gui.renderer.MachineProgressArea;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.TooltipFlag;
 
 import java.util.Optional;
 
@@ -73,7 +71,7 @@ public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> 
 
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
-                ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
+                ((height - imageHeight) / 2) + 22, menu.blockEntity.energyStorage, 10, 44);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

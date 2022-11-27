@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 
-version = '0.0.1-1.18.2'
+version = '0.0.2-1.18.2'
 group = 'net.mcreator.pixelsofmc' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'pixelsofmc'
 
@@ -201,6 +201,11 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:3743835")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:4010624")
+    runtimeOnly fg.deobf("curse.maven:configured-459701:3803098")
+
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency

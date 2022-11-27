@@ -17,22 +17,41 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
+import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public abstract class AbstractMachineTile<Tile> extends BlockEntity implements MenuProvider, IInventoryHandlingTile {
 
     public AbstractMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
         super(pType, pWorldPosition, pBlockState);
     }
-    protected final ItemStackHandler itemHandler = new ItemStackHandler(7) {
+    protected final ItemStackHandler itemHandler = new PixelItemStackHandler(10) {
         @Override
         protected void onContentsChanged(int slot) {
-            if(!level.isClientSide()) {
+            if (!level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
             setChanged();
         }
+        @Override
+        public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+            return isInputValid(slot, stack);
+        }
+
+        @Override
+        public boolean isValidOutput(int slot) {
+            return isSlotValidOutput(slot);
+        }
     };
+
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        return true;
+    }
+    protected boolean isSlotValidOutput(int slot) {
+        return true;
+    }
 
     @Override
     public void setHandler(ItemStackHandler handler) {

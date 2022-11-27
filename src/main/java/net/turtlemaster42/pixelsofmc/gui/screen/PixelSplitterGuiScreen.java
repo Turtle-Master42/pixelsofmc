@@ -84,7 +84,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
 
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
-                ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
+                ((height - imageHeight) / 2) + 22, menu.blockEntity.energyStorage, 10, 44);
     }
 
     private void assignProgressInfoArea() {
