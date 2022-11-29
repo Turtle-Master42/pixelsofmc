@@ -7,10 +7,10 @@
   ],
   "key": {
     "A": {
-      "item": "pixelsofmc:netherite_plating"
+      "item": "minecraft:obsidian"
     },
     "B": {
-      "item": "minecraft:obsidian"
+      "item": "pixelsofmc:netherite_plating"
     },
     "C": {
       "item": "minecraft:netherite_block"

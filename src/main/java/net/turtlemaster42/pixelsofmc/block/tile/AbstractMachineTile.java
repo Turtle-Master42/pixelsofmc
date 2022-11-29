@@ -27,7 +27,7 @@ public abstract class AbstractMachineTile<Tile> extends BlockEntity implements M
     public AbstractMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
         super(pType, pWorldPosition, pBlockState);
     }
-    protected final ItemStackHandler itemHandler = new PixelItemStackHandler(10) {
+    protected final ItemStackHandler itemHandler = new PixelItemStackHandler(itemHandlerSize()) {
         @Override
         protected void onContentsChanged(int slot) {
             if (!level.isClientSide()) {
@@ -35,6 +35,7 @@ public abstract class AbstractMachineTile<Tile> extends BlockEntity implements M
             }
             setChanged();
         }
+
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             return isInputValid(slot, stack);
@@ -52,6 +53,7 @@ public abstract class AbstractMachineTile<Tile> extends BlockEntity implements M
     protected boolean isSlotValidOutput(int slot) {
         return true;
     }
+    protected int itemHandlerSize() {return 1;}
 
     @Override
     public void setHandler(ItemStackHandler handler) {

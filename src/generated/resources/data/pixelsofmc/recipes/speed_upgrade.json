@@ -7,16 +7,16 @@
   ],
   "key": {
     "A": {
-      "tag": "forge:nuggets/titanium"
+      "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "B": {
       "tag": "forge:nuggets/copper"
     },
     "C": {
-      "item": "minecraft:ender_eye"
+      "tag": "forge:dusts/titanium"
     }
   },
   "result": {
-    "item": "pixelsofmc:ender_sensor"
+    "item": "pixelsofmc:speed_upgrade"
   }
 }

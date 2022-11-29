@@ -1,7 +1,18 @@
 {
   "replace": false,
   "values": [
+    "#forge:dusts/titanium",
     "#forge:dusts/coal",
-    "#forge:dusts/titanium"
+    "#forge:dusts/aluminium",
+    "#forge:dusts/ancient_debris",
+    "#forge:dusts/boron",
+    "#forge:dusts/calcium",
+    "#forge:dusts/gold",
+    "#forge:dusts/iron",
+    "#forge:dusts/netherite",
+    "#forge:dusts/potassium",
+    "#forge:dusts/silicon",
+    "#forge:dusts/sodium",
+    "#forge:dusts/sulfur"
   ]
 }

@@ -98,6 +98,19 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
     @Override
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        return slot < 4;
+    }
+    @Override
+    protected boolean isSlotValidOutput(int slot) {
+        return true;
+    }
+    @Override
+    protected int itemHandlerSize() {return 7;}
+
+
+
+    @Override
     public Component getDisplayName() {
         return new TranslatableComponent("block.pixelsofmc.sds_controller");
     }

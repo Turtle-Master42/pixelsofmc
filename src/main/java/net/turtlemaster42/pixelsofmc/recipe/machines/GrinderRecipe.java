@@ -4,14 +4,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

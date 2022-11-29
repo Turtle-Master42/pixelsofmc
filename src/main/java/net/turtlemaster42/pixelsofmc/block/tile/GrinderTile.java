@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block.tile;
 
+import io.netty.util.internal.MathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -25,11 +26,13 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -38,6 +41,10 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.random.RandomGenerator;
+
+import static java.lang.Math.random;
 
 public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
@@ -92,12 +99,22 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                     case 2: GrinderTile.this.speedUpgrade = value; break;
                 }
             }
-
             public int getCount() {
                 return 6;
             }
         };
     }
+
+    @Override
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        return slot == 0;
+    }
+    @Override
+    protected boolean isSlotValidOutput(int slot) {
+        return slot > 0 && slot < 5;
+    }
+    @Override
+    protected int itemHandlerSize() {return 7;}
 
 
     @Override
@@ -233,6 +250,12 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                     //if it can insert it will, otherwise continue slot cycle
                     if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(slot), newStack.getItem())) {
                         //inserts items and sets newStack to that what could not be inserted
+
+                        boolean chance;
+                        chance = match.get().OutputChance(out) > random();
+
+                        PixelsOfMc.LOGGER.info("chance: {}, output: {}", chance, match.get().getOutputs().get(out));
+
                         newStack = entity.insertItemStack(slot, newStack, false);
                         // if newStack is empty match = true
                         if (newStack.isEmpty()) {

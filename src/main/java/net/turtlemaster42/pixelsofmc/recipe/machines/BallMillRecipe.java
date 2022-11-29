@@ -38,21 +38,21 @@ public class BallMillRecipe extends BaseRecipe {
         boolean[] matched = new boolean[3];
 
         // Iterate over the slots
-        for (int i = 0; i < 3; i++) {
+        for (int slot = 0; slot < 3; slot++) {
             // Iterate over the inputs
-            for (int j = 0; j < 3; j++) {
+            for (int inp = 0; inp < 3; inp++) {
                 // If this ingredient has been matched already, continue
-                if (matched[j])
+                if (matched[inp])
                     continue;
 
-                if (j < recipeItems.size()) {
+                if (inp < recipeItems.size()) {
                     // If we expect an input, test we have a match for it.
-                    if (recipeItems.get(j).test(container.getItem(i))) {
-                        matched[j] = true;
+                    if (recipeItems.get(inp).test(container.getItem(slot))) {
+                        matched[inp] = true;
                     }
-                } else if (container.getItem(i) == ItemStack.EMPTY) {
+                } else if (container.getItem(slot) == ItemStack.EMPTY) {
                     // If we don't expect an input, make sure we have a blank for it.
-                    matched[j] = true;
+                    matched[inp] = true;
                 }
             }
         }

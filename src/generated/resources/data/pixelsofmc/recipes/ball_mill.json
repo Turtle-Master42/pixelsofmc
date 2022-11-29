@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DBD",
+    "EEA",
+    "CFC"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:moving_parts"
+    },
+    "B": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:titanium_block"
+    },
+    "D": {
+      "tag": "forge:ingots/titanium"
+    },
+    "E": {
+      "item": "pixelsofmc:simple_casing_1"
+    },
+    "F": {
+      "item": "pixelsofmc:advanced_casing_1"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:ball_mill"
+  }
+}

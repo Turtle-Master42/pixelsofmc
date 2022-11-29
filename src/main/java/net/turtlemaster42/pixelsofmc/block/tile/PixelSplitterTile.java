@@ -3,7 +3,6 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -52,7 +51,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     private final int capacity = 1024000;
     private final int maxReceive = 4096;
     private static final int energyConsumption = 256;
-
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
     @NotNull
@@ -86,7 +84,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
                     default: return 0;
                 }
             }
-
             public void set(int index, int value) {
                 switch(index) {
                     case 0: PixelSplitterTile.this.progress = value; break;
@@ -94,12 +91,18 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
                     case 2: PixelSplitterTile.this.speedUpgrade = value; break;
                 }
             }
-
             public int getCount() {
                 return 6;
             }
         };
     }
+
+    @Override
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        return slot < 2;
+    }
+    @Override
+    protected int itemHandlerSize() {return 5;}
 
 
     @Override
@@ -164,8 +167,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-            //---RECIPE---//
 
+            //---RECIPE---//
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
@@ -173,12 +176,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
             pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
-            if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
-                pState.setValue(BlockStateProperties.LIT, true);
-            }
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                    craftItem(pBlockEntity);
-                    pState.setValue(BlockStateProperties.LIT, false);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -233,7 +232,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
             } else {
                 entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));
             }
-
             entity.resetProgress();
             entity.errorEnergyReset();
         }
@@ -258,13 +256,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         }
     }
 
-
-
-
     public int getProgress() {return progress;}
-
     public int getMaxProgress() {return maxProgress;}
-
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
@@ -283,9 +276,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     }
 
 
-
     //---ENERGY---//
-
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
@@ -298,7 +289,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
-
     public IEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_diboride_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:strong_casing"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:reinforced_casing"
+  }
+}

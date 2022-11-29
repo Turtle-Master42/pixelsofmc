@@ -50,7 +50,7 @@ public class PixelsOfMc {
 		POMtabs.load();
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		POMblocks.BLOCKS.register(bus);
-		POMitems.ITEMS.register(bus);
+		POMitems.register(bus);
 		POMmenuType.MENUS.register(bus);
 
 		POMrecipes.register(bus);

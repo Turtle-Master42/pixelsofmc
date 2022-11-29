@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ABA",
-    "BCB",
+    "ACA",
     "ABA"
   ],
   "key": {
@@ -10,7 +10,7 @@
       "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "B": {
-      "item": "pixelsofmc:silver_nugget"
+      "tag": "forge:nuggets/silver"
     },
     "C": {
       "item": "pixelsofmc:dragon_eye"

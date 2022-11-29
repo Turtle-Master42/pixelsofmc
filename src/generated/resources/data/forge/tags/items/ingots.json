@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#forge:ingots/unoptainium",
+    "#forge:ingots/nonium",
     "#forge:ingots/titanium",
     "pixelsofmc:titanium_diboride_ingot"
   ]

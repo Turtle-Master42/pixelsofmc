@@ -1,34 +1,27 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "pixelsofmc:bio_plastic"
-    },
-    {
-      "item": "pixelsofmc:bio_plastic"
-    },
-    {
-      "item": "pixelsofmc:titanium_gear"
-    },
-    {
-      "item": "pixelsofmc:titanium_gear"
-    },
-    {
-      "item": "pixelsofmc:copper_wire"
-    },
-    {
-      "item": "pixelsofmc:copper_wire"
-    },
-    {
-      "item": "minecraft:redstone"
-    },
-    {
-      "item": "minecraft:iron_ingot"
-    },
-    {
-      "item": "pixelsofmc:screwdriver"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "ADA",
+    "BEB"
   ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic"
+    },
+    "B": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:copper_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:titanium_gear"
+    },
+    "E": {
+      "tag": "forge:ingots/iron"
+    }
+  },
   "result": {
     "item": "pixelsofmc:moving_parts"
   }

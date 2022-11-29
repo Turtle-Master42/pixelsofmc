@@ -1,6 +1,8 @@
 package net.turtlemaster42.pixelsofmc.init;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -9,10 +11,16 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.item.Item;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
+import net.turtlemaster42.pixelsofmc.util.Element;
+
+import javax.annotation.Nonnull;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class POMitems {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 	public static final RegistryObject<Item> BOOK_1 = ITEMS.register("book_1", () -> new book1(new Item.Properties().stacksTo(1).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).rarity(Rarity.UNCOMMON)));
 
 	//compounds
@@ -215,10 +223,76 @@ public class POMitems {
 
 
 
+	public static final class Metals
+	{
+		public static final Map<Element, ItemRegObject<Item>> ELEMENTS = new EnumMap<>(Element.class);
+		public static final Map<Element, ItemRegObject<Item>> NUGGETS = new EnumMap<>(Element.class);
+		public static final Map<Element, ItemRegObject<Item>> DUSTS = new EnumMap<>(Element.class);
+
+		private static void init()
+		{
+			for(Element m : Element.values())
+			{
+				String elementName = m.tagName();
+				String type = m.typeName();
+				ItemRegObject<Item> nugget = null;
+				ItemRegObject<Item> element;
+				ItemRegObject<Item> dust = null;
+
+				element = register(elementName+"_"+type, BaseItem::new);
+				if(m.shouldAddNugget())
+					nugget = register(elementName+"_nugget", BaseItem::new);
+				if(m.shouldAddDust())
+					dust = register(elementName+"_dust", BaseItem::new);
+
+				PixelsOfMc.LOGGER.info("Element: {}, outputItem: {}", m, element);
+				NUGGETS.put(m, nugget);
+				ELEMENTS.put(m, element);
+				DUSTS.put(m, dust);
+			}
+		}
+	}
+
+
+
+
 	public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new Test(new Item.Properties().stacksTo(1).tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new Pixel(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);
+		Metals.init();
+	}
+
+
+	//Immersive Engineering
+	private static <T extends Item> ItemRegObject<T> register(String name, Supplier<? extends T> make)
+	{
+		return new ItemRegObject<>(ITEMS.register(name, make));
+	}
+
+	public static class ItemRegObject<T extends Item> implements Supplier<T>, ItemLike
+	{
+		private final RegistryObject<T> regObject;
+		private ItemRegObject(RegistryObject<T> regObject)
+		{
+			this.regObject = regObject;
+		}
+		@Override
+		@Nonnull
+		public T get()
+		{
+			return regObject.get();
+		}
+		@Nonnull
+		@Override
+		public Item asItem()
+		{
+			return regObject.get();
+		}
+		public ResourceLocation getId()
+		{
+			return regObject.getId();
+		}
 	}
 }

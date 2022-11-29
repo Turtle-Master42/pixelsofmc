@@ -117,6 +117,8 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     protected boolean isSlotValidOutput(int slot) {
         return slot == 4;
     }
+    @Override
+    protected int itemHandlerSize() {return 7;}
 
 
 

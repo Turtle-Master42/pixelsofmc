@@ -74,7 +74,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
             builder.addSlot(RecipeIngredientRole.INPUT, 43, 36).addIngredients(recipe.getInput());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 111, 9*(p*2+1)).addItemStack(recipe.getResultItems(p));
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 111, 9*(p*2+1)).addItemStack(recipe.getResultItems(p));
         }
     }
 }

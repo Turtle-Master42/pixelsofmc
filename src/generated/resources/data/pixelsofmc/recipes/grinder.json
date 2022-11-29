@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ADA",
+    "BEB",
+    "CFC"
+  ],
+  "key": {
+    "A": {
+      "item": "pixelsofmc:moving_parts"
+    },
+    "B": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:titanium_block"
+    },
+    "D": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "E": {
+      "item": "pixelsofmc:simple_casing_1"
+    },
+    "F": {
+      "item": "pixelsofmc:advanced_casing_1"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:grinder"
+  }
+}
