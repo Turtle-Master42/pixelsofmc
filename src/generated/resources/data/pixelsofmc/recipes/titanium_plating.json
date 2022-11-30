@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pixelsofmc:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     {
-      "item": "pixelsofmc:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     {
       "item": "pixelsofmc:hammer"

@@ -1,18 +1,21 @@
 {
   "replace": false,
   "values": [
-    "#forge:dusts/titanium",
-    "#forge:dusts/coal",
-    "#forge:dusts/aluminium",
-    "#forge:dusts/ancient_debris",
     "#forge:dusts/boron",
-    "#forge:dusts/calcium",
-    "#forge:dusts/gold",
-    "#forge:dusts/iron",
-    "#forge:dusts/netherite",
-    "#forge:dusts/potassium",
-    "#forge:dusts/silicon",
+    "#forge:dusts/carbon",
     "#forge:dusts/sodium",
-    "#forge:dusts/sulfur"
+    "#forge:dusts/aluminium",
+    "#forge:dusts/silicon",
+    "#forge:dusts/sulfur",
+    "#forge:dusts/potassium",
+    "#forge:dusts/calcium",
+    "#forge:dusts/titanium",
+    "#forge:dusts/iron",
+    "#forge:dusts/copper",
+    "#forge:dusts/gold",
+    "#forge:dusts/uranium",
+    "#forge:dusts/ancient_debris",
+    "#forge:dusts/coal",
+    "#forge:dusts/netherite"
   ]
 }

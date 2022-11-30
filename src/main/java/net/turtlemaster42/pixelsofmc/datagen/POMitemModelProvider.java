@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.turtlemaster42.pixelsofmc.util.Element;
 
 
 public class POMitemModelProvider extends ItemModelProvider {
@@ -19,6 +20,12 @@ public class POMitemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+
+        for(Element m : Element.values()) {
+            createElementModels(m);
+            createDustModels(m);
+            createNuggetModels(m);
+        }
 
         simpleItem(POMitems.BOOK_1.get());
 
@@ -49,13 +56,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1.get());
 
         simpleItem(POMitems.RAW_TITANIUM.get());
-        simpleItem(POMitems.STEEL_INGOT.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT.get());
 
-        simpleItem(POMitems.COPPER_NUGGET.get());
-        simpleItem(POMitems.SILVER_NUGGET.get());
-        simpleItem(POMitems.STEEL_NUGGET.get());
-        simpleItem(POMitems.TITANIUM_NUGGET.get());
         simpleItem(POMitems.NETHERITE_NUGGET.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET.get());
 
@@ -86,124 +88,18 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_BALL.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_BALL.get());
 
-        dustItem(POMitems.IRON_DUST.get());
-        dustItem(POMitems.STEEL_DUST.get());
         dustItem(POMitems.COAL_DUST.get());
-        dustItem(POMitems.TITANIUM_DUST.get());
         dustItem(POMitems.TITANIUM_DIBORIDE_DUST.get());
-        dustItem(POMitems.URANIUM_DUST.get());
 
-        dustItem(POMitems.ALUMINIUM_DUST.get());
         dustItem(POMitems.ANCIENT_DEBRIS_DUST.get());
-        dustItem(POMitems.BORON_DUST.get());
-        dustItem(POMitems.CALCIUM_DUST.get());
-        dustItem(POMitems.GOLD_DUST.get());
         dustItem(POMitems.MERCURY_SULFIDE_DUST.get());
         dustItem(POMitems.MINERAL_GRIT.get());
         dustItem(POMitems.NETHERITE_DUST.get());
-        dustItem(POMitems.POTASSIUM_DUST.get());
-        dustItem(POMitems.SILICON_DUST.get());
-        dustItem(POMitems.SODIUM_DUST.get());
-        dustItem(POMitems.SULFUR_DUST.get());
         dustItem(POMitems.TITANIUM_OXIDE_DUST.get());
 
         simpleItem(POMitems.SULFUR.get());
         simpleItem(POMitems.DENSE_CARBON_CUBE.get());
 
-
-
-        elementItem(POMitems.HYDROGEN_CANISTER.get());
-        elementItem(POMitems.HELIUM_CANISTER.get());
-        elementItem(POMitems.LITHIUM_INGOT.get());
-        elementItem(POMitems.BERYLLIUM_INGOT.get());
-        elementItem(POMitems.BORON_CUBE.get());
-        elementItem(POMitems.CARBON_CUBE.get());
-        elementItem(POMitems.NITROGEN_CANISTER.get());
-        elementItem(POMitems.OXYGEN_CANISTER.get());
-        elementItem(POMitems.FLUORINE_CUBE.get());
-        elementItem(POMitems.NEON_CANISTER.get());
-        elementItem(POMitems.SODIUM_INGOT.get());
-        elementItem(POMitems.MAGNESIUM_INGOT.get());
-        elementItem(POMitems.ALUMINIUM_INGOT.get());
-        elementItem(POMitems.SILICON_CUBE.get());
-        elementItem(POMitems.SULFUR_CUBE.get());
-        elementItem(POMitems.PHOSPHORUS_CUBE.get());
-        elementItem(POMitems.CHLORINE_CANISTER.get());
-        elementItem(POMitems.ARGON_CANISTER.get());
-        elementItem(POMitems.POTASSIUM_INGOT.get());
-        elementItem(POMitems.CALCIUM_INGOT.get());
-        elementItem(POMitems.SCANDIUM_INGOT.get());
-        elementItem(POMitems.TITANIUM_INGOT.get());
-        elementItem(POMitems.VANADIUM_INGOT.get());
-        elementItem(POMitems.CHROMIUM_INGOT.get());
-        elementItem(POMitems.MANGANESE_INGOT.get());
-        elementItem(POMitems.COBALT_INGOT.get());
-        elementItem(POMitems.NICKEL_INGOT.get());
-        elementItem(POMitems.ZINC_INGOT.get());
-        elementItem(POMitems.GALLIUM_INGOT.get());
-        elementItem(POMitems.BROMINE_CANISTER.get());
-        elementItem(POMitems.KRYPTON_CANISTER.get());
-
-        elementItem(POMitems.RUBIDIUM_INGOT.get());
-        elementItem(POMitems.STRONTIUM_INGOT.get());
-        elementItem(POMitems.YTTRIUM_INGOT.get());
-        elementItem(POMitems.ZIRCONIUM_INGOT.get());
-        elementItem(POMitems.NIOBIUM_INGOT.get());
-        elementItem(POMitems.MOLYBDENUM_INGOT.get());
-        elementItem(POMitems.TECHNETIUM_INGOT.get());
-        elementItem(POMitems.RUTHENIUM_INGOT.get());
-        elementItem(POMitems.RHODIUM_INGOT.get());
-        elementItem(POMitems.PALLADIUM_INGOT.get());
-        elementItem(POMitems.SILVER_INGOT.get());
-        elementItem(POMitems.CADMIUM_INGOT.get());
-        elementItem(POMitems.INDIUM_INGOT.get());
-        elementItem(POMitems.TIN_INGOT.get());
-        elementItem(POMitems.ANTIMONY_INGOT.get());
-        elementItem(POMitems.IODINE_CUBE.get());
-        elementItem(POMitems.XENON_CANISTER.get());
-        elementItem(POMitems.CAESIUM_INGOT.get());
-        elementItem(POMitems.BARIUM_INGOT.get());
-        elementItem(POMitems.LANTHANUM_INGOT.get());
-        elementItem(POMitems.CERIUM_INGOT.get());
-        elementItem(POMitems.PRASEODYMIUM_INGOT.get());
-        elementItem(POMitems.NEODYMIUM_INGOT.get());
-        elementItem(POMitems.PROMETHIUM_INGOT.get());
-        elementItem(POMitems.SAMARIUM_INGOT.get());
-        elementItem(POMitems.EUROPIUM_INGOT.get());
-        elementItem(POMitems.GADOLINIUM_INGOT.get());
-        elementItem(POMitems.TERBIUM_INGOT.get());
-        elementItem(POMitems.DYSPROSIUM_INGOT.get());
-        elementItem(POMitems.HOLMIUM_INGOT.get());
-        elementItem(POMitems.ERBIUM_INGOT.get());
-        elementItem(POMitems.THULIUM_INGOT.get());
-        elementItem(POMitems.YTTERBIUM_INGOT.get());
-        elementItem(POMitems.LUTETIUM_INGOT.get());
-        elementItem(POMitems.HAFNIUM_INGOT.get());
-        elementItem(POMitems.TANTALUM_INGOT.get());
-        elementItem(POMitems.TUNGSTEN_INGOT.get());
-        elementItem(POMitems.RHENIUM_INGOT.get());
-        elementItem(POMitems.OSMIUM_INGOT.get());
-        elementItem(POMitems.IRIDIUM_INGOT.get());
-        elementItem(POMitems.PLATINUM_INGOT.get());
-        elementItem(POMitems.MERCURY_INGOT.get());
-        elementItem(POMitems.THALLIUM_INGOT.get());
-        elementItem(POMitems.LEAD_INGOT.get());
-        elementItem(POMitems.BISMUTH_INGOT.get());
-        elementItem(POMitems.POLONIUM_INGOT.get());
-        elementItem(POMitems.ASTATINE_CUBE.get());
-        elementItem(POMitems.RADON_CANISTER.get());
-        elementItem(POMitems.FRANCIUM_INGOT.get());
-        elementItem(POMitems.RADIUM_INGOT.get());
-        elementItem(POMitems.ACTINIUM_INGOT.get());
-        elementItem(POMitems.THORIUM_INGOT.get());
-        elementItem(POMitems.PROTACTINIUM_INGOT.get());
-        elementItem(POMitems.URANIUM_INGOT.get());
-        elementItem(POMitems.NEPTUNIUM_INGOT.get());
-        elementItem(POMitems.AMERICIUM_INGOT.get());
-        elementItem(POMitems.CURIUM_INGOT.get());
-        elementItem(POMitems.BERKELIUM_INGOT.get());
-        elementItem(POMitems.CALIFORNIUM_INGOT.get());
-        elementItem(POMitems.EINSTEINIUM_INGOT.get());
 
         simpleItem(POMitems.PIXEL.get());
         simpleItem(POMitems.TEST_ITEM.get());
@@ -243,6 +139,12 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"items/elements/" + item.getRegistryName().getPath()));
     }
 
+    private ItemModelBuilder elementItem(Item item, String extra) {
+        return withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(PixelsOfMc.MOD_ID,"items/elements/" + item.getRegistryName().getPath()));
+    }
+
     private ItemModelBuilder dustItem(Item item) {
         return withExistingParent(item.getRegistryName().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
@@ -264,4 +166,19 @@ public class POMitemModelProvider extends ItemModelProvider {
                 "block/" + block.getRegistryName().getPath()));
     }
 
+    private void createElementModels(Element element)
+    {
+        if (!element.isVanilla())
+            elementItem(POMitems.Metals.ELEMENTS.get(element).asItem());
+    }
+    private void createDustModels(Element element)
+    {
+        if (element.shouldAddDust())
+            dustItem(POMitems.Metals.DUSTS.get(element).asItem());
+    }
+    private void createNuggetModels(Element element)
+    {
+        if (element.shouldAddNugget())
+            simpleItem(POMitems.Metals.NUGGETS.get(element).asItem());
+    }
 }

@@ -3,13 +3,13 @@
   "inputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:boron_dust"
+        "tag": "forge:dusts/boron"
       },
       "count": 2
     },
     {
       "ingredient": {
-        "item": "pixelsofmc:titanium_dust"
+        "tag": "forge:dusts/titanium"
       },
       "count": 1
     }

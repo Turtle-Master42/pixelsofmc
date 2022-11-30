@@ -3,7 +3,7 @@
   "inputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:gold_dust"
+        "tag": "forge:dusts/gold"
       },
       "count": 2
     },

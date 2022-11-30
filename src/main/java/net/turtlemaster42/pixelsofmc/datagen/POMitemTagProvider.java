@@ -24,14 +24,20 @@ public class POMitemTagProvider extends ItemTagsProvider {
         for(Element element : Element.values())
         {
             POMtags.MetalTags tags = POMtags.getTagsFor(element);
-            PixelsOfMc.LOGGER.info(element);
             if(element.shouldAddDust()) {
-                tag(tags.dust).add(POMitems.Metals.ELEMENTS.get(element).get());
+                tag(tags.dust).add(POMitems.Metals.DUSTS.get(element).get());
                 tag(Tags.Items.DUSTS).addTag(tags.dust);
             }
             if (element.isMetal()) {
                 tag(tags.metal).add(POMitems.Metals.ELEMENTS.get(element).get());
                 tag(Tags.Items.INGOTS).addTag(tags.metal);
+            }
+            if (element.shouldAddNugget()) {
+                tag(tags.nugget).add(POMitems.Metals.NUGGETS.get(element).get());
+                tag(Tags.Items.NUGGETS).addTag(tags.nugget);
+            }
+            if (!element.isMetal() && !element.isVanilla()) {
+                tag(tags.other).add(POMitems.Metals.ELEMENTS.get(element).get());
             }
         }
 
@@ -74,51 +80,26 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
 
 
+        //dusts
         tag(Tags.Items.DUSTS)
-                .addTag(POMtags.Items.DUST_TITANIUM)
-                .addTag(POMtags.Items.DUST_COAL)
-                .addTag(POMtags.Items.DUST_ALUMINIUM)
                 .addTag(POMtags.Items.DUST_ANCIENT_DEBRIS)
-                .addTag(POMtags.Items.DUST_BORON)
-                .addTag(POMtags.Items.DUST_CALCIUM)
-                .addTag(POMtags.Items.DUST_GOLD)
-                .addTag(POMtags.Items.DUST_IRON)
-                .addTag(POMtags.Items.DUST_NETHERITE)
-                .addTag(POMtags.Items.DUST_POTASSIUM)
-                .addTag(POMtags.Items.DUST_SILICON)
-                .addTag(POMtags.Items.DUST_SODIUM)
-                .addTag(POMtags.Items.DUST_SULFUR)
-                ;
+                .addTag(POMtags.Items.DUST_COAL)
+                .addTag(POMtags.Items.DUST_NETHERITE);
+
+        tag(POMtags.Items.DUST_NETHERITE).add(POMitems.NETHERITE_DUST.get());
+        tag(POMtags.Items.DUST_ANCIENT_DEBRIS).add(POMitems.ANCIENT_DEBRIS_DUST.get());
+        tag(POMtags.Items.DUST_COAL).add(POMitems.COAL_DUST.get());
+
+        //ingots
         tag(Tags.Items.INGOTS)
-                .addTag(POMtags.Items.INGOT_TITANIUM)
                 .add(POMitems.TITANIUM_DIBORIDE_INGOT.get());
+
+
+        //nuggets
         tag(Tags.Items.NUGGETS)
-                .addTag(POMtags.Items.NUGGET_COPPER)
-                .addTag(POMtags.Items.NUGGET_SILVER)
-                .addTag(POMtags.Items.NUGGET_STEEL)
-                .addTag(POMtags.Items.NUGGET_TITANIUM)
                 .addTag(POMtags.Items.NUGGET_NETHERITE);
 
-        tag(POMtags.Items.INGOT_TITANIUM).add(POMitems.TITANIUM_INGOT.get());
-
-        tag(POMtags.Items.NUGGET_COPPER).add(POMitems.COPPER_NUGGET.get());
-        tag(POMtags.Items.NUGGET_SILVER).add(POMitems.SILVER_NUGGET.get());
-        tag(POMtags.Items.NUGGET_STEEL).add(POMitems.STEEL_NUGGET.get());
-        tag(POMtags.Items.NUGGET_TITANIUM).add(POMitems.TITANIUM_NUGGET.get());
         tag(POMtags.Items.NUGGET_NETHERITE).add(POMitems.NETHERITE_NUGGET.get());
 
-        tag(POMtags.Items.DUST_TITANIUM).add(POMitems.TITANIUM_DUST.get());
-        tag(POMtags.Items.DUST_COAL).add(POMitems.COAL_DUST.get());
-        tag(POMtags.Items.DUST_ALUMINIUM).add(POMitems.ALUMINIUM_DUST.get());
-        tag(POMtags.Items.DUST_ANCIENT_DEBRIS).add(POMitems.ANCIENT_DEBRIS_DUST.get());
-        tag(POMtags.Items.DUST_BORON).add(POMitems.BORON_DUST.get());
-        tag(POMtags.Items.DUST_CALCIUM).add(POMitems.CALCIUM_DUST.get());
-        tag(POMtags.Items.DUST_GOLD).add(POMitems.GOLD_DUST.get());
-        tag(POMtags.Items.DUST_IRON).add(POMitems.IRON_DUST.get());
-        tag(POMtags.Items.DUST_NETHERITE).add(POMitems.NETHERITE_DUST.get());
-        tag(POMtags.Items.DUST_POTASSIUM).add(POMitems.POTASSIUM_DUST.get());
-        tag(POMtags.Items.DUST_SILICON).add(POMitems.SILICON_DUST.get());
-        tag(POMtags.Items.DUST_SODIUM).add(POMitems.SODIUM_DUST.get());
-        tag(POMtags.Items.DUST_SULFUR).add(POMitems.SULFUR_DUST.get());
     }
 }
