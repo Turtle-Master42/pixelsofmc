@@ -23,6 +23,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.turtlemaster42.pixelsofmc.block.dummy.*;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.level.block.Block;
@@ -62,7 +63,12 @@ public class POMblocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
 
-	public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
+    public static final RegistryObject<Block> ALUMINIUM_SCRAP_BLOCK = registerBlock("aluminium_scrap_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(4f, 6.0F).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
+
+
+    public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);
 
@@ -82,15 +88,19 @@ public class POMblocks {
 
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter", "tooltip.pixelsofmc.noshift", "tooltip.pixelsofmc.block.pixel_splitter2", "tooltip.pixelsofmc.noctrl", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "tooltip.pixelsofmc.noalt");
-
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter2", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "");
     public static final RegistryObject<Block> BALL_MILL = registerBlock("ball_mill",
             () -> new BallMillBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
-
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "", "tooltip.pixelsofmc.block.ball_mill.alt");
     public static final RegistryObject<Block> GRINDER = registerBlock("grinder",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.ball_mill.shift", "tooltip.pixelsofmc.noshift", "", "", "tooltip.pixelsofmc.block.ball_mill.alt", "tooltip.pixelsofmc.noalt");
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "", "", "YOOOOOOOOOO");
+    public static final RegistryObject<Block> HOT_ISOTOPIC_PRESS = registerBlock("hot_isotopic_press",
+            () -> new HotIsotopicPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+
+
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
             () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -129,32 +139,31 @@ public class POMblocks {
     }
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block,
-                                                                     CreativeModeTab tab, String tooltipKeyShift, String noShift, String tooltipKeyCtrl, String noCtrl, String tooltipKeyAlt, String noAlt) {
+                                                                     CreativeModeTab tab, String tooltipKeyShift, String tooltipKeyCtrl, String tooltipKeyAlt) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn, tab, tooltipKeyShift, noShift, tooltipKeyCtrl, noCtrl, tooltipKeyAlt, noAlt);
+        registerBlockItem(name, toReturn, tab, tooltipKeyShift, tooltipKeyCtrl, tooltipKeyAlt);
         return toReturn;
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
-                                                                            CreativeModeTab tab, String tooltipKey, String shiftTooltip, String tooltipKey2, String ctrlTooltip, String tooltipKey3, String altTooltip) {
+                                                                            CreativeModeTab tab, String shiftTooltip, String ctrlTooltip, String altTooltip) {
         return POMitems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties().tab(tab)) {
             @Override
             public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
-                if(Screen.hasShiftDown()) {
-                    pTooltip.add(new TranslatableComponent(tooltipKey));
-                } else {
+                if(Screen.hasShiftDown() && !shiftTooltip.isEmpty()) {
                     pTooltip.add(new TranslatableComponent(shiftTooltip));
-                }
-                if(Screen.hasControlDown()) {
-                    pTooltip.add(new TranslatableComponent(tooltipKey2));
-                } else {
+                } else if(Screen.hasControlDown() && !ctrlTooltip.isEmpty()) {
                     pTooltip.add(new TranslatableComponent(ctrlTooltip));
-                }
-                if(Screen.hasAltDown()) {
-                    pTooltip.add(new TranslatableComponent(tooltipKey3));
-                } else {
+                } else if(Screen.hasAltDown() && !altTooltip.isEmpty()) {
                     pTooltip.add(new TranslatableComponent(altTooltip));
+                } else {
+                    if (!shiftTooltip.isEmpty())
+                        pTooltip.add(new TranslatableComponent("tooltip.pixelsofmc.noshift"));
+                    if (!ctrlTooltip.isEmpty())
+                        pTooltip.add(new TranslatableComponent("tooltip.pixelsofmc.noctrl"));
+                    if (!altTooltip.isEmpty())
+                        pTooltip.add(new TranslatableComponent("tooltip.pixelsofmc.noalt"));
                 }
             }
         });

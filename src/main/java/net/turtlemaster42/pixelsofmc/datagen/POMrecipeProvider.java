@@ -83,8 +83,38 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
-
-
+        ShapedRecipeBuilder.shaped(POMitems.CARBONARO_CLUMP.get())
+                .define('C', POMitems.DENSE_CARBON_CUBE.get())
+                .pattern("CCC")
+                .pattern("CCC")
+                .pattern("CCC")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.BLACK_DIAMOND.get())
+                .define('C', POMitems.CARBONARO_CLUMP.get())
+                .pattern("CCC")
+                .pattern("CCC")
+                .pattern("CCC")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(Items.DIAMOND)
+                .define('C', POMitems.BLACK_DIAMOND.get())
+                .pattern("CC")
+                .pattern("CC")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND.get())
+                .define('C', Items.DIAMOND)
+                .pattern("CC")
+                .pattern("CC")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(POMitems.RED_DIAMOND.get())
+                .define('C', POMitems.VIOLET_DIAMOND.get())
+                .pattern("CC")
+                .pattern("CC")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(pFinishedRecipeConsumer);
 
 
 
@@ -130,14 +160,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.NETHERITE_INGOT)
                 .requires(Items.NETHERITE_INGOT)
                 .requires(POMitems.HAMMER.get())
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(POMitems.TITANIUM_GEAR.get())
-                .requires(POMitems.TITANIUM_PLATING.get())
-                .requires(POMitems.TITANIUM_PLATING.get())
-                .requires(POMitems.HAMMER.get())
-                .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(pFinishedRecipeConsumer);
 
@@ -201,7 +223,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', POMitems.BIO_PLASTIC.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.COPPER_WIRE.get())
-                .define('D', POMitems.TITANIUM_GEAR.get())
+                .define('D', Items.DRIED_KELP)
                 .define('E', Tags.Items.INGOTS_IRON)
                 .pattern("ACA")
                 .pattern("ADA")
@@ -466,8 +488,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     }
 
-    private void SimpleSurroundRecipe(ItemLike around, ItemLike middle, ItemLike output, Consumer<FinishedRecipe> consumer)
-    {
+    private void SimpleSurroundRecipe(ItemLike around, ItemLike middle, ItemLike output, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output)
                 .define('A', around)
                 .define('B', middle)
@@ -477,8 +498,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
-    private void SimpleFullCrossRecipe(ItemLike corners, ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer)
-    {
+    private void SimpleFullCrossRecipe(ItemLike corners, ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output)
                 .define('A', corners)
                 .define('B', sides)
@@ -489,8 +509,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
-    private void SimpleCrossRecipe(ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer)
-    {
+    private void SimpleCrossRecipe(ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output)
                 .define('A', sides)
                 .define('B', middle)
@@ -500,6 +519,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
+
 
     private void BallMill(Ingredient input1, int count1, Ingredient input2, int count2, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
         BallMill(input1, count1, input2, count2, Ingredient.EMPTY, 0, output, outputCount, ball, consumer);
@@ -523,13 +543,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
 
-
-
     private void PixelSplitting(ItemLike ingredient, ItemLike output, int count, int r, int g, int b, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
+
 
     private TagKey<Item> ingotTag(Element element) {
         return POMtags.getTagsFor(element).metal;
@@ -544,6 +563,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         return POMtags.getTagsFor(element).other;
     }
 
+
     private ItemLike elementItem(Element element) {
         return POMitems.Metals.ELEMENTS.get(element);
     }
@@ -553,6 +573,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private ItemLike nuggetItem(Element element) {
         return POMitems.Metals.NUGGETS.get(element);
     }
+
 
     private Ingredient toIngredient(ItemLike input) {
         return Ingredient.of(input);

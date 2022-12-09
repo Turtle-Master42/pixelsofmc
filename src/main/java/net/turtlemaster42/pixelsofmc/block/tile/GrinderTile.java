@@ -253,9 +253,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
                         boolean chance;
                         chance = match.get().OutputChance(out) > random();
-
-                        PixelsOfMc.LOGGER.info("chance: {}, output: {}", chance, match.get().getOutputs().get(out));
-
                         newStack = entity.insertItemStack(slot, newStack, false);
                         // if newStack is empty match = true
                         if (newStack.isEmpty()) {

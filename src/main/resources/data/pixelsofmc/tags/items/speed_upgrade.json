@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "pixelsofmc:speed_upgrade",
+    "mekanism:upgrade_speed"
+  ]
+}

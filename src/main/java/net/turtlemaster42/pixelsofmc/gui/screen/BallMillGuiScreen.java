@@ -34,6 +34,7 @@ public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
+        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752);
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
     }
 

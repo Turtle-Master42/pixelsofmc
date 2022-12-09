@@ -1,9 +1,7 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.*;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -12,7 +10,6 @@ import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -23,6 +20,9 @@ public class POMmenuType {
             registerMenuType(BallMillGuiMenu::new, "ball_mill_menu");
     public static final RegistryObject<MenuType<GrinderGuiMenu>> GRINDER_MENU =
             registerMenuType(GrinderGuiMenu::new, "grinder_menu");
+    public static final RegistryObject<MenuType<HotIsotopicPressGuiMenu>> HOT_ISOTOPIC_PRESS_MENU =
+            registerMenuType(HotIsotopicPressGuiMenu::new, "hot_isotopic_press_menu");
+
 
     public static final RegistryObject<MenuType<SDSFusionControllerGuiMenu>> SDS_CONTROLLER_MENU =
             registerMenuType(SDSFusionControllerGuiMenu::new, "sds_controller_menu");

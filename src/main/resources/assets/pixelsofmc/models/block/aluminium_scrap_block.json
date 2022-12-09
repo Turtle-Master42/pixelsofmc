@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "pixelsofmc:block/aluminium_scrap_block_up",
+    "up": "pixelsofmc:block/aluminium_scrap_block_up",
+    "north": "pixelsofmc:block/aluminium_scrap_block",
+    "east": "pixelsofmc:block/aluminium_scrap_block",
+    "south": "pixelsofmc:block/aluminium_scrap_block",
+    "west": "pixelsofmc:block/aluminium_scrap_block",
+
+    "particle": "pixelsofmc:block/aluminium_scrap_block"
+  }
+}

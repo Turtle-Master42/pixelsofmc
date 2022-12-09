@@ -4,10 +4,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.turtlemaster42.pixelsofmc.gui.screen.BallMillGuiScreen;
-import net.turtlemaster42.pixelsofmc.gui.screen.GrinderGuiScreen;
-import net.turtlemaster42.pixelsofmc.gui.screen.PixelSplitterGuiScreen;
-import net.turtlemaster42.pixelsofmc.gui.screen.SDSFusionControllerGuiScreen;
+import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
@@ -76,6 +73,7 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
+		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsotopicPressScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
     }
 

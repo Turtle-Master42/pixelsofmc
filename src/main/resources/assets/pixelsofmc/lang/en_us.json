@@ -10,6 +10,10 @@
   "item.pixelsofmc.repelling_plastic": "Repelling Plastic Sheet",
   "item.pixelsofmc.fire_proof_plastic": "Fire Proof Plastic Sheet",
 
+  "item.pixelsofmc.carbonado_clump": "Carbonado Clump",
+  "item.pixelsofmc.black_diamond": "Black Diamond",
+  "item.pixelsofmc.violet_diamond": "Violet Diamond",
+  "item.pixelsofmc.red_diamond": "Red Diamond",
 
   "item.pixelsofmc.copper_wire": "Copper Wire",
   "item.pixelsofmc.silver_wire": "Silver Wire",
@@ -31,8 +35,6 @@
   "item.pixelsofmc.perfected_circuit_board_1": "Perfected Circuit Board I",
 
   "item.pixelsofmc.raw_titanium": "Raw Titanium",
-  "item.pixelsofmc.titanium_ingot": "Titanium Ingot",
-  "item.pixelsofmc.steel_ingot": "Steel Ingot",
   "item.pixelsofmc.titanium_diboride_ingot": "Pure Netherite Ingot",
 
   "item.pixelsofmc.copper_nugget": "Copper Nugget",
@@ -78,6 +80,8 @@
   "item.pixelsofmc.aluminium_dust": "Aluminium Dust",
   "item.pixelsofmc.ancient_debris_dust": "Ancient Debris Dust",
   "item.pixelsofmc.boron_dust": "Boron Dust",
+  "item.pixelsofmc.copper_dust": "Copper Dust",
+  "item.pixelsofmc.carbon_dust": "Carbon Dust",
   "item.pixelsofmc.calcium_dust": "Calcium Dust",
   "item.pixelsofmc.gold_dust": "Gold Dust",
   "item.pixelsofmc.mercury_sulfide_dust": "Mercury Sulfide Dust",
@@ -91,43 +95,46 @@
 
 
   //elements
-  "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
   "item.pixelsofmc.sulfur": "Sulfur",
 
+  "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
+
+
+  "item.pixelsofmc.hydrogen_canister": "Hydrogen Canister",
+  "item.pixelsofmc.helium_canister": "Helium Canister",
+  "item.pixelsofmc.lithium_ingot": "Lithium Ingot",
+  "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
   "item.pixelsofmc.boron_cube": "Boron Cube",
   "item.pixelsofmc.carbon_cube": "Carbon Cube",
-  "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
+  "item.pixelsofmc.nitrogen_canister": "Nitrogen Canister",
+  "item.pixelsofmc.oxygen_canister": "Oxygen Canister",
+  "item.pixelsofmc.fluorine_cube": "Fluorine Cube",
+  "item.pixelsofmc.neon_canister": "Neon Canister",
+  "item.pixelsofmc.sodium_ingot": "Sodium Ingot",
+  "item.pixelsofmc.magnesium_ingot": "Magnesium Ingot",
+  "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
   "item.pixelsofmc.silicon_cube": "Silicon Cube",
   "item.pixelsofmc.sulfur_cube": "Sulfur Cube",
   "item.pixelsofmc.phosphorus_cube": "Phosphorus Cube",
-  "item.pixelsofmc.hydrogen_canister": "Hydrogen Canister",
-  "item.pixelsofmc.helium_canister": "Helium Canister",
-  "item.pixelsofmc.oxygen_canister": "Oxygen Canister",
-  "item.pixelsofmc.neon_canister": "Neon Canister",
-  "item.pixelsofmc.xenon_canister": "Xenon Canister",
-  "item.pixelsofmc.argon_canister": "Argon Canister",
   "item.pixelsofmc.chlorine_canister": "Chlorine Canister",
-  "item.pixelsofmc.nitrogen_canister": "Nitrogen Canister",
-  "item.pixelsofmc.radon_canister": "Radon Canister",
-  "item.pixelsofmc.krypton_canister": "Krypton Canister",
-  "item.pixelsofmc.bromine_canister": "Bromine Canister",
-
-  "item.pixelsofmc.aluminium_ingot": "Aluminium Ingot",
-  "item.pixelsofmc.beryllium_ingot": "Beryllium Ingot",
+  "item.pixelsofmc.argon_canister": "Argon Canister",
+  "item.pixelsofmc.potassium_ingot": "Potassium Ingot",
   "item.pixelsofmc.calcium_ingot": "Calcium Ingot",
+  "item.pixelsofmc.scandium_ingot": "Scandium Ingot",
+  "item.pixelsofmc.titanium_ingot": "Titanium Ingot",
+  "item.pixelsofmc.vanadium_ingot": "Vanadium Ingot",
   "item.pixelsofmc.chromium_ingot": "Chromium Ingot",
+  "item.pixelsofmc.manganese_ingot": "Manganese Ingot",
   "item.pixelsofmc.cobalt_ingot": "Cobalt Ingot",
+  "item.pixelsofmc.nickel_ingot": "Nickel Ingot",
   "item.pixelsofmc.zinc_ingot": "Zinc Ingot",
   "item.pixelsofmc.gallium_ingot": "Gallium Ingot",
-  "item.pixelsofmc.lithium_ingot": "Lithium Ingot",
-  "item.pixelsofmc.magnesium_ingot": "Magnesium Ingot",
-  "item.pixelsofmc.manganese_ingot": "Manganese Ingot",
-  "item.pixelsofmc.nickel_ingot": "Nickel Ingot",
-  "item.pixelsofmc.potassium_ingot": "Potassium Ingot",
-  "item.pixelsofmc.scandium_ingot": "Scandium Ingot",
-  "item.pixelsofmc.sodium_ingot": "Sodium Ingot",
-  "item.pixelsofmc.vanadium_ingot": "Vanadium Ingot",
+  "item.pixelsofmc.germanium_ingot": "Germanium Ingot",
+  "item.pixelsofmc.arsenic_ingot": "Arsenic Ingot",
+
+  "item.pixelsofmc.bromine_canister": "Bromine Canister",
+  "item.pixelsofmc.krypton_canister": "Krypton Canister",
   "item.pixelsofmc.rubidium_ingot": "Rubidium Ingot",
   "item.pixelsofmc.strontium_ingot": "Strontium Ingot",
   "item.pixelsofmc.yttrium_ingot": "Yttrium Ingot",
@@ -143,7 +150,10 @@
   "item.pixelsofmc.indium_ingot": "Indium Ingot",
   "item.pixelsofmc.tin_ingot": "Tin Ingot",
   "item.pixelsofmc.antimony_ingot": "Antimony Ingot",
-
+  "item.pixelsofmc.selenium_ingot": "Selenium Ingot",
+  "item.pixelsofmc.tellurium_ingot": "Tellurium Ingot",
+  "item.pixelsofmc.iodine_cube": "Iodine Cube",
+  "item.pixelsofmc.xenon_canister": "Xenon Canister",
   "item.pixelsofmc.caesium_ingot": "Caesium Ingot",
   "item.pixelsofmc.barium_ingot": "Barium Ingot",
   "item.pixelsofmc.lanthanum_ingot": "Lanthanum Ingot",
@@ -173,17 +183,24 @@
   "item.pixelsofmc.lead_ingot": "Lead Ingot",
   "item.pixelsofmc.bismuth_ingot": "Bismuth Ingot",
   "item.pixelsofmc.polonium_ingot": "Polonium Ingot",
+  "item.pixelsofmc.astatine_cube": "Astatine Cube",
+  "item.pixelsofmc.radon_canister": "Radon Canister",
   "item.pixelsofmc.francium_ingot": "Francium Ingot",
   "item.pixelsofmc.radium_ingot": "Radium Ingot",
   "item.pixelsofmc.actinium_ingot": "Actinium Ingot",
   "item.pixelsofmc.thorium_ingot": "Thorium Ingot",
   "item.pixelsofmc.protactinium_ingot": "Protactinium Ingot",
+  "item.pixelsofmc.uranium_ingot": "Uranium Ingot",
   "item.pixelsofmc.neptunium_ingot": "Neptunium Ingot",
+  "item.pixelsofmc.plutonium_ingot": "Plutonium Ingot",
   "item.pixelsofmc.americium_ingot": "Americium Ingot",
   "item.pixelsofmc.curium_ingot": "Curium Ingot",
   "item.pixelsofmc.berkelium_ingot": "Berkelium Ingot",
   "item.pixelsofmc.californium_ingot": "Californium Ingot",
   "item.pixelsofmc.einsteinium_ingot": "Einsteinium Ingot",
+
+  "item.pixelsofmc.pixel": "Pixel",
+  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
 
 
   //machines
@@ -192,6 +209,8 @@
   "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
   "block.pixelsofmc.ball_mill": "Ball Mill",
   "block.pixelsofmc.grinder": "Grinder",
+  "block.pixelsofmc.hot_isotopic_press": "Hot Isotopic Press",
+  "block.pixelsofmc.fusion_core": "Machine Block",
 
   "block.pixelsofmc.sds_controller": "SDS Fusion Generator Controller",
 
@@ -199,6 +218,7 @@
   "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
   "block.pixelsofmc.titanium_block": "Block of Titanium",
   "block.pixelsofmc.titanium_diboride_block": "Titanium Diboride Block",
+  "block.pixelsofmc.aluminium_scrap_block": "Block of Aluminium Scrap",
   "block.pixelsofmc.titanium_ore": "Titanium Ore",
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.pixelsofmc.endstone_titanium_ore": "Endstone Titanium Ore",
@@ -227,6 +247,20 @@
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
   "tooltip.pixelsofmc.noctrl": "§7Press §r§d§i[CTRL]§r§7 for machine info",
-  "tooltip.pixelsofmc.noalt": "§7Press §r§b§i[ALT]§r§7 for placement info"
+  "tooltip.pixelsofmc.noalt": "§7Press §r§b§i[ALT]§r§7 for placement info",
 
+  "tooltip.pixelsofmc.test": "line 1\nline 2\nline 3\nline 4\ntest %s",
+
+
+  "tooltip.pixelsofmc.titanium_ingot": "state: ⏹, \uD83E\uDDEA, ☁,\ndanger: ❤",
+  "tooltip.pixelsofmc.titanium_ingot.advanced": "state: solid, liquid, gas,\ndanger: none",
+
+  "tooltip.pixelsofmc.mercury_ingot": "state: ⏹, \uD83E\uDDEA, ☁,\ndanger: ☠",
+  "tooltip.pixelsofmc.mercury_ingot.advanced": "state: liquid,\ndanger: toxic",
+
+  "tooltip.pixelsofmc.uranium_ingot": "state: ⏹, \uD83E\uDDEA, ☁,\ndanger: ☢",
+  "tooltip.pixelsofmc.uranium_ingot.advanced": "state: solid,\ndanger: radioactive",
+
+  "tooltip.pixelsofmc.resistance": "resistance: \uD83D\uDD25",
+  "tooltip.pixelsofmc.resistance.advanced": "resistance: fire"
 }

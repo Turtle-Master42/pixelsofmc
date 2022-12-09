@@ -36,6 +36,11 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.REPELLING_COMPOUND.get());
         simpleItem(POMitems.REPELLING_PLASTIC.get());
 
+        simpleItem(POMitems.CARBONARO_CLUMP.get());
+        simpleItem(POMitems.BLACK_DIAMOND.get());
+        simpleItem(POMitems.VIOLET_DIAMOND.get());
+        simpleItem(POMitems.RED_DIAMOND.get());
+
         simpleItem(POMitems.COPPER_WIRE.get());
         simpleItem(POMitems.SILVER_WIRE.get());
         simpleItem(POMitems.REDSTONE_LAYERED_COPPER_WIRE.get());
@@ -61,7 +66,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.NETHERITE_NUGGET.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET.get());
 
-        simpleItem(POMitems.TITANIUM_GEAR.get());
         simpleItem(POMitems.TITANIUM_PLATING.get());
         simpleItem(POMitems.RUSTED_PLATING.get());
         simpleItem(POMitems.NETHERITE_PLATING.get());
@@ -99,6 +103,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         simpleItem(POMitems.SULFUR.get());
         simpleItem(POMitems.DENSE_CARBON_CUBE.get());
+        simpleItem(POMitems.ALUMINIUM_SCRAP.get());
 
 
         simpleItem(POMitems.PIXEL.get());

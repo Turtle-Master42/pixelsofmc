@@ -7,8 +7,8 @@ public enum Element {
     HELIUM(Type.CANISTER),
     LITHIUM,
     BERYLLIUM,
-    BORON(true, Type.CUBE),
-    CARBON(true, Type.CUBE),
+    BORON(Type.CUBE, Property.FIRE, true, false),
+    CARBON(Type.CUBE, true),
     NITROGEN(Type.CANISTER),
     OXYGEN(Type.CANISTER),
     FLUORINE(Type.CUBE),
@@ -16,8 +16,8 @@ public enum Element {
     SODIUM(true),
     MAGNESIUM,
     ALUMINIUM(true),
-    SILICON(true, Type.CUBE),
-    SULFUR(true, Type.CUBE),
+    SILICON(Type.CUBE, true),
+    SULFUR(Type.CUBE, true),
     PHOSPHORUS(Type.CUBE),
     CHLORINE(Type.CANISTER),
     ARGON(Type.CANISTER),
@@ -25,14 +25,14 @@ public enum Element {
     CALCIUM(true),
     SCANDIUM,
     TITANIUM(true, true),
-    VANADIUM,
+    VANADIUM(Property.FIRE),
     CHROMIUM,
     MANGANESE,
-    IRON(true, Type.VANILLA),
-    COBALT,
-    NICKEL,
+    IRON(Type.VANILLA, true),
+    COBALT(true),
+    NICKEL(true),
     COPPER(Type.VANILLA, true, true),
-    ZINC,
+    ZINC(true),
     GALLIUM,
     GERMANIUM,
     ARSENIC,
@@ -43,18 +43,19 @@ public enum Element {
     STRONTIUM,
     YTTRIUM,
     ZIRCONIUM,
-    NIOBIUM,
-    MOLYBDENUM,
-    TECHNETIUM,
-    RUTHENIUM,
+    NIOBIUM(Property.FIRE),
+    MOLYBDENUM(Type.INGOT, Property.FIRE, true, false),
+    TECHNETIUM(Property.FIRE),
+    RUTHENIUM(Property.FIRE),
     RHODIUM,
     PALLADIUM,
-    SILVER(Type.INGOT, true),
+    SILVER(Type.INGOT, false, true),
     CADMIUM,
     INDIUM,
-    TIN,
+    TIN(true),
     ANTIMONY,
-
+    SELENIUM,
+    TELLURIUM,
     IODINE(Type.CUBE),
     XENON(Type.CANISTER),
     CAESIUM,
@@ -74,17 +75,17 @@ public enum Element {
     THULIUM,
     YTTERBIUM,
     LUTETIUM,
-    HAFNIUM,
-    TANTALUM,
-    TUNGSTEN,
-    RHENIUM,
-    OSMIUM,
-    IRIDIUM,
-    PLATINUM,
-    GOLD(true, Type.VANILLA),
+    HAFNIUM(Property.FIRE),
+    TANTALUM(Property.FIRE),
+    TUNGSTEN(Type.INGOT, Property.FIRE, true, false),
+    RHENIUM(Property.FIRE),
+    OSMIUM(Property.FIRE),
+    IRIDIUM(Property.FIRE),
+    PLATINUM(true),
+    GOLD(Type.VANILLA,true, false),
     MERCURY,
     THALLIUM,
-    LEAD,
+    LEAD(true),
     BISMUTH,
     POLONIUM,
     ASTATINE(Type.CUBE),
@@ -107,40 +108,60 @@ public enum Element {
     private final Boolean dust;
     private final Boolean nugget;
     private final Type type;
+    private final Property property;
     Element() {
         this.dust = false;
         this.nugget = false;
         this.type = Type.INGOT;
+        this.property = Property.NONE;
     };
     Element(boolean dust) {
         this.dust = dust;
         this.nugget = false;
         this.type = Type.INGOT;
+        this.property = Property.NONE;
     }
     Element(Type type) {
         this.dust = false;
         this.nugget = false;
         this.type = type;
+        this.property = Property.NONE;
     }
-    Element(Type type, boolean nugget) {
+    Element(Property property) {
         this.dust = false;
-        this.nugget = nugget;
-        this.type = type;
+        this.nugget = false;
+        this.type = Type.INGOT;
+        this.property = property;
     }
-    Element(boolean dust, Type type) {
+    Element(Type type, Property property) {
+        this.dust = false;
+        this.nugget = false;
+        this.type = type;
+        this.property = property;
+    }
+    Element(Type type, boolean dust) {
         this.dust = dust;
         this.nugget = false;
         this.type = type;
+        this.property = Property.NONE;
     }
     Element(boolean dust, boolean nugget) {
         this.dust = dust;
         this.nugget = nugget;
         this.type = Type.INGOT;
+        this.property = Property.NONE;
     }
     Element(Type type, boolean dust, boolean nugget) {
         this.dust = dust;
         this.nugget = nugget;
         this.type = type;
+        this.property = Property.NONE;
+    }
+    Element(Type type, Property property, boolean dust, boolean nugget) {
+        this.dust = dust;
+        this.nugget = nugget;
+        this.type = type;
+        this.property = property;
     }
 
 
@@ -163,6 +184,9 @@ public enum Element {
     public Type getType() {
         return type;
     }
+    public Property getProperty() {
+        return property;
+    }
 
     public boolean isMetal() {
         return getType()==Type.INGOT;
@@ -170,12 +194,16 @@ public enum Element {
     public boolean isVanilla() {
         return getType()==Type.VANILLA;
     }
+    public boolean isFireResistant() {return getProperty()==Property.FIRE;}
 
-    private enum Type
-    {
+    private enum Type {
         INGOT,
         CANISTER,
         CUBE,
         VANILLA
+    }
+    private enum Property {
+        NONE,
+        FIRE
     }
 }

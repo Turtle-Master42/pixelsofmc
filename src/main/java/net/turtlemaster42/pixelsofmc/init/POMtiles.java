@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 
 import net.turtlemaster42.pixelsofmc.block.tile.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
 
 public class POMtiles {
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, PixelsOfMc.MOD_ID);
@@ -27,9 +28,12 @@ public class POMtiles {
 			TILES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BallMillTile>> BALL_MILL =
 			TILES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillTile::new, POMblocks.BALL_MILL.get()).build(null));
-
 	public static final RegistryObject<BlockEntityType<GrinderTile>> GRINDER =
 			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<HotIsotopicPressTile>> HOT_ISOTOPIC_PRESS =
+			TILES.register("hot_isotopic_press", () -> BlockEntityType.Builder.of(HotIsotopicPressTile::new, POMblocks.HOT_ISOTOPIC_PRESS.get()).build(null));
+
+
 
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
 			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get()).build(null));

@@ -18,6 +18,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
+import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;

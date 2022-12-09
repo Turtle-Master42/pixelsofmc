@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "pixelsofmc:dense_carbon_cube"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:carbonado_clump"
+  }
+}

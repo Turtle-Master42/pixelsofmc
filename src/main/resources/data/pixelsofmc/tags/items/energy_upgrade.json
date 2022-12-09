@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "pixelsofmc:energy_upgrade",
+    "mekanism:upgrade_energy"
+  ]
+}

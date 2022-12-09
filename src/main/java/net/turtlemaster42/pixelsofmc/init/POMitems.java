@@ -31,6 +31,14 @@ public class POMitems {
 	public static final RegistryObject<Item> REPELLING_COMPOUND = ITEMS.register("repelling_compound", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> REPELLING_PLASTIC = ITEMS.register("repelling_plastic", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
+	//items
+	public static final RegistryObject<Item> CARBONARO_CLUMP = ITEMS.register("carbonado_clump", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> BLACK_DIAMOND = ITEMS.register("black_diamond", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> VIOLET_DIAMOND = ITEMS.register("violet_diamond", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	public static final RegistryObject<Item> RED_DIAMOND = ITEMS.register("red_diamond", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
+	
+	
+
 	//circuit parts
 	public static final RegistryObject<Item> COPPER_WIRE = ITEMS.register("copper_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> SILVER_WIRE = ITEMS.register("silver_wire", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
@@ -53,6 +61,7 @@ public class POMitems {
 	public static final RegistryObject<Item> PERFECTED_CIRCUIT_BOARD_1 = ITEMS.register("perfected_circuit_board_1", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
 
+	public static final RegistryObject<Item> ALUMINIUM_SCRAP = ITEMS.register("aluminium_scrap", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> RAW_TITANIUM = ITEMS.register("raw_titanium", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> TITANIUM_DIBORIDE_INGOT = ITEMS.register("titanium_diboride_ingot", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 
@@ -61,7 +70,6 @@ public class POMitems {
 	public static final RegistryObject<Item> TITANIUM_DIBORIDE_NUGGET = ITEMS.register("titanium_diboride_nugget", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 
 	//crafting ingredients
-	public static final RegistryObject<Item> TITANIUM_GEAR = ITEMS.register("titanium_gear", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> TITANIUM_PLATING = ITEMS.register("titanium_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> RUSTED_PLATING = ITEMS.register("rusted_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 	public static final RegistryObject<Item> NETHERITE_PLATING = ITEMS.register("netherite_plating", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
@@ -125,11 +133,17 @@ public class POMitems {
 				ItemRegObject<Item> dust = null;
 
 				if (!m.isVanilla())
-					element = register(elementName+"_"+type, BaseItem::new);
+					if (m.isFireResistant())
+						element = register(elementName+"_"+type, () -> new BaseItem(new BaseItem.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+					else element = register(elementName+"_"+type, BaseItem::new);
 				if (m.shouldAddNugget())
-					nugget = register(elementName+"_nugget", BaseItem::new);
+					if (m.isFireResistant())
+						nugget = register(elementName+"_nugget", () -> new BaseItem(new BaseItem.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+					else nugget = register(elementName+"_nugget", BaseItem::new);
 				if (m.shouldAddDust())
-					dust = register(elementName+"_dust", BaseItem::new);
+					if (m.isFireResistant())
+						dust = register(elementName+"_dust", () -> new BaseItem(new BaseItem.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
+					else dust = register(elementName+"_dust", BaseItem::new);
 
 				NUGGETS.put(m, nugget);
 				ELEMENTS.put(m, element);
@@ -151,13 +165,11 @@ public class POMitems {
 
 
 	//Immersive Engineering
-	private static <T extends Item> ItemRegObject<T> register(String name, Supplier<? extends T> make)
-	{
+	private static <T extends Item> ItemRegObject<T> register(String name, Supplier<? extends T> make) {
 		return new ItemRegObject<>(ITEMS.register(name, make));
 	}
 
-	public static class ItemRegObject<T extends Item> implements Supplier<T>, ItemLike
-	{
+	public static class ItemRegObject<T extends Item> implements Supplier<T>, ItemLike {
 		private final RegistryObject<T> regObject;
 		private ItemRegObject(RegistryObject<T> regObject)
 		{

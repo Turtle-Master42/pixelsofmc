@@ -6,21 +6,21 @@
   "outputs": [
     {
       "count": 2,
-      "chance": 1,
+      "chance": 0.6,
       "ingredient": {
         "item": "pixelsofmc:potassium_dust"
       }
     },
     {
       "count": 1,
-      "chance": 1,
+      "chance": 0.75,
       "ingredient": {
         "item": "pixelsofmc:titanium_dust"
       }
     },
     {
       "count": 1,
-      "chance": 1,
+      "chance": 0.65,
       "ingredient": {
         "item": "pixelsofmc:silicon_dust"
       }
