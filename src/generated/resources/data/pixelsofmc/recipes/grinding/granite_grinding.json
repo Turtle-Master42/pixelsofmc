@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:granite"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/tungsten"
+      },
+      "count": 1,
+      "chance": 0.015
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/molybdenum"
+      },
+      "count": 1,
+      "chance": 0.015
+    }
+  ]
+}

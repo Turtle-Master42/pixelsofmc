@@ -109,7 +109,7 @@ public class GrinderRecipe extends BaseRecipe {
 
                 return new GrinderRecipe(id, input, outputs);
             } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                PixelsOfMc.LOGGER.error("Error reading grinding recipe from packet.", ex);
                 throw ex;
             }
         }
@@ -120,7 +120,7 @@ public class GrinderRecipe extends BaseRecipe {
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
 
             } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                PixelsOfMc.LOGGER.error("Error reading grinding recipe from packet.", ex);
                 throw ex;
             }
         }

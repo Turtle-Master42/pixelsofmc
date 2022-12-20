@@ -50,7 +50,7 @@ public class BallMillRecipe extends BaseRecipe {
                     if (recipeItems.get(inp).test(container.getItem(slot))) {
                         matched[inp] = true;
                     }
-                } else if (container.getItem(slot) == ItemStack.EMPTY) {
+                } else if (container.getItem(slot).isEmpty()) {
                     // If we don't expect an input, make sure we have a blank for it.
                     matched[inp] = true;
                 }

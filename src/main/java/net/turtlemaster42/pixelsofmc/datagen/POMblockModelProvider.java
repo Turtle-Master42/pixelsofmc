@@ -26,6 +26,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(POMblocks.TITANIUM_ORE.get());
         simpleBlock(POMblocks.RAW_TITANIUM_BLOCK.get());
         simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
+        simpleBlock(POMblocks.SAND_MINERAL_DEPOSIT.get());
+        simpleBlock(POMblocks.ACANTHITE.get());
 
         simpleBlock(POMblocks.SIMPLE_CASING_1.get());
         simpleBlock(POMblocks.ADVANCED_CASING_1.get());
@@ -34,6 +36,7 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(POMblocks.REINFORCED_CASING.get());
 
         simpleBlock(POMblocks.SDS_CONTROLLER.get());
+        simpleBlock(POMblocks.HOT_ISOTOPIC_PRESS.get());
 
     }
 

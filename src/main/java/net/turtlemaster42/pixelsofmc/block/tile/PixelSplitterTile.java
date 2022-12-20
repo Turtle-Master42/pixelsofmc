@@ -4,6 +4,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -99,11 +100,17 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot < 2;
+        if (slot<2) return true;
+        else if (slot==5) return stack.is(POMtags.Items.SPEED_UPGRADE);
+        else if (slot==6) return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        return false;
     }
     @Override
     protected int itemHandlerSize() {return 5;}
-
+    protected void contentsChanged(int slot) {
+        if (slot==3)
+            speedUpgradeCheck();
+    }
 
     @Override
     public Component getDisplayName() {
@@ -172,7 +179,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelSplitterTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(3).getCount();
-            pBlockEntity.speedUpgradeCheck();
             pBlockEntity.energyUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);

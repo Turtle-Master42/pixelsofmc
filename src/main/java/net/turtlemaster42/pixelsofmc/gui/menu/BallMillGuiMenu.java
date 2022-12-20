@@ -50,9 +50,9 @@ public class BallMillGuiMenu extends AbstractContainerMenu implements IEnergyMen
 
     }
 
-    public boolean isCrafting() {
-        return data.get(0) > 0;
-    }
+    public boolean isCrafting() {return data.get(0) > 0;}
+    public int getProgress() {return this.data.get(0);}
+    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
 
     public int getScaledProgressOne() {
         int progress = this.data.get(0);

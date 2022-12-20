@@ -21,6 +21,9 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         this.dropSelf(POMblocks.ALUMINIUM_SCRAP_BLOCK.get());
+        this.dropSelf(POMblocks.SAND_MINERAL_DEPOSIT.get());
+        this.dropSelf(POMblocks.ACANTHITE.get());
+        this.dropSelf(POMblocks.HOT_ISOTOPIC_PRESS.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());

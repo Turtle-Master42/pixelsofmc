@@ -11,10 +11,6 @@ public class ModEnergyUpgradeSlot extends SlotItemHandler {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        if (stack.is(POMitems.ENERGY_UPGRADE.get())) {
-            return true;
-        } else {
-            return false;
-        }
+        return stack.is(POMitems.ENERGY_UPGRADE.get());
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class ModSpeedUpgradeSlot extends SlotItemHandler {
     public ModSpeedUpgradeSlot(IItemHandler itemHandler, int index, int x, int y) {
@@ -11,10 +12,6 @@ public class ModSpeedUpgradeSlot extends SlotItemHandler {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        if (stack.is(POMitems.SPEED_UPGRADE.get())) {
-            return true;
-        } else {
-            return false;
-        }
+        return stack.is(POMtags.Items.SPEED_UPGRADE);
     }
 }

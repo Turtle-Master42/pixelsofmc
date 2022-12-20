@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:zinc_ingot"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "item": "pixelsofmc:zinc_dust"
+      },
+      "count": 1,
+      "chance": 1.0
+    }
+  ]
+}

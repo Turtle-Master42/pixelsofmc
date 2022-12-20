@@ -34,6 +34,7 @@ public abstract class AbstractMachineTile<Tile> extends BlockEntity implements M
             if (!level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
+            contentsChanged(slot);
             setChanged();
         }
 
@@ -55,6 +56,7 @@ public abstract class AbstractMachineTile<Tile> extends BlockEntity implements M
         return true;
     }
     protected int itemHandlerSize() {return 1;}
+    protected void contentsChanged(int slot) {}
 
     @Override
     public void setHandler(ItemStackHandler handler) {

@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:boron_cube"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "item": "pixelsofmc:boron_dust"
+      },
+      "count": 1,
+      "chance": 1.0
+    }
+  ]
+}

@@ -107,7 +107,10 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot == 0;
+        if (slot==0) return true;
+        else if (slot==5) return stack.is(POMtags.Items.SPEED_UPGRADE);
+        else if (slot==6) return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        return false;
     }
     @Override
     protected boolean isSlotValidOutput(int slot) {
@@ -115,7 +118,10 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
     @Override
     protected int itemHandlerSize() {return 7;}
-
+    protected void contentsChanged(int slot) {
+        if (slot==5)
+            speedUpgradeCheck();
+    }
 
     @Override
     public Component getDisplayName() {
@@ -192,7 +198,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, GrinderTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
-            pBlockEntity.speedUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
 
@@ -236,27 +241,27 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
-            boolean[] matched = new boolean[4];
+            boolean[] matched = new boolean[outputs.size()];
             // Iterate over the outputs -out-
-            for (int out = 0; out < outputs.size(); out++) {
+            for (int out = 0;out < outputs.size(); out++) {
+                ItemStack beginStack =  match.get().getResultItems(out);
                 ItemStack newStack;
-                newStack = match.get().getResultItems(out);
+                newStack = beginStack;
                 // Iterate over the slots -slot-
                 for (int slot = 1; slot < 5; slot++) {
-
                     // if already matched continue output cycle
                     if (matched[out])
                         continue;
                     //if it can insert it will, otherwise continue slot cycle
                     if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(slot), newStack.getItem())) {
                         //inserts items and sets newStack to that what could not be inserted
-
-                        boolean chance;
-                        chance = match.get().OutputChance(out) > random();
-                        newStack = entity.insertItemStack(slot, newStack, false);
+                        boolean chance = match.get().OutputChance(out) > random();
+                        if (chance && newStack==beginStack)
+                            newStack = entity.insertItemStack(slot, newStack, false);
+                        else newStack=ItemStack.EMPTY;
                         // if newStack is empty match = true
                         if (newStack.isEmpty()) {
-                            matched[out] = true;
+                            matched[out]=true;
                         }
                     }
                 }
@@ -272,11 +277,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
             this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
-        } else {
-            this.speedUpgrade = 0;
-        }
     }
 
     private int energyUpgrade() {
@@ -291,12 +292,12 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
 
     private static boolean canInsertItemIntoSlot(ItemStack stack, Item item) {
-        return item == stack.getItem() || stack.isEmpty();
+        return item==stack.getItem()||stack.isEmpty();
     }
 
     private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {
-        boolean[] matched = new boolean[4];
-        boolean[] matchNeeded = new boolean[4];
+        boolean[] matched = new boolean[match.getOutputs().size()];
+        boolean[] matchNeeded = new boolean[match.getOutputs().size()];
         ItemStack[] newStackInSlot = new ItemStack[5];
         ItemStack newStack;
 
@@ -325,10 +326,12 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                 }
             }
         }
-        return matched[0] == matchNeeded[0]
-                && matched[1] == matchNeeded[1]
-                && matched[2] == matchNeeded[2]
-                && matched[3] == matchNeeded[3];
+
+        for (int i = 0; i < match.getOutputs().size(); i++) {
+            if (matched[i]!=matchNeeded[i])
+                return false;
+        }
+        return true;
     }
 
     //---ENERGY---//

@@ -1,0 +1,71 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:stone"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 2,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    }
+  ]
+}

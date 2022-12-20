@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:ancient_debris"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/ancient_debris"
+      },
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/ancient_debris"
+      },
+      "count": 1,
+      "chance": 0.33
+    }
+  ]
+}

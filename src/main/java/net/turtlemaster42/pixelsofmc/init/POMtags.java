@@ -28,6 +28,8 @@ public class POMtags {
         public static final TagKey<Item> BALL_4 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_4"));
         public static final TagKey<Item> BALL_5 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_5"));
         public static final TagKey<Item> BALL_6 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_6"));
+        public static final TagKey<Item> SPEED_UPGRADE = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "speed_upgrade"));
+        public static final TagKey<Item> ENERGY_UPGRADE = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "energy_upgrade"));
 
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/netherite"));
 

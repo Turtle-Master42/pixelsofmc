@@ -64,8 +64,15 @@ public class POMblocks {
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
 
     public static final RegistryObject<Block> ALUMINIUM_SCRAP_BLOCK = registerBlock("aluminium_scrap_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(4f, 6.0F).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB, true);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.ANCIENT_DEBRIS)
+                    .strength(4f, 6.0F).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB );
+
+    public static final RegistryObject<Block> SAND_MINERAL_DEPOSIT = registerBlock("sand_mineral_deposit",
+            () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND).sound(SoundType.SAND)
+                    .strength(1f, 0.7F).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+
+    public static final RegistryObject<Block> ACANTHITE = registerBlock("acanthite",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
 
     public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);

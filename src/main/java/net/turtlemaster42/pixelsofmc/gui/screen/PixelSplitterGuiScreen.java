@@ -18,7 +18,7 @@ import java.util.Optional;
 
 public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/pixel_splitter_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
     private EnergyInfoArea energyInfoArea;
     private MachineProgressArea progressArea;
 

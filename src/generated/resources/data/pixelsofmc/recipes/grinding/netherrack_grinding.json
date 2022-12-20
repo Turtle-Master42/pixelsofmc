@@ -1,0 +1,43 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:netherrack"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "item": "pixelsofmc:mercury_sulfide_dust"
+      },
+      "count": 2,
+      "chance": 0.9
+    },
+    {
+      "ingredient": {
+        "item": "pixelsofmc:mercury_sulfide_dust"
+      },
+      "count": 1,
+      "chance": 0.2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      },
+      "count": 1,
+      "chance": 0.2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      },
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/cobalt"
+      },
+      "count": 1,
+      "chance": 0.05
+    }
+  ]
+}

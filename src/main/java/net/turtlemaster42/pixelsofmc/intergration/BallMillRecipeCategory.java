@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "ball_milling");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/ball_mill_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/ball_mill_gui.png");
 
     private final IDrawable background;
     private final IDrawable icon;

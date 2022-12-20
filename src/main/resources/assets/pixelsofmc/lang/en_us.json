@@ -92,6 +92,14 @@
   "item.pixelsofmc.sodium_dust": "Sodium Dust",
   "item.pixelsofmc.sulfur_dust": "Sulfur Dust",
   "item.pixelsofmc.titanium_oxide_dust": "Titanium Oxide Dust",
+  "item.pixelsofmc.cobalt_dust": "Cobalt Dust",
+  "item.pixelsofmc.nickel_dust": "Nickel Dust",
+  "item.pixelsofmc.molybdenum_dust": "Molybdenum Dust",
+  "item.pixelsofmc.tin_dust": "Tin Dust",
+  "item.pixelsofmc.tungsten_dust": "Tungsten Dust",
+  "item.pixelsofmc.platinum_dust": "Platinum Dust",
+  "item.pixelsofmc.lead_dust": "Lead Dust",
+  "item.pixelsofmc.zinc_dust": "Zinc Dust",
 
 
   //elements
@@ -210,7 +218,7 @@
   "block.pixelsofmc.ball_mill": "Ball Mill",
   "block.pixelsofmc.grinder": "Grinder",
   "block.pixelsofmc.hot_isotopic_press": "Hot Isotopic Press",
-  "block.pixelsofmc.fusion_core": "Machine Block",
+  "block.pixelsofmc.fusion_core": "Fusion Core",
 
   "block.pixelsofmc.sds_controller": "SDS Fusion Generator Controller",
 
@@ -222,6 +230,8 @@
   "block.pixelsofmc.titanium_ore": "Titanium Ore",
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.pixelsofmc.endstone_titanium_ore": "Endstone Titanium Ore",
+  "block.pixelsofmc.acanthite": "Acanthite",
+  "block.pixelsofmc.sand_mineral_deposit": "Sand Mineral Deposit",
 
   "block.pixelsofmc.simple_casing_1": "Simple Casing I",
   "block.pixelsofmc.advanced_casing_1": "Advanced Casing I",

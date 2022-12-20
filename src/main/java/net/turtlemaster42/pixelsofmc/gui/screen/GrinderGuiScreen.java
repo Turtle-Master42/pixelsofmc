@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -12,11 +13,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.List;
 import java.util.Optional;
 
 public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/grinder_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/grinder_gui.png");
     private EnergyInfoArea energyInfoArea;
 
     public GrinderGuiScreen(GrinderGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -36,11 +38,20 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 
         this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752);
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 61, 39, 99, 48, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 99, 14, 109, 74, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
     }
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
             renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
+    }
+
+    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
+            renderTooltip(pPoseStack, tooltip,
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:dusts/nickel"
+  },
+  "result": "pixelsofmc:nickel_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class SDSFusionControllerGuiScreen extends AbstractContainerScreen<SDSFusionControllerGuiMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/sps_controller_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/sps_controller_gui.png");
     private EnergyInfoArea energyInfoArea;
 
     public SDSFusionControllerGuiScreen(SDSFusionControllerGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

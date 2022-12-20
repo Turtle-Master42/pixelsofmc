@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
+import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
@@ -17,6 +18,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final GrinderTile blockEntity;
+    public final ItemStackHandler itemHandler;
     private final Level level;
     private final ContainerData data;
 
@@ -28,6 +30,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
         super(POMmenuType.GRINDER_MENU.get(), pContainerId);
         checkContainerSize(inv, 7);
         blockEntity = ((GrinderTile) entity);
+        itemHandler = blockEntity.getItemStackHandler();
         this.level = inv.player.level;
         this.data = data;
 
@@ -49,6 +52,8 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
+    public int getProgress() {return this.data.get(0);}
+    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
 
     public int getScaledProgress() {
         int progress = this.data.get(0);

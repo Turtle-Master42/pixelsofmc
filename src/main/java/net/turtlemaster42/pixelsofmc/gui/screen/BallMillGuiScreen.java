@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -12,11 +13,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.List;
 import java.util.Optional;
 
 public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/ball_mill_gui.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/ball_mill_gui.png");
     private EnergyInfoArea energyInfoArea;
 
     public BallMillGuiScreen(BallMillGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -34,13 +36,27 @@ public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752);
+        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752); //+
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 49, 19, 58, 68, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 59, 41, 68, 46, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 69, 25, 74, 62, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 75, 25, 100, 30, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 75, 57, 100, 62, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 101, 25, 106, 62, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 107, 39, 124, 48, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
     }
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
             renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
+    }
+
+    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
+            renderTooltip(pPoseStack, tooltip,
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }

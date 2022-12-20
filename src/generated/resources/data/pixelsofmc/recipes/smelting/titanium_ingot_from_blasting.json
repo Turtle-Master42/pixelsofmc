@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "pixelsofmc:raw_titanium"
+    "tag": "forge:dusts/titanium"
   },
   "result": "pixelsofmc:titanium_ingot",
-  "experience": 0.5,
-  "cookingtime": 5
+  "experience": 1.0,
+  "cookingtime": 100
 }

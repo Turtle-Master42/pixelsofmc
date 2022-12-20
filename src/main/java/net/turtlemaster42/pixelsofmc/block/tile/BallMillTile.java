@@ -108,9 +108,11 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        if (slot == 3) {return stack.is(POMtags.Items.MILLING_BALL);}
-        else if (slot > 3) {return false;}
-        else {return true;}
+        if (slot == 3) return stack.is(POMtags.Items.MILLING_BALL);
+        else if (slot==5) return stack.is(POMtags.Items.SPEED_UPGRADE);
+        else if (slot==6) return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        else if (slot > 3) return false;
+        else return true;
     }
 
     @Override
@@ -120,6 +122,10 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     @Override
     protected int itemHandlerSize() {return 7;}
 
+    protected void contentsChanged(int slot) {
+        if (slot==5)
+            speedUpgradeCheck();
+    }
 
 
     @Override
@@ -196,7 +202,6 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
-            pBlockEntity.speedUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
             if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
@@ -279,11 +284,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
-        } else {
-            this.speedUpgrade = 0;
-        }
+        this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
     }
 
     private int energyUpgrade() {

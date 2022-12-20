@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:sulfur_cube"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "item": "pixelsofmc:sulfur_dust"
+      },
+      "count": 1,
+      "chance": 1.0
+    }
+  ]
+}

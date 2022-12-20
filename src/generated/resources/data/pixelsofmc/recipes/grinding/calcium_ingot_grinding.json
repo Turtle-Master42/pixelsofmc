@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:calcium_ingot"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "item": "pixelsofmc:calcium_dust"
+      },
+      "count": 1,
+      "chance": 1.0
+    }
+  ]
+}

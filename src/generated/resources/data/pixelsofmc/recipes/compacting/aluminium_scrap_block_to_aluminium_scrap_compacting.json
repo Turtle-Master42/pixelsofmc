@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:aluminium_scrap_block"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:aluminium_scrap",
+    "count": 9
+  }
+}
