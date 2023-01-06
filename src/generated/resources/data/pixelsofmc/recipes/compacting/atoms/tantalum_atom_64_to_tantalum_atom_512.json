@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tantalum_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:tantalum_atom_512"
+  }
+}

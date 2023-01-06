@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ruthenium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:ruthenium_atom_512"
+  }
+}

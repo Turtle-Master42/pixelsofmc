@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:actinium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:actinium_atom_512"
+  }
+}

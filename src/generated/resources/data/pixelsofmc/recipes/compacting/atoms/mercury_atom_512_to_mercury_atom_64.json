@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:mercury_atom_512"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:mercury_atom_64",
+    "count": 8
+  }
+}

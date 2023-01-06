@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:barium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:barium_atom_512"
+  }
+}

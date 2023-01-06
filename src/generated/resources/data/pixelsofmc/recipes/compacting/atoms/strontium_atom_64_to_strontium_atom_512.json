@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:strontium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:strontium_atom_512"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    },
+    {
+      "item": "pixelsofmc:nickel_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:nickel_atom_512"
+  }
+}

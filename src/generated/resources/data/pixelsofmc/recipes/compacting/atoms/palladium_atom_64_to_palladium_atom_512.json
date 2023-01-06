@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:palladium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:palladium_atom_512"
+  }
+}

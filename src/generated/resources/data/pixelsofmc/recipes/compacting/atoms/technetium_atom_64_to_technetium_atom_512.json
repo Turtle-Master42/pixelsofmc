@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:technetium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:technetium_atom_512"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    },
+    {
+      "item": "pixelsofmc:molybdenum_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:molybdenum_atom_512"
+  }
+}

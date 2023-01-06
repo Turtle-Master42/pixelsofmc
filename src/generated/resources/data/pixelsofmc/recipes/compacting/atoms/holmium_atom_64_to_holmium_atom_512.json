@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:holmium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:holmium_atom_512"
+  }
+}

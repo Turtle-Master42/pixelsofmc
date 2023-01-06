@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:germanium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:germanium_atom_512"
+  }
+}

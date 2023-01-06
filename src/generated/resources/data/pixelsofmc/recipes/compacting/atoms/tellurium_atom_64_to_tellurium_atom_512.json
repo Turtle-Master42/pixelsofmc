@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:tellurium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:tellurium_atom_512"
+  }
+}
