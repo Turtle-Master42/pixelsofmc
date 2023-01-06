@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -8,9 +9,8 @@ import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.RendererHotIsostaticPress;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
-import net.turtlemaster42.pixelsofmc.world.WorldEvent;
-import net.turtlemaster42.pixelsofmc.world.feature.POMplaceFeatures;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -73,11 +73,12 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
-		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsotopicPressScreen::new);
+		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+		BlockEntityRenderers.register(POMtiles.HOT_ISOTOPIC_PRESS.get(), RendererHotIsostaticPress::new);
 		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.SDS_CONTROLLER.get(), FusionCoreRenderer::new);
 	}

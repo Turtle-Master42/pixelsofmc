@@ -20,8 +20,8 @@ public class POMmenuType {
             registerMenuType(BallMillGuiMenu::new, "ball_mill_menu");
     public static final RegistryObject<MenuType<GrinderGuiMenu>> GRINDER_MENU =
             registerMenuType(GrinderGuiMenu::new, "grinder_menu");
-    public static final RegistryObject<MenuType<HotIsotopicPressGuiMenu>> HOT_ISOTOPIC_PRESS_MENU =
-            registerMenuType(HotIsotopicPressGuiMenu::new, "hot_isotopic_press_menu");
+    public static final RegistryObject<MenuType<HotIsostaticPressGuiMenu>> HOT_ISOTOPIC_PRESS_MENU =
+            registerMenuType(HotIsostaticPressGuiMenu::new, "hot_isotopic_press_menu");
 
 
     public static final RegistryObject<MenuType<SDSFusionControllerGuiMenu>> SDS_CONTROLLER_MENU =

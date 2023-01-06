@@ -103,7 +103,7 @@ public class POMblocks {
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "", "", "YOOOOOOOOOO");
     public static final RegistryObject<Block> HOT_ISOTOPIC_PRESS = registerBlock("hot_isotopic_press",
-            () -> new HotIsotopicPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+            () -> new HotIsostaticPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
 

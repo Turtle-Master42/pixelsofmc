@@ -11,7 +11,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.HotIsotopicPressGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
@@ -19,13 +19,13 @@ import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import java.util.List;
 import java.util.Optional;
 
-public class HotIsotopicPressScreen extends AbstractContainerScreen<HotIsotopicPressGuiMenu> {
+public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostaticPressGuiMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/hot_isotopic_press_gui.png");
     private static final ResourceLocation BUTTON = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
     private EnergyInfoArea energyInfoArea;
     private Boolean pressed = false;
 
-    public HotIsotopicPressScreen(HotIsotopicPressGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public HotIsostaticPressScreen(HotIsostaticPressGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

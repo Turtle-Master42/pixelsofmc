@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.fml.ModList;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -24,8 +25,10 @@ import net.turtlemaster42.pixelsofmc.recipe.DamageToolRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.GrinderRecipeBuilder;
 import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipeBuilder;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.Mods;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.apache.commons.codec.language.bm.Lang;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,6 +43,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> fConsumer) {
+
 
         ShapelessRecipeBuilder.shapeless(POMitems.BIO_COMPOUND.get(), 2)
                 .requires(Items.SUGAR_CANE)
@@ -358,6 +362,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         //auto
         for(Element m : Element.values()) {
+            SimpleAtomCompacting(atom64Item(m), atom512Item(m), fConsumer);
+
             if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
                 SimpleSmeltingRecipe(dustTag(m), elementItem(m), 1f, 200, fConsumer, "");
             if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
@@ -392,6 +398,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         //pixel splitter
         PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 8, 252, 204, 60, fConsumer);
+
 
         //ez crafting
         SimpleSurroundRecipe(nuggetItem(Element.TITANIUM), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -549,6 +556,23 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(consumer);
     }
 
+    private void SimpleAtomCompacting(ItemLike atomx64, ItemLike atomx512, Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(atomx512, 1)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .requires(atomx64)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer, toRL("compacting/atoms/"+atomx64.asItem()+"_to_"+atomx512.asItem()));
+        ShapelessRecipeBuilder.shapeless(atomx64, 8)
+                .requires(atomx512)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer, toRL("compacting/atoms/"+atomx512.asItem()+"_to_"+atomx64.asItem()));
+    }
 
     private void BallMill(Ingredient input1, int count1, Ingredient input2, int count2, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
         BallMill(input1, count1, input2, count2, Ingredient.EMPTY, 0, output, outputCount, ball, consumer);
@@ -613,6 +637,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
     private ItemLike nuggetItem(Element element) {
         return POMitems.Metals.NUGGETS.get(element);
+    }
+    private ItemLike atom64Item(Element element) {
+        return POMitems.Metals.ATOMX64.get(element);
+    }
+    private ItemLike atom512Item(Element element) {
+        return POMitems.Metals.ATOMX512.get(element);
     }
 
     //toIngredient

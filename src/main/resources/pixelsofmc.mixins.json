@@ -3,12 +3,8 @@
   "minVersion": "0.8",
   "package": "net.turtlemaster42.pixelsofmc.util.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
   "client": [
     "client.AccessorRenderType"
   ],
-  "injectors": {
-    "defaultRequire": 1
-  },
   "refmap": "pixelsofmc.refmap.json"
 }

@@ -15,32 +15,33 @@ public class FusionCoreModel extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox disc;
 
     public FusionCoreModel() {
-        texWidth = 64;
-        texHeight = 64;
+        texWidth = 192;
+        texHeight = 112;
 
 
         root = new AdvancedModelBox(this, "root");
+        root.setPos(0.5f, 0.5f, 0.5f);
         root.setRotationPoint(0.0F, 0.0F, 0.0F);
 
         star_1 = new AdvancedModelBox(this, "star_1");
         star_1.setRotationPoint(0.0F, 0.0F, 0.0F);
         root.addChild(star_1);
-        star_1.setTextureOffset(0 ,0).addBox(-8.05F, -8.05F, -8.05F, 16.1F,16.1F, 16.1F, 0.0F, false);
+        star_1.setTextureOffset(0 ,0).addBox(0f, 0f, 0f, 16.1F,16.1F, 16.1F, 0.0F, false);
 
         star_2 = new AdvancedModelBox(this, "star_2");
         star_2.setRotationPoint(0.0F, 0.0F, 0.0F);
         root.addChild(star_2);
-        star_2.setTextureOffset(0 ,0).addBox(-8.05F, -8.05F, -8.05F, 16.1F,16.1F, 16.1F, 0.0F, false);
+        star_2.setTextureOffset(0 ,32).addBox(0f, 0f, 0f, 16.1F,16.1F, 16.1F, 0.0F, false);
 
         big_star = new AdvancedModelBox(this, "big_star");
         big_star.setRotationPoint(0.0F, 0.0F, 0.0F);
         root.addChild(big_star);
-        big_star.setTextureOffset(0 ,0).addBox(-16.0F, 16.0F, 0.0F, 32.0F,32.0F, 32.0F, 0.0F, false);
+        big_star.setTextureOffset(64 ,0).addBox(0f, 0f, 0f, 32.0F,32.0F, 32.0F, 0.0F, false);
 
         disc = new AdvancedModelBox(this, "disc");
         disc.setRotationPoint(0.0F, 0.0F, 0.0F);
         root.addChild(disc);
-        disc.setTextureOffset(0 ,0).addBox(0.0F, 0.0F, 0.0F, 48.0F,48.0F, 0.0F, 0.0F, false);
+        disc.setTextureOffset(0 ,64).addBox(0f, 0f, 0f, 48.0F,48.0F, 0.0F, 0.0F, false);
 
         this.updateDefaultPose();
     }

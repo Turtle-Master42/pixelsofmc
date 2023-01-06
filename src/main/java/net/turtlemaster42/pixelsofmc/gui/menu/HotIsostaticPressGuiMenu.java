@@ -9,26 +9,25 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.tile.HotIsotopicPressTile;
+import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 
-public class HotIsotopicPressGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
-    public final HotIsotopicPressTile blockEntity;
+public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
+    public final HotIsostaticPressTile blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public HotIsotopicPressGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
     }
 
-    public HotIsotopicPressGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+    public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), pContainerId);
         checkContainerSize(inv, 6);
-        blockEntity = ((HotIsotopicPressTile) entity);
+        blockEntity = ((HotIsostaticPressTile) entity);
         this.level = inv.player.level;
         this.data = data;
 

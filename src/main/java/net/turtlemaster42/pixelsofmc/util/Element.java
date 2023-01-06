@@ -36,7 +36,7 @@ public enum Element {
     GALLIUM,
     GERMANIUM,
     ARSENIC,
-
+    SELENIUM,
     BROMINE(Type.CANISTER),
     KRYPTON(Type.CANISTER),
     RUBIDIUM,
@@ -54,7 +54,6 @@ public enum Element {
     INDIUM,
     TIN(true),
     ANTIMONY,
-    SELENIUM,
     TELLURIUM,
     IODINE(Type.CUBE),
     XENON(Type.CANISTER),

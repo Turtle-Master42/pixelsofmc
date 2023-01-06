@@ -23,19 +23,19 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.tile.HotIsotopicPressTile;
+import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 import javax.annotation.Nullable;
 
-public class HotIsotopicPressBlock extends BaseEntityBlock {
+public class HotIsostaticPressBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
 
 
-    public HotIsotopicPressBlock(Properties properties) {
+    public HotIsostaticPressBlock(Properties properties) {
         super(properties);
     }
 
@@ -96,8 +96,8 @@ public class HotIsotopicPressBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof HotIsotopicPressTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (HotIsotopicPressTile)entity, pPos);
+            if(entity instanceof HotIsostaticPressTile) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (HotIsostaticPressTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -110,8 +110,8 @@ public class HotIsotopicPressBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof HotIsotopicPressTile) {
-                ((HotIsotopicPressTile) blockEntity).drops();
+            if (blockEntity instanceof HotIsostaticPressTile) {
+                ((HotIsostaticPressTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -149,13 +149,13 @@ public class HotIsotopicPressBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new HotIsotopicPressTile(pPos, pState);
+        return new HotIsostaticPressTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, POMtiles.HOT_ISOTOPIC_PRESS.get(),
-                pLevel.isClientSide ? HotIsotopicPressTile::clientTick : HotIsotopicPressTile::serverTick);
+                pLevel.isClientSide ? HotIsostaticPressTile::clientTick : HotIsostaticPressTile::serverTick);
     }
 }

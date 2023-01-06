@@ -2,28 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:sugar_cane"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    },
-    {
-      "item": "minecraft:warped_roots"
-    },
-    {
-      "item": "minecraft:warped_roots"
-    },
-    {
-      "item": "minecraft:kelp"
-    },
-    {
-      "item": "minecraft:kelp"
-    },
-    {
-      "tag": "forge:slimeballs"
-    },
-    {
-      "tag": "forge:eggs"
+      "item": "pixelsofmc:fire_proof_compound"
     }
   ],
   "result": {

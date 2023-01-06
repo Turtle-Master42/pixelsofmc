@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block;
+package net.turtlemaster42.pixelsofmc.unused;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

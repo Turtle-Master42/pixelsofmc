@@ -8,6 +8,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 
 import static net.turtlemaster42.pixelsofmc.PixelsOfMc.MOD_ID;
@@ -21,9 +22,13 @@ public class CommonProxy {
     public void openBookGUI(ItemStack itemStack, String page) {
     }
 
+    public void clientInit() {
+    }
+
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, PixelSplitterRecipe.Type.ID, PixelSplitterRecipe.Type.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, BallMillRecipe.Type.ID, BallMillRecipe.Type.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, GrinderRecipe.Type.ID, GrinderRecipe.Type.INSTANCE);
     }
 }

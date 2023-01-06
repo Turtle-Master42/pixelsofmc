@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -19,10 +19,11 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'org.spongepowered.mixin'
 
 
 version = '0.0.2-1.18.2'
-group = 'net.mcreator.pixelsofmc' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'net.turtlemaster42.pixelsofmc' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'pixelsofmc'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -194,8 +195,6 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
-
-    //runtimeOnly "curse.maven:mekanism-268560:3833669"
 
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")

@@ -25,7 +25,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.HotIsotopicPressGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -38,11 +38,10 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
-public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTile> {
+public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPressTile> {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -77,33 +76,33 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
-    public HotIsotopicPressTile(BlockPos pWorldPosition, BlockState pBlockState) {
+    public HotIsostaticPressTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.HOT_ISOTOPIC_PRESS.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return HotIsotopicPressTile.this.progress;
-                    case 1: return HotIsotopicPressTile.this.maxProgress;
-                    case 2: return HotIsotopicPressTile.this.speedUpgrade;
-                    case 3: return HotIsotopicPressTile.this.capacity;
-                    case 4: return HotIsotopicPressTile.this.maxReceive;
-                    case 5: return HotIsotopicPressTile.this.energyStorage.getEnergyStored();
-                    case 6: return HotIsotopicPressTile.this.heat;
-                    case 7: return HotIsotopicPressTile.this.maxHeat;
-                    case 8: return HotIsotopicPressTile.this.burnTime;
-                    case 9: return HotIsotopicPressTile.this.maxBurnTime;
+                    case 0: return HotIsostaticPressTile.this.progress;
+                    case 1: return HotIsostaticPressTile.this.maxProgress;
+                    case 2: return HotIsostaticPressTile.this.speedUpgrade;
+                    case 3: return HotIsostaticPressTile.this.capacity;
+                    case 4: return HotIsostaticPressTile.this.maxReceive;
+                    case 5: return HotIsostaticPressTile.this.energyStorage.getEnergyStored();
+                    case 6: return HotIsostaticPressTile.this.heat;
+                    case 7: return HotIsostaticPressTile.this.maxHeat;
+                    case 8: return HotIsostaticPressTile.this.burnTime;
+                    case 9: return HotIsostaticPressTile.this.maxBurnTime;
                     default: return 0;
                 }
             }
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: HotIsotopicPressTile.this.progress = value; break;
-                    case 1: HotIsotopicPressTile.this.maxProgress = value; break;
-                    case 2: HotIsotopicPressTile.this.speedUpgrade = value; break;
-                    case 6: HotIsotopicPressTile.this.heat = value; break;
-                    case 7: HotIsotopicPressTile.this.maxHeat = value; break;
-                    case 8: HotIsotopicPressTile.this.burnTime = value; break;
-                    case 9: HotIsotopicPressTile.this.maxBurnTime = value; break;
+                    case 0: HotIsostaticPressTile.this.progress = value; break;
+                    case 1: HotIsostaticPressTile.this.maxProgress = value; break;
+                    case 2: HotIsostaticPressTile.this.speedUpgrade = value; break;
+                    case 6: HotIsostaticPressTile.this.heat = value; break;
+                    case 7: HotIsostaticPressTile.this.maxHeat = value; break;
+                    case 8: HotIsostaticPressTile.this.burnTime = value; break;
+                    case 9: HotIsostaticPressTile.this.maxBurnTime = value; break;
                 }
             }
 
@@ -126,6 +125,7 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
     protected int itemHandlerSize() {return 6;}
 
     public int GetMaxTime() {return maxBurnTime;}
+    public int getHeat() {return heat;}
 
     @Override
     public Component getDisplayName() {
@@ -135,7 +135,7 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new HotIsotopicPressGuiMenu(pContainerId, pInventory, this, this.data);
+        return new HotIsostaticPressGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -196,15 +196,15 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
 
     //---RECIPE---//
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, HotIsotopicPressTile e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, HotIsostaticPressTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, HotIsotopicPressTile e) {
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, HotIsostaticPressTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, HotIsotopicPressTile pBlockEntity) {
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, HotIsostaticPressTile pBlockEntity) {
 
         if(ForgeHooks.getBurnTime(itemHandler.getStackInSlot(1), null) > 0 && burnTime == 0) {
             int time = ForgeHooks.getBurnTime(itemHandler.getStackInSlot(1), null) / 20;
@@ -228,7 +228,7 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
         }
     }
 
-    private static boolean hasRecipe(HotIsotopicPressTile entity) {
+    private static boolean hasRecipe(HotIsostaticPressTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -243,13 +243,13 @@ public class HotIsotopicPressTile extends AbstractMachineTile<HotIsotopicPressTi
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
     }
 
-    private static boolean hasPower(HotIsotopicPressTile entity) {
+    private static boolean hasPower(HotIsostaticPressTile entity) {
         int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
 
-    private static void craftItem(HotIsotopicPressTile entity) {
+    private static void craftItem(HotIsostaticPressTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {

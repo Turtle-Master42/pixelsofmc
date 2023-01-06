@@ -16,8 +16,8 @@ import net.minecraft.core.BlockPos;
 import java.util.List;
 import java.util.Collections;
 
-public class TitaniumBlockBlock extends Block {
-	public TitaniumBlockBlock() {
+public class TitaniumBlock extends Block {
+	public TitaniumBlock() {
 		super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f, 10f).requiresCorrectToolForDrops());
 	}
 

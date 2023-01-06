@@ -25,6 +25,7 @@ public class POMitemModelProvider extends ItemModelProvider {
             createElementModels(m);
             createDustModels(m);
             createNuggetModels(m);
+            createAtomModels(m);
         }
 
         simpleItem(POMitems.BOOK_1.get());
@@ -157,6 +158,11 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"items/dusts/" + item.getRegistryName().getPath()));
     }
+    private ItemModelBuilder atomItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(PixelsOfMc.MOD_ID,"items/atoms/" + item.getRegistryName().getPath()));
+    }
 
     private ItemModelBuilder handheldItem(Item item) {
         return withExistingParent(item.getRegistryName().getPath(),
@@ -173,19 +179,20 @@ public class POMitemModelProvider extends ItemModelProvider {
                 "block/" + block.getRegistryName().getPath()));
     }
 
-    private void createElementModels(Element element)
-    {
+    private void createElementModels(Element element) {
         if (!element.isVanilla())
             elementItem(POMitems.Metals.ELEMENTS.get(element).asItem());
     }
-    private void createDustModels(Element element)
-    {
+    private void createDustModels(Element element) {
         if (element.shouldAddDust())
             dustItem(POMitems.Metals.DUSTS.get(element).asItem());
     }
-    private void createNuggetModels(Element element)
-    {
+    private void createNuggetModels(Element element) {
         if (element.shouldAddNugget())
             simpleItem(POMitems.Metals.NUGGETS.get(element).asItem());
+    }
+    private void createAtomModels(Element element) {
+        atomItem(POMitems.Metals.ATOMX64.get(element).asItem());
+        atomItem(POMitems.Metals.ATOMX512.get(element).asItem());
     }
 }

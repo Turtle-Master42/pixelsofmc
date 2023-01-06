@@ -1,9 +1,12 @@
-package net.turtlemaster42.pixelsofmc.block;
+package net.turtlemaster42.pixelsofmc.unused;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -11,11 +14,11 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+public class ChiseledStoneBrickPillar extends Block {
 
-public class ChiseledStoneBricksCornerBlock extends Block {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public ChiseledStoneBricksCornerBlock(Properties properties) {
+    public ChiseledStoneBrickPillar(Properties properties) {
         super(properties);
     }
 
@@ -30,7 +33,7 @@ public class ChiseledStoneBricksCornerBlock extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, pContext.getClickedFace().getOpposite());
     }
 
     @Override
@@ -52,5 +55,5 @@ public class ChiseledStoneBricksCornerBlock extends Block {
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
-}
 
+}

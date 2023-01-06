@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.Mods;
 
 import javax.annotation.Nonnull;
 import java.util.EnumMap;
@@ -115,22 +117,32 @@ public class POMitems {
 	public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> DENSE_CARBON_CUBE = ITEMS.register("dense_carbon_cube", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
+	public static final class MekanismCompat {
+		private static void init() {
+			register("mekanism", BaseItem::new);
+		}
+	}
 
-	public static final class Metals
-	{
+
+	public static final class Metals {
+		public static final Map<Element, ItemRegObject<Item>> ATOMX512 = new EnumMap<>(Element.class);
+		public static final Map<Element, ItemRegObject<Item>> ATOMX64 = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> ELEMENTS = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> NUGGETS = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> DUSTS = new EnumMap<>(Element.class);
 
-		private static void init()
-		{
-			for(Element m : Element.values())
-			{
+		private static void init() {
+			for(Element m : Element.values()) {
 				String elementName = m.tagName();
 				String type = m.typeName();
+				ItemRegObject<Item> atomx512;
+				ItemRegObject<Item> atomx64;
 				ItemRegObject<Item> nugget = null;
 				ItemRegObject<Item> element = null;
 				ItemRegObject<Item> dust = null;
+
+				atomx64 = register(elementName+"_atom_64", AtomItem::new);
+				atomx512 = register(elementName+"_atom_512", AtomItem::new);
 
 				if (!m.isVanilla())
 					if (m.isFireResistant())
@@ -145,6 +157,9 @@ public class POMitems {
 						dust = register(elementName+"_dust", () -> new BaseItem(new BaseItem.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).fireResistant()));
 					else dust = register(elementName+"_dust", BaseItem::new);
 
+
+				ATOMX512.put(m, atomx512);
+				ATOMX64.put(m, atomx64);
 				NUGGETS.put(m, nugget);
 				ELEMENTS.put(m, element);
 				DUSTS.put(m, dust);
@@ -161,6 +176,8 @@ public class POMitems {
 	public static void register(IEventBus bus) {
 		ITEMS.register(bus);
 		Metals.init();
+		if (Mods.MEKANISM.isLoaded())
+			MekanismCompat.init();
 	}
 
 

@@ -34,19 +34,16 @@ public class FusionCoreRenderer<T extends SDSFusionControllerTile> implements Bl
     public void render(T tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         matrixStackIn.pushPose();
         Direction dir = tileEntityIn.getBlockState().getValue(SDSFusionControllerBlock.FACING);
-        if(dir == Direction.UP){
-            matrixStackIn.translate(0.5F, 1.5F, 0.5F);
-        }else if(dir == Direction.DOWN){
-            matrixStackIn.translate(0.5F, -0.5F, 0.5F);
-        }else if(dir == Direction.NORTH){
-            matrixStackIn.translate(0.5, 0.5F, -0.5F);
+        if(dir == Direction.NORTH){
+            matrixStackIn.translate(0.0f, 0.0F, 0.0F);
         }else if(dir == Direction.EAST){
-            matrixStackIn.translate(1.5F, 0.5F, 0.5F);
+            matrixStackIn.translate(1.0F, 0.0F, 0.0F);
+
         }else if(dir == Direction.SOUTH){
-            matrixStackIn.translate(0.5, 0.5F, 1.5F);
+            matrixStackIn.translate(1.0F, 0.0F, 1.0F);
 
         }else if(dir == Direction.WEST){
-            matrixStackIn.translate(-0.5F, 0.5F, 0.5F);
+            matrixStackIn.translate(0.0F, 0.0F, 1.0F);
         }
         matrixStackIn.mulPose(dir.getOpposite().getRotation());
         matrixStackIn.pushPose();
