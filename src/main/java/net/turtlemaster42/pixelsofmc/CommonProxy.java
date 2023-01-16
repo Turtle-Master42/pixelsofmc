@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 
 import static net.turtlemaster42.pixelsofmc.PixelsOfMc.MOD_ID;
@@ -30,5 +31,6 @@ public class CommonProxy {
         Registry.register(Registry.RECIPE_TYPE, PixelSplitterRecipe.Type.ID, PixelSplitterRecipe.Type.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, BallMillRecipe.Type.ID, BallMillRecipe.Type.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, GrinderRecipe.Type.ID, GrinderRecipe.Type.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, HotIsostaticPressRecipe.Type.ID, HotIsostaticPressRecipe.Type.INSTANCE);
     }
 }

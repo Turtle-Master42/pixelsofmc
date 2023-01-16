@@ -20,10 +20,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.init.POMrecipes;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
-import net.turtlemaster42.pixelsofmc.recipe.BallMillRecipeBuilder;
-import net.turtlemaster42.pixelsofmc.recipe.DamageToolRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.GrinderRecipeBuilder;
-import net.turtlemaster42.pixelsofmc.recipe.PixelSplitterRecipeBuilder;
+import net.turtlemaster42.pixelsofmc.recipe.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Mods;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
@@ -441,6 +438,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
         SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
         SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
+
+
+        Pressing(POMitems.BIO_COMPOUND.get(), 2, POMitems.TITANIUM_PLATING.get(), POMitems.FIRE_PROOF_COMPOUND.get(), 1, 2500, fConsumer);
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
@@ -602,6 +602,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(consumer);
     }
 
+    private void Pressing(ItemLike ingredient, int inCount, ItemLike mold, ItemLike output, int outCount, int heat, Consumer<FinishedRecipe> consumer) {
+        new HotIsostaticPressRecipeBuilder(CountedIngredient.of(inCount, ingredient), CountedIngredient.of(1, mold), output, outCount, heat)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
     private void Grinder(Ingredient input, ItemLike output, int outputCount, int outputChance, Consumer<FinishedRecipe> consumer) {
         new GrinderRecipeBuilder(input, List.of(ChanceIngredient.of(outputCount,outputChance,output)))
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
@@ -667,8 +673,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         return ChanceIngredient.of(count, chance, input);
     }
     //Immersive Engineering
-    private ResourceLocation toRL(String string)
-    {
+    private ResourceLocation toRL(String string) {
         if(!string.contains("/"))
             string = "crafting/"+string;
         if(PATH_COUNT.containsKey(string))

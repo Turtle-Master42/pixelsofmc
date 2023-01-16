@@ -113,8 +113,6 @@ public class POMblocks {
             () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
-
-
     public static final RegistryObject<Block> FUSION_CORE = registerBlock("fusion_core",
             () -> new FusionCore(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
@@ -129,6 +127,8 @@ public class POMblocks {
     public static final RegistryObject<Block> PERFECTED_CASING_1 = registerBlock("perfected_casing_1",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f, 12f).requiresCorrectToolForDrops()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    public static final RegistryObject<RotatedPillarBlock> COPPER_SPOOL = registerBlock("copper_spool",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
 
 

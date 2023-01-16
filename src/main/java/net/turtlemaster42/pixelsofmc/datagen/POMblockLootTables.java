@@ -34,6 +34,7 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.PERFECTED_CASING_1.get());
         this.dropSelf(POMblocks.STRONG_CASING.get());
         this.dropSelf(POMblocks.REINFORCED_CASING.get());
+        this.dropSelf(POMblocks.COPPER_SPOOL.get());
 
 
 

@@ -102,12 +102,13 @@
   "item.pixelsofmc.zinc_dust": "Zinc Dust",
 
 
+  "item.pixelsofmc.pixel": "Pixel",
+  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
+
   //elements
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
   "item.pixelsofmc.sulfur": "Sulfur",
-
   "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
-
 
   "item.pixelsofmc.hydrogen_canister": "Hydrogen Canister",
   "item.pixelsofmc.helium_canister": "Helium Canister",
@@ -205,10 +206,6 @@
   "item.pixelsofmc.berkelium_ingot": "Berkelium Ingot",
   "item.pixelsofmc.californium_ingot": "Californium Ingot",
   "item.pixelsofmc.einsteinium_ingot": "Einsteinium Ingot",
-
-  "item.pixelsofmc.pixel": "Pixel",
-  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
-
 
   //atoms
   "item.pixelsofmc.hydrogen_atom_64": "64x Hydrogen Atoms",
@@ -417,7 +414,7 @@
   "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
   "block.pixelsofmc.ball_mill": "Ball Mill",
   "block.pixelsofmc.grinder": "Grinder",
-  "block.pixelsofmc.hot_isotopic_press": "Hot Isotopic Press",
+  "block.pixelsofmc.hot_isotopic_press": "Hot Isostatic Press",
   "block.pixelsofmc.fusion_core": "Fusion Core",
 
   "block.pixelsofmc.sds_controller": "SDS Fusion Generator Controller",
@@ -438,6 +435,7 @@
   "block.pixelsofmc.perfected_casing_1": "Perfected Casing I",
   "block.pixelsofmc.strong_casing": "Strong Casing",
   "block.pixelsofmc.reinforced_casing": "Reinforced Casing",
+  "block.pixelsofmc.copper_spool": "Copper Spool",
 
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",

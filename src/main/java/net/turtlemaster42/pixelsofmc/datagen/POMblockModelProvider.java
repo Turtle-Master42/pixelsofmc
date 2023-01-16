@@ -34,6 +34,7 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(POMblocks.PERFECTED_CASING_1.get());
         simpleBlock(POMblocks.STRONG_CASING.get());
         simpleBlock(POMblocks.REINFORCED_CASING.get());
+        logBlock(POMblocks.COPPER_SPOOL.get());
 
         simpleBlock(POMblocks.SDS_CONTROLLER.get());
         simpleBlock(POMblocks.HOT_ISOTOPIC_PRESS.get());

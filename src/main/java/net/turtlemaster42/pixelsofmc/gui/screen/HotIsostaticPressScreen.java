@@ -94,7 +94,8 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 47, y + 19, 0, 168, menu.getScaledProgressOne(), 51);
+            blit(pPoseStack, x + 70, y + 37, 0, 168, menu.getScaledProgressOne(), 12);
+            blit(pPoseStack, x + 55, y + 27, 38, 168, 8, menu.getScaledProgressTwo());
         }
         blit(pPoseStack, x + 11, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);//energy
         blit(pPoseStack, x + 28, y + 75, 209, 0, menu.getScaledHeat(), 4);//heat

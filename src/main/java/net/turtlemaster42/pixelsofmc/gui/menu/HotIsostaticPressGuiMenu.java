@@ -63,10 +63,19 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
-        int progressArrowSize = 82; // This is the height in pixels of your arrow
+        int progressArrowSize = 38; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
+    public int getScaledProgressTwo() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int speedUpgrade = this.data.get(2); // Speed upgrades
+        int progressArrowSize = 12; // This is the height in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+    }
+
 
     public int getScaledHeat() {
         int heat = this.data.get(6);

@@ -7,7 +7,6 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;

@@ -31,13 +31,11 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -114,12 +112,12 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot < 2;
+        return slot < 3;
     }
 
     @Override
     protected boolean isSlotValidOutput(int slot) {
-        return slot == 2;
+        return slot == 3;
     }
     @Override
     protected int itemHandlerSize() {return 6;}
@@ -215,7 +213,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         createHeat();
 
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
+            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(4).getCount();
             pBlockEntity.speedUpgradeCheck();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
@@ -235,17 +233,21 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<BallMillRecipe> match = level.getRecipeManager()
-                .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
+        Optional<HotIsostaticPressRecipe> match = level.getRecipeManager()
+                .getRecipeFor(HotIsostaticPressRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                && hasHeat(entity, match.get().getHeat());
     }
 
     private static boolean hasPower(HotIsostaticPressTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
+        int speedAmount = entity.itemHandler.getStackInSlot(4).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
+    }
+    private static boolean hasHeat(HotIsostaticPressTile entity, int heat) {
+        return entity.getHeat() > heat;
     }
 
 
@@ -256,14 +258,15 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<BallMillRecipe> match = level.getRecipeManager()
-                .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
+        Optional<HotIsostaticPressRecipe> match = level.getRecipeManager()
+                .getRecipeFor(HotIsostaticPressRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            List<CountedIngredient> recipeItems = match.get().getInputs();
 
-            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
+            entity.itemHandler.extractItem(2, match.get().getInput().getCount(), false);
+
+            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputCount())));
 
 
             setChanged(entity.level, entity.worldPosition, entity.getBlockState());
@@ -281,28 +284,28 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     }
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
+        if (this.itemHandler.getStackInSlot(4).getItem() == POMitems.SPEED_UPGRADE.get()) {
+            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(4).getCount();
         } else {
             this.speedUpgrade = 0;
         }
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(6).getCount();
+        int amount = this.itemHandler.getStackInSlot(5).getCount();
         return energyConsumption / 10 * amount;
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
+        int amount = this.itemHandler.getStackInSlot(4).getCount();
         return maxProgress / 10 * amount;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(4).getItem() == output.getItem() || inventory.getItem(4).isEmpty();
+        return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
     }
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
-        return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
+        return inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount() + count;
     }
 
 

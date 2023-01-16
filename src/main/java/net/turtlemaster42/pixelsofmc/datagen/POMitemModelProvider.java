@@ -126,6 +126,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.PERFECTED_CASING_1.get());
         simpleBlock(POMblocks.STRONG_CASING.get());
         simpleBlock(POMblocks.REINFORCED_CASING.get());
+        simpleBlock(POMblocks.COPPER_SPOOL.get());
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());
