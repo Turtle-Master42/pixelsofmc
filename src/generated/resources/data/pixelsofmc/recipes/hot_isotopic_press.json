@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CDC",
+    "ADA",
+    "BEB"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:piston"
+    },
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:titanium_plating"
+    },
+    "D": {
+      "item": "pixelsofmc:simple_casing_1"
+    },
+    "E": {
+      "item": "pixelsofmc:perfected_casing_1"
+    }
+  },
+  "result": {
+    "item": "pixelsofmc:hot_isotopic_press"
+  }
+}

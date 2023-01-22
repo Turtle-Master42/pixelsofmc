@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:pressing",
+  "input": {
+    "ingredient": {
+      "item": "pixelsofmc:bio_compound"
+    },
+    "count": 4
+  },
+  "mold": {
+    "ingredient": {
+      "item": "pixelsofmc:ball_cast"
+    },
+    "count": 1
+  },
+  "output": {
+    "item": "pixelsofmc:rubber_ball",
+    "count": 1
+  },
+  "heat": 0
+}

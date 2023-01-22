@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:pressing",
+  "input": {
+    "ingredient": {
+      "item": "minecraft:clay_ball"
+    },
+    "count": 4
+  },
+  "mold": {
+    "ingredient": {
+      "tag": "pixelsofmc:milling_ball"
+    },
+    "count": 1
+  },
+  "output": {
+    "item": "pixelsofmc:ball_cast",
+    "count": 1
+  },
+  "heat": 250
+}

@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:pressing",
+  "input": {
+    "ingredient": {
+      "tag": "forge:dusts/gold"
+    },
+    "count": 1
+  },
+  "mold": {
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    },
+    "count": 1
+  },
+  "output": {
+    "item": "minecraft:gold_ingot",
+    "count": 1
+  },
+  "heat": 1000
+}
