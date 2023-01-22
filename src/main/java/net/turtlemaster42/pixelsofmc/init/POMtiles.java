@@ -30,8 +30,8 @@ public class POMtiles {
 			TILES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillTile::new, POMblocks.BALL_MILL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderTile>> GRINDER =
 			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
-	public static final RegistryObject<BlockEntityType<HotIsostaticPressTile>> HOT_ISOTOPIC_PRESS =
-			TILES.register("hot_isotopic_press", () -> BlockEntityType.Builder.of(HotIsostaticPressTile::new, POMblocks.HOT_ISOTOPIC_PRESS.get()).build(null));
+	public static final RegistryObject<BlockEntityType<HotIsostaticPressTile>> HOT_ISOSTATIC_PRESS =
+			TILES.register("hot_isostatic_press", () -> BlockEntityType.Builder.of(HotIsostaticPressTile::new, POMblocks.HOT_ISOSTATIC_PRESS.get()).build(null));
 
 
 

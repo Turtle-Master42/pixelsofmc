@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:hot_isotopic_press"
+          "name": "pixelsofmc:hot_isostatic_press"
         }
       ],
       "conditions": [

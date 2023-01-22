@@ -54,7 +54,7 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
             renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
             if (menu.isHeating())
                 renderArea(pPoseStack, pMouseX, pMouseY, x, y, 51, 55, 65, 69, new GuiTooltips().getTimeArea(menu.getTime()));
-            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 28, 75, 68, 79, new GuiTooltips().getHeatArea(menu.getHeat()));
+            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 28, 75, 68, 79, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat()));
         }
     }
 

@@ -155,7 +155,7 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMtiles.HOT_ISOTOPIC_PRESS.get(),
+        return createTickerHelper(pBlockEntityType, POMtiles.HOT_ISOSTATIC_PRESS.get(),
                 pLevel.isClientSide ? HotIsostaticPressTile::clientTick : HotIsostaticPressTile::serverTick);
     }
 }

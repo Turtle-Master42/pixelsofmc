@@ -26,6 +26,10 @@ public class CommonProxy {
     public void clientInit() {
     }
 
+    public Object getISTERProperties() {
+        return null;
+    }
+
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, PixelSplitterRecipe.Type.ID, PixelSplitterRecipe.Type.INSTANCE);

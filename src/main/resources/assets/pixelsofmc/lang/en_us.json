@@ -418,7 +418,7 @@
   "block.pixelsofmc.pixel_splitter": "Pixel Splitter",
   "block.pixelsofmc.ball_mill": "Ball Mill",
   "block.pixelsofmc.grinder": "Grinder",
-  "block.pixelsofmc.hot_isotopic_press": "Hot Isostatic Press",
+  "block.pixelsofmc.hot_isostatic_press": "Hot Isostatic Press",
   "block.pixelsofmc.fusion_core": "Fusion Core",
 
   "block.pixelsofmc.sds_controller": "SDS Fusion Generator Controller",
@@ -463,6 +463,8 @@
   "tooltip.pixelsofmc.noalt": "§7Press §r§b§i[ALT]§r§7 for placement info",
 
   "tooltip.pixelsofmc.test": "line 1\nline 2\nline 3\nline 4\ntest %s",
+
+  "tooltip.pixelsofmc.heat.required": "§7Required:",
 
 
   "tooltip.pixelsofmc.titanium_ingot": " state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ❤",

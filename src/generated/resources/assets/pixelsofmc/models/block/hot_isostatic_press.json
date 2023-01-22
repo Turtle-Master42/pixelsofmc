@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pixelsofmc:block/hot_isotopic_press"
+    "all": "pixelsofmc:block/hot_isostatic_press"
   }
 }

@@ -37,7 +37,7 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
 
     public HotIsostaticPressRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 25, 5, 110, 75);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.HOT_ISOTOPIC_PRESS.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get()));
     }
 
     @Override

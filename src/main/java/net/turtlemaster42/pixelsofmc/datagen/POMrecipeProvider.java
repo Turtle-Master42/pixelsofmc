@@ -282,7 +282,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CFC")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(POMblocks.HOT_ISOTOPIC_PRESS.get())
+        ShapedRecipeBuilder.shaped(POMblocks.HOT_ISOSTATIC_PRESS.get())
                 .define('A', Items.PISTON)
                 .define('B', Items.REDSTONE)
                 .define('C', POMitems.TITANIUM_PLATING.get())
@@ -459,7 +459,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), fConsumer);
 
         //compacting
-
         SimpleMetalCompactingRecipe(nuggetItem(Element.TITANIUM), elementItem(Element.TITANIUM), POMblocks.TITANIUM_BLOCK.get(), fConsumer);
         SimpleMetalCompactingRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMblocks.TITANIUM_DIBORIDE_BLOCK.get(), fConsumer);
 
@@ -468,6 +467,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCompactingRecipe(nuggetItem(Element.COPPER), Items.COPPER_INGOT, fConsumer);
         SimpleCompactingRecipe(nuggetItem(Element.SILVER), elementItem(Element.SILVER), fConsumer);
         SimpleCompactingRecipe(POMitems.ALUMINIUM_SCRAP.get(), POMblocks.ALUMINIUM_SCRAP_BLOCK.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.COPPER_WIRE.get(), POMblocks.COPPER_SPOOL.get(), fConsumer);
 
         //Furnace
         SimpleSmeltingRecipe(POMitems.RAW_TITANIUM.get(), elementItem(Element.TITANIUM), 0.5f, 200 , fConsumer, "");

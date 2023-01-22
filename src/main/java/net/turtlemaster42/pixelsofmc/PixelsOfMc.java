@@ -78,7 +78,7 @@ public class PixelsOfMc {
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		BlockEntityRenderers.register(POMtiles.HOT_ISOTOPIC_PRESS.get(), RendererHotIsostaticPress::new);
+		BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), RendererHotIsostaticPress::new);
 		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.SDS_CONTROLLER.get(), FusionCoreRenderer::new);
 	}

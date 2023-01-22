@@ -50,6 +50,8 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private static final int energyConsumption = 512;
     private int heat;
     private int maxHeat = 5000;
+
+    private static int requiredHeat = -1;
     private int burnTime = 0;
     private int maxBurnTime = 0;
 
@@ -75,7 +77,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
     public HotIsostaticPressTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.HOT_ISOTOPIC_PRESS.get(), pWorldPosition, pBlockState);
+        super(POMtiles.HOT_ISOSTATIC_PRESS.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
@@ -112,7 +114,9 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot != 3;
+        if (slot == 1)
+            return ForgeHooks.getBurnTime(stack, null) > 0;
+        return slot != 3 ;
     }
 
     @Override
@@ -122,13 +126,12 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     @Override
     protected int itemHandlerSize() {return 7;}
 
-    public int GetMaxTime() {return maxBurnTime;}
+    public int getMaxTime() {return maxBurnTime;}
     public int getHeat() {return heat;}
+    public int getRequiredHeat() {return requiredHeat;}
 
     @Override
-    public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.hot_isotopic_press");
-    }
+    public Component getDisplayName() {return new TranslatableComponent("block.pixelsofmc.hot_isostatic_press");}
 
     @Nullable
     @Override
@@ -236,10 +239,13 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         Optional<HotIsostaticPressRecipe> match = level.getRecipeManager()
                 .getRecipeFor(HotIsostaticPressRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent()
-                && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                && hasHeat(entity, match.get().getHeat());
+        if (match.isPresent()) {
+            requiredHeat = match.get().getHeat();
+            return canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
+                    && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                    && hasHeat(entity, match.get().getHeat());
+        }
+        else return false;
     }
 
     private static boolean hasPower(HotIsostaticPressTile entity) {
@@ -268,7 +274,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
             entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputCount())));
 
-
+            requiredHeat = -1;
             setChanged(entity.level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
             entity.errorEnergyReset();

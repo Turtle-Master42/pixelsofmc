@@ -56,8 +56,9 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         return data.get(8) > 0;
     }
     public int getHeat() {return data.get(6);}
+    public int getRequiredHeat() {return blockEntity.getRequiredHeat();}
     public int getTime() {return data.get(8);}
-    public int getMaxTime() {return blockEntity.GetMaxTime();}
+    public int getMaxTime() {return blockEntity.getMaxTime();}
     public int getEnergy() {return blockEntity.getEnergyStorage().getEnergyStored();}
     public int getMaxEnergy() {return blockEntity.getEnergyStorage().getMaxEnergyStored();}
     public int getProgress() {return this.data.get(0);}
@@ -90,7 +91,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
 
     public int getScaledBurnTime() {
         int time = this.data.get(8);
-        int maxTime = blockEntity.GetMaxTime()+1;
+        int maxTime = blockEntity.getMaxTime()+1;
         int progressArrowSize = 14;
         return time * progressArrowSize / maxTime;
     }
@@ -157,7 +158,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, POMblocks.HOT_ISOTOPIC_PRESS.get());
+                pPlayer, POMblocks.HOT_ISOSTATIC_PRESS.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

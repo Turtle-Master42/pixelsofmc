@@ -102,7 +102,7 @@ public class POMblocks {
     public static final RegistryObject<Block> GRINDER = registerBlock("grinder",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "", "", "YOOOOOOOOOO");
-    public static final RegistryObject<Block> HOT_ISOTOPIC_PRESS = registerBlock("hot_isotopic_press",
+    public static final RegistryObject<Block> HOT_ISOSTATIC_PRESS = registerBlock("hot_isostatic_press",
             () -> new HotIsostaticPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 

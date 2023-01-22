@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:copper_spool"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:copper_wire",
+    "count": 9
+  }
+}

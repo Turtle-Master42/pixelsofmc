@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:hot_isostatic_press"
+    ]
+  },
+  "criteria": {
+    "": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          null
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pixelsofmc:hot_isostatic_press"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -3,6 +3,8 @@ package net.turtlemaster42.pixelsofmc.gui.renderer;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraftforge.client.event.RenderTooltipEvent;
 
 import java.util.List;
 
@@ -17,16 +19,29 @@ public class GuiTooltips {
             );
         else return List.of(new TextComponent("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"));
     }
-    public List<Component> getHeatArea(int heat) {
+    public List<Component> getHeatArea(int heat, int requiredHeat) {
+        List<Component> text = new java.util.ArrayList<>(List.of());
         if (Screen.hasShiftDown())
-            return List.of(new TextComponent("§c"+(heat+273)+" K"));
-        else return List.of(new TextComponent("§c"+(heat)+" °C"));
+            text.add(new TextComponent("§c"+(heat+273)+" K"));
+        else text.add(new TextComponent("§c"+(heat)+" °C"));
+        if (requiredHeat != -1) {
+            text.add(new TranslatableComponent("tooltip.pixelsofmc.heat.required"));
+            if (heat > requiredHeat)
+                if (Screen.hasShiftDown())
+                    text.add(new TextComponent("§a" + (requiredHeat + 273) + " K"));
+                else text.add(new TextComponent("§a" + (requiredHeat) + " °C"));
+
+            else if (Screen.hasShiftDown())
+                text.add(new TextComponent("§4" + (requiredHeat + 273) + " K"));
+            else text.add(new TextComponent("§4" + (requiredHeat) + " °C"));
+        }
+
+        return text;
     }
 
     public List<Component> getTimeArea(int time) {
         return List.of(new TextComponent("§9"+(time/20)+" s"));
     }
-
 
     public List<Component> getEnergyArea(int energy, int maxEnergy) {
         String letter1 = "";

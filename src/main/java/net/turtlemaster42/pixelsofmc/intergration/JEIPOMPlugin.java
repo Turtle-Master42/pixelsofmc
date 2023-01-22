@@ -39,7 +39,7 @@ public class JEIPOMPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(POMblocks.BALL_MILL.get()), new RecipeType<>(BallMillRecipeCategory.UID, BallMillRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.GRINDER.get()), new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class));
-        registration.addRecipeCatalyst(new ItemStack(POMblocks.HOT_ISOTOPIC_PRESS.get()), new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class));
+    registration.addRecipeCatalyst(new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get()), new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class));
     }
 
 
