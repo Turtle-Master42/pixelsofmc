@@ -32,7 +32,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
-        return recipeItem.test(container.getItem(0))&& mold.test(container.getItem(2));
+        return recipeItem.test(container.getItem(2))&& mold.test(container.getItem(0));
     }
 
 
@@ -55,6 +55,13 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     }
     public ItemStack getMold() {
         return mold.getItems()[0];
+    }
+
+    public Ingredient getInputAsI() {
+        return Ingredient.of(recipeItem.asItem());
+    }
+    public Ingredient getMoldAsI() {
+        return Ingredient.of(mold.asItem());
     }
 
     @Override

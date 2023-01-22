@@ -112,7 +112,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot < 3;
+        return slot != 3;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         return slot == 3;
     }
     @Override
-    protected int itemHandlerSize() {return 6;}
+    protected int itemHandlerSize() {return 7;}
 
     public int GetMaxTime() {return maxBurnTime;}
     public int getHeat() {return heat;}
@@ -278,8 +278,11 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private void resetProgress() {this.progress = 0;}
     private void createHeat() {
         if (burnTime > 0 && heat < maxHeat) {
-            this.burnTime--;
-            this.heat++;
+            int upgrade = this.itemHandler.getStackInSlot(6).getCount() + 1;
+            this.burnTime = this.burnTime - upgrade;
+            this.heat = this.heat + upgrade;
+            if (this.heat > maxHeat) this.heat = maxHeat;
+            if (this.burnTime < 0) this.burnTime = 0;
         }
     }
 

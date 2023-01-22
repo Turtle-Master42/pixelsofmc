@@ -19,6 +19,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     public final HotIsostaticPressTile blockEntity;
     private final Level level;
     private final ContainerData data;
+    private static final int containerSize = 7;
 
     public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
@@ -26,7 +27,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
 
     public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), pContainerId);
-        checkContainerSize(inv, 6);
+        checkContainerSize(inv, containerSize);
         blockEntity = ((HotIsostaticPressTile) entity);
         this.level = inv.player.level;
         this.data = data;
@@ -37,6 +38,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
+            this.addSlot(new ModHeatUpgradeSlot(handler, 6, 161, 44));
             this.addSlot(new ModResultSlot(handler, 3, 110, 34));
             this.addSlot(new SlotItemHandler(handler, 2, 51, 9));
             this.addSlot(new SlotItemHandler(handler, 1, 30, 55));
@@ -58,6 +60,8 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     public int getMaxTime() {return blockEntity.GetMaxTime();}
     public int getEnergy() {return blockEntity.getEnergyStorage().getEnergyStored();}
     public int getMaxEnergy() {return blockEntity.getEnergyStorage().getMaxEnergyStored();}
+    public int getProgress() {return this.data.get(0);}
+    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
 
     public int getScaledProgressOne() {
         int progress = this.data.get(0);
@@ -81,7 +85,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         int heat = this.data.get(6);
         int maxHeat = this.data.get(7);
         int progressArrowSize = 40;
-        return heat * progressArrowSize / maxHeat;
+        return maxHeat != 0 ? heat * progressArrowSize / maxHeat :0;
     }
 
     public int getScaledBurnTime() {
@@ -115,7 +119,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = containerSize;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {

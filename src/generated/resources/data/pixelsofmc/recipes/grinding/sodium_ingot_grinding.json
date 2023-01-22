@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:sodium_dust"
+        "tag": "forge:dusts/sodium"
       },
       "count": 1,
       "chance": 1.0

@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:sulfur_dust"
+        "tag": "forge:dusts/sulfur"
       },
       "count": 1,
       "chance": 1.0

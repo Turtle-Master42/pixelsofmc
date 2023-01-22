@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ABA",
+    " B ",
     "ACA",
-    "ABA"
+    " B "
   ],
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_diboride_nugget"
+      "item": "pixelsofmc:titanium_diboride_ingot"
     },
     "B": {
-      "tag": "forge:nuggets/copper"
+      "tag": "forge:ingots/copper"
     },
     "C": {
       "tag": "forge:dusts/titanium"

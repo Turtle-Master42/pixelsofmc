@@ -77,9 +77,13 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ADVANCED_LASER.get());
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
+        simpleItem(POMitems.INGOT_CAST.get());
+        simpleItem(POMitems.BALL_CAST.get());
+        simpleItem(POMitems.PLATE_CAST.get());
 
         simpleItem(POMitems.SPEED_UPGRADE.get());
         simpleItem(POMitems.ENERGY_UPGRADE.get());
+        simpleItem(POMitems.HEAT_UPGRADE.get());
 
         handheldItem(POMitems.CLEANING_CLOTH.get());
         handheldItem(POMitems.SCREWDRIVER.get());
@@ -126,7 +130,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleBlock(POMblocks.PERFECTED_CASING_1.get());
         simpleBlock(POMblocks.STRONG_CASING.get());
         simpleBlock(POMblocks.REINFORCED_CASING.get());
-        simpleBlock(POMblocks.COPPER_SPOOL.get());
+        complexBlock(POMblocks.COPPER_SPOOL.get());
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());

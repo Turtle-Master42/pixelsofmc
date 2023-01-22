@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:molybdenum_dust"
+        "tag": "forge:dusts/molybdenum"
       },
       "count": 1,
       "chance": 1.0

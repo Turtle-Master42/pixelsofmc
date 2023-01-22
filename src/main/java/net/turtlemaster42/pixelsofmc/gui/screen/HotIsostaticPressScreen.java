@@ -46,6 +46,9 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
         renderTooltip(pPoseStack, pMouseX, pMouseY, x, y);
         renderTooltip2(pPoseStack);
 
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 55, 27, 62, 31, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 70, 37, 106, 48, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+
         this.font.draw(pPoseStack, "H.I.P", 5, 4, 4210752);
         if (!Screen.hasControlDown()) {
             renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
@@ -79,7 +82,7 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
     private void renderTooltip2(PoseStack pPoseStack) {
         if(pressed) {
             renderTooltip(pPoseStack, getAllAreas(5, 14, menu.getHeat(), menu.getTime(), menu.getEnergy(), menu.getMaxEnergy()),
-                    Optional.empty(), 167, 65);
+                    Optional.empty(), 167, 83);
         }
     }
 
@@ -95,7 +98,7 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
         this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 70, y + 37, 0, 168, menu.getScaledProgressOne(), 12);
-            blit(pPoseStack, x + 55, y + 27, 38, 168, 8, menu.getScaledProgressTwo());
+            blit(pPoseStack, x + 55, y + 27, 38, 168, 9, menu.getScaledProgressTwo());
         }
         blit(pPoseStack, x + 11, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);//energy
         blit(pPoseStack, x + 28, y + 75, 209, 0, menu.getScaledHeat(), 4);//heat

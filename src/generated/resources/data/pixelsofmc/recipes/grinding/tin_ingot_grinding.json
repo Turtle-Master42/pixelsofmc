@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:tin_dust"
+        "tag": "forge:dusts/tin"
       },
       "count": 1,
       "chance": 1.0

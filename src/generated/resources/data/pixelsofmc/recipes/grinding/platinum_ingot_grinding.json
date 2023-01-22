@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:platinum_dust"
+        "tag": "forge:dusts/platinum"
       },
       "count": 1,
       "chance": 1.0

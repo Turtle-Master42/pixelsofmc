@@ -32,7 +32,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     private final IDrawable icon;
 
     public GrinderRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 185, 84);
+        this.background = helper.createDrawable(TEXTURE, 30, 6, 122, 75);
         this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
         this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();
@@ -74,13 +74,13 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull GrinderRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-            builder.addSlot(RecipeIngredientRole.INPUT, 43, 36).addIngredients(recipe.getInput());
+            builder.addSlot(RecipeIngredientRole.INPUT, 13, 30).addIngredients(recipe.getInput());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
             IDrawable overlay = chanceOverlay;
             String display = "§6"+recipe.OutputChance(p)*100+"%";
-            int x = 111 + 18*(p/4);
-            int y = 9*((p-4*(p/4))*2+1);
+            int x = 81 + 18*(p/4);
+            int y = 9*((p-4*(p/4))*2+1)-6;
 
             if (recipe.OutputChance(p) < 0.5)
                 overlay = smallChanceOverlay;

@@ -26,9 +26,6 @@ public class POMrecipes {
 	public static final RegistryObject<RecipeSerializer<HotIsostaticPressRecipe>> PRESSING_SERIALIZER =
 			SERIALIZERS.register("pressing", () -> HotIsostaticPressRecipe.Serializer.INSTANCE);
 
-
-	public static final RegistryObject<DamageToolRecipeSerializer> DAMAGE_TOOL_SERIALIZER =
-			SERIALIZERS.register("damage_tool", DamageToolRecipeSerializer::new);
 	
 	public static void register(IEventBus bus) {
 		SERIALIZERS.register(bus);

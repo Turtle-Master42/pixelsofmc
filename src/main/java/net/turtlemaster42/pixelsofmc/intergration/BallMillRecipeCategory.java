@@ -31,7 +31,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     private final IDrawable icon;
 
     public BallMillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 185, 84);
+        this.background = helper.createDrawable(TEXTURE, 28, 11, 122, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.BALL_MILL.get()));
     }
 
@@ -74,11 +74,11 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 31, (14*(p+1)+8*p)).addItemStack(recipe.getInput(p));
+            builder.addSlot(RecipeIngredientRole.INPUT, 3, (14*(p+1)+8*p)-11).addItemStack(recipe.getInput(p));
         }
         //grinding ball input
-        builder.addSlot(RecipeIngredientRole.INPUT, 80, 36).addIngredients(recipe.getBall().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 52, 25).addIngredients(recipe.getBall().get(0));
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 129, 36).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addItemStack(recipe.getResultItem());
     }
 }

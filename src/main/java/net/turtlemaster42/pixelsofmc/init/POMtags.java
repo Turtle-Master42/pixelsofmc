@@ -56,9 +56,7 @@ public class POMtags {
         private MetalTags(Element m)
         {
             String name = m.tagName();
-            if (m.isMetal())
-                metal = createItemWrapper(getIngot(name));
-            else metal = null;
+            metal = createItemWrapper(getIngot(name));
             nugget = createItemWrapper(getNugget(name));
             dust = createItemWrapper(getDust(name));
             other = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));

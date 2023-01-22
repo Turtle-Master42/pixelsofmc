@@ -55,9 +55,13 @@
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
   "item.pixelsofmc.titanium_circle_saw": "Titanium Circle Saw",
   "item.pixelsofmc.titanium_diboride_circle_saw": "Pure Netherite Circle Saw",
+  "item.pixelsofmc.ingot_cast": "Ingot Cast",
+  "item.pixelsofmc.ball_cast": "Ball Cast",
+  "item.pixelsofmc.plate_cast": "Plate Cast",
 
   "item.pixelsofmc.speed_upgrade": "Speed Upgrade",
   "item.pixelsofmc.energy_upgrade": "Energy Upgrade",
+  "item.pixelsofmc.heat_upgrade": "Heat Upgrade",
 
   "item.pixelsofmc.cleaning_cloth": "Cleaning Cloth",
   "item.pixelsofmc.screwdriver": "Screwdriver",
@@ -422,7 +426,7 @@
 //blocks
   "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
   "block.pixelsofmc.titanium_block": "Block of Titanium",
-  "block.pixelsofmc.titanium_diboride_block": "Titanium Diboride Block",
+  "block.pixelsofmc.titanium_diboride_block": "Pure Netherite Block",
   "block.pixelsofmc.aluminium_scrap_block": "Block of Aluminium Scrap",
   "block.pixelsofmc.titanium_ore": "Titanium Ore",
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",

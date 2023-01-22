@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:cobalt_dust"
+        "tag": "forge:dusts/cobalt"
       },
       "count": 1,
       "chance": 1.0

@@ -6,7 +6,7 @@
   "outputs": [
     {
       "ingredient": {
-        "item": "pixelsofmc:calcium_dust"
+        "tag": "forge:dusts/calcium"
       },
       "count": 1,
       "chance": 1.0
