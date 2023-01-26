@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,16 +14,17 @@ import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.Objects;
 
 public class PixelSplitterRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final CountedIngredient output;
-    private final int R;
-    private final int G;
-    private final int B;
+    private final int[] R;
+    private final int[] G;
+    private final int[] B;
     private final CountedIngredient recipeItem;
 
-    public PixelSplitterRecipe(ResourceLocation id, CountedIngredient output, int R, int G, int B,
+    public PixelSplitterRecipe(ResourceLocation id, CountedIngredient output, int[] R, int[] G, int[] B,
                                CountedIngredient recipeItem) {
         this.id = id;
         this.output = output;
@@ -49,8 +51,15 @@ public class PixelSplitterRecipe extends BaseRecipe {
         return output.getItems()[0].copy();
     }
 
-    public Color getColor() {
-        return new Color(R,G,B);
+    public Color getColor(int index) {
+        return new Color(R[index], G[index], B[index]);
+    }
+
+    public int getRGB(String rgb, int index) {
+        if (Objects.equals(rgb, "R")) return R[index];
+        else if (Objects.equals(rgb, "G")) return G[index];
+        else if (Objects.equals(rgb, "B")) return B[index];
+        return 0;
     }
 
     @Override
@@ -81,9 +90,15 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
         public PixelSplitterRecipe fromJson(ResourceLocation id, JsonObject json) {
             CountedIngredient output = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"output"));
-            int r = GsonHelper.getAsInt(json, "R");
-            int g = GsonHelper.getAsInt(json, "G");
-            int b = GsonHelper.getAsInt(json, "B");
+            JsonArray Colors = json.getAsJsonArray("colors");
+            int[] r = new int[5];
+            int[] g = new int[5];
+            int[] b = new int[5];
+            for (int i=0; i < Colors.size(); i++) {
+                r[i] = Colors.get(i).getAsJsonObject().get("R").getAsInt();
+                g[i] = Colors.get(i).getAsJsonObject().get("G").getAsInt();
+                b[i] = Colors.get(i).getAsJsonObject().get("B").getAsInt();
+            }
 
             CountedIngredient input = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"input"));
 
@@ -93,9 +108,15 @@ public class PixelSplitterRecipe extends BaseRecipe {
         public PixelSplitterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
             CountedIngredient output = buf.readList(CountedIngredient::fromNetwork).get(0);
-            int r = buf.readInt();
-            int g = buf.readInt();
-            int b = buf.readInt();
+            int[] r = new int[5];
+            int[] g = new int[5];
+            int[] b = new int[5];
+            for (int i = 0; i < 3; i++) {
+                r[i] = buf.readInt();
+                g[i] = buf.readInt();
+                b[i] = buf.readInt();
+            }
+
             return new PixelSplitterRecipe(id, output, r, g, b, input);
         }
 
@@ -103,6 +124,11 @@ public class PixelSplitterRecipe extends BaseRecipe {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
+            }
+            for (int i=0; i < recipe.R.length; i++) {
+                buf.writeInt(recipe.getRGB("R", i));
+                buf.writeInt(recipe.getRGB("G", i));
+                buf.writeInt(recipe.getRGB("B", i));
             }
             buf.writeItemStack(recipe.getResultItem(), false);
         }

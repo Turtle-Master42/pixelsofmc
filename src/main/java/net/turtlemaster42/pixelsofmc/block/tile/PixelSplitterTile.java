@@ -213,8 +213,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     private static boolean hasPower(PixelSplitterTile entity) {
         return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
     }
-    public static void setColor(ItemStack pStack, int pColor) {
-        pStack.getOrCreateTagElement("display").putInt("color", pColor);
+    public static void setColor(ItemStack pStack, int pColor, int index) {
+        pStack.getOrCreateTagElement("display").putInt("color"+index, pColor);
     }
 
     private static void craftItem(PixelSplitterTile entity) {
@@ -231,9 +231,11 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null); //saw
 
-            if (match.get().getResultItem().getItem() == POMitems.PIXEL.get()) {
-                ItemStack pixel = new ItemStack(POMitems.PIXEL.get(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
-                setColor(pixel, match.get().getColor().getRGB());
+            if (match.get().getResultItem().getItem() == POMitems.PIXEL.get() || match.get().getResultItem().getItem() == POMitems.PIXEL_PILE.get()) {
+                ItemStack pixel = new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
+                setColor(pixel, match.get().getColor(0).getRGB(), 0);
+                setColor(pixel, match.get().getColor(1).getRGB(), 1);
+                setColor(pixel, match.get().getColor(2).getRGB(), 2);
                 entity.itemHandler.setStackInSlot(2, pixel);
             } else {
                 entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));

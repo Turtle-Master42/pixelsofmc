@@ -2,7 +2,7 @@
   "type": "pixelsofmc:pixel_splitting",
   "input": {
     "ingredient": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:iron_ingot"
     },
     "count": 1
   },
@@ -14,19 +14,19 @@
   },
   "colors": [
     {
-      "R": 253,
-      "G": 254,
-      "B": 95
+      "R": 182,
+      "G": 182,
+      "B": 182
     },
     {
-      "R": 220,
-      "G": 150,
-      "B": 19
+      "R": 147,
+      "G": 147,
+      "B": 147
     },
     {
-      "R": 178,
-      "G": 100,
-      "B": 17
+      "R": 94,
+      "G": 94,
+      "B": 94
     }
   ]
 }

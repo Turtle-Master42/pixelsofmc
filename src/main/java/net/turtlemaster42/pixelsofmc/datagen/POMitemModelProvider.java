@@ -111,7 +111,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ALUMINIUM_SCRAP.get());
 
 
-        simpleItem(POMitems.PIXEL.get());
         simpleItem(POMitems.TEST_ITEM.get());
 
 

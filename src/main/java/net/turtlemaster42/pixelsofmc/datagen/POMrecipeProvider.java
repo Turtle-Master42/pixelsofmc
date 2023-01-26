@@ -412,7 +412,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(toI(dustTag(Element.BORON)), 2, toI(dustTag(Element.TITANIUM)), 1, POMitems.TITANIUM_DIBORIDE_DUST.get(), 2, POMtags.Items.BALL_4, fConsumer);
 
         //pixel splitter
-        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 8, 252, 204, 60, fConsumer);
+        PixelSplitting(Items.GOLD_NUGGET, POMitems.PIXEL.get(), 6, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 56, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+
+        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), 6, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), 56, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
+
 
 
         //pressing
@@ -626,7 +633,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
 
-    private void PixelSplitting(ItemLike ingredient, ItemLike output, int count, int r, int g, int b, Consumer<FinishedRecipe> consumer) {
+    private void PixelSplitting(ItemLike ingredient, ItemLike output, int count, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
@@ -719,5 +726,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         }
         PATH_COUNT.put(string, 1);
         return new ResourceLocation(PixelsOfMc.MOD_ID, string);
+    }
+    private int[] toAInt(int ...num) {
+        return num;
     }
 }

@@ -14,6 +14,8 @@ public class ItemColorHandler {
     @SubscribeEvent
     public static void registerItemColor(ColorHandlerEvent.Item event) {
         event.getItemColors().register((stack, color) ->
-                ((Pixel) stack.getItem()).getColor(stack), POMitems.PIXEL.get());
+                ((Pixel) stack.getItem()).getColor(stack, color), POMitems.PIXEL.get());
+        event.getItemColors().register((stack, color) ->
+                ((Pixel) stack.getItem()).getColor(stack, color), POMitems.PIXEL_PILE.get());
     }
 }

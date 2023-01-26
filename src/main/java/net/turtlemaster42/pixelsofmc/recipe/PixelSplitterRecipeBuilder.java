@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.recipe;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -21,12 +22,12 @@ import java.util.function.Consumer;
 public class PixelSplitterRecipeBuilder implements RecipeBuilder {
     private final CountedIngredient output;
     private final CountedIngredient ingredient;
-    private final int R;
-    private final int G;
-    private final int B;
+    private final int[] R;
+    private final int[] G;
+    private final int[] B;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public PixelSplitterRecipeBuilder(CountedIngredient ingredient, CountedIngredient result, int r, int g, int b) {
+    public PixelSplitterRecipeBuilder(CountedIngredient ingredient, CountedIngredient result, int[] r, int[] g, int[] b) {
         this.ingredient = ingredient;
         this.output = result;
         this.R = r;
@@ -66,14 +67,14 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final CountedIngredient result;
-        private final int R;
-        private final int G;
-        private final int B;
+        private final int[] R;
+        private final int[] G;
+        private final int[] B;
         private final CountedIngredient ingredient;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, CountedIngredient pResult, int r, int g, int b, CountedIngredient ingredient, Advancement.Builder pAdvancement,
+        public Result(ResourceLocation pId, CountedIngredient pResult, int[] r, int[] g, int[] b, CountedIngredient ingredient, Advancement.Builder pAdvancement,
                       ResourceLocation pAdvancementId) {
             this.id = pId;
             this.result = pResult;
@@ -90,9 +91,15 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
             pJson.add("input", ingredient.toJson());
             pJson.add("output", result.toJson());
 
-            pJson.addProperty("R", R);
-            pJson.addProperty("G", G);
-            pJson.addProperty("B", B);
+            JsonArray jsonarray = new JsonArray();
+            for (int i=0; i < R.length; i++) {
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("R", R[i]);
+                jsonObject.addProperty("G", G[i]);
+                jsonObject.addProperty("B", B[i]);
+                jsonarray.add(jsonObject);
+            }
+            pJson.add("colors", jsonarray);
         }
 
         @Override
