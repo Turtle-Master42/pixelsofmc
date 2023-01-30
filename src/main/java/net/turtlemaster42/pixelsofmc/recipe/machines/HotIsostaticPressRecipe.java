@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
@@ -77,6 +78,10 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
+    }
+
+    public ItemStack getToastSymbol() {
+        return new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get());
     }
 
     public static class Type implements RecipeType<HotIsostaticPressRecipe> {

@@ -10,6 +10,7 @@ public class ToolItem extends Item {
         super(pProperties);
     }
 
+    //immersive engineering
     public ItemStack getContainerItem(ItemStack itemStack)
     {
         ItemStack container = itemStack.copy();
@@ -18,7 +19,7 @@ public class ToolItem extends Item {
         else
             return container;
     }
-
+    //immersive engineering
     public boolean hasContainerItem(ItemStack stack)
     {
         return true;

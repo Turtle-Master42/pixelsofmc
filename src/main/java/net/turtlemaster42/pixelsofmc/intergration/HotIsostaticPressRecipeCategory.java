@@ -59,7 +59,7 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
 
     @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.pixelsofmc.hot_isotopic_press");
+        return new TranslatableComponent("block.pixelsofmc.hot_isostatic_press");
     }
 
     @Override

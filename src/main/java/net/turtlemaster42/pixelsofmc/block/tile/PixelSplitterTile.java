@@ -8,6 +8,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.item.Pixel;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
@@ -213,9 +214,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     private static boolean hasPower(PixelSplitterTile entity) {
         return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
     }
-    public static void setColor(ItemStack pStack, int pColor, int index) {
-        pStack.getOrCreateTagElement("display").putInt("color"+index, pColor);
-    }
 
     private static void craftItem(PixelSplitterTile entity) {
         Level level = entity.level;
@@ -233,9 +231,9 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
             if (match.get().getResultItem().getItem() == POMitems.PIXEL.get() || match.get().getResultItem().getItem() == POMitems.PIXEL_PILE.get()) {
                 ItemStack pixel = new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
-                setColor(pixel, match.get().getColor(0).getRGB(), 0);
-                setColor(pixel, match.get().getColor(1).getRGB(), 1);
-                setColor(pixel, match.get().getColor(2).getRGB(), 2);
+                Pixel.setColor(pixel, match.get().getColor(0).getRGB(), 0);
+                Pixel.setColor(pixel, match.get().getColor(1).getRGB(), 1);
+                Pixel.setColor(pixel, match.get().getColor(2).getRGB(), 2);
                 entity.itemHandler.setStackInSlot(2, pixel);
             } else {
                 entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));

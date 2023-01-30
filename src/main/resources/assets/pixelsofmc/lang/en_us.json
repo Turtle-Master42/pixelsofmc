@@ -107,6 +107,9 @@
 
 
   "item.pixelsofmc.pixel": "Pixel",
+  "item.pixelsofmc.pixel_pile": "Pile O' Pixels",
+  "item.pixelsofmc.place_holder": "You can ignore this",
+  "item.pixelsofmc.debugium_ingot": "Debugium Ingot",
   "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
 
   //elements

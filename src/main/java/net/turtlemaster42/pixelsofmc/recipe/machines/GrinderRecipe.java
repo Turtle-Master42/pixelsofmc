@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 
 import javax.annotation.Nullable;
@@ -76,6 +77,10 @@ public class GrinderRecipe extends BaseRecipe {
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
+    }
+
+    public ItemStack getToastSymbol() {
+        return new ItemStack(POMblocks.GRINDER.get());
     }
 
     public static class Type implements RecipeType<GrinderRecipe> {

@@ -10,6 +10,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import javax.annotation.Nullable;
@@ -75,6 +76,10 @@ public class PixelSplitterRecipe extends BaseRecipe {
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
+    }
+
+    public ItemStack getToastSymbol() {
+        return new ItemStack(POMblocks.PIXEL_SPLITTER.get());
     }
 
     public static class Type implements RecipeType<PixelSplitterRecipe> {

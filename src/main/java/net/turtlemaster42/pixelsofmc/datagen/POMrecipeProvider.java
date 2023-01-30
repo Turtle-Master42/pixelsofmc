@@ -416,9 +416,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 56, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
         PixelSplitting(Items.GOLD_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
 
-        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), 6, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), 56, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(182, 147, 94), toAInt(182, 147, 94), toAInt(182, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), 6, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), 56, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
 
 
 

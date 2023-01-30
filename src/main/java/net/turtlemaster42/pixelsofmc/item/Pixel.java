@@ -12,8 +12,17 @@ public class Pixel extends Item implements DyeableLeatherItem {
         return getColor(stack, 0);
     }
 
+
     public int getColor(ItemStack stack, int index) {
         CompoundTag compoundtag = stack.getTagElement("display");
-        return compoundtag != null && compoundtag.contains("color"+index, 99) ? compoundtag.getInt("color"+index) : 0;
+
+        if (compoundtag != null && compoundtag.contains("color"+index, 99)) return compoundtag.getInt("color"+index);
+        else if (index == 0) return 16777215;
+        else if (index == 1) return 11842740;
+        else return 6579300;
+    }
+
+    public static void setColor(ItemStack pStack, int pColor, int index) {
+        pStack.getOrCreateTagElement("display").putInt("color"+index, pColor);
     }
 }

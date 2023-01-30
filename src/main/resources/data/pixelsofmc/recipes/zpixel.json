@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:pixel_pile"
+    },
+    {
+      "item": "pixelsofmc:place_holder"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:pixel",
+    "count": 8
+  }
+}

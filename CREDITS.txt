@@ -1,13 +1,14 @@
 Licensed by: Creative Commons (CC-BY-SA 3.0):
 https://creativecommons.org/licenses/by-sa/3.0/
 
+----------------------------------------------------------------------------------------------------------------
 Most Code that is gotten or based on something from another creator has a notation above the file or part.
-
+----------------------------------------------------------------------------------------------------------------
 
 ModItems registration implementation from BlakeBr0 / Mystical Agriculture:
 Under MIT-License: https://github.com/BlakeBr0/MysticalAgriculture/blob/1.18/LICENSE
 
-EnergyInfoArea, InfoArea, DamageToolRecipe by BluSunrize from ImmersiveEngineering under MIT-License:
+EnergyInfoArea, InfoArea, ToolItem by BluSunrize from ImmersiveEngineering under MIT-License:
 https://github.com/BluSunrize/ImmersiveEngineering/blob/1.18.2/LICENSE
 
 accessorRenderType, ClientTickHandler, RenderHelper by Vazkii from Botania under Botania's Custom License:

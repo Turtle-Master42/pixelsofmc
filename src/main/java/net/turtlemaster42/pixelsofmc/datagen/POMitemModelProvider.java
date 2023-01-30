@@ -112,6 +112,8 @@ public class POMitemModelProvider extends ItemModelProvider {
 
 
         simpleItem(POMitems.TEST_ITEM.get());
+        simpleItem(POMitems.PLACE_HOLDER.get());
+        simpleItem(POMitems.DEBUGUIM_INGOT.get());
 
 
         
