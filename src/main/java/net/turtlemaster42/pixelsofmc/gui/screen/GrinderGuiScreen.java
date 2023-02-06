@@ -70,7 +70,7 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 59, y + 14, 0, 168, menu.getScaledProgress(), 61);
         }
-        blit(pPoseStack, x + 11, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
+        blit(pPoseStack, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
 
     }
 

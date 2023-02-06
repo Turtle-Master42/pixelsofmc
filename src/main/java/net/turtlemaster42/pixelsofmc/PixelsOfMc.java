@@ -48,6 +48,7 @@ public class PixelsOfMc {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		POMblocks.BLOCKS.register(bus);
 		POMitems.register(bus);
+		POMfluids.register(bus);
 		POMmenuType.MENUS.register(bus);
 
 		POMrecipes.register(bus);
@@ -70,6 +71,11 @@ public class PixelsOfMc {
         ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
 
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HONEY_BLOCK.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLUID.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLOWING.get(), RenderType.translucent());
+
+
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
@@ -78,7 +84,7 @@ public class PixelsOfMc {
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), RendererHotIsostaticPress::new);
+		//BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), RendererHotIsostaticPress::new);
 		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.SDS_CONTROLLER.get(), FusionCoreRenderer::new);
 	}

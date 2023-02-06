@@ -49,7 +49,7 @@ public enum Element {
     RUTHENIUM(Property.FIRE),
     RHODIUM,
     PALLADIUM,
-    SILVER(Type.INGOT, false, true),
+    SILVER(Type.INGOT, true, true),
     CADMIUM,
     INDIUM,
     TIN(true),

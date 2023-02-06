@@ -56,9 +56,18 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockPos blockpos = pContext.getClickedPos();
         Level level = pContext.getLevel();
-        if (blockpos.getY() < level.getMaxBuildHeight() - 2
-
-
+        if (blockpos.getY() < level.getMaxBuildHeight() - 2 &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 0, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 0, 0, 1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 0, 1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 0, 1, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 1, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 0, 1, 1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 1, 1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 0, 2, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 2, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 0, 2, 1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 2, 1)
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
         } else {
@@ -142,7 +151,6 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 2, 0, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 2, 1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 2, 1, MACHINE_BLOCK, pPos);
-
         }
     }
 

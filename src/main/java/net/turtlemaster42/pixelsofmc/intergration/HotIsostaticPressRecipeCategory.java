@@ -90,7 +90,7 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull HotIsostaticPressRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addSlot(RecipeIngredientRole.INPUT, 26, 4).addIngredients(recipe.getInputAsI());
+        builder.addSlot(RecipeIngredientRole.INPUT, 26, 4).addItemStack(recipe.getInput());
         //mold
         builder.addSlot(RecipeIngredientRole.INPUT, 26, 29).addIngredients(recipe.getMoldAsI());
         //burn

@@ -31,7 +31,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     private final IDrawable icon;
 
     public BallMillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 28, 11, 122, 66);
+        this.background = helper.createDrawable(TEXTURE, 28, 11, 120, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.BALL_MILL.get()));
     }
 

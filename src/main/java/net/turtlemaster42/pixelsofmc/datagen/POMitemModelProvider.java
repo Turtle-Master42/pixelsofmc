@@ -71,6 +71,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.RUSTED_PLATING.get());
         simpleItem(POMitems.NETHERITE_PLATING.get());
         simpleItem(POMitems.TITANIUM_DIBORIDE_PLATING.get());
+        simpleItem(POMitems.OBSIDIAN_PLATING.get());
+        simpleItem(POMitems.CRYING_OBSIDIAN_PLATING.get());
+
+        simpleItem(POMitems.MERCURY_BUCKET.get());
 
         simpleItem(POMitems.MOVING_PARTS.get());
         simpleItem(POMitems.POWER_CELL.get());
@@ -102,6 +106,9 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         dustItem(POMitems.ANCIENT_DEBRIS_DUST.get());
         dustItem(POMitems.MERCURY_SULFIDE_DUST.get());
+        dustItem(POMitems.ACANTHITE_DUST.get());
+        dustItem(POMitems.OBSIDIAN_DUST.get());
+        dustItem(POMitems.CRYING_OBSIDIAN_DUST.get());
         dustItem(POMitems.MINERAL_GRIT.get());
         dustItem(POMitems.NETHERITE_DUST.get());
         dustItem(POMitems.TITANIUM_OXIDE_DUST.get());
@@ -135,7 +142,6 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         complexBlock(POMblocks.PIXEL_SPLITTER.get());
         complexBlock(POMblocks.GRINDER.get());
-        complexBlock(POMblocks.HOT_ISOSTATIC_PRESS.get());
 
         simpleBlock(POMblocks.SDS_CONTROLLER.get());
 

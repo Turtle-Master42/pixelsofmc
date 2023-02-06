@@ -32,7 +32,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     private final IDrawable icon;
 
     public GrinderRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 30, 6, 122, 75);
+        this.background = helper.createDrawable(TEXTURE, 30, 6, 115, 75);
         this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
         this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();

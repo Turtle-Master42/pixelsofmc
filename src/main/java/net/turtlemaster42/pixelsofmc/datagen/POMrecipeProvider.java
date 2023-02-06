@@ -288,9 +288,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('C', POMitems.TITANIUM_PLATING.get())
                 .define('D', POMblocks.SIMPLE_CASING_1.get())
                 .define('E', POMblocks.PERFECTED_CASING_1.get())
+                .define('F', Items.BLAST_FURNACE)
                 .pattern("CDC")
                 .pattern("ADA")
-                .pattern("BEB")
+                .pattern("BEF")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
 
@@ -399,8 +400,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Grinder(toI(Items.BASALT), fConsumer, toCHI(dustTag(Element.IRON), 2, 0.7f), toCHI(dustTag(Element.GOLD), 1, 0.1f));
         Grinder(toI(Items.DIORITE), fConsumer, toCHI(dustTag(Element.SODIUM), 1, 0.3f));
         Grinder(toI(Items.GRANITE), fConsumer, toCHI(dustTag(Element.TUNGSTEN), 1, 0.015f), toCHI(dustTag(Element.MOLYBDENUM), 1, 0.015f));
+        Grinder(toI(POMblocks.ACANTHITE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 1, 1f), toCHI(POMitems.ACANTHITE_DUST.get(), 1, 0.2f), toCHI(dustTag(Element.SILICON), 1, 0.4f), toCHI(dustTag(Element.SILVER), 1, 0.05f));
 
         Grinder(toI(POMitems.ALUMINIUM_SCRAP.get()), fConsumer, toCHI(dustItem(Element.ALUMINIUM), 1, 1f));
+        Grinder(toI(Items.OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 2, 1f), toCHI(POMitems.OBSIDIAN_DUST.get(), 1, 0.25f));
+        Grinder(toI(Items.CRYING_OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 1, 1f), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(), 1, 0.7f));
 
         Grinder(toI(Items.STONE), fConsumer, toCHI(dustTag(Element.SILICON), 2, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f) ,toCHI(dustTag(Element.SILICON), 1, 0.55f) ,toCHI(dustTag(Element.SILICON), 1, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f), toCHI(dustTag(Element.SILICON), 1, 0.55f));
         Grinder(toI(Items.GOLD_BLOCK), fConsumer, toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f), toCHI(dustTag(Element.GOLD), 1, 1f));
@@ -434,6 +438,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), 1, 3000, fConsumer);
         Pressing(elementItem(Element.TITANIUM), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1, 1000, fConsumer);
         Pressing(Items.NETHERITE_INGOT, 1, POMitems.PLATE_CAST.get(), POMitems.NETHERITE_PLATING.get(), 1, 2500, fConsumer);
+        Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 1, 2200, fConsumer);
+        Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 1, 2500, fConsumer);
 
         Pressing(toI(Items.CLAY_BALL), 4, toI(Tags.Items.INGOTS), toI(POMitems.INGOT_CAST.get()), 1, 250, fConsumer);
         Pressing(toI(Items.CLAY_BALL), 4, toI(POMtags.Items.MILLING_BALL), toI(POMitems.BALL_CAST.get()), 1, 250, fConsumer);
@@ -451,7 +457,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(nuggetItem(Element.SILVER), Items.STICK, POMitems.SILVER_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(elementItem(Element.TITANIUM), Items.NETHERITE_BLOCK, POMblocks.SIMPLE_CASING_1.get(), fConsumer);
 
-        SimpleFullCrossRecipe(Items.OBSIDIAN, POMitems.NETHERITE_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
+        SimpleFullCrossRecipe(POMitems.OBSIDIAN_PLATING.get(), POMitems.NETHERITE_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.REINFORCED_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), fConsumer);
         SimpleFullCrossRecipe(nuggetItem(Element.TITANIUM), Items.GOLD_INGOT, Items.REDSTONE_BLOCK, POMitems.REDSTONE_COUNTER.get(), fConsumer);
@@ -714,6 +720,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private ChanceIngredient toCHI(TagKey<Item> input, int count, float chance) {
         return ChanceIngredient.of(count, chance, input);
     }
+    private int[] toAInt(int ...num) {
+        return num;
+    }
+
     //Immersive Engineering
     private ResourceLocation toRL(String string) {
         if(!string.contains("/"))
@@ -726,8 +736,5 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         }
         PATH_COUNT.put(string, 1);
         return new ResourceLocation(PixelsOfMc.MOD_ID, string);
-    }
-    private int[] toAInt(int ...num) {
-        return num;
     }
 }

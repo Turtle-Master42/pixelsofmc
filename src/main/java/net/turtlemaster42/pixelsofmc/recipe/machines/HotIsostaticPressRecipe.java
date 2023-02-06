@@ -62,7 +62,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         return Ingredient.of(recipeItem.asItem());
     }
     public Ingredient getMoldAsI() {
-        return Ingredient.of(mold.asItem());
+        return mold.ingredient();
     }
 
     @Override

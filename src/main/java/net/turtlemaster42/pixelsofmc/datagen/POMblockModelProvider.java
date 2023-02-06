@@ -37,7 +37,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.COPPER_SPOOL.get());
 
         simpleBlock(POMblocks.SDS_CONTROLLER.get());
-        simpleBlock(POMblocks.HOT_ISOSTATIC_PRESS.get());
 
     }
 

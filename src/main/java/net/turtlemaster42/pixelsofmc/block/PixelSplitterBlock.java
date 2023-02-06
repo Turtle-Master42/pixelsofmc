@@ -34,16 +34,11 @@ import java.util.Random;
 public class PixelSplitterBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-
-
-
+    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 14, 16);
 
     public PixelSplitterBlock(Properties properties) {
         super(properties);
     }
-	
-
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 14, 16);
 
     @Override
     @Deprecated
@@ -53,7 +48,6 @@ public class PixelSplitterBlock extends BaseEntityBlock {
 	
 
     /* FACING */
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);

@@ -49,6 +49,10 @@
   "item.pixelsofmc.rusted_plating": "Rusted Plate",
   "item.pixelsofmc.netherite_plating": "Netherite Plating",
   "item.pixelsofmc.titanium_diboride_plating": "Pure Netherite Plating",
+  "item.pixelsofmc.obsidian_plating": "Obsidian Plating",
+  "item.pixelsofmc.crying_obsidian_plating": "Crying Plating",
+
+  "item.pixelsofmc.mercury_bucket": "Mercury Bucket",
 
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.power_cell": "Power Cell",
@@ -89,6 +93,9 @@
   "item.pixelsofmc.calcium_dust": "Calcium Dust",
   "item.pixelsofmc.gold_dust": "Gold Dust",
   "item.pixelsofmc.mercury_sulfide_dust": "Mercury Sulfide Dust",
+  "item.pixelsofmc.obsidian_dust": "Obsidian Dust",
+  "item.pixelsofmc.crying_obsidian_dust": "Crying Dust",
+  "item.pixelsofmc.acanthite_dust": "Acanthite Dust",
   "item.pixelsofmc.mineral_grit": "Mineral Grit",
   "item.pixelsofmc.netherite_dust": "Netherite Dust",
   "item.pixelsofmc.potassium_dust": "Potassium Dust",
@@ -104,6 +111,7 @@
   "item.pixelsofmc.platinum_dust": "Platinum Dust",
   "item.pixelsofmc.lead_dust": "Lead Dust",
   "item.pixelsofmc.zinc_dust": "Zinc Dust",
+  "item.pixelsofmc.silver_dust": "Silver Dust",
 
 
   "item.pixelsofmc.pixel": "Pixel",

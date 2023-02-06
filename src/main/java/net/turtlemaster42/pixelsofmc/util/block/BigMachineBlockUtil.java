@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.util.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -59,6 +60,12 @@ public class BigMachineBlockUtil {
             PixelsOfMc.LOGGER.error("fail while trying to chance position");
             return null;
         }
+    }
+
+    public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int Xoffset, int Yoffset, int Zoffset) {
+        Level level = pContext.getLevel();
+        BlockPos blockpos = pContext.getClickedPos();
+        return level.getBlockState(BigMachineBlockUtil.rotateBlockPosOnDirection(pContext.getHorizontalDirection(), Xoffset, Yoffset, Zoffset, blockpos)).canBeReplaced(pContext);
     }
 
 

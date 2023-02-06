@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:silver_ingot"
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silver"
+      },
+      "count": 1,
+      "chance": 1.0
+    }
+  ]
+}
