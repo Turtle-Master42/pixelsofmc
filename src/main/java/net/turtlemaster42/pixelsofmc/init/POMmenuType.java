@@ -22,6 +22,8 @@ public class POMmenuType {
             registerMenuType(GrinderGuiMenu::new, "grinder_menu");
     public static final RegistryObject<MenuType<HotIsostaticPressGuiMenu>> HOT_ISOTOPIC_PRESS_MENU =
             registerMenuType(HotIsostaticPressGuiMenu::new, "hot_isotopic_press_menu");
+    public static final RegistryObject<MenuType<ChemicalSeperatorGuiMenu>> CHEMICAL_SEPERATOR_MENU =
+            registerMenuType(ChemicalSeperatorGuiMenu::new, "chemical_seperator_menu");
 
 
     public static final RegistryObject<MenuType<SDSFusionControllerGuiMenu>> SDS_CONTROLLER_MENU =

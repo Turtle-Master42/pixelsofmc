@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.item;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMtabs;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class BaseItem extends Item {

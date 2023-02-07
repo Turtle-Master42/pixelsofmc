@@ -8,7 +8,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
-
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;

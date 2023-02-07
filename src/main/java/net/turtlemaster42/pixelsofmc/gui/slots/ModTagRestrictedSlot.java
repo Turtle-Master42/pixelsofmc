@@ -6,7 +6,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class ModTagRestrictedSlot extends SlotItemHandler {

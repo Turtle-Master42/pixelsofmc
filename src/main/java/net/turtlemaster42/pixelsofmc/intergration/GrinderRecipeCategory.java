@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.intergration;
 
-import com.mojang.authlib.minecraft.TelemetrySession;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;

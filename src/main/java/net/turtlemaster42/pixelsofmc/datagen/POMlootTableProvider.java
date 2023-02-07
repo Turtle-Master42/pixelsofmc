@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.datagen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import net.turtlemaster42.pixelsofmc.datagen.POMblockLootTables;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;

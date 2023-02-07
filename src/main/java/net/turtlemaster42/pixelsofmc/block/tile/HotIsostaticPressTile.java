@@ -6,9 +6,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -125,6 +122,10 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     }
     @Override
     protected int itemHandlerSize() {return 7;}
+    protected void contentsChanged(int slot) {
+        if (slot==4)
+            speedUpgradeCheck();
+    }
 
     public int getMaxTime() {return maxBurnTime;}
     public int getHeat() {return heat;}
@@ -188,11 +189,6 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         maxBurnTime = nbt.getInt("maxBurnTime");
         speedUpgrade = nbt.getInt("speedUpgrade");
         energyStorage.setEnergy(nbt.getInt("Energy"));
-    }
-
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     //---RECIPE---//

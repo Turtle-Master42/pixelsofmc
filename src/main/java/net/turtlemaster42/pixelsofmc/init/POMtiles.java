@@ -4,10 +4,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
-
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Block;
-
 import net.turtlemaster42.pixelsofmc.block.tile.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
@@ -32,6 +30,8 @@ public class POMtiles {
 			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<HotIsostaticPressTile>> HOT_ISOSTATIC_PRESS =
 			TILES.register("hot_isostatic_press", () -> BlockEntityType.Builder.of(HotIsostaticPressTile::new, POMblocks.HOT_ISOSTATIC_PRESS.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ChemicalSeperatorTile>> CHEMICAL_SEPERATOR =
+			TILES.register("chemical_seperator", () -> BlockEntityType.Builder.of(ChemicalSeperatorTile::new, POMblocks.CHEMICAL_SEPERATOR.get()).build(null));
 
 
 

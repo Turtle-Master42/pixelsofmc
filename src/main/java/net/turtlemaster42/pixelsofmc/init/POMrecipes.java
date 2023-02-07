@@ -2,10 +2,7 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class POMrecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = 

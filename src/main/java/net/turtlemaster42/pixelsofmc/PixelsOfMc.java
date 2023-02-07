@@ -1,19 +1,5 @@
 package net.turtlemaster42.pixelsofmc;
 
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.turtlemaster42.pixelsofmc.gui.screen.*;
-import net.turtlemaster42.pixelsofmc.init.*;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.RendererHotIsostaticPress;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.NetworkEvent;
@@ -21,13 +7,22 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.IEventBus;
-
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.turtlemaster42.pixelsofmc.gui.screen.*;
+import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.init.POMrecipes;
+import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -71,7 +66,7 @@ public class PixelsOfMc {
         ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
 
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HONEY_BLOCK.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_BLOCK.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLUID.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLOWING.get(), RenderType.translucent());
 
@@ -80,6 +75,7 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
 		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
+		MenuScreens.register(POMmenuType.CHEMICAL_SEPERATOR_MENU.get(), ChemicalSeperatorScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
     }
 

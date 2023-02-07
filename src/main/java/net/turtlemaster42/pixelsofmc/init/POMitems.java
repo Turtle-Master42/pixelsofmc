@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.Mods;
 
 import javax.annotation.Nonnull;
 import java.util.EnumMap;

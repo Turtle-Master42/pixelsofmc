@@ -4,7 +4,6 @@ package net.turtlemaster42.pixelsofmc.block.dummy;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.*;
-
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.Material;
@@ -17,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.core.BlockPos;
-
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;

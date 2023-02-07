@@ -79,20 +79,6 @@ public class POMblocks {
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);
 
-    /*
-    public static final RegistryObject<Block> CHISELED_STONE_BRICK_CORNER = registerBlock("chiseled_stone_brick_corner",
-            () -> new ChiseledStoneBricksCornerBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
-
-    public static final RegistryObject<Block> CHISELED_STONE_BRICK_PILLAR = registerBlock("chiseled_stone_brick_pillar",
-            () -> new ChiseledStoneBrickPillar(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
-
-    public static final RegistryObject<Block> SMOOTH_STONE_BRICKS = registerBlock("smooth_stone_bricks",
-            () -> new ChiseledStoneBrickPillar(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
-
-    public static final RegistryObject<Block> FIRE_TRAP_BLOCK = registerBlock("fire_trap_block",
-            () -> new FireTrapBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)), POMtabs.PIXELS_OF_MINECRAFT_TAB);
-    */
-
 	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "tooltip.pixelsofmc.block.pixel_splitter2", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "");
@@ -104,6 +90,9 @@ public class POMblocks {
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB, "", "", "YOOOOOOOOOO");
     public static final RegistryObject<Block> HOT_ISOSTATIC_PRESS = registerBlock("hot_isostatic_press",
             () -> new HotIsostaticPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
+    public static final RegistryObject<Block> CHEMICAL_SEPERATOR = registerBlock("chemical_seperator",
+            () -> new ChemicalSeperatorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), POMtabs.PIXELS_OF_MINECRAFT_TAB);
 
 
