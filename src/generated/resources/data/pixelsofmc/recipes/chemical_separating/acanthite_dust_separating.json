@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "input": {
+    "ingredient": {
+      "item": "pixelsofmc:acanthite_dust"
+    },
+    "count": 2
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silver"
+      },
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/silver"
+      },
+      "count": 1,
+      "chance": 0.5
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/sulfur"
+      },
+      "count": 1,
+      "chance": 0.75
+    }
+  ]
+}

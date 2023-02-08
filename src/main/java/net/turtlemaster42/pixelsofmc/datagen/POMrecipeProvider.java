@@ -100,18 +100,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CC")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND.get())
-                .define('C', Items.DIAMOND)
-                .pattern("CC")
-                .pattern("CC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer);
-        ShapedRecipeBuilder.shaped(POMitems.RED_DIAMOND.get())
-                .define('C', POMitems.VIOLET_DIAMOND.get())
-                .pattern("CC")
-                .pattern("CC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer);
+//        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND.get())
+//                .define('C', Items.DIAMOND)
+//                .pattern("CC")
+//                .pattern("CC")
+//                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+//                .save(fConsumer);
+//        ShapedRecipeBuilder.shaped(POMitems.RED_DIAMOND.get())
+//                .define('C', POMitems.VIOLET_DIAMOND.get())
+//                .pattern("CC")
+//                .pattern("CC")
+//                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+//                .save(fConsumer);
 
 
 
@@ -441,14 +441,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 1, 2200, fConsumer);
         Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 1, 2500, fConsumer);
 
-        Pressing(toI(Items.CLAY_BALL), 4, toI(Tags.Items.INGOTS), toI(POMitems.INGOT_CAST.get()), 1, 250, fConsumer);
-        Pressing(toI(Items.CLAY_BALL), 4, toI(POMtags.Items.MILLING_BALL), toI(POMitems.BALL_CAST.get()), 1, 250, fConsumer);
-        Pressing(toI(Items.CLAY_BALL), 4, toI(POMitems.TITANIUM_PLATING.get()), toI(POMitems.PLATE_CAST.get()), 1, 250, fConsumer);
+        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(Tags.Items.INGOTS), toI(POMitems.INGOT_CAST.get()), 1, 250, fConsumer);
+        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(POMtags.Items.MILLING_BALL), toI(POMitems.BALL_CAST.get()), 1, 250, fConsumer);
+        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(POMitems.TITANIUM_PLATING.get()), toI(POMitems.PLATE_CAST.get()), 1, 250, fConsumer);
+
+        Pressing(toI(Items.DIAMOND), 4, toI(POMitems.BALL_CAST.get()), toI(POMitems.VIOLET_DIAMOND.get()), 1, 3500, fConsumer);
+        Pressing(toI(POMitems.VIOLET_DIAMOND.get()), 4, toI(POMitems.BALL_CAST.get()), toI(POMitems.RED_DIAMOND.get()), 1, 5000, fConsumer);
 
         Pressing(toI(dustTag(Element.GOLD)), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.GOLD_INGOT), 1, 1000, fConsumer);
         Pressing(toI(dustTag(Element.IRON)), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.IRON_INGOT), 1, 1000, fConsumer);
         Pressing(toI(dustTag(Element.COPPER)), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.COPPER_INGOT), 1, 1000, fConsumer);
         Pressing(toI(POMitems.NETHERITE_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.NETHERITE_INGOT), 1, 2500, fConsumer);
+
+        //chemical separating
+
+        ChemicalSeperator(toCI(POMitems.ACANTHITE_DUST.get(), 2), fConsumer, toCHI(dustTag(Element.SILVER), 1, 1), toCHI(dustTag(Element.SILVER), 1, 0.5f), toCHI(dustTag(Element.SULFUR), 1, 0.75f));
+
 
         //ez crafting
         SimpleSurroundRecipe(nuggetItem(Element.TITANIUM), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -665,6 +673,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
         new GrinderRecipeBuilder(input, outputList)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void ChemicalSeperator(CountedIngredient input, Consumer<FinishedRecipe> consumer, ChanceIngredient... output) {
+        List<ChanceIngredient> outputList = new java.util.ArrayList<>();
+        Collections.addAll(outputList, output);
+        new ChemicalSeperatorRecipeBuilder(input, outputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

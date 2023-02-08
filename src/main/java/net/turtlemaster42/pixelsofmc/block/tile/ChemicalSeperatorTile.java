@@ -21,13 +21,13 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeperatorGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeperatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -35,20 +35,18 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import static java.lang.Math.random;
 
-public class GrinderTile extends AbstractMachineTile<GrinderTile> {
+public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperatorTile> {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 120;
+    private int maxProgress = 72;
     private int speedUpgrade = 0;
-    private final int capacity = 1024000;
+    private final int capacity = 512000;
     private final int maxReceive = 4096;
-    private static final int energyConsumption = 256;
+    private static final int energyConsumption = 128;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -71,26 +69,26 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
 
-    public GrinderTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.GRINDER.get(), pWorldPosition, pBlockState);
+    public ChemicalSeperatorTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.CHEMICAL_SEPERATOR.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return GrinderTile.this.progress;
-                    case 1: return GrinderTile.this.maxProgress;
-                    case 2: return GrinderTile.this.speedUpgrade;
-                    case 3: return GrinderTile.this.capacity;
-                    case 4: return GrinderTile.this.maxReceive;
-                    case 5: return GrinderTile.this.energyStorage.getEnergyStored();
+                    case 0: return ChemicalSeperatorTile.this.progress;
+                    case 1: return ChemicalSeperatorTile.this.maxProgress;
+                    case 2: return ChemicalSeperatorTile.this.speedUpgrade;
+                    case 3: return ChemicalSeperatorTile.this.capacity;
+                    case 4: return ChemicalSeperatorTile.this.maxReceive;
+                    case 5: return ChemicalSeperatorTile.this.energyStorage.getEnergyStored();
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: GrinderTile.this.progress = value; break;
-                    case 1: GrinderTile.this.maxProgress = value; break;
-                    case 2: GrinderTile.this.speedUpgrade = value; break;
+                    case 0: ChemicalSeperatorTile.this.progress = value; break;
+                    case 1: ChemicalSeperatorTile.this.maxProgress = value; break;
+                    case 2: ChemicalSeperatorTile.this.speedUpgrade = value; break;
                 }
             }
             public int getCount() {
@@ -102,30 +100,31 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
         if (slot==0) return true;
-        else if (slot==5) return stack.is(POMtags.Items.SPEED_UPGRADE);
-        else if (slot==6) return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        else if (slot==4) return stack.is(POMtags.Items.SPEED_UPGRADE);
+        else if (slot==5) return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        else if (5 < slot && slot <= 10) return true;
         return false;
     }
     @Override
     protected boolean isSlotValidOutput(int slot) {
-        return slot > 0 && slot < 5;
+        return slot > 0 && slot < 4;
     }
     @Override
-    protected int itemHandlerSize() {return 7;}
+    protected int itemHandlerSize() {return 10;}
     protected void contentsChanged(int slot) {
-        if (slot==5)
+        if (slot==4)
             speedUpgradeCheck();
     }
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.grinder");
+        return new TranslatableComponent("block.pixelsofmc.chemical_seperator");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new GrinderGuiMenu(pContainerId, pInventory, this, this.data);
+        return new ChemicalSeperatorGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -173,17 +172,18 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
+
     //---RECIPE---//
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, GrinderTile e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeperatorTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, GrinderTile e) {
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeperatorTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, GrinderTile pBlockEntity) {
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, ChemicalSeperatorTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.progress++;
@@ -198,34 +198,34 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         }
     }
 
-    private static boolean hasRecipe(GrinderTile entity) {
+    private static boolean hasRecipe(ChemicalSeperatorTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<GrinderRecipe> match = level.getRecipeManager()
-                .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+        Optional<ChemicalSeperatorRecipe> match = level.getRecipeManager()
+                .getRecipeFor(ChemicalSeperatorRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertIntoOutputSlot(entity, match.get());
     }
 
-    private static boolean hasPower(GrinderTile entity) {
+    private static boolean hasPower(ChemicalSeperatorTile entity) {
         int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
 
-    private static void craftItem(GrinderTile entity) {
+    private static void craftItem(ChemicalSeperatorTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<GrinderRecipe> match = level.getRecipeManager()
-                .getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+        Optional<ChemicalSeperatorRecipe> match = level.getRecipeManager()
+                .getRecipeFor(ChemicalSeperatorRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
@@ -236,7 +236,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                 ItemStack newStack;
                 newStack = beginStack;
                 // Iterate over the slots -slot-
-                for (int slot = 1; slot < 5; slot++) {
+                for (int slot = 1; slot < 4; slot++) {
                     // if already matched continue output cycle
                     if (matched[out])
                         continue;
@@ -254,7 +254,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                     }
                 }
             }
-            entity.itemHandler.extractItem(0, 1, false);
+            entity.itemHandler.extractItem(0, match.get().getInputCount(), false);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
@@ -265,16 +265,16 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
+            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(4).getCount();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(6).getCount();
+        int amount = this.itemHandler.getStackInSlot(5).getCount();
         return energyConsumption / 10 * amount;
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
+        int amount = this.itemHandler.getStackInSlot(4).getCount();
         return maxProgress / 10 * amount;
     }
 
@@ -283,14 +283,14 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
     }
 
-    private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {
+    private static boolean canInsertIntoOutputSlot (ChemicalSeperatorTile entity, ChemicalSeperatorRecipe match) {
         boolean[] matched = new boolean[match.getOutputs().size()];
         boolean[] matchNeeded = new boolean[match.getOutputs().size()];
         ItemStack[] newStackInSlot = new ItemStack[5];
         ItemStack newStack;
 
         // Makes sure that newStackInSlot[] is not null
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 4; i++)
             newStackInSlot[i] = ItemStack.EMPTY;
 
         // Iterate over the inputs -q-
@@ -298,7 +298,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
             matchNeeded[q] = true;
             newStack = match.getResultItems(q);
             // Iterate over the slots -p-
-            for (int p = 1; p < 5; p++) {
+            for (int p = 1; p < 4; p++) {
                 if (matched[q])
                     continue;
                 ItemStack[] stackInSlot = new ItemStack[5];

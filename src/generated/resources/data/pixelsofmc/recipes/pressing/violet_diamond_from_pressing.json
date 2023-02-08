@@ -2,19 +2,19 @@
   "type": "pixelsofmc:pressing",
   "input": {
     "ingredient": {
-      "item": "pixelsofmc:crying_obsidian_dust"
+      "item": "minecraft:diamond"
     },
     "count": 4
   },
   "mold": {
     "ingredient": {
-      "tag": "pixelsofmc:milling_ball"
+      "item": "pixelsofmc:ball_cast"
     },
     "count": 1
   },
   "output": {
-    "item": "pixelsofmc:ball_cast",
+    "item": "pixelsofmc:violet_diamond",
     "count": 1
   },
-  "heat": 250
+  "heat": 3500
 }
