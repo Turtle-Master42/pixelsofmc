@@ -287,6 +287,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
-    public IEnergyStorage getEnergyStorage() { return energyStorage; }
+    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }

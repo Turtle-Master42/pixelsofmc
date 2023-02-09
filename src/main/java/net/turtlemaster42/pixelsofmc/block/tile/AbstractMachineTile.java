@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -13,19 +14,22 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
+import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
+import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public abstract class AbstractMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile {
-
-    Tile blockEntity;
+public abstract class AbstractMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile, IEnergyHandlingTile, IFluidHandlingTile {
 
     public AbstractMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
         super(pType, pWorldPosition, pBlockState);
@@ -117,5 +121,21 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
             return new ItemStack(stack.getItem(), existing.getCount()+stack.getCount()-stack.getMaxStackSize());
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void setEnergyLevel(int energyLevel) {}
+
+    @Override
+    public PixelEnergyStorage getEnergyStorage() {
+        return null;
+    }
+
+    @Override
+    public void setFluid(FluidStack fluid) {}
+
+    @Override
+    public FluidStack getFluid() {
+        return null;
     }
 }

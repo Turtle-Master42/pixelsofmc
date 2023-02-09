@@ -281,6 +281,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         this.energyStorage.setEnergy(energyLevel);
     }
 
-    public IEnergyStorage getEnergyStorage() { return energyStorage; }
+    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }

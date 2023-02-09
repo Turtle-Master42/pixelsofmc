@@ -307,10 +307,13 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         }
     }
 
+    @Override
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
-    public IEnergyStorage getEnergyStorage() { return energyStorage; }
+
+    @Override
+    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }
 

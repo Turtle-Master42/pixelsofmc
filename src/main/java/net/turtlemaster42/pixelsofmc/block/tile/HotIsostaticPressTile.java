@@ -328,7 +328,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     public void setEnergyLevel(int energyLevel) {
         this.energyStorage.setEnergy(energyLevel);
     }
-    public IEnergyStorage getEnergyStorage() { return energyStorage; }
+    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }
 

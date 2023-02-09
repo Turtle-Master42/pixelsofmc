@@ -333,7 +333,12 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         }
     }
 
-    public IEnergyStorage getEnergyStorage() { return energyStorage; }
+    @Override
+    public void setEnergyLevel(int energyLevel) {
+        this.energyStorage.setEnergy(energyLevel);
+    }
+
+    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }
 

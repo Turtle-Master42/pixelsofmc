@@ -453,6 +453,11 @@
   "block.pixelsofmc.reinforced_casing": "Reinforced Casing",
   "block.pixelsofmc.copper_spool": "Copper Spool",
 
+//fluids
+  "fluid.pixelsofmc.mercury_fluid": "Liquid Mercury",
+  "tooltip.pixelsofmc.fluid.amount.with.capacity": "%s / %s mb",
+  "tooltip.pixelsofmc.fluid.amount": "%s mb",
+
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
   "itemGroup.atom_tab": "Atoms",
@@ -478,15 +483,18 @@
 
   "tooltip.pixelsofmc.heat.required": "§7Required:",
 
+  "tooltip.pixelsofmc.fluid.input": "§bFluid input",
+  "tooltip.pixelsofmc.fluid.output": "§6Fluid output",
 
-  "tooltip.pixelsofmc.titanium_ingot": " state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ❤",
-  "tooltip.pixelsofmc.titanium_ingot.advanced": " state: solid, liquid, gas,\n danger: none",
 
-  "tooltip.pixelsofmc.mercury_ingot": " state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ☠",
-  "tooltip.pixelsofmc.mercury_ingot.advanced": " state: liquid,\n danger: toxic",
+  "tooltip.pixelsofmc.titanium_ingot": "state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ❤",
+  "tooltip.pixelsofmc.titanium_ingot.advanced": "state: solid, liquid, gas,\n danger: none",
 
-  "tooltip.pixelsofmc.uranium_ingot": " state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ☢",
-  "tooltip.pixelsofmc.uranium_ingot.advanced": " state: solid,\n danger: radioactive",
+  "tooltip.pixelsofmc.mercury_ingot": "state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ☠",
+  "tooltip.pixelsofmc.mercury_ingot.advanced": "state: liquid,\n danger: toxic",
+
+  "tooltip.pixelsofmc.uranium_ingot": "state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ☢",
+  "tooltip.pixelsofmc.uranium_ingot.advanced": "state: solid,\n danger: radioactive",
 
   "tooltip.pixelsofmc.resistance": "resistance: \uD83D, \uDD25",
   "tooltip.pixelsofmc.resistance.advanced": "resistance: fire"

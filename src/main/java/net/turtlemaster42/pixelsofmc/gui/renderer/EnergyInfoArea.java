@@ -37,7 +37,15 @@ public class EnergyInfoArea extends InfoArea {
                     new TextComponent("§e"+energy.getMaxEnergyStored()+"§r§7 FE")
             );
         }
-        if (energy.getMaxEnergyStored() >= 1000000) {
+        if (energy.getMaxEnergyStored() >= 1000) {
+            return List.of(
+                    new TextComponent(
+                            ("§6" + energy.getEnergyStored()/1000) + "." +
+                                    ((energy.getEnergyStored() / 10) - ((energy.getEnergyStored() / 1000) * 100) + "§r§7 KFE"
+                                    )),
+                    new TextComponent(
+                            ("§e" + (float) (energy.getMaxEnergyStored() / 10) / 100) + "§r§7 KFE"));
+        } else if (energy.getMaxEnergyStored() >= 1000000) {
             return List.of(
                     new TextComponent(
                             ("§6"+energy.getEnergyStored()/1000) + "." +

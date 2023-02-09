@@ -34,9 +34,9 @@ public class PixelEnergyStorage extends EnergyStorage {
         return rc;
     }
 
-    public void setEnergy(int energy) {
+    public int setEnergy(int energy) {
         this.energy = energy;
-        onEnergyChanged();
+        return energy;
     }
 
     public void addEnergy(int energy) {

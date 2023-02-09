@@ -64,7 +64,7 @@ public class BigMachineBlockUtil {
     public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int Xoffset, int Yoffset, int Zoffset) {
         Level level = pContext.getLevel();
         BlockPos blockpos = pContext.getClickedPos();
-        return level.getBlockState(BigMachineBlockUtil.rotateBlockPosOnDirection(pContext.getHorizontalDirection(), Xoffset, Yoffset, Zoffset, blockpos)).canBeReplaced(pContext);
+        return level.getBlockState(BigMachineBlockUtil.rotateBlockPosOnDirection(pContext.getHorizontalDirection(), Xoffset*-1, Yoffset, Zoffset*-1, blockpos)).canBeReplaced(pContext);
     }
 
 

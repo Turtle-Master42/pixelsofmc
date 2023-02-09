@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.NetworkEvent;
@@ -59,7 +60,9 @@ public class PixelsOfMc {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
-		POMmessages.register();
+		event.enqueueWork(() -> {
+			POMmessages.register();
+		});
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
