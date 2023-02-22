@@ -71,6 +71,7 @@
   "item.pixelsofmc.screwdriver": "Screwdriver",
   "item.pixelsofmc.hammer": "Hammer",
   "item.pixelsofmc.wirecutter": "Wirecutter",
+  "item.pixelsofmc.cleaning_sponge": "Cleaning Sponge",
 
   "item.pixelsofmc.rubber_ball": "Rubber Ball",
   "item.pixelsofmc.fire_proof_rubber_ball": "Fire Proof Rubber Ball",
@@ -455,8 +456,9 @@
 
 //fluids
   "fluid.pixelsofmc.mercury_fluid": "Liquid Mercury",
-  "tooltip.pixelsofmc.fluid.amount.with.capacity": "%s / %s mb",
-  "tooltip.pixelsofmc.fluid.amount": "%s mb",
+  "fluid.pixelsofmc.hydrogen_fluid": "Hydrogen",
+  "fluid.pixelsofmc.oxygen_fluid": "Oxygen",
+  "fluid.pixelsofmc.sulfuric_acid_fluid": "Sulfuric Acid",
 
 //tabs
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
@@ -485,6 +487,8 @@
 
   "tooltip.pixelsofmc.fluid.input": "§bFluid input",
   "tooltip.pixelsofmc.fluid.output": "§6Fluid output",
+  "tooltip.pixelsofmc.fluid.amount.with.capacity": "%s / %s mb",
+  "tooltip.pixelsofmc.fluid.amount": "%s mb",
 
 
   "tooltip.pixelsofmc.titanium_ingot": "state: ⏹, \uD83E, \uDDEA, ☁,\n danger: ❤",

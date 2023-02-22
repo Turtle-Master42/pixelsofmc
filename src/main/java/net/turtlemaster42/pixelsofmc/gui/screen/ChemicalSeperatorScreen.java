@@ -5,11 +5,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.TooltipFlag;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeperatorGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 
@@ -20,6 +23,7 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_seperator_gui.png");
     private EnergyInfoArea energyInfoArea;
+    private FluidTankRenderer renderer;
 
     public ChemicalSeperatorScreen(ChemicalSeperatorGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -29,6 +33,7 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
     protected void init() {
         super.init();
         assignEnergyInfoArea();
+        assignFluidRenderer();
     }
 
     @Override
@@ -38,9 +43,25 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
 
         this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 6, 76, 4210752);
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
+        renderFluidArea(pPoseStack, pMouseX, pMouseY, x, y, new TranslatableComponent("tooltip.pixelsofmc.fluid.input"));
+        renderDuoFluidArea(pPoseStack, pMouseX, pMouseY, x, y, new TranslatableComponent("tooltip.pixelsofmc.fluid.output"));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 66, 52, 103, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 104, 52, 113, 75, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 109, 34, 119, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+    }
+
+    private void renderFluidArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, Component extra) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 58, 8, renderer.getWidth(), renderer.getHeight())) {
+            renderTooltip(pPoseStack, renderer.getTooltip(menu.getFluid(), TooltipFlag.Default.NORMAL, extra),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
+    }
+
+    private void renderDuoFluidArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, Component extra) {
+        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 58, 23, renderer.getWidth(), renderer.getHeight())) {
+            renderTooltip(pPoseStack, renderer.getTooltip(menu.getDuoFluid(), TooltipFlag.Default.NORMAL, extra),
+                    Optional.empty(), pMouseX - x, pMouseY - y);
+        }
     }
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
@@ -65,14 +86,14 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-
         this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
 
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 66, y + 34, 0, 168, menu.getScaledProgress(), 44);
         }
         blit(pPoseStack, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
-
+        renderer.render(pPoseStack, x + 58, y + 8, menu.getFluid());
+        renderer.render(pPoseStack, x + 58, y + 23, menu.getDuoFluid());
     }
 
     @Override
@@ -85,6 +106,10 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
+    }
+
+    private void assignFluidRenderer() {
+        renderer = new FluidTankRenderer(16000, true, 25, 11);
     }
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {

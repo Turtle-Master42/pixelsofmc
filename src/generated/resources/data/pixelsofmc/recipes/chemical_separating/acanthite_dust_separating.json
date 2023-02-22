@@ -6,6 +6,10 @@
     },
     "count": 2
   },
+  "fluid_input": {
+    "FluidName": "minecraft:water",
+    "Amount": 200
+  },
   "outputs": [
     {
       "ingredient": {
@@ -20,13 +24,10 @@
       },
       "count": 1,
       "chance": 0.5
-    },
-    {
-      "ingredient": {
-        "tag": "forge:dusts/sulfur"
-      },
-      "count": 1,
-      "chance": 0.75
     }
-  ]
+  ],
+  "fluid_output": {
+    "FluidName": "pixelsofmc:sulfuric_acid_fluid",
+    "Amount": 50
+  }
 }

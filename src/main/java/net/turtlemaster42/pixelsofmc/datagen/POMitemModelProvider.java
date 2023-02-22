@@ -29,6 +29,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         }
 
         simpleItem(POMitems.BOOK_1.get());
+        simpleItem(POMitems.CLEANING_SPONGE.get());
 
         simpleItem(POMitems.BIO_COMPOUND.get());
         simpleItem(POMitems.BIO_PLASTIC.get());

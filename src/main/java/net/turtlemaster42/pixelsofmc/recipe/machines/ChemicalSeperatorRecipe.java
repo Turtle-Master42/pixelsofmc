@@ -10,10 +10,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -23,12 +25,17 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final CountedIngredient recipeItem;
     private final List<ChanceIngredient> outputs;
+    private final FluidStack fluidInput;
 
-    public ChemicalSeperatorRecipe(ResourceLocation id, CountedIngredient recipeItem,
-                                   List<ChanceIngredient> outputs) {
+    private final FluidStack fluidOutput;
+
+    public ChemicalSeperatorRecipe(ResourceLocation id, CountedIngredient recipeItem, FluidStack fluidInput,
+                                   List<ChanceIngredient> outputs, FluidStack fluidOutput) {
         this.id = id;
         this.recipeItem = recipeItem;
         this.outputs = outputs;
+        this.fluidInput = fluidInput;
+        this.fluidOutput = fluidOutput;
     }
 
     @Override
@@ -45,6 +52,8 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
+
+    public FluidStack getResultFluid() {return this.fluidOutput;}
 
     public ItemStack getResultItems(int index) {
         return outputs.get(index).getItems()[0];
@@ -73,6 +82,8 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
     public float OutputChance(int index) {
         return outputs.get(index).chance();
     }
+
+    public FluidStack getFluidInput() {return this.fluidInput;}
 
 
     @Override
@@ -103,6 +114,7 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
         public ChemicalSeperatorRecipe fromJson(ResourceLocation id, JsonObject json) {
             //outputs
             JsonArray jsonOutputs = json.getAsJsonArray("outputs");
+            FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
             List<ChanceIngredient> outputs = new ArrayList<>(jsonOutputs.size());
             for (int i = 0; i < jsonOutputs.size(); i++) {
                 outputs.add(i, ChanceIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
@@ -110,16 +122,19 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
             //input
             JsonObject jsonObject = json.getAsJsonObject("input");
             CountedIngredient input = CountedIngredient.fromJson(jsonObject.getAsJsonObject());
+            FluidStack fluidInput = FluidJSONUtil.readFluid(json.get("fluid_input").getAsJsonObject());
 
-            return new ChemicalSeperatorRecipe(id, input, outputs);
+            return new ChemicalSeperatorRecipe(id, input, fluidInput, outputs, fluidOutput);
         }
 
         public ChemicalSeperatorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
                 CountedIngredient input = CountedIngredient.fromNetwork(buf);
                 List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
+                FluidStack fluidInput = buf.readFluidStack();
+                FluidStack fluidOutput = buf.readFluidStack();
 
-                return new ChemicalSeperatorRecipe(id, input, outputs);
+                return new ChemicalSeperatorRecipe(id, input, fluidInput, outputs, fluidOutput);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
                 throw ex;
@@ -130,6 +145,8 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
             try {
                 recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
+                buf.writeFluidStack(recipe.fluidInput);
+                buf.writeFluidStack(recipe.fluidOutput);
 
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);

@@ -130,6 +130,11 @@ public class POMitems {
 	public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 	public static final RegistryObject<Item> DENSE_CARBON_CUBE = ITEMS.register("dense_carbon_cube", () -> new Item(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB)));
 
+
+
+	public static final RegistryObject<Item> CLEANING_SPONGE = ITEMS.register("cleaning_sponge", () -> new SpongeItem(new Item.Properties().tab(POMtabs.PIXELS_OF_MINECRAFT_TAB).stacksTo(1)));
+
+
 	public static final class Metals {
 		public static final Map<Element, ItemRegObject<Item>> ATOMX512 = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> ATOMX64 = new EnumMap<>(Element.class);

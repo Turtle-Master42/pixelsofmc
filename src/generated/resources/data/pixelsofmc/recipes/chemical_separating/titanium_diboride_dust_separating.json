@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "input": {
+    "ingredient": {
+      "item": "pixelsofmc:titanium_diboride_dust"
+    },
+    "count": 1
+  },
+  "fluid_input": {
+    "FluidName": "minecraft:empty",
+    "Amount": 0
+  },
+  "outputs": [
+    {
+      "ingredient": {
+        "tag": "forge:dusts/titanium"
+      },
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/boron"
+      },
+      "count": 2,
+      "chance": 1.0
+    }
+  ],
+  "fluid_output": {
+    "FluidName": "minecraft:empty",
+    "Amount": 0
+  }
+}

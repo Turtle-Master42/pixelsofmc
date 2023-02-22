@@ -5,27 +5,22 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.turtlemaster42.pixelsofmc.init.POMrecipes;
-import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.Mods;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
-import org.apache.commons.codec.language.bm.Lang;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -455,8 +450,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         //chemical separating
 
-        ChemicalSeperator(toCI(POMitems.ACANTHITE_DUST.get(), 2), fConsumer, toCHI(dustTag(Element.SILVER), 1, 1), toCHI(dustTag(Element.SILVER), 1, 0.5f), toCHI(dustTag(Element.SULFUR), 1, 0.75f));
+        ChemicalSeperator(fConsumer, toCI(POMitems.ACANTHITE_DUST.get(), 2), toF(Fluids.WATER, 200), toF(POMfluids.SULFURIC_ACID_FLUID.get(), 50), toCHI(dustTag(Element.SILVER), 1, 1), toCHI(dustTag(Element.SILVER), 1, 0.5f));
+        ChemicalSeperator(fConsumer, toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), FluidStack.EMPTY, FluidStack.EMPTY, toCHI(dustTag(Element.TITANIUM), 1, 1), toCHI(dustTag(Element.BORON), 2, 1));
 
+        ChemicalSeperator(fConsumer, toCI(dustTag(Element.TITANIUM), 1), toF(Fluids.WATER, 150), toF(POMfluids.HYDROGEN_FLUID.get(), 100), toCHI(POMitems.TITANIUM_OXIDE_DUST.get(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), FluidStack.EMPTY, toF(POMfluids.MERCURY_FLUID.get(), 100), toCHI(dustItem(Element.SULFUR), 1, 1));
 
         //ez crafting
         SimpleSurroundRecipe(nuggetItem(Element.TITANIUM), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -677,10 +675,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(consumer);
     }
 
-    private void ChemicalSeperator(CountedIngredient input, Consumer<FinishedRecipe> consumer, ChanceIngredient... output) {
+    private void ChemicalSeperator(Consumer<FinishedRecipe> consumer, CountedIngredient input, FluidStack inputFluid, FluidStack outputFluid, ChanceIngredient... output) {
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
-        new ChemicalSeperatorRecipeBuilder(input, outputList)
+        new ChemicalSeperatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
@@ -736,6 +734,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private ChanceIngredient toCHI(TagKey<Item> input, int count, float chance) {
         return ChanceIngredient.of(count, chance, input);
     }
+
+    private FluidStack toF(Fluid fluid, int amount) {return new FluidStack(fluid, amount);}
     private int[] toAInt(int ...num) {
         return num;
     }

@@ -4,28 +4,28 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.Tags;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeperatorTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 
-import java.util.function.Supplier;
-
-public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
+public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu {
     public final ChemicalSeperatorTile blockEntity;
     public final ItemStackHandler itemHandler;
     private final Level level;
     private final ContainerData data;
+    private FluidStack fluid;
+    private FluidStack duoFluid;
 
     public ChemicalSeperatorGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
@@ -33,11 +33,13 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
 
     public ChemicalSeperatorGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.CHEMICAL_SEPERATOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 10);
+        checkContainerSize(inv, 9);
         blockEntity = ((ChemicalSeperatorTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.level = inv.player.level;
         this.data = data;
+        this.fluid = blockEntity.getFluid();
+        this.duoFluid = blockEntity.getDuoFluid();
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -50,9 +52,8 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
             this.addSlot(new ModResultSlot(handler, 3, 116, 65));
             this.addSlot(new SlotItemHandler(handler, 0, 48, 47));
             this.addSlot(new SlotItemHandler(handler, 6, 40, 5));
-            this.addSlot(new SlotItemHandler(handler, 7, 40, 21));
-            this.addSlot(new SlotItemHandler(handler, 8, 85, 5));
-            this.addSlot(new SlotItemHandler(handler, 9, 85, 21));
+            this.addSlot(new SlotItemHandler(handler, 7, 85, 5));
+            this.addSlot(new SlotItemHandler(handler, 8, 85, 21));
         });
         addDataSlots(data);
     }
@@ -78,6 +79,25 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
         return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
     }
 
+    @Override
+    public void setDuoFluid(FluidStack fluidStack) {
+        this.duoFluid = fluidStack;
+    }
+    @Override
+    public FluidStack getDuoFluid() {
+        return duoFluid;
+    }
+    @Override
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+    public FluidStack getFluid() {
+        return fluid;
+    }
+    public void setFluid(FluidStack fluid) {
+        this.fluid = fluid;
+    }
+
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -95,7 +115,7 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 10;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 9;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -148,11 +168,6 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
-    }
-
-    @Override
-    public BlockEntity getBlockEntity() {
-        return this.blockEntity;
     }
 }
 
