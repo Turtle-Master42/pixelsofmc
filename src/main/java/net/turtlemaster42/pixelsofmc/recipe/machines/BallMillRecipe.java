@@ -37,6 +37,8 @@ public class BallMillRecipe extends BaseRecipe {
     //credits EnderIO
     @Override
     public boolean matches(SimpleContainer container, Level level) {
+        if (level.isClientSide) return false;
+
         boolean[] matched = new boolean[3];
 
         // Iterate over the slots
@@ -129,7 +131,8 @@ public class BallMillRecipe extends BaseRecipe {
 
         public BallMillRecipe fromJson(ResourceLocation id, JsonObject json) {
             //output
-            ItemStack output = CraftingHelper.getItemStack(json.getAsJsonObject("output"), false);
+            CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
+            ItemStack output = new ItemStack(out.asItem(), out.count());
 
             //inputs
             JsonArray jsonInputs = json.getAsJsonArray("inputs");

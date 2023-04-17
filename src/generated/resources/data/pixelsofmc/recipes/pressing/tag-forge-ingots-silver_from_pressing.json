@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 1235,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/silver"
+    }
+  },
+  "max_heat": 2435,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/silver"
+    }
+  }
+}

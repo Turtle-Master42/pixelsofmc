@@ -106,7 +106,7 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof HotIsostaticPressTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (HotIsostaticPressTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (HotIsostaticPressTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

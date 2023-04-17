@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:music_disc_5"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 7,
+      "ingredient": {
+        "item": "minecraft:disc_fragment_5"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:disc_fragment_5"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:disc_fragment_5"
+      }
+    }
+  ]
+}

@@ -101,7 +101,7 @@ public class PixelSplitterBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof PixelSplitterTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (PixelSplitterTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (PixelSplitterTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

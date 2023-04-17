@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:nuggets/titanium",
-    "#forge:nuggets/copper",
-    "#forge:nuggets/silver",
-    "#forge:nuggets/netherite"
-  ]
-}

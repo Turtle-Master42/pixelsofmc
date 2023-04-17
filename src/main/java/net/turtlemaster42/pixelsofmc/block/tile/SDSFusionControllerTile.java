@@ -4,10 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,10 +19,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -31,14 +30,12 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> {
 
@@ -111,7 +108,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.sds_controller");
+        return Component.translatable("block.pixelsofmc.sds_controller");
     }
 
     @Nullable
@@ -123,10 +120,10 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
 
@@ -244,7 +241,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 }
             }
 
-            entity.itemHandler.getStackInSlot(3).hurt(1, new Random(), null); //saw
+            entity.itemHandler.getStackInSlot(3).hurt(1, RandomSource.create(), null); //saw
 
                 entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
                         entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));

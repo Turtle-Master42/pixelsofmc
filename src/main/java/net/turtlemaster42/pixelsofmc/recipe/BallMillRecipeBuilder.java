@@ -23,17 +23,14 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class BallMillRecipeBuilder implements RecipeBuilder {
-    private final Item output;
-    private final int outputCount;
-
+    private final CountedIngredient output;
     private final List<CountedIngredient> ingredients;
     private final Ingredient ball;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ItemLike result, int outputCount, Ingredient ball) {
         this.ingredients = ingredients;
-        this.outputCount = outputCount;
-        this.output = result.asItem();
+        this.output = CountedIngredient.of(outputCount, result);
         this.ball = ball;
     }
 
@@ -50,7 +47,7 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
 
     @Override
     public Item getResult() {
-        return output;
+        return output.asItem();
     }
 
     @Override
@@ -60,7 +57,7 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
                 .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
 
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.output, this.outputCount, this.ball, this.ingredients,
+        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.output, this.ball, this.ingredients,
                 this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/milling/"
                 + pRecipeId.getPath())));
 
@@ -68,18 +65,16 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
 
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
-        private final Item result;
-        private final int resultCount;
+        private final CountedIngredient result;
         private final List<CountedIngredient> ingredients;
         private final Ingredient ball;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, Item pResult, int pResultCount, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement,
+        public Result(ResourceLocation pId, CountedIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement,
                       ResourceLocation pAdvancementId) {
             this.id = pId;
             this.result = pResult;
-            this.resultCount = pResultCount;
             this.ball = pBall;
             this.ingredients = ingredients;
             this.advancement = pAdvancement;
@@ -98,17 +93,58 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
             JsonArray jsonarray2 = new JsonArray();
             jsonarray2.add(ball.toJson());
             pJson.add("ball", jsonarray2);
-
-            JsonObject jsonobject = new JsonObject();
-            jsonobject.addProperty("item", this.result.getRegistryName().toString());
-            jsonobject.addProperty("count", this.resultCount);
-            pJson.add("output", jsonobject);
+            pJson.add("output", result.toJson());
         }
 
         @Override
         public ResourceLocation getId() {
+            String ingredient1 = "";
+            String ingredient2 = "";
+            String ingredient3 = "";
+            String output = this.result.asItem().toString();
+
+            if (!this.ingredients.get(0).ingredient().isEmpty()) {
+                ingredient1 = this.ingredients.get(0).asItem() + "_";
+                String jsonString = this.ingredients.get(0).ingredient().toJson().toString();
+
+                if (jsonString.contains("{\"tag\":")) {
+                    String jsonName = jsonString
+                            .replace("{\"tag\":\"", "")
+                            .replace("\"}", "")
+                            .replace(":", "-")
+                            .replace("/", "-");
+                    ingredient1 = "tag-" + jsonName +"_";
+                }
+            }
+            if (this.ingredients.size() > 1 && !this.ingredients.get(1).ingredient().isEmpty()) {
+                ingredient2 = this.ingredients.get(1).asItem()+"_";
+                String jsonString = this.ingredients.get(1).ingredient().toJson().toString();
+
+                if (jsonString.contains("{\"tag\":")) {
+                    String jsonName = jsonString
+                            .replace("{\"tag\":\"", "")
+                            .replace("\"}", "")
+                            .replace(":", "-")
+                            .replace("/", "-");
+                    ingredient2 = "tag-" + jsonName +"_";
+                }
+            }
+            if (this.ingredients.size() > 2 &&!this.ingredients.get(2).ingredient().isEmpty()) {
+                ingredient3 = this.ingredients.get(2).asItem()+"_";
+                String jsonString = this.ingredients.get(2).ingredient().toJson().toString();
+
+                if (jsonString.contains("{\"tag\":")) {
+                    String jsonName = jsonString
+                            .replace("{\"tag\":\"", "")
+                            .replace("\"}", "")
+                            .replace(":", "-")
+                            .replace("/", "-");
+                    ingredient3 = "tag-" + jsonName +"_";
+                }
+            }
+
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "milling/"+this.result.getRegistryName().getPath() + "_from_milling");
+                    "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output+"_milling");
         }
 
         @Override

@@ -6,12 +6,12 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.mixin.client.AccessorRenderType;
+import org.joml.Matrix4f;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,12 +56,12 @@ public final class RenderHelper extends RenderType {
         ms.scale(xScale, yScale, zScale);
 
         for (int i = 0; i < (f1 + f1 * f1) / 2F * 90F + 30F; i++) {
-            ms.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360F));
-            ms.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360F));
-            ms.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360F));
-            ms.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360F));
-            ms.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360F));
-            ms.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360F + f1 * 90F));
+            ms.mulPose(Axis.XP.rotationDegrees(random.nextFloat() * 360F));
+            ms.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360F));
+            ms.mulPose(Axis.ZP.rotationDegrees(random.nextFloat() * 360F));
+            ms.mulPose(Axis.XP.rotationDegrees(random.nextFloat() * 360F));
+            ms.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360F));
+            ms.mulPose(Axis.ZP.rotationDegrees(random.nextFloat() * 360F + f1 * 90F));
             float f3 = random.nextFloat() * 20F + 5F + f2 * 10F;
             float f4 = random.nextFloat() * 2F + 1F + f2 * 2F;
             float r = ((color & 0xFF0000) >> 16) / 255F;

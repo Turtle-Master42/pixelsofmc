@@ -1,0 +1,38 @@
+{
+  "parent": "laws.json",
+  "text": "empty.txt",
+  "title": "Entity Laws",
+  "title_locale": "",
+  "linked_page_buttons": [
+    {
+      "linked_page": "enti_law.json",
+      "text": "",
+      "x": 105,
+      "y": 30,
+      "scale": 0.5,
+      "page": 0
+    },
+    {
+      "linked_page": "enti_law.json",
+      "text": "",
+      "x": 105,
+      "y": 50,
+      "page": 0,
+      "scale": 0.5
+    },
+    {
+      "linked_page": "enti_law.json",
+      "text": "",
+      "x": 105,
+      "y": 70,
+      "page": 0,
+      "scale": 0.5
+    }
+  ],
+  "images": [],
+  "item_renders": [],
+  "recipes": [],
+  "tabula_renders": [],
+  "entity_renders": [],
+  "entity_buttons": []
+}

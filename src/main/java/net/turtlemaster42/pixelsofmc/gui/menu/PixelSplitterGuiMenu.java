@@ -1,11 +1,5 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
-import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
-import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.*;
-import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,8 +7,17 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModRestrictedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 
 public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final PixelSplitterTile blockEntity;
@@ -36,7 +39,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
             this.addSlot(new ModResultSlot(handler, 2, 125, 41));

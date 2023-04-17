@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.gui.slots;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class ModEnergyUpgradeSlot extends SlotItemHandler {
@@ -11,6 +12,6 @@ public class ModEnergyUpgradeSlot extends SlotItemHandler {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return stack.is(POMtags.Items.ENERGY_UPGRADE);
+        return stack.is(POMtags.Items.ENERGY_UPGRADE) || stack.is(POMitems.ENERGY_UPGRADE.get());
     }
 }

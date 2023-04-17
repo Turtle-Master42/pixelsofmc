@@ -1,0 +1,58 @@
+{
+  "parent": "block_law.json",
+  "text": "law_of_block_alignment.txt",
+  "title": "Law of Block Alignment",
+  "title_locale": "",
+  "linked_page_buttons": [],
+  "images": [
+    {
+    "texture": "pixelsofmc:textures/gui/book/block_grid_hop_drawing.png",
+    "x": 235,
+    "y": 10,
+    "page" : 1,
+    "scale": 0.5,
+    "u": 0,
+    "v": 0,
+    "width": 196,
+    "height": 196
+    },
+    {
+      "texture": "pixelsofmc:textures/gui/book/block_damage_drawing.png",
+      "x": 40,
+      "y": 5,
+      "page" : 2,
+      "scale": 0.48,
+      "u": 0,
+      "v": 0,
+      "width": 244,
+      "height": 244
+    },
+    {
+      "texture": "pixelsofmc:textures/gui/book/block_destroy_drawing.png",
+      "x": 245,
+      "y": 10,
+      "page" : 2,
+      "scale": 0.48,
+      "u": 0,
+      "v": 0,
+      "width": 228,
+      "height": 228
+    },
+    {
+      "texture": "pixelsofmc:textures/gui/book/block_fall_drawing.png",
+      "x": 40,
+      "y": 10,
+      "page" : 3,
+      "scale": 0.48,
+      "u": 0,
+      "v": 0,
+      "width": 228,
+      "height": 256
+    }
+  ],
+  "item_renders": [],
+  "recipes": [],
+  "tabula_renders": [],
+  "entity_renders": [],
+  "entity_buttons": []
+}

@@ -1,0 +1,37 @@
+The Blocks in the world want to align with the block grid. This is because there is a force pressing it into the correct space.
+<NEWLINE>
+§lBlock force§r §2█§r, the force that a block applies to itself, can be helped by punching it.
+<NEWLINE>
+§lGrid force§r §9█§r, the force that the block grid applies to block to keep it into place.
+<NEWLINE>
+§lGravitational force§r §c█§r, the force applied to a block, trying to pull it down.
+<NEWLINE>
+The block force and grid force are in balance.
+It takes a bit of time for the forces to balance out.
+<NEWLINE>
+If you hit a block with your bare hand, it will increase the block force, but the grid force will increase with a certain amount based on the block, if you can’t hit harder than the acceleration of the grid force, after some time the grid force will be greater than the block force meaning it shatters.
+<NEWLINE>
+If you can hit harder than the acceleration of the grid force, after a certain amount of time the block force will be greater than the grid force meaning it grid hops (§oturns to a item§r)
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+When the inwards force is bigger than the outward force, the block hops (§obecomes item§r)
+<NEWLINE>
+<NEWLINE>
+
+<NEWLINE>
+<NEWLINE>
+When the inwards force is much bigger than the outward force, it damages (§odamages §othe block, §olike stone to §ocobblestone§r)
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+When the outward force is bigger than the inwards force, it shatters (§obreaks §obut doesn’t drop item§r)
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+<NEWLINE>
+When the gravity is bigger then the outward force it falls (§oFalling block§r)

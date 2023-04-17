@@ -111,8 +111,20 @@ public class ChemicalSeperatorRecipeBuilder implements RecipeBuilder {
 
         @Override
         public ResourceLocation getId() {
+            String name = this.ingredient.getItems()[0].getItem().toString();
+            String jsonString = this.ingredient.ingredient().toJson().toString();
+
+            if (jsonString.contains("{\"tag\":")) {
+                String jsonName = jsonString
+                        .replace("{\"tag\":\"", "")
+                        .replace("\"}", "")
+                        .replace(":", "-")
+                        .replace("/", "-");
+                name = "tag-"+jsonName;
+            }
+
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "chemical_separating/"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath() + "_separating");
+                    "chemical_separating/" + name + "_separating");
         }
 
         @Override

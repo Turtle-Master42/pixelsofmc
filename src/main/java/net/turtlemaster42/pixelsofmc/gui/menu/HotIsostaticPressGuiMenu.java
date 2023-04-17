@@ -7,11 +7,14 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.*;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 
@@ -35,7 +38,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
             this.addSlot(new ModHeatUpgradeSlot(handler, 6, 161, 44));
@@ -57,6 +60,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     }
     public int getHeat() {return data.get(6);}
     public int getRequiredHeat() {return blockEntity.getRequiredHeat();}
+    public int getRequiredMaxHeat() {return blockEntity.getRequiredMaxHeat();}
     public int getTime() {return data.get(8);}
     public int getMaxTime() {return blockEntity.getMaxTime();}
     public int getEnergy() {return blockEntity.getEnergyStorage().getEnergyStored();}

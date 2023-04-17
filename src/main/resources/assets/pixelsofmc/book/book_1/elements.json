@@ -1,10 +1,22 @@
 {
-  "parent": "root.txt",
-  "text": "elements.txt",
+  "parent": "root.json",
+  "text": "empty.txt",
   "title": "Elements",
-  "title_locale": "",
+  "title_locale": "book.pixelsofmc_guide_book_1.elements",
   "linked_page_buttons": [],
-  "images": [],
+  "images": [
+    {
+      "texture": "pixelsofmc:textures/gui/book/periodic_table.png",
+      "x": 0,
+      "y": 0,
+      "page" : 0,
+      "scale": 1.6,
+      "u": 0,
+      "v": 0,
+      "width": 256,
+      "height": 256
+    }
+  ],
   "item_renders": [],
   "recipes": [],
   "tabula_renders": [],
@@ -19,7 +31,7 @@
       "entity_scale": 0,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.hydrogen_canister"
+      "hover_text": "element.pixelsofmc.hydrogen"
     },
     {
       "entity": "minecraft:item",
@@ -30,7 +42,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.lithium_ingot"
+      "hover_text": "element.pixelsofmc.lithium"
     },
     {
       "entity": "minecraft:item",
@@ -41,7 +53,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.sodium_ingot"
+      "hover_text": "element.pixelsofmc.sodium"
     },
     {
       "entity": "minecraft:item",
@@ -52,7 +64,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.potassium_ingot"
+      "hover_text": "element.pixelsofmc.potassium"
     },
     {
       "entity": "minecraft:item",
@@ -63,7 +75,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.rubidium_ingot"
+      "hover_text": "element.pixelsofmc.rubidium"
     },
     {
       "entity": "minecraft:item",
@@ -74,7 +86,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.caesium_ingot"
+      "hover_text": "element.pixelsofmc.caesium"
     },
     {
       "entity": "minecraft:item",
@@ -85,7 +97,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.francium_ingot"
+      "hover_text": "element.pixelsofmc.francium"
     },
 
     {
@@ -97,7 +109,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.beryllium_ingot"
+      "hover_text": "element.pixelsofmc.beryllium"
     },
     {
       "entity": "minecraft:item",
@@ -108,7 +120,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.magnesium_ingot"
+      "hover_text": "element.pixelsofmc.magnesium"
     },
     {
       "entity": "minecraft:item",
@@ -119,7 +131,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.calcium_ingot"
+      "hover_text": "element.pixelsofmc.calcium"
     },
     {
       "entity": "minecraft:item",
@@ -130,7 +142,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.strontium_ingot"
+      "hover_text": "element.pixelsofmc.strontium"
     },
     {
       "entity": "minecraft:item",
@@ -141,7 +153,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.barium_ingot"
+      "hover_text": "element.pixelsofmc.barium"
     },
     {
       "entity": "minecraft:item",
@@ -152,7 +164,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.radium_ingot"
+      "hover_text": "element.pixelsofmc.radium"
     },
 
 
@@ -189,7 +201,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.scandium_ingot"
+      "hover_text": "element.pixelsofmc.scandium"
     },
     {
       "entity": "minecraft:item",
@@ -200,7 +212,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.yttrium_ingot"
+      "hover_text": "element.pixelsofmc.yttrium"
     },
     {
       "entity": "minecraft:item",
@@ -211,7 +223,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.lutetium_ingot"
+      "hover_text": "element.pixelsofmc.lutetium"
     },
     {
       "entity": "minecraft:item",
@@ -222,7 +234,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -234,7 +246,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.titanium_ingot"
+      "hover_text": "element.pixelsofmc.titanium"
     },
     {
       "entity": "minecraft:item",
@@ -245,7 +257,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.zirconium_ingot"
+      "hover_text": "element.pixelsofmc.zirconium"
     },
     {
       "entity": "minecraft:item",
@@ -256,7 +268,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.hafnium_ingot"
+      "hover_text": "element.pixelsofmc.hafnium"
     },
     {
       "entity": "minecraft:item",
@@ -267,7 +279,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -279,7 +291,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.vanadium_ingot"
+      "hover_text": "element.pixelsofmc.vanadium"
     },
     {
       "entity": "minecraft:item",
@@ -290,7 +302,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.niobium_ingot"
+      "hover_text": "element.pixelsofmc.niobium"
     },
     {
       "entity": "minecraft:item",
@@ -301,7 +313,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.tantalum_ingot"
+      "hover_text": "element.pixelsofmc.tantalum"
     },
     {
       "entity": "minecraft:item",
@@ -312,7 +324,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -324,7 +336,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.chromium_ingot"
+      "hover_text": "element.pixelsofmc.chromium"
     },
     {
       "entity": "minecraft:item",
@@ -335,7 +347,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.molybdenum_ingot"
+      "hover_text": "element.pixelsofmc.molybdenum"
     },
     {
       "entity": "minecraft:item",
@@ -346,7 +358,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.tungsten_ingot"
+      "hover_text": "element.pixelsofmc.tungsten"
     },
     {
       "entity": "minecraft:item",
@@ -357,7 +369,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -369,7 +381,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.manganese_ingot"
+      "hover_text": "element.pixelsofmc.manganese"
     },
     {
       "entity": "minecraft:item",
@@ -380,7 +392,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.technetium_ingot"
+      "hover_text": "element.pixelsofmc.technetium"
     },
     {
       "entity": "minecraft:item",
@@ -391,7 +403,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.rhenium_ingot"
+      "hover_text": "element.pixelsofmc.rhenium"
     },
     {
       "entity": "minecraft:item",
@@ -402,7 +414,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -414,7 +426,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.minecraft.iron_ingot"
+      "hover_text": "element.pixelsofmc.iron"
     },
     {
       "entity": "minecraft:item",
@@ -425,7 +437,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.ruthenium_ingot"
+      "hover_text": "element.pixelsofmc.ruthenium"
     },
     {
       "entity": "minecraft:item",
@@ -436,7 +448,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.osmium_ingot"
+      "hover_text": "element.pixelsofmc.osmium"
     },
     {
       "entity": "minecraft:item",
@@ -447,7 +459,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -459,7 +471,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.cobalt_ingot"
+      "hover_text": "element.pixelsofmc.cobalt"
     },
     {
       "entity": "minecraft:item",
@@ -470,7 +482,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.rhodium_ingot"
+      "hover_text": "element.pixelsofmc.rhodium"
     },
     {
       "entity": "minecraft:item",
@@ -481,7 +493,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.iridium_ingot"
+      "hover_text": "element.pixelsofmc.iridium"
     },
     {
       "entity": "minecraft:item",
@@ -492,7 +504,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -504,7 +516,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.nickel_ingot"
+      "hover_text": "element.pixelsofmc.nickel"
     },
     {
       "entity": "minecraft:item",
@@ -515,7 +527,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.palladium_ingot"
+      "hover_text": "element.pixelsofmc.palladium"
     },
     {
       "entity": "minecraft:item",
@@ -526,7 +538,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.platinum_ingot"
+      "hover_text": "element.pixelsofmc.platinum"
     },
     {
       "entity": "minecraft:item",
@@ -537,7 +549,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -549,7 +561,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.minecraft.copper_ingot"
+      "hover_text": "element.pixelsofmc.copper"
     },
     {
       "entity": "minecraft:item",
@@ -560,7 +572,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.silver_ingot"
+      "hover_text": "element.pixelsofmc.silver"
     },
     {
       "entity": "minecraft:item",
@@ -571,7 +583,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.minecraft.gold_ingot"
+      "hover_text": "element.pixelsofmc.gold"
     },
     {
       "entity": "minecraft:item",
@@ -582,7 +594,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -594,7 +606,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.zinc_ingot"
+      "hover_text": "element.pixelsofmc.zinc"
     },
     {
       "entity": "minecraft:item",
@@ -605,7 +617,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.cadmium_ingot"
+      "hover_text": "element.pixelsofmc.cadmium"
     },
     {
       "entity": "minecraft:item",
@@ -616,7 +628,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.mercury_ingot"
+      "hover_text": "element.pixelsofmc.mercury"
     },
     {
       "entity": "minecraft:item",
@@ -627,7 +639,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -639,7 +651,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.boron_cube"
+      "hover_text": "element.pixelsofmc.boron"
     },
     {
       "entity": "minecraft:item",
@@ -650,7 +662,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.aluminium_ingot"
+      "hover_text": "element.pixelsofmc.aluminium"
     },
     {
       "entity": "minecraft:item",
@@ -661,7 +673,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.gallium_ingot"
+      "hover_text": "element.pixelsofmc.gallium"
     },
     {
       "entity": "minecraft:item",
@@ -672,7 +684,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.indium_ingot"
+      "hover_text": "element.pixelsofmc.indium"
     },
     {
       "entity": "minecraft:item",
@@ -683,7 +695,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.thallium_ingot"
+      "hover_text": "element.pixelsofmc.thallium"
     },
     {
       "entity": "minecraft:item",
@@ -694,7 +706,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -706,7 +718,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.carbon_cube"
+      "hover_text": "element.pixelsofmc.carbon"
     },
     {
       "entity": "minecraft:item",
@@ -717,7 +729,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.silicon_cube"
+      "hover_text": "element.pixelsofmc.silicon"
     },
     {
       "entity": "minecraft:item",
@@ -728,7 +740,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.germanium_ingot"
+      "hover_text": "element.pixelsofmc.germanium"
     },
     {
       "entity": "minecraft:item",
@@ -739,7 +751,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.tin_ingot"
+      "hover_text": "element.pixelsofmc.tin"
     },
     {
       "entity": "minecraft:item",
@@ -750,7 +762,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.lead_ingot"
+      "hover_text": "element.pixelsofmc.lead"
     },
     {
       "entity": "minecraft:item",
@@ -761,7 +773,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -773,7 +785,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.nitrogen_canister"
+      "hover_text": "element.pixelsofmc.nitrogen"
     },
     {
       "entity": "minecraft:item",
@@ -784,7 +796,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.phosphorus_cube"
+      "hover_text": "element.pixelsofmc.phosphorus"
     },
     {
       "entity": "minecraft:item",
@@ -795,7 +807,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.arsenic_ingot"
+      "hover_text": "element.pixelsofmc.arsenic"
     },
     {
       "entity": "minecraft:item",
@@ -806,7 +818,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.antimony_ingot"
+      "hover_text": "element.pixelsofmc.antimony"
     },
     {
       "entity": "minecraft:item",
@@ -817,7 +829,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.bismuth_ingot"
+      "hover_text": "element.pixelsofmc.bismuth"
 
     },
     {
@@ -829,7 +841,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -841,7 +853,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.oxygen_canister"
+      "hover_text": "element.pixelsofmc.oxygen"
     },
     {
       "entity": "minecraft:item",
@@ -852,7 +864,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.sulfur_cube"
+      "hover_text": "element.pixelsofmc.sulfur"
     },
     {
       "entity": "minecraft:item",
@@ -863,7 +875,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.selenium"
+      "hover_text": "element.pixelsofmc.selenium"
     },
     {
       "entity": "minecraft:item",
@@ -874,7 +886,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.tellurium"
+      "hover_text": "element.pixelsofmc.tellurium"
     },
     {
       "entity": "minecraft:item",
@@ -885,7 +897,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.polonium_ingot"
+      "hover_text": "element.pixelsofmc.polonium"
     },
     {
       "entity": "minecraft:item",
@@ -896,7 +908,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -908,7 +920,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.fluorine"
+      "hover_text": "element.pixelsofmc.fluorine"
     },
     {
       "entity": "minecraft:item",
@@ -919,7 +931,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.chlorine_canister"
+      "hover_text": "element.pixelsofmc.chlorine"
     },
     {
       "entity": "minecraft:item",
@@ -930,7 +942,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.bromine_canister"
+      "hover_text": "element.pixelsofmc.bromine"
     },
     {
       "entity": "minecraft:item",
@@ -941,7 +953,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.iodine"
+      "hover_text": "element.pixelsofmc.iodine"
     },
     {
       "entity": "minecraft:item",
@@ -952,7 +964,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.astatine"
+      "hover_text": "element.pixelsofmc.astatine"
     },
     {
       "entity": "minecraft:item",
@@ -963,7 +975,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
     {
@@ -975,7 +987,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.helium_canister"
+      "hover_text": "element.pixelsofmc.helium"
     },
     {
       "entity": "minecraft:item",
@@ -986,7 +998,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.neon_canister"
+      "hover_text": "element.pixelsofmc.neon"
     },
     {
       "entity": "minecraft:item",
@@ -997,7 +1009,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.argon_canister"
+      "hover_text": "element.pixelsofmc.argon"
     },
     {
       "entity": "minecraft:item",
@@ -1008,7 +1020,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.krypton_canister"
+      "hover_text": "element.pixelsofmc.krypton"
     },
     {
       "entity": "minecraft:item",
@@ -1019,7 +1031,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.xenon_canister"
+      "hover_text": "element.pixelsofmc.xenon"
     },
     {
       "entity": "minecraft:item",
@@ -1030,7 +1042,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.radon_canister"
+      "hover_text": "element.pixelsofmc.radon"
 
     },
     {
@@ -1042,7 +1054,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc."
+      "hover_text": "element.pixelsofmc."
     },
 
 
@@ -1058,7 +1070,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.lanthanum_ingot"
+      "hover_text": "element.pixelsofmc.lanthanum"
 
     },
     {
@@ -1070,7 +1082,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.actinium_ingot"
+      "hover_text": "element.pixelsofmc.actinium"
     },
 
     {
@@ -1082,7 +1094,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.cerium_ingot"
+      "hover_text": "element.pixelsofmc.cerium"
 
     },
     {
@@ -1094,7 +1106,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.thorium_ingot"
+      "hover_text": "element.pixelsofmc.thorium"
     },
 
     {
@@ -1106,7 +1118,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.praseodymium_ingot"
+      "hover_text": "element.pixelsofmc.praseodymium"
 
     },
     {
@@ -1118,7 +1130,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.protactinium_ingot"
+      "hover_text": "element.pixelsofmc.protactinium"
     },
 
     {
@@ -1130,7 +1142,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.neodymium_ingot"
+      "hover_text": "element.pixelsofmc.neodymium"
 
     },
     {
@@ -1142,7 +1154,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.uranium_ingot"
+      "hover_text": "element.pixelsofmc.uranium"
     },
 
     {
@@ -1154,7 +1166,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.promethium_ingot"
+      "hover_text": "element.pixelsofmc.promethium"
 
     },
     {
@@ -1166,7 +1178,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.neptunium_ingot"
+      "hover_text": "element.pixelsofmc.neptunium"
     },
 
     {
@@ -1178,7 +1190,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.samarium_ingot"
+      "hover_text": "element.pixelsofmc.samarium"
 
     },
     {
@@ -1190,7 +1202,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.plutonium_ingot"
+      "hover_text": "element.pixelsofmc.plutonium"
     },
 
     {
@@ -1202,7 +1214,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.europium_ingot"
+      "hover_text": "element.pixelsofmc.europium"
 
     },
     {
@@ -1214,7 +1226,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.americium_ingot"
+      "hover_text": "element.pixelsofmc.americium"
     },
 
     {
@@ -1226,7 +1238,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.gadolinium_ingot"
+      "hover_text": "element.pixelsofmc.gadolinium"
 
     },
     {
@@ -1238,7 +1250,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.curium_ingot"
+      "hover_text": "element.pixelsofmc.curium"
     },
 
     {
@@ -1250,7 +1262,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.terbium_ingot"
+      "hover_text": "element.pixelsofmc.terbium"
 
     },
     {
@@ -1262,7 +1274,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.berkelium_ingot"
+      "hover_text": "element.pixelsofmc.berkelium"
     },
 
     {
@@ -1274,7 +1286,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.dysprosium_ingot"
+      "hover_text": "element.pixelsofmc.dysprosium"
 
     },
     {
@@ -1286,7 +1298,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.californium_ingot"
+      "hover_text": "element.pixelsofmc.californium"
     },
 
     {
@@ -1298,7 +1310,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.holmium_ingot"
+      "hover_text": "element.pixelsofmc.holmium"
 
     },
     {
@@ -1310,7 +1322,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.einsteinium_ingot"
+      "hover_text": "element.pixelsofmc.einsteinium"
     },
 
     {
@@ -1322,7 +1334,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.erbium_ingot"
+      "hover_text": "element.pixelsofmc.erbium"
 
     },
     {
@@ -1334,7 +1346,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.fermium_ingot"
+      "hover_text": "element.pixelsofmc.fermium"
     },
 
     {
@@ -1346,7 +1358,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.thulium_ingot"
+      "hover_text": "element.pixelsofmc.thulium"
 
     },
     {
@@ -1358,7 +1370,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.mendelevium_ingot"
+      "hover_text": "element.pixelsofmc.mendelevium"
     },
 
     {
@@ -1370,7 +1382,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.ytterbium_ingot"
+      "hover_text": "element.pixelsofmc.ytterbium"
 
     },
     {
@@ -1382,7 +1394,7 @@
       "entity_scale": 1,
       "offset_x": 0,
       "offset_y": 0,
-      "hover_text": "item.pixelsofmc.nobelium_ingot"
+      "hover_text": "element.pixelsofmc.nobelium"
     }
 
 

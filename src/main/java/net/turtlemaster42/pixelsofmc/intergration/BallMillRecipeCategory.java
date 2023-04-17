@@ -9,9 +9,9 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
@@ -38,20 +38,8 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     }
 
     @Override
-    @Deprecated
-    public Class<? extends BallMillRecipe> getRecipeClass() {
-        return BallMillRecipe.class;
-    }
-
-    @Override
-    @Deprecated
-       public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.pixelsofmc.ball_mill");
+        return Component.translatable("block.pixelsofmc.ball_mill");
     }
 
     @Override
@@ -65,17 +53,15 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     }
 
 
-
-
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 3, (14*(p+1)+8*p)-11).addItemStack(recipe.getInput(p));
+            builder.addSlot(RecipeIngredientRole.INPUT, 3, (14*(p+1)+8*p)-11).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
         //grinding ball input
         builder.addSlot(RecipeIngredientRole.INPUT, 52, 25).addIngredients(recipe.getBall().get(0));
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addIngredients(Ingredient.of(recipe.getResultItem()));
     }
 }

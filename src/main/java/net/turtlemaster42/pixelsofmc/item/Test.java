@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.item;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -47,8 +46,8 @@ public class Test extends Item {
     }
 
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(new TranslatableComponent("tooltip.pixelsofmc.test", this.category));
-        pTooltipComponents.add(new TranslatableComponent("tooltip.pixelsofmc." + pStack.getItem()).withStyle(pStack.getRarity().color));
+        pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.test", ""));
+        pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc." + pStack.getItem()).withStyle(pStack.getRarity().color));
     }
 
 

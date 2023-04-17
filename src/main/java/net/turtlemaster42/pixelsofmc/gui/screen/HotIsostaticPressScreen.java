@@ -7,7 +7,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -35,7 +34,7 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
         assignEnergyInfoArea();
         this.addRenderableWidget(new ImageButton((width - imageWidth) / 2 + 8, (height - imageHeight) / 2 + 69, 6, 6, pressed?0:6, 34, 6, BUTTON,256, 256, (onPress) -> {
             pressed=!pressed;
-        }, new TextComponent("§eHOVERING")));
+        }, Component.literal("§eHOVERING")));
     }
 
     @Override
@@ -54,7 +53,7 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
             renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
             if (menu.isHeating())
                 renderArea(pPoseStack, pMouseX, pMouseY, x, y, 51, 55, 65, 69, new GuiTooltips().getTimeArea(menu.getTime()));
-            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 28, 75, 68, 79, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat()));
+            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 28, 75, 68, 79, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
         }
     }
 
@@ -133,19 +132,19 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
 
         if (Screen.hasShiftDown())
             return List.of(
-                    new TextComponent("§c"+(heat+273)+" K"),
-                    new TextComponent("§9"+(time/20)+" s"),
-                    new TextComponent("§6"+energy+"§r§7 FE"),
-                    new TextComponent("§e"+maxEnergy+"§r§7 FE"),
-                    new TextComponent("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"),
-                    new TextComponent("§9"+((maxProgress/20)-(progress/20))+" s")
+                    Component.literal("§c"+(heat+273)+" K"),
+                    Component.literal("§9"+(time/20)+" s"),
+                    Component.literal("§6"+energy+"§r§7 FE"),
+                    Component.literal("§e"+maxEnergy+"§r§7 FE"),
+                    Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"),
+                    Component.literal("§9"+((maxProgress/20)-(progress/20))+" s")
             );
         else return List.of(
-                new TextComponent("§c"+(heat)+" °C"),
-                new TextComponent("§9"+(time/20)+" s"),
-                new TextComponent(("§6"+energy/1000*multi) + "." + ((energy/10*multi) - ((energy/1000*multi)*100)+"§r§7 "+l1+"FE")),
-                new TextComponent(("§e"+ (float) (maxEnergy / 10000*multi) /100) + "§r§7 "+l2+"FE"),
-                new TextComponent("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%")
+                Component.literal("§c"+(heat)+" °C"),
+                Component.literal("§9"+(time/20)+" s"),
+                Component.literal(("§6"+energy/1000*multi) + "." + ((energy/10*multi) - ((energy/1000*multi)*100)+"§r§7 "+l1+"FE")),
+                Component.literal(("§e"+ (float) (maxEnergy / 10000*multi) /100) + "§r§7 "+l2+"FE"),
+                Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%")
         );
     }
 

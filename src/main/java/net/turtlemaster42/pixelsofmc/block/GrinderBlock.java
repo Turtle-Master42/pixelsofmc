@@ -114,7 +114,7 @@ public class GrinderBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof GrinderTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (GrinderTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (GrinderTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

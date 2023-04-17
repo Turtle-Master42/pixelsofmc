@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "pixelsofmc:aluminium_dust"
-  },
-  "result": "pixelsofmc:aluminium_scrap",
-  "experience": 0.8,
-  "cookingtime": 200
-}

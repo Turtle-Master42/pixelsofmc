@@ -1,0 +1,5 @@
+When an object on the entity grid gets correctly aligned with the block grid and a big enough outwards force is applied, the object can hop from the entity grid to the block grid and will fit itself to the correct size.
+<NEWLINE>
+In the same way you can apply a semi constant force to a block to make it hop to the entity grid, in this proces there is a big chance that the block broken is damaged resulting in a conversion like stone to cobblestone.
+<NEWLINE>
+It is thought that there is a way to move blocks from the block grid without letting it hop to the entity grid, if this is possible it will need a very strong force to keep the block into place.

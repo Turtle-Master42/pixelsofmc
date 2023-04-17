@@ -3,7 +3,6 @@ package net.turtlemaster42.pixelsofmc.gui.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class MachineProgressArea extends InfoArea {
     }
 
     public List<Component> getTooltips() {
-            return List.of(new TextComponent((100/maxProgress * progress) +"%"));
+            return List.of(Component.literal((100/maxProgress * progress) +"%"));
 
     }
 

@@ -66,9 +66,9 @@ public abstract class AbstractDummyMachineBlock extends Block implements EntityB
         if (!world.isClientSide()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity != null) {
-                blockEntity.getTileData().putInt("mainX", pos.getX());
-                blockEntity.getTileData().putInt("mainY", pos.getY());
-                blockEntity.getTileData().putInt("mainZ", pos.getZ());
+                blockEntity.getPersistentData().putInt("mainX", pos.getX());
+                blockEntity.getPersistentData().putInt("mainY", pos.getY());
+                blockEntity.getPersistentData().putInt("mainZ", pos.getZ());
                 world.sendBlockUpdated(pos, blockstate, blockstate, 3);
             }
         }

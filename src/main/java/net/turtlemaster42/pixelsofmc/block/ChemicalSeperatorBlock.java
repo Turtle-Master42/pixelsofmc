@@ -80,7 +80,7 @@ public class ChemicalSeperatorBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof ChemicalSeperatorTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (ChemicalSeperatorTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ChemicalSeperatorTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

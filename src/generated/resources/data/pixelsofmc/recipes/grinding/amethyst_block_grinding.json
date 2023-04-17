@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:amethyst_block"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:amethyst_shard"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:amethyst_shard"
+      }
+    }
+  ]
+}

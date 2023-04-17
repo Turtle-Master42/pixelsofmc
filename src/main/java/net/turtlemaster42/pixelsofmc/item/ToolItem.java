@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.item;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ToolAction;
@@ -17,7 +18,7 @@ public class ToolItem extends Item {
     public ItemStack getContainerItem(ItemStack itemStack)
     {
         ItemStack container = itemStack.copy();
-        if(container.hurt(1, new Random(), null))
+        if(container.hurt(1, RandomSource.create(), null))
             return ItemStack.EMPTY;
         else
             return container;

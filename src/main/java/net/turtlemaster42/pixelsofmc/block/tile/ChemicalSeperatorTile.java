@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,14 +14,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeperatorGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -155,7 +152,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         if (slot==0) return true;
         else if (slot==4) return stack.is(POMtags.Items.SPEED_UPGRADE);
         else if (slot==5) return stack.is(POMtags.Items.ENERGY_UPGRADE);
-        else if (slot==6) return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent();
+        else if (slot==6) return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
         else if (5 < slot && slot <= 9) return true;
         return false;
     }
@@ -172,7 +169,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.chemical_seperator");
+        return Component.translatable("block.pixelsofmc.chemical_seperator");
     }
 
     @Nullable
@@ -187,13 +184,13 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
-        if(cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if(cap == ForgeCapabilities.FLUID_HANDLER) {
             if (side == Direction.UP)
                 return lazyDuoFluidHandler.cast();
             else return lazyFluidHandler.cast();
@@ -276,7 +273,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
     }
 
     private void transferFluidToTank(ChemicalSeperatorTile pBlockEntity) {
-        pBlockEntity.itemHandler.getStackInSlot(6).getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(handler -> {
+        pBlockEntity.itemHandler.getStackInSlot(6).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
             int drainAmount = Math.min(pBlockEntity.fluidTank.getSpace(), 1000);
 
             FluidStack stack = handler.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
@@ -288,7 +285,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
     }
 
     private void transferFluidToItem(ChemicalSeperatorTile pBlockEntity, FluidTank tank, int slot) {
-        pBlockEntity.itemHandler.getStackInSlot(slot).getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(handler -> {
+        pBlockEntity.itemHandler.getStackInSlot(slot).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
             int fillAmount = Math.min(handler.fill(tank.getFluid(), IFluidHandler.FluidAction.SIMULATE), 1000);
 
             FluidStack stack = new FluidStack(tank.getFluid(), fillAmount);

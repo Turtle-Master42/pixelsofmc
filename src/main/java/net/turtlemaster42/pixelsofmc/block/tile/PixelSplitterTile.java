@@ -1,44 +1,41 @@
 package net.turtlemaster42.pixelsofmc.block.tile;
 
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.LevelAccessor;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.init.POMtags;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
-import net.turtlemaster42.pixelsofmc.item.Pixel;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
-
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.item.Pixel;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
-import java.util.Random;
 
-import static net.minecraft.core.particles.ParticleTypes.*;
+import static net.minecraft.core.particles.ParticleTypes.CRIT;
 
 
 public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
@@ -113,7 +110,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.pixelsofmc.pixel_splitter");
+        return Component.translatable("block.pixelsofmc.pixel_splitter");
     }
 
     @Nullable
@@ -125,10 +122,10 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
 
@@ -219,7 +216,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
-            entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null); //saw
+            entity.itemHandler.getStackInSlot(1).hurt(1, RandomSource.create(), null); //saw
 
             if (match.get().getResultItem().getItem() == POMitems.PIXEL.get() || match.get().getResultItem().getItem() == POMitems.PIXEL_PILE.get()) {
                 ItemStack pixel = new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());

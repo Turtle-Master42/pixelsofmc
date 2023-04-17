@@ -1,24 +1,25 @@
 package net.turtlemaster42.pixelsofmc.gui.renderer;
+
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joml.Matrix4f;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -97,17 +98,19 @@ public class FluidTankRenderer {
 
     public TextureAtlasSprite getStillFluidSprite(FluidStack fluidStack) {
         Fluid fluid = fluidStack.getFluid();
-        FluidAttributes attributes = fluid.getAttributes();
-        ResourceLocation fluidStill = attributes.getStillTexture(fluidStack);
+        IClientFluidTypeExtensions renderProperties = IClientFluidTypeExtensions.of(fluid);
+        ResourceLocation fluidStill = renderProperties.getStillTexture(fluidStack);
 
-        Minecraft minecraft = Minecraft.getInstance();
-        return minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(fluidStill);
+        TextureAtlasSprite sprite = Minecraft.getInstance()
+                .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
+                .apply(fluidStill);
+        return sprite;
     }
 
     public int getColorTint(FluidStack ingredient) {
         Fluid fluid = ingredient.getFluid();
-        FluidAttributes attributes = fluid.getAttributes();
-        return attributes.getColor(ingredient);
+        IClientFluidTypeExtensions renderProperties = IClientFluidTypeExtensions.of(fluid);
+        return renderProperties.getTintColor(ingredient);
     }
 
     private static void drawTiledSprite(PoseStack poseStack, final int tiledWidth, final int tiledHeight, int color, long scaledAmount, TextureAtlasSprite sprite) {
@@ -180,13 +183,13 @@ public class FluidTankRenderer {
             tooltip.add(displayName);
 
             long amount = fluidStack.getAmount();
-            long milliBuckets = (amount * 1000) / FluidAttributes.BUCKET_VOLUME;
+            long milliBuckets = (amount * 1000) / FluidType.BUCKET_VOLUME;
 
             if (tooltipMode == TooltipMode.SHOW_AMOUNT_AND_CAPACITY) {
-                MutableComponent amountString = new TranslatableComponent("tooltip.pixelsofmc.fluid.amount.with.capacity", nf.format(milliBuckets), nf.format(capacity));
+                MutableComponent amountString = Component.translatable("tooltip.pixelsofmc.fluid.amount.with.capacity", nf.format(milliBuckets), nf.format(capacity));
                 tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
             } else if (tooltipMode == TooltipMode.SHOW_AMOUNT) {
-                MutableComponent amountString = new TranslatableComponent("tooltip.pixelsofmc.fluid.amount", nf.format(milliBuckets));
+                MutableComponent amountString = Component.translatable("tooltip.pixelsofmc.fluid.amount", nf.format(milliBuckets));
                 tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
             }
         } catch (RuntimeException e) {

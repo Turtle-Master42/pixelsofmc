@@ -1,8 +1,9 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,29 +15,32 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import java.util.function.Function;
 
 public class POMblockModelProvider extends BlockStateProvider {
-    public POMblockModelProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, PixelsOfMc.MOD_ID, exFileHelper);
+    public POMblockModelProvider(PackOutput pack, ExistingFileHelper exFileHelper) {
+        super(pack, PixelsOfMc.MOD_ID, exFileHelper);
     }
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(POMblocks.TITANIUM_BLOCK.get());
-        simpleBlock(POMblocks.ENDSTONE_TITANIUM_ORE.get());
-        simpleBlock(POMblocks.DEEPSLATE_TITANIUM_ORE.get());
-        simpleBlock(POMblocks.TITANIUM_ORE.get());
-        simpleBlock(POMblocks.RAW_TITANIUM_BLOCK.get());
-        simpleBlock(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
-        simpleBlock(POMblocks.SAND_MINERAL_DEPOSIT.get());
-        simpleBlock(POMblocks.ACANTHITE.get());
+        blockWithItem(POMblocks.TITANIUM_BLOCK);
+        blockWithItem(POMblocks.ENDSTONE_TITANIUM_ORE);
+        blockWithItem(POMblocks.DEEPSLATE_TITANIUM_ORE);
+        blockWithItem(POMblocks.TITANIUM_ORE);
+        blockWithItem(POMblocks.RAW_TITANIUM_BLOCK);
+        blockWithItem(POMblocks.TITANIUM_DIBORIDE_BLOCK);
+        blockWithItem(POMblocks.SAND_MINERAL_DEPOSIT);
+        blockWithItem(POMblocks.ACANTHITE);
 
-        simpleBlock(POMblocks.SIMPLE_CASING_1.get());
-        simpleBlock(POMblocks.ADVANCED_CASING_1.get());
-        simpleBlock(POMblocks.PERFECTED_CASING_1.get());
-        simpleBlock(POMblocks.STRONG_CASING.get());
-        simpleBlock(POMblocks.REINFORCED_CASING.get());
+        blockWithItem(POMblocks.SIMPLE_CASING_1);
+        blockWithItem(POMblocks.ADVANCED_CASING_1);
+        blockWithItem(POMblocks.PERFECTED_CASING_1);
+        blockWithItem(POMblocks.STRONG_CASING);
+        blockWithItem(POMblocks.REINFORCED_CASING);
+
         logBlock(POMblocks.COPPER_SPOOL.get());
+        logBlock(POMblocks.SILVER_SPOOL.get());
+        logBlock(POMblocks.TUNGSTEN_SPOOL.get());
 
-        simpleBlock(POMblocks.SDS_CONTROLLER.get());
+        blockWithItem(POMblocks.SDS_CONTROLLER);
 
     }
 
@@ -47,6 +51,10 @@ public class POMblockModelProvider extends BlockStateProvider {
     public void makeCrop(CropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> states(state, block, modelName, textureName);
         getVariantBuilder(block).forAllStates(function);
+    }
+
+    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {

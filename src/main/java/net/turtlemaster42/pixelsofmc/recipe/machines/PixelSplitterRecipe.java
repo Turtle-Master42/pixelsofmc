@@ -37,6 +37,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
+        if (pLevel.isClientSide) return false;
         return recipeItem.test(pContainer.getItem(0));
     }
 

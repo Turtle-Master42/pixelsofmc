@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "pixelsofmc:rusted_plating"
-  },
-  "result": "minecraft:netherite_ingot",
-  "experience": 0.5,
-  "cookingtime": 100
-}

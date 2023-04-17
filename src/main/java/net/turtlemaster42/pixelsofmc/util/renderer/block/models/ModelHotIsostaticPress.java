@@ -4,6 +4,8 @@ import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
 import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
@@ -71,6 +73,10 @@ public class ModelHotIsostaticPress extends AdvancedEntityModel<Entity> {
         return ImmutableList.of(root);
     }
 
+//    @Override
+//    public void m_6973_(Entity entity, float v, float v1, float v2, float v3, float v4) {
+//    }
+
     public void renderIndecator(HotIsostaticPressTile tile, float partialTick) {
         float rotation = (float)(0.0017*tile.getHeat())/Mth.TWO_PI;
         this.setRotateAngle(needle, -rotation , 0 ,0);
@@ -78,5 +84,10 @@ public class ModelHotIsostaticPress extends AdvancedEntityModel<Entity> {
 
     @Override
     public void setupAnim(Entity entity, float v, float v1, float v2, float v3, float v4) {
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+
     }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_2"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:azure_bluet"
+      }
+    }
+  ],
+  "output": {
+    "count": 2,
+    "ingredient": {
+      "item": "minecraft:light_gray_dye"
+    }
+  }
+}

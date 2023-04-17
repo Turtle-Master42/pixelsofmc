@@ -3,7 +3,6 @@ package net.turtlemaster42.pixelsofmc.intergration;
 import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 import java.util.List;
 
@@ -17,6 +16,6 @@ public class JEItooltip implements IRecipeSlotTooltipCallback {
 
     @Override
     public void onTooltip(IRecipeSlotView recipeSlotView, List<Component> tooltip) {
-        tooltip.add(new TextComponent(add));
+        tooltip.add(Component.literal(add));
     }
 }

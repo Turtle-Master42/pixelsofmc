@@ -4,6 +4,8 @@ import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
 import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.world.entity.Entity;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 
@@ -51,6 +53,10 @@ public class FusionCoreModel extends AdvancedEntityModel<Entity> {
         return ImmutableList.of(root);
     }
 
+//    @Override
+//    public void m_6973_(Entity entity, float v, float v1, float v2, float v3, float v4) {
+//    }
+
     @Override
     public Iterable<AdvancedModelBox> getAllParts() {
         return ImmutableList.of(root, star_1, star_2, big_star, disc);
@@ -62,5 +68,9 @@ public class FusionCoreModel extends AdvancedEntityModel<Entity> {
 
     public void renderStar(SDSFusionControllerTile tile, float partialTick) {
         this.resetToDefaultPose();
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
     }
 }

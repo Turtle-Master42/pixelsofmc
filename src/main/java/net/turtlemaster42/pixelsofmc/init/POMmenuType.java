@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.CONTAINERS, PixelsOfMc.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, PixelsOfMc.MOD_ID);
     public static final RegistryObject<MenuType<PixelSplitterGuiMenu>> PIXEL_SPLITTER_MENU =
             registerMenuType(PixelSplitterGuiMenu::new, "pixel_splitter_menu");
     public static final RegistryObject<MenuType<BallMillGuiMenu>> BALL_MILL_MENU =

@@ -1,0 +1,38 @@
+{
+  "parent": "root.json",
+  "text": "laws.txt",
+  "title": "Laws of MC Physics",
+  "title_locale": "book.pixelsofmc_guide_book_1.laws",
+  "linked_page_buttons": [
+    {
+      "linked_page": "uni_law.json",
+      "text": "§lUniversal Laws",
+      "x": 290,
+      "y": 65,
+      "scale": 1,
+      "page": 0
+    },
+    {
+      "linked_page": "block_law.json",
+      "text": "§lBlock Laws",
+      "x": 290,
+      "y": 85,
+      "page": 0,
+      "scale": 1
+    },
+    {
+      "linked_page": "enti_law.json",
+      "text": "§lEntity Laws",
+      "x": 290,
+      "y": 105,
+      "page": 0,
+      "scale": 1
+    }
+  ],
+  "images": [],
+  "item_renders": [],
+  "recipes": [],
+  "tabula_renders": [],
+  "entity_renders": [],
+  "entity_buttons": []
+}

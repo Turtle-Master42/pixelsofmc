@@ -1,18 +1,19 @@
 The Pixels of Minecraft is a mod that is designed to
 be able to make everything out of thin air using
 things that are technically able to be done in the
-real world, with a litle bit of a minecraft twist.
+real world, with a little bit of a minecraft twist.
 <NEWLINE>
 It aims to explain the nature of how minecraft
 works, at least, that is how the players inside
 the game see it.
 This included explaining the laws of minecraft
-and trying to explain the entirety of how mods
-work.
+and trying to explain the entirety of how modded
+minecraft works.
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
 <NEWLINE>
-yeet
+<NEWLINE>
+

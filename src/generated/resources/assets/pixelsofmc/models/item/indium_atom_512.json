@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "pixelsofmc:items/atoms/indium_atom_512"
-  }
-}

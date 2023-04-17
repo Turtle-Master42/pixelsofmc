@@ -105,7 +105,7 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
         @Override
         public ResourceLocation getId() {
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "splitting/"+this.ingredient.asItem().getRegistryName().getPath() + "_splitting");
+                    "splitting/"+this.ingredient.asItem().toString() + "_splitting");
         }
 
         @Override

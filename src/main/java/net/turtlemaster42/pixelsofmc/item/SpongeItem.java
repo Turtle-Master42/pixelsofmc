@@ -4,8 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -49,9 +48,9 @@ public class SpongeItem extends Item {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if (!getFluid(stack).isEmpty()) {
-            tooltip.add(new TranslatableComponent(getFluid(stack).getTranslationKey()).withStyle(ChatFormatting.DARK_GRAY));
-            tooltip.add(new TextComponent("Amount: " + getFluid(stack).getAmount()).withStyle(ChatFormatting.DARK_GRAY));
-            tooltip.add(new TextComponent("Color: " + getBarColor(stack)).withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable(getFluid(stack).getTranslationKey()).withStyle(ChatFormatting.DARK_GRAY));
+            tooltip.add(Component.literal("Amount: " + getFluid(stack).getAmount()).withStyle(ChatFormatting.DARK_GRAY));
+            tooltip.add(Component.literal("Color: " + getBarColor(stack)).withStyle(ChatFormatting.GOLD));
         }
     }
 
@@ -68,7 +67,7 @@ public class SpongeItem extends Item {
     public int getBarColor(@NotNull ItemStack stack) {
         Fluid fluid = getFluid(stack).getFluid();
         if (fluid == Fluids.LAVA) return -44273;    //(new Color(255, 83, 15)).getRGB()
-        return fluid.getAttributes().getColor();
+        return IClientFluidTypeExtensions.of(fluid).getTintColor(new FluidStack(fluid, 1));
     }
 
     @Nonnull

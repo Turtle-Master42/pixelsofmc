@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 1941,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/titanium"
+    }
+  },
+  "max_heat": 3560,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/titanium"
+    }
+  }
+}

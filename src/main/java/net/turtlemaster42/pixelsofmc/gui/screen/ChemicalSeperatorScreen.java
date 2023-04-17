@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.TooltipFlag;
@@ -43,8 +42,8 @@ public class ChemicalSeperatorScreen extends AbstractContainerScreen<ChemicalSep
 
         this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 6, 76, 4210752);
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
-        renderFluidArea(pPoseStack, pMouseX, pMouseY, x, y, new TranslatableComponent("tooltip.pixelsofmc.fluid.input"));
-        renderDuoFluidArea(pPoseStack, pMouseX, pMouseY, x, y, new TranslatableComponent("tooltip.pixelsofmc.fluid.output"));
+        renderFluidArea(pPoseStack, pMouseX, pMouseY, x, y, Component.translatable("tooltip.pixelsofmc.fluid.input"));
+        renderDuoFluidArea(pPoseStack, pMouseX, pMouseY, x, y, Component.translatable("tooltip.pixelsofmc.fluid.output"));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 66, 52, 103, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 104, 52, 113, 75, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 109, 34, 119, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));

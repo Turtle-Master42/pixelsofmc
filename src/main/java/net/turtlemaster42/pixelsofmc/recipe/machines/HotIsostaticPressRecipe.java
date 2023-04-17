@@ -19,37 +19,41 @@ import javax.annotation.Nullable;
 
 public class HotIsostaticPressRecipe extends BaseRecipe {
     private final ResourceLocation id;
-    private final ItemStack output;
+    private final Ingredient output;
     private final CountedIngredient recipeItem;
     private final CountedIngredient mold;
     private final int heat;
-    public HotIsostaticPressRecipe(ResourceLocation id, ItemStack output, CountedIngredient recipeItem, CountedIngredient mold, int heat) {
+    private final int maxHeat;
+    public HotIsostaticPressRecipe(ResourceLocation id, Ingredient output, CountedIngredient recipeItem, CountedIngredient mold, int heat, int maxHeat) {
         this.id = id;
         this.output = output;
         this.recipeItem = recipeItem;
         this.mold = mold;
         this.heat = heat;
+        this.maxHeat = maxHeat;
     }
 
     @Override
-    public boolean matches(SimpleContainer container, Level level) {
+    public boolean matches(SimpleContainer container, Level pLevel) {
+        if (pLevel.isClientSide) return false;
         return recipeItem.test(container.getItem(2))&& mold.test(container.getItem(0));
     }
 
 
     public int getOutputCount() {
-        return output.getCount();
+        return output.getItems()[0].getCount();
     }
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
-        return output;
+        return output.getItems()[0];
     }
 
     @Override
     public ItemStack getResultItem() {
-        return output.copy();
+        return output.getItems()[0];
     }
     public int getHeat() {return heat;}
+    public int getMaxHeat() {return maxHeat;}
 
     public ItemStack getInput() {
         return recipeItem.getItems()[0];
@@ -97,24 +101,27 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
 
         public HotIsostaticPressRecipe fromJson(ResourceLocation id, JsonObject json) {
             //output
-            ItemStack output = CraftingHelper.getItemStack(json.getAsJsonObject("output"), false);
+            CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
+            Ingredient output = out.ingredient();
             //input
             CountedIngredient input = CountedIngredient.fromJson(json.getAsJsonObject("input"));
             CountedIngredient mold = CountedIngredient.fromJson(json.getAsJsonObject("mold"));
             //heat
             int heat = GsonHelper.getAsInt(json, "heat");
+            int maxHeat = GsonHelper.getAsInt(json, "max_heat");
 
-            return new HotIsostaticPressRecipe(id, output, input, mold, heat);
+            return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
         }
 
         public HotIsostaticPressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
                 CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
                 CountedIngredient mold = buf.readList(CountedIngredient::fromNetwork).get(0);
-                ItemStack output = buf.readItem();
+                Ingredient output = buf.readList(Ingredient::fromNetwork).get(0);
                 int heat = buf.readInt();
+                int maxHeat = buf.readInt();
 
-                return new HotIsostaticPressRecipe(id, output, input, mold, heat);
+                return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading pressing recipe from packet.", ex);
                 throw ex;
@@ -127,9 +134,10 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
                 for (Ingredient ing : recipe.getIngredients()) {
                     ing.toNetwork(buf);
                 }
-                buf.writeItem(recipe.output);
-
+                buf.writeItem(recipe.output.getItems()[0]);
                 buf.writeInt(recipe.getOutputCount());
+                buf.writeInt(recipe.heat);
+                buf.writeInt(recipe.maxHeat);
 
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading pressing recipe from packet.", ex);

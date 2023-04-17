@@ -5,22 +5,21 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -49,6 +48,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private int maxHeat = 5000;
 
     private static int requiredHeat = -1;
+    private static int requiredMaxHeat = -1;
     private int burnTime = 0;
     private int maxBurnTime = 0;
 
@@ -112,7 +112,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
         if (slot == 1)
-            return ForgeHooks.getBurnTime(stack, null) > 0;
+            return ForgeHooks.getBurnTime(stack, null) > 0 || stack.is(Items.ICE) || stack.is(Items.PACKED_ICE) || stack.is(Items.BLUE_ICE);
         return slot != 3 ;
     }
 
@@ -125,14 +125,28 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     protected void contentsChanged(int slot) {
         if (slot==4)
             speedUpgradeCheck();
+        else if (slot==1)
+            if (itemHandler.getStackInSlot(1).is(Items.ICE)) {
+                heat = heat - 50;
+                itemHandler.extractItem(1, 1, false);
+            }
+            else if (itemHandler.getStackInSlot(1).is(Items.PACKED_ICE)) {
+                heat = heat - 250;
+                itemHandler.extractItem(1, 1, false);
+            }
+            else if (itemHandler.getStackInSlot(1).is(Items.BLUE_ICE)) {
+                heat = heat - 1000;
+                itemHandler.extractItem(1, 1, false);
+            }
     }
 
     public int getMaxTime() {return maxBurnTime;}
     public int getHeat() {return heat;}
     public int getRequiredHeat() {return requiredHeat;}
+    public int getRequiredMaxHeat() {return requiredMaxHeat;}
 
     @Override
-    public Component getDisplayName() {return new TranslatableComponent("block.pixelsofmc.hot_isostatic_press");}
+    public Component getDisplayName() {return Component.translatable("block.pixelsofmc.hot_isostatic_press");}
 
     @Nullable
     @Override
@@ -143,10 +157,10 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
         return super.getCapability(cap, side);
@@ -237,9 +251,11 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
         if (match.isPresent()) {
             requiredHeat = match.get().getHeat();
+            requiredMaxHeat = match.get().getMaxHeat();
             return canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
                     && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                    && hasHeat(entity, match.get().getHeat());
+                    && hasHeat(entity, match.get().getHeat())
+                    && !hasHeat(entity, match.get().getMaxHeat());
         }
         else return false;
     }
@@ -271,6 +287,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
                     entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputCount())));
 
             requiredHeat = -1;
+            requiredMaxHeat = -1;
             setChanged(entity.level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
             entity.errorEnergyReset();

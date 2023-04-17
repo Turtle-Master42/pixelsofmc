@@ -1,7 +1,9 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -10,19 +12,20 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.util.Element;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 public class POMitemTagProvider extends ItemTagsProvider {
 
-    public POMitemTagProvider(DataGenerator pGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pGenerator, new POMblockTagProvider(pGenerator, PixelsOfMc.MOD_ID, existingFileHelper),
+    public POMitemTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(pOutput, pLookupProvider, new POMblockTagProvider(pOutput, pLookupProvider, existingFileHelper),
                 PixelsOfMc.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider pProvider) {
 
-        for(Element element : Element.values())
-        {
+        for(Element element : Element.values()) {
+            if (element.equals(Element.DEBUGIUM)) continue;
             POMtags.MetalTags tags = POMtags.getTagsFor(element);
             if(element.shouldAddDust()) {
                 tag(tags.dust).add(POMitems.Metals.DUSTS.get(element).get());

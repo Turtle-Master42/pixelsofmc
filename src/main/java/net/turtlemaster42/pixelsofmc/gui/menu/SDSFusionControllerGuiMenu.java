@@ -7,7 +7,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
@@ -35,7 +35,7 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModResultSlot(handler, 4, 125, 40));
             this.addSlot(new SlotItemHandler(handler, 0, 35, 32));
             this.addSlot(new SlotItemHandler(handler, 1, 53, 32));

@@ -113,7 +113,7 @@ public class BallMillBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof BallMillTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (BallMillTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (BallMillTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

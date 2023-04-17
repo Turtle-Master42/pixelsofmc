@@ -91,8 +91,20 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
 
         @Override
         public ResourceLocation getId() {
+            String name = this.ingredient.getItems()[0].getItem().toString();
+            String jsonString = this.ingredient.toJson().toString();
+
+            if (this.ingredient.toJson().toString().contains("{\"tag\":")) {
+                String jsonName = jsonString
+                        .replace("{\"tag\":\"", "")
+                        .replace("\"}", "")
+                        .replace(":", "-")
+                        .replace("/", "-");
+                name = "tag-"+jsonName;
+            }
+
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "grinding/"+this.ingredient.getItems()[0].getItem().getRegistryName().getPath() + "_grinding");
+                    "grinding/" + name + "_grinding");
         }
 
         @Override

@@ -73,9 +73,9 @@ public class BigMachineBlockUtil {
         if (pLevel.isClientSide) {return;}
 
         if (pBlockentity != null) {
-            pBlockentity.getTileData().putInt("mainX", mainPos.getX());
-            pBlockentity.getTileData().putInt("mainY", mainPos.getY());
-            pBlockentity.getTileData().putInt("mainZ", mainPos.getZ());
+            pBlockentity.getPersistentData().putInt("mainX", mainPos.getX());
+            pBlockentity.getPersistentData().putInt("mainY", mainPos.getY());
+            pBlockentity.getPersistentData().putInt("mainZ", mainPos.getZ());
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to set the main position of block at {} which is part of block at {}",pPos, mainPos);
         }
@@ -85,9 +85,9 @@ public class BigMachineBlockUtil {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
         assert blockEntity != null;
-        int mainX = blockEntity.getTileData().getInt("mainX");
-        int mainY = blockEntity.getTileData().getInt("mainY");
-        int mainZ = blockEntity.getTileData().getInt("mainZ");
+        int mainX = blockEntity.getPersistentData().getInt("mainX");
+        int mainY = blockEntity.getPersistentData().getInt("mainY");
+        int mainZ = blockEntity.getPersistentData().getInt("mainZ");
 
         return new BlockPos(mainX, mainY, mainZ);
     }

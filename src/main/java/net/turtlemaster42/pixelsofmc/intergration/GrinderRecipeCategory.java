@@ -9,9 +9,9 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
@@ -44,20 +44,8 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    @Deprecated
-    public Class<? extends GrinderRecipe> getRecipeClass() {
-        return GrinderRecipe.class;
-    }
-
-    @Override
-    @Deprecated
-       public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.pixelsofmc.grinder");
+        return Component.translatable("block.pixelsofmc.grinder");
     }
 
     @Override
@@ -87,12 +75,12 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
                 display=display+"\n§cThis item may not appear if the 4 official slots are full";
 
             if (recipe.OutputChance(p) < 1)
-                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addItemStack(recipe.getResultItems(p))
+                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)))
                     .setBackground(overlay, 0, 0).addTooltipCallback(new JEItooltip(display));
             else if (p > 3)
-                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addItemStack(recipe.getResultItems(p)).setBackground(slot, 0, 0);
+                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p))).setBackground(slot, 0, 0);
             else
-                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addItemStack(recipe.getResultItems(p));
+                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)));
         }
     }
 }

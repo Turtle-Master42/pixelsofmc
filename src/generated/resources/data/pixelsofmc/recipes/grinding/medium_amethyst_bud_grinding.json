@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:medium_amethyst_bud"
+  },
+  "outputs": [
+    {
+      "chance": 0.25,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:amethyst_shard"
+      }
+    }
+  ]
+}

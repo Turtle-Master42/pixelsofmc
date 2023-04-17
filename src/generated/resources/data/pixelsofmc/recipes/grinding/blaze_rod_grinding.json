@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:blaze_rod"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:blaze_powder"
+      }
+    }
+  ]
+}

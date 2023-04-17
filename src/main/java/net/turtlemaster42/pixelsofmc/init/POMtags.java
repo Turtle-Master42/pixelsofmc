@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -78,6 +79,6 @@ public class POMtags {
     }
     protected static ResourceLocation forgeLoc(String path) {return new ResourceLocation("forge", path);}
     protected static TagKey<Item> createItemWrapper(ResourceLocation name) {
-        return TagKey.create(Registry.ITEM_REGISTRY, name);
+        return TagKey.create(Registries.ITEM, name);
     }
 }

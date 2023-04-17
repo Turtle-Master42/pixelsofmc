@@ -1,0 +1,11 @@
+There are multiple type of physic laws in Minecraft.
+Not every law applies to all objects at all times.
+that's why they have been split into three
+categories:
+<NEWLINE>
+§lUniversal Laws§r, applies to everything always.
+<NEWLINE>
+§lBlock Laws§r, applies to things on the block grid.
+<NEWLINE>
+§lEntity Laws§r, applies to things on the entity grid.
+

@@ -1,0 +1,13 @@
+{
+  "parent": "uni_law.json",
+  "text": "law_of_grid_hopping.txt",
+  "title": "Law of Grid Hopping",
+  "title_locale": "",
+  "linked_page_buttons": [],
+  "images": [],
+  "item_renders": [],
+  "recipes": [],
+  "tabula_renders": [],
+  "entity_renders": [],
+  "entity_buttons": []
+}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/lead"
-  },
-  "result": "pixelsofmc:lead_ingot",
-  "experience": 1.0,
-  "cookingtime": 200
-}

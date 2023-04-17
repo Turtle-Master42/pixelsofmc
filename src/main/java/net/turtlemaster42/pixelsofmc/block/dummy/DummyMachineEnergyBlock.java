@@ -34,9 +34,9 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
 
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
-            int mainX = blockEntity.getTileData().getInt("mainX");
-            int mainY = blockEntity.getTileData().getInt("mainY");
-            int mainZ = blockEntity.getTileData().getInt("mainZ");
+            int mainX = blockEntity.getPersistentData().getInt("mainX");
+            int mainY = blockEntity.getPersistentData().getInt("mainY");
+            int mainZ = blockEntity.getPersistentData().getInt("mainZ");
 
 
             BlockPos mainPos = new BlockPos(mainX, mainY, mainZ);
@@ -46,11 +46,11 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
             if (blockEntity == null) {
                 return ItemStack.EMPTY;
             }
-            PixelsOfMc.LOGGER.info(mainX);
-            PixelsOfMc.LOGGER.info(mainY);
-            PixelsOfMc.LOGGER.info(mainZ);
-            PixelsOfMc.LOGGER.info(blockEntity);
-            PixelsOfMc.LOGGER.info(mainPos);
+            PixelsOfMc.LOGGER.info(String.valueOf(mainX));
+            PixelsOfMc.LOGGER.info(String.valueOf(mainY));
+            PixelsOfMc.LOGGER.info(String.valueOf(mainZ));
+            PixelsOfMc.LOGGER.info(blockEntity.toString());
+            PixelsOfMc.LOGGER.info(String.valueOf(mainPos));
 
             BlockState mainState = pLevel.getBlockState(mainPos);
             return mainState.getBlock().getCloneItemStack(mainState, pTarget, pLevel, mainPos, pPlayer);
@@ -108,6 +108,6 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
         @Override
         @Deprecated
         public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
-            PixelsOfMc.LOGGER.info(pState.getDestroyProgress(pPlayer, pLevel, pPos));
+            PixelsOfMc.LOGGER.info(String.valueOf(pState.getDestroyProgress(pPlayer, pLevel, pPos)));
         }
     }

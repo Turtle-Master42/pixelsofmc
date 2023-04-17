@@ -1,18 +1,30 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
-public class POMblockLootTables extends BlockLoot {
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
+public class POMblockLootTables extends BlockLootSubProvider {
+    protected POMblockLootTables() {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    }
     private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[] { 0.05F, 0.0625F, 0.083333336F, 0.1F };
 
     @Override
-    protected void addTables() {
+    protected void generate() {
         this.dropSelf(POMblocks.TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
@@ -32,25 +44,22 @@ public class POMblockLootTables extends BlockLoot {
         this.dropSelf(POMblocks.STRONG_CASING.get());
         this.dropSelf(POMblocks.REINFORCED_CASING.get());
         this.dropSelf(POMblocks.COPPER_SPOOL.get());
+        this.dropSelf(POMblocks.SILVER_SPOOL.get());
+        this.dropSelf(POMblocks.TUNGSTEN_SPOOL.get());
 
-
+        this.dropOther(POMfluids.MERCURY_BLOCK.get(), Items.AIR);
+        this.dropOther(POMfluids.HYDROGEN_BLOCK.get(), Items.AIR);
+        this.dropOther(POMfluids.OXYGEN_BLOCK.get(), Items.AIR);
+        this.dropOther(POMfluids.SULFURIC_ACID_BLOCK.get(), Items.AIR);
 
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ITEM_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.FUSION_CORE.get(), Items.AIR);
 
-
-        this.add(POMblocks.TITANIUM_ORE.get(), (block) -> {
-            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
-        });
-        this.add(POMblocks.DEEPSLATE_TITANIUM_ORE.get(), (block) -> {
-            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
-        });
-        this.add(POMblocks.ENDSTONE_TITANIUM_ORE.get(), (block) -> {
-            return createOreDrop(block, POMitems.RAW_TITANIUM.get());
-        });
-
+        this.add(POMblocks.TITANIUM_ORE.get(), (block) -> createOreDrop(block, POMitems.RAW_TITANIUM.get()));
+        this.add(POMblocks.DEEPSLATE_TITANIUM_ORE.get(), (block) -> createOreDrop(block, POMitems.RAW_TITANIUM.get()));
+        this.add(POMblocks.ENDSTONE_TITANIUM_ORE.get(), (block) -> createOreDrop(block, POMitems.RAW_TITANIUM.get()));
     }
 
     @Override

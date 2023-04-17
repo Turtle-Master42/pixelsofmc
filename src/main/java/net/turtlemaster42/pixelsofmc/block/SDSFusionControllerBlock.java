@@ -78,7 +78,7 @@ public class SDSFusionControllerBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof SDSFusionControllerTile) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (SDSFusionControllerTile)entity, pPos);
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (SDSFusionControllerTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

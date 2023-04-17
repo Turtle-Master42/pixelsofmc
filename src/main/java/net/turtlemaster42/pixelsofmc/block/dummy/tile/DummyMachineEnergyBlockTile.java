@@ -7,11 +7,11 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
@@ -43,7 +43,7 @@ public class DummyMachineEnergyBlockTile extends BlockEntity {
                     BlockPos posTarget = BigMachineBlockUtil.getMainPos(level, worldPosition);
                     BlockEntity tile = level.getBlockEntity(posTarget);
                     if (tile != null) {
-                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(CapabilityEnergy.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
                         if (EnergyHandlerFrom != null) {
                             //ok go
                             int receive = EnergyHandlerFrom.receiveEnergy(maxReceive, true);
@@ -92,7 +92,7 @@ public class DummyMachineEnergyBlockTile extends BlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
         return super.getCapability(cap, side);

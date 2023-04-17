@@ -13,9 +13,9 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
@@ -42,20 +42,8 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
     }
 
     @Override
-    @Deprecated
-    public Class<? extends HotIsostaticPressRecipe> getRecipeClass() {
-        return HotIsostaticPressRecipe.class;
-    }
-
-    @Override
-    @Deprecated
-       public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.pixelsofmc.hot_isostatic_press");
+        return Component.translatable("block.pixelsofmc.hot_isostatic_press");
     }
 
     @Override
@@ -76,22 +64,25 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
     protected void drawHeat(HotIsostaticPressRecipe recipe, PoseStack poseStack, int y) {
         float heat = recipe.getHeat();
         String heatString = String.valueOf(heat);
+        float maxHeat = recipe.getMaxHeat();
+        String maxHeatString = String.valueOf(maxHeat);
         Minecraft minecraft = Minecraft.getInstance();
         Font fontRenderer = minecraft.font;
         int stringWidth = fontRenderer.width(heatString);
         fontRenderer.draw(poseStack, heatString, background.getWidth() - stringWidth, y, 0xFF808080);
+        fontRenderer.draw(poseStack, maxHeatString, background.getWidth() - stringWidth, y+10, 0xFF808080);
     }
 
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull HotIsostaticPressRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addSlot(RecipeIngredientRole.INPUT, 26, 4).addItemStack(recipe.getInput());
+        builder.addSlot(RecipeIngredientRole.INPUT, 26, 4).addIngredients(Ingredient.of(recipe.getInput()));
         //mold
         builder.addSlot(RecipeIngredientRole.INPUT, 26, 29).addIngredients(recipe.getMoldAsI());
         //burn
         //builder.addSlot(RecipeIngredientRole.INPUT, 51, 9).addItemStack();
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 85, 29).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 85, 29).addIngredients(Ingredient.of(recipe.getResultItem()));
     }
 }
