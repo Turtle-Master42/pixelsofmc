@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:aluminium_scrap"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:aluminium_dust"
+      }
+    }
+  ]
+}

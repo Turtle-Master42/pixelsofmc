@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 95,
+      "G": 254,
+      "R": 253
+    },
+    {
+      "B": 19,
+      "G": 150,
+      "R": 220
+    },
+    {
+      "B": 17,
+      "G": 100,
+      "R": 178
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "output": {
+    "count": 6,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  }
+}

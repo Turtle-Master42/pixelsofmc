@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:titanium_diboride_nugget"
+  }
+}

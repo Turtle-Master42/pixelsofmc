@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:end_stone"
+  },
+  "outputs": [
+    {
+      "chance": 0.6,
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/potassium"
+      }
+    },
+    {
+      "chance": 0.75,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/titanium"
+      }
+    },
+    {
+      "chance": 0.65,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/silicon"
+      }
+    }
+  ]
+}

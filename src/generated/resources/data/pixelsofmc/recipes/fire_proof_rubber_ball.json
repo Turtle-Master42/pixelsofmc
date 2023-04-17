@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fire_proof_compound"
+    },
+    "B": {
+      "item": "pixelsofmc:fire_proof_compound"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "item": "pixelsofmc:fire_proof_rubber_ball"
+  }
+}

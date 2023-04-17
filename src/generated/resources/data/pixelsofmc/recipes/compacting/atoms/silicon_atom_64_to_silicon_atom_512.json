@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:silicon_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:silicon_atom_512"
+  }
+}

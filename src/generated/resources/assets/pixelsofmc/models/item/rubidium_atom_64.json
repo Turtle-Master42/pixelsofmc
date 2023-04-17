@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/atoms/rubidium_atom_64"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:berkelium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:berkelium_atom_512"
+  }
+}

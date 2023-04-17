@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_nugget"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_ingot"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "item": "pixelsofmc:titanium_ball"
+  }
+}

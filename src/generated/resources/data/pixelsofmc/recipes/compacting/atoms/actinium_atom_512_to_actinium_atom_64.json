@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:actinium_atom_512"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "pixelsofmc:actinium_atom_64"
+  }
+}
