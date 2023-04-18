@@ -265,7 +265,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.GRINDER.get())
                 .define('A', POMitems.MOVING_PARTS.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
-                .define('C', POMblocks.TITANIUM_BLOCK.get())
+                .define('C', Element.TITANIUM.block())
                 .define('D', Items.NETHERITE_INGOT)
                 .define('E', POMblocks.SIMPLE_CASING_1.get())
                 .define('F', POMblocks.ADVANCED_CASING_1.get())
@@ -277,7 +277,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.BALL_MILL.get())
                 .define('A', POMitems.MOVING_PARTS.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
-                .define('C', POMblocks.TITANIUM_BLOCK.get())
+                .define('C', Element.TITANIUM.block())
                 .define('D', Element.TITANIUM.itemTag())
                 .define('E', POMblocks.SIMPLE_CASING_1.get())
                 .define('F', POMblocks.ADVANCED_CASING_1.get())
@@ -374,26 +374,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BCB")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
-
-
-        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, POMitems.HAMMER.get())
-                .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
-                .save(fConsumer, toRL(getItemName(POMitems.HAMMER.get()) + "_smithing"));
-
-
-        //auto
-        for(Element m : Element.values()) {
-            if (m.equals(Element.DEBUGIUM)) continue;
-            SimpleAtomCompacting(m.atom64(), m.atom512(), fConsumer);
-
-            if (m.isMetal() && m.shouldAddDust())
-                Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
-            if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
-                SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, "_from_dust");
-            if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
-                Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1)) ;
-        }
-
 
 
         //grinding
@@ -572,14 +552,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), fConsumer);
 
         //compacting
-        SimpleMetalCompactingRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMblocks.TITANIUM_BLOCK.get(), fConsumer);
+        //SimpleMetalCompactingRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMblocks.TITANIUM_BLOCK.get(), fConsumer);
         SimpleMetalCompactingRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMblocks.TITANIUM_DIBORIDE_BLOCK.get(), fConsumer);
 
         SimpleCompactingRecipe(POMitems.RAW_TITANIUM.get(), POMblocks.RAW_TITANIUM_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT, fConsumer);
         SimpleCompactingRecipe(Element.COPPER.nugget(), Items.COPPER_INGOT, fConsumer);
-        SimpleCompactingRecipe(Element.SILVER.nugget(), Element.SILVER.item(), fConsumer);
-        SimpleCompactingRecipe(Element.TUNGSTEN.nugget(), Element.TUNGSTEN.item(), fConsumer);
         SimpleCompactingRecipe(POMitems.ALUMINIUM_SCRAP.get(), POMblocks.ALUMINIUM_SCRAP_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.COPPER_WIRE.get(), POMblocks.COPPER_SPOOL.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.SILVER_WIRE.get(), POMblocks.SILVER_SPOOL.get(), fConsumer);
@@ -595,6 +573,29 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
         SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
         SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
+
+        //Smithing
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, POMitems.HAMMER.get())
+                .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
+                .save(fConsumer, toRL(getItemName(POMitems.HAMMER.get()) + "_smithing"));
+
+        //auto
+        for(Element m : Element.values()) {
+            if (m.equals(Element.DEBUGIUM)) continue;
+            SimpleAtomCompacting(m.atom64(), m.atom512(), fConsumer);
+
+            if (m.isMetal() && m.shouldAddDust())
+                Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
+            if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
+                SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, "_from_dust");
+            if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
+                Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1));
+            if (m.shouldAddNugget() && !m.equals(Element.COPPER))
+                SimpleCompactingRecipe(toI(m.nugget()), m.item(), fConsumer);
+            if (m.shouldAddBlock())
+                SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
+        }
+
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {

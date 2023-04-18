@@ -12,6 +12,7 @@ import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
+import net.turtlemaster42.pixelsofmc.util.Element;
 
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -25,7 +26,12 @@ public class POMblockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropSelf(POMblocks.TITANIUM_BLOCK.get());
+
+        for(Element m : Element.values()) {
+            if (m.shouldAddBlock())
+                this.dropSelf(POMblocks.Metals.BLOCKS.get(m).get());
+        }
+
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         this.dropSelf(POMblocks.ALUMINIUM_SCRAP_BLOCK.get());

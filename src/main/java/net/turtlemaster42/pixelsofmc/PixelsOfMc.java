@@ -45,7 +45,7 @@ public class PixelsOfMc {
 	public PixelsOfMc() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		POMblocks.BLOCKS.register(bus);
+		POMblocks.register(bus);
 		POMitems.register(bus);
 		POMfluids.register(bus);
 		POMFluidType.register(bus);
@@ -117,7 +117,10 @@ public class PixelsOfMc {
 			event.accept(POMblocks.ACANTHITE);
 			event.accept(POMblocks.SAND_MINERAL_DEPOSIT);
 
-			event.accept(POMblocks.TITANIUM_BLOCK);
+			for(Element m : Element.values()) {
+				if (m.shouldAddBlock())
+					event.accept(m.block());
+			}
 			event.accept(POMblocks.TITANIUM_DIBORIDE_BLOCK);
 
 			event.accept(POMblocks.ALUMINIUM_SCRAP_BLOCK);
@@ -214,8 +217,8 @@ public class PixelsOfMc {
 			event.accept(POMitems.Metals.NUGGETS.get(Element.TITANIUM).get());
 			event.accept(POMitems.TITANIUM_DIBORIDE_NUGGET);
 			for(Element m : Element.values()) {
-				if (m.shouldAddNugget() && m != Element.DEBUGIUM)
-					event.accept(POMitems.Metals.NUGGETS.get(m).get());
+				if (m.shouldAddNugget())
+					event.accept(m.nugget());
 			}
 
 			event.accept(POMitems.Metals.ELEMENTS.get(Element.TITANIUM).get());
@@ -223,18 +226,17 @@ public class PixelsOfMc {
 
 			for(Element m : Element.values()) {
 				if (!m.isVanilla() && m != Element.DEBUGIUM)
-					event.accept(POMitems.Metals.ELEMENTS.get(m).asItem());
+					event.accept(m.item());
 			}
 
 			event.accept(POMitems.ANCIENT_DEBRIS_DUST);
 			event.accept(POMitems.NETHERITE_DUST);
 			event.accept(POMitems.TITANIUM_OXIDE_DUST);
-			event.accept(POMitems.Metals.DUSTS.get(Element.TITANIUM).asItem());
 			event.accept(POMitems.TITANIUM_DIBORIDE_DUST);
 
 			for(Element m : Element.values()) {
-				if (m != Element.TITANIUM && m.shouldAddDust() && m != Element.DEBUGIUM)
-					event.accept(POMitems.Metals.DUSTS.get(m).asItem());
+				if (m.shouldAddDust())
+					event.accept(m.dust());
 			}
 
 			event.accept(POMitems.MERCURY_SULFIDE_DUST);

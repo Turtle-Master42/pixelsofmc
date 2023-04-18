@@ -4,6 +4,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 
@@ -16,32 +18,32 @@ public enum Element {
     HELIUM(Type.CANISTER, new Info(1, 4)),
     LITHIUM(new Info(454, 1603, Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
     BERYLLIUM(new Info(1560, 2742, Danger.TOXIC)), //white flame
-    BORON(Type.CUBE, true, false, new Info(2349, 4200)), //green flame
-    CARBON(Type.CUBE, true, false, new Info(3915, 3915)), //orange flame
+    BORON(Type.CUBE, true, false, false, new Info(2349, 4200)), //green flame
+    CARBON(Type.CUBE, true, false, false, new Info(3915, 3915)), //orange flame
     NITROGEN(Type.CANISTER, new Info(63, 77)),
     OXYGEN(Type.CANISTER, new Info(54, 90)),
     FLUORINE(Type.CUBE, new Info(53, 85, Danger.CORROSIVE, Danger.TOXIC)), //canister
     NEON(Type.CANISTER, new Info(25, 27)),
-    SODIUM(true, false, new Info(370, 1156, Danger.CORROSIVE, Danger.FLAMMABLE)), //yellow flame
+    SODIUM(true, false, false, new Info(370, 1156, Danger.CORROSIVE, Danger.FLAMMABLE)), //yellow flame
     MAGNESIUM(new Info(923, 1363, Danger.FLAMMABLE)),
-    ALUMINIUM(true, false, new Info(933, 1221)), //silver flame
-    SILICON(Type.CUBE, true, false, new Info(1680, 3538)),
+    ALUMINIUM(true, false, false, new Info(933, 1221)), //silver flame
+    SILICON(Type.CUBE, true, false, false, new Info(1680, 3538)),
     PHOSPHORUS(Type.CUBE, new Info(317, 554, Danger.FLAMMABLE, Danger.TOXIC)), //blue-green flame
-    SULFUR(Type.CUBE, true, false, new Info(388, 717, Danger.FLAMMABLE)),
+    SULFUR(Type.CUBE, true, false, false, new Info(388, 717, Danger.FLAMMABLE)),
     CHLORINE(Type.CANISTER, new Info(172, 238, Danger.TOXIC)),
     ARGON(Type.CANISTER, new Info(84, 87)),
-    POTASSIUM(true, false, new Info(337, 1031, Danger.CORROSIVE, Danger.FLAMMABLE)), //purple flame
-    CALCIUM(true, false, new Info(1115, 1757, Danger.FLAMMABLE)), //orange flame
+    POTASSIUM(true, false, false, new Info(337, 1031, Danger.CORROSIVE, Danger.FLAMMABLE)), //purple flame
+    CALCIUM(true, false, false, new Info(1115, 1757, Danger.FLAMMABLE)), //orange flame
     SCANDIUM(new Info(1814, 3109)), //orange
-    TITANIUM(true, true, new Info(1941, 3560)), //silver flame
+    TITANIUM(true, true, true, new Info(1941, 3560)), //silver flame
     VANADIUM(new Info(2183, 3680, Danger.TOXIC)), //yellow-green flame
     CHROMIUM(new Info(2180, 2944)), //silver flame
     MANGANESE(new Info(1519, 2334, Danger.TOXIC)), //yellow-green flame
-    IRON(Type.VANILLA, true, false, new Info(1811, 3134)), //orange flame
-    COBALT(true, false, new Info(1768, 3200)), //silver flame
-    NICKEL(true, false, new Info(1728, 3003)), //silver flame
-    COPPER(Type.VANILLA, true, true, new Info(1358,2835)), //blue-green flame
-    ZINC(true, false, new Info(693,1180)), //white flame
+    IRON(Type.VANILLA, true, false, false, new Info(1811, 3134)), //orange flame
+    COBALT(true, false, false, new Info(1768, 3200)), //silver flame
+    NICKEL(true, false, false, new Info(1728, 3003)), //silver flame
+    COPPER(Type.VANILLA, true, true, false, new Info(1358,2835)), //blue-green flame
+    ZINC(true, false, false, new Info(693,1180)), //white flame
     GALLIUM(new Info(303, 2673, Danger.CORROSIVE)),
     GERMANIUM(new Info(1211, 3106)), //pale blue flame
     ARSENIC(new Info(887, 887, Danger.TOXIC, Danger.CORROSIVE)), //dark blue flame
@@ -53,15 +55,15 @@ public enum Element {
     YTTRIUM(new Info(1799, 3203, Danger.TOXIC)), //red flame
     ZIRCONIUM(new Info(2125, 4650)), //red flame
     NIOBIUM(new Info(2750, 5017)), //blue-green flame
-    MOLYBDENUM(Type.INGOT, true, false, new Info(2896, 4912, Danger.TOXIC)), //yellow-green flame
+    MOLYBDENUM(Type.INGOT, true, false, false, new Info(2896, 4912, Danger.TOXIC)), //yellow-green flame
     TECHNETIUM(new Info(2430, 4538, Danger.RADIOACTIVE)),
     RUTHENIUM(new Info(2607, 4423)),
     RHODIUM(new Info(2237, 3968)),
     PALLADIUM(new Info(1828, 3236, Danger.TOXIC)),
-    SILVER(Type.INGOT, true, true, new Info(1235, 2435)),
+    SILVER(Type.INGOT, true, true, true, new Info(1235, 2435)),
     CADMIUM(new Info(594, 1040, Danger.TOXIC)), //red flame
     INDIUM(new Info(430, 2345)), //dark blue flame
-    TIN(true, false, new Info(506, 2875)), //light-blue flame
+    TIN(true, false, false, new Info(506, 2875)), //light-blue flame
     ANTIMONY(new Info(904, 1908, Danger.TOXIC)), //green flame
     TELLURIUM(new Info(723, 1261, Danger.TOXIC)), //green flame
     IODINE(Type.CUBE, new Info(387, 457, Danger.TOXIC)),
@@ -85,15 +87,15 @@ public enum Element {
     LUTETIUM(new Info(1925, 3675)),
     HAFNIUM(new Info(2506, 4876, Danger.FLAMMABLE)), //white flame
     TANTALUM(new Info(3290, 5731)), //blue flame
-    TUNGSTEN(Type.INGOT, true, true, new Info(3695, 6203)), //green
+    TUNGSTEN(Type.INGOT, true, true, false, new Info(3695, 6203)), //green
     RHENIUM(new Info(3459, 5903)),
     OSMIUM(new Info(3306, 5285)),
     IRIDIUM(new Info(2719, 4403)),
-    PLATINUM(true, false, new Info(2041, 4098)),
-    GOLD(Type.VANILLA,true, false, new Info(1337, 3243)),
+    PLATINUM(true, false, false, new Info(2041, 4098)),
+    GOLD(Type.VANILLA,true, false, false, new Info(1337, 3243)),
     MERCURY(new Info(234, 630, Danger.TOXIC)), //red flame
     THALLIUM(new Info(577, 1746, Danger.TOXIC)), //pure green flame
-    LEAD(true, false, new Info(601, 2022, Danger.TOXIC)), //light-blue flame
+    LEAD(true, false, false, new Info(601, 2022, Danger.TOXIC)), //light-blue flame
     BISMUTH(new Info(545, 1837, Danger.RADIOACTIVE)), //light blue flame
     POLONIUM(new Info(527, 1235, Danger.TOXIC, Danger.RADIOACTIVE)),
     ASTATINE(Type.CUBE, new Info( 0, 0, Danger.RADIOACTIVE)),
@@ -103,7 +105,7 @@ public enum Element {
     ACTINIUM(new Info(1500, 3500, Danger.RADIOACTIVE)),
     THORIUM(new Info(2023, 5061, Danger.RADIOACTIVE)),
     PROTACTINIUM(new Info(1841, 4300, Danger.RADIOACTIVE)),
-    URANIUM(true, false, new Info(1405, 4404, Danger.RADIOACTIVE)),
+    URANIUM(true, false, false, new Info(1405, 4404, Danger.RADIOACTIVE)),
     NEPTUNIUM(new Info(912, 4447, Danger.RADIOACTIVE)),
     PLUTONIUM(new Info(913, 3505, Danger.RADIOACTIVE)),
     AMERICIUM(new Info(1449, 2880, Danger.RADIOACTIVE)),
@@ -118,61 +120,36 @@ public enum Element {
     private final Boolean dust;
     private final Info info;
     private final Boolean nugget;
+    private final Boolean block;
     private final Type type;
-
-    Element() {
-        this.info = new Info(0, 0);
-        this.dust = false;
-        this.nugget = false;
-        this.type = Type.INGOT;
-    }
-
-    Element(Type type) {
-        this.info = new Info(0, 0);
-        this.dust = false;
-        this.nugget = false;
-        this.type = type;
-    }
-
-    Element(boolean dust, boolean nugget) {
-        this.info = new Info(0, 0);
-        this.dust = dust;
-        this.nugget = nugget;
-        this.type = Type.INGOT;
-    }
-
-    Element(Type type, boolean dust, boolean nugget) {
-        this.info = new Info(0, 0);
-        this.dust = dust;
-        this.nugget = nugget;
-        this.type = type;
-    }
-
-
 
 
     Element(Info info) {
         this.info = info;
         this.dust = false;
         this.nugget = false;
+        this.block = false;
         this.type = Type.INGOT;
     }
     Element(Type type, Info info) {
         this.info = info;
         this.dust = false;
         this.nugget = false;
+        this.block = false;
         this.type = type;
     }
-    Element(boolean dust, boolean nugget, Info info) {
+    Element(boolean dust, boolean nugget, boolean block, Info info) {
         this.info = info;
         this.dust = dust;
         this.nugget = nugget;
+        this.block = block;
         this.type = Type.INGOT;
     }
-    Element(Type type, boolean dust, boolean nugget, Info info) {
+    Element(Type type, boolean dust, boolean nugget, boolean block, Info info) {
         this.info = info;
         this.dust = dust;
         this.nugget = nugget;
+        this.block = block;
         this.type = type;
     }
 
@@ -192,6 +169,7 @@ public enum Element {
     public Boolean shouldAddNugget() {
         return nugget;
     }
+    public Boolean shouldAddBlock() {return block;}
 
     public Type getType() {
         return type;
@@ -213,6 +191,8 @@ public enum Element {
     public ItemLike item() {return POMitems.Metals.ELEMENTS.get(this);}
     public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this);}
     public ItemLike atom512() {return POMitems.Metals.ATOMX512.get(this);}
+    public Block block() {return POMblocks.Metals.BLOCKS.get(this).get();}
+    public ItemLike blockItem() {return POMblocks.Metals.BLOCKS.get(this).asItem();}
     public ItemLike nugget() {
         if (this.shouldAddNugget())
             return POMitems.Metals.NUGGETS.get(this);

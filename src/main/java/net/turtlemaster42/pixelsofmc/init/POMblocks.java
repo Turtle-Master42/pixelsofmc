@@ -1,12 +1,18 @@
 package net.turtlemaster42.pixelsofmc.init;
 
+import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,13 +26,21 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
+import net.turtlemaster42.pixelsofmc.item.AtomItem;
+import net.turtlemaster42.pixelsofmc.item.ElementItem;
+import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
+import static net.minecraft.Util.make;
+
 public class POMblocks {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
 
     public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
@@ -46,9 +60,9 @@ public class POMblocks {
     public static final RegistryObject<Block> ENDSTONE_TITANIUM_ORE = registerBlock("endstone_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE)
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(6f, 12f).requiresCorrectToolForDrops()));
+//    public static final RegistryObject<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
+//            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+//                    .strength(6f, 12f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> RAW_TITANIUM_BLOCK = registerBlock("raw_titanium_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
@@ -73,7 +87,7 @@ public class POMblocks {
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);
 
-	public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
+    public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()), "tooltip.pixelsofmc.block.pixel_splitter.shift", "§7This block is just a normal block\nnothing special\nwy are you still reading this\nstop\nI said stop\nSTOP PLEASE!!!\ndon't do it\nit's not worth it\nNO\nNOOOOOOOO PLEASE!\nlook away\nit's for the better\nJUST STOP LOOKING", "");
     public static final RegistryObject<Block> BALL_MILL = registerBlock("ball_mill",
@@ -117,16 +131,37 @@ public class POMblocks {
     public static final RegistryObject<RotatedPillarBlock> TUNGSTEN_SPOOL = registerBlock("tungsten_spool",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
 
+    public static final class Metals {
+        public static final Map<Element, BlockRegObject<BaseBlock>> BLOCKS = new EnumMap<>(Element.class);
+            private static void init() {
+                for (Element m : Element.values()) {
+                    if (m.shouldAddBlock()) {
+                        String elementName = m.tagName();
+                        BlockRegObject<BaseBlock> block;
 
+                        BlockBehaviour.Properties properties = Block.Properties
+                                .of(Material.METAL, MaterialColor.METAL)
+                                .strength(15f, 6.0f)
+                                .sound(SoundType.METAL)
+                                .requiresCorrectToolForDrops();
 
+                        block = register(elementName+"_block", () -> new BaseBlock(properties));
+
+                        PixelsOfMc.LOGGER.info("Registered Metals Blocks");
+
+                        BLOCKS.put(m, block);
+                    }
+                }
+            }
+        }
 
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-	public static class ClientSideHandler {
-		@SubscribeEvent
-		public static void clientSetup(FMLClientSetupEvent event) {
-		}
-	}
+    public static class ClientSideHandler {
+        @SubscribeEvent
+        public static void clientSetup(FMLClientSetupEvent event) {
+        }
+    }
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
@@ -189,5 +224,40 @@ public class POMblocks {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+        Metals.init();
     }
+
+    //Immersive Engineering
+    private static <T extends Block> POMblocks.BlockRegObject<T> register(String name, Supplier<? extends T> make) {
+        return new BlockRegObject<>(BLOCKS.register(name, make));
+    }
+
+    public static class BlockRegObject<T extends Block> implements Supplier<T>, ItemLike {
+        private final RegistryObject<T> regObject;
+        //private final Supplier<BlockBehaviour.Properties> properties;
+        private BlockRegObject(RegistryObject<T> regObject) {
+            //this.properties = properties;
+            this.regObject = regObject;
+        }
+        @Override
+        public T get() {
+            return regObject.get();
+        }
+
+        public BlockState defaultBlockState() {
+            return get().defaultBlockState();
+        }
+
+        public ResourceLocation getId() {
+            return regObject.getId();
+        }
+
+        @Nonnull
+        @Override
+        public Item asItem() {
+            return get().asItem();
+        }
+    }
+
+
 }

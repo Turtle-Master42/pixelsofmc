@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.turtlemaster42.pixelsofmc.util.Element;
 
 import java.util.function.Function;
 
@@ -21,7 +22,12 @@ public class POMblockModelProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(POMblocks.TITANIUM_BLOCK);
+
+        for(Element m : Element.values()) {
+            if (m.shouldAddBlock())
+                blockWithItem(POMblocks.Metals.BLOCKS.get(m));
+        }
+
         blockWithItem(POMblocks.ENDSTONE_TITANIUM_ORE);
         blockWithItem(POMblocks.DEEPSLATE_TITANIUM_ORE);
         blockWithItem(POMblocks.TITANIUM_ORE);
@@ -54,6 +60,10 @@ public class POMblockModelProvider extends BlockStateProvider {
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+
+    private void blockWithItem(POMblocks.BlockRegObject<? extends Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 

@@ -1,4 +1,4 @@
-// 1.19.3	2023-04-13T16:21:33.456631	Block States: pixelsofmc
+// 1.19.3	2023-04-18T13:45:19.027294	Block States: pixelsofmc
 8893accbed659f6d8412368a2e85e94731cfddd5 assets/pixelsofmc/blockstates/acanthite.json
 c1baaa085233a29262f5fd190def1c3ce08f4350 assets/pixelsofmc/blockstates/advanced_casing_1.json
 9eaafccceb5a7a7d8c2516adfcb31da8e0e2dafd assets/pixelsofmc/blockstates/copper_spool.json
@@ -9,6 +9,7 @@ b0aeaf7023299735510c6d49d6dda83a213a807b assets/pixelsofmc/blockstates/raw_titan
 6df86121b31053b8489dd84b07e09cd88c455163 assets/pixelsofmc/blockstates/reinforced_casing.json
 a355b06713a63bfea411d58930222980ab046135 assets/pixelsofmc/blockstates/sand_mineral_deposit.json
 fbcc231180d597417b6cb7ebb894e9b6ec1297c4 assets/pixelsofmc/blockstates/sds_controller.json
+bc9d21320a3189aeba576efaaf57c33bea53a7ca assets/pixelsofmc/blockstates/silver_block.json
 db1e4154fdd7d134c006209a2d862910a82cb7d0 assets/pixelsofmc/blockstates/silver_spool.json
 bae7580038bb0d525fd1670ac8fe01057a147c9c assets/pixelsofmc/blockstates/simple_casing_1.json
 a7d7fd41c1f21c1f744a32a9544328bba4a770e0 assets/pixelsofmc/blockstates/strong_casing.json
@@ -27,6 +28,7 @@ e789acb912e07f8913be3de1cfd2959390bbd9f7 assets/pixelsofmc/models/block/raw_tita
 ae85552fd0ff050fee806552a4c6f8c8ab98d69c assets/pixelsofmc/models/block/reinforced_casing.json
 0cf07a3df5866d67c8e10434cd12d5779ba00386 assets/pixelsofmc/models/block/sand_mineral_deposit.json
 4fdf586d04ed65c3e432e3fd8757019409a8f1ad assets/pixelsofmc/models/block/sds_controller.json
+6ed43514382540db90046eeb278a823bdacca722 assets/pixelsofmc/models/block/silver_block.json
 4957e4f1b3116fda0954a16a9f7a6605f2514658 assets/pixelsofmc/models/block/silver_spool.json
 b579468d4d17f394e02087b0e429e84a5ded45fc assets/pixelsofmc/models/block/silver_spool_horizontal.json
 017c086fb9ff20dc6279a46e551bcfd10ad509c9 assets/pixelsofmc/models/block/simple_casing_1.json
@@ -45,6 +47,7 @@ ea58e5722c92f1207e3d30936f11eed962de39c1 assets/pixelsofmc/models/item/deepslate
 2d4df738d255fb185051e5d467bc6f56de4330d3 assets/pixelsofmc/models/item/reinforced_casing.json
 7fa62b93063e1440ef797e1323f8aa5dc2d8dc26 assets/pixelsofmc/models/item/sand_mineral_deposit.json
 ff8b0e8dc326e1d3cb9c90357d8bfe51e40b68e5 assets/pixelsofmc/models/item/sds_controller.json
+1894112d4b678ad38be0c4d2892968fe5068b686 assets/pixelsofmc/models/item/silver_block.json
 b926040ed4aea31cee021b6aaaa744ca94b2407c assets/pixelsofmc/models/item/simple_casing_1.json
 fa2dd03509c7fc83b2d8f0eb9f1f24ee83bf231e assets/pixelsofmc/models/item/strong_casing.json
 72f9bfa21143d551c617629c6ddae9b2a2976c63 assets/pixelsofmc/models/item/titanium_block.json

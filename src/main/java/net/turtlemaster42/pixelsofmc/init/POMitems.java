@@ -1,16 +1,13 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 
-import net.minecraft.world.item.Item;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -145,10 +142,11 @@ public class POMitems {
 		public static final Map<Element, ItemRegObject<Item>> ELEMENTS = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> NUGGETS = new EnumMap<>(Element.class);
 		public static final Map<Element, ItemRegObject<Item>> DUSTS = new EnumMap<>(Element.class);
+		public static final Map<Element, ItemRegObject<Item>> BLOCKS = new EnumMap<>(Element.class);
 
 		private static void init() {
 			for(Element m : Element.values()) {
-				if (m.equals(Element.DEBUGIUM)) return;
+				if (m.equals(Element.DEBUGIUM)) continue;
 				String elementName = m.tagName();
 				String type = m.typeName();
 				ItemRegObject<Item> atomx512;
@@ -156,6 +154,7 @@ public class POMitems {
 				ItemRegObject<Item> nugget = null;
 				ItemRegObject<Item> element = null;
 				ItemRegObject<Item> dust = null;
+				ItemRegObject<Item> block = null;
 
 				Item.Properties properties = new Item.Properties();
 				if (m.isFireResistant())
@@ -167,12 +166,14 @@ public class POMitems {
 				if (!m.isVanilla()) element = register(elementName+"_"+type, () -> new ElementItem(m, finalProperties));
 				if (m.shouldAddNugget()) nugget = register(elementName+"_nugget", () -> new ElementItem(m, finalProperties));
 				if (m.shouldAddDust()) dust = register(elementName+"_dust", () -> new ElementItem(m, finalProperties));
+				if (m.shouldAddBlock()) block = register(elementName+"_block", () -> new BlockItem(m.block(), finalProperties));
 
 				ATOMX512.put(m, atomx512);
 				ATOMX64.put(m, atomx64);
 				NUGGETS.put(m, nugget);
 				ELEMENTS.put(m, element);
 				DUSTS.put(m, dust);
+				BLOCKS.put(m, block);
 			}
 		}
 	}
