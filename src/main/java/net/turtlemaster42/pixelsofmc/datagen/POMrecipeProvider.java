@@ -18,6 +18,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.turtlemaster42.pixelsofmc.recipe.*;
+import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -583,6 +584,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         for(Element m : Element.values()) {
             if (m.equals(Element.DEBUGIUM)) continue;
             SimpleAtomCompacting(m.atom64(), m.atom512(), fConsumer);
+            Fusing(m, fConsumer);
 
             if (m.isMetal() && m.shouldAddDust())
                 Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
@@ -595,7 +597,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             if (m.shouldAddBlock())
                 SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
         }
-
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
@@ -787,6 +788,17 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
         new ChemicalSeperatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+
+    private void Fusing(Element element, Consumer<FinishedRecipe> consumer) {
+        Fusing(toCI(element.atom64(), 1), element.getElement(), element.getElement(), element.getElement(), consumer);
+        Fusing(toCI(element.atom512(), 1), element.getElement()*8, element.getElement()*8, element.getElement()*8, consumer);
+    }
+    private void Fusing(CountedIngredient output, int proton, int neutron, int electron, Consumer<FinishedRecipe> consumer) {
+        new FusionRecipeBuilder(output.asItem(), output.count(), proton, neutron, electron)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

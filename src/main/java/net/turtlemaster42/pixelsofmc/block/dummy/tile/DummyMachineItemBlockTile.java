@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class DummyMachineItemBlockTile extends BlockEntity {
+public class DummyMachineItemBlockTile extends AbstractDummyMachineBlockTile {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(27) {
         @Override

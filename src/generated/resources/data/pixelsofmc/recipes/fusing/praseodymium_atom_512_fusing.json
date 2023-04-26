@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 472,
+  "neutron": 472,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:praseodymium_atom_512"
+    }
+  },
+  "proton": 472
+}

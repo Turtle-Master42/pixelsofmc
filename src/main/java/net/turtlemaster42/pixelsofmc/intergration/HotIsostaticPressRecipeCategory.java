@@ -69,8 +69,9 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
         Minecraft minecraft = Minecraft.getInstance();
         Font fontRenderer = minecraft.font;
         int stringWidth = fontRenderer.width(heatString);
+        int stringWidth2 = fontRenderer.width(maxHeatString);
         fontRenderer.draw(poseStack, heatString, background.getWidth() - stringWidth, y, 0xFF808080);
-        fontRenderer.draw(poseStack, maxHeatString, background.getWidth() - stringWidth, y+10, 0xFF808080);
+        fontRenderer.draw(poseStack, maxHeatString, background.getWidth() - stringWidth2, y+10, 0xFF808080);
     }
 
 

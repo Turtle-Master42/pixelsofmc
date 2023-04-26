@@ -1,4 +1,4 @@
-// 1.19.3	2023-04-18T13:40:44.079881	Loot Tables
+// 1.19.3	2023-04-21T10:36:48.287128	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
@@ -30,4 +30,5 @@ a579ffd6a3576006dc32317ccc32c87d10934544 data/pixelsofmc/loot_tables/blocks/silv
 b6a9c5f7c1fadc12e3526dd3bdb27e19c48c869e data/pixelsofmc/loot_tables/blocks/titanium_block.json
 e02a4be4204c58e18250a0c79f6024bbe33f6947 data/pixelsofmc/loot_tables/blocks/titanium_diboride_block.json
 5b95a7e768a37a6f0e5f0eb680a1a141bfa09dda data/pixelsofmc/loot_tables/blocks/titanium_ore.json
+caaf7c75e9b3afe8b1fca1261bcb3f0d10ef0f3c data/pixelsofmc/loot_tables/blocks/tungsten_block.json
 9169633a54bd99fa008b261f7b1d70d3b72d0e39 data/pixelsofmc/loot_tables/blocks/tungsten_spool.json

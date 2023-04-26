@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 8,
+  "neutron": 8,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:hydrogen_atom_512"
+    }
+  },
+  "proton": 8
+}

@@ -45,9 +45,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());
         logBlock(POMblocks.TUNGSTEN_SPOOL.get());
-
-        blockWithItem(POMblocks.SDS_CONTROLLER);
-
     }
 
     public ModelFile flowerPotCross(String name) {

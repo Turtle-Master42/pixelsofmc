@@ -22,17 +22,6 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
                 .isRedstoneConductor((bs, br, bp) -> false));
     }
 
-    public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
-        pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-        if (!pLevel.isClientSide()) {
-            BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
-            BlockState mainState = pLevel.getBlockState(mainPos);
-            if (!pPlayer.isCreative()) {
-                popResource(pLevel, pPos, pLevel.getBlockState(mainPos).getBlock().getCloneItemStack(pLevel, mainPos, mainState));
-            }
-            pLevel.destroyBlock(mainPos, false);
-        }
-    }
     @Deprecated
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);

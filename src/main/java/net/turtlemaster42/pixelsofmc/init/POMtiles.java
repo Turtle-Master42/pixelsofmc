@@ -13,9 +13,8 @@ import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
 public class POMtiles {
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, PixelsOfMc.MOD_ID);
 
-	public static final RegistryObject<BlockEntityType<?>> MACHINE_BLOCK = register("machine_block", POMblocks.MACHINE_BLOCK,
-			DummyMachineBlockTile::new);
-
+	public static final RegistryObject<BlockEntityType<DummyMachineBlockTile>> MACHINE_BLOCK =
+			TILES.register("machine_block", () -> BlockEntityType.Builder.of(DummyMachineBlockTile::new, POMblocks.MACHINE_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<DummyMachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
 			TILES.register("machine_energy_block", () -> BlockEntityType.Builder.of(DummyMachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> MACHINE_ITEM_BLOCK =

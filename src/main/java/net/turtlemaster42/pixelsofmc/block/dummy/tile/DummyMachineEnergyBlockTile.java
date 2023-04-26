@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class DummyMachineEnergyBlockTile extends BlockEntity {
+public class DummyMachineEnergyBlockTile extends AbstractDummyMachineBlockTile {
         protected final ContainerData data;
 
         private final int capacity = 40960;

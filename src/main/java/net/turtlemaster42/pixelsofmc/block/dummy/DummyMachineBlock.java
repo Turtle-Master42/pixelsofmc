@@ -17,37 +17,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.core.BlockPos;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
+
+import javax.annotation.Nullable;
 
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	public DummyMachineBlock() {
 		super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
-	}
-
-	@Override
-	public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer)
-	{
-		BlockEntity blockEntity = pWorld.getBlockEntity(pPos);
-		Level level = pWorld.getBlockEntity(pPos).getLevel();
-
-		PixelsOfMc.LOGGER.info("blockEntity {}", blockEntity);
-		PixelsOfMc.LOGGER.info("level {}", level);
-
-		return ItemStack.EMPTY;
-	}
-
-	public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
-		pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-		if (!pLevel.isClientSide()) {
-			BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
-			BlockState mainState = pLevel.getBlockState(mainPos);
-			if (!pPlayer.isCreative()) {
-				popResource(pLevel, pPos, pLevel.getBlockState(mainPos).getBlock().getCloneItemStack(pLevel, mainPos, mainState));
-			}
-			pLevel.destroyBlock(mainPos, false);
-		}
 	}
 
 	@Deprecated

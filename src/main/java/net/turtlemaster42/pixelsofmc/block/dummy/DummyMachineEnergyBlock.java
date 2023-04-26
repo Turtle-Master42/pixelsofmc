@@ -30,64 +30,6 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
                     .isRedstoneConductor((bs, br, bp) -> false));
         }
 
-        public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pLevel, BlockPos pPos, Player pPlayer) {
-
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-
-            int mainX = blockEntity.getPersistentData().getInt("mainX");
-            int mainY = blockEntity.getPersistentData().getInt("mainY");
-            int mainZ = blockEntity.getPersistentData().getInt("mainZ");
-
-
-            BlockPos mainPos = new BlockPos(mainX, mainY, mainZ);
-            if (mainPos == null) {
-                return ItemStack.EMPTY;
-            }
-            if (blockEntity == null) {
-                return ItemStack.EMPTY;
-            }
-            PixelsOfMc.LOGGER.info(String.valueOf(mainX));
-            PixelsOfMc.LOGGER.info(String.valueOf(mainY));
-            PixelsOfMc.LOGGER.info(String.valueOf(mainZ));
-            PixelsOfMc.LOGGER.info(blockEntity.toString());
-            PixelsOfMc.LOGGER.info(String.valueOf(mainPos));
-
-            BlockState mainState = pLevel.getBlockState(mainPos);
-            return mainState.getBlock().getCloneItemStack(mainState, pTarget, pLevel, mainPos, pPlayer);
-        }
-
-        public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
-            pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            if (!pLevel.isClientSide()) {
-                BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
-                BlockState mainState = pLevel.getBlockState(mainPos);
-                if (!pPlayer.isCreative()) {
-                    popResource(pLevel, pPos, pLevel.getBlockState(mainPos).getBlock().getCloneItemStack(pLevel, mainPos, mainState));
-                }
-                pLevel.destroyBlock(mainPos, false);
-            }
-        }
-
-        @Nullable
-        @Deprecated
-        public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand hand, BlockHitResult hit) {
-            super.use(pState, pLevel, pPos, pPlayer, hand, hit);
-            if (!pLevel.isClientSide()) {
-                BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
-                BlockState mainState = pLevel.getBlockState(mainPos);
-                if (mainPos.equals(pPos)) {
-                    PixelsOfMc.LOGGER.warn("This Machine Block does not have a connected block!");
-                    pLevel.destroyBlock(pPos, false);
-                    return InteractionResult.FAIL;
-                } else {
-                    //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
-                    return mainState.getBlock().use(mainState, pLevel, mainPos, pPlayer, hand, hit);
-                }
-            } else {
-                return InteractionResult.SUCCESS;
-            }
-        }
-
         @Deprecated
         public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
@@ -103,11 +45,5 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
             super.triggerEvent(state, world, pos, eventID, eventParam);
             BlockEntity blockEntity = world.getBlockEntity(pos);
             return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
-        }
-
-        @Override
-        @Deprecated
-        public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
-            PixelsOfMc.LOGGER.info(String.valueOf(pState.getDestroyProgress(pPlayer, pLevel, pPos)));
         }
     }

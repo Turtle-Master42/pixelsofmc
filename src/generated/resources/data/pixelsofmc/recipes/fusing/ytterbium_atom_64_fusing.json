@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 70,
+  "neutron": 70,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    }
+  },
+  "proton": 70
+}

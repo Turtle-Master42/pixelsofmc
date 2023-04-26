@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 696,
+  "neutron": 696,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:francium_atom_512"
+    }
+  },
+  "proton": 696
+}

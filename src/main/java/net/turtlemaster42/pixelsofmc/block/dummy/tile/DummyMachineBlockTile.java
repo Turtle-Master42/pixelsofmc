@@ -1,14 +1,19 @@
 package net.turtlemaster42.pixelsofmc.block.dummy.tile;
 
+import net.minecraft.nbt.NbtUtils;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.turtlemaster42.pixelsofmc.network.PacketUpdateTile;
+import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
 import org.jetbrains.annotations.NotNull;
 
-public class DummyMachineBlockTile extends BlockEntity {
+public class DummyMachineBlockTile extends AbstractDummyMachineBlockTile {
 	protected final ContainerData data;
 
 	public DummyMachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
@@ -26,26 +31,5 @@ public class DummyMachineBlockTile extends BlockEntity {
 				return 0;
 			}
 		};
-	}
-
-
-	@Override
-	public void onLoad() {
-		super.onLoad();
-	}
-
-	@Override
-	public void invalidateCaps()  {
-		super.invalidateCaps();
-	}
-
-	@Override
-	protected void saveAdditional(@NotNull CompoundTag tag) {
-		super.saveAdditional(tag);
-	}
-
-	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
 	}
 }

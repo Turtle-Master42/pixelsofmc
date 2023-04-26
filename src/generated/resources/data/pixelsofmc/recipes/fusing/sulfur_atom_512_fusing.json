@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 128,
+  "neutron": 128,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:sulfur_atom_512"
+    }
+  },
+  "proton": 128
+}

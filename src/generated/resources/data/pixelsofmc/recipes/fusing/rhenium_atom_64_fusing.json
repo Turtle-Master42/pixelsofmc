@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 75,
+  "neutron": 75,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:rhenium_atom_64"
+    }
+  },
+  "proton": 75
+}

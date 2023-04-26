@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 584,
+  "neutron": 584,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tantalum_atom_512"
+    }
+  },
+  "proton": 584
+}

@@ -136,6 +136,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         complexBlock(POMblocks.PIXEL_SPLITTER);
         complexBlock(POMblocks.GRINDER);
+        complexBlock(POMblocks.SDS_CONTROLLER);
 
 
     }

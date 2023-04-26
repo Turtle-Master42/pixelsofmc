@@ -21,6 +21,14 @@ public class POMtags {
     public static class Items {
         private static void init() {}
 
+        public static final TagKey<Item> ATOM = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom"));
+        public static final TagKey<Item> ATOM64 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom64"));
+        public static final TagKey<Item> ATOM512 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom512"));
+        public static final TagKey<Item> SDS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "sds"));
+        public static final TagKey<Item> MDS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "mds"));
+        public static final TagKey<Item> MNS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "mns"));
+
+
         public static final TagKey<Item> CIRCLE_SAW = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "circle_saw"));
         public static final TagKey<Item> MILLING_BALL = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "milling_ball"));
         public static final TagKey<Item> BALL_1 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_1"));

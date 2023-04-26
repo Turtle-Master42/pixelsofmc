@@ -27,20 +27,43 @@ public class POMitemTagProvider extends ItemTagsProvider {
         for(Element element : Element.values()) {
             if (element.equals(Element.DEBUGIUM)) continue;
             POMtags.MetalTags tags = POMtags.getTagsFor(element);
+
+            tag(POMtags.Items.ATOM).add(element.atom64().asItem());
+            tag(POMtags.Items.ATOM).add(element.atom512().asItem());
+            tag(POMtags.Items.ATOM64).add(element.atom64().asItem());
+            tag(POMtags.Items.ATOM512).add(element.atom512().asItem());
+
+            if(element.getElement() >= 3 && element.getElement() <= 7) {
+                tag(POMtags.Items.SDS).add(element.atom64().asItem());
+                tag(POMtags.Items.SDS).add(element.atom512().asItem());
+            }
+            if(element.getElement() >= 38 && element.getElement() <= 41) {
+                tag(POMtags.Items.SDS).add(element.atom64().asItem());
+                tag(POMtags.Items.SDS).add(element.atom512().asItem());
+            }
+            if(element.getElement() >= 8 && element.getElement() <= 37) {
+                tag(POMtags.Items.MDS).add(element.atom64().asItem());
+                tag(POMtags.Items.MDS).add(element.atom512().asItem());
+            }
+            if(element.getElement() >= 42 && element.getElement() <= 94) {
+                tag(POMtags.Items.MNS).add(element.atom64().asItem());
+                tag(POMtags.Items.MNS).add(element.atom512().asItem());
+            }
+
             if(element.shouldAddDust()) {
-                tag(tags.dust).add(POMitems.Metals.DUSTS.get(element).get());
+                tag(tags.dust).add(element.dust().asItem());
                 tag(Tags.Items.DUSTS).addTag(tags.dust);
             }
             if (element.isMetal()) {
-                tag(tags.metal).add(POMitems.Metals.ELEMENTS.get(element).get());
+                tag(tags.metal).add(element.item().asItem());
                 tag(Tags.Items.INGOTS).addTag(tags.metal);
             }
             if (element.shouldAddNugget()) {
-                tag(tags.nugget).add(POMitems.Metals.NUGGETS.get(element).get());
+                tag(tags.nugget).add(element.nugget().asItem());
                 tag(Tags.Items.NUGGETS).addTag(tags.nugget);
             }
             if (!element.isMetal() && !element.isVanilla()) {
-                tag(tags.other).add(POMitems.Metals.ELEMENTS.get(element).get());
+                tag(tags.other).add(element.item().asItem());
             }
         }
 

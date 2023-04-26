@@ -87,7 +87,7 @@ public enum Element {
     LUTETIUM(new Info(1925, 3675)),
     HAFNIUM(new Info(2506, 4876, Danger.FLAMMABLE)), //white flame
     TANTALUM(new Info(3290, 5731)), //blue flame
-    TUNGSTEN(Type.INGOT, true, true, false, new Info(3695, 6203)), //green
+    TUNGSTEN(Type.INGOT, true, true, true, new Info(3695, 6203)), //green
     RHENIUM(new Info(3459, 5903)),
     OSMIUM(new Info(3306, 5285)),
     IRIDIUM(new Info(2719, 4403)),
@@ -219,6 +219,7 @@ public enum Element {
     public Info getInfo() {
         return this.info;
     }
+    public int getElement() {return this.ordinal()+1;}
 
     private enum Type {
         INGOT,

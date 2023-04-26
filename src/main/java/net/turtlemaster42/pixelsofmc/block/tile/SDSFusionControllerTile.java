@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,9 +25,11 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.item.AtomItem;
+import net.turtlemaster42.pixelsofmc.item.ElementItem;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +42,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 120;
+    private int maxProgress = 10;
     private final int capacity = 10240000;
     private final int maxReceive = 32000;
     private static final int energyConsumption = 12000;
@@ -99,7 +100,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
     @Override
     protected boolean isSlotValidOutput(int slot) {
-        return true;
+        return slot == 4;
     }
     @Override
     protected int itemHandlerSize() {return 7;}
@@ -178,7 +179,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, SDSFusionControllerTile pBlockEntity) {
 
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
+        if(hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption);
             if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
@@ -201,8 +202,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<BallMillRecipe> match = level.getRecipeManager()
-                .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
+        Optional<FusionRecipe> match = level.getRecipeManager()
+                .getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
@@ -221,31 +222,21 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<BallMillRecipe> match = level.getRecipeManager()
-                .getRecipeFor(BallMillRecipe.Type.INSTANCE, inventory, level);
+        Optional<FusionRecipe> match = level.getRecipeManager()
+                .getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
             List<CountedIngredient> recipeItems = match.get().getInputs();
-            boolean[] matched = new boolean[3];
 
-            // Iterate over the slots -p-
-            for (int p = 0; p < 3; p++) {
-                // Iterate over the inputs -q-
-                for (int q = 0; q < recipeItems.size(); q++) {
-                    if (matched[q])
-                        continue;
-                    if (recipeItems.get(q).test(inventory.getItem(p))) {
-                        entity.itemHandler.extractItem(p, recipeItems.get(q).count(), false);
-                        matched[q] = true;
-                    }
+            // Iterate over the slots -q-
+            for (int q = 0; q < 4; q++) {
+                if (entity.itemHandler.getStackInSlot(q).getItem() instanceof AtomItem) {
+                    entity.itemHandler.extractItem(q, 1, false);
                 }
             }
 
-            entity.itemHandler.getStackInSlot(3).hurt(1, RandomSource.create(), null); //saw
-
-                entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
-
+            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
 
             entity.resetProgress();
             entity.errorEnergyReset();

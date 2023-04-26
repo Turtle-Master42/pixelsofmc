@@ -12,8 +12,10 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final SDSFusionControllerTile blockEntity;
@@ -37,10 +39,10 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModResultSlot(handler, 4, 125, 40));
-            this.addSlot(new SlotItemHandler(handler, 0, 35, 32));
-            this.addSlot(new SlotItemHandler(handler, 1, 53, 32));
-            this.addSlot(new SlotItemHandler(handler, 2, 35, 50));
-            this.addSlot(new SlotItemHandler(handler, 3, 53, 50));
+            this.addSlot(new ModTagRestrictedSlot(handler, 0, 35, 32, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 1, 53, 32, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 2, 35, 50, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 3, 53, 50, () -> POMtags.Items.ATOM));
         });
 
         addDataSlots(data);

@@ -166,7 +166,7 @@ public class POMitems {
 				if (!m.isVanilla()) element = register(elementName+"_"+type, () -> new ElementItem(m, finalProperties));
 				if (m.shouldAddNugget()) nugget = register(elementName+"_nugget", () -> new ElementItem(m, finalProperties));
 				if (m.shouldAddDust()) dust = register(elementName+"_dust", () -> new ElementItem(m, finalProperties));
-				if (m.shouldAddBlock()) block = register(elementName+"_block", () -> new BlockItem(m.block(), finalProperties));
+				if (m.shouldAddBlock()) block = register(elementName+"_block", () -> new ElementBlockItem(m, m.block(), finalProperties));
 
 				ATOMX512.put(m, atomx512);
 				ATOMX64.put(m, atomx64);

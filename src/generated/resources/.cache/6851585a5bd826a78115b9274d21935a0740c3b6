@@ -1,4 +1,4 @@
-// 1.19.3	2023-04-17T19:48:56.872701	Item Models: pixelsofmc
+// 1.19.3	2023-04-22T14:29:07.933882	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -301,6 +301,7 @@ caf720878f2a7f25e6a8d8434236784b55a6f02a assets/pixelsofmc/models/item/scandium_
 0cf87c01896b8ed35e02f1080d3d6e4eca73d6b8 assets/pixelsofmc/models/item/scandium_atom_64.json
 21e801d5aee85e61e145835e26f9a370b49572b5 assets/pixelsofmc/models/item/scandium_ingot.json
 ddb4f63c5d949f91165e189c3c92ebd20a4ca8b8 assets/pixelsofmc/models/item/screwdriver.json
+ff8b0e8dc326e1d3cb9c90357d8bfe51e40b68e5 assets/pixelsofmc/models/item/sds_controller.json
 7d6540bd63cbbb9feebd4a6fbbd4ff152d88c81b assets/pixelsofmc/models/item/selenium_atom_512.json
 b053475aed19451837f6f96602d815f17d818537 assets/pixelsofmc/models/item/selenium_atom_64.json
 eb5f26b179337d82f21640aa04742231a0a5db2d assets/pixelsofmc/models/item/selenium_ingot.json

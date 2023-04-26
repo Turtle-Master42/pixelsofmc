@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 66,
+  "neutron": 66,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:dysprosium_atom_64"
+    }
+  },
+  "proton": 66
+}

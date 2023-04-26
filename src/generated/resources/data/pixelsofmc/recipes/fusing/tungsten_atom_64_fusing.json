@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 74,
+  "neutron": 74,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tungsten_atom_64"
+    }
+  },
+  "proton": 74
+}

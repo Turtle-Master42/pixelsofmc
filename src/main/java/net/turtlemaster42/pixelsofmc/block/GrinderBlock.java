@@ -23,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.block.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;

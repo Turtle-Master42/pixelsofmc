@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 5,
+  "neutron": 5,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:boron_atom_64"
+    }
+  },
+  "proton": 5
+}

@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 592,
+  "neutron": 592,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tungsten_atom_512"
+    }
+  },
+  "proton": 592
+}

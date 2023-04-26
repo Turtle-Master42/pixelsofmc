@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 760,
+  "neutron": 760,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:americium_atom_512"
+    }
+  },
+  "proton": 760
+}

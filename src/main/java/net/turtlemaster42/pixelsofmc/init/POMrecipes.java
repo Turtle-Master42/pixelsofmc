@@ -25,6 +25,9 @@ public class POMrecipes {
 			SERIALIZERS.register("pressing", () -> HotIsostaticPressRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<ChemicalSeperatorRecipe>> CHEMICAL_SEPERATOR_SERIALIZER =
 			SERIALIZERS.register("chemical_separating", () -> ChemicalSeperatorRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
+			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
+
 
 	//public static final RegistryObject<SimpleCraftingRecipeSerializer<PixelDecompactingRecipe>> PIXEL_DECOMPACTING = DEF_REG.register("pixel_decompacting", () -> new SimpleCraftingRecipeSerializer<>(PixelDecompactingRecipe::new));
 	//public static final RegistryObject<SimpleCraftingRecipeSerializer<PixelCompactingRecipe>> PIXEL_COMPACTING = DEF_REG.register("elytra_wing_glow_recipe", () -> new SimpleCraftingRecipeSerializer<>(PixelCompactingRecipe::new));

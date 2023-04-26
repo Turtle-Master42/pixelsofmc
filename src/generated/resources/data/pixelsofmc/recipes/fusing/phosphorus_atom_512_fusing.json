@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 120,
+  "neutron": 120,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:phosphorus_atom_512"
+    }
+  },
+  "proton": 120
+}

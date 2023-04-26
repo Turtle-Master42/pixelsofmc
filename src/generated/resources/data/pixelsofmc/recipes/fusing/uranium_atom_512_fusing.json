@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 736,
+  "neutron": 736,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:uranium_atom_512"
+    }
+  },
+  "proton": 736
+}

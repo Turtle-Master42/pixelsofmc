@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 776,
+  "neutron": 776,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:berkelium_atom_512"
+    }
+  },
+  "proton": 776
+}

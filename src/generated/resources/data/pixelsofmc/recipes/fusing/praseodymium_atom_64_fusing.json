@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 59,
+  "neutron": 59,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:praseodymium_atom_64"
+    }
+  },
+  "proton": 59
+}
