@@ -21,12 +21,15 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 
 import javax.annotation.Nullable;
 
@@ -40,12 +43,26 @@ public class SDSFusionControllerBlock extends BaseEntityBlock {
     }
 
 
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
+            box(-16, 0, 2, 32, 11, 16), //base
+            box(-16, 10, 4, 32, 13, 16), //first slope
+            box(-16, 12, 8, 32, 15, 16), //second slope
+            box(-16, 14, 12, 32, 17, 16) //third slope
+    );
 
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        switch ((Direction)pState.getValue(FACING)) {
+            case EAST:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            case SOUTH:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+            case WEST:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            default:
+                return SHAPE;
+        }
     }
 
 
@@ -128,8 +145,8 @@ public class SDSFusionControllerBlock extends BaseEntityBlock {
             Direction direction = pState.getValue(FACING);
 
             //these are the location based on the default (NORTH) direction, they get turned automatically
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
-            //BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_ENERGY_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_ENERGY_BLOCK, pPos);
         }
     }
 

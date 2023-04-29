@@ -1,13 +1,16 @@
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.ParticleStatus;
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.client.renderer.chunk.RenderChunkRegion;
+import net.minecraft.commands.arguments.ParticleArgument;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,27 +18,29 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncMainPosToClient;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-public abstract class AbstractDummyMachineBlock extends Block implements EntityBlock {
+import java.util.Random;
+
+public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implements EntityBlock {
 
     public AbstractDummyMachineBlock(Properties pProp) {
         super(pProp);
@@ -81,31 +86,20 @@ public abstract class AbstractDummyMachineBlock extends Block implements EntityB
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer)
-    {
-        PixelsOfMc.LOGGER.info("getCloneItemStack getTileEntity");
-        AbstractDummyMachineBlockTile blockentity = BigMachineBlockUtil.getTileEntity(AbstractDummyMachineBlockTile.class, pWorld, pPos);
-
-
-        PixelsOfMc.LOGGER.info("getCloneItemStack mainPos {}", getMainBlockPos(pWorld, pPos));
-
-        PixelsOfMc.LOGGER.info("getCloneItemStack blockEntity {}", blockentity);
-        AbstractDummyMachineBlockTile blockentity2 = BigMachineBlockUtil.getTileEntity(AbstractDummyMachineBlockTile.class, Minecraft.getInstance().level, pPos);
-        PixelsOfMc.LOGGER.info("getCloneItemStack blockEntity2 {}", blockentity2);
-
-        PixelsOfMc.LOGGER.info("getCloneItemStack blockEntity Tag {}", blockentity.saveWithFullMetadata().copy());
-        PixelsOfMc.LOGGER.info("getCloneItemStack Tag BlockPos {}", blockentity.saveWithFullMetadata().get("mainPos"));
-
-        return ItemStack.EMPTY;
+    public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer) {
+        //gets the main block and returns its getCloneItemStack
+        BlockPos mainPos = getMainBlockPos(pWorld, pPos);
+        if (mainPos.equals(BlockPos.ZERO))
+            return ItemStack.EMPTY;
+        else return pWorld.getBlockState(mainPos).getCloneItemStack(pTarget, pWorld, mainPos, pPlayer);
     }
 
     @Nullable
     @Deprecated
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand hand, BlockHitResult hit) {
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
-
+        //when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
-
             BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
             BlockState mainState = pLevel.getBlockState(mainPos);
 
@@ -124,15 +118,20 @@ public abstract class AbstractDummyMachineBlock extends Block implements EntityB
 
     @Deprecated
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        //when a dummy block receives a blockupdate it will check if the main block still exists,
+        // if not, it will destroy itself and thereby update the surrounding dummy blocks
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
         BlockState mainState = pLevel.getBlockState(mainPos);
 
         if (mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
-            pLevel.destroyBlock(pPos, false);
+            pLevel.removeBlock(pPos, false);
+            pLevel.removeBlockEntity(pPos);
         }
     }
 
     public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
+        //when a dummy block is destroyed it will remove the main block from the world and drop
+        // the main block as item on its location
         pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
         if (!pLevel.isClientSide()) {
             BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
@@ -142,5 +141,96 @@ public abstract class AbstractDummyMachineBlock extends Block implements EntityB
             }
             pLevel.destroyBlock(mainPos, false);
         }
+    }
+
+    //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
+
+    // --- MEKANISM --- //
+//    @Override
+//    @Deprecated
+//    public float getDestroyProgress( BlockState state,  Player player,  BlockGetter world,  BlockPos pos) {
+//        BlockPos mainPos = getMainBlockPos(world, pos);
+//        if (mainPos == null) {
+//            return super.getDestroyProgress(state, player, world, pos);
+//        }
+//        return world.getBlockState(mainPos).getDestroyProgress(player, world, mainPos);
+//    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return proxyShape(world, pos, context, BlockStateBase::getShape);
+    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return proxyShape(world, pos, context, BlockStateBase::getCollisionShape);
+    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getVisualShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return proxyShape(world, pos, context, BlockStateBase::getVisualShape);
+    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
+        return proxyShape(world, pos, null, (s, level, p, ctx) -> s.getOcclusionShape(level, p));
+    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getBlockSupportShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
+        return proxyShape(world, pos, null, (s, level, p, ctx) -> s.getBlockSupportShape(level, p));
+    }
+
+    @NotNull
+    @Override
+    @Deprecated
+    public VoxelShape getInteractionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
+        return proxyShape(world, pos, null, (s, level, p, ctx) -> s.getInteractionShape(level, p));
+    }
+
+    //Context should only be null if there is none, and it isn't used in the shape proxy
+    private VoxelShape proxyShape(BlockGetter world, BlockPos pos, @Nullable CollisionContext context, ShapeProxy proxy) {
+        BlockPos mainPos = getMainBlockPos(world, pos);
+        if (mainPos == null) {
+            //If we don't have a main pos, then act as if the block is empty so that we can move into it properly
+            return Shapes.empty();
+        }
+        BlockState mainState;
+        try {
+            mainState = world.getBlockState(mainPos);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //Note: ChunkRenderCache is client side only, though it does not seem to have any class loading issues on the server
+            // due to this exception not being caught in that specific case
+            if (world instanceof RenderChunkRegion region) {
+                //Workaround for when the main spot of the miner is out of bounds of the ChunkRenderCache thus causing an
+                // ArrayIndexOutOfBoundException on the client as seen by:
+                // https://github.com/mekanism/Mekanism/issues/5792
+                // https://github.com/mekanism/Mekanism/issues/5844
+//                world = region.level;
+                mainState = region.getBlockState(mainPos);
+            } else {
+                PixelsOfMc.LOGGER.error("Error getting bounding block shape, for position {}, with main position {}. World of type {}", pos, mainPos,
+                        world.getClass().getName());
+                return Shapes.empty();
+            }
+        }
+        VoxelShape shape = proxy.getShape(mainState, world, mainPos, context);
+        BlockPos offset = pos.subtract(mainPos);
+        //TODO: Can we somehow cache the withOffset? It potentially would have to then be moved into the Tile, but that is probably fine
+        return shape.move(-offset.getX(), -offset.getY(), -offset.getZ());
+    }
+
+    private interface ShapeProxy {
+        VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context);
     }
 }

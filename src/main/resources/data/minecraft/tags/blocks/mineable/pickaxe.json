@@ -19,6 +19,7 @@
     "pixelsofmc:strong_casing",
     "pixelsofmc:reinforced_casing",
     "pixelsofmc:hot_isostatic_press",
-    "pixelsofmc:acanthite"
+    "pixelsofmc:acanthite",
+    "pixelsofmc:sds_controller"
   ]
 }

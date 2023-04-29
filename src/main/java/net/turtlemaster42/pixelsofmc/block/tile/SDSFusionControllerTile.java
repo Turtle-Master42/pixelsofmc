@@ -162,11 +162,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, SDSFusionControllerTile e) {

@@ -4,6 +4,8 @@ package net.turtlemaster42.pixelsofmc.block.dummy;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.Material;
@@ -19,6 +21,8 @@ import net.minecraft.core.BlockPos;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
 
@@ -30,12 +34,6 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 				.isRedstoneConductor((bs, br, bp) -> false));
 	}
 
-	@Deprecated
-	public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
-		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-		return tileEntity instanceof MenuProvider menuProvider ? menuProvider : null;
-	}
-
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new DummyMachineBlockTile(pos, state);
 	}
@@ -45,5 +43,13 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 		super.triggerEvent(state, world, pos, eventID, eventParam);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+		if (!pLevel.isClientSide())
+			return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(), DummyMachineBlockTile::serverTick);
+		return null;
 	}
 }

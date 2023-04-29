@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.util.block;
 
 import com.mojang.datafixers.util.Either;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.SectionPos;
@@ -16,12 +15,6 @@ import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkStatus;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineEnergyBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
-import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import org.apache.commons.lang3.text.translate.AggregateTranslator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,8 +23,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class BigMachineBlockUtil {
 
-    public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos mainPos) {
-        setMachineBlock(pLevel, direction, Xoffset, Yoffset, Zoffset, pState, mainPos, 2);
+    public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos pPos) {
+        setMachineBlock(pLevel, direction, Xoffset, Yoffset, Zoffset, pState, pPos, 2);
     }
     public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos mainPos, int flags) {
         int X = mainPos.getX();
@@ -40,19 +33,19 @@ public class BigMachineBlockUtil {
         if (direction == Direction.NORTH) {
             BlockPos newPos = new BlockPos(X + Xoffset,Y + Yoffset,Z + Zoffset);
             pLevel.setBlock(newPos, pState, flags);
-            setMainPos(getTileEntity(DummyMachineBlockTile.class, pLevel, newPos), mainPos);
+            setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.EAST) {
             BlockPos newPos = new BlockPos(X - Zoffset,Y + Yoffset,Z + Xoffset);
             pLevel.setBlock(newPos, pState, flags);
-            setMainPos(getTileEntity(DummyMachineBlockTile.class, pLevel, newPos), mainPos);
+            setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.SOUTH) {
             BlockPos newPos = new BlockPos(X - Xoffset,Y + Yoffset,Z - Zoffset);
             pLevel.setBlock(newPos, pState, flags);
-            setMainPos(getTileEntity(DummyMachineBlockTile.class, pLevel, newPos), mainPos);
+            setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.WEST) {
             BlockPos newPos = new BlockPos(X + Zoffset,Y + Yoffset,Z - Xoffset);
             pLevel.setBlock(newPos, pState, flags);
-            setMainPos(getTileEntity(DummyMachineBlockTile.class, pLevel, newPos), mainPos);
+            setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to build big machine at {}, {}, {}",X,Y,Z);
         }
@@ -88,12 +81,12 @@ public class BigMachineBlockUtil {
     }
 
 
-    public static void setMainPos(DummyMachineBlockTile tile, BlockPos mainPos) {
+    public static void setMainPos(AbstractDummyMachineBlockTile tile, BlockPos mainPos) {
             tile.setMainPos(mainPos);
     }
 
     public static BlockPos getMainPos(Level pLevel, BlockPos pPos) {
-        DummyMachineBlockTile tile = getTileEntity(DummyMachineBlockTile.class, pLevel, pPos);
+        AbstractDummyMachineBlockTile tile = getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, pPos);
         return tile.getMainPos();
     }
 

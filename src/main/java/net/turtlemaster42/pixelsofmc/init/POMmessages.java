@@ -1,13 +1,6 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.SectionPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.util.FakePlayer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.network.*;
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +8,6 @@ import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
-
-import java.util.Optional;
 
 public class POMmessages {
     private static SimpleChannel INSTANCE;
@@ -61,10 +52,10 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncDuoFluidToClient::handle)
                 .add();
 
-        net.messageBuilder(PacketUpdateTile.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(PacketUpdateTile::new)
-                .encoder(PacketUpdateTile::toBytes)
-                .consumerMainThread(PacketUpdateTile::handle)
+        net.messageBuilder(PacketSyncMainPosToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncMainPosToClient::new)
+                .encoder(PacketSyncMainPosToClient::toBytes)
+                .consumerMainThread(PacketSyncMainPosToClient::handle)
                 .add();
 
     }

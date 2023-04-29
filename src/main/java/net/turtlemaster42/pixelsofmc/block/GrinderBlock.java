@@ -28,6 +28,7 @@ import net.turtlemaster42.pixelsofmc.block.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 
 import javax.annotation.Nullable;
 
@@ -42,12 +43,25 @@ public class GrinderBlock extends BaseEntityBlock {
     }
 
 
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
+            box(-16, 0, -16, 32, 4, 32), //base-plate
+            box(-16, 4, 0, 32, 32, 32) //base
+
+    );
 
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        switch ((Direction)pState.getValue(FACING)) {
+            case EAST:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+            case SOUTH:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case WEST:
+                return SHAPE;
+            default:
+                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+        }
     }
 
 
