@@ -7,14 +7,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 
 public class POMrecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PixelsOfMc.MOD_ID);
-	public static final DeferredRegister<RecipeSerializer<?>> DEF_REG = DeferredRegister.create(Registries.RECIPE_SERIALIZER, PixelsOfMc.MOD_ID);
-	
+
 	public static final RegistryObject<RecipeSerializer<PixelSplitterRecipe>> PIXEL_SPLITTER_SERIALIZER =
 			SERIALIZERS.register("pixel_splitting", () -> PixelSplitterRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<BallMillRecipe>> BALL_MILLING_SERIALIZER =
@@ -28,13 +28,9 @@ public class POMrecipes {
 	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
 
-
-	//public static final RegistryObject<SimpleCraftingRecipeSerializer<PixelDecompactingRecipe>> PIXEL_DECOMPACTING = DEF_REG.register("pixel_decompacting", () -> new SimpleCraftingRecipeSerializer<>(PixelDecompactingRecipe::new));
-	//public static final RegistryObject<SimpleCraftingRecipeSerializer<PixelCompactingRecipe>> PIXEL_COMPACTING = DEF_REG.register("elytra_wing_glow_recipe", () -> new SimpleCraftingRecipeSerializer<>(PixelCompactingRecipe::new));
-
-
 	public static void register(IEventBus bus) {
 		SERIALIZERS.register(bus);
-		DEF_REG.register(bus);
+		ForgeRegistries.RECIPE_SERIALIZERS.register(PixelsOfMc.MOD_ID + ":pixel_decompacting", PixelDecompactingRecipe.SERIALIZER);
+		ForgeRegistries.RECIPE_SERIALIZERS.register(PixelsOfMc.MOD_ID + ":pixel_compacting", PixelCompactingRecipe.SERIALIZER);
 	}
 }
