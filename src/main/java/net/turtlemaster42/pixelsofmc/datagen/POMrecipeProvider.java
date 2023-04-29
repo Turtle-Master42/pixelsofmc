@@ -485,13 +485,13 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //pixel splitter
-        PixelSplitting(Items.GOLD_NUGGET, POMitems.PIXEL.get(), 6, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), 56, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_NUGGET, POMitems.PIXEL.get(), "Au (Gold)",  6, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), "Au (Gold)",56, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_BLOCK, POMitems.PIXEL_PILE.get(), "Au (Gold)",64, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
 
-        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), 6, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), 56, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), 64, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), "Fe (Iron)",6, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), "Fe (Iron)",56, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), "Fe (Iron)",64, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
 
 
 
@@ -748,8 +748,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
 
-    private void PixelSplitting(ItemLike ingredient, ItemLike output, int count, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
-        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), r,g,b)
+    private void PixelSplitting(ItemLike ingredient, ItemLike output, String structure, int count, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
+        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), structure, r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

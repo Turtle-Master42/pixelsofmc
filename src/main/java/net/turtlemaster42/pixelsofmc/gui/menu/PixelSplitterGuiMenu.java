@@ -11,13 +11,11 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModRestrictedSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final PixelSplitterTile blockEntity;
@@ -43,7 +41,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
             this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
             this.addSlot(new ModResultSlot(handler, 2, 125, 41));
-            this.addSlot(new ModRestrictedSlot(handler, 1, 80, 18, POMitems.TITANIUM_CIRCLE_SAW));
+            this.addSlot(new ModTagRestrictedSlot(handler, 1, 80, 18, () -> POMtags.Items.CIRCLE_SAW));
             this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
         });
 

@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.item.Pixel;
 public class PixelCompactingRecipe extends CustomRecipe {
     public static final SimpleCraftingRecipeSerializer<?> SERIALIZER = new SimpleCraftingRecipeSerializer<>(PixelCompactingRecipe::new);
     private final int[] inColor = new int[3];
+    public String text = "";
 
     public PixelCompactingRecipe(ResourceLocation pId, CraftingBookCategory pCategory) {
         super(pId, pCategory);
@@ -35,19 +36,24 @@ public class PixelCompactingRecipe extends CustomRecipe {
             air[i] = false;
             if (pContainer.getItem(i).getItem() == POMitems.PIXEL.get()) {
                 int[] color = new int[3];
+                String text;
                 color[0] = getColor(pContainer.getItem(i), 0);
                 color[1] = getColor(pContainer.getItem(i), 1);
                 color[2] = getColor(pContainer.getItem(i), 2);
-
+                text = getTooltip(pContainer.getItem(i));
                 if (!inColored) {
                     inColored = true;
                     inColor[0] = color[0];
                     inColor[1] = color[1];
                     inColor[2] = color[2];
+                    this.text = text;
                 }
 
-                if (color[0] == inColor[0] && color[1] == inColor[1] && color[2] == inColor[2]) match[i] = true;
-            } else if (pContainer.getItem(i).isEmpty() && !hasAir) {air[i] = true; hasAir = true;}
+                if (color[0] == inColor[0] && color[1] == inColor[1] && color[2] == inColor[2] && text == this.text) match[i] = true;
+            } else if (pContainer.getItem(i).isEmpty() && !hasAir) {
+                air[i] = true;
+                hasAir = true;
+            }
         }
 
         for (int i = 0; i < 9; i++) {
@@ -61,6 +67,12 @@ public class PixelCompactingRecipe extends CustomRecipe {
         CompoundTag compoundtag = stack.getTagElement("display");
         return compoundtag != null && compoundtag.contains("color"+index, 99) ? compoundtag.getInt("color"+index) : 0;
     }
+    public String getTooltip(ItemStack stack) {
+        CompoundTag tag = stack.getTagElement("structure");
+        if (tag != null)
+            return tag.getString("text");
+        return "";
+    }
     @Override
     public ItemStack assemble(CraftingContainer pContainer) {
         ItemStack out = POMitems.PIXEL_PILE.get().getDefaultInstance();
@@ -68,6 +80,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
         Pixel.setColor(out, inColor[0], 0);
         Pixel.setColor(out, inColor[1], 1);
         Pixel.setColor(out, inColor[2], 2);
+        Pixel.setTooltip(out, text);
 
         return out;
     }

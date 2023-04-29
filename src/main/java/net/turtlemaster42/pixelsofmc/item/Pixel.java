@@ -1,14 +1,20 @@
 package net.turtlemaster42.pixelsofmc.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.DyeItem;
-import net.minecraft.world.item.DyeableLeatherItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentContents;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Pixel extends Item implements DyeableLeatherItem {
+
     public Pixel(Item.Properties properties) {super(properties);}
 
     public int getColor(ItemStack stack) {
@@ -29,7 +35,21 @@ public class Pixel extends Item implements DyeableLeatherItem {
         pStack.getOrCreateTagElement("display").putInt("color"+index, pColor);
     }
 
-    public static ItemStack dyeArmor(ItemStack pStack, List<DyeItem> pDyes) {
-        return pStack;
+    public static void setTooltip(ItemStack stack, String tooltip) {
+        stack.getOrCreateTagElement("structure").putString("text", tooltip);
+    }
+    public String getTooltip(ItemStack stack) {
+        CompoundTag tag = stack.getTagElement("structure");
+        if (tag != null)
+            return tag.getString("text");
+        return "";
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+
+        if (!getTooltip(pStack).isEmpty())
+            pTooltipComponents.add(Component.literal(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
     }
 }

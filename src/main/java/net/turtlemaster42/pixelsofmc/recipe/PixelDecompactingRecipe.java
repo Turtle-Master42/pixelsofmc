@@ -16,6 +16,7 @@ import net.turtlemaster42.pixelsofmc.item.Pixel;
 public class PixelDecompactingRecipe extends CustomRecipe {
     public static final SimpleCraftingRecipeSerializer<?> SERIALIZER = new SimpleCraftingRecipeSerializer<>(PixelDecompactingRecipe::new);
     private final int[] inColor = new int[3];
+    private String text = "";
 
     public PixelDecompactingRecipe(ResourceLocation pId, CraftingBookCategory pCategory) {
         super(pId, pCategory);
@@ -35,6 +36,7 @@ public class PixelDecompactingRecipe extends CustomRecipe {
                 inColor[0] = getColor(pContainer.getItem(i), 0);
                 inColor[1] = getColor(pContainer.getItem(i), 1);
                 inColor[2] = getColor(pContainer.getItem(i), 2);
+                text = getTooltip(pContainer.getItem(i));
                 match[i] = true;
                 hasInput = true;
             } else if (pContainer.getItem(i).isEmpty()) {air[i] = true;}
@@ -51,6 +53,12 @@ public class PixelDecompactingRecipe extends CustomRecipe {
         CompoundTag compoundtag = stack.getTagElement("display");
         return compoundtag != null && compoundtag.contains("color"+index, 99) ? compoundtag.getInt("color"+index) : 0;
     }
+    public String getTooltip(ItemStack stack) {
+        CompoundTag tag = stack.getTagElement("structure");
+        if (tag != null)
+            return tag.getString("text");
+        return "";
+    }
     @Override
     public ItemStack assemble(CraftingContainer pContainer) {
         ItemStack out = POMitems.PIXEL.get().getDefaultInstance();
@@ -58,6 +66,7 @@ public class PixelDecompactingRecipe extends CustomRecipe {
         Pixel.setColor(out, inColor[0], 0);
         Pixel.setColor(out, inColor[1], 1);
         Pixel.setColor(out, inColor[2], 2);
+        Pixel.setTooltip(out, text);
         out.setCount(8);
 
         return out;

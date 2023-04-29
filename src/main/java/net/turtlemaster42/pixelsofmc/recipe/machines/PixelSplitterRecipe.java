@@ -2,14 +2,16 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
@@ -20,19 +22,21 @@ import java.util.Objects;
 public class PixelSplitterRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final CountedIngredient output;
+    private final String structure;
     private final int[] R;
     private final int[] G;
     private final int[] B;
     private final CountedIngredient recipeItem;
 
     public PixelSplitterRecipe(ResourceLocation id, CountedIngredient output, int[] R, int[] G, int[] B,
-                               CountedIngredient recipeItem) {
+                               CountedIngredient recipeItem, String structure) {
         this.id = id;
         this.output = output;
         this.R = R;
         this.G = G;
         this.B = B;
         this.recipeItem = recipeItem;
+        this.structure = structure;
     }
 
     @Override
@@ -50,7 +54,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
     @Override
     public ItemStack getResultItem() {
-        return output.getItems()[0].copy();
+        return output.getItems()[0];
     }
 
     public Color getColor(int index) {
@@ -63,6 +67,8 @@ public class PixelSplitterRecipe extends BaseRecipe {
         else if (Objects.equals(rgb, "B")) return B[index];
         return 0;
     }
+
+    public String getStructure() {return structure;}
 
     @Override
     public ResourceLocation getId() {
@@ -105,10 +111,10 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 g[i] = Colors.get(i).getAsJsonObject().get("G").getAsInt();
                 b[i] = Colors.get(i).getAsJsonObject().get("B").getAsInt();
             }
-
+            String structure = GsonHelper.getAsString(json, "structure");
             CountedIngredient input = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"input"));
 
-            return new PixelSplitterRecipe(id, output, r, g, b, input);
+            return new PixelSplitterRecipe(id, output, r, g, b, input, structure);
         }
 
         public PixelSplitterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
@@ -122,8 +128,9 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 g[i] = buf.readInt();
                 b[i] = buf.readInt();
             }
+            String structure = buf.readUtf();
 
-            return new PixelSplitterRecipe(id, output, r, g, b, input);
+            return new PixelSplitterRecipe(id, output, r, g, b, input, structure);
         }
 
         public void toNetwork(FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
@@ -137,6 +144,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 buf.writeInt(recipe.getRGB("B", i));
             }
             buf.writeItemStack(recipe.getResultItem(), false);
+            buf.writeUtf(recipe.structure);
         }
 
         public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
