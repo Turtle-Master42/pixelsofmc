@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "pixelsofmc:item/redstone_layered_copper_wire"
-  }
-}

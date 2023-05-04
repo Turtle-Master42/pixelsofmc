@@ -23,8 +23,8 @@ import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.renderer.FusionCoreRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.slf4j.Logger;
 
 
@@ -73,7 +73,7 @@ public class PixelsOfMc {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         //ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
+		//ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
 
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_BLOCK.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_SOURCE.get(), RenderType.translucent());
@@ -89,9 +89,9 @@ public class PixelsOfMc {
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		//BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), RendererHotIsostaticPress::new);
+		//BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), HotIsostaticPressRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.SDS_CONTROLLER.get(), FusionCoreRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.STAR.get(), StarRenderer::new);
 	}
 
 	private void addCreative(CreativeModeTabEvent.BuildContents event) {
@@ -104,7 +104,7 @@ public class PixelsOfMc {
 			if (event.hasPermissions()) {
 				event.accept(POMitems.DEBUGUIM_INGOT);
 				event.accept(POMitems.TEST_ITEM);
-				event.accept(POMblocks.FUSION_CORE);
+				event.accept(POMblocks.STAR);
 			}
 
 			event.accept(POMblocks.SIMPLE_CASING_1);

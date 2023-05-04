@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "star_stage=1": {
+      "model": "pixelsofmc:block/machine_casing"
+    },
+    "star_stage=2": {
+      "model": "pixelsofmc:block/machine_casing"
+    },
+    "star_stage=3": {
+      "model": "pixelsofmc:block/machine_casing"
+    },
+    "star_stage=4": {
+      "model": "pixelsofmc:block/machine_casing"
+    }
+  }
+}

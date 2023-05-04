@@ -61,7 +61,7 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ITEM_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.FUSION_CORE.get(), Items.AIR);
+        this.dropOther(POMblocks.STAR.get(), Items.AIR);
 
         this.add(POMblocks.TITANIUM_ORE.get(), (block) -> createOreDrop(block, POMitems.RAW_TITANIUM.get()));
         this.add(POMblocks.DEEPSLATE_TITANIUM_ORE.get(), (block) -> createOreDrop(block, POMitems.RAW_TITANIUM.get()));

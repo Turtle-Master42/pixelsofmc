@@ -7,7 +7,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
+import net.minecraft.Util;
 import net.minecraft.client.renderer.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.mixin.client.AccessorRenderType;
@@ -16,6 +18,10 @@ import org.joml.Matrix4f;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+import static net.turtlemaster42.pixelsofmc.util.mixin.client.AccessorRenderType.create;
 
 public final class RenderHelper extends RenderType {
 
@@ -41,7 +47,7 @@ public final class RenderHelper extends RenderType {
 
     }
 
-    public static void renderStar(PoseStack ms, MultiBufferSource buffers, int color, float xScale, float yScale, float zScale, long seed) {
+    public static void renderStar(PoseStack ms, MultiBufferSource buffers, int color, float alpha, float xScale, float yScale, float zScale, long seed) {
         VertexConsumer buffer = buffers.getBuffer(STAR);
 
         float ticks = ClientTickHandler.ticksInGame + ClientTickHandler.partialTicks;
@@ -68,7 +74,7 @@ public final class RenderHelper extends RenderType {
             float g = ((color & 0xFF00) >> 8) / 255F;
             float b = (color & 0xFF) / 255F;
             Matrix4f mat = ms.last().pose();
-            Runnable center = () -> buffer.vertex(mat, 0, 0, 0).color(r, g, b, f1).endVertex();
+            Runnable center = () -> buffer.vertex(mat, 0, 0, 0).color(r, g, b, alpha).endVertex();
             Runnable[] vertices = {
                     () -> buffer.vertex(mat, -0.866F * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex(),
                     () -> buffer.vertex(mat, 0.866F * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex(),

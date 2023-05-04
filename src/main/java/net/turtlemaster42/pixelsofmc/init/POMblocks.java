@@ -1,8 +1,6 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
@@ -26,15 +24,11 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
-import net.turtlemaster42.pixelsofmc.item.AtomItem;
-import net.turtlemaster42.pixelsofmc.item.ElementItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static net.minecraft.Util.make;
@@ -110,8 +104,8 @@ public class POMblocks {
             () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()));
 
-    public static final RegistryObject<Block> FUSION_CORE = registerBlock("fusion_core",
-            () -> new FusionCore(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+    public static final RegistryObject<Block> STAR = registerBlock("star",
+            () -> new StarBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()));
 
 

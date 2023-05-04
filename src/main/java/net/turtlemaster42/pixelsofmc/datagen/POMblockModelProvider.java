@@ -63,6 +63,9 @@ public class POMblockModelProvider extends BlockStateProvider {
     private void blockWithItem(POMblocks.BlockRegObject<? extends Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
+    private void block(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
 
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];

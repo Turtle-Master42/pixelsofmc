@@ -26,10 +26,8 @@ public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplit
                 .getZ();
 
         if (pBlockEntity.getBlockState().getValue(BlockStateProperties.LIT)) {
-            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFF0000, 0.25f, 0.25f, 0.25f, seed);
-            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFF0000, 0.25f, 0.25f, 0.25f, seed);
-            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFFA600, 0.35f, 0.35f, 0.35f, seed + 11);
-            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFFA600, 0.35f, 0.35f, 0.35f, seed + 11);
+            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFF0000, 1, 0.25f, 0.25f, 0.25f, seed);
+            RenderHelper.renderStar(pPoseStack, pBufferSource, 0xFFA600, 1, 0.35f, 0.35f, 0.35f, seed + 11);
         }
         pPoseStack.popPose();
     }
