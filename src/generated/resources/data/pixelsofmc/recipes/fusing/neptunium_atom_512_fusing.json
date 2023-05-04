@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 744,
+  "neutron": 744,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neptunium_atom_512"
+    }
+  },
+  "proton": 744
+}

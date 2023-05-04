@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 232,
+  "neutron": 232,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:copper_atom_512"
+    }
+  },
+  "proton": 232
+}

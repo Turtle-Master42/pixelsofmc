@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 2500,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "max_heat": 4000,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:plate_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:netherite_plating"
+    }
+  }
+}

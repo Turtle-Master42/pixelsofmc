@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 456,
+  "neutron": 456,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lanthanum_atom_512"
+    }
+  },
+  "proton": 456
+}

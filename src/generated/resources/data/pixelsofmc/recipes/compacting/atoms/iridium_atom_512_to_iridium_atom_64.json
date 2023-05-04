@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:iridium_atom_512"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "pixelsofmc:iridium_atom_64"
+  }
+}

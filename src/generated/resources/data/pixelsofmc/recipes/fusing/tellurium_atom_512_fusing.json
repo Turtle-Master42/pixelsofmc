@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 416,
+  "neutron": 416,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tellurium_atom_512"
+    }
+  },
+  "proton": 416
+}

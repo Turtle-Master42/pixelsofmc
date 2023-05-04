@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 216,
+  "neutron": 216,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cobalt_atom_512"
+    }
+  },
+  "proton": 216
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:ytterbium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:ytterbium_atom_512"
+  }
+}

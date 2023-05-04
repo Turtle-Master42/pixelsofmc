@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:nuggets/titanium"
+    },
+    "B": {
+      "tag": "forge:nuggets/copper"
+    },
+    "C": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:ender_sensor"
+  }
+}

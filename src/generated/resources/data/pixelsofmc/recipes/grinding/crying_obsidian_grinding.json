@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:crying_obsidian"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:obsidian_dust"
+      }
+    },
+    {
+      "chance": 0.7,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:crying_obsidian_dust"
+      }
+    }
+  ]
+}

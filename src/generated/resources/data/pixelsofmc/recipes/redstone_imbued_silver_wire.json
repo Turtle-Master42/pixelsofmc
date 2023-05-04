@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:silver_wire"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BCB",
+    " B "
+  ],
+  "result": {
+    "item": "pixelsofmc:redstone_imbued_silver_wire"
+  }
+}

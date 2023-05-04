@@ -1,0 +1,28 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_4"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:ancient_debris_dust"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:netherite_dust"
+    }
+  }
+}

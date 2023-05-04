@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:bio_compound"
+    },
+    {
+      "item": "pixelsofmc:bio_compound"
+    },
+    {
+      "item": "minecraft:chorus_flower"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:popped_chorus_fruit"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "pixelsofmc:repelling_compound"
+  }
+}

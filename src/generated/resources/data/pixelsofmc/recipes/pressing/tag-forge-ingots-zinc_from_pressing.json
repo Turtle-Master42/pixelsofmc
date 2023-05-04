@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 693,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/zinc"
+    }
+  },
+  "max_heat": 1180,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/zinc"
+    }
+  }
+}

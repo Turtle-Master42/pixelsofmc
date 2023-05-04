@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:piston"
+    },
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:titanium_plating"
+    },
+    "D": {
+      "item": "pixelsofmc:simple_casing_1"
+    },
+    "E": {
+      "item": "pixelsofmc:perfected_casing_1"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    }
+  },
+  "pattern": [
+    "CDC",
+    "ADA",
+    "BEF"
+  ],
+  "result": {
+    "item": "pixelsofmc:hot_isostatic_press"
+  }
+}

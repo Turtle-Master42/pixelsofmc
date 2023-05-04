@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:basalt"
+  },
+  "outputs": [
+    {
+      "chance": 0.7,
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/iron"
+      }
+    },
+    {
+      "chance": 0.1,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:raw_copper"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.1,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:sulfur_dust"
+      }
+    }
+  ]
+}

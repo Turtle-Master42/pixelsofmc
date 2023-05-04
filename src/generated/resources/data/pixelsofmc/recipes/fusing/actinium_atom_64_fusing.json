@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 89,
+  "neutron": 89,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:actinium_atom_64"
+    }
+  },
+  "proton": 89
+}

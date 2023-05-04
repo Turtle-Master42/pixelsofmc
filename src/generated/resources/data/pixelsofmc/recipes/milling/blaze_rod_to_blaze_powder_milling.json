@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_3"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:blaze_rod"
+      }
+    }
+  ],
+  "output": {
+    "count": 3,
+    "ingredient": {
+      "item": "minecraft:blaze_powder"
+    }
+  }
+}

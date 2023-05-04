@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 3,
+  "neutron": 3,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lithium_atom_64"
+    }
+  },
+  "proton": 3
+}

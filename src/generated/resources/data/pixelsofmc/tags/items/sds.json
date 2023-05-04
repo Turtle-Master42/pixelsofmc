@@ -1,0 +1,22 @@
+{
+  "values": [
+    "pixelsofmc:lithium_atom_64",
+    "pixelsofmc:lithium_atom_512",
+    "pixelsofmc:beryllium_atom_64",
+    "pixelsofmc:beryllium_atom_512",
+    "pixelsofmc:boron_atom_64",
+    "pixelsofmc:boron_atom_512",
+    "pixelsofmc:carbon_atom_64",
+    "pixelsofmc:carbon_atom_512",
+    "pixelsofmc:nitrogen_atom_64",
+    "pixelsofmc:nitrogen_atom_512",
+    "pixelsofmc:strontium_atom_64",
+    "pixelsofmc:strontium_atom_512",
+    "pixelsofmc:yttrium_atom_64",
+    "pixelsofmc:yttrium_atom_512",
+    "pixelsofmc:zirconium_atom_64",
+    "pixelsofmc:zirconium_atom_512",
+    "pixelsofmc:niobium_atom_64",
+    "pixelsofmc:niobium_atom_512"
+  ]
+}

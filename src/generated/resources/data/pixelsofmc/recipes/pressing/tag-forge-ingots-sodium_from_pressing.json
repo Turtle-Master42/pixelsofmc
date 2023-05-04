@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 370,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/sodium"
+    }
+  },
+  "max_heat": 1156,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/sodium"
+    }
+  }
+}

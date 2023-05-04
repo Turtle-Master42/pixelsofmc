@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 250,
+  "input": {
+    "count": 4,
+    "ingredient": {
+      "item": "pixelsofmc:crying_obsidian_dust"
+    }
+  },
+  "max_heat": 700,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  }
+}

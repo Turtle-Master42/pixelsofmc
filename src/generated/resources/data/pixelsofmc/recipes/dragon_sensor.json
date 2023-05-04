@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_nugget"
+    },
+    "B": {
+      "item": "pixelsofmc:silver_nugget"
+    },
+    "C": {
+      "item": "pixelsofmc:dragon_eye"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:dragon_sensor"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 40,
+  "neutron": 40,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:zirconium_atom_64"
+    }
+  },
+  "proton": 40
+}

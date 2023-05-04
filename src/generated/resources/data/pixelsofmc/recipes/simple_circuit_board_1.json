@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic"
+    },
+    "B": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:copper_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:micro_chip"
+    },
+    "E": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "pattern": [
+    "EDE",
+    "AAA",
+    "BCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:simple_circuit_board_1"
+  }
+}
