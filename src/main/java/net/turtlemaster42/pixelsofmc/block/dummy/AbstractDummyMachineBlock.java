@@ -6,8 +6,10 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.chunk.RenderChunkRegion;
 import net.minecraft.commands.arguments.ParticleArgument;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
@@ -126,6 +128,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         if (mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
             pLevel.removeBlock(pPos, false);
             pLevel.removeBlockEntity(pPos);
+            ((ServerLevel)pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.ANVIL.defaultBlockState()), pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5, 20, 0.3f, 0.3f, 0.3f, 0.05d);
         }
     }
 
@@ -140,7 +143,12 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
                 popResource(pLevel, pPos, pLevel.getBlockState(mainPos).getBlock().getCloneItemStack(pLevel, mainPos, mainState));
             }
             pLevel.destroyBlock(mainPos, false);
+            ((ServerLevel)pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.ANVIL.defaultBlockState()), pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5, 20, 0.3f, 0.3f, 0.3f, 0.05d);
         }
+    }
+
+
+    public void test(Level level) {
     }
 
     //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);

@@ -36,15 +36,6 @@ import static net.minecraft.Util.make;
 public class POMblocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
 
-    public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
-    public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
-
-
-
     public static final RegistryObject<Block> DEEPSLATE_TITANIUM_ORE = registerBlock("deepslate_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE)
                     .strength(5.5f, 6f).requiresCorrectToolForDrops()));
@@ -100,10 +91,6 @@ public class POMblocks {
 
 
 
-    public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
-            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()));
-
     public static final RegistryObject<Block> STAR = registerBlock("star",
             () -> new StarBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()));
@@ -124,6 +111,28 @@ public class POMblocks {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
     public static final RegistryObject<RotatedPillarBlock> TUNGSTEN_SPOOL = registerBlock("tungsten_spool",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
+
+
+
+
+    public static final RegistryObject<AbstractFusionCasing> REINFORCED_GLASS = registerBlock("reinforced_glass",
+            () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion()));
+
+    public static final RegistryObject<AbstractMultiBlock> REINFORCED_THING = registerBlock("reinforced_thing",
+            () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())));
+
+    public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
+    public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
+            () -> new AbstractFusionCasing(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
+                    .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
+
+
+    public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
+            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())
+                    .noOcclusion()));
+
 
     public static final class Metals {
         public static final Map<Element, BlockRegObject<BaseBlock>> BLOCKS = new EnumMap<>(Element.class);

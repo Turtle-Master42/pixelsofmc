@@ -3,6 +3,8 @@ package net.turtlemaster42.pixelsofmc.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.AbstractFusionCasing;
+import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -42,6 +44,9 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.STRONG_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
+        multiBlockWithItem(POMblocks.REINFORCED_GLASS);
+        multiBlockWithItem(POMblocks.REINFORCED_THING);
+
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());
         logBlock(POMblocks.TUNGSTEN_SPOOL.get());
@@ -63,6 +68,10 @@ public class POMblockModelProvider extends BlockStateProvider {
     private void blockWithItem(POMblocks.BlockRegObject<? extends Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
+    private void multiBlockWithItem(RegistryObject<? extends AbstractMultiBlock> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+
     private void block(RegistryObject<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }

@@ -31,20 +31,20 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
         pPoseStack.translate(0.5f, 0.5F, 0.5F);
         int seed = pBlockEntity.getBlockPos().getX() + pBlockEntity.getBlockPos().getY() + pBlockEntity.getBlockPos().getZ();
         //renderToBuffer(PoseStack, VertexConsumer, light, colorOverlay?, red, green, blue, ?)
-        if (pBlockEntity.getBlockState().getValue(StarBlock.INT_4) == 4) {
+        if (pBlockEntity.getBlockState().getValue(StarBlock.STAR_STAGE) == 4) {
             MODEL.renderBlackHole(pBlockEntity, pPartialTick);
             MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(HOLE, false)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin((pBlockEntity.ticksExisted + pPartialTick) / 32) * 0.05f + 0.08f;
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xff84f6, 0.9f, 0.02f, scale + 0.05f, 0.02f, seed + 11);
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xc349fc, 0.9f, 0.03f, scale + 0.07f, 0.03f, seed + 11);
-        } else if (pBlockEntity.getBlockState().getValue(StarBlock.INT_4) == 3) {
+        } else if (pBlockEntity.getBlockState().getValue(StarBlock.STAR_STAGE) == 3) {
             MODEL.renderNeutronStar(pBlockEntity, pPartialTick);
             MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(NEUTRON, false)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin((pBlockEntity.ticksExisted + pPartialTick) / 32) * 0.02f + 0.08f;
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xccfbfc, 0.7f, scale, scale, scale, seed);
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0x75f5ff, 0.8f, scale + 0.03f, scale + 0.01f, scale + 0.03f, seed + 11);
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0x00edff, 1f, 0.04f, scale + 0.11f, 0.04f, seed + 11);
-        } else if (pBlockEntity.getBlockState().getValue(StarBlock.INT_4) == 2) {
+        } else if (pBlockEntity.getBlockState().getValue(StarBlock.STAR_STAGE) == 2) {
             MODEL.renderBigStar(pBlockEntity, pPartialTick);
             MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(BIG, false)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin((pBlockEntity.ticksExisted + pPartialTick) / 32) * 0.02f + 0.15f;

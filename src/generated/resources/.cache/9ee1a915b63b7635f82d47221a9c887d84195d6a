@@ -1,4 +1,4 @@
-// 1.19.3	2023-05-03T12:15:06.790335	Block States: pixelsofmc
+// 1.19.3	2023-05-04T12:38:58.560603	Block States: pixelsofmc
 8893accbed659f6d8412368a2e85e94731cfddd5 assets/pixelsofmc/blockstates/acanthite.json
 c1baaa085233a29262f5fd190def1c3ce08f4350 assets/pixelsofmc/blockstates/advanced_casing_1.json
 9eaafccceb5a7a7d8c2516adfcb31da8e0e2dafd assets/pixelsofmc/blockstates/copper_spool.json
@@ -7,6 +7,8 @@ b577511cbb54a46e23d83bd21a5787dea6c71181 assets/pixelsofmc/blockstates/endstone_
 534fca36a091d4533149225df0afb7b680a560b5 assets/pixelsofmc/blockstates/perfected_casing_1.json
 b0aeaf7023299735510c6d49d6dda83a213a807b assets/pixelsofmc/blockstates/raw_titanium_block.json
 6df86121b31053b8489dd84b07e09cd88c455163 assets/pixelsofmc/blockstates/reinforced_casing.json
+128649edc88054c9df0d7f060f93f39b19c96d5e assets/pixelsofmc/blockstates/reinforced_glass.json
+a69d52ed303e41bd67dead5b6e7b3b212c38bab6 assets/pixelsofmc/blockstates/reinforced_thing.json
 a355b06713a63bfea411d58930222980ab046135 assets/pixelsofmc/blockstates/sand_mineral_deposit.json
 bc9d21320a3189aeba576efaaf57c33bea53a7ca assets/pixelsofmc/blockstates/silver_block.json
 db1e4154fdd7d134c006209a2d862910a82cb7d0 assets/pixelsofmc/blockstates/silver_spool.json
@@ -26,6 +28,8 @@ f7d913ba08ab615a0be8ec2ce8f71ca894b156b1 assets/pixelsofmc/models/block/endstone
 d42e27bf006e8df89d2e104216dcf73cf86c2117 assets/pixelsofmc/models/block/perfected_casing_1.json
 e789acb912e07f8913be3de1cfd2959390bbd9f7 assets/pixelsofmc/models/block/raw_titanium_block.json
 ae85552fd0ff050fee806552a4c6f8c8ab98d69c assets/pixelsofmc/models/block/reinforced_casing.json
+7aa5d90b9273576b0ee9756cc4dec3dc311d41e1 assets/pixelsofmc/models/block/reinforced_glass.json
+600d8f8461b7858cb76677e98b824b93d4a9af17 assets/pixelsofmc/models/block/reinforced_thing.json
 0cf07a3df5866d67c8e10434cd12d5779ba00386 assets/pixelsofmc/models/block/sand_mineral_deposit.json
 6ed43514382540db90046eeb278a823bdacca722 assets/pixelsofmc/models/block/silver_block.json
 4957e4f1b3116fda0954a16a9f7a6605f2514658 assets/pixelsofmc/models/block/silver_spool.json
@@ -45,6 +49,8 @@ ea58e5722c92f1207e3d30936f11eed962de39c1 assets/pixelsofmc/models/item/deepslate
 520761ef24b4d0aeeb1776ff19be8624ade405b5 assets/pixelsofmc/models/item/perfected_casing_1.json
 293fd5825d19d4736709ee91db9ec9f459069ed8 assets/pixelsofmc/models/item/raw_titanium_block.json
 2d4df738d255fb185051e5d467bc6f56de4330d3 assets/pixelsofmc/models/item/reinforced_casing.json
+d51e3556ffbdfd6eee7a79d9386fb216fb6b0962 assets/pixelsofmc/models/item/reinforced_glass.json
+c1d23f7d97814185b4252c83fae17661f5a7a54c assets/pixelsofmc/models/item/reinforced_thing.json
 7fa62b93063e1440ef797e1323f8aa5dc2d8dc26 assets/pixelsofmc/models/item/sand_mineral_deposit.json
 1894112d4b678ad38be0c4d2892968fe5068b686 assets/pixelsofmc/models/item/silver_block.json
 b926040ed4aea31cee021b6aaaa744ca94b2407c assets/pixelsofmc/models/item/simple_casing_1.json

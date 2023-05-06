@@ -20,6 +20,12 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> MACHINE_ITEM_BLOCK =
 			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<AbstractMultiBlockTile>> MULTIBLOCK =
+			TILES.register("multiblock", () -> BlockEntityType.Builder.of(AbstractMultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.REINFORCED_THING.get(), POMblocks.REINFORCED_CASING.get()).build(null));
+
+
+
+
 	public static final RegistryObject<BlockEntityType<StarTile>> STAR =
 			TILES.register("star", () -> BlockEntityType.Builder.of(StarTile::new, POMblocks.STAR.get()).build(null));
 

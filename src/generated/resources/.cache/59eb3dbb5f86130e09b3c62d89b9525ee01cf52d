@@ -1,4 +1,4 @@
-// 1.19.3	2023-05-03T12:15:06.772262	Loot Tables
+// 1.19.3	2023-05-04T12:38:58.557131	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
@@ -19,6 +19,8 @@ caf6a894b3eca41253421e984b4f19dd715be5b8 data/pixelsofmc/loot_tables/blocks/grin
 8b73d380fc1573730c7bcc85cb5e0545b5f1c59b data/pixelsofmc/loot_tables/blocks/pixel_splitter.json
 899a2001ff745824d195a07df77ab452115a06b3 data/pixelsofmc/loot_tables/blocks/raw_titanium_block.json
 2dc99ca93e3b94f14c352170c98b8ed2c634386e data/pixelsofmc/loot_tables/blocks/reinforced_casing.json
+5e8b028d6e1100296a9a897b05a368b9f60835f9 data/pixelsofmc/loot_tables/blocks/reinforced_glass.json
+e84c087ffecc76c9d9fea2423b908497abec51bf data/pixelsofmc/loot_tables/blocks/reinforced_thing.json
 0f9389f4ec067c7772c8a9cfa3afed90e589bfd8 data/pixelsofmc/loot_tables/blocks/sand_mineral_deposit.json
 4433d2525e42a5270af177a960069f0cb1931f58 data/pixelsofmc/loot_tables/blocks/sds_controller.json
 a579ffd6a3576006dc32317ccc32c87d10934544 data/pixelsofmc/loot_tables/blocks/silver_block.json

@@ -182,7 +182,7 @@ public class POMitems {
 
 	public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new Test(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> PLACE_HOLDER = ITEMS.register("place_holder", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-	public static final RegistryObject<Item> DEBUGUIM_INGOT = ITEMS.register("debugium_ingot", () -> new ElementItem(Element.DEBUGIUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+	public static final RegistryObject<Item> DEBUGUIM_INGOT = ITEMS.register("debugium_ingot", () -> new Debugium(Element.DEBUGIUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new Pixel(new Item.Properties()));
 	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new Pixel(new Item.Properties()));
 

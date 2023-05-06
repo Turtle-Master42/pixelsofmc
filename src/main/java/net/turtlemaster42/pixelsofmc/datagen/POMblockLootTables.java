@@ -53,6 +53,10 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.SILVER_SPOOL.get());
         this.dropSelf(POMblocks.TUNGSTEN_SPOOL.get());
 
+        this.dropSelf(POMblocks.REINFORCED_GLASS.get());
+        this.dropSelf(POMblocks.REINFORCED_THING.get());
+
+
         this.dropOther(POMfluids.MERCURY_BLOCK.get(), Items.AIR);
         this.dropOther(POMfluids.HYDROGEN_BLOCK.get(), Items.AIR);
         this.dropOther(POMfluids.OXYGEN_BLOCK.get(), Items.AIR);

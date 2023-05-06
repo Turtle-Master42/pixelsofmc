@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class StarBlock extends BaseEntityBlock {
 
-    public static final IntegerProperty INT_4 = IntegerProperty.create("star_stage", 1, 4);
+    public static final IntegerProperty STAR_STAGE = IntegerProperty.create("star_stage", 1, 4);
     private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
 
     public StarBlock(Properties p_49795_) {super(p_49795_);}
@@ -38,7 +38,7 @@ public class StarBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(INT_4);
+        pBuilder.add(STAR_STAGE);
     }
 
     @Override

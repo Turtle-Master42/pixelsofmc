@@ -9,6 +9,7 @@ import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -73,6 +74,25 @@ public class BigMachineBlockUtil {
             return null;
         }
     }
+
+//    public static BlockState rotateBlockStateOnDirection(Direction direction, Level level, BlockPos pos, Direction defaultDirection) {
+//        BlockState state = level.getBlockState(pos);
+//
+//        if (direction == Direction.NORTH) {
+//            if (state.rotate(level, pos, defaultDirection.));
+//
+//        } else if (direction == Direction.EAST) {
+//
+//        } else if (direction == Direction.SOUTH) {
+//
+//        } else if (direction == Direction.WEST) {
+//
+//        } else {
+//            PixelsOfMc.LOGGER.error("fail while trying to chance position");
+//            return null;
+//        }
+//    }
+
 
     public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int Xoffset, int Yoffset, int Zoffset) {
         Level level = pContext.getLevel();

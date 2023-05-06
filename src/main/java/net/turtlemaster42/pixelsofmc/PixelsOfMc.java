@@ -73,8 +73,8 @@ public class PixelsOfMc {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         //ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
-		//ItemBlockRenderTypes.setRenderLayer(POMblocks.FUSION_CORE.get(), RenderType.cutout());
 
+		ItemBlockRenderTypes.setRenderLayer(POMblocks.REINFORCED_GLASS.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_BLOCK.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLOWING.get(), RenderType.translucent());
@@ -105,6 +105,8 @@ public class PixelsOfMc {
 				event.accept(POMitems.DEBUGUIM_INGOT);
 				event.accept(POMitems.TEST_ITEM);
 				event.accept(POMblocks.STAR);
+				event.accept(POMblocks.REINFORCED_THING);
+				event.accept(POMblocks.REINFORCED_GLASS);
 			}
 
 			event.accept(POMblocks.SIMPLE_CASING_1);

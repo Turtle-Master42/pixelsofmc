@@ -61,7 +61,7 @@ public class AbstractDummyMachineBlockTile extends BlockEntity implements IDummy
         //first we check if hasClientMainPos is false, we do this so it only tries to send info to the client if
         //it hasn't received it yet. then we get the connection of the client, this is only true if the client is
         //in the actual game, so not still in the "joining game" screen, otherwise the packet doesn't go through.
-        //we the packet is send, and will be received we set hasClientMainPos to true so it won't send packets until
+        //when the packet is send and will be received, we set hasClientMainPos to true so it won't send packets until
         //it needs to.
         //we need to resend the packets every time someone logs in, luckily, hasClientMainPos will automatically revert
         //to its default state of "false" because the information is never fully stored.
