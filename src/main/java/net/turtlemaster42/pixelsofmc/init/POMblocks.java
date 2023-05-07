@@ -53,7 +53,7 @@ public class POMblocks {
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_BLOCK = registerBlock("titanium_diboride_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
 
     public static final RegistryObject<Block> ALUMINIUM_SCRAP_BLOCK = registerBlock("aluminium_scrap_block",
@@ -62,7 +62,7 @@ public class POMblocks {
 
     public static final RegistryObject<Block> SAND_MINERAL_DEPOSIT = registerBlock("sand_mineral_deposit",
             () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND).sound(SoundType.SAND)
-                    .strength(1f, 0.7F).requiresCorrectToolForDrops()));
+                    .strength(1f, 0.7F)));
 
     public static final RegistryObject<Block> ACANTHITE = registerBlock("acanthite",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops()));
@@ -116,21 +116,31 @@ public class POMblocks {
 
 
     public static final RegistryObject<AbstractFusionCasing> REINFORCED_GLASS = registerBlock("reinforced_glass",
-            () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion()));
+            () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(15f)));
 
     public static final RegistryObject<AbstractMultiBlock> REINFORCED_THING = registerBlock("reinforced_thing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())));
 
     public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
-                    .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
+                    .strength(25f, 1200f).requiresCorrectToolForDrops()), true);
     public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
             () -> new AbstractFusionCasing(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
 
 
+
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
             () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())
+                    .noOcclusion()));
+    public static final RegistryObject<Block> MDS_CONTROLLER = registerBlock("mds_controller",
+            () -> new MDSFusionControllerBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())
+                    .noOcclusion()));
+    public static final RegistryObject<Block> MNS_CONTROLLER = registerBlock("mns_controller",
+            () -> new MNSFusionControllerBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())
+                    .noOcclusion()));
+    public static final RegistryObject<Block> BH_CONTROLLER = registerBlock("bh_controller",
+            () -> new BHFusionControllerBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())
                     .noOcclusion()));
 
 
@@ -144,7 +154,7 @@ public class POMblocks {
 
                         BlockBehaviour.Properties properties = Block.Properties
                                 .of(Material.METAL, MaterialColor.METAL)
-                                .strength(15f, 6.0f)
+                                .strength(6f, 6.0f)
                                 .sound(SoundType.METAL)
                                 .requiresCorrectToolForDrops();
 

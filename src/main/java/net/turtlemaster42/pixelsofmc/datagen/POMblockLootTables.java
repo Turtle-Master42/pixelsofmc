@@ -43,6 +43,9 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.GRINDER.get());
         this.dropSelf(POMblocks.CHEMICAL_SEPERATOR.get());
         this.dropSelf(POMblocks.SDS_CONTROLLER.get());
+        this.dropSelf(POMblocks.MDS_CONTROLLER.get());
+        this.dropSelf(POMblocks.MNS_CONTROLLER.get());
+        this.dropSelf(POMblocks.BH_CONTROLLER.get());
 
         this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());

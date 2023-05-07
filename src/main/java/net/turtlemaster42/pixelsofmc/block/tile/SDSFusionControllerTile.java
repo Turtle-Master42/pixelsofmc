@@ -4,9 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,17 +13,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
-import net.turtlemaster42.pixelsofmc.item.ElementItem;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
@@ -177,12 +173,12 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         if(hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption);
-            if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
-                pState.setValue(BlockStateProperties.LIT, true);
+            if (pBlockEntity.progress > 0 && pState.getValue(SDSFusionControllerBlock.ACTIVE) != 3) {
+                pState.setValue(SDSFusionControllerBlock.ACTIVE, 3);
             }
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
-                pState.setValue(BlockStateProperties.LIT, false);
+                pState.setValue(SDSFusionControllerBlock.ACTIVE, 2);
             }
         } else {
             pBlockEntity.resetProgress();

@@ -52,7 +52,7 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
         if (!pLevel.isClientSide()) {
             AbstractMultiBlockTile tile = BigMachineBlockUtil.getTileEntity(AbstractMultiBlockTile.class, pLevel, pPos);
             BlockPos mainPos = tile.getMainPos();
-            if (pLevel.getBlockState(mainPos).getBlock() instanceof SDSFusionControllerBlock controller) {
+            if (pLevel.getBlockState(mainPos).getBlock() instanceof AbstractFusionControllerBlock controller) {
                 controller.validateMultiBlock(pLevel, mainPos);
             }
         }

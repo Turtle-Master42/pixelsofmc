@@ -44,7 +44,7 @@ public class POMtiles {
 
 
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
-			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get()).build(null));
+			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get(), POMblocks.MDS_CONTROLLER.get(), POMblocks.MNS_CONTROLLER.get(), POMblocks.BH_CONTROLLER.get()).build(null));
 
 
 

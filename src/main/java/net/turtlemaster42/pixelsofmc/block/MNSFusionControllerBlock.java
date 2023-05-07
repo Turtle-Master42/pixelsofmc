@@ -30,12 +30,12 @@ import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 
 import javax.annotation.Nullable;
 
-public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
+public class MNSFusionControllerBlock extends AbstractFusionControllerBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
 
 
-    public SDSFusionControllerBlock(Properties properties) {
+    public MNSFusionControllerBlock(Properties properties) {
         super(properties);
     }
 
@@ -151,20 +151,20 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     // --- Multi Block --- //
     @Override
     public BlockState[][][] getMultiblockStructure() {
-        return MultiBlockStructures.SDS_STRUCTURE;
+        return MultiBlockStructures.MNS_STRUCTURE;
     }
     @Override
-    public int getHeight() {return 5;}
+    public int getHeight() {return 7;}
     @Override
-    public int getWidth() {return 5;}
+    public int getWidth() {return 7;}
     @Override
-    public int getLength() {return 5;}
+    public int getLength() {return 7;}
     @Override
-    public BlockPos fusionStarPos() {return new BlockPos(2, 2, 2);}
+    public BlockPos fusionStarPos() {return new BlockPos(3, 3, 3);}
     @Override
-    public int fusionStarLevel() {return 1;}
+    public int fusionStarLevel() {return 3;}
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
-        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, 0, 1, pos);
+        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -3, 0, 1, pos);
     }
 }
