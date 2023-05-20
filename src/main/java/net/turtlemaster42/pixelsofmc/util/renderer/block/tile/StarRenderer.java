@@ -30,7 +30,7 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
         //renderToBuffer(PoseStack, VertexConsumer, light, colorOverlay?, red, green, blue, ?)
         if (pBlockEntity.getBlockState().getValue(StarBlock.STAR_STAGE) == 4) {
             MODEL.renderBlackHole(pBlockEntity, pPartialTick);
-            MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.beaconBeam(HOLE, false)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
+            MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderHelper.plasmaShine(HOLE)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin((pBlockEntity.ticksExisted + pPartialTick) / 32) * 0.05f + 0.08f;
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xff84f6, 0.9f, 0.02f, scale + 0.05f, 0.02f, seed + 11);
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xc349fc, 0.9f, 0.03f, scale + 0.07f, 0.03f, seed + 11);

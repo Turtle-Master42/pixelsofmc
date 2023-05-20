@@ -50,6 +50,6 @@ public class Pixel extends Item implements DyeableLeatherItem {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
         if (!getTooltip(pStack).isEmpty())
-            pTooltipComponents.add(Component.literal(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
+            pTooltipComponents.add(Component.translatable(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
     }
 }

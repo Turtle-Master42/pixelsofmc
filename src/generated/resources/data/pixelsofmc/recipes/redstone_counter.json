@@ -3,18 +3,21 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_nugget"
+      "tag": "forge:nuggets/titanium"
     },
     "B": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "C": {
-      "item": "minecraft:redstone_block"
+      "item": "minecraft:comparator"
+    },
+    "D": {
+      "item": "minecraft:dropper"
     }
   },
   "pattern": [
     "ABA",
-    "BCB",
+    "CDD",
     "ABA"
   ],
   "result": {

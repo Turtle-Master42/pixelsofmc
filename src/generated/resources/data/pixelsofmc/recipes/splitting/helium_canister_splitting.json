@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 106,
+      "G": 179,
+      "R": 255
+    },
+    {
+      "B": 54,
+      "G": 102,
+      "R": 168
+    },
+    {
+      "B": 18,
+      "G": 49,
+      "R": 91
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:helium_canister"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.helium"
+}

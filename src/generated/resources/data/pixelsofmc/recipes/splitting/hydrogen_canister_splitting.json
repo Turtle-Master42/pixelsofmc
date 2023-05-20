@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 254,
+      "G": 241,
+      "R": 243
+    },
+    {
+      "B": 213,
+      "G": 202,
+      "R": 204
+    },
+    {
+      "B": 124,
+      "G": 117,
+      "R": 118
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:hydrogen_canister"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.hydrogen"
+}

@@ -106,7 +106,9 @@ public class PixelsOfMc {
 				event.accept(POMitems.TEST_ITEM);
 				event.accept(POMblocks.STAR);
 				event.accept(POMblocks.REINFORCED_THING);
-				event.accept(POMblocks.REINFORCED_GLASS);
+				event.accept(POMblocks.MDS_CONTROLLER);
+				event.accept(POMblocks.MNS_CONTROLLER);
+				event.accept(POMblocks.BH_CONTROLLER);
 			}
 
 			event.accept(POMblocks.SIMPLE_CASING_1);
@@ -114,6 +116,7 @@ public class PixelsOfMc {
 			event.accept(POMblocks.PERFECTED_CASING_1);
 			event.accept(POMblocks.STRONG_CASING);
 			event.accept(POMblocks.REINFORCED_CASING);
+			event.accept(POMblocks.REINFORCED_GLASS);
 
 			event.accept(POMblocks.ENDSTONE_TITANIUM_ORE);
 			event.accept(POMblocks.ACANTHITE);
@@ -124,6 +127,16 @@ public class PixelsOfMc {
 					event.accept(m.block());
 			}
 			event.accept(POMblocks.TITANIUM_DIBORIDE_BLOCK);
+
+			event.accept(POMblocks.TITANIUM_PLATING_BLOCK);
+			event.accept(POMblocks.TITANIUM_PLATING_STAIRS);
+			event.accept(POMblocks.TITANIUM_PLATING_SLAB);
+			event.accept(POMblocks.NETHERITE_PLATING_BLOCK);
+			event.accept(POMblocks.NETHERITE_PLATING_STAIRS);
+			event.accept(POMblocks.NETHERITE_PLATING_SLAB);
+			event.accept(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK);
+			event.accept(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS);
+			event.accept(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB);
 
 			event.accept(POMblocks.ALUMINIUM_SCRAP_BLOCK);
 			event.accept(POMblocks.RAW_TITANIUM_BLOCK);
@@ -179,6 +192,8 @@ public class PixelsOfMc {
 			event.accept(POMitems.POWER_ORB);
 			event.accept(POMitems.MICRO_CHIP);
 			event.accept(POMitems.REDSTONE_COUNTER);
+			event.accept(POMitems.REDSTONE_TIMER);
+			event.accept(POMitems.RESONANCE_DETECTOR);
 			event.accept(POMitems.DRAGON_EYE);
 			event.accept(POMitems.VOID_EYE);
 			event.accept(POMitems.ENDER_SENSOR);

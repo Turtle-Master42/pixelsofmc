@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractFusionCasing;
@@ -25,7 +26,7 @@ public class POMblockModelProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        for(Element m : Element.values()) {
+        for (Element m : Element.values()) {
             if (m.shouldAddBlock())
                 blockWithItem(POMblocks.Metals.BLOCKS.get(m));
         }
@@ -46,6 +47,16 @@ public class POMblockModelProvider extends BlockStateProvider {
 
         multiBlockWithItem(POMblocks.REINFORCED_GLASS);
         multiBlockWithItem(POMblocks.REINFORCED_THING);
+
+        blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.TITANIUM_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"));
+        blockWithItem(POMblocks.NETHERITE_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.NETHERITE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
+        stairsBlock((StairBlock) POMblocks.NETHERITE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
+        blockWithItem(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
 
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());
@@ -68,6 +79,7 @@ public class POMblockModelProvider extends BlockStateProvider {
     private void blockWithItem(POMblocks.BlockRegObject<? extends Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
+
     private void multiBlockWithItem(RegistryObject<? extends AbstractMultiBlock> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
@@ -75,6 +87,13 @@ public class POMblockModelProvider extends BlockStateProvider {
     private void block(RegistryObject<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
+
+//    private void blockSlabStairSetWithItem(RegistryObject<Block> block, RegistryObject<Block> stair, RegistryObject<Block> slab, String location) {
+//        blockWithItem(block);
+//        slabBlock((SlabBlock) slab.get(), new ResourceLocation(PixelsOfMc.MOD_ID, location), new ResourceLocation(PixelsOfMc.MOD_ID, location));
+//        stairsBlock((StairBlock) stair.get(), new ResourceLocation(PixelsOfMc.MOD_ID, location));
+//        simpleBlockItem(stair.get(), );
+//    }
 
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];

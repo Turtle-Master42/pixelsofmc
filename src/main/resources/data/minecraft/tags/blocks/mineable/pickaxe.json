@@ -6,10 +6,7 @@
     "pixelsofmc:endstone_titanium_ore",
     "pixelsofmc:titanium_block",
     "pixelsofmc:raw_titanium_block",
-    "pixelsofmc:pixel_splitter",
     "pixelsofmc:titanium_diboride_block",
-    "pixelsofmc:ball_mill",
-    "pixelsofmc:grinder",
     "pixelsofmc:machine_block",
     "pixelsofmc:machine_energy_block",
     "pixelsofmc:machine_item_block",
@@ -18,8 +15,35 @@
     "pixelsofmc:perfected_casing_1",
     "pixelsofmc:strong_casing",
     "pixelsofmc:reinforced_casing",
-    "pixelsofmc:hot_isostatic_press",
     "pixelsofmc:acanthite",
-    "pixelsofmc:sds_controller"
+    "pixelsofmc:aluminium_scrap_block",
+    "pixelsofmc:copper_spool",
+    "pixelsofmc:silver_spool",
+    "pixelsofmc:tungsten_spool",
+    "pixelsofmc:reinforced_glass",
+    "pixelsofmc:reinforced_thing",
+
+    "pixelsofmc:titanium_plating_block",
+    "pixelsofmc:titanium_plating_slab",
+    "pixelsofmc:titanium_plating_stairs",
+    "pixelsofmc:netherite_plating_block",
+    "pixelsofmc:netherite_plating_slab",
+    "pixelsofmc:netherite_plating_stairs",
+    "pixelsofmc:titanium_diboride_plating_block",
+    "pixelsofmc:titanium_diboride_plating_slab",
+    "pixelsofmc:titanium_diboride_plating_stairs",
+
+    "pixelsofmc:silver_block",
+    "pixelsofmc:tungsten_block",
+
+    "pixelsofmc:pixel_splitter",
+    "pixelsofmc:ball_mill",
+    "pixelsofmc:grinder",
+    "pixelsofmc:hot_isostatic_press",
+    "pixelsofmc:chemical_seperator",
+    "pixelsofmc:sds_controller",
+    "pixelsofmc:mds_controller",
+    "pixelsofmc:mns_controller",
+    "pixelsofmc:bh_controller"
   ]
 }

@@ -1,0 +1,47 @@
+{
+	"parent": "block/block",
+	"loader": "forge:obj",
+	"flip_v": true,
+	"model": "pixelsofmc:models/block/mds_controller/mds_controller.obj",
+	"textures": {
+		"0": "pixelsofmc:block/mds_controller",
+		"particle": "pixelsofmc:block/mds_controller"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [50, 90, 0],
+			"translation": [0, 6.25, -3.0],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [50, 90, 0],
+			"translation": [0, 6.25, -3.0],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"firstperson_righthand": {
+			"rotation": [14, 155, 0],
+			"translation": [0, 3.25, 2.25],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"firstperson_lefthand": {
+			"rotation": [14, 155, 0],
+			"translation": [0, 3.25, 2.25],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"ground": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [40, 140, 0],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"head": {
+			"translation": [0, 12.9, -0.92],
+			"scale": [0.81, 0.81, 0.91]
+		},
+		"fixed": {
+			"translation": [0, 0, -1.25],
+			"scale": [0.2, 0.2, 0.2]
+		}
+	}
+}

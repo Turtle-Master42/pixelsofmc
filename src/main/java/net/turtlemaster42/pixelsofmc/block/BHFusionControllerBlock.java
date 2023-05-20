@@ -41,10 +41,21 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
     }
 
     private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, 2, 32, 11, 16), //base
-            box(-16, 10, 4, 32, 13, 16), //first slope
-            box(-16, 12, 8, 32, 15, 16), //second slope
-            box(-16, 14, 12, 32, 17, 16) //third slope
+            box(-32, 0, 2, 48, 11, 16), //base
+            box(34, 0, -16, 48, 11, 2), //base left
+            box(-32, 0, -16, -18, 11, 2), //base right
+
+            box(-32, 10, 4, 48, 13, 16), //first slope
+            box(-32, 12, 8, 48, 15, 16), //second slope
+            box(-32, 14, 12, 48, 17, 16), //third slope
+
+            box(36, 10, -16, 48, 13, 16), //first slope left
+            box(40, 12, -16, 48, 15, 16), //second slope left
+            box(44, 14, -16, 48, 17, 16), //third slope left
+
+            box(-32, 10, -16, -20, 13, 16), //first slope right
+            box(-32, 12, -16, -24, 15, 16), //second slope right
+            box(-32, 14, -16, -28, 17, 16) //third slope right
     );
 
     @Override
@@ -86,7 +97,13 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
         BlockPos blockpos = pContext.getClickedPos();
         Level level = pContext.getLevel();
         if (BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 0, 0) &&
-                BigMachineBlockUtil.BigMachinePlacement(pContext, -1, 0, 0)
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 1, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, -1) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, -1, 0, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, -2, 0, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 1, 0) &&
+                BigMachineBlockUtil.BigMachinePlacement(pContext, -2, 0, -1)
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, 1);
         } else {
@@ -131,7 +148,13 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
 
             //these are the location based on the default (NORTH) direction, they get turned automatically
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,2, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,2, 1, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,2, 0, -1, MACHINE_BLOCK, pPos);
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-2, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-2, 1, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-2, 0, -1, MACHINE_BLOCK, pPos);
         }
     }
 
@@ -145,6 +168,7 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if (pState.getValue(ACTIVE).equals(1)) return null;
         return createTickerHelper(pBlockEntityType, POMtiles.SDS_CONTROLLER.get(),
                 pLevel.isClientSide ? SDSFusionControllerTile::clientTick : SDSFusionControllerTile::serverTick);
     }

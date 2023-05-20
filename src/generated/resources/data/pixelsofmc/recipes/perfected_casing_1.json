@@ -9,7 +9,7 @@
       "item": "pixelsofmc:titanium_plating"
     },
     "C": {
-      "item": "minecraft:diamond_block"
+      "tag": "forge:storage_blocks/diamond"
     },
     "D": {
       "item": "pixelsofmc:advanced_circuit_board_1"

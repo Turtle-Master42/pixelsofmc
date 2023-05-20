@@ -144,6 +144,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if (pState.getValue(ACTIVE).equals(1)) return null;
         return createTickerHelper(pBlockEntityType, POMtiles.SDS_CONTROLLER.get(),
                 pLevel.isClientSide ? SDSFusionControllerTile::clientTick : SDSFusionControllerTile::serverTick);
     }

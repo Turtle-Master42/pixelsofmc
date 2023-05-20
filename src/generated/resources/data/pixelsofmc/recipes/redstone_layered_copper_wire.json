@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "C": {
       "item": "pixelsofmc:copper_wire"

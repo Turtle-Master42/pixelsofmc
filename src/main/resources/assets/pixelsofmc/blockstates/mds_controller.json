@@ -1,48 +1,48 @@
 {
   "variants": {
     "facing=north,state=1": {
-      "model": "pixelsofmc:block/sds_controller"
+      "model": "pixelsofmc:block/mds_controller/mds_controller"
     },
     "facing=east,state=1": {
-      "model": "pixelsofmc:block/sds_controller",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 90
     },
     "facing=south,state=1": {
-      "model": "pixelsofmc:block/sds_controller",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 180
     },
     "facing=west,state=1": {
-      "model": "pixelsofmc:block/sds_controller",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 270
     },
     "facing=north,state=2": {
-      "model": "pixelsofmc:block/sds_controller_constructed"
+      "model": "pixelsofmc:block/mds_controller/mds_controller"
     },
     "facing=east,state=2": {
-      "model": "pixelsofmc:block/sds_controller_constructed",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 90
     },
     "facing=south,state=2": {
-      "model": "pixelsofmc:block/sds_controller_constructed",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 180
     },
     "facing=west,state=2": {
-      "model": "pixelsofmc:block/sds_controller_constructed",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 270
     },
     "facing=north,state=3": {
-      "model": "pixelsofmc:block/sds_controller_active"
+      "model": "pixelsofmc:block/mds_controller/mds_controller"
     },
     "facing=east,state=3": {
-      "model": "pixelsofmc:block/sds_controller_active",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 90
     },
     "facing=south,state=3": {
-      "model": "pixelsofmc:block/sds_controller_active",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 180
     },
     "facing=west,state=3": {
-      "model": "pixelsofmc:block/sds_controller_active",
+      "model": "pixelsofmc:block/mds_controller/mds_controller",
       "y": 270
     }
   }

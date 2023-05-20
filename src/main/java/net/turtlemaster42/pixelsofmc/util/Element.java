@@ -9,16 +9,14 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.function.Predicate;
 
 public enum Element {
-    HYDROGEN(Type.CANISTER, new Info(14, 20, Danger.FLAMMABLE)), //pale blue flame
-    HELIUM(Type.CANISTER, new Info(1, 4)),
-    LITHIUM(new Info(454, 1603, Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
-    BERYLLIUM(new Info(1560, 2742, Danger.TOXIC)), //white flame
-    BORON(Type.CUBE, true, false, false, new Info(2349, 4200)), //green flame
+    HYDROGEN(Type.CANISTER, new Info(14, 20, "F3F1FE", "CCCAD5", "76757C", Danger.FLAMMABLE)), //pale blue flame
+    HELIUM(Type.CANISTER, new Info(1, 4, "FFB36A", "A86636", "5B3112")),
+    LITHIUM(new Info(454, 1603, "A7C09E", "5A6355", "2F352E", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
+    BERYLLIUM(new Info(1560, 2742, "B4C79D", "779355", "3B482A", Danger.TOXIC)), //white flame
+    BORON(Type.CUBE, true, false, false, new Info(2349, 4200, "3F3C4C", "262430", "1B1A1F")), //green flame
     CARBON(Type.CUBE, true, false, false, new Info(3915, 3915)), //orange flame
     NITROGEN(Type.CANISTER, new Info(63, 77)),
     OXYGEN(Type.CANISTER, new Info(54, 90)),
@@ -113,7 +111,6 @@ public enum Element {
     BERKELIUM(new Info(1251, 2900, Danger.RADIOACTIVE)),
     CALIFORNIUM(new Info(1173, 1743, Danger.RADIOACTIVE)),
     EINSTEINIUM(new Info(1133, 1269, Danger.RADIOACTIVE)),
-
     DEBUGIUM(new Info(10000, 1000000, Danger.RADIOACTIVE, Danger.TOXIC, Danger.FLAMMABLE, Danger.CORROSIVE)),
     ;
 
@@ -122,7 +119,6 @@ public enum Element {
     private final Boolean nugget;
     private final Boolean block;
     private final Type type;
-
 
     Element(Info info) {
         this.info = info;
@@ -154,7 +150,7 @@ public enum Element {
     }
 
 
-    public String tagName() {
+    public String elementName() {
         return name().toLowerCase(Locale.US);
     }
 
@@ -239,11 +235,21 @@ public enum Element {
     public static class Info {
         private int meltingPoint;
         private int evaporatingPoint;
+        private String[] color;
         Danger[] danger;
+
+
+        Info(int meltingPoint, int evaporatingPoint, String color1, String color2, String color3, Danger... danger) {
+            this.meltingPoint = meltingPoint;
+            this.evaporatingPoint = evaporatingPoint;
+            this.color = new String[]{color1, color2, color3};
+            this.danger = danger;
+        }
 
         Info(int meltingPoint, int evaporatingPoint, Danger... danger) {
             this.meltingPoint = meltingPoint;
             this.evaporatingPoint = evaporatingPoint;
+            this.color = new String[]{"000000", "000000", "000000"};
             this.danger = danger;
         }
 
@@ -281,5 +287,8 @@ public enum Element {
             }
             return false;
         }
+    }
+    public int[] hexToRGB(int index) {
+        return Util.hexToRGB(this.info.color[index]);
     }
 }

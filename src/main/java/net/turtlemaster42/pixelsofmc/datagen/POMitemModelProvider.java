@@ -55,6 +55,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.POWER_ORB);
         simpleItem(POMitems.MICRO_CHIP);
         simpleItem(POMitems.REDSTONE_COUNTER);
+        simpleItem(POMitems.REDSTONE_TIMER);
         simpleItem(POMitems.RESONANCE_DETECTOR);
         simpleItem(POMitems.DRAGON_EYE);
         simpleItem(POMitems.VOID_EYE);
@@ -138,7 +139,12 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.GRINDER);
         complexBlock(POMblocks.SDS_CONTROLLER);
 
-
+        complexBlock(POMblocks.TITANIUM_PLATING_SLAB);
+        complexBlock(POMblocks.TITANIUM_PLATING_STAIRS);
+        complexBlock(POMblocks.NETHERITE_PLATING_SLAB);
+        complexBlock(POMblocks.NETHERITE_PLATING_STAIRS);
+        complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB);
+        complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

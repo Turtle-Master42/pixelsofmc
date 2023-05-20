@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    },
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    },
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:strontium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.strontium"
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pixelsofmc:block/titanium_diboride_plating_slab"
+    },
+    "type=double": {
+      "model": "pixelsofmc:block/titanium_diboride_plating_block"
+    },
+    "type=top": {
+      "model": "pixelsofmc:block/titanium_diboride_plating_slab_top"
+    }
+  }
+}

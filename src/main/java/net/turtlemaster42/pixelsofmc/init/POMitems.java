@@ -48,6 +48,7 @@ public class POMitems {
 	public static final RegistryObject<Item> POWER_ORB = ITEMS.register("power_orb", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MICRO_CHIP = ITEMS.register("micro_chip", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REDSTONE_COUNTER = ITEMS.register("redstone_counter", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REDSTONE_TIMER = ITEMS.register("redstone_timer", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RESONANCE_DETECTOR = ITEMS.register("resonance_detector", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DRAGON_EYE = ITEMS.register("dragon_eye", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> VOID_EYE = ITEMS.register("void_eye", () -> new Item(new Item.Properties()));
@@ -147,7 +148,7 @@ public class POMitems {
 		private static void init() {
 			for(Element m : Element.values()) {
 				if (m.equals(Element.DEBUGIUM)) continue;
-				String elementName = m.tagName();
+				String elementName = m.elementName();
 				String type = m.typeName();
 				ItemRegObject<Item> atomx512;
 				ItemRegObject<Item> atomx64;

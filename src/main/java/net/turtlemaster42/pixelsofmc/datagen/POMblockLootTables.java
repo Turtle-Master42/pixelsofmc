@@ -59,6 +59,15 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.REINFORCED_GLASS.get());
         this.dropSelf(POMblocks.REINFORCED_THING.get());
 
+        this.dropSelf(POMblocks.TITANIUM_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.TITANIUM_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.TITANIUM_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.NETHERITE_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.NETHERITE_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.NETHERITE_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get());
 
         this.dropOther(POMfluids.MERCURY_BLOCK.get(), Items.AIR);
         this.dropOther(POMfluids.HYDROGEN_BLOCK.get(), Items.AIR);

@@ -18,7 +18,6 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.turtlemaster42.pixelsofmc.recipe.*;
-import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -152,7 +151,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.COPPER_WIRE.get())
                 .pattern(" B ")
                 .pattern("BCB")
@@ -160,7 +159,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_IMBUED_SILVER_WIRE.get())
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.SILVER_WIRE.get())
                 .pattern(" B ")
                 .pattern("BCB")
@@ -168,7 +167,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.RED_TUNGSTEN_WIRE.get())
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.TUNGSTEN_WIRE.get())
                 .pattern(" B ")
                 .pattern("BCB")
@@ -185,10 +184,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.MICRO_CHIP.get())
-                .define('A', POMitems.NETHERITE_NUGGET.get())
-                .define('B', Items.REDSTONE)
+                .define('A', POMtags.Items.NUGGET_NETHERITE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.FIRE_PROOF_COMPOUND.get())
-                .define('D', Items.IRON_NUGGET)
+                .define('D', Tags.Items.NUGGETS_IRON)
                 .pattern("AAA")
                 .pattern("BCB")
                 .pattern("DDD")
@@ -201,6 +200,39 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("ACA")
                 .pattern("ABA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_COUNTER.get())
+                .define('A', Element.TITANIUM.nuggetTag())
+                .define('B', Tags.Items.INGOTS_GOLD)
+                .define('C', Items.COMPARATOR)
+                .define('D', Items.DROPPER)
+                .pattern("ABA")
+                .pattern("CDD")
+                .pattern("ABA")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_TIMER.get())
+                .define('A', Items.STICKY_PISTON)
+                .define('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .define('C', Items.COMPARATOR)
+                .define('D', Items.HOPPER)
+                .define('E', POMitems.TITANIUM_DIBORIDE_PLATING.get())
+                .define('F', Tags.Items.DUSTS_REDSTONE)
+                .pattern("ABA")
+                .pattern("CDC")
+                .pattern("EFE")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.RESONANCE_DETECTOR.get())
+                .define('A', Tags.Items.DUSTS_REDSTONE)
+                .define('B', Element.SILVER.itemTag())
+                .define('C', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .define('D', Items.SCULK_SENSOR)
+                .define('E', Items.COMPARATOR)
+                .pattern("ABC")
+                .pattern("BDB")
+                .pattern("EBC")
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ENDER_SENSOR.get())
@@ -289,7 +321,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.HOT_ISOSTATIC_PRESS.get())
                 .define('A', Items.PISTON)
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.TITANIUM_PLATING.get())
                 .define('D', POMblocks.SIMPLE_CASING_1.get())
                 .define('E', POMblocks.PERFECTED_CASING_1.get())
@@ -318,7 +350,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.SIMPLE_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.COPPER_WIRE.get())
                 .define('D', POMitems.MICRO_CHIP.get())
                 .define('E', Items.GOLD_NUGGET)
@@ -329,7 +361,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ADVANCED_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
-                .define('B', Items.REDSTONE)
+                .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('D', POMitems.MICRO_CHIP.get())
                 .define('E', Element.TITANIUM.nugget())
@@ -357,9 +389,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.ADVANCED_CASING_1.get())
                 .define('A', POMblocks.SIMPLE_CASING_1.get())
-                .define('B', Items.COPPER_INGOT)
-                .define('C', Items.REDSTONE)
-                .define('D', Items.GOLD_INGOT)
+                .define('B', Tags.Items.INGOTS_COPPER)
+                .define('C', Tags.Items.DUSTS_REDSTONE)
+                .define('D', Tags.Items.INGOTS_GOLD)
                 .pattern("BCB")
                 .pattern("DAD")
                 .pattern("BCB")
@@ -368,7 +400,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.PERFECTED_CASING_1.get())
                 .define('A', POMblocks.ADVANCED_CASING_1.get())
                 .define('B', POMitems.TITANIUM_PLATING.get())
-                .define('C', Items.DIAMOND_BLOCK)
+                .define('C', Tags.Items.STORAGE_BLOCKS_DIAMOND)
                 .define('D', POMitems.ADVANCED_CIRCUIT_BOARD_1.get())
                 .pattern("BCB")
                 .pattern("DAD")
@@ -493,6 +525,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), "Fe (Iron)",56, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
         PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), "Fe (Iron)",64, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
 
+//        PixelSplitting(Element.TITANIUM.nugget(), POMitems.PIXEL.get(), "element.pixelsofmc.titanium",6, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
+//        PixelSplitting(Element.TITANIUM.item(), POMitems.PIXEL.get(), "element.pixelsofmc.titanium",56, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
+//        PixelSplitting(Element.TITANIUM.block(), POMitems.PIXEL_PILE.get(), "element.pixelsofmc.titanium",64, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
+//
 
 
         //pressing
@@ -541,7 +577,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFullCrossRecipe(POMitems.OBSIDIAN_PLATING.get(), POMitems.NETHERITE_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.REINFORCED_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), fConsumer);
-        SimpleFullCrossRecipe(Element.TITANIUM.nugget(), Items.GOLD_INGOT, Items.REDSTONE_BLOCK, POMitems.REDSTONE_COUNTER.get(), fConsumer);
         SimpleFullCrossRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMitems.TITANIUM_PLATING.get(), POMitems.TITANIUM_CIRCLE_SAW.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get(), fConsumer);
 
@@ -586,16 +621,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             SimpleAtomCompacting(m.atom64(), m.atom512(), fConsumer);
             Fusing(m, fConsumer);
 
+            if (!m.isVanilla())
+                autoPixelSplitting(m.item(), POMitems.PIXEL.get(), "element.pixelsofmc."+m.elementName(), 56, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             if (m.isMetal() && m.shouldAddDust())
                 Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
             if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
                 SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, "_from_dust");
             if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
                 Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1));
-            if (m.shouldAddNugget() && !m.equals(Element.COPPER))
+            if (m.shouldAddNugget() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.nugget()), m.item(), fConsumer);
-            if (m.shouldAddBlock())
+                autoPixelSplitting(m.nugget(), POMitems.PIXEL.get(), "element.pixelsofmc."+m.elementName(), 6, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+            }
+            if (m.shouldAddBlock() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
+                autoPixelSplitting(m.blockItem(), POMitems.PIXEL_PILE.get(), "element.pixelsofmc."+m.elementName(), 64, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+            }
         }
     }
 
@@ -750,6 +791,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void PixelSplitting(ItemLike ingredient, ItemLike output, String structure, int count, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), structure, r,g,b)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+    private void autoPixelSplitting(ItemLike ingredient, ItemLike output, String structure, int count, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
+        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

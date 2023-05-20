@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "pixelsofmc:block/titanium_diboride_plating_block"
+  }
+}

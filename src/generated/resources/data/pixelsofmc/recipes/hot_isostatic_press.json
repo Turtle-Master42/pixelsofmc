@@ -6,7 +6,7 @@
       "item": "minecraft:piston"
     },
     "B": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "C": {
       "item": "pixelsofmc:titanium_plating"

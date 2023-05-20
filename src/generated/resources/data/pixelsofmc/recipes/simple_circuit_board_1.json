@@ -6,7 +6,7 @@
       "item": "pixelsofmc:bio_plastic"
     },
     "B": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "C": {
       "item": "pixelsofmc:copper_wire"

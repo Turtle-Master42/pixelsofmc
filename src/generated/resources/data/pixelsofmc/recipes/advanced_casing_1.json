@@ -6,13 +6,13 @@
       "item": "pixelsofmc:simple_casing_1"
     },
     "B": {
-      "item": "minecraft:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     "C": {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     "D": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     }
   },
   "pattern": [

@@ -1,11 +1,16 @@
 package net.turtlemaster42.pixelsofmc.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +21,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -31,12 +37,24 @@ public class SpongeItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        HumanoidArm arm = Minecraft.getInstance().options.mainHand().get();
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
-        int amount = getFluid(stack).getAmount() < 200 ? 0 : getFluid(stack).getAmount()-200;
+        int amount = getFluid(stack).getAmount() < 250 ? 0 : getFluid(stack).getAmount()-250;
         setFluid(stack, new FluidStack(getFluid(stack).getFluid(), amount));
+
+        if (!pLevel.isClientSide()) {
+            if (pUsedHand.equals(InteractionHand.OFF_HAND) && arm != HumanoidArm.LEFT) {
+                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
+            } else if (arm == HumanoidArm.LEFT && !pUsedHand.equals(InteractionHand.OFF_HAND)) {
+                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
+            } else {
+                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (-0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (-0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot - 40))), 8, 0, 0, 0, 0f);
+            }
+        }
+
         if (getFluid(stack).getAmount() == 0)
             setFluid(stack, FluidStack.EMPTY);
-        pPlayer.level.addParticle(ParticleTypes.EXPLOSION, 1, 1, 1, 0,0,0);
+
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 

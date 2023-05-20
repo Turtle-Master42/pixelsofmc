@@ -116,7 +116,7 @@ public class StarModel extends AdvancedEntityModel<Entity> {
         big_star.setScale(0,0,0);
 
         float rotation = (tile.ticksExisted + partialTick + (tile.getBlockPos().getX()+tile.getBlockPos().getY()+tile.getBlockPos().getZ())) / 4;
-        float scale = 1 + (Mth.sin(rotation) / 8);
+        float scale = 0.9f + (Mth.sin(rotation) / 8);
         star_1.rotateAngleX = rotation;
         star_1.rotateAngleY = rotation * 0.8f;
         star_1.rotateAngleZ = rotation * 1.2f;

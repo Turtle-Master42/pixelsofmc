@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -64,7 +63,7 @@ public class POMtags {
 
         private MetalTags(Element m)
         {
-            String name = m.tagName();
+            String name = m.elementName();
             metal = createItemWrapper(getIngot(name));
             nugget = createItemWrapper(getNugget(name));
             dust = createItemWrapper(getDust(name));
