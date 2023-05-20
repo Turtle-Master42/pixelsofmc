@@ -1,18 +1,12 @@
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.ParticleStatus;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.chunk.RenderChunkRegion;
-import net.minecraft.commands.arguments.ParticleArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -32,15 +26,12 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncMainPosToClient;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implements EntityBlock {
 
@@ -91,7 +82,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer) {
         //gets the main block and returns its getCloneItemStack
         BlockPos mainPos = getMainBlockPos(pWorld, pPos);
-        if (mainPos.equals(BlockPos.ZERO))
+        if (mainPos.equals(pPos))
             return ItemStack.EMPTY;
         else return pWorld.getBlockState(mainPos).getCloneItemStack(pTarget, pWorld, mainPos, pPlayer);
     }
@@ -102,6 +93,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
         //when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
+            PixelsOfMc.LOGGER.info("serverside: {}", getMainBlockPos(pLevel, pPos));
             BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
             BlockState mainState = pLevel.getBlockState(mainPos);
 
@@ -110,10 +102,10 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
                 pLevel.destroyBlock(pPos, false);
                 return InteractionResult.FAIL;
             } else {
-
                 return mainState.getBlock().use(mainState, pLevel, mainPos, pPlayer, hand, hit);
             }
         } else {
+            PixelsOfMc.LOGGER.info("clientside: {}", getMainBlockPos(pLevel, pPos));
             return InteractionResult.SUCCESS;
         }
     }
@@ -125,7 +117,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
         BlockState mainState = pLevel.getBlockState(mainPos);
 
-        if (mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
+        if (mainPos == pPos || mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
             pLevel.removeBlock(pPos, false);
             pLevel.removeBlockEntity(pPos);
             ((ServerLevel)pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.ANVIL.defaultBlockState()), pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5, 20, 0.3f, 0.3f, 0.3f, 0.05d);
@@ -154,15 +146,6 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
 
     // --- MEKANISM --- //
-//    @Override
-//    @Deprecated
-//    public float getDestroyProgress( BlockState state,  Player player,  BlockGetter world,  BlockPos pos) {
-//        BlockPos mainPos = getMainBlockPos(world, pos);
-//        if (mainPos == null) {
-//            return super.getDestroyProgress(state, player, world, pos);
-//        }
-//        return world.getBlockState(mainPos).getDestroyProgress(player, world, mainPos);
-//    }
 
     @NotNull
     @Override
@@ -210,7 +193,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     private VoxelShape proxyShape(BlockGetter world, BlockPos pos, @Nullable CollisionContext context, ShapeProxy proxy) {
         BlockPos mainPos = getMainBlockPos(world, pos);
         if (mainPos == null) {
-            return Shapes.box(0 ,0 ,0 ,16 ,16 ,16);
+            return Shapes.empty();
         }
         BlockState mainState;
         try {
