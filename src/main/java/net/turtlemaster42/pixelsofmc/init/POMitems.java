@@ -82,7 +82,14 @@ public class POMitems {
 	public static final RegistryObject<Item> CRYING_OBSIDIAN_PLATING = ITEMS.register("crying_obsidian_plating", () -> new Item(new Item.Properties()));
 
 	//fluids
-	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_HYDROGEN_BUCKET = ITEMS.register("liquid_hydrogen_bucket", () -> new BucketItem(POMfluids.HYDROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_NITROGEN_BUCKET = ITEMS.register("liquid_nitrogen_bucket", () -> new BucketItem(POMfluids.NITROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_OXYGEN_BUCKET = ITEMS.register("liquid_oxygen_bucket", () -> new BucketItem(POMfluids.OXYGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_CHLORINE_BUCKET = ITEMS.register("liquid_chlorine_bucket", () -> new BucketItem(POMfluids.CHLORINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_BROMINE_BUCKET = ITEMS.register("liquid_bromine_bucket", () -> new BucketItem(POMfluids.BROMINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> SULFURIC_ACID_BUCKET = ITEMS.register("sulfuric_acid_bucket", () -> new BucketItem(POMfluids.SULFURIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
 
 	//machine parts
 	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));

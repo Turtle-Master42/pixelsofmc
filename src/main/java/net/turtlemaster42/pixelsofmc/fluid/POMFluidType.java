@@ -22,16 +22,32 @@ public class POMFluidType {
             DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, PixelsOfMc.MOD_ID);
 
     public static final RegistryObject<FluidType> MERCURY_FLUID_TYPE = register("mercury_fluid", 0, 21, 89,
-            FluidType.Properties.create().lightLevel(2).density(15).viscosity(5).canDrown(true).canPushEntity(true).motionScale(0.2f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_FILL_POWDER_SNOW));
+            FluidType.Properties.create().lightLevel(2).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
 
-    public static final RegistryObject<FluidType> HYDROGEN_FLUID_TYPE = register("hydrogen_fluid", 255, 255, 255,
-            FluidType.Properties.create().lightLevel(1).density(15).viscosity(5).density(0).canDrown(true).canPushEntity(true).motionScale(1f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_FILL_POWDER_SNOW));
+    public static final RegistryObject<FluidType> HYDROGEN_FLUID_TYPE = register("hydrogen_fluid", 225, 223, 235,
+            FluidType.Properties.create().lightLevel(1).temperature(19).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.01f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+    public static final RegistryObject<FluidType> NITROGEN_FLUID_TYPE = register("nitrogen_fluid", 151, 130, 230,
+            FluidType.Properties.create().lightLevel(1).temperature(70).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.01f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> OXYGEN_FLUID_TYPE = register("oxygen_fluid", 122, 248, 255,
-            FluidType.Properties.create().lightLevel(1).density(15).viscosity(5).density(0).canPushEntity(true).motionScale(1f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_FILL_POWDER_SNOW));
+    public static final RegistryObject<FluidType> OXYGEN_FLUID_TYPE = register("oxygen_fluid", 119, 171, 240,
+            FluidType.Properties.create().lightLevel(1).temperature(80).density(15).viscosity(5).canDrown(false).canPushEntity(true)
+                    .motionScale(0.01f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> CHLORINE_FLUID_TYPE = register("chlorine_fluid", 148, 176, 96,
+            FluidType.Properties.create().lightLevel(1).temperature(80).density(15).viscosity(5).canDrown(false).canPushEntity(true)
+                    .motionScale(0.01f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> BROMINE_FLUID_TYPE = register("bromine_fluid", 218, 146, 163,
+            FluidType.Properties.create().lightLevel(1).temperature(80).density(15).viscosity(5).canDrown(false).canPushEntity(true)
+                    .motionScale(0.01f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
 
     public static final RegistryObject<FluidType> SULFURIC_ACID_FLUID_TYPE = register("sulfuric_acid_fluid", 214, 171, 42,
-            FluidType.Properties.create().lightLevel(1).density(15).viscosity(5).density(0).canDrown(true).canPushEntity(true).motionScale(0.8f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_FILL_POWDER_SNOW));
+            FluidType.Properties.create().lightLevel(1).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
 
 

@@ -4,7 +4,11 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:endstone_titanium_ore"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

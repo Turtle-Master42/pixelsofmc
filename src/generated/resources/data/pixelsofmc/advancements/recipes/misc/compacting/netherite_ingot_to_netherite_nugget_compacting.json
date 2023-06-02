@@ -4,7 +4,11 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:netherite_nugget"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

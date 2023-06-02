@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:repelling_compound"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:repelling_compound"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

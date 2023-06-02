@@ -4,7 +4,11 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:tungsten_ingot"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

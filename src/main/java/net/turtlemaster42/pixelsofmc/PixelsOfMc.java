@@ -4,13 +4,22 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -22,12 +31,14 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
+import net.turtlemaster42.pixelsofmc.item.Pixel;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.slf4j.Logger;
 
 
+import java.awt.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -68,16 +79,100 @@ public class PixelsOfMc {
 	private void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			POMmessages.register();
+
+			//Credits The Undergarden
+			DispenseItemBehavior bucketBehavior = new DefaultDispenseItemBehavior() {
+				private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
+				public ItemStack execute(BlockSource source, ItemStack stack) {
+					BucketItem bucketitem = (BucketItem) stack.getItem();
+					BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+					Level world = source.getLevel();
+					if (bucketitem.emptyContents(null, world, blockpos, null)) {
+						bucketitem.checkExtraContent(null, world, stack, blockpos);
+						return new ItemStack(Items.BUCKET);
+					} else {
+						return this.defaultBehavior.dispense(source, stack);
+					}
+				}
+			};
+
+			DispenserBlock.registerBehavior(POMitems.LIQUID_HYDROGEN_BUCKET.get(), bucketBehavior);
+			DispenserBlock.registerBehavior(POMitems.LIQUID_NITROGEN_BUCKET.get(), bucketBehavior);
+			DispenserBlock.registerBehavior(POMitems.LIQUID_OXYGEN_BUCKET.get(), bucketBehavior);
+			DispenserBlock.registerBehavior(POMitems.LIQUID_CHLORINE_BUCKET.get(), bucketBehavior);
+			DispenserBlock.registerBehavior(POMitems.LIQUID_BROMINE_BUCKET.get(), bucketBehavior);
+
+			DispenserBlock.registerBehavior(POMitems.MERCURY_BUCKET.get(), bucketBehavior);
+			DispenserBlock.registerBehavior(POMitems.SULFURIC_ACID_BUCKET.get(), bucketBehavior);
+
 		});
+
+
+
+
+		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.HYDROGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.PACKED_ICE.defaultBlockState() : Blocks.ICE.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.NITROGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.PACKED_ICE.defaultBlockState() : Blocks.ICE.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.OXYGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.PACKED_ICE.defaultBlockState() : Blocks.ICE.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.CHLORINE_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.PACKED_ICE.defaultBlockState() : Blocks.ICE.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.BROMINE_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.PACKED_ICE.defaultBlockState() : Blocks.ICE.defaultBlockState()
+				));
+
+
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.HYDROGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.NITROGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.OXYGEN_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.CHLORINE_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
+				));
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(POMFluidType.BROMINE_FLUID_TYPE.get(),
+						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
+				));
+
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
         //ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
 
-		ItemBlockRenderTypes.setRenderLayer(POMblocks.REINFORCED_GLASS.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_BLOCK.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_SOURCE.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.MERCURY_FLOWING.get(), RenderType.translucent());
+		//ItemBlockRenderTypes.setRenderLayer(POMblocks.REINFORCED_GLASS.get(), RenderType.cutout());
+
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_FLOWING.get(), RenderType.translucent());
+
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
 
 
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
@@ -263,14 +358,22 @@ public class PixelsOfMc {
 			event.accept(POMitems.MINERAL_GRIT);
 			event.accept(POMitems.COAL_DUST);
 
+			event.accept(POMitems.LIQUID_HYDROGEN_BUCKET);
+			event.accept(POMitems.LIQUID_NITROGEN_BUCKET);
+			event.accept(POMitems.LIQUID_OXYGEN_BUCKET);
+			event.accept(POMitems.LIQUID_CHLORINE_BUCKET);
+			event.accept(POMitems.LIQUID_BROMINE_BUCKET);
 			event.accept(POMitems.MERCURY_BUCKET);
+			event.accept(POMitems.SULFURIC_ACID_BUCKET);
 		}
 
 		if (event.getTab() == POMtabs.ATOM_TAB) {
 			for(Element m : Element.values()) {
 				if (m.equals(Element.DEBUGIUM)) return;
-				event.accept(POMitems.Metals.ATOMX64.get(m).asItem());
-				event.accept(POMitems.Metals.ATOMX512.get(m).asItem());
+				event.accept(m.atom64());
+				event.accept(m.atom512());
+				event.accept(m.pixel());
+				event.accept(m.pixelPile());
 			}
 		}
 	}

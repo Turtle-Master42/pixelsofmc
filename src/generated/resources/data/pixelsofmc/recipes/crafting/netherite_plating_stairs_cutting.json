@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "pixelsofmc:netherite_plating_block"
+  },
+  "result": "pixelsofmc:netherite_plating_stairs"
+}

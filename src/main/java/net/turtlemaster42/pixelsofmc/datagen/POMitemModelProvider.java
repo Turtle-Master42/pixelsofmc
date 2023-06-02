@@ -84,6 +84,12 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.CRYING_OBSIDIAN_PLATING);
 
         simpleItem(POMitems.MERCURY_BUCKET);
+        simpleItem(POMitems.SULFURIC_ACID_BUCKET);
+        simpleItem(POMitems.LIQUID_HYDROGEN_BUCKET);
+        simpleItem(POMitems.LIQUID_NITROGEN_BUCKET);
+        simpleItem(POMitems.LIQUID_OXYGEN_BUCKET);
+        simpleItem(POMitems.LIQUID_CHLORINE_BUCKET);
+        simpleItem(POMitems.LIQUID_BROMINE_BUCKET);
 
         simpleItem(POMitems.MOVING_PARTS);
         simpleItem(POMitems.POWER_CELL);

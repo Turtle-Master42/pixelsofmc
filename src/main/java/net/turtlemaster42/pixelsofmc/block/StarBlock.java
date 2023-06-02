@@ -1,6 +1,8 @@
 package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -56,6 +58,17 @@ public class StarBlock extends BaseEntityBlock {
         return PushReaction.BLOCK;
     }
 
+    @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(1, 1, 1, 15, 15,15);
+    }
+
+    @Override
+    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+        if (pState.getValue(STAR_STAGE) == 4)
+            pEntity.hurt(new DamageSource("pixelsofmc.black_hole").bypassArmor().bypassMagic(), 50);
+        else pEntity.hurt(new DamageSource("pixelsofmc.sun").bypassArmor().bypassMagic().setIsFire(), 15);
+    }
 
     @Nullable
     @Override

@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:copper_nugget"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

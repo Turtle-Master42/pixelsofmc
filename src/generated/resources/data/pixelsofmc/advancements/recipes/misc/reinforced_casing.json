@@ -4,7 +4,21 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:strong_casing"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_diboride_ingot"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_diboride_plating"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

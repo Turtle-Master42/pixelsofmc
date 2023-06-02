@@ -4,7 +4,11 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:aluminium_scrap"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

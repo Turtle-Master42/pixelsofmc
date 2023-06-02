@@ -1,5 +1,8 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.critereon.NbtPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -8,6 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -25,6 +29,7 @@ import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class POMrecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -45,7 +50,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.WARPED_FUNGUS)
                 .requires(Tags.Items.SLIMEBALLS)
                 .requires(Tags.Items.EGGS)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Items.SUGAR_CANE, Items.HONEYCOMB, Items.WARPED_ROOTS, Items.KELP, Items.WARPED_FUNGUS),
+                        toItemP(Tags.Items.SLIMEBALLS),
+                        toItemP(Tags.Items.EGGS)))
                 .save(fConsumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.FIRE_PROOF_COMPOUND.get(), 2)
                 .requires(POMitems.BIO_COMPOUND.get(), 2)
@@ -54,7 +62,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.CRIMSON_ROOTS)
                 .requires(Items.NETHER_WART, 2)
                 .requires(Items.MAGMA_CREAM, 2)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_COMPOUND.get())))
                 .save(fConsumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.REPELLING_COMPOUND.get(), 2)
                 .requires(POMitems.BIO_COMPOUND.get(), 2)
@@ -64,7 +73,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.POPPED_CHORUS_FRUIT)
                 .requires(Tags.Items.ENDER_PEARLS)
                 .requires(Tags.Items.ENDER_PEARLS)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_COMPOUND.get())))
                 .save(fConsumer);
 
 
@@ -74,27 +84,31 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC")
                 .pattern("CCC")
                 .pattern("CCC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.CARBON.item().asItem())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CARBONARO_CLUMP.get())
                 .define('C', POMitems.DENSE_CARBON_CUBE.get())
                 .pattern("CCC")
                 .pattern("CCC")
                 .pattern("CCC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.CARBON.item().asItem())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.BLACK_DIAMOND.get())
                 .define('C', POMitems.CARBONARO_CLUMP.get())
                 .pattern("CCC")
                 .pattern("CCC")
                 .pattern("CCC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.CARBON.item().asItem())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.DIAMOND)
                 .define('C', POMitems.BLACK_DIAMOND.get())
                 .pattern("CC")
                 .pattern("CC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BLACK_DIAMOND.get())))
                 .save(fConsumer, toRL(Items.DIAMOND.toString()));
 //        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND.get())
 //                .define('C', Items.DIAMOND)
@@ -116,21 +130,24 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("B")
                 .pattern("B")
                 .pattern("A")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.WIRECUTTER.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
                 .define('B', POMitems.NETHERITE_NUGGET.get())
                 .pattern(" B ")
                 .pattern("A A")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get())))
                 .save(fConsumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, POMitems.CLEANING_CLOTH.get())
                 .requires(ItemTags.WOOL_CARPETS)
                 .requires(Tags.Items.STRING)
                 .requires(Tags.Items.STRING)
                 .requires(Tags.Items.DYES_BLUE)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.STRING), toItemP(ItemTags.WOOL), toItemP(ItemTags.WOOL_CARPETS)))
                 .save(fConsumer);
 
 
@@ -139,13 +156,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Element.TITANIUM.itemTag())
                 .requires(Element.TITANIUM.itemTag())
                 .requires(POMitems.HAMMER.get())
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.NETHERITE_PLATING.get())
                 .requires(Items.NETHERITE_INGOT)
                 .requires(Items.NETHERITE_INGOT)
                 .requires(POMitems.HAMMER.get())
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.INGOTS_NETHERITE)))
                 .save(fConsumer);
 
 
@@ -156,7 +175,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("BCB")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.DUSTS_REDSTONE), toItemP(POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_IMBUED_SILVER_WIRE.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
@@ -164,7 +184,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("BCB")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.DUSTS_REDSTONE), toItemP(POMitems.SILVER_WIRE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.RED_TUNGSTEN_WIRE.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
@@ -172,7 +193,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("BCB")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.DUSTS_REDSTONE), toItemP(POMitems.TUNGSTEN_WIRE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DRAGON_EYE.get())
                 .define('B', Items.ENDER_EYE)
@@ -181,7 +203,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" C ")
                 .pattern("BDB")
                 .pattern(" C ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.NETHER_STARS), toItemP(Items.DRAGON_BREATH, Items.ENDER_EYE)))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.MICRO_CHIP.get())
                 .define('A', POMtags.Items.NUGGET_NETHERITE)
@@ -191,7 +214,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .pattern("BCB")
                 .pattern("DDD")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.INGOTS_NETHERITE), toItemP(POMitems.FIRE_PROOF_COMPOUND.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.POWER_CELL.get())
                 .define('A', Tags.Items.GLASS)
@@ -200,7 +224,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("ACA")
                 .pattern("ABA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.NETHER_STARS), toItemP(POMitems.POWER_ORB.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_COUNTER.get())
                 .define('A', Element.TITANIUM.nuggetTag())
@@ -210,7 +235,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("CDD")
                 .pattern("ABA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag()), toItemP(Element.TITANIUM.nuggetTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_TIMER.get())
                 .define('A', Items.STICKY_PISTON)
@@ -222,7 +248,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("CDC")
                 .pattern("EFE")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Tags.Items.STORAGE_BLOCKS_REDSTONE), toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.RESONANCE_DETECTOR.get())
                 .define('A', Tags.Items.DUSTS_REDSTONE)
@@ -233,7 +260,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABC")
                 .pattern("BDB")
                 .pattern("EBC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", has(Items.SCULK_SENSOR))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ENDER_SENSOR.get())
                 .define('A', Element.TITANIUM.nuggetTag())
@@ -242,7 +269,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("ACA")
                 .pattern("ABA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Items.SCULK_SENSOR)))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DRAGON_SENSOR.get())
                 .define('A', POMitems.TITANIUM_DIBORIDE_NUGGET.get())
@@ -251,7 +279,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("ACA")
                 .pattern("ABA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.DRAGON_EYE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.MOVING_PARTS.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
@@ -262,7 +291,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ACA")
                 .pattern("ADA")
                 .pattern("BEB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get(), POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
 
 
@@ -273,7 +303,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("ACA")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_INGOT.get()), toItemP(Element.TITANIUM.dustTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ENERGY_UPGRADE.get())
                 .define('A', POMitems.TITANIUM_DIBORIDE_INGOT.get())
@@ -282,7 +313,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("ACA")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_INGOT.get()), toItemP(Element.GOLD.dustTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.HEAT_UPGRADE.get())
                 .define('A', POMitems.TITANIUM_DIBORIDE_INGOT.get())
@@ -291,7 +323,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("ACA")
                 .pattern(" B ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_INGOT.get()), toItemP(Element.COBALT.dustTag())))
                 .save(fConsumer);
 
 
@@ -305,7 +338,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ADA")
                 .pattern("BEB")
                 .pattern("CFC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.BALL_MILL.get())
                 .define('A', POMitems.MOVING_PARTS.get())
@@ -317,7 +351,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("DBD")
                 .pattern("EEA")
                 .pattern("CFC")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.HOT_ISOSTATIC_PRESS.get())
                 .define('A', Items.PISTON)
@@ -329,7 +364,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CDC")
                 .pattern("ADA")
                 .pattern("BEF")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
 
 
@@ -357,7 +393,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("EDE")
                 .pattern("AAA")
                 .pattern("BCB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get(), POMitems.MICRO_CHIP.get(), POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ADVANCED_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
@@ -370,7 +407,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("EDE")
                 .pattern("GAG")
                 .pattern("FCB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get(), POMitems.MICRO_CHIP.get(), POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.PERFECTED_CIRCUIT_BOARD_1.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
@@ -383,7 +421,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("EDE")
                 .pattern("GAG")
                 .pattern("FCB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.BIO_PLASTIC.get(), POMitems.MICRO_CHIP.get(), POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
 
 
@@ -395,7 +434,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BCB")
                 .pattern("DAD")
                 .pattern("BCB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.PERFECTED_CASING_1.get())
                 .define('A', POMblocks.ADVANCED_CASING_1.get())
@@ -405,8 +445,76 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BCB")
                 .pattern("DAD")
                 .pattern("BCB")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.TITANIUM.itemTag())))
                 .save(fConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_BLOCK.get(), 2)
+                .define('A', POMitems.TITANIUM_PLATING.get())
+                .pattern("AA")
+                .pattern("AA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_BLOCK.get(), 2)
+                .define('A', POMitems.NETHERITE_PLATING.get())
+                .pattern("AA")
+                .pattern("AA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NETHERITE_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(), 2)
+                .define('A', POMitems.TITANIUM_DIBORIDE_PLATING.get())
+                .pattern("AA")
+                .pattern("AA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
+                .save(fConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_STAIRS.get(), 4)
+                .define('A', POMblocks.TITANIUM_PLATING_BLOCK.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_STAIRS.get(), 4)
+                .define('A', POMblocks.NETHERITE_PLATING_BLOCK.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NETHERITE_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), 4)
+                .define('A', POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
+                .save(fConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_SLAB.get(), 6)
+                .define('A', POMblocks.TITANIUM_PLATING_BLOCK.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_SLAB.get(), 6)
+                .define('A', POMblocks.NETHERITE_PLATING_BLOCK.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NETHERITE_PLATING.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), 6)
+                .define('A', POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
+                .save(fConsumer);
+
 
 
         //grinding
@@ -601,19 +709,39 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //Furnace
-        SimpleSmeltingRecipe(POMitems.RAW_TITANIUM.get(), Element.TITANIUM.item(), 0.5f, 200 , fConsumer, "");
-        SimpleSmeltingRecipe(POMblocks.ENDSTONE_TITANIUM_ORE.get(), Element.TITANIUM.item(), 0.5f, 200 , fConsumer, "_from_ore");
-        SimpleSmeltingRecipe(POMitems.RUSTED_PLATING.get(), Items.NETHERITE_SCRAP, 0.5f, 200, fConsumer, "");
-        SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, 200 , fConsumer, "");
+        SimpleSmeltingRecipe(POMitems.RAW_TITANIUM.get(), Element.TITANIUM.item(), 0.5f, 200, fConsumer, toItemP(POMitems.RAW_TITANIUM.get()), "");
+        SimpleSmeltingRecipe(POMblocks.ENDSTONE_TITANIUM_ORE.get(), Element.TITANIUM.item(), 0.5f, 200 , fConsumer, toItemP(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem()), "_from_ore");
+        SimpleSmeltingRecipe(POMitems.RUSTED_PLATING.get(), Items.NETHERITE_SCRAP, 0.5f, 200, fConsumer, toItemP(POMitems.RUSTED_PLATING.get()), "");
+        SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, 200 , fConsumer, toItemP(Element.ALUMINIUM.dustTag()), "");
 
-        SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
-        SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
-        SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, "");
+        SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.BIO_COMPOUND.get()),  "");
+        SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.FIRE_PROOF_COMPOUND.get()), "");
+        SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.REPELLING_COMPOUND.get()), "");
 
         //Smithing
         UpgradeRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, POMitems.HAMMER.get())
                 .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
                 .save(fConsumer, toRL(getItemName(POMitems.HAMMER.get()) + "_smithing"));
+
+        //Stonecutter
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.TITANIUM_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_STAIRS.get(), 1)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.TITANIUM_PLATING_STAIRS.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.TITANIUM_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_SLAB.get(), 2)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.TITANIUM_PLATING_SLAB.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.NETHERITE_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_STAIRS.get(), 1)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.NETHERITE_PLATING_STAIRS.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.NETHERITE_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_SLAB.get(), 2)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.NETHERITE_PLATING_SLAB.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), 1)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), 2)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(fConsumer, toRL(getItemName(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get()))+"_cutting");
 
         //auto
         for(Element m : Element.values()) {
@@ -626,7 +754,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             if (m.isMetal() && m.shouldAddDust())
                 Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
             if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
-                SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, "_from_dust");
+                SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, toItemP(m.dustTag()), "_from_dust");
             if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
                 Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1));
             if (m.shouldAddNugget() && !m.isVanilla()) {
@@ -640,31 +768,31 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
-    private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
-        SimpleFurnaceRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, extra);
+    private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleFurnaceRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
     }
-    private void SimpleFurnaceRecipe(TagKey<Item> input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
-        SimpleFurnaceRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, extra);
+    private void SimpleFurnaceRecipe(TagKey<Item> input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleFurnaceRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
     }
-    private void SimpleFurnaceRecipe(Ingredient input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
+    private void SimpleFurnaceRecipe(Ingredient input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
         SimpleCookingRecipeBuilder.smelting(input, RecipeCategory.MISC, output, xp, smeltingTime)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra));
     }
 
     //Immersive Engineering
-    private void SimpleSmeltingRecipe(TagKey<Item> input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
-        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, extra);
+    private void SimpleSmeltingRecipe(TagKey<Item> input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
     }
-    private void SimpleSmeltingRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
-        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, extra);
+    private void SimpleSmeltingRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
     }
-    private void SimpleSmeltingRecipe(Ingredient input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, String extra) {
+    private void SimpleSmeltingRecipe(Ingredient input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
         SimpleCookingRecipeBuilder.smelting(input, RecipeCategory.MISC, output, xp, smeltingTime)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra));
         SimpleCookingRecipeBuilder.blasting(input, RecipeCategory.MISC, output, xp, smeltingTime/2)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra+"_from_blasting"));
     }
 
@@ -685,11 +813,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("TTT")
                 .pattern("TTT")
                 .pattern("TTT")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(input.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/" + input.getItems()[0].getItem() + "_to_" + output.asItem() + "_compacting" ));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, input.getItems()[0].getItem(), 9)
                 .requires(output)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(input.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/" + output.asItem() + "_to_" + input.getItems()[0].getItem() + "_compacting" ));
 
     }
@@ -705,22 +833,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("TTT")
                 .pattern("TTT")
                 .pattern("TTT")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(ingot.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/"+nugget.getItems()[0].getItem()+"_to_"+ingot.getItems()[0].getItem()+"_compacting"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, block, 1)
                 .define('T', ingot)
                 .pattern("TTT")
                 .pattern("TTT")
                 .pattern("TTT")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(ingot.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/"+ingot.getItems()[0].getItem()+"_to_"+block.asItem()+"_compacting"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget.getItems()[0].getItem(), 9)
                 .requires(ingot)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(ingot.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/"+ingot.getItems()[0].getItem()+"_to_"+nugget.getItems()[0].getItem()+"_compacting"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot.getItems()[0].getItem(), 9)
                 .requires(block)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(ingot.getItems()[0].getItem())))
                 .save(consumer, toRL("compacting/"+block.asItem()+"_to_"+ingot.getItems()[0].getItem()+"_compacting"));
 
     }
@@ -731,7 +859,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("AAA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(around.asItem()), toItemP(middle.asItem())))
                 .save(consumer);
     }
     private void SimpleFullCrossRecipe(ItemLike corners, ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer) {
@@ -742,17 +870,17 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(middle.asItem()), toItemP(corners.asItem()), toItemP(sides.asItem())))
                 .save(consumer);
     }
-    private void SimpleCrossRecipe(ItemLike sides, ItemLike middle , ItemLike output, Consumer<FinishedRecipe> consumer) {
+    private void SimpleCrossRecipe(ItemLike sides, ItemLike middle, ItemLike output, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output)
                 .define('A', sides)
                 .define('B', middle)
                 .pattern(" A ")
                 .pattern("ABA")
                 .pattern(" A ")
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .unlockedBy("", inventoryTrigger(toItemP(middle.asItem()), toItemP(sides.asItem())))
                 .save(consumer);
     }
 
@@ -875,6 +1003,29 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private FluidStack toF(Fluid fluid, int amount) {return new FluidStack(fluid, amount);}
     private int[] toAInt(int ...num) {
         return num;
+    }
+
+    private ItemPredicate toItemP(Item... items) {
+        return new ItemPredicate(
+                null,
+                Set.of(items),
+                MinMaxBounds.Ints.ANY,
+                MinMaxBounds.Ints.ANY,
+                EnchantmentPredicate.NONE,
+                EnchantmentPredicate.NONE,
+                null,
+                NbtPredicate.ANY);
+    }
+    private ItemPredicate toItemP(TagKey<Item> tag) {
+        return new ItemPredicate(
+                tag,
+                null,
+                MinMaxBounds.Ints.ANY,
+                MinMaxBounds.Ints.ANY,
+                EnchantmentPredicate.NONE,
+                EnchantmentPredicate.NONE,
+                null,
+                NbtPredicate.ANY);
     }
 
     //Immersive Engineering

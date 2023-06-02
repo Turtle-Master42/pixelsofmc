@@ -4,7 +4,21 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:titanium_plating"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_nugget"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_ingot"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

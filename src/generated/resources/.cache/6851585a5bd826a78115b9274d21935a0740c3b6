@@ -1,4 +1,4 @@
-// 1.19.3	2023-05-18T11:34:39.24375	Item Models: pixelsofmc
+// 1.19.3	2023-05-30T20:16:58.316393	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -173,6 +173,11 @@ fb56966c025b831dc22a5a5dd904d53921063175 assets/pixelsofmc/models/item/lanthanum
 c006829ae99d7492f3d1fc8319d7e5afaa412796 assets/pixelsofmc/models/item/lead_atom_64.json
 7f4144017f4f2f0c36b62b956906fd8f6faf4af2 assets/pixelsofmc/models/item/lead_dust.json
 91f9d95ff1af5fd0edf127342d8b2652696efe7b assets/pixelsofmc/models/item/lead_ingot.json
+6ca973e3208d653824e59d7c2cabd6795fb1224b assets/pixelsofmc/models/item/liquid_bromine_bucket.json
+0074b76a377a59b9d3e37de49c38d38000604e33 assets/pixelsofmc/models/item/liquid_chlorine_bucket.json
+30992556a44bb164786a92a85c99f5c56000980b assets/pixelsofmc/models/item/liquid_hydrogen_bucket.json
+adf4bba789f52ad0034189c210c777a793242c83 assets/pixelsofmc/models/item/liquid_nitrogen_bucket.json
+a6406c00b6e5c3747ec4edad1e6c3dc2cae495cd assets/pixelsofmc/models/item/liquid_oxygen_bucket.json
 7dfc8d46ce30d013bafa0b08ddfa72d01753b9f1 assets/pixelsofmc/models/item/lithium_atom_512.json
 17263110c4462e7541e1fdfb8a4e0761b19608db assets/pixelsofmc/models/item/lithium_atom_64.json
 909f7a52142de82fc335e3b99ecc0e75d7af93c4 assets/pixelsofmc/models/item/lithium_ingot.json
@@ -333,6 +338,7 @@ da54d5fbf5de461b351b20bb05e41f127fca060f assets/pixelsofmc/models/item/strontium
 9ad0ea8dad40be8419df8f59ad9c7b5c0d7c6fb9 assets/pixelsofmc/models/item/sulfur_atom_64.json
 a4c22cac49519795c59c539d2bd99a4d2933ccb6 assets/pixelsofmc/models/item/sulfur_cube.json
 1376083a18445977b46dd0e44b84610c25548894 assets/pixelsofmc/models/item/sulfur_dust.json
+14124f3097e0f79d5728780189a3dcd76cb97e99 assets/pixelsofmc/models/item/sulfuric_acid_bucket.json
 6bab2648e77890c278677cef75ec7f021452bbb8 assets/pixelsofmc/models/item/tantalum_atom_512.json
 f3d51f6eafd6e6d3389d248b2a11d3b2eee78dc2 assets/pixelsofmc/models/item/tantalum_atom_64.json
 c994a2a969fd2962b3caa15bc38aa73e489f1d2b assets/pixelsofmc/models/item/tantalum_ingot.json

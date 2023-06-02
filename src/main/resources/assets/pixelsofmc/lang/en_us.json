@@ -59,6 +59,12 @@
   "item.pixelsofmc.crying_obsidian_plating": "Crying Plating",
 
   "item.pixelsofmc.mercury_bucket": "Mercury Bucket",
+  "item.pixelsofmc.sulfuric_acid_bucket": "Sulfuric Acid Bucket",
+  "item.pixelsofmc.liquid_hydrogen_bucket": "Liquid Hydrogen Bucket",
+  "item.pixelsofmc.liquid_nitrogen_bucket": "Liquid Nitrogen Bucket",
+  "item.pixelsofmc.liquid_oxygen_bucket": "Liquid Oxygen Bucket",
+  "item.pixelsofmc.liquid_chlorine_bucket": "Liquid Chlorine Bucket",
+  "item.pixelsofmc.liquid_bromine_bucket": "Liquid Bromine Bucket",
 
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.power_cell": "Power Cell",
@@ -125,8 +131,8 @@
   "item.pixelsofmc.pixel_pile": "Pile O' Pixels",
   "item.pixelsofmc.place_holder": "You can ignore this",
   "item.pixelsofmc.debugium_ingot": "Debugium Ingot",
-  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
 
+  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
   "item.pixelsofmc.sulfur": "Sulfur",
   "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
@@ -579,14 +585,20 @@
   "block.pixelsofmc.tungsten_spool": "Tungsten Spool",
 
   "fluid": "------------------------------FLUID--------------------------------------------------------",
+  "fluid.pixelsofmc.hydrogen_fluid": "Liquid Hydrogen",
+  "fluid.pixelsofmc.nitrogen_fluid": "Liquid Nitrogen",
+  "fluid.pixelsofmc.oxygen_fluid": "Liquid Oxygen",
+  "fluid.pixelsofmc.chlorine_fluid": "Liquid Chlorine",
+  "fluid.pixelsofmc.bromine_fluid": "Liquid Bromine",
   "fluid.pixelsofmc.mercury_fluid": "Liquid Mercury",
-  "fluid.pixelsofmc.hydrogen_fluid": "Hydrogen",
-  "fluid.pixelsofmc.oxygen_fluid": "Oxygen",
   "fluid.pixelsofmc.sulfuric_acid_fluid": "Sulfuric Acid",
 
+  "fluid_type.pixelsofmc.hydrogen_fluid": "Liquid Hydrogen",
+  "fluid_type.pixelsofmc.nitrogen_fluid": "Liquid Nitrogen",
+  "fluid_type.pixelsofmc.oxygen_fluid": "Liquid Oxygen",
+  "fluid_type.pixelsofmc.chlorine_fluid": "Liquid Chlorine",
+  "fluid_type.pixelsofmc.bromine_fluid": "Liquid Bromine",
   "fluid_type.pixelsofmc.mercury_fluid": "Liquid Mercury",
-  "fluid_type.pixelsofmc.hydrogen_fluid": "Hydrogen",
-  "fluid_type.pixelsofmc.oxygen_fluid": "Oxygen",
   "fluid_type.pixelsofmc.sulfuric_acid_fluid": "Sulfuric Acid",
 
   "itemGroup": "------------------------------TABS--------------------------------------------------------",
@@ -667,5 +679,26 @@
   "tooltip.pixelsofmc.danger.flammable.text": "    §6Flammable",
   "tooltip.pixelsofmc.danger.toxic.text": "      §aToxic",
   "tooltip.pixelsofmc.danger.corrosive.text": "    §2Corrosive",
-  "tooltip.pixelsofmc.danger.none.text": "      §dNone"
+  "tooltip.pixelsofmc.danger.none.text": "      §dNone",
+
+
+
+  "death.attack.pixelsofmc.supercooled_liquid": "%1$s went swimming in supercooled liquid",
+  "death.attack.pixelsofmc.supercooled_liquid.player": "%1$s went swimming in supercooled liquid trying to escape %2$s",
+
+  "death.attack.pixelsofmc.black_hole": "%1$s past the event horizon",
+  "death.attack.pixelsofmc.black_hole.item": "%1$s past the event horizon with help from %2$s using %3$s",
+  "death.attack.pixelsofmc.black_hole.player": "%1$s past the event horizon with help from %2$s",
+
+  "death.attack.pixelsofmc.plasma": "%1$s discovered the true temperature of plasma",
+  "death.attack.pixelsofmc.plasma.item": "%2$s helped %1$s discovered the true temperature of plasma using %3$s",
+  "death.attack.pixelsofmc.plasma.player": "%2$s helped %1$s discovered the true temperature of plasma",
+
+  "death.attack.pixelsofmc.sun": "%1$s touched a sun",
+  "death.attack.pixelsofmc.sun.item": "%2$s send %1$s into a sun using %3$s",
+  "death.attack.pixelsofmc.sun.player": "%2$s send %1$s into a sun",
+
+  "death.attack.pixelsofmc.acid": "%1$s dissolved in acid",
+  "death.attack.pixelsofmc.acid.item": "%1$s dissolved in acid whiles fighting %2$s using %3$s",
+  "death.attack.pixelsofmc.acid.player": "%1$s dissolved in acid whiles fighting %2$s"
 }

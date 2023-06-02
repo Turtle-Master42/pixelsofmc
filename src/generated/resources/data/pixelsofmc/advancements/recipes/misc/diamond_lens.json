@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:titanium_nugget"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

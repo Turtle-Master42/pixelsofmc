@@ -27,6 +27,8 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
+import net.turtlemaster42.pixelsofmc.fluid.AcidLiquidBlock;
+import net.turtlemaster42.pixelsofmc.fluid.SupercooledLiquidBlock;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,6 +40,25 @@ import java.util.function.Supplier;
 
 public class POMblocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
+
+
+
+    //fluids
+    public static final RegistryObject<LiquidBlock> MERCURY_BLOCK = POMblocks.BLOCKS.register("mercury",
+            () -> new LiquidBlock(POMfluids.MERCURY_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_BLUE)));
+    public static final RegistryObject<LiquidBlock> HYDROGEN_BLOCK = POMblocks.BLOCKS.register("hydrogen",
+            () -> new SupercooledLiquidBlock(POMfluids.HYDROGEN_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.SNOW)));
+    public static final RegistryObject<LiquidBlock> NITROGEN_BLOCK = POMblocks.BLOCKS.register("nitrogen",
+            () -> new SupercooledLiquidBlock(POMfluids.NITROGEN_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.COLOR_PURPLE)));
+    public static final RegistryObject<LiquidBlock> OXYGEN_BLOCK = POMblocks.BLOCKS.register("oxygen",
+            () -> new SupercooledLiquidBlock(POMfluids.OXYGEN_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.LAPIS)));
+    public static final RegistryObject<LiquidBlock> CHLORINE_BLOCK = POMblocks.BLOCKS.register("chlorine",
+            () -> new SupercooledLiquidBlock(POMfluids.CHLORINE_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<LiquidBlock> BROMINE_BLOCK = POMblocks.BLOCKS.register("bromine",
+            () -> new SupercooledLiquidBlock(POMfluids.BROMINE_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_PINK)));
+    public static final RegistryObject<LiquidBlock> SULFURIC_ACID_BLOCK = POMblocks.BLOCKS.register("sulfuric_acid",
+            () -> new AcidLiquidBlock(POMfluids.SULFURIC_ACID_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_YELLOW)));
+
 
     public static final RegistryObject<Block> DEEPSLATE_TITANIUM_ORE = registerBlock("deepslate_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).sound(SoundType.DEEPSLATE)

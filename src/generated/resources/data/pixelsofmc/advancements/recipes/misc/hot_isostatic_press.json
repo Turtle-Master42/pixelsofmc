@@ -1,10 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "": {
+    "has_items": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:ingots/titanium"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"
@@ -18,7 +20,7 @@
   },
   "requirements": [
     [
-      "",
+      "has_items",
       "has_the_recipe"
     ]
   ],

@@ -4,7 +4,21 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "minecraft:netherite_block"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:obsidian_plating"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:netherite_plating"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

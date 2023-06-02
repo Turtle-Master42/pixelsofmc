@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -191,8 +192,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         Optional<PixelSplitterRecipe> match = level.getRecipeManager()
                 .getRecipeFor(PixelSplitterRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 1)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, match.get().getResultItem().getCount())
+                && canInsertItemIntoOutputSlot(inventory, match.get())
                 && hasToolsInToolSlot(entity);
     }
 
@@ -218,12 +219,13 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.getStackInSlot(1).hurt(1, RandomSource.create(), null); //saw
 
-            if (match.get().getResultItem().getItem() == POMitems.PIXEL.get() || match.get().getResultItem().getItem() == POMitems.PIXEL_PILE.get()) {
+            if (match.get().getResultItem().getItem() instanceof Pixel) {
                 ItemStack pixel = new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
-                Pixel.setColor(pixel, match.get().getColor(0).getRGB(), 0);
-                Pixel.setColor(pixel, match.get().getColor(1).getRGB(), 1);
-                Pixel.setColor(pixel, match.get().getColor(2).getRGB(), 2);
-                Pixel.setTooltip(pixel, match.get().getStructure());
+//              Pixel.setColor(pixel, match.get().getColor(0).getRGB(), 0);
+//              Pixel.setColor(pixel, match.get().getColor(1).getRGB(), 1);
+//              Pixel.setColor(pixel, match.get().getColor(2).getRGB(), 2);
+//              Pixel.setTooltip(pixel, match.get().getStructure());
+                Pixel.createForPixel(pixel, match.get().getColor(0).getRGB(), match.get().getColor(1).getRGB(), match.get().getColor(0).getRGB(), match.get().getStructure());
                 entity.itemHandler.setStackInSlot(2, pixel);
             } else {
                 entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));
@@ -255,8 +257,16 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     public int getProgress() {return progress;}
     public int getMaxProgress() {return maxProgress;}
 
-    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, PixelSplitterRecipe recipe) {
+        Item output = recipe.getResultItem().getItem();
+        if (inventory.getItem(2).getItem() == output || inventory.getItem(2).isEmpty()) {
+            if (output instanceof Pixel)
+                if (recipe.getResultItem().getTagElement("structure") != null)
+                    return recipe.getResultItem().getTagElement("structure").getString("text").equals(recipe.getStructure());
+                else return true;
+            else return true;
+        }
+        else return false;
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {

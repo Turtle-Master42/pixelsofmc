@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:tungsten_nugget"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

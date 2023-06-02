@@ -4,7 +4,21 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "minecraft:nether_star"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:bio_compound"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

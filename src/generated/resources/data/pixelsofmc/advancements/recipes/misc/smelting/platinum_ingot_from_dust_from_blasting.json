@@ -4,7 +4,9 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:dusts/platinum"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

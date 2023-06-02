@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:bio_compound"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:bio_compound"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

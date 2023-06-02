@@ -4,7 +4,9 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:dusts/zinc"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

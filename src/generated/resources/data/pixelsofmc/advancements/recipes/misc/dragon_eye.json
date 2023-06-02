@@ -1,10 +1,18 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "": {
+    "has_items": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:nether_stars"
+          },
+          {
+            "items": [
+              "minecraft:dragon_breath",
+              "minecraft:ender_eye"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"
@@ -18,7 +26,7 @@
   },
   "requirements": [
     [
-      "",
+      "has_items",
       "has_the_recipe"
     ]
   ],

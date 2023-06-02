@@ -4,7 +4,9 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:dusts/potassium"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

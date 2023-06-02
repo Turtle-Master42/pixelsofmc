@@ -4,7 +4,11 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "minecraft:sculk_sensor"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

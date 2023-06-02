@@ -4,7 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "pixelsofmc:titanium_diboride_ingot"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_diboride_nugget"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"

@@ -1,10 +1,12 @@
-// 1.19.3	2023-05-18T11:34:39.237954	Loot Tables
+// 1.19.3	2023-05-30T20:10:04.37567	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
 e29c6b31a598558d30149742c828a5aaed8926fc data/pixelsofmc/loot_tables/blocks/ball_mill.json
 1e6538bc08ac8fd16c8e1c1e8373d8d2f7fc7af2 data/pixelsofmc/loot_tables/blocks/bh_controller.json
+2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/bromine.json
 186e3a310cbab45bd6b37e45ed25aee9de969082 data/pixelsofmc/loot_tables/blocks/chemical_seperator.json
+2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/chlorine.json
 8bd107a972b27f425a0f6b6cc08c4978770bf629 data/pixelsofmc/loot_tables/blocks/copper_spool.json
 a9eba5f58038b6074e740d73bbc344cc32e45889 data/pixelsofmc/loot_tables/blocks/deepslate_titanium_ore.json
 a691bef14d05f8f91522c0daade5875de2c3cefe data/pixelsofmc/loot_tables/blocks/endstone_titanium_ore.json
@@ -20,6 +22,7 @@ d5c1e85d49ec0a655e85628348b3ccef87facbcd data/pixelsofmc/loot_tables/blocks/mns_
 65178145de2e2ec7cd783af7912e797ee4c2f279 data/pixelsofmc/loot_tables/blocks/netherite_plating_block.json
 4792bccdc131258a0c0b0eec86382bd698669c13 data/pixelsofmc/loot_tables/blocks/netherite_plating_slab.json
 f580e39328bc1a2564880e47b8dfc625665c7f5e data/pixelsofmc/loot_tables/blocks/netherite_plating_stairs.json
+2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/nitrogen.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/oxygen.json
 02fc98afbf1b63058bb3a6cbaf089c3550eeb158 data/pixelsofmc/loot_tables/blocks/perfected_casing_1.json
 8b73d380fc1573730c7bcc85cb5e0545b5f1c59b data/pixelsofmc/loot_tables/blocks/pixel_splitter.json
