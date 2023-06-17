@@ -39,8 +39,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 10;
-    private final int capacity = 10240000;
-    private final int maxReceive = 32000;
+    private final int capacity = 102400000;
+    private final int maxReceive = 512000;
     private static final int energyConsumption = 12000;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();

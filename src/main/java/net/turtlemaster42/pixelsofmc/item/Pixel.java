@@ -89,9 +89,9 @@ public class Pixel extends Item implements DyeableLeatherItem {
 
         if (!getTooltip(pStack).isEmpty())
             pTooltipComponents.add(Component.translatable(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
-        if (!getExtraTooltip(pStack)[0].isEmpty() && Screen.hasShiftDown())
-            for (int i = 0; i < getExtraTooltip(pStack).length; i++) {
-                pTooltipComponents.add(Component.translatable(getExtraTooltip(pStack)[i]));
-            }
+//        if (!getExtraTooltip(pStack)[0].isEmpty() && Screen.hasShiftDown())
+//            for (int i = 0; i < getExtraTooltip(pStack).length; i++) {
+//                pTooltipComponents.add(Component.translatable(getExtraTooltip(pStack)[i]));
+//            }
     }
 }

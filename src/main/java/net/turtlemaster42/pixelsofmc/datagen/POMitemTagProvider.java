@@ -3,10 +3,12 @@ package net.turtlemaster42.pixelsofmc.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -69,6 +71,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(Tags.Items.NETHER_STARS).add(POMitems.POWER_ORB.get());
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());
+        tag(Tags.Items.GLASS).add(POMblocks.REINFORCED_GLASS.get().asItem());
 
         tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         tag(POMtags.Items.MILLING_BALL)
@@ -105,6 +108,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
         tag(POMtags.Items.BALL_5)
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
 
+        tag(POMtags.Items.SOUL_FUELS)
+                .add(POMitems.SOUL_COAL.get());
 
         //dusts
         tag(Tags.Items.DUSTS)

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "pixelsofmc:titanium_diboride_plating_block"
-  },
-  "result": "pixelsofmc:titanium_diboride_plating_slab"
-}

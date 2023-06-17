@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "pixelsofmc:block/titanium_diboride_plating_block",
-    "side": "pixelsofmc:block/titanium_diboride_plating_block",
-    "top": "pixelsofmc:block/titanium_diboride_plating_block"
-  }
-}

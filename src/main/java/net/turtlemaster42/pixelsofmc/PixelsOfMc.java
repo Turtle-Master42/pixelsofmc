@@ -73,7 +73,7 @@ public class PixelsOfMc {
 
 		MinecraftForge.EVENT_BUS.register(this);
 
-		bus.addListener(this::addCreative);
+//		bus.addListener(this::addCreative);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {

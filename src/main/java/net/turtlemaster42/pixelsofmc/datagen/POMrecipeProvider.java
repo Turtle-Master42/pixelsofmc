@@ -77,6 +77,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         toItemP(POMitems.BIO_COMPOUND.get())))
                 .save(fConsumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SOUL_COAL.get(), 2)
+                .requires(Items.CHARCOAL)
+                .requires(POMitems.COAL_DUST.get(), 2)
+                .requires(Items.BLAZE_POWDER)
+                .requires(Items.SOUL_SAND, 2)
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Items.SOUL_SAND), toItemP(Items.BLAZE_POWDER), toItemP(POMitems.COAL_DUST.get())))
+                .save(fConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DENSE_CARBON_CUBE.get())
@@ -514,6 +522,25 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
                 .save(fConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.SOUL_TORCH, 6)
+                .define('A', POMitems.SOUL_COAL.get())
+                .define('B', Items.STICK)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.SOUL_COAL.get())))
+                .save(fConsumer, toRL(Items.SOUL_TORCH.toString()));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.SOUL_CAMPFIRE, 1)
+                .define('A', POMitems.SOUL_COAL.get())
+                .define('B', Items.STICK)
+                .define('C', ItemTags.LOGS_THAT_BURN)
+                .pattern(" B ")
+                .pattern("BAB")
+                .pattern("CCC")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.SOUL_COAL.get())))
+                .save(fConsumer, toRL(Items.SOUL_CAMPFIRE.toString()));
 
 
 
@@ -1030,8 +1057,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     //Immersive Engineering
     private ResourceLocation toRL(String string) {
-        if(!string.contains("/"))
-            string = "crafting/"+string;
         if(PATH_COUNT.containsKey(string))
         {
             int count = PATH_COUNT.get(string)+1;

@@ -32,9 +32,9 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
     protected void init() {
         super.init();
         assignEnergyInfoArea();
-        this.addRenderableWidget(new ImageButton((width - imageWidth) / 2 + 8, (height - imageHeight) / 2 + 69, 6, 6, pressed?0:6, 34, 6, BUTTON,256, 256, (onPress) -> {
-            pressed=!pressed;
-        }, Component.literal("§eHOVERING")));
+        this.addRenderableWidget(new ImageButton((width - imageWidth) / 2 + 8, (height - imageHeight) / 2 + 69, 6, 6, pressed?0:6, 34, 6, BUTTON,256, 256,
+                (onPress) -> { pressed=!pressed; },
+                Component.literal("§eHOVERING")));
     }
 
     @Override
@@ -51,9 +51,15 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
         this.font.draw(pPoseStack, "H.I.P", 5, 4, 4210752);
         if (!Screen.hasControlDown()) {
             renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
-            if (menu.isHeating())
-                renderArea(pPoseStack, pMouseX, pMouseY, x, y, 51, 55, 65, 69, new GuiTooltips().getTimeArea(menu.getTime()));
-            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 28, 75, 68, 79, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
+            if (menu.isHeating()) {
+                int offsetY = 0;
+                if (hoveredSlot != null && hoveredSlot.hasItem())
+                    offsetY = -15;
+                renderArea(pPoseStack, pMouseX, pMouseY, 0, offsetY, x, y, 50, 56, 67, 75, new GuiTooltips().getTimeArea(menu.getTime() + menu.getSoulTime()));
+            }
+            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 37, 56, 49, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
+            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 50, 77, 67, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
+            renderArea(pPoseStack, pMouseX, pMouseY, x, y, 68, 56, 77, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
         }
     }
 
@@ -65,9 +71,13 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
     }
 
     private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
+        renderArea(pPoseStack, pMouseX, pMouseY, 0 ,0, x, y, fromX, fromY, toX, toY, tooltip);
+    }
+
+    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int offsetX, int offsetY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
             renderTooltip(pPoseStack, tooltip,
-                    Optional.empty(), pMouseX - x, pMouseY - y);
+                    Optional.empty(), pMouseX - x + offsetX, pMouseY - y + offsetY);
         }
     }
 
@@ -80,11 +90,10 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
     }
     private void renderTooltip2(PoseStack pPoseStack) {
         if(pressed) {
-            renderTooltip(pPoseStack, getAllAreas(5, 14, menu.getHeat(), menu.getTime(), menu.getEnergy(), menu.getMaxEnergy()),
+            renderTooltip(pPoseStack, getAllAreas(menu.getProgress(), menu.getMaxProgress(), menu.getHeat(), menu.getTime() + menu.getSoulTime(), menu.getEnergy(), menu.getMaxEnergy()),
                     Optional.empty(), 167, 83);
         }
     }
-
 
     @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
@@ -100,11 +109,15 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
             blit(pPoseStack, x + 55, y + 27, 38, 168, 9, menu.getScaledProgressTwo());
         }
         blit(pPoseStack, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);//energy
-        blit(pPoseStack, x + 28, y + 75, 209, 0, menu.getScaledHeat(), 4);//heat
+
+        blit(pPoseStack, x + 36, y + 82 - menu.getScaledSoulHeat(), 195, 69-menu.getScaledSoulHeat(), 45, menu.getScaledSoulHeat());//soul heat
+        blit(pPoseStack, x + 36, y + 55, 195, 14, 45, menu.getScaledHeat());//heat
         if(menu.isHeating())
-            blit(pPoseStack, x + 51, y + 57 + 13 - menu.getScaledBurnTime(), 195, 14- menu.getScaledBurnTime(), 14, menu.getScaledBurnTime()+1);//time
-        if (!pressed)
-            blit(pPoseStack, x + 8, y + 69, 250, 10, 6, 6);//button
+            blit(pPoseStack, x + 51, y + 75-menu.getScaledBurnTime(), 240, 29-menu.getScaledBurnTime(), 16, menu.getScaledBurnTime());//time
+        if (pressed)
+            blit(pPoseStack, x + 6, y + 75, 252, 10, 4, 4);//button on
+        else
+            blit(pPoseStack, x + 6, y + 75, 248, 10, 4, 4);//button off
     }
 
     @Override
@@ -147,7 +160,4 @@ public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostati
                 Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%")
         );
     }
-
-
 }
-

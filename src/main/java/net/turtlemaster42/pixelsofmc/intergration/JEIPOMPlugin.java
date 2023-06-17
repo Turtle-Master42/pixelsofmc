@@ -2,16 +2,18 @@ package net.turtlemaster42.pixelsofmc.intergration;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
@@ -47,6 +49,7 @@ public class JEIPOMPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
+        PixelsOfMc.LOGGER.info("Registering POM JEI Recipes");
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
         List<BallMillRecipe> milling = rm.getAllRecipesFor(BallMillRecipe.Type.INSTANCE);
@@ -58,5 +61,17 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class), grinding);
         registration.addRecipes(new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class), pressing);
         registration.addRecipes(new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class), fusing);
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.useNbtForSubtypes(POMitems.PIXEL.get(), POMitems.PIXEL_PILE.get());
+    }
+
+    @Override
+    public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
+        PixelsOfMc.LOGGER.info("Registering POM JEI VanillaCategoryExtensions");
+        registration.getCraftingCategory().addCategoryExtension(PixelDecompactingRecipe.class, PixelDecompactingExtension::new);
+        registration.getCraftingCategory().addCategoryExtension(PixelCompactingRecipe.class, PixelCompactingExtension::new);
     }
 }

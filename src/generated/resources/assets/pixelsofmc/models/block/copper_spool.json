@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "pixelsofmc:block/copper_spool_top",
-    "side": "pixelsofmc:block/copper_spool"
-  }
-}
