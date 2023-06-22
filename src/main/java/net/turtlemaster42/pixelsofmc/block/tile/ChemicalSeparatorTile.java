@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeperatorGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -29,7 +29,7 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeperatorRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +41,7 @@ import java.util.Optional;
 
 import static java.lang.Math.random;
 
-public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperatorTile> implements IDuoFluidHandlingTile {
+public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparatorTile> implements IDuoFluidHandlingTile {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -119,26 +119,26 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
     private LazyOptional<IFluidHandler> lazyDuoFluidHandler = LazyOptional.empty();
 
 
-    public ChemicalSeperatorTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.CHEMICAL_SEPERATOR.get(), pWorldPosition, pBlockState);
+    public ChemicalSeparatorTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.CHEMICAL_SEPARATOR.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return ChemicalSeperatorTile.this.progress;
-                    case 1: return ChemicalSeperatorTile.this.maxProgress;
-                    case 2: return ChemicalSeperatorTile.this.speedUpgrade;
-                    case 3: return ChemicalSeperatorTile.this.capacity;
-                    case 4: return ChemicalSeperatorTile.this.maxReceive;
-                    case 5: return ChemicalSeperatorTile.this.energyStorage.getEnergyStored();
+                    case 0: return ChemicalSeparatorTile.this.progress;
+                    case 1: return ChemicalSeparatorTile.this.maxProgress;
+                    case 2: return ChemicalSeparatorTile.this.speedUpgrade;
+                    case 3: return ChemicalSeparatorTile.this.capacity;
+                    case 4: return ChemicalSeparatorTile.this.maxReceive;
+                    case 5: return ChemicalSeparatorTile.this.energyStorage.getEnergyStored();
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: ChemicalSeperatorTile.this.progress = value; break;
-                    case 1: ChemicalSeperatorTile.this.maxProgress = value; break;
-                    case 2: ChemicalSeperatorTile.this.speedUpgrade = value; break;
+                    case 0: ChemicalSeparatorTile.this.progress = value; break;
+                    case 1: ChemicalSeparatorTile.this.maxProgress = value; break;
+                    case 2: ChemicalSeparatorTile.this.speedUpgrade = value; break;
                 }
             }
             public int getCount() {
@@ -169,7 +169,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.pixelsofmc.chemical_seperator");
+        return Component.translatable("block.pixelsofmc.chemical_separator");
     }
 
     @Nullable
@@ -178,7 +178,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
-        return new ChemicalSeperatorGuiMenu(pContainerId, pInventory, this, this.data);
+        return new ChemicalSeparatorGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -244,15 +244,15 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
 
     //---RECIPE---//
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeperatorTile e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeparatorTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeperatorTile e) {
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, ChemicalSeparatorTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, ChemicalSeperatorTile pBlockEntity) {
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, ChemicalSeparatorTile pBlockEntity) {
         transferFluidToItem(pBlockEntity, fluidTank, 7);
         transferFluidToItem(pBlockEntity, duoFluidTank, 8);
         if (hasFluidItemInScourceSlot(pBlockEntity)) {
@@ -272,7 +272,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         }
     }
 
-    private void transferFluidToTank(ChemicalSeperatorTile pBlockEntity) {
+    private void transferFluidToTank(ChemicalSeparatorTile pBlockEntity) {
         pBlockEntity.itemHandler.getStackInSlot(6).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
             int drainAmount = Math.min(pBlockEntity.fluidTank.getSpace(), 1000);
 
@@ -284,7 +284,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         });
     }
 
-    private void transferFluidToItem(ChemicalSeperatorTile pBlockEntity, FluidTank tank, int slot) {
+    private void transferFluidToItem(ChemicalSeparatorTile pBlockEntity, FluidTank tank, int slot) {
         pBlockEntity.itemHandler.getStackInSlot(slot).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
             int fillAmount = Math.min(handler.fill(tank.getFluid(), IFluidHandler.FluidAction.SIMULATE), 1000);
 
@@ -296,62 +296,62 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         });
     }
 
-    private void fillTankWithFluid(ChemicalSeperatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item) {
+    private void fillTankWithFluid(ChemicalSeparatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item) {
        fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
 
        pBlockEntity.itemHandler.extractItem(6, 1, false);
        pBlockEntity.itemHandler.insertItem(6, item, false);
     }
 
-    private void drainTankWithFluid(ChemicalSeperatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item, int slot) {
+    private void drainTankWithFluid(ChemicalSeparatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item, int slot) {
         fluidTank.drain(stack, IFluidHandler.FluidAction.EXECUTE);
 
         pBlockEntity.itemHandler.extractItem(slot, 1, false);
         pBlockEntity.itemHandler.insertItem(slot, item, false);
     }
 
-    private boolean hasFluidItemInScourceSlot(ChemicalSeperatorTile pBlockEntity) {
+    private boolean hasFluidItemInScourceSlot(ChemicalSeparatorTile pBlockEntity) {
         return pBlockEntity.itemHandler.getStackInSlot(6).getCount() > 0;
     }
 
-    private static boolean hasRecipe(ChemicalSeperatorTile entity) {
+    private static boolean hasRecipe(ChemicalSeparatorTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<ChemicalSeperatorRecipe> match = level.getRecipeManager()
-                .getRecipeFor(ChemicalSeperatorRecipe.Type.INSTANCE, inventory, level);
+        Optional<ChemicalSeparatorRecipe> match = level.getRecipeManager()
+                .getRecipeFor(ChemicalSeparatorRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertIntoOutputSlot(entity, match.get())
                 && canExtractInputFluid(entity, match)
                 && canInsertOutputFluid(entity, match);
     }
 
-    private static boolean canInsertOutputFluid(ChemicalSeperatorTile entity, Optional<ChemicalSeperatorRecipe> match) {
+    private static boolean canInsertOutputFluid(ChemicalSeparatorTile entity, Optional<ChemicalSeparatorRecipe> match) {
         return match.get().getResultFluid().equals(entity.duoFluidTank.getFluid()) && match.get().getResultFluid().getAmount() < entity.duoFluidTank.getSpace() || entity.duoFluidTank.isEmpty() || match.get().getResultFluid().isEmpty();
     }
 
-    private static boolean canExtractInputFluid(ChemicalSeperatorTile entity, Optional<ChemicalSeperatorRecipe> match) {
+    private static boolean canExtractInputFluid(ChemicalSeparatorTile entity, Optional<ChemicalSeparatorRecipe> match) {
         return match.get().getFluidInput().equals(entity.fluidTank.getFluid()) && match.get().getFluidInput().getAmount() < entity.fluidTank.getFluidAmount() || match.get().getFluidInput().isEmpty();
     }
 
-    private static boolean hasPower(ChemicalSeperatorTile entity) {
+    private static boolean hasPower(ChemicalSeparatorTile entity) {
         int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
 
-    private static void craftItem(ChemicalSeperatorTile entity) {
+    private static void craftItem(ChemicalSeparatorTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<ChemicalSeperatorRecipe> match = level.getRecipeManager()
-                .getRecipeFor(ChemicalSeperatorRecipe.Type.INSTANCE, inventory, level);
+        Optional<ChemicalSeparatorRecipe> match = level.getRecipeManager()
+                .getRecipeFor(ChemicalSeparatorRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
@@ -411,7 +411,7 @@ public class ChemicalSeperatorTile extends AbstractMachineTile<ChemicalSeperator
         return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
     }
 
-    private static boolean canInsertIntoOutputSlot (ChemicalSeperatorTile entity, ChemicalSeperatorRecipe match) {
+    private static boolean canInsertIntoOutputSlot (ChemicalSeparatorTile entity, ChemicalSeparatorRecipe match) {
         boolean[] matched = new boolean[match.getOutputs().size()];
         boolean[] matchNeeded = new boolean[match.getOutputs().size()];
         ItemStack[] newStackInSlot = new ItemStack[5];

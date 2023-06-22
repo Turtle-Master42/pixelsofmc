@@ -11,7 +11,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -961,7 +960,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private void ChemicalSeperator(Consumer<FinishedRecipe> consumer, CountedIngredient input, FluidStack inputFluid, FluidStack outputFluid, ChanceIngredient... output) {
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
-        new ChemicalSeperatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
+        new ChemicalSeparatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:soul_coal"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BAB",
+    "CCC"
+  ],
+  "result": {
+    "item": "minecraft:soul_campfire"
+  }
+}

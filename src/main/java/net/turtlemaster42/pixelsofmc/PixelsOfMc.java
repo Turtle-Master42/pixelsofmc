@@ -29,16 +29,15 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
-import net.turtlemaster42.pixelsofmc.item.Pixel;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.slf4j.Logger;
 
 
-import java.awt.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -73,7 +72,7 @@ public class PixelsOfMc {
 
 		MinecraftForge.EVENT_BUS.register(this);
 
-		bus.addListener(this::addCreative);
+//		bus.addListener(this::addCreative);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
@@ -179,7 +178,8 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
 		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
-		MenuScreens.register(POMmenuType.CHEMICAL_SEPERATOR_MENU.get(), ChemicalSeperatorScreen::new);
+		MenuScreens.register(POMmenuType.CHEMICAL_SEPARATOR_MENU.get(), ChemicalSeparatorScreen::new);
+		MenuScreens.register(POMmenuType.CHEMICAL_COMBINER_MENU.get(), ChemicalCombinerScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
     }
 
@@ -215,7 +215,6 @@ public class PixelsOfMc {
 
 			event.accept(POMblocks.ENDSTONE_TITANIUM_ORE);
 			event.accept(POMblocks.ACANTHITE);
-			event.accept(POMblocks.SAND_MINERAL_DEPOSIT);
 
 			for(Element m : Element.values()) {
 				if (m.shouldAddBlock())
@@ -242,7 +241,7 @@ public class PixelsOfMc {
 			event.accept(POMblocks.BALL_MILL);
 			event.accept(POMblocks.GRINDER);
 			event.accept(POMblocks.HOT_ISOSTATIC_PRESS);
-			event.accept(POMblocks.CHEMICAL_SEPERATOR);
+			event.accept(POMblocks.CHEMICAL_SEPARATOR);
 			event.accept(POMblocks.PIXEL_SPLITTER);
 			event.accept(POMblocks.SDS_CONTROLLER);
 

@@ -1,8 +1,6 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,8 +21,10 @@ public class POMrecipes {
 			SERIALIZERS.register("grinding", () -> GrinderRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<HotIsostaticPressRecipe>> PRESSING_SERIALIZER =
 			SERIALIZERS.register("pressing", () -> HotIsostaticPressRecipe.Serializer.INSTANCE);
-	public static final RegistryObject<RecipeSerializer<ChemicalSeperatorRecipe>> CHEMICAL_SEPERATOR_SERIALIZER =
-			SERIALIZERS.register("chemical_separating", () -> ChemicalSeperatorRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<ChemicalSeparatorRecipe>> CHEMICAL_SEPARATOR_SERIALIZER =
+			SERIALIZERS.register("chemical_separating", () -> ChemicalSeparatorRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<ChemicalCombinerRecipe>> CHEMICAL_COMBINER_SERIALIZER =
+			SERIALIZERS.register("chemical_combining", () -> ChemicalCombinerRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
 

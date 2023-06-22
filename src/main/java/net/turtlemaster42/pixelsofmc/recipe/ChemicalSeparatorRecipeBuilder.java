@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeperatorRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
@@ -24,14 +24,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ChemicalSeperatorRecipeBuilder implements RecipeBuilder {
+public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
     private final CountedIngredient ingredient;
     private final FluidStack inputFluid;
     private final List<ChanceIngredient> outputs;
     private final FluidStack outputFluid;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public ChemicalSeperatorRecipeBuilder(CountedIngredient ingredients, FluidStack inputFluid, FluidStack outputFluid, List<ChanceIngredient> result) {
+    public ChemicalSeparatorRecipeBuilder(CountedIngredient ingredients, FluidStack inputFluid, FluidStack outputFluid, List<ChanceIngredient> result) {
         this.ingredient = ingredients;
         this.inputFluid = inputFluid;
         this.outputFluid = outputFluid;
@@ -129,7 +129,7 @@ public class ChemicalSeperatorRecipeBuilder implements RecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return ChemicalSeperatorRecipe.Serializer.INSTANCE;
+            return ChemicalSeparatorRecipe.Serializer.INSTANCE;
         }
 
         @javax.annotation.Nullable

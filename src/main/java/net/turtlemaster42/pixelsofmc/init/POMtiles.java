@@ -38,8 +38,10 @@ public class POMtiles {
 			TILES.register("grinder", () -> BlockEntityType.Builder.of(GrinderTile::new, POMblocks.GRINDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<HotIsostaticPressTile>> HOT_ISOSTATIC_PRESS =
 			TILES.register("hot_isostatic_press", () -> BlockEntityType.Builder.of(HotIsostaticPressTile::new, POMblocks.HOT_ISOSTATIC_PRESS.get()).build(null));
-	public static final RegistryObject<BlockEntityType<ChemicalSeperatorTile>> CHEMICAL_SEPERATOR =
-			TILES.register("chemical_seperator", () -> BlockEntityType.Builder.of(ChemicalSeperatorTile::new, POMblocks.CHEMICAL_SEPERATOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ChemicalSeparatorTile>> CHEMICAL_SEPARATOR =
+			TILES.register("chemical_separator", () -> BlockEntityType.Builder.of(ChemicalSeparatorTile::new, POMblocks.CHEMICAL_SEPARATOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ChemicalCombinerTile>> CHEMICAL_COMBINER =
+			TILES.register("chemical_combiner", () -> BlockEntityType.Builder.of(ChemicalCombinerTile::new, POMblocks.CHEMICAL_COMBINER.get()).build(null));
 
 
 

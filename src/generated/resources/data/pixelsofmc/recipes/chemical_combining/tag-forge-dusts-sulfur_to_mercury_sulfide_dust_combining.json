@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 100,
+    "FluidName": "pixelsofmc:mercury_fluid"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/sulfur"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:mercury_sulfide_dust"
+    }
+  }
+}

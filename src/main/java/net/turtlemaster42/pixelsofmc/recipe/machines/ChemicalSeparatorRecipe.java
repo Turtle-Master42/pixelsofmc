@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChemicalSeperatorRecipe extends BaseRecipe {
+public class ChemicalSeparatorRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final CountedIngredient recipeItem;
     private final List<ChanceIngredient> outputs;
@@ -29,7 +29,7 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
 
     private final FluidStack fluidOutput;
 
-    public ChemicalSeperatorRecipe(ResourceLocation id, CountedIngredient recipeItem, FluidStack fluidInput,
+    public ChemicalSeparatorRecipe(ResourceLocation id, CountedIngredient recipeItem, FluidStack fluidInput,
                                    List<ChanceIngredient> outputs, FluidStack fluidOutput) {
         this.id = id;
         this.recipeItem = recipeItem;
@@ -98,21 +98,21 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
     }
 
     public ItemStack getToastSymbol() {
-        return new ItemStack(POMblocks.CHEMICAL_SEPERATOR.get());
+        return new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get());
     }
 
-    public static class Type implements RecipeType<ChemicalSeperatorRecipe> {
+    public static class Type implements RecipeType<ChemicalSeparatorRecipe> {
         private Type() { }
-        public static final ChemicalSeperatorRecipe.Type INSTANCE = new ChemicalSeperatorRecipe.Type();
+        public static final ChemicalSeparatorRecipe.Type INSTANCE = new ChemicalSeparatorRecipe.Type();
         public static final String ID = "chemical_separating";
     }
 
-    public static class Serializer implements RecipeSerializer<ChemicalSeperatorRecipe> {
-        public static final ChemicalSeperatorRecipe.Serializer INSTANCE = new ChemicalSeperatorRecipe.Serializer();
+    public static class Serializer implements RecipeSerializer<ChemicalSeparatorRecipe> {
+        public static final ChemicalSeparatorRecipe.Serializer INSTANCE = new ChemicalSeparatorRecipe.Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_separating");
 
-        public ChemicalSeperatorRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public ChemicalSeparatorRecipe fromJson(ResourceLocation id, JsonObject json) {
             //outputs
             JsonArray jsonOutputs = json.getAsJsonArray("outputs");
             FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
@@ -125,24 +125,24 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
             CountedIngredient input = CountedIngredient.fromJson(jsonObject.getAsJsonObject());
             FluidStack fluidInput = FluidJSONUtil.readFluid(json.get("fluid_input").getAsJsonObject());
 
-            return new ChemicalSeperatorRecipe(id, input, fluidInput, outputs, fluidOutput);
+            return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
         }
 
-        public ChemicalSeperatorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public ChemicalSeparatorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             try {
                 CountedIngredient input = CountedIngredient.fromNetwork(buf);
                 List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
                 FluidStack fluidInput = buf.readFluidStack();
                 FluidStack fluidOutput = buf.readFluidStack();
 
-                return new ChemicalSeperatorRecipe(id, input, fluidInput, outputs, fluidOutput);
+                return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
                 throw ex;
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, ChemicalSeperatorRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, ChemicalSeparatorRecipe recipe) {
             try {
                 recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
@@ -165,7 +165,7 @@ public class ChemicalSeperatorRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return ChemicalSeperatorRecipe.Serializer.castClass(RecipeSerializer.class);
+            return ChemicalSeparatorRecipe.Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

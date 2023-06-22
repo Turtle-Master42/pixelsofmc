@@ -22,17 +22,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeperatorTile;
+import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeparatorTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 
 import javax.annotation.Nullable;
 
-public class ChemicalSeperatorBlock extends BaseEntityBlock {
+public class ChemicalSeparatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
     private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
 
-    public ChemicalSeperatorBlock(Properties properties) {
+    public ChemicalSeparatorBlock(Properties properties) {
         super(properties);
     }
 
@@ -79,8 +79,8 @@ public class ChemicalSeperatorBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof ChemicalSeperatorTile) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ChemicalSeperatorTile)entity, pPos);
+            if(entity instanceof ChemicalSeparatorTile) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ChemicalSeparatorTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -93,8 +93,8 @@ public class ChemicalSeperatorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ChemicalSeperatorTile) {
-                ((ChemicalSeperatorTile) blockEntity).drops();
+            if (blockEntity instanceof ChemicalSeparatorTile) {
+                ((ChemicalSeparatorTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -109,13 +109,13 @@ public class ChemicalSeperatorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new ChemicalSeperatorTile(pPos, pState);
+        return new ChemicalSeparatorTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMtiles.CHEMICAL_SEPERATOR.get(),
-                pLevel.isClientSide ? ChemicalSeperatorTile::clientTick : ChemicalSeperatorTile::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.CHEMICAL_SEPARATOR.get(),
+                pLevel.isClientSide ? ChemicalSeparatorTile::clientTick : ChemicalSeparatorTile::serverTick);
     }
 }

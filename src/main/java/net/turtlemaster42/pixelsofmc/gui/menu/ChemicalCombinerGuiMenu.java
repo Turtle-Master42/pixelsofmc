@@ -11,32 +11,33 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeperatorTile;
+import net.turtlemaster42.pixelsofmc.block.tile.ChemicalCombinerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStacksizeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 
-public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu {
-    public final ChemicalSeperatorTile blockEntity;
+public class ChemicalCombinerGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu {
+    public final ChemicalCombinerTile blockEntity;
     public final ItemStackHandler itemHandler;
     private final Level level;
     private final ContainerData data;
     private FluidStack fluid;
     private FluidStack duoFluid;
 
-    public ChemicalSeperatorGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public ChemicalCombinerGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
-    public ChemicalSeperatorGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(POMmenuType.CHEMICAL_SEPERATOR_MENU.get(), pContainerId);
+    public ChemicalCombinerGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(POMmenuType.CHEMICAL_COMBINER_MENU.get(), pContainerId);
         checkContainerSize(inv, 9);
-        blockEntity = ((ChemicalSeperatorTile) entity);
+        blockEntity = ((ChemicalCombinerTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.level = inv.player.level;
         this.data = data;
@@ -49,13 +50,13 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 1, 124, 29));
-            this.addSlot(new ModResultSlot(handler, 2, 120, 47));
-            this.addSlot(new ModResultSlot(handler, 3, 116, 65));
-            this.addSlot(new SlotItemHandler(handler, 0, 48, 47));
-            this.addSlot(new SlotItemHandler(handler, 6, 40, 5));
-            this.addSlot(new SlotItemHandler(handler, 7, 85, 5));
-            this.addSlot(new SlotItemHandler(handler, 8, 85, 21));
+            this.addSlot(new SlotItemHandler(handler, 6, 96, 9));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 7, 141, 9, 1));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 8, 141, 25, 1));
+            this.addSlot(new ModResultSlot(handler, 3, 116, 59));
+            this.addSlot(new SlotItemHandler(handler, 0, 36, 24));
+            this.addSlot(new SlotItemHandler(handler, 1, 45, 42));
+            this.addSlot(new SlotItemHandler(handler, 2, 54, 60));
         });
         addDataSlots(data);
     }
@@ -155,7 +156,7 @@ public class ChemicalSeperatorGuiMenu extends AbstractContainerMenu implements I
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, POMblocks.CHEMICAL_SEPERATOR.get());
+                pPlayer, POMblocks.CHEMICAL_COMBINER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
