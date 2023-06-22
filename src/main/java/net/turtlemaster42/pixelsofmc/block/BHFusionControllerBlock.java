@@ -27,7 +27,6 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
-import org.lwjgl.opengl.GL;
 
 import javax.annotation.Nullable;
 

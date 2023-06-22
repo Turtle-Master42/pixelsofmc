@@ -1,7 +1,5 @@
 package net.turtlemaster42.pixelsofmc.util;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-
 import java.util.List;
 
 public class Util {

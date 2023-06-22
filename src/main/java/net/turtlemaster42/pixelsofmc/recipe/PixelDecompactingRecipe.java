@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMrecipes;
 import net.turtlemaster42.pixelsofmc.item.Pixel;
 
 public class PixelDecompactingRecipe extends CustomRecipe {

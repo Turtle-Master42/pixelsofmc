@@ -1,10 +1,6 @@
 package net.turtlemaster42.pixelsofmc.world.feature;
 
-import net.minecraft.core.Holder;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;

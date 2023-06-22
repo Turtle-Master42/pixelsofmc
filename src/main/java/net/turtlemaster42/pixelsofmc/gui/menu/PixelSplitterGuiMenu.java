@@ -13,7 +13,6 @@ import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 

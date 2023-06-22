@@ -21,7 +21,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;

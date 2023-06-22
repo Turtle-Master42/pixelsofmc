@@ -1,10 +1,8 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.AbstractFusionCasing;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.resources.ResourceLocation;

@@ -18,9 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;

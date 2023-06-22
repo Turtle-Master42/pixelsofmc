@@ -19,9 +19,4 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getInstance().setScreen(new GuiBook1(itemStackIn, page));
     }
 
-//    @Override
-//    public Object getISTERProperties() {
-//        return new AMItemRenderProperties();
-//    }
-
 }

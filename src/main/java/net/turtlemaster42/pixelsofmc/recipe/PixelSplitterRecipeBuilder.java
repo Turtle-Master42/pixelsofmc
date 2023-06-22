@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -111,7 +110,7 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
         @Override
         public ResourceLocation getId() {
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "splitting/"+this.ingredient.asItem().toString() + "_splitting");
+                    "splitting/"+this.ingredient.asItem() + "_splitting");
         }
 
         @Override

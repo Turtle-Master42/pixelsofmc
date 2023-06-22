@@ -29,7 +29,6 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -155,10 +154,6 @@ public class PixelsOfMc {
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        //ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_SPLITTER.get(), RenderType.cutout());
-
-		//ItemBlockRenderTypes.setRenderLayer(POMblocks.REINFORCED_GLASS.get(), RenderType.cutout());
-
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_SOURCE.get(), RenderType.translucent());

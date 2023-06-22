@@ -1,23 +1,16 @@
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineEnergyBlockTile;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 
 import javax.annotation.Nullable;
 

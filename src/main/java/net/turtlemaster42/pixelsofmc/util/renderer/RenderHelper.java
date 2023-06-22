@@ -7,7 +7,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
-import net.minecraft.Util;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -18,10 +17,6 @@ import org.joml.Matrix4f;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-
-import static net.turtlemaster42.pixelsofmc.util.mixin.client.AccessorRenderType.create;
 
 public final class RenderHelper extends RenderType {
 

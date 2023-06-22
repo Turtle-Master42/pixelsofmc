@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.recipe;
 
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -11,7 +10,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMrecipes;
 import net.turtlemaster42.pixelsofmc.item.Pixel;
 
 public class PixelCompactingRecipe extends CustomRecipe {

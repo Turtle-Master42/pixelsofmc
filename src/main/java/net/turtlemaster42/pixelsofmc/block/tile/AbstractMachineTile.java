@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -14,7 +13,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -109,7 +107,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         if (stack.isEmpty())
             return ItemStack.EMPTY;
         ItemStack existing = this.itemHandler.getStackInSlot(slot);
-        int limit =  Math.min(itemHandler.getSlotLimit(slot), stack.getMaxStackSize());;
+        int limit =  Math.min(itemHandler.getSlotLimit(slot), stack.getMaxStackSize());
         boolean limitReached = existing.getCount() + stack.getCount() > limit;
 
         if (!limitReached && !simulate)

@@ -140,9 +140,6 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     }
 
 
-    public void test(Level level) {
-    }
-
     //pLevel.destroyBlockProgress(1, getMainPos(pLevel, pPos), 5);
 
     // --- MEKANISM --- //

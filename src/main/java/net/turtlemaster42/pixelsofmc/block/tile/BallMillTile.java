@@ -74,15 +74,15 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         super(POMtiles.BALL_MILL.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return BallMillTile.this.progress;
-                    case 1: return BallMillTile.this.maxProgress;
-                    case 2: return BallMillTile.this.speedUpgrade;
-                    case 3: return BallMillTile.this.capacity;
-                    case 4: return BallMillTile.this.maxReceive;
-                    case 5: return BallMillTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> BallMillTile.this.progress;
+                    case 1 -> BallMillTile.this.maxProgress;
+                    case 2 -> BallMillTile.this.speedUpgrade;
+                    case 3 -> BallMillTile.this.capacity;
+                    case 4 -> BallMillTile.this.maxReceive;
+                    case 5 -> BallMillTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {

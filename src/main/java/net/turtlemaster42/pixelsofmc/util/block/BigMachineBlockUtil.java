@@ -9,7 +9,6 @@ import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -58,17 +57,13 @@ public class BigMachineBlockUtil {
         int Y = mainPos.getY();
         int Z = mainPos.getZ();
         if (direction == Direction.NORTH) {
-            BlockPos newPos = new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
-            return newPos;
+            return new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
         } else if (direction == Direction.EAST) {
-            BlockPos newPos = new BlockPos(X - Zoffset, Y + Yoffset, Z + Xoffset);
-            return newPos;
+            return new BlockPos(X - Zoffset, Y + Yoffset, Z + Xoffset);
         } else if (direction == Direction.SOUTH) {
-            BlockPos newPos = new BlockPos(X - Xoffset, Y + Yoffset, Z - Zoffset);
-            return newPos;
+            return new BlockPos(X - Xoffset, Y + Yoffset, Z - Zoffset);
         } else if (direction == Direction.WEST) {
-            BlockPos newPos = new BlockPos(X + Zoffset, Y + Yoffset, Z - Xoffset);
-            return newPos;
+            return new BlockPos(X + Zoffset, Y + Yoffset, Z - Xoffset);
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to chance position");
             return null;

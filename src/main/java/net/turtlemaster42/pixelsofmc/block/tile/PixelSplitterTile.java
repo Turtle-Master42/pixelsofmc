@@ -221,10 +221,6 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
 
             if (match.get().getResultItem().getItem() instanceof Pixel) {
                 ItemStack pixel = new ItemStack(match.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount());
-//              Pixel.setColor(pixel, match.get().getColor(0).getRGB(), 0);
-//              Pixel.setColor(pixel, match.get().getColor(1).getRGB(), 1);
-//              Pixel.setColor(pixel, match.get().getColor(2).getRGB(), 2);
-//              Pixel.setTooltip(pixel, match.get().getStructure());
                 Pixel.createForPixel(pixel, match.get().getColor(0).getRGB(), match.get().getColor(1).getRGB(), match.get().getColor(0).getRGB(), match.get().getStructure());
                 entity.itemHandler.setStackInSlot(2, pixel);
             } else {

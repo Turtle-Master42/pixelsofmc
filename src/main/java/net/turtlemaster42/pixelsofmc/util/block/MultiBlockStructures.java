@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.util.block;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class MultiBlockStructures {
