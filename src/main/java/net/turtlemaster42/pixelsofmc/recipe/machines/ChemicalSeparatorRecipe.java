@@ -26,7 +26,6 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
     private final CountedIngredient recipeItem;
     private final List<ChanceIngredient> outputs;
     private final FluidStack fluidInput;
-
     private final FluidStack fluidOutput;
 
     public ChemicalSeparatorRecipe(ResourceLocation id, CountedIngredient recipeItem, FluidStack fluidInput,
@@ -103,12 +102,12 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<ChemicalSeparatorRecipe> {
         private Type() { }
-        public static final ChemicalSeparatorRecipe.Type INSTANCE = new ChemicalSeparatorRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "chemical_separating";
     }
 
     public static class Serializer implements RecipeSerializer<ChemicalSeparatorRecipe> {
-        public static final ChemicalSeparatorRecipe.Serializer INSTANCE = new ChemicalSeparatorRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_separating");
 
@@ -165,7 +164,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return ChemicalSeparatorRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

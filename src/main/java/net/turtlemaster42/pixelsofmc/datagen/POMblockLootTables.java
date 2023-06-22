@@ -1,13 +1,8 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.world.level.block.Block;
@@ -15,8 +10,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.util.Element;
 
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class POMblockLootTables extends BlockLootSubProvider {
     protected POMblockLootTables() {
@@ -35,13 +28,13 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         this.dropSelf(POMblocks.ALUMINIUM_SCRAP_BLOCK.get());
-        this.dropSelf(POMblocks.SAND_MINERAL_DEPOSIT.get());
         this.dropSelf(POMblocks.ACANTHITE.get());
         this.dropSelf(POMblocks.HOT_ISOSTATIC_PRESS.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());
-        this.dropSelf(POMblocks.CHEMICAL_SEPERATOR.get());
+        this.dropSelf(POMblocks.CHEMICAL_SEPARATOR.get());
+        this.dropSelf(POMblocks.CHEMICAL_COMBINER.get());
         this.dropSelf(POMblocks.SDS_CONTROLLER.get());
         this.dropSelf(POMblocks.MDS_CONTROLLER.get());
         this.dropSelf(POMblocks.MNS_CONTROLLER.get());

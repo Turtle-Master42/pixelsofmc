@@ -124,12 +124,12 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<ChemicalCombinerRecipe> {
         private Type() { }
-        public static final ChemicalCombinerRecipe.Type INSTANCE = new ChemicalCombinerRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "chemical_combining";
     }
 
     public static class Serializer implements RecipeSerializer<ChemicalCombinerRecipe> {
-        public static final ChemicalCombinerRecipe.Serializer INSTANCE = new ChemicalCombinerRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_combining");
 
@@ -195,7 +195,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return ChemicalCombinerRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

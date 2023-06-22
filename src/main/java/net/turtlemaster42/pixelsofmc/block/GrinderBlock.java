@@ -48,7 +48,6 @@ public class GrinderBlock extends BaseEntityBlock {
             box(-16, 4, 0, 32, 32, 32) //base
 
     );
-
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

@@ -698,7 +698,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalSeperator(fConsumer, toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), FluidStack.EMPTY, FluidStack.EMPTY, toCHI(Element.TITANIUM.dustTag(), 1, 1), toCHI(Element.BORON.dustTag(), 2, 1));
 
         ChemicalSeperator(fConsumer, toCI(Element.TITANIUM.dustTag(), 1), toF(Fluids.WATER, 150), toF(POMfluids.HYDROGEN_SOURCE.get(), 100), toCHI(POMitems.TITANIUM_OXIDE_DUST.get(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), FluidStack.EMPTY, toF(POMfluids.HYDROGEN_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), FluidStack.EMPTY, toF(POMfluids.MERCURY_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag(), 1, 1));
+
+        //chemical combining
+
+        ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 1), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag(), 1));
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -988,6 +992,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
         new ChemicalSeparatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void ChemicalCombining(Consumer<FinishedRecipe> consumer, ChanceIngredient output, FluidStack inputFluid, FluidStack outputFluid, CountedIngredient... inputs) {
+        List<CountedIngredient> inputList = new java.util.ArrayList<>();
+        Collections.addAll(inputList, inputs);
+        new ChemicalCombinerRecipeBuilder(output, inputFluid, outputFluid, inputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

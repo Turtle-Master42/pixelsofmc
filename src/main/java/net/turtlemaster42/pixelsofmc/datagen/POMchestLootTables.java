@@ -1,4 +1,4 @@
-//package net.turtlemaster42.pixelsofmc.datagen;
+package net.turtlemaster42.pixelsofmc.datagen;//package net.turtlemaster42.pixelsofmc.datagen;
 //
 //import net.minecraft.resources.ResourceLocation;
 //import net.minecraft.world.level.storage.loot.LootTable;

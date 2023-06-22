@@ -51,12 +51,12 @@ public class ChemicalSeparatorGuiMenu extends AbstractContainerMenu implements I
             this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
             this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
             this.addSlot(new SlotItemHandler(handler, 6, 40, 5));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 7, 85, 5, 1));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 8, 85, 21, 1));
             this.addSlot(new ModResultSlot(handler, 1, 124, 29));
             this.addSlot(new ModResultSlot(handler, 2, 120, 47));
             this.addSlot(new ModResultSlot(handler, 3, 116, 65));
             this.addSlot(new SlotItemHandler(handler, 0, 48, 47));
-            this.addSlot(new ModMaxStacksizeSlot(handler, 7, 85, 5, 1));
-            this.addSlot(new ModMaxStacksizeSlot(handler, 8, 85, 21, 1));
         });
         addDataSlots(data);
     }

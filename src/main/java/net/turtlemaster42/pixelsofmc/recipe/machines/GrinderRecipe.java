@@ -86,12 +86,12 @@ public class GrinderRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<GrinderRecipe> {
         private Type() { }
-        public static final GrinderRecipe.Type INSTANCE = new GrinderRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "grinding";
     }
 
     public static class Serializer implements RecipeSerializer<GrinderRecipe> {
-        public static final GrinderRecipe.Serializer INSTANCE = new GrinderRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"grinding");
 
@@ -141,7 +141,7 @@ public class GrinderRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return GrinderRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

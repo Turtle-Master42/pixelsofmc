@@ -105,12 +105,12 @@ public class FusionRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<FusionRecipe> {
         private Type() { }
-        public static final FusionRecipe.Type INSTANCE = new FusionRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "fusing";
     }
 
     public static class Serializer implements RecipeSerializer<FusionRecipe> {
-        public static final FusionRecipe.Serializer INSTANCE = new FusionRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"fusing");
 
@@ -164,7 +164,7 @@ public class FusionRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return FusionRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

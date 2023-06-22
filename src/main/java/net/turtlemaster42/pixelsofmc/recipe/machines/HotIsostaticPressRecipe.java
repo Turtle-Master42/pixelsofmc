@@ -90,12 +90,12 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<HotIsostaticPressRecipe> {
         private Type() { }
-        public static final HotIsostaticPressRecipe.Type INSTANCE = new HotIsostaticPressRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "pressing";
     }
 
     public static class Serializer implements RecipeSerializer<HotIsostaticPressRecipe> {
-        public static final HotIsostaticPressRecipe.Serializer INSTANCE = new HotIsostaticPressRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"pressing");
 
@@ -155,7 +155,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return HotIsostaticPressRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

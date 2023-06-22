@@ -36,7 +36,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.TITANIUM_ORE);
         blockWithItem(POMblocks.RAW_TITANIUM_BLOCK);
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_BLOCK);
-        blockWithItem(POMblocks.SAND_MINERAL_DEPOSIT);
         blockWithItem(POMblocks.ACANTHITE);
 
         blockWithItem(POMblocks.SIMPLE_CASING_1);

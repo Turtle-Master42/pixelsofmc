@@ -120,12 +120,12 @@ public class BallMillRecipe extends BaseRecipe {
 
     public static class Type implements RecipeType<BallMillRecipe> {
         private Type() { }
-        public static final BallMillRecipe.Type INSTANCE = new BallMillRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "ball_milling";
     }
 
     public static class Serializer implements RecipeSerializer<BallMillRecipe> {
-        public static final BallMillRecipe.Serializer INSTANCE = new BallMillRecipe.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"ball_milling");
 
@@ -197,7 +197,7 @@ public class BallMillRecipe extends BaseRecipe {
         }
 
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return BallMillRecipe.Serializer.castClass(RecipeSerializer.class);
+            return Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

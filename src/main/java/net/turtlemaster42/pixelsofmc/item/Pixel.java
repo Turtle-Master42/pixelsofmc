@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Pixel extends Item implements DyeableLeatherItem {
 
-    public Pixel(Item.Properties properties) {super(properties);}
+    public Pixel(Properties properties) {super(properties);}
 
     public int getColor(ItemStack stack) {
         return getColor(stack, 0);

@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	public DummyMachineBlock() {
-		super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
+		super(Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
 	}
 

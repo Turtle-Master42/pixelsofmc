@@ -11,7 +11,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class book1 extends Item {
 
-    public book1(Item.Properties properties) {
+    public book1(Properties properties) {
         super(properties);
     }
 

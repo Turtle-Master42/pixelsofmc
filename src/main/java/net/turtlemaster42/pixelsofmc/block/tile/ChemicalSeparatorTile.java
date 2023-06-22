@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -152,8 +153,9 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         if (slot==0) return true;
         else if (slot==4) return stack.is(POMtags.Items.SPEED_UPGRADE);
         else if (slot==5) return stack.is(POMtags.Items.ENERGY_UPGRADE);
-        else if (slot==6) return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
-        else if (5 < slot && slot <= 9) return true;
+        else if (slot==6) return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() && !stack.is(Items.BUCKET);
+        else if (slot==7) return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
+        else if (slot==8) return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
         return false;
     }
     @Override
@@ -259,7 +261,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
             transferFluidToTank(pBlockEntity);
         }
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
+            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(4).getCount();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
 
@@ -278,8 +280,10 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
 
             FluidStack stack = handler.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
             if(pBlockEntity.fluidTank.isFluidValid(stack)) {
-                stack = handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
-                fillTankWithFluid(pBlockEntity, fluidTank, stack, handler.getContainer());
+                if (pBlockEntity.fluidTank.getFluid().isFluidEqual(stack) || pBlockEntity.fluidTank.getFluid().isEmpty()) {
+                    stack = handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+                    fillTankWithFluid(pBlockEntity, fluidTank, stack, handler.getContainer());
+                }
             }
         });
     }
@@ -338,7 +342,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     }
 
     private static boolean hasPower(ChemicalSeparatorTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
+        int speedAmount = entity.itemHandler.getStackInSlot(4).getCount();
         return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
