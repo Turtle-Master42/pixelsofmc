@@ -24,6 +24,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
@@ -45,11 +46,13 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private final int maxReceive = 4096;
     private static final int energyConsumption = 512;
     private int heat;
-    private int maxHeat = 5000;
+    private int maxHeat = 2500;
+    private int maxSoulHeat = 5000;
 
     private static int requiredHeat = -1;
     private static int requiredMaxHeat = -1;
     private int burnTime = 0;
+    private int soulBurnTime = 0;
     private int maxBurnTime = 0;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
@@ -87,7 +90,9 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
                     case 6: return HotIsostaticPressTile.this.heat;
                     case 7: return HotIsostaticPressTile.this.maxHeat;
                     case 8: return HotIsostaticPressTile.this.burnTime;
-                    case 9: return HotIsostaticPressTile.this.maxBurnTime;
+                    case 9: return HotIsostaticPressTile.this.soulBurnTime;
+                    case 10: return HotIsostaticPressTile.this.maxBurnTime;
+                    case 11: return HotIsostaticPressTile.this.maxSoulHeat;
                     default: return 0;
                 }
             }
@@ -99,12 +104,14 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
                     case 6: HotIsostaticPressTile.this.heat = value; break;
                     case 7: HotIsostaticPressTile.this.maxHeat = value; break;
                     case 8: HotIsostaticPressTile.this.burnTime = value; break;
-                    case 9: HotIsostaticPressTile.this.maxBurnTime = value; break;
+                    case 9: HotIsostaticPressTile.this.soulBurnTime = value; break;
+                    case 10: HotIsostaticPressTile.this.maxBurnTime = value; break;
+                    case 11: HotIsostaticPressTile.this.maxSoulHeat = value; break;
                 }
             }
 
             public int getCount() {
-                return 9;
+                return 11;
             }
         };
     }
@@ -138,6 +145,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
                 heat = heat - 1000;
                 itemHandler.extractItem(1, 1, false);
             }
+        if (heat < 0) heat=0;
     }
 
     public int getMaxTime() {return maxBurnTime;}
@@ -186,6 +194,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         tag.putInt("progress", progress);
         tag.putInt("heat", heat);
         tag.putInt("burnTime", burnTime);
+        tag.putInt("soulBurnTime", soulBurnTime);
         tag.putInt("maxBurnTime", maxBurnTime);
         tag.putInt("speedUpgrade", speedUpgrade);
         tag.putInt("powerCapacity", capacity);
@@ -200,6 +209,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         progress = nbt.getInt("progress");
         heat = nbt.getInt("heat");
         burnTime = nbt.getInt("burnTime");
+        soulBurnTime = nbt.getInt("soulBurnTime");
         maxBurnTime = nbt.getInt("maxBurnTime");
         speedUpgrade = nbt.getInt("speedUpgrade");
         energyStorage.setEnergy(nbt.getInt("Energy"));
@@ -217,13 +227,21 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, HotIsostaticPressTile pBlockEntity) {
 
-        if(ForgeHooks.getBurnTime(itemHandler.getStackInSlot(1), null) > 0 && burnTime == 0) {
+        if(ForgeHooks.getBurnTime(itemHandler.getStackInSlot(1), null) > 0 && burnTime == 0 && soulBurnTime == 0) {
             int time = ForgeHooks.getBurnTime(itemHandler.getStackInSlot(1), null) / 20;
             maxBurnTime=time;
-            burnTime=time;
-            itemHandler.extractItem(1, 1, false);
+            if (itemHandler.getStackInSlot(1).is(POMtags.Items.SOUL_FUELS))
+                soulBurnTime=time;
+            else
+                burnTime=time;
+
+            if (!itemHandler.getStackInSlot(1).getCraftingRemainingItem().isEmpty() && itemHandler.getStackInSlot(1).getMaxStackSize() == 1)
+                itemHandler.setStackInSlot(1, itemHandler.getStackInSlot(1).getCraftingRemainingItem());
+            else
+                itemHandler.extractItem(1, 1, false);
         }
         createHeat();
+        createSoulHeat();
 
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(4).getCount();
@@ -255,7 +273,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
             return canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
                     && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                     && hasHeat(entity, match.get().getHeat())
-                    && !hasHeat(entity, match.get().getMaxHeat());
+                    && !hasHeat(entity, match.get().getMaxHeat()+1);
         }
         else return false;
     }
@@ -296,12 +314,25 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
     private void resetProgress() {this.progress = 0;}
     private void createHeat() {
-        if (burnTime > 0 && heat < maxHeat) {
+        if (burnTime > 0) {
             int upgrade = this.itemHandler.getStackInSlot(6).getCount() + 1;
             this.burnTime = this.burnTime - upgrade;
-            this.heat = this.heat + upgrade;
-            if (this.heat > maxHeat) this.heat = maxHeat;
             if (this.burnTime < 0) this.burnTime = 0;
+            if (heat < maxHeat) {
+                this.heat = this.heat + upgrade;
+                if (this.heat > maxHeat) this.heat = maxHeat;
+            }
+        }
+    }
+    private void createSoulHeat() {
+        if (soulBurnTime > 0) {
+            int upgrade = this.itemHandler.getStackInSlot(6).getCount() + 1;
+            this.soulBurnTime = this.soulBurnTime - upgrade;
+            if (this.soulBurnTime < 0) this.soulBurnTime = 0;
+            if (heat < maxSoulHeat) {
+                this.heat = this.heat + upgrade;
+                if (this.heat > maxSoulHeat) this.heat = maxSoulHeat;
+            }
         }
     }
 

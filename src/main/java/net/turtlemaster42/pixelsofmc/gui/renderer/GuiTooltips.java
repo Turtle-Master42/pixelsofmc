@@ -24,14 +24,14 @@ public class GuiTooltips {
         if (requiredHeat != -1) {
             text.add(Component.translatable("tooltip.pixelsofmc.heat.required"));
             if (heat > requiredHeat)
-                if (heat < requiredMaxHeat)
+                if (heat < requiredMaxHeat+1)
                     if (Screen.hasShiftDown())
                         text.add(Component.literal("§a > " + (requiredHeat + 273) + " K"));
                     else text.add(Component.literal("§a > " + (requiredHeat) + " °C"));
                 else
                     if (Screen.hasShiftDown())
-                        text.add(Component.literal("§6 < " + (requiredMaxHeat + 273) + " K"));
-                    else text.add(Component.literal("§6 < " + (requiredMaxHeat) + " °C"));
+                        text.add(Component.literal("§6 <= " + (requiredMaxHeat + 273) + " K"));
+                    else text.add(Component.literal("§6 <= " + (requiredMaxHeat) + " °C"));
 
             else if (Screen.hasShiftDown())
                 text.add(Component.literal("§4 > " + (requiredHeat + 273) + " K"));

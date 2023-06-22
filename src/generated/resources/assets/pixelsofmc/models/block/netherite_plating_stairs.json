@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "pixelsofmc:block/netherite_plating_block",
-    "side": "pixelsofmc:block/netherite_plating_block",
-    "top": "pixelsofmc:block/netherite_plating_block"
-  }
-}

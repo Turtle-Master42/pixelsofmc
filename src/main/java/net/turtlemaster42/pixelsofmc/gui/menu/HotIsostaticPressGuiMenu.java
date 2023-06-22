@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
@@ -25,7 +26,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     private static final int containerSize = 7;
 
     public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(12));
     }
 
     public HotIsostaticPressGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -44,7 +45,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
             this.addSlot(new ModHeatUpgradeSlot(handler, 6, 161, 44));
             this.addSlot(new ModResultSlot(handler, 3, 110, 34));
             this.addSlot(new SlotItemHandler(handler, 2, 51, 9));
-            this.addSlot(new SlotItemHandler(handler, 1, 30, 55));
+            this.addSlot(new SlotItemHandler(handler, 1, 51, 59));
             this.addSlot(new SlotItemHandler(handler, 0, 51, 34));
         });
 
@@ -56,12 +57,13 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         return data.get(0) > 0;
     }
     public boolean isHeating() {
-        return data.get(8) > 0;
+        return data.get(8) > 0 || data.get(9) > 0;
     }
     public int getHeat() {return data.get(6);}
     public int getRequiredHeat() {return blockEntity.getRequiredHeat();}
     public int getRequiredMaxHeat() {return blockEntity.getRequiredMaxHeat();}
     public int getTime() {return data.get(8);}
+    public int getSoulTime() {return data.get(9);}
     public int getMaxTime() {return blockEntity.getMaxTime();}
     public int getEnergy() {return blockEntity.getEnergyStorage().getEnergyStored();}
     public int getMaxEnergy() {return blockEntity.getEnergyStorage().getMaxEnergyStored();}
@@ -89,14 +91,21 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     public int getScaledHeat() {
         int heat = this.data.get(6);
         int maxHeat = this.data.get(7);
-        int progressArrowSize = 40;
-        return maxHeat != 0 ? heat * progressArrowSize / maxHeat :0;
+        int progressArrowSize = 28;
+        return maxHeat != 0 && heat <= 2500 ? ((maxHeat-heat) * progressArrowSize / maxHeat) :0;
+    }
+
+    public int getScaledSoulHeat() {
+        int heat = this.data.get(6); //stored
+        int maxSoulHeat = 2500;//this.data.get(11);  // Max
+        int progressArrowSize = 27; // This is the height in pixels of your arrow
+        return heat > 2500 && maxSoulHeat != 0 ? ((heat - 2500) * progressArrowSize / maxSoulHeat) : 0;
     }
 
     public int getScaledBurnTime() {
-        int time = this.data.get(8);
-        int maxTime = blockEntity.getMaxTime()+1;
-        int progressArrowSize = 14;
+        int time = this.data.get(8) + this.data.get(9);
+        int maxTime = blockEntity.getMaxTime();
+        int progressArrowSize = 16;
         return time * progressArrowSize / maxTime;
     }
 

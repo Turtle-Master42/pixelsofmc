@@ -70,6 +70,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1);
         simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1);
 
+        simpleItem(POMitems.SOUL_COAL);
         simpleItem(POMitems.RAW_TITANIUM);
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT);
 
@@ -183,6 +184,12 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/elements/" + item.getId().getPath()));
     }
 
+    private ItemModelBuilder elementItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(PixelsOfMc.MOD_ID,"item/elements/" + item.getId().getPath()));
+    }
+
     private ItemModelBuilder dustItem(POMitems.ItemRegObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
@@ -194,6 +201,12 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/dusts/" + item.getId().getPath()));
     }
     private ItemModelBuilder atomItem(POMitems.ItemRegObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(PixelsOfMc.MOD_ID,"item/atoms/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder atomItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/atoms/" + item.getId().getPath()));

@@ -187,19 +187,25 @@ public enum Element {
     }
     public boolean isFireResistant() {return this.info.isFireProof();}
 
-    public ItemLike item() {return POMitems.Metals.ELEMENTS.get(this);}
-    public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this);}
-    public ItemLike atom512() {return POMitems.Metals.ATOMX512.get(this);}
+    public ItemLike item() {
+        return POMitems.Metals.ELEMENTS.get(this).get();
+    }
+    public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this).get();}
+    public ItemLike atom512() {return POMitems.Metals.ATOMX512.get(this).get();}
     public Block block() {return POMblocks.Metals.BLOCKS.get(this).get();}
-    public ItemLike blockItem() {return POMblocks.Metals.BLOCKS.get(this).asItem();}
+    public ItemLike blockItem() {
+        if (this.shouldAddBlock())
+            return POMblocks.Metals.BLOCKS.get(this).asItem();
+        return Items.AIR;
+    }
     public ItemLike nugget() {
         if (this.shouldAddNugget())
-            return POMitems.Metals.NUGGETS.get(this);
+            return POMitems.Metals.NUGGETS.get(this).get();
         return Items.AIR;
     }
     public ItemLike dust() {
         if (this.shouldAddDust())
-            return POMitems.Metals.DUSTS.get(this);
+            return POMitems.Metals.DUSTS.get(this).get();
         return Items.AIR;
     }
     public ItemStack pixel() {

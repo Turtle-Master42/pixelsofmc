@@ -45,7 +45,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.STRONG_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
-        multiBlockWithItem(POMblocks.REINFORCED_GLASS);
         multiBlockWithItem(POMblocks.REINFORCED_THING);
 
         blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
