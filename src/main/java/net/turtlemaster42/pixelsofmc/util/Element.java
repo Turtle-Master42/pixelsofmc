@@ -274,10 +274,10 @@ public enum Element {
     }
 
     public static class Info {
-        private int meltingPoint;
-        private int evaporatingPoint;
-        private String[] color;
-        Danger[] danger;
+        private final int meltingPoint;
+        private final int evaporatingPoint;
+        private final String[] color;
+        final Danger[] danger;
 
 
         Info(int meltingPoint, int evaporatingPoint, String color1, String color2, String color3, Danger... danger) {

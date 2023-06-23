@@ -37,7 +37,7 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
     }
 
     @Override
-    public RecipeType<HotIsostaticPressRecipe> getRecipeType() {
+    public @NotNull RecipeType<HotIsostaticPressRecipe> getRecipeType() {
         return new RecipeType<>(UID, HotIsostaticPressRecipe.class);
     }
 
@@ -57,7 +57,7 @@ public class HotIsostaticPressRecipeCategory implements IRecipeCategory<HotIsost
     }
 
     @Override
-    public void draw(HotIsostaticPressRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(@NotNull HotIsostaticPressRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull PoseStack poseStack, double mouseX, double mouseY) {
         drawHeat(recipe, poseStack, 0);
     }
 

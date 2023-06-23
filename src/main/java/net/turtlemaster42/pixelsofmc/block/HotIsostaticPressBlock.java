@@ -28,6 +28,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -54,8 +55,8 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
 
     @Override
     @Deprecated
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch ((Direction)pState.getValue(FACING)) {
+    public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+        switch (pState.getValue(FACING)) {
             case EAST:
                 return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
             case SOUTH:
@@ -95,12 +96,12 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState rotate(BlockState pState, Rotation pRotation) {
+    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
+    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
@@ -110,18 +111,18 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
         return RenderShape.MODEL;
     }
 
     @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
+    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
         return PushReaction.BLOCK;
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
+                                          @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof HotIsostaticPressTile) {
@@ -135,7 +136,7 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+    public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof HotIsostaticPressTile) {
@@ -148,7 +149,7 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
 
 
     @Deprecated
-    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
             BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
@@ -175,13 +176,13 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new HotIsostaticPressTile(pPos, pState);
     }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, POMtiles.HOT_ISOSTATIC_PRESS.get(),
                 pLevel.isClientSide ? HotIsostaticPressTile::clientTick : HotIsostaticPressTile::serverTick);
     }

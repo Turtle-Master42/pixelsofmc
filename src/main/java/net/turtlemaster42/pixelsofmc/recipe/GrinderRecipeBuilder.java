@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -33,18 +34,18 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
+    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
         this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
         return this;
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String pGroupName) {
+    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
         return this;
     }
 
     @Override
-    public Item getResult() {
+    public @NotNull Item getResult() {
         return ItemStack.EMPTY.getItem();
     }
 
@@ -53,7 +54,7 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
         this.advancement.parent(new ResourceLocation("recipes/root"))
                 .addCriterion("has_the_recipe",
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
@@ -83,14 +84,14 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
         public void serializeRecipeData(JsonObject pJson) {
             pJson.add("input", ingredient.toJson());
             JsonArray jsonarray = new JsonArray();
-            for (int i = 0; i < results.size(); i++) {
-                jsonarray.add(results.get(i).toJson());
+            for (ChanceIngredient result : results) {
+                jsonarray.add(result.toJson());
             }
             pJson.add("outputs", jsonarray);
         }
 
         @Override
-        public ResourceLocation getId() {
+        public @NotNull ResourceLocation getId() {
             String name = this.ingredient.getItems()[0].getItem().toString();
             String jsonString = this.ingredient.toJson().toString();
 
@@ -108,7 +109,7 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
         }
 
         @Override
-        public RecipeSerializer<?> getType() {
+        public @NotNull RecipeSerializer<?> getType() {
             return GrinderRecipe.Serializer.INSTANCE;
         }
 

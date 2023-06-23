@@ -21,6 +21,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import org.jetbrains.annotations.NotNull;
 
 public class ChemicalSeparatorGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu {
     public final ChemicalSeparatorTile blockEntity;
@@ -121,7 +122,7 @@ public class ChemicalSeparatorGuiMenu extends AbstractContainerMenu implements I
     private static final int TE_INVENTORY_SLOT_COUNT = 9;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
@@ -154,7 +155,7 @@ public class ChemicalSeparatorGuiMenu extends AbstractContainerMenu implements I
     }
 
     @Override
-    public boolean stillValid(Player pPlayer) {
+    public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, POMblocks.CHEMICAL_SEPARATOR.get());
     }

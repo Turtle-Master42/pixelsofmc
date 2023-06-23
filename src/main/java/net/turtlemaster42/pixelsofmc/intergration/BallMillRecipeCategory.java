@@ -33,7 +33,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     }
 
     @Override
-    public RecipeType<BallMillRecipe> getRecipeType() {
+    public @NotNull RecipeType<BallMillRecipe> getRecipeType() {
         return new RecipeType<>(UID, BallMillRecipe.class);
     }
 

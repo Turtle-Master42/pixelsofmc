@@ -104,8 +104,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         if (slot == 3) return stack.is(POMtags.Items.MILLING_BALL);
         else if (slot==5) return stack.is(POMtags.Items.SPEED_UPGRADE);
         else if (slot==6) return stack.is(POMtags.Items.ENERGY_UPGRADE);
-        else if (slot > 3) return false;
-        else return true;
+        else return slot <= 3;
     }
 
     @Override
@@ -122,13 +121,13 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.ball_mill");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         return new BallMillGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -169,7 +168,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");

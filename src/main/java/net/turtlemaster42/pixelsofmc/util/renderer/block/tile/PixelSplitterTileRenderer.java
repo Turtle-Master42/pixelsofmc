@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplitterTile> {
     public PixelSplitterTileRenderer(BlockEntityRendererProvider.Context context) {
@@ -16,7 +17,7 @@ public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplit
 
     @Override
     public void render(PixelSplitterTile pBlockEntity, float pPartialTick, PoseStack pPoseStack,
-                       MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+                       @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0.5 ,0.5);
 

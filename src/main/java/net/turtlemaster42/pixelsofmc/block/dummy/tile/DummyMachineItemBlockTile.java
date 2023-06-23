@@ -26,7 +26,7 @@ public class DummyMachineItemBlockTile extends AbstractDummyMachineBlockTile {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if(!level.isClientSide()) {
+            if(level != null && !level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
         }

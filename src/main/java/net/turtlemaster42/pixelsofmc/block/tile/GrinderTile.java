@@ -113,13 +113,13 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.grinder");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         return new GrinderGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -160,7 +160,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");

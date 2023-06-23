@@ -34,6 +34,7 @@ import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 
@@ -81,7 +82,7 @@ public class PixelsOfMc {
 			//Credits The Undergarden
 			DispenseItemBehavior bucketBehavior = new DefaultDispenseItemBehavior() {
 				private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
-				public ItemStack execute(BlockSource source, ItemStack stack) {
+				public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
 					BucketItem bucketitem = (BucketItem) stack.getItem();
 					BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					Level world = source.getLevel();

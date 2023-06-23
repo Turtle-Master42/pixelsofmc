@@ -11,6 +11,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -21,12 +22,12 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
                 .isRedstoneConductor((bs, br, bp) -> false));
     }
 
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new DummyMachineItemBlockTile(pos, state);
     }
 
     @Deprecated
-    public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
+    public boolean triggerEvent(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, int eventID, int eventParam) {
         super.triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
@@ -34,7 +35,7 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (!pLevel.isClientSide())
             return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_ITEM_BLOCK.get(), DummyMachineItemBlockTile::serverTick);
         return null;

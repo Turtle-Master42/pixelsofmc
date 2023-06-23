@@ -19,6 +19,7 @@ import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -39,18 +40,18 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
+    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
         this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
         return this;
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String pGroupName) {
+    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
         return this;
     }
 
     @Override
-    public Item getResult() {
+    public @NotNull Item getResult() {
         return ItemStack.EMPTY.getItem();
     }
 
@@ -65,7 +66,7 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
         this.advancement.parent(new ResourceLocation("recipes/root"))
                 .addCriterion("has_the_recipe",
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
@@ -102,15 +103,15 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
             pJson.add("input", ingredient.toJson());
             pJson.add("fluid_input", FluidJSONUtil.toJson(inputFluid));
             JsonArray jsonarray = new JsonArray();
-            for (int i = 0; i < results.size(); i++) {
-                jsonarray.add(results.get(i).toJson());
+            for (ChanceIngredient result : results) {
+                jsonarray.add(result.toJson());
             }
             pJson.add("outputs", jsonarray);
             pJson.add("fluid_output", FluidJSONUtil.toJson(resultFluid));
         }
 
         @Override
-        public ResourceLocation getId() {
+        public @NotNull ResourceLocation getId() {
             String name = this.ingredient.getItems()[0].getItem().toString();
             String jsonString = this.ingredient.ingredient().toJson().toString();
 
@@ -128,7 +129,7 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
         }
 
         @Override
-        public RecipeSerializer<?> getType() {
+        public @NotNull RecipeSerializer<?> getType() {
             return ChemicalSeparatorRecipe.Serializer.INSTANCE;
         }
 

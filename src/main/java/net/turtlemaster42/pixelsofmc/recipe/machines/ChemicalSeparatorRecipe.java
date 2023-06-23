@@ -16,6 +16,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -38,18 +39,18 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
     }
 
     @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+    public boolean matches(@NotNull SimpleContainer pContainer, Level pLevel) {
         if (pLevel.isClientSide) return false;
         return recipeItem.test(pContainer.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return getResultItem();
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -60,7 +61,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
@@ -87,16 +88,16 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
 
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get());
     }
 
@@ -111,7 +112,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_separating");
 
-        public ChemicalSeparatorRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull ChemicalSeparatorRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //outputs
             JsonArray jsonOutputs = json.getAsJsonArray("outputs");
             FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
@@ -127,7 +128,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
             return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
         }
 
-        public ChemicalSeparatorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public ChemicalSeparatorRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 CountedIngredient input = CountedIngredient.fromNetwork(buf);
                 List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
@@ -141,7 +142,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, ChemicalSeparatorRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull ChemicalSeparatorRecipe recipe) {
             try {
                 recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));

@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import org.jetbrains.annotations.NotNull;
 
 public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final GrinderTile blockEntity;
@@ -92,7 +93,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
     private static final int TE_INVENTORY_SLOT_COUNT = 7;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
@@ -125,7 +126,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements IEnergyMenu
     }
 
     @Override
-    public boolean stillValid(Player pPlayer) {
+    public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, POMblocks.GRINDER.get());
     }

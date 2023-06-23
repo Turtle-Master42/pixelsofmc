@@ -10,17 +10,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.turtlemaster42.pixelsofmc.block.HotIsostaticPressBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.ModelHotIsostaticPress;
+import org.jetbrains.annotations.NotNull;
 
 public class HotIsostaticPressRenderer<T extends HotIsostaticPressTile> implements BlockEntityRenderer<T> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation("pixelsofmc:textures/block/hot_isostatic_press.png");
-    private static ModelHotIsostaticPress MODEL = new ModelHotIsostaticPress();
+    private static final ModelHotIsostaticPress MODEL = new ModelHotIsostaticPress();
 
     public HotIsostaticPressRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+    public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         Direction dir = pBlockEntity.getBlockState().getValue(HotIsostaticPressBlock.FACING);
         if(dir == Direction.NORTH){

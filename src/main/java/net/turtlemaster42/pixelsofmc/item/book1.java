@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import org.jetbrains.annotations.NotNull;
 
 public class book1 extends Item {
 
@@ -16,7 +17,7 @@ public class book1 extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (world.isClientSide) {
             PixelsOfMc.PROXY.openBookGUI(itemStack);

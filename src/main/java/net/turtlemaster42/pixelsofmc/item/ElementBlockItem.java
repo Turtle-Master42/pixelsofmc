@@ -8,6 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ElementBlockItem extends BlockItem {
         this.e = e;
     }
 
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         if (Screen.hasShiftDown()) {
 
             int dangerAmount = e.getInfo().getDangerAmount();

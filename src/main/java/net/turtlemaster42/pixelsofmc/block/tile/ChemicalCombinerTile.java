@@ -54,7 +54,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         @Override
         protected void onContentsChanged() {
             setChanged();
-            if(!level.isClientSide()) {
+            if(level != null && !level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncFluidToClient(this.fluid, worldPosition));
             }
         }
@@ -69,7 +69,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         @Override
         protected void onContentsChanged() {
             setChanged();
-            if(!level.isClientSide()) {
+            if(level != null && !level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.fluid, worldPosition));
             }
         }
@@ -167,13 +167,13 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.chemical_combiner");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
@@ -230,7 +230,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");
@@ -328,16 +328,16 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         return match.isPresent()
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutput().count())
-                && canExtractInputFluid(entity, match)
-                && canInsertOutputFluid(entity, match);
+                && canExtractInputFluid(entity, match.get().getFluidInput())
+                && canInsertOutputFluid(entity, match.get().getResultFluid());
     }
 
-    private static boolean canInsertOutputFluid(ChemicalCombinerTile entity, Optional<ChemicalCombinerRecipe> match) {
-        return match.get().getResultFluid().equals(entity.duoFluidTank.getFluid()) && match.get().getResultFluid().getAmount() < entity.duoFluidTank.getSpace() || entity.duoFluidTank.isEmpty() || match.get().getResultFluid().isEmpty();
+    private static boolean canInsertOutputFluid(ChemicalCombinerTile entity, FluidStack resultFluid) {
+        return resultFluid.equals(entity.duoFluidTank.getFluid()) && resultFluid.getAmount() < entity.duoFluidTank.getSpace() || entity.duoFluidTank.isEmpty() || resultFluid.isEmpty();
     }
 
-    private static boolean canExtractInputFluid(ChemicalCombinerTile entity, Optional<ChemicalCombinerRecipe> match) {
-        return match.get().getFluidInput().equals(entity.fluidTank.getFluid()) && match.get().getFluidInput().getAmount() <= entity.fluidTank.getFluidAmount() || match.get().getFluidInput().isEmpty();
+    private static boolean canExtractInputFluid(ChemicalCombinerTile entity, FluidStack fluidInput) {
+        return fluidInput.equals(entity.fluidTank.getFluid()) && fluidInput.getAmount() <= entity.fluidTank.getFluidAmount() || fluidInput.isEmpty();
     }
 
     private static boolean hasPower(ChemicalCombinerTile entity) {

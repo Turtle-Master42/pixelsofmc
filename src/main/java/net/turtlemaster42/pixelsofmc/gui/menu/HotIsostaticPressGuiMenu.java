@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import org.jetbrains.annotations.NotNull;
 
 public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final HotIsostaticPressTile blockEntity;
@@ -98,7 +99,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
         int heat = this.data.get(6); //stored
         int maxSoulHeat = 2500;//this.data.get(11);  // Max
         int progressArrowSize = 27; // This is the height in pixels of your arrow
-        return heat > 2500 && maxSoulHeat != 0 ? ((heat - 2500) * progressArrowSize / maxSoulHeat) : 0;
+        return heat > 2500 ? (heat - 2500) * progressArrowSize / maxSoulHeat : 0;
     }
 
     public int getScaledBurnTime() {
@@ -135,7 +136,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     private static final int TE_INVENTORY_SLOT_COUNT = containerSize;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
@@ -168,7 +169,7 @@ public class HotIsostaticPressGuiMenu extends AbstractContainerMenu implements I
     }
 
     @Override
-    public boolean stillValid(Player pPlayer) {
+    public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, POMblocks.HOT_ISOSTATIC_PRESS.get());
     }

@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
+import org.jetbrains.annotations.NotNull;
 
 public class SupercooledLiquidBlock extends LiquidBlock {
 
@@ -21,13 +22,13 @@ public class SupercooledLiquidBlock extends LiquidBlock {
     }
 
     @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+    public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, RandomSource pRandom) {
         if (pRandom.nextDouble() < 0.1d)
            pLevel.addParticle(ParticleTypes.SNOWFLAKE, pPos.getX() + pRandom.nextDouble(), pPos.getY() + pRandom.nextDouble(), pPos.getZ() + pRandom.nextDouble(), 0f, 0f, 0f);
     }
 
     @Override
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+    public void entityInside(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Entity pEntity) {
         pEntity.extinguishFire();
         pEntity.setTicksFrozen((int) (pEntity.getTicksFrozen() * 1.3f));
         pEntity.setIsInPowderSnow(true);

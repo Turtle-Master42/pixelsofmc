@@ -24,6 +24,7 @@ import net.turtlemaster42.pixelsofmc.recipe.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private final HashMap<String, Integer> PATH_COUNT = new HashMap<>();
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> fConsumer) {
+    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> fConsumer) {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.BIO_COMPOUND.get(), 2)
                 .requires(Items.SUGAR_CANE)

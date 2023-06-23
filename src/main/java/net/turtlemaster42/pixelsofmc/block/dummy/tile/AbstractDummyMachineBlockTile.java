@@ -23,7 +23,7 @@ public class AbstractDummyMachineBlockTile extends BlockEntity implements IDummy
     }
 
     public void setMainPos(BlockPos pos) {
-        if (pos != this.worldPosition && !level.isClientSide) {
+        if (level != null && pos != this.worldPosition && !level.isClientSide) {
             this.mainPos = pos;
             setChanged();
         }
@@ -48,7 +48,7 @@ public class AbstractDummyMachineBlockTile extends BlockEntity implements IDummy
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         mainPos = NbtUtils.readBlockPos(nbt.getCompound("mainPos"));
     }

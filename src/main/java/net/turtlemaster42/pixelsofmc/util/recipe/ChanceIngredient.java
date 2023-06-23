@@ -17,7 +17,7 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
     /**
      * An empty ingredient.
      */
-    public static ChanceIngredient EMPTY = new ChanceIngredient(Ingredient.EMPTY, 0, 0);
+    public static final ChanceIngredient EMPTY = new ChanceIngredient(Ingredient.EMPTY, 0, 0);
 
     public static ChanceIngredient of() {
         return EMPTY;
@@ -103,7 +103,7 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
 
     @Override
     public boolean test(@Nullable ItemStack itemStack) {
-        return ingredient.test(itemStack) && itemStack.getCount() >= count;
+        return ingredient.test(itemStack) && itemStack != null && itemStack.getCount() >= count;
     }
 
     public static ChanceIngredient fromJson(JsonObject json) {

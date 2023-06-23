@@ -16,6 +16,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
     //credits EnderIO
     @Override
-    public boolean matches(SimpleContainer container, Level level) {
+    public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
 
         boolean[] matched = new boolean[3];
@@ -73,19 +74,19 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return getResultItem();
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return output.getItems()[0];
     }
 
     public FluidStack getResultFluid() {return this.fluidOutput;}
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
@@ -109,16 +110,16 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get());
     }
 
@@ -133,7 +134,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_combining");
 
-        public ChemicalCombinerRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull ChemicalCombinerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
             FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
 
@@ -151,7 +152,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
             return new ChemicalCombinerRecipe(id, inputs, fluidInput, output, fluidOutput);
         }
 
-        public ChemicalCombinerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public ChemicalCombinerRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
 
@@ -167,7 +168,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, ChemicalCombinerRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull ChemicalCombinerRecipe recipe) {
             try {
                 buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
                 buf.writeInt(recipe.getIngredients().size());

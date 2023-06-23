@@ -35,7 +35,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
     protected final ItemStackHandler itemHandler = new PixelItemStackHandler(itemHandlerSize()) {
         @Override
         protected void onContentsChanged(int slot) {
-            if (!level.isClientSide()) {
+            if (level != null && !level.isClientSide()) {
                 POMmessages.sendToClients(new PacketSyncItemStackToClient(this, worldPosition));
             }
             contentsChanged(slot);

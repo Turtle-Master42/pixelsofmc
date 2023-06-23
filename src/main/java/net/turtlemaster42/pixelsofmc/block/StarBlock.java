@@ -19,6 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StarBlock extends BaseEntityBlock {
@@ -28,13 +29,13 @@ public class StarBlock extends BaseEntityBlock {
 
     public StarBlock(Properties p_49795_) {super(p_49795_);}
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
     @Deprecated
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         return SHAPE;
     }
 
@@ -48,23 +49,18 @@ public class StarBlock extends BaseEntityBlock {
         pBuilder.add(STAR_STAGE);
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.INVISIBLE;
-    }
-
     @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
+    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
         return PushReaction.BLOCK;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         return Block.box(1, 1, 1, 15, 15,15);
     }
 
     @Override
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+    public void entityInside(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Entity pEntity) {
         if (pState.getValue(STAR_STAGE) == 4)
             pEntity.hurt(new DamageSource("pixelsofmc.black_hole").bypassArmor().bypassMagic(), 50);
         else pEntity.hurt(new DamageSource("pixelsofmc.sun").bypassArmor().bypassMagic().setIsFire(), 15);
@@ -72,13 +68,13 @@ public class StarBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new StarTile(pPos, pState);
     }
 
     @javax.annotation.Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, POMtiles.STAR.get(),
                 pLevel.isClientSide ? StarTile::clientTick : StarTile::serverTick);
     }

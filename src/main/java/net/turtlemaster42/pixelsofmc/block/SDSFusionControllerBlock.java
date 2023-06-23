@@ -27,6 +27,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -48,8 +49,8 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
 
     @Override
     @Deprecated
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch ((Direction)pState.getValue(FACING)) {
+    public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+        switch (pState.getValue(FACING)) {
             case EAST:
                 return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
             case SOUTH:
@@ -65,12 +66,12 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     /* FACING */
 
     @Override
-    public BlockState rotate(BlockState pState, Rotation pRotation) {
+    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
+    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
@@ -94,8 +95,8 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
+                                          @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof SDSFusionControllerTile) {
@@ -109,7 +110,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+    public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof SDSFusionControllerTile) {
@@ -120,7 +121,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     }
 
     @Deprecated
-    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
             BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
@@ -143,7 +144,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (pState.getValue(ACTIVE).equals(1)) return null;
         return createTickerHelper(pBlockEntityType, POMtiles.SDS_CONTROLLER.get(),
                 pLevel.isClientSide ? SDSFusionControllerTile::clientTick : SDSFusionControllerTile::serverTick);
@@ -163,7 +164,9 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     public BlockPos fusionStarPos() {return new BlockPos(2, 2, 2);}
     @Override
-    public int fusionStarLevel() {return 1;}
+    public int fusionStarLevel() {
+        return super.fusionStarLevel();
+    }
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
         return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, 0, 1, pos);

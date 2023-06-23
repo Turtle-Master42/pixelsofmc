@@ -13,6 +13,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -34,7 +35,7 @@ public class FusionRecipe extends BaseRecipe {
 
     //credits EnderIO
     @Override
-    public boolean matches(SimpleContainer container, Level level) {
+    public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
         if (output.is(POMtags.Items.MDS) || output.is(POMtags.Items.MNS)) return false;
         int protonCount = 0;
@@ -63,12 +64,12 @@ public class FusionRecipe extends BaseRecipe {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return output;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return output.copy();
     }
 
@@ -84,21 +85,21 @@ public class FusionRecipe extends BaseRecipe {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.SDS_CONTROLLER.get());
     }
 
@@ -113,7 +114,7 @@ public class FusionRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"fusing");
 
-        public FusionRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
             CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
             ItemStack output = new ItemStack(out.asItem(), out.count());
@@ -124,7 +125,7 @@ public class FusionRecipe extends BaseRecipe {
             return new FusionRecipe(id, output, proton, neutron, electron);
         }
 
-        public FusionRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public FusionRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 ItemStack output = buf.readItem();
                 int outputCount = buf.readInt();
@@ -139,7 +140,7 @@ public class FusionRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, FusionRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull FusionRecipe recipe) {
             try {
                 buf.writeItem(recipe.output);
                 buf.writeInt(recipe.getOutputCount());

@@ -11,19 +11,20 @@ import net.turtlemaster42.pixelsofmc.block.StarBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.StarModel;
+import org.jetbrains.annotations.NotNull;
 
 public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> {
     private static final ResourceLocation SMALL = new ResourceLocation("pixelsofmc:textures/block/small_star.png");
     private static final ResourceLocation BIG = new ResourceLocation("pixelsofmc:textures/block/big_star.png");
     private static final ResourceLocation NEUTRON = new ResourceLocation("pixelsofmc:textures/block/neutron_star.png");
     private static final ResourceLocation HOLE = new ResourceLocation("pixelsofmc:textures/block/black_hole.png");
-    private static StarModel MODEL = new StarModel();
+    private static final StarModel MODEL = new StarModel();
 
     public StarRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
     }
 
     @Override
-    public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+    public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.5F, 0.5F);
         int seed = pBlockEntity.getBlockPos().getX() + pBlockEntity.getBlockPos().getY() + pBlockEntity.getBlockPos().getZ();

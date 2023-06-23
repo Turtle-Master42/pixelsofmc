@@ -154,11 +154,11 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     public int getRequiredMaxHeat() {return requiredMaxHeat;}
 
     @Override
-    public Component getDisplayName() {return Component.translatable("block.pixelsofmc.hot_isostatic_press");}
+    public @NotNull Component getDisplayName() {return Component.translatable("block.pixelsofmc.hot_isostatic_press");}
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         return new HotIsostaticPressGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -203,7 +203,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");

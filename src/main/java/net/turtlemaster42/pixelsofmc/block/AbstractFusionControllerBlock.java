@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.IFusionControllerBlock;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AbstractFusionControllerBlock extends BaseEntityBlock implements IFusionControllerBlock {
@@ -28,17 +29,17 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
         return RenderShape.MODEL;
     }
 
     @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
+    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
         return PushReaction.BLOCK;
     }
 
     @Override
-    public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
+    public void playerWillDestroy(Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Player pPlayer) {
         if (!pLevel.isClientSide())
             invalidateMultiBlock(pLevel, pPos);
         super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
@@ -46,7 +47,7 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return null;
     }
 

@@ -30,6 +30,7 @@ import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
 import net.turtlemaster42.pixelsofmc.fluid.AcidLiquidBlock;
 import net.turtlemaster42.pixelsofmc.fluid.SupercooledLiquidBlock;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -240,7 +241,7 @@ public class POMblocks {
         return POMitems.BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()) {
             @Override
-            public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+            public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltip, @NotNull TooltipFlag pFlag) {
                 if(Screen.hasShiftDown() && !shiftTooltip.isEmpty()) {
                     pTooltip.add(Component.translatable(shiftTooltip));
                 } else if(Screen.hasControlDown() && !ctrlTooltip.isEmpty()) {

@@ -25,27 +25,27 @@ public class Test extends Item {
     }
 
     @NotNull
-    public UseAnim getUseAnimation(ItemStack itemStack) {
+    public UseAnim getUseAnimation(@NotNull ItemStack itemStack) {
         return UseAnim.EAT;
     }
 
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(@NotNull ItemStack itemStack) {
         return 72000;
     }
 
-    public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int Int) {
+    public void releaseUsing(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull LivingEntity livingEntity, int Int) {
         if (livingEntity instanceof Player) {
             livingEntity.startSleeping(livingEntity.getOnPos());
         }
     }
 
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand interactionHand) {
         ItemStack itemstack = player.getItemInHand(interactionHand);
         player.startAutoSpinAttack(20);
         return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, itemstack);
     }
 
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.test", ""));
         pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc." + pStack.getItem()).withStyle(pStack.getRarity().color));
     }

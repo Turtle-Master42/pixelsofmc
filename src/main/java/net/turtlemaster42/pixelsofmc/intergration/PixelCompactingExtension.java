@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public record PixelCompactingExtension(PixelCompactingRecipe recipe) implements ICraftingCategoryExtension {
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
+    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull ICraftingGridHelper craftingGridHelper, @NotNull IFocusGroup focuses) {
         List<ItemStack> inputs = new ArrayList<>();
         List<ItemStack> outputs = new ArrayList<>();
 

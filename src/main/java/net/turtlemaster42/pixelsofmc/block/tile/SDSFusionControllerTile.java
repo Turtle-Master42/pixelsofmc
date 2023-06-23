@@ -104,13 +104,13 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.sds_controller");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         return new SDSFusionControllerGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -151,7 +151,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");

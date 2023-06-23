@@ -16,7 +16,7 @@ public record OutputStack(Either<ItemStack, FluidStack> stack) {
     /**
      * An empty item stack. Neither an item nor a fluid.
      */
-    public static OutputStack EMPTY = OutputStack.of(ItemStack.EMPTY);
+    public static final OutputStack EMPTY = OutputStack.of(ItemStack.EMPTY);
 
     /**
      * Create an item output stack.
@@ -64,9 +64,9 @@ public record OutputStack(Either<ItemStack, FluidStack> stack) {
      * @return Whether this output is completely empty.
      */
     public boolean isEmpty() {
-        if (isItem())
+        if (isItem() && stack.left().isPresent())
             return stack.left().get().isEmpty();
-        if (isFluid())
+        if (isFluid() && stack.right().isPresent())
             return stack.right().get().isEmpty();
         return true;
     }
@@ -76,9 +76,9 @@ public record OutputStack(Either<ItemStack, FluidStack> stack) {
      */
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
-        if (isItem()) {
+        if (isItem() && stack.left().isPresent()) {
             tag.put("item", stack.left().get().serializeNBT());
-        } else if (isFluid()) {
+        } else if (isFluid() && stack.right().isPresent()) {
             tag.put("fluid", stack.right().get().writeToNBT(new CompoundTag()));
         }
         return tag;

@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.item.Pixel;
+import org.jetbrains.annotations.NotNull;
 
 public class PixelCompactingRecipe extends CustomRecipe {
     public static final SimpleCraftingRecipeSerializer<?> SERIALIZER = new SimpleCraftingRecipeSerializer<>(PixelCompactingRecipe::new);
@@ -23,7 +24,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
 
 
     @Override
-    public boolean matches(CraftingContainer pContainer, Level pLevel) {
+    public boolean matches(@NotNull CraftingContainer pContainer, @NotNull Level pLevel) {
         Boolean[] match = new Boolean[9];
         Boolean[] air = new Boolean[9];
         boolean inColored = false;
@@ -47,7 +48,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
                     this.text = text;
                 }
 
-                if (color[0] == inColor[0] && color[1] == inColor[1] && color[2] == inColor[2] && text == this.text) match[i] = true;
+                if (color[0] == inColor[0] && color[1] == inColor[1] && color[2] == inColor[2] && text.equals(this.text)) match[i] = true;
             } else if (pContainer.getItem(i).isEmpty() && !hasAir) {
                 air[i] = true;
                 hasAir = true;
@@ -72,7 +73,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
         return "";
     }
     @Override
-    public ItemStack assemble(CraftingContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer) {
         ItemStack out = POMitems.PIXEL_PILE.get().getDefaultInstance();
 
         Pixel.setColor(out, inColor[0], 0);
@@ -88,7 +89,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 }

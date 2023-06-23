@@ -70,10 +70,10 @@ public class DummyMachineEnergyBlockTile extends AbstractDummyMachineBlockTile {
 
                 @Override
                 public int get(int index) {
-                    switch (index) {
-                        case 0: return DummyMachineEnergyBlockTile.this.energyStorage.getEnergyStored();
-                        default: return 0;
+                    if (index == 0) {
+                        return DummyMachineEnergyBlockTile.this.energyStorage.getEnergyStored();
                     }
+                    return 0;
                 }
 
                 @Override

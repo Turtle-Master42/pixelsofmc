@@ -6,6 +6,7 @@ import net.turtlemaster42.pixelsofmc.block.AbstractFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
 
 public class Debugium extends ElementItem {
     public Debugium(Element e, Properties pProperties) {
@@ -13,7 +14,7 @@ public class Debugium extends ElementItem {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @NotNull InteractionResult useOn(UseOnContext pContext) {
         if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractFusionControllerBlock fusionController) {
             fusionController.forcePlaceMultiBlock(pContext.getLevel(), pContext.getClickedPos());
             return InteractionResult.CONSUME;

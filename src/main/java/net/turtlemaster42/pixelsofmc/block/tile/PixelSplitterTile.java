@@ -110,13 +110,13 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.pixel_splitter");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         return new PixelSplitterGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -158,7 +158,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");
@@ -273,8 +273,8 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         int x = this.getBlockPos().getX();
         int y = this.getBlockPos().getY();
         int z = this.getBlockPos().getZ();
-        if (world instanceof ServerLevel level)
-            level.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
+        if (world instanceof ServerLevel serverlevel)
+            serverlevel.sendParticles(CRIT, x, y, z, 10, 1, 1, 1, 0);
     }
 
 

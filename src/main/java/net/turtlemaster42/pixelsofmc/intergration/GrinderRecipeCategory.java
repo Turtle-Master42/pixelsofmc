@@ -39,7 +39,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    public RecipeType<GrinderRecipe> getRecipeType() {
+    public @NotNull RecipeType<GrinderRecipe> getRecipeType() {
         return new RecipeType<>(UID, GrinderRecipe.class);
     }
 

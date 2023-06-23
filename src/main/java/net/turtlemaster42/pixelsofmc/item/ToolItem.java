@@ -11,6 +11,7 @@ import net.turtlemaster42.pixelsofmc.block.AbstractFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import org.jetbrains.annotations.NotNull;
 
 public class ToolItem extends Item {
     public ToolItem(Properties pProperties) {
@@ -33,7 +34,7 @@ public class ToolItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @NotNull InteractionResult useOn(UseOnContext pContext) {
         if (pContext.getItemInHand().getItem().equals(POMitems.SCREWDRIVER.get())) {
             if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractFusionControllerBlock fusionController) {
                 fusionController.validateMultiBlock(pContext.getLevel(), pContext.getClickedPos());

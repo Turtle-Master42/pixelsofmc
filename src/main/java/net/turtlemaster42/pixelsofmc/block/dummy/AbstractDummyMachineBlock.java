@@ -44,25 +44,25 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     }
 
     @Deprecated
-    public RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
         return RenderShape.INVISIBLE;
     }
     @Deprecated
-    public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    public float getShadeBrightness(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
         return 1.0F;
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return true;
     }
 
     @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
+    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
         return PushReaction.BLOCK;
     }
 
     @Deprecated
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
@@ -82,14 +82,13 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer) {
         //gets the main block and returns its getCloneItemStack
         BlockPos mainPos = getMainBlockPos(pWorld, pPos);
-        if (mainPos.equals(pPos))
+        if (mainPos != null && mainPos.equals(pPos))
             return ItemStack.EMPTY;
         else return pWorld.getBlockState(mainPos).getCloneItemStack(pTarget, pWorld, mainPos, pPlayer);
     }
 
-    @Nullable
     @Deprecated
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
         //when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
@@ -111,7 +110,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     }
 
     @Deprecated
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+    public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
         //when a dummy block receives a blockupdate it will check if the main block still exists,
         // if not, it will destroy itself and thereby update the surrounding dummy blocks
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
@@ -124,7 +123,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         }
     }
 
-    public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
+    public void playerWillDestroy(Level pLevel, BlockPos pPos, @NotNull BlockState pState, @NotNull Player pPlayer) {
         //when a dummy block is destroyed it will remove the main block from the world and drop
         // the main block as item on its location
         pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);

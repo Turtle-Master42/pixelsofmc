@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -29,18 +30,18 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
     @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+    public boolean matches(@NotNull SimpleContainer pContainer, Level pLevel) {
         if (pLevel.isClientSide) return false;
         return recipeItem.test(pContainer.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return getResultItem();
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -49,7 +50,7 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
@@ -71,16 +72,16 @@ public class GrinderRecipe extends BaseRecipe {
 
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.GRINDER.get());
     }
 
@@ -95,7 +96,7 @@ public class GrinderRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"grinding");
 
-        public GrinderRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull GrinderRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //outputs
             JsonArray jsonOutputs = json.getAsJsonArray("outputs");
             List<ChanceIngredient> outputs = new ArrayList<>(jsonOutputs.size());
@@ -108,7 +109,7 @@ public class GrinderRecipe extends BaseRecipe {
             return new GrinderRecipe(id, input, outputs);
         }
 
-        public GrinderRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public GrinderRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 Ingredient input = Ingredient.fromNetwork(buf);
                 List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
@@ -120,7 +121,7 @@ public class GrinderRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, GrinderRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull GrinderRecipe recipe) {
             try {
                 recipe.recipeItem.toNetwork(buf);
                 buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));

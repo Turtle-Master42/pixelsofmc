@@ -16,7 +16,7 @@ public class AbstractMultiBlockTile extends BlockEntity {
     }
 
     public void setMainPos(BlockPos pos) {
-        if (pos != this.worldPosition && !level.isClientSide) {
+        if (level != null && pos != this.worldPosition && !level.isClientSide) {
             this.mainPos = pos;
             setChanged();
         }
@@ -33,7 +33,7 @@ public class AbstractMultiBlockTile extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         mainPos = NbtUtils.readBlockPos(nbt.getCompound("mainPos"));
     }

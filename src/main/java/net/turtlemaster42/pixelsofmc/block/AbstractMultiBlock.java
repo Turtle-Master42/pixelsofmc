@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
@@ -19,16 +20,16 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
     }
 
     @Deprecated
-    public RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
         return RenderShape.MODEL;
     }
     @Deprecated
-    public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    public float getShadeBrightness(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
         return 1.0F;
     }
 
     @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
+    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
         return PushReaction.BLOCK;
     }
 
@@ -42,7 +43,7 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+    public void onRemove(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pNewState, boolean pIsMoving) {
         if (!pLevel.isClientSide()) {
             AbstractMultiBlockTile tile = BigMachineBlockUtil.getTileEntity(AbstractMultiBlockTile.class, pLevel, pPos);
             BlockPos mainPos = tile.getMainPos();
@@ -55,7 +56,7 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new AbstractMultiBlockTile(pPos, pState);
     }
 }

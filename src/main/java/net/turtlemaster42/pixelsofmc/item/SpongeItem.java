@@ -35,7 +35,7 @@ public class SpongeItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, @NotNull InteractionHand pUsedHand) {
         HumanoidArm arm = Minecraft.getInstance().options.mainHand().get();
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
         int amount = getFluid(stack).getAmount() < 250 ? 0 : getFluid(stack).getAmount()-250;
@@ -58,7 +58,7 @@ public class SpongeItem extends Item {
     }
 
     @Override
-    public boolean isEnchantable(ItemStack pStack) {
+    public boolean isEnchantable(@NotNull ItemStack pStack) {
         return false;
     }
 
@@ -76,7 +76,7 @@ public class SpongeItem extends Item {
         return !getFluid(stack).isEmpty();
     }
 
-    public int getBarWidth(ItemStack stack) {
+    public int getBarWidth(@NotNull ItemStack stack) {
         return Math.min(Math.round(getFluid(stack).getAmount()/1000f*13), 13);
     }
 

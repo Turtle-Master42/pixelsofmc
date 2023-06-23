@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Pixel extends Item implements DyeableLeatherItem {
 
     public Pixel(Properties properties) {super(properties);}
 
-    public int getColor(ItemStack stack) {
+    public int getColor(@NotNull ItemStack stack) {
         return getColor(stack, 0);
     }
 
@@ -83,7 +84,7 @@ public class Pixel extends Item implements DyeableLeatherItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
         if (!getTooltip(pStack).isEmpty())

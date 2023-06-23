@@ -15,6 +15,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
+import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
     public final PixelSplitterTile blockEntity;
@@ -107,7 +108,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
     private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
@@ -140,7 +141,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
     }
 
     @Override
-    public boolean stillValid(Player pPlayer) {
+    public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, POMblocks.PIXEL_SPLITTER.get());
     }

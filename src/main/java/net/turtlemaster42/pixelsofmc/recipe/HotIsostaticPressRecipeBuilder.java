@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -35,23 +36,23 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilder unlockedBy(String pCriterionName, CriterionTriggerInstance pCriterionTrigger) {
+    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
         this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
         return this;
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String pGroupName) {
+    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
         return this;
     }
 
     @Override
-    public Item getResult() {
+    public @NotNull Item getResult() {
         return output.asItem();
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
         this.advancement.parent(new ResourceLocation("recipes/root"))
                 .addCriterion("has_the_recipe",
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
@@ -95,7 +96,7 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
         }
 
         @Override
-        public ResourceLocation getId() {
+        public @NotNull ResourceLocation getId() {
             String name = this.result.asItem().toString();
             String jsonString = this.result.ingredient().toJson().toString();
 
@@ -114,7 +115,7 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
         }
 
         @Override
-        public RecipeSerializer<?> getType() {
+        public @NotNull RecipeSerializer<?> getType() {
             return HotIsostaticPressRecipe.Serializer.INSTANCE;
         }
 

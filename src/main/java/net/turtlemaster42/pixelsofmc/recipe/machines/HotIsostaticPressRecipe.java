@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -33,7 +34,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     }
 
     @Override
-    public boolean matches(SimpleContainer container, Level pLevel) {
+    public boolean matches(@NotNull SimpleContainer container, Level pLevel) {
         if (pLevel.isClientSide) return false;
         return recipeItem.test(container.getItem(2))&& mold.test(container.getItem(0));
     }
@@ -43,12 +44,12 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         return output.getItems()[0].getCount();
     }
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return output.getItems()[0];
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return output.getItems()[0];
     }
     public int getHeat() {return heat;}
@@ -69,21 +70,21 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get());
     }
 
@@ -98,7 +99,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"pressing");
 
-        public HotIsostaticPressRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull HotIsostaticPressRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
             CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
             Ingredient output = out.ingredient();
@@ -112,7 +113,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
             return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
         }
 
-        public HotIsostaticPressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public HotIsostaticPressRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
                 CountedIngredient mold = buf.readList(CountedIngredient::fromNetwork).get(0);
@@ -127,7 +128,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, HotIsostaticPressRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull HotIsostaticPressRecipe recipe) {
             try {
                 buf.writeInt(recipe.getIngredients().size());
                 for (Ingredient ing : recipe.getIngredients()) {

@@ -37,7 +37,7 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     }
 
     @Override
-    public RecipeType<FusionRecipe> getRecipeType() {
+    public @NotNull RecipeType<FusionRecipe> getRecipeType() {
         return new RecipeType<>(UID, FusionRecipe.class);
     }
 
@@ -57,7 +57,7 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     }
 
     @Override
-    public void draw(FusionRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(FusionRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull PoseStack poseStack, double mouseX, double mouseY) {
         String proton = String.valueOf(recipe.getProtonCount());
         String neutron = String.valueOf(recipe.getNeutronCount());
         String electron = String.valueOf(recipe.getElectronCount());

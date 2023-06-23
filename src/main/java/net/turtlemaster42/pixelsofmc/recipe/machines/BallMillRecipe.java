@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class BallMillRecipe extends BaseRecipe {
 
     //credits EnderIO
     @Override
-    public boolean matches(SimpleContainer container, Level level) {
+    public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
 
         boolean[] matched = new boolean[3];
@@ -64,10 +65,7 @@ public class BallMillRecipe extends BaseRecipe {
                 return false;
         }
 
-        if (!ball.get(0).test(container.getItem(3)) || ball.size() > 1)
-            return false;
-
-        return true;
+        return ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
     }
 
 
@@ -80,12 +78,12 @@ public class BallMillRecipe extends BaseRecipe {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
         return output;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem() {
         return output.copy();
     }
 
@@ -97,21 +95,21 @@ public class BallMillRecipe extends BaseRecipe {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return Type.INSTANCE;
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.BALL_MILL.get());
     }
 
@@ -126,7 +124,7 @@ public class BallMillRecipe extends BaseRecipe {
         public static final ResourceLocation ID =
                 new ResourceLocation(PixelsOfMc.MOD_ID,"ball_milling");
 
-        public BallMillRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
             CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
             ItemStack output = new ItemStack(out.asItem(), out.count());
@@ -149,7 +147,7 @@ public class BallMillRecipe extends BaseRecipe {
             return new BallMillRecipe(id, output, ball, inputs);
         }
 
-        public BallMillRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public BallMillRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
 
@@ -167,7 +165,7 @@ public class BallMillRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(FriendlyByteBuf buf, BallMillRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull BallMillRecipe recipe) {
             try {
                 buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
                 buf.writeInt(recipe.getIngredients().size());
