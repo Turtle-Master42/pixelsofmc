@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 83,
+      "G": 105,
+      "R": 153
+    },
+    {
+      "B": 50,
+      "G": 69,
+      "R": 102
+    },
+    {
+      "B": 27,
+      "G": 38,
+      "R": 55
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:terbium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.terbium"
+}

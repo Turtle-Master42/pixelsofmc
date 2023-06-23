@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 132,
+      "G": 174,
+      "R": 206
+    },
+    {
+      "B": 85,
+      "G": 113,
+      "R": 135
+    },
+    {
+      "B": 40,
+      "G": 55,
+      "R": 67
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tin_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.tin"
+}

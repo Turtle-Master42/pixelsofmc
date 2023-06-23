@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 480,
+  "neutron": 480,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neodymium_atom_512"
+    }
+  },
+  "proton": 480
+}

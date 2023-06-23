@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 424,
+  "neutron": 424,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iodine_atom_512"
+    }
+  },
+  "proton": 424
+}

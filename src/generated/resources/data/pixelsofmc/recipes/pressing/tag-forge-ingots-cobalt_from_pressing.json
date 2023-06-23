@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 1768,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/cobalt"
+    }
+  },
+  "max_heat": 3200,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/cobalt"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 62,
+  "neutron": 62,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:samarium_atom_64"
+    }
+  },
+  "proton": 62
+}

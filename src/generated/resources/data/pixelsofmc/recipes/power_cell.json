@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:glass"
+    },
+    "B": {
+      "item": "pixelsofmc:netherite_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:power_orb"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:power_cell"
+  }
+}

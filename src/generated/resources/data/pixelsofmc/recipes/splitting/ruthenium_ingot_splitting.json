@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 156,
+      "G": 130,
+      "R": 231
+    },
+    {
+      "B": 83,
+      "G": 45,
+      "R": 188
+    },
+    {
+      "B": 41,
+      "G": 22,
+      "R": 93
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ruthenium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.ruthenium"
+}

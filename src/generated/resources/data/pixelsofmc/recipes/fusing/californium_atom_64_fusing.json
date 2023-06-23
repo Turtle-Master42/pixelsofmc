@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 98,
+  "neutron": 98,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:californium_atom_64"
+    }
+  },
+  "proton": 98
+}

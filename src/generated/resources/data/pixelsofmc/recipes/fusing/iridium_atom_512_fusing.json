@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 616,
+  "neutron": 616,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iridium_atom_512"
+    }
+  },
+  "proton": 616
+}

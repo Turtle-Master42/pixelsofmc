@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:calcium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:calcium_atom_512"
+  }
+}

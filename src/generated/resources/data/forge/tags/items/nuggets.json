@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#forge:nuggets/titanium",
+    "#forge:nuggets/copper",
+    "#forge:nuggets/silver",
+    "#forge:nuggets/tungsten",
+    "#forge:nuggets/netherite"
+  ]
+}

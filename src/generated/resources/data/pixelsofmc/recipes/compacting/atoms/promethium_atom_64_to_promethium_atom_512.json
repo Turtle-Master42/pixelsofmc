@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:promethium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:promethium_atom_512"
+  }
+}

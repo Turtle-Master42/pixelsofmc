@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 2896,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/molybdenum"
+    }
+  },
+  "max_heat": 4912,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/molybdenum"
+    }
+  }
+}

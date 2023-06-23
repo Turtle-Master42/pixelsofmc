@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:rhodium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:rhodium_atom_512"
+  }
+}

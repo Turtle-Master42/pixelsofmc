@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic"
+    },
+    "B": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_layered_copper_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:micro_chip"
+    },
+    "E": {
+      "item": "pixelsofmc:titanium_nugget"
+    },
+    "F": {
+      "item": "pixelsofmc:redstone_counter"
+    },
+    "G": {
+      "item": "pixelsofmc:simple_circuit_board_1"
+    }
+  },
+  "pattern": [
+    "EDE",
+    "GAG",
+    "FCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:advanced_circuit_board_1"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 176,
+      "G": 154,
+      "R": 154
+    },
+    {
+      "B": 121,
+      "G": 92,
+      "R": 89
+    },
+    {
+      "B": 58,
+      "G": 44,
+      "R": 42
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gallium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.gallium"
+}

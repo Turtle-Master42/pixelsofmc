@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 133,
+      "G": 161,
+      "R": 220
+    },
+    {
+      "B": 66,
+      "G": 94,
+      "R": 165
+    },
+    {
+      "B": 31,
+      "G": 46,
+      "R": 82
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:nickel_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.nickel"
+}

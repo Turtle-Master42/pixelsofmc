@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:dusts/redstone"
+    },
+    "B": {
+      "tag": "forge:ingots/silver"
+    },
+    "C": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "D": {
+      "item": "minecraft:sculk_sensor"
+    },
+    "E": {
+      "item": "minecraft:comparator"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "BDB",
+    "EBC"
+  ],
+  "result": {
+    "item": "pixelsofmc:resonance_detector"
+  }
+}

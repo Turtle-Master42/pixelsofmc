@@ -1,0 +1,127 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:gold_block"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/gold"
+      }
+    }
+  ]
+}

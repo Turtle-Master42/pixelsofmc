@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 21,
+  "neutron": 21,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:scandium_atom_64"
+    }
+  },
+  "proton": 21
+}

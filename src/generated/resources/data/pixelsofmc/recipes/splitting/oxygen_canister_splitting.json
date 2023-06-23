@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 240,
+      "G": 171,
+      "R": 119
+    },
+    {
+      "B": 157,
+      "G": 111,
+      "R": 75
+    },
+    {
+      "B": 77,
+      "G": 53,
+      "R": 34
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:oxygen_canister"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.oxygen"
+}

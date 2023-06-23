@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:bio_plastic"
+    },
+    "B": {
+      "item": "pixelsofmc:diamond_lens"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_layered_copper_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:micro_chip"
+    },
+    "E": {
+      "item": "pixelsofmc:copper_wire"
+    },
+    "F": {
+      "item": "pixelsofmc:ender_sensor"
+    },
+    "G": {
+      "item": "pixelsofmc:advanced_circuit_board_1"
+    }
+  },
+  "pattern": [
+    "EDE",
+    "GAG",
+    "FCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:perfected_circuit_board_1"
+  }
+}

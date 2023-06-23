@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:sandstone"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:sand"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:sand"
+      }
+    },
+    {
+      "chance": 0.1,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:sand"
+      }
+    }
+  ]
+}

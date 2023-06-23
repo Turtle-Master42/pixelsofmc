@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 166,
+      "G": 187,
+      "R": 151
+    },
+    {
+      "B": 108,
+      "G": 122,
+      "R": 98
+    },
+    {
+      "B": 53,
+      "G": 60,
+      "R": 47
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:zinc_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.zinc"
+}

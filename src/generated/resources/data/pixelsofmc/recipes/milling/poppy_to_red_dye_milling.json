@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_2"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:poppy"
+      }
+    }
+  ],
+  "output": {
+    "count": 2,
+    "ingredient": {
+      "item": "minecraft:red_dye"
+    }
+  }
+}

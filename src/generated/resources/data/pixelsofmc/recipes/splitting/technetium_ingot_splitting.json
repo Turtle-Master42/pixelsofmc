@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 237,
+      "G": 163,
+      "R": 207
+    },
+    {
+      "B": 179,
+      "G": 85,
+      "R": 157
+    },
+    {
+      "B": 89,
+      "G": 42,
+      "R": 77
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:technetium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.technetium"
+}

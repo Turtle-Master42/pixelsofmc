@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 88,
+  "neutron": 88,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:radium_atom_64"
+    }
+  },
+  "proton": 88
+}

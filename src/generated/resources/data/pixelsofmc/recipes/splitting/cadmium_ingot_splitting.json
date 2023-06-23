@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 112,
+      "G": 190,
+      "R": 240
+    },
+    {
+      "B": 34,
+      "G": 139,
+      "R": 192
+    },
+    {
+      "B": 17,
+      "G": 68,
+      "R": 96
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cadmium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.cadmium"
+}

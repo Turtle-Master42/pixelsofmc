@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 14,
+  "neutron": 14,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:silicon_atom_64"
+    }
+  },
+  "proton": 14
+}

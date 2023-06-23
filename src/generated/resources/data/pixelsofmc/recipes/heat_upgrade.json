@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "B": {
+      "tag": "forge:ingots/copper"
+    },
+    "C": {
+      "tag": "forge:dusts/cobalt"
+    }
+  },
+  "pattern": [
+    " B ",
+    "ACA",
+    " B "
+  ],
+  "result": {
+    "item": "pixelsofmc:heat_upgrade"
+  }
+}

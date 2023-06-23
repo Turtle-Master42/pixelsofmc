@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 3500,
+  "input": {
+    "count": 4,
+    "ingredient": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "max_heat": 5000,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ball_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:violet_diamond"
+    }
+  }
+}

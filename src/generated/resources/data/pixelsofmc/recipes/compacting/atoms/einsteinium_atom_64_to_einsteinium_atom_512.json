@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    },
+    {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:einsteinium_atom_512"
+  }
+}

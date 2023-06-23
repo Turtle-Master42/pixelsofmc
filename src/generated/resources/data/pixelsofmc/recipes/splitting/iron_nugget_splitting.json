@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 216,
+      "G": 216,
+      "R": 216
+    },
+    {
+      "B": 147,
+      "G": 147,
+      "R": 147
+    },
+    {
+      "B": 94,
+      "G": 94,
+      "R": 94
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "output": {
+    "count": 6,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "Fe (Iron)"
+}

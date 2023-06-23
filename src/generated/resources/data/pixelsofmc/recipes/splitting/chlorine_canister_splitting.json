@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 96,
+      "G": 176,
+      "R": 148
+    },
+    {
+      "B": 60,
+      "G": 114,
+      "R": 95
+    },
+    {
+      "B": 25,
+      "G": 54,
+      "R": 44
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:chlorine_canister"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.chlorine"
+}

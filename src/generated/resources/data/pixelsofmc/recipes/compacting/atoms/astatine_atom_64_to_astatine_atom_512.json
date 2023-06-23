@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    },
+    {
+      "item": "pixelsofmc:astatine_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:astatine_atom_512"
+  }
+}

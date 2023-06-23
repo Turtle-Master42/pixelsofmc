@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 81,
+  "neutron": 81,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thallium_atom_64"
+    }
+  },
+  "proton": 81
+}

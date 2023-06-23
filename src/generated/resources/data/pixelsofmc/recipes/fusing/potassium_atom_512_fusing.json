@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 152,
+  "neutron": 152,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:potassium_atom_512"
+    }
+  },
+  "proton": 152
+}

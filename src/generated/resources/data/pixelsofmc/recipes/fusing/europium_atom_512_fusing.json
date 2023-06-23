@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 504,
+  "neutron": 504,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:europium_atom_512"
+    }
+  },
+  "proton": 504
+}

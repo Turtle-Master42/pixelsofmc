@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "minecraft:wool"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:string"
+      }
+    },
+    {
+      "chance": 0.33,
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:string"
+      }
+    }
+  ]
+}

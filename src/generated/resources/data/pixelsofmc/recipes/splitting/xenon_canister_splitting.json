@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 207,
+      "G": 135,
+      "R": 108
+    },
+    {
+      "B": 119,
+      "G": 77,
+      "R": 59
+    },
+    {
+      "B": 72,
+      "G": 49,
+      "R": 37
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:xenon_canister"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.xenon"
+}

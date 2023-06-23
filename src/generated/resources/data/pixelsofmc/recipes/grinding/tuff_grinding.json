@@ -1,0 +1,36 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:tuff"
+  },
+  "outputs": [
+    {
+      "chance": 0.3,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/sulfur"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/lead"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:mineral_grit"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/carbon"
+      }
+    }
+  ]
+}

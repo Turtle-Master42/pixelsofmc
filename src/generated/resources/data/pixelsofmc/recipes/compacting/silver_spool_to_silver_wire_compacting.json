@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:silver_spool"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:silver_wire"
+  }
+}

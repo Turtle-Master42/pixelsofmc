@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 148,
+      "G": 220,
+      "R": 122
+    },
+    {
+      "B": 81,
+      "G": 176,
+      "R": 47
+    },
+    {
+      "B": 40,
+      "G": 86,
+      "R": 23
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:promethium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.promethium"
+}

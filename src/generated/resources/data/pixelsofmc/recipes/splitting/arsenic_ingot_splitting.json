@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 179,
+      "G": 191,
+      "R": 130
+    },
+    {
+      "B": 116,
+      "G": 125,
+      "R": 84
+    },
+    {
+      "B": 57,
+      "G": 62,
+      "R": 39
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:arsenic_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.arsenic"
+}

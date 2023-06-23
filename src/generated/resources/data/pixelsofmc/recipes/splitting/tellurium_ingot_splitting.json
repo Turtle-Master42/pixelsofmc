@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 241,
+      "G": 235,
+      "R": 231
+    },
+    {
+      "B": 187,
+      "G": 180,
+      "R": 174
+    },
+    {
+      "B": 95,
+      "G": 89,
+      "R": 85
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tellurium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.tellurium"
+}

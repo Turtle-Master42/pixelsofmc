@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    },
+    {
+      "item": "pixelsofmc:xenon_atom_64"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:xenon_atom_512"
+  }
+}

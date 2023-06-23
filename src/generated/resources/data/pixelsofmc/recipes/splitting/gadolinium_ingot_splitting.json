@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 98,
+      "G": 208,
+      "R": 222
+    },
+    {
+      "B": 27,
+      "G": 163,
+      "R": 166
+    },
+    {
+      "B": 13,
+      "G": 80,
+      "R": 82
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gadolinium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.gadolinium"
+}

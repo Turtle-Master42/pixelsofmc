@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 224,
+      "G": 218,
+      "R": 209
+    },
+    {
+      "B": 163,
+      "G": 158,
+      "R": 136
+    },
+    {
+      "B": 81,
+      "G": 77,
+      "R": 66
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:aluminium_ingot"
+    }
+  },
+  "output": {
+    "count": 56,
+    "ingredient": {
+      "item": "pixelsofmc:pixel"
+    }
+  },
+  "structure": "element.pixelsofmc.aluminium"
+}

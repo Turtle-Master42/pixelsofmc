@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fusing",
+  "electron": 9,
+  "neutron": 9,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:fluorine_atom_64"
+    }
+  },
+  "proton": 9
+}

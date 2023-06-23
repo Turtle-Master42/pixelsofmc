@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:tin_atom_512"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "pixelsofmc:tin_atom_64"
+  }
+}
