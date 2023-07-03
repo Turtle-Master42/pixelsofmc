@@ -23,11 +23,13 @@
       "item": "pixelsofmc:silver_nugget"
     }
   },
-  "output": {
-    "count": 6,
-    "ingredient": {
-      "item": "pixelsofmc:pixel"
+  "outputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
     }
-  },
+  ],
   "structure": "element.pixelsofmc.silver"
 }

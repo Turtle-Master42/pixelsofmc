@@ -28,7 +28,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
 
     public PixelSplitterGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.PIXEL_SPLITTER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 5);
+        checkContainerSize(inv, 7);
         blockEntity = ((PixelSplitterTile) entity);
         this.level = inv.player.level;
         this.data = data;
@@ -38,9 +38,11 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 3, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 4, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 2, 125, 41));
+            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new ModResultSlot(handler, 2, 116, 32));
+            this.addSlot(new ModResultSlot(handler, 3, 116, 50));
+            this.addSlot(new ModResultSlot(handler, 4, 134, 41));
             this.addSlot(new ModTagRestrictedSlot(handler, 1, 80, 18, () -> POMtags.Items.CIRCLE_SAW));
             this.addSlot(new SlotItemHandler(handler, 0, 35, 41));
         });
@@ -57,7 +59,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
-        int progressArrowSize = 73; // This is the height in pixels of your arrow
+        int progressArrowSize = 62; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
@@ -105,7 +107,7 @@ public class PixelSplitterGuiMenu extends AbstractContainerMenu implements IEner
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 7;  // must be the number of slots you have!
 
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {

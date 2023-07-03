@@ -274,8 +274,8 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
 
 
-    private static boolean canInsertItemIntoSlot(ItemStack stack, ItemStack item) {
-        return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
+    private static boolean canInsertItemIntoSlot(ItemStack slotStack, ItemStack inputStack) {
+        return (inputStack.getItem()==slotStack.getItem() && slotStack.getCount() + inputStack.getCount() <= slotStack.getMaxStackSize()) || slotStack.isEmpty();
     }
 
     private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {

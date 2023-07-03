@@ -23,11 +23,13 @@
       "item": "minecraft:gold_nugget"
     }
   },
-  "output": {
-    "count": 6,
-    "ingredient": {
-      "item": "pixelsofmc:pixel"
+  "outputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
     }
-  },
-  "structure": "Au (Gold)"
+  ],
+  "structure": "element.pixelsofmc.gold"
 }

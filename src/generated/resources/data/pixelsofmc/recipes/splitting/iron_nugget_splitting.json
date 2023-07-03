@@ -23,11 +23,13 @@
       "item": "minecraft:iron_nugget"
     }
   },
-  "output": {
-    "count": 6,
-    "ingredient": {
-      "item": "pixelsofmc:pixel"
+  "outputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
     }
-  },
-  "structure": "Fe (Iron)"
+  ],
+  "structure": "element.pixelsofmc.iron"
 }

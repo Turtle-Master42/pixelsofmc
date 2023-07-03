@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.item.Pixel;
+import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelCompactingRecipe extends CustomRecipe {
@@ -76,10 +76,10 @@ public class PixelCompactingRecipe extends CustomRecipe {
     public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer) {
         ItemStack out = POMitems.PIXEL_PILE.get().getDefaultInstance();
 
-        Pixel.setColor(out, inColor[0], 0);
-        Pixel.setColor(out, inColor[1], 1);
-        Pixel.setColor(out, inColor[2], 2);
-        Pixel.setTooltip(out, text);
+        PixelItem.setColor(out, inColor[0], 0);
+        PixelItem.setColor(out, inColor[1], 1);
+        PixelItem.setColor(out, inColor[2], 2);
+        PixelItem.setTooltip(out, text);
 
         return out;
     }

@@ -652,18 +652,16 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //pixel splitter
-        PixelSplitting(Items.GOLD_NUGGET, POMitems.PIXEL.get(), "Au (Gold)",  6, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_INGOT, POMitems.PIXEL.get(), "Au (Gold)",56, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_BLOCK, POMitems.PIXEL_PILE.get(), "Au (Gold)",64, toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        PixelSplitting(Items.GOLD_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
 
-        PixelSplitting(Items.IRON_NUGGET, POMitems.PIXEL.get(), "Fe (Iron)",6, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_INGOT, POMitems.PIXEL.get(), "Fe (Iron)",56, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_BLOCK, POMitems.PIXEL_PILE.get(), "Fe (Iron)",64, toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        PixelSplitting(Items.IRON_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
 
-//        PixelSplitting(Element.TITANIUM.nugget(), POMitems.PIXEL.get(), "element.pixelsofmc.titanium",6, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
-//        PixelSplitting(Element.TITANIUM.item(), POMitems.PIXEL.get(), "element.pixelsofmc.titanium",56, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
-//        PixelSplitting(Element.TITANIUM.block(), POMitems.PIXEL_PILE.get(), "element.pixelsofmc.titanium",64, toAInt(166, 126, 67), toAInt(159, 116, 78), toAInt(174, 138, 78), fConsumer);
-//
+        PixelSplitting(Items.COPPER_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
+        PixelSplitting(Items.COPPER_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
 
 
         //pressing
@@ -781,7 +779,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             Fusing(m, fConsumer);
 
             if (!m.isVanilla())
-                autoPixelSplitting(m.item(), POMitems.PIXEL.get(), "element.pixelsofmc."+m.elementName(), 56, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplitting(m.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             if (m.isMetal() && m.shouldAddDust())
                 Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
             if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
@@ -790,11 +788,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1));
             if (m.shouldAddNugget() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.nugget()), m.item(), fConsumer);
-                autoPixelSplitting(m.nugget(), POMitems.PIXEL.get(), "element.pixelsofmc."+m.elementName(), 6, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplitting(m.nugget(),  List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
             if (m.shouldAddBlock() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
-                autoPixelSplitting(m.blockItem(), POMitems.PIXEL_PILE.get(), "element.pixelsofmc."+m.elementName(), 64, m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplitting(m.blockItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
         }
     }
@@ -948,13 +946,13 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
 
-    private void PixelSplitting(ItemLike ingredient, ItemLike output, String structure, int count, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
-        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), structure, r,g,b)
+    private void PixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
+        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
-    private void autoPixelSplitting(ItemLike ingredient, ItemLike output, String structure, int count, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
-        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), CountedIngredient.of(count, output), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
+    private void autoPixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
+        new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

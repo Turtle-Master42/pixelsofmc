@@ -23,11 +23,19 @@
       "item": "pixelsofmc:tungsten_ingot"
     }
   },
-  "output": {
-    "count": 56,
-    "ingredient": {
-      "item": "pixelsofmc:pixel"
+  "outputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
     }
-  },
+  ],
   "structure": "element.pixelsofmc.tungsten"
 }

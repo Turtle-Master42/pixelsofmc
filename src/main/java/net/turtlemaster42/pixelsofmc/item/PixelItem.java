@@ -5,14 +5,18 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class Pixel extends Item implements DyeableLeatherItem {
-
-    public Pixel(Properties properties) {super(properties);}
+public class PixelItem extends Item implements DyeableLeatherItem {
+    private final int pixelAmount;
+    public PixelItem(Properties properties, int pixelAmount) {
+        super(properties);
+        this.pixelAmount = pixelAmount;
+    }
 
     public int getColor(@NotNull ItemStack stack) {
         return getColor(stack, 0);
@@ -87,8 +91,10 @@ public class Pixel extends Item implements DyeableLeatherItem {
     public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
-        if (!getTooltip(pStack).isEmpty())
+        if (!getTooltip(pStack).isEmpty()) {
+            pTooltipComponents.add(Component.translatable(pixelAmount + "x").withStyle(ChatFormatting.RED));
             pTooltipComponents.add(Component.translatable(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
+        }
 //        if (!getExtraTooltip(pStack)[0].isEmpty() && Screen.hasShiftDown())
 //            for (int i = 0; i < getExtraTooltip(pStack).length; i++) {
 //                pTooltipComponents.add(Component.translatable(getExtraTooltip(pStack)[i]));

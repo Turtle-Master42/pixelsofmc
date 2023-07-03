@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -18,21 +17,24 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
 
 public class PixelSplitterRecipe extends BaseRecipe {
     private final ResourceLocation id;
-    private final CountedIngredient output;
+    private final List<CountedIngredient> outputs;
     private final String structure;
     private final int[] R;
     private final int[] G;
     private final int[] B;
     private final CountedIngredient recipeItem;
 
-    public PixelSplitterRecipe(ResourceLocation id, CountedIngredient output, int[] R, int[] G, int[] B,
+    public PixelSplitterRecipe(ResourceLocation id, List<CountedIngredient> output, int[] R, int[] G, int[] B,
                                CountedIngredient recipeItem, String structure) {
         this.id = id;
-        this.output = output;
+        this.outputs = output;
         this.R = R;
         this.G = G;
         this.B = B;
@@ -50,12 +52,16 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
     @Override
     public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return output.getItems()[0];
+        return getResultItem();
     }
 
     @Override
     public @NotNull ItemStack getResultItem() {
-        return output.getItems()[0];
+        return ItemStack.EMPTY;
+    }
+
+    public ItemStack getResultItems(int index) {
+        return outputs.get(index).getItems()[0];
     }
 
     public Color getColor(int index) {
@@ -70,6 +76,11 @@ public class PixelSplitterRecipe extends BaseRecipe {
     }
 
     public String getStructure() {return structure;}
+
+    public List<CountedIngredient> getOutputs() {
+        return outputs;
+    }
+
 
     @Override
     public @NotNull ResourceLocation getId() {
@@ -102,7 +113,13 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"pixel_splitting");
 
         public @NotNull PixelSplitterRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
-            CountedIngredient output = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"output"));
+            //outputs
+            JsonArray jsonOutputs = json.getAsJsonArray("outputs");
+            List<CountedIngredient> outputs = new ArrayList<>(jsonOutputs.size());
+            for (int i = 0; i < jsonOutputs.size(); i++) {
+                outputs.add(i, CountedIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
+            }
+            //colors
             JsonArray Colors = json.getAsJsonArray("colors");
             int[] r = new int[5];
             int[] g = new int[5];
@@ -112,15 +129,20 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 g[i] = Colors.get(i).getAsJsonObject().get("G").getAsInt();
                 b[i] = Colors.get(i).getAsJsonObject().get("B").getAsInt();
             }
+            //structure
             String structure = GsonHelper.getAsString(json, "structure");
+            //input
             CountedIngredient input = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"input"));
 
-            return new PixelSplitterRecipe(id, output, r, g, b, input, structure);
+            return new PixelSplitterRecipe(id, outputs, r, g, b, input, structure);
         }
 
         public PixelSplitterRecipe fromNetwork(@NotNull ResourceLocation id, FriendlyByteBuf buf) {
+            //input
             CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
-            CountedIngredient output = buf.readList(CountedIngredient::fromNetwork).get(0);
+            //output
+            List<CountedIngredient> outputs = buf.readList(CountedIngredient::fromNetwork);
+            //colors
             int[] r = new int[5];
             int[] g = new int[5];
             int[] b = new int[5];
@@ -129,22 +151,24 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 g[i] = buf.readInt();
                 b[i] = buf.readInt();
             }
+            //structure
             String structure = buf.readUtf();
 
-            return new PixelSplitterRecipe(id, output, r, g, b, input, structure);
+            return new PixelSplitterRecipe(id, outputs, r, g, b, input, structure);
         }
 
-        public void toNetwork(FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for (Ingredient ing : recipe.getIngredients()) {
-                ing.toNetwork(buf);
-            }
+        public void toNetwork(@NotNull FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
+            //input
+            recipe.recipeItem.toNetwork(buf);
+            //output
+            buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
+            //colors
             for (int i=0; i < recipe.R.length; i++) {
                 buf.writeInt(recipe.getRGB("R", i));
                 buf.writeInt(recipe.getRGB("G", i));
                 buf.writeInt(recipe.getRGB("B", i));
             }
-            buf.writeItemStack(recipe.getResultItem(), false);
+            //structure
             buf.writeUtf(recipe.structure);
         }
 

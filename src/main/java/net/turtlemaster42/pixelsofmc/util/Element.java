@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
-import net.turtlemaster42.pixelsofmc.item.Pixel;
+import net.turtlemaster42.pixelsofmc.item.PixelItem;
 
 import java.awt.*;
 import java.util.Locale;
@@ -218,7 +218,7 @@ public enum Element {
 //            }
 //        else extra[1] = "tooltip.pixelsofmc.danger.none";
 
-        return Pixel.createForPixel(POMitems.PIXEL.get().getDefaultInstance(),
+        return PixelItem.createForPixel(POMitems.PIXEL.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
                 new Color(this.hexToRGB(1)[0], this.hexToRGB(1)[1], this.hexToRGB(1)[2]).getRGB(),
                 new Color(this.hexToRGB(2)[0], this.hexToRGB(2)[1], this.hexToRGB(2)[2]).getRGB(),
@@ -234,7 +234,7 @@ public enum Element {
 //            }
 //        else extra[1] = "tooltip.pixelsofmc.danger.none";
 
-        return Pixel.createForPixel(POMitems.PIXEL_PILE.get().getDefaultInstance(),
+        return PixelItem.createForPixel(POMitems.PIXEL_PILE.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
                 new Color(this.hexToRGB(1)[0], this.hexToRGB(1)[1], this.hexToRGB(1)[2]).getRGB(),
                 new Color(this.hexToRGB(2)[0], this.hexToRGB(2)[1], this.hexToRGB(2)[2]).getRGB(),

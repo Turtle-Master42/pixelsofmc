@@ -36,11 +36,11 @@ public class POMitems {
 	public static final RegistryObject<Item> TITANIUM_BALL = ITEMS.register("titanium_ball", () -> new Item(new Item.Properties().durability(250)));
 	public static final RegistryObject<Item> TITANIUM_DIBORIDE_BALL = ITEMS.register("titanium_diboride_ball", () -> new Item(new Item.Properties().durability(500).fireResistant()));
 
-	public static final RegistryObject<Item> TITANIUM_CIRCLE_SAW = ITEMS.register("titanium_circle_saw", () -> new Saw(new Item.Properties().durability(256)));
-	public static final RegistryObject<Item> TITANIUM_DIBORIDE_CIRCLE_SAW = ITEMS.register("titanium_diboride_circle_saw", () -> new Saw(new Item.Properties().durability(2048).fireResistant()));
-	public static final RegistryObject<Item> INGOT_CAST = ITEMS.register("ingot_cast", () -> new Saw(new Item.Properties()));
-	public static final RegistryObject<Item> BALL_CAST = ITEMS.register("ball_cast", () -> new Saw(new Item.Properties()));
-	public static final RegistryObject<Item> PLATE_CAST = ITEMS.register("plate_cast", () -> new Saw(new Item.Properties()));
+	public static final RegistryObject<Item> TITANIUM_CIRCLE_SAW = ITEMS.register("titanium_circle_saw", () -> new SawItem(new Item.Properties().durability(256)));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_CIRCLE_SAW = ITEMS.register("titanium_diboride_circle_saw", () -> new SawItem(new Item.Properties().durability(2048).fireResistant()));
+	public static final RegistryObject<Item> INGOT_CAST = ITEMS.register("ingot_cast", () -> new SawItem(new Item.Properties()));
+	public static final RegistryObject<Item> BALL_CAST = ITEMS.register("ball_cast", () -> new SawItem(new Item.Properties()));
+	public static final RegistryObject<Item> PLATE_CAST = ITEMS.register("plate_cast", () -> new SawItem(new Item.Properties()));
 
 	//tools
 	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new ToolItem(new Item.Properties().durability(64)));
@@ -188,8 +188,8 @@ public class POMitems {
 	public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new Test(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> PLACE_HOLDER = ITEMS.register("place_holder", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> DEBUGUIM_INGOT = ITEMS.register("debugium_ingot", () -> new Debugium(Element.DEBUGIUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new Pixel(new Item.Properties()));
-	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new Pixel(new Item.Properties()));
+	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new PixelItem(new Item.Properties(), 4096));
+	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new PixelItem(new Item.Properties(), 32768));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ITEMS.register(bus);

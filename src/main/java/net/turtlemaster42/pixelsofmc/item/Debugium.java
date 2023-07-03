@@ -29,5 +29,4 @@ public class Debugium extends ElementItem {
 
         return InteractionResult.PASS;
     }
-
 }
