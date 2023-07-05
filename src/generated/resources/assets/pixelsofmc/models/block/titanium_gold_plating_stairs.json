@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "pixelsofmc:block/titanium_gold_plating_block",
+    "side": "pixelsofmc:block/titanium_gold_plating_block",
+    "top": "pixelsofmc:block/titanium_gold_plating_block"
+  }
+}

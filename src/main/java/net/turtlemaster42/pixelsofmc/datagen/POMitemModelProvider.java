@@ -71,14 +71,17 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         simpleItem(POMitems.SOUL_COAL);
         simpleItem(POMitems.RAW_TITANIUM);
+        simpleItem(POMitems.TITANIUM_GOLD_INGOT);
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT);
 
         simpleItem(POMitems.NETHERITE_NUGGET);
+        simpleItem(POMitems.TITANIUM_GOLD_NUGGET);
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET);
 
         simpleItem(POMitems.TITANIUM_PLATING);
         simpleItem(POMitems.RUSTED_PLATING);
         simpleItem(POMitems.NETHERITE_PLATING);
+        simpleItem(POMitems.TITANIUM_GOLD_PLATING);
         simpleItem(POMitems.TITANIUM_DIBORIDE_PLATING);
         simpleItem(POMitems.OBSIDIAN_PLATING);
         simpleItem(POMitems.CRYING_OBSIDIAN_PLATING);
@@ -95,6 +98,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.POWER_CELL);
         simpleItem(POMitems.ADVANCED_LASER);
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW);
+        simpleItem(POMitems.TITANIUM_GOLD_CIRCLE_SAW);
         simpleItem(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW);
         simpleItem(POMitems.INGOT_CAST);
         simpleItem(POMitems.BALL_CAST);
@@ -114,11 +118,11 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.REPELLING_RUBBER_BALL);
         simpleItem(POMitems.NETHERITE_BALL);
         simpleItem(POMitems.TITANIUM_BALL);
+        simpleItem(POMitems.TITANIUM_GOLD_BALL);
         simpleItem(POMitems.TITANIUM_DIBORIDE_BALL);
 
         dustItem(POMitems.COAL_DUST);
         dustItem(POMitems.TITANIUM_DIBORIDE_DUST);
-
         dustItem(POMitems.ANCIENT_DEBRIS_DUST);
         dustItem(POMitems.MERCURY_SULFIDE_DUST);
         dustItem(POMitems.ACANTHITE_DUST);
@@ -126,6 +130,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.CRYING_OBSIDIAN_DUST);
         dustItem(POMitems.MINERAL_GRIT);
         dustItem(POMitems.NETHERITE_DUST);
+        dustItem(POMitems.TITANIUM_GOLD_DUST);
         dustItem(POMitems.TITANIUM_OXIDE_DUST);
 
         simpleItem(POMitems.SULFUR);
@@ -135,7 +140,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         simpleItem(POMitems.TEST_ITEM);
         simpleItem(POMitems.PLACE_HOLDER);
-        simpleItem(POMitems.DEBUGUIM_INGOT);
+        simpleItem(POMitems.DEBUGIUM_INGOT);
 
         complexBlock(POMblocks.COPPER_SPOOL);
         complexBlock(POMblocks.SILVER_SPOOL);
@@ -149,6 +154,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.TITANIUM_PLATING_STAIRS);
         complexBlock(POMblocks.NETHERITE_PLATING_SLAB);
         complexBlock(POMblocks.NETHERITE_PLATING_STAIRS);
+        complexBlock(POMblocks.TITANIUM_GOLD_PLATING_SLAB);
+        complexBlock(POMblocks.TITANIUM_GOLD_PLATING_STAIRS);
         complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB);
         complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS);
     }

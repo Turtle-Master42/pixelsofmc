@@ -20,7 +20,7 @@ public class POMtabs {
 	public static CreativeModeTab ATOM_TAB;
 
 	private static final List<RegistryObject<Item>> DONT_INCLUDE = List.of(POMitems.PIXEL, POMitems.PIXEL_PILE, POMitems.PLACE_HOLDER);
-	private static final List<RegistryObject<Item>> OP_ONLY = List.of(POMitems.DEBUGUIM_INGOT, POMitems.TEST_ITEM);
+	private static final List<RegistryObject<Item>> OP_ONLY = List.of(POMitems.DEBUGIUM_INGOT, POMitems.TEST_ITEM);
 
 	@SubscribeEvent
 	public static void register(CreativeModeTabEvent.Register event) {

@@ -9,10 +9,10 @@
       "tag": "forge:dusts/redstone"
     },
     "C": {
-      "item": "pixelsofmc:titanium_plating"
+      "item": "pixelsofmc:titanium_gold_plating"
     },
     "D": {
-      "item": "pixelsofmc:simple_casing_1"
+      "item": "pixelsofmc:strengthened_casing"
     },
     "E": {
       "item": "pixelsofmc:perfected_casing_1"

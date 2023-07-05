@@ -1,4 +1,4 @@
-// 1.19.3	2023-06-23T09:51:41.453668	Item Models: pixelsofmc
+// 1.19.3	2023-07-04T13:55:20.334382	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -379,6 +379,14 @@ a9a08dbdbf00601c00f61e7d6cad355b832f8f03 assets/pixelsofmc/models/item/titanium_
 a8e2c3c50257844d6a1622d980d486f12ae7216e assets/pixelsofmc/models/item/titanium_diboride_plating_slab.json
 891921914df09c04fefac5a51022134c1e7bd01d assets/pixelsofmc/models/item/titanium_diboride_plating_stairs.json
 a719259ad69bea86001efe5fb036bc3b21beef2d assets/pixelsofmc/models/item/titanium_dust.json
+90065a2b58a6ad2fac93052b7c7a3c423c34fb5a assets/pixelsofmc/models/item/titanium_gold_ball.json
+45ea19316117118db00a28dbdd8a675a92f7396b assets/pixelsofmc/models/item/titanium_gold_circle_saw.json
+06055beae2392e3d5a2208572f803020ecd8dcbd assets/pixelsofmc/models/item/titanium_gold_dust.json
+e4e62d61b37d2d39d80f008eb8a5a0ddd5067baa assets/pixelsofmc/models/item/titanium_gold_ingot.json
+e675327df75933c157caa01a8905c84ab8d7363e assets/pixelsofmc/models/item/titanium_gold_nugget.json
+1ea9c3437b6fe9a148d7b96a0f543428799e9e6f assets/pixelsofmc/models/item/titanium_gold_plating.json
+44a0fe148a8903e17b6a9c3184725a0355b67ccd assets/pixelsofmc/models/item/titanium_gold_plating_slab.json
+896ee2fa095d8b6a9a24971343fc8c96f8e67af7 assets/pixelsofmc/models/item/titanium_gold_plating_stairs.json
 d6b296a8dca661af413fe1062b073945145868c6 assets/pixelsofmc/models/item/titanium_ingot.json
 1edc2b6528e483c14648a000495f457ed38801d2 assets/pixelsofmc/models/item/titanium_nugget.json
 b4229e03e45e202609dd2c4b3dec2f70159b8220 assets/pixelsofmc/models/item/titanium_oxide_dust.json

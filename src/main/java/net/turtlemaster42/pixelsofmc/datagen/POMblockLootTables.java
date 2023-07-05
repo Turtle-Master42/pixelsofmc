@@ -28,6 +28,7 @@ public class POMblockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
+        this.dropSelf(POMblocks.TITANIUM_GOLD_BLOCK.get());
         this.dropSelf(POMblocks.ALUMINIUM_SCRAP_BLOCK.get());
         this.dropSelf(POMblocks.ACANTHITE.get());
         this.dropSelf(POMblocks.HOT_ISOSTATIC_PRESS.get());
@@ -45,6 +46,7 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());
         this.dropSelf(POMblocks.PERFECTED_CASING_1.get());
         this.dropSelf(POMblocks.STRONG_CASING.get());
+        this.dropSelf(POMblocks.STRENGTHENED_CASING.get());
         this.dropSelf(POMblocks.REINFORCED_CASING.get());
         this.dropSelf(POMblocks.COPPER_SPOOL.get());
         this.dropSelf(POMblocks.SILVER_SPOOL.get());
@@ -59,6 +61,9 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.NETHERITE_PLATING_BLOCK.get());
         this.dropSelf(POMblocks.NETHERITE_PLATING_SLAB.get());
         this.dropSelf(POMblocks.NETHERITE_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.TITANIUM_GOLD_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get());

@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.util.RandomSource;
@@ -40,24 +39,24 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
         return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
     }
 
-    @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-        Minecraft instance = Minecraft.getInstance();
-        if (instance.player.getMainHandItem().is(POMitems.DEBUGUIM_INGOT.get())) {
-            if (pLevel.isClientSide()) {
-                pLevel.addParticle(new DustParticleOptions(Vec3.fromRGB24(new Color(0, 255, 255).getRGB()).toVector3f(), 2f),
-                        pPos.getX() + pRandom.nextInt(0, 2),
-                        pPos.getY() + pRandom.nextInt(0, 2),
-                        pPos.getZ() + pRandom.nextInt(0, 2),
-                        0, 0, 0);
-                pLevel.addParticle(new DustParticleOptions(Vec3.fromRGB24(new Color(0, 255, 255).getRGB()).toVector3f(), 2f),
-                        pPos.getX() + pRandom.nextInt(0, 2),
-                        pPos.getY() + pRandom.nextInt(0, 2),
-                        pPos.getZ() + pRandom.nextInt(0, 2),
-                        0, 0, 0);
-            }
-        }
-    }
+//    @Override
+//    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+//        Minecraft instance = Minecraft.getInstance();
+//        if (instance.player.getMainHandItem().is(POMitems.DEBUGIUM_INGOT.get())) {
+//            if (pLevel.isClientSide()) {
+//                pLevel.addParticle(new DustParticleOptions(Vec3.fromRGB24(new Color(0, 255, 255).getRGB()).toVector3f(), 2f),
+//                        pPos.getX() + pRandom.nextInt(0, 2),
+//                        pPos.getY() + pRandom.nextInt(0, 2),
+//                        pPos.getZ() + pRandom.nextInt(0, 2),
+//                        0, 0, 0);
+//                pLevel.addParticle(new DustParticleOptions(Vec3.fromRGB24(new Color(0, 255, 255).getRGB()).toVector3f(), 2f),
+//                        pPos.getX() + pRandom.nextInt(0, 2),
+//                        pPos.getY() + pRandom.nextInt(0, 2),
+//                        pPos.getZ() + pRandom.nextInt(0, 2),
+//                        0, 0, 0);
+//            }
+//        }
+//    }
 
     @Nullable
     @Override

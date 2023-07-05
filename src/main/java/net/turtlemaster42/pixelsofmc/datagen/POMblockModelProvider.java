@@ -34,12 +34,14 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.TITANIUM_ORE);
         blockWithItem(POMblocks.RAW_TITANIUM_BLOCK);
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_BLOCK);
+        blockWithItem(POMblocks.TITANIUM_GOLD_BLOCK);
         blockWithItem(POMblocks.ACANTHITE);
 
         blockWithItem(POMblocks.SIMPLE_CASING_1);
         blockWithItem(POMblocks.ADVANCED_CASING_1);
         blockWithItem(POMblocks.PERFECTED_CASING_1);
         blockWithItem(POMblocks.STRONG_CASING);
+        blockWithItem(POMblocks.STRENGTHENED_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
         multiBlockWithItem(POMblocks.REINFORCED_THING);
@@ -50,6 +52,9 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.NETHERITE_PLATING_BLOCK);
         slabBlock((SlabBlock) POMblocks.NETHERITE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
         stairsBlock((StairBlock) POMblocks.NETHERITE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
+        blockWithItem(POMblocks.TITANIUM_GOLD_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.TITANIUM_GOLD_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"));
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK);
         slabBlock((SlabBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
         stairsBlock((StairBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));

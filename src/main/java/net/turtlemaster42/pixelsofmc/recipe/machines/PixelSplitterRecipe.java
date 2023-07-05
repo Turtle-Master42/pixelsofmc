@@ -80,6 +80,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
     public List<CountedIngredient> getOutputs() {
         return outputs;
     }
+    public CountedIngredient getInput() {return recipeItem;}
 
 
     @Override

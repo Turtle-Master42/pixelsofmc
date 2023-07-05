@@ -92,7 +92,6 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
         //when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
-            PixelsOfMc.LOGGER.info("serverside: {}", getMainBlockPos(pLevel, pPos));
             BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
             BlockState mainState = pLevel.getBlockState(mainPos);
 
@@ -104,7 +103,6 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
                 return mainState.getBlock().use(mainState, pLevel, mainPos, pPlayer, hand, hit);
             }
         } else {
-            PixelsOfMc.LOGGER.info("clientside: {}", getMainBlockPos(pLevel, pPos));
             return InteractionResult.SUCCESS;
         }
     }

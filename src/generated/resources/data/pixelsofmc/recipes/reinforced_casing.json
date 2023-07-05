@@ -6,10 +6,10 @@
       "item": "pixelsofmc:titanium_diboride_ingot"
     },
     "B": {
-      "item": "pixelsofmc:titanium_diboride_plating"
+      "item": "pixelsofmc:titanium_gold_plating"
     },
     "C": {
-      "item": "pixelsofmc:strong_casing"
+      "item": "pixelsofmc:strengthened_casing"
     }
   },
   "pattern": [

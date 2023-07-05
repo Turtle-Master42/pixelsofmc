@@ -41,6 +41,7 @@
 
   "item.pixelsofmc.soul_coal": "Soul Coal",
   "item.pixelsofmc.raw_titanium": "Raw Titanium",
+  "item.pixelsofmc.titanium_gold_ingot": "Titanium Gold Ingot",
   "item.pixelsofmc.titanium_diboride_ingot": "True Netherite Ingot",
 
   "item.pixelsofmc.copper_nugget": "Copper Nugget",
@@ -48,6 +49,7 @@
   "item.pixelsofmc.tungsten_nugget": "Tungsten Nugget",
   "item.pixelsofmc.steel_nugget": "Steel Nugget",
   "item.pixelsofmc.titanium_nugget": "Titanium Nugget",
+  "item.pixelsofmc.titanium_gold_nugget": "Titanium Gold Nugget",
   "item.pixelsofmc.netherite_nugget": "Netherite Nugget",
   "item.pixelsofmc.titanium_diboride_nugget": "True Netherite Nugget",
 
@@ -55,6 +57,7 @@
   "item.pixelsofmc.titanium_plating": "Titanium Plating",
   "item.pixelsofmc.rusted_plating": "Rusted Plate",
   "item.pixelsofmc.netherite_plating": "Netherite Plating",
+  "item.pixelsofmc.titanium_gold_plating": "Titanium Gold Plating",
   "item.pixelsofmc.titanium_diboride_plating": "True Netherite Plating",
   "item.pixelsofmc.obsidian_plating": "Obsidian Plating",
   "item.pixelsofmc.crying_obsidian_plating": "Crying Plating",
@@ -71,6 +74,7 @@
   "item.pixelsofmc.power_cell": "Power Cell",
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
   "item.pixelsofmc.titanium_circle_saw": "Titanium Circle Saw",
+  "item.pixelsofmc.titanium_gold_circle_saw": "Titanium Gold Circle Saw",
   "item.pixelsofmc.titanium_diboride_circle_saw": "True Netherite Circle Saw",
   "item.pixelsofmc.ingot_cast": "Ingot Cast",
   "item.pixelsofmc.ball_cast": "Ball Cast",
@@ -91,6 +95,7 @@
   "item.pixelsofmc.repelling_rubber_ball": "Repelling Rubber Ball",
   "item.pixelsofmc.netherite_ball": "Netherite Ball",
   "item.pixelsofmc.titanium_ball": "Titanium Ball",
+  "item.pixelsofmc.titanium_gold_ball": "Titanium Gold Ball",
   "item.pixelsofmc.titanium_diboride_ball": "True Netherite Ball",
 
   "item.pixelsofmc.iron_dust": "Iron Dust",
@@ -106,6 +111,7 @@
   "item.pixelsofmc.carbon_dust": "Carbon Dust",
   "item.pixelsofmc.calcium_dust": "Calcium Dust",
   "item.pixelsofmc.gold_dust": "Gold Dust",
+  "item.pixelsofmc.titanium_gold_dust": "Titanium Gold Dust",
   "item.pixelsofmc.mercury_sulfide_dust": "Mercury Sulfide Dust",
   "item.pixelsofmc.obsidian_dust": "Obsidian Dust",
   "item.pixelsofmc.crying_obsidian_dust": "Crying Dust",
@@ -537,6 +543,8 @@
   "element.pixelsofmc.californium": "Cf (Californium)",
   "element.pixelsofmc.einsteinium": "Es (Einsteinium)",
 
+  "structure.pixelsofmc.titanium_gold": "Ti₃Au (Titanium Gold)",
+
   "machine": "------------------------------MACHINES--------------------------------------------------------",
   "block.pixelsofmc.machine_block": "Machine Block",
 
@@ -556,6 +564,7 @@
   "block": "------------------------------BLOCK--------------------------------------------------------",
   "block.pixelsofmc.raw_titanium_block": "Block of Raw Titanium",
   "block.pixelsofmc.titanium_block": "Block of Titanium",
+  "block.pixelsofmc.titanium_gold_block": "Block of Titanium Gold",
   "block.pixelsofmc.silver_block": "Block of Silver",
   "block.pixelsofmc.tungsten_block": "Block of Tungsten",
   "block.pixelsofmc.titanium_diboride_block": "True Netherite Block",
@@ -572,6 +581,9 @@
   "block.pixelsofmc.netherite_plating_block": "Netherite Plating Block",
   "block.pixelsofmc.netherite_plating_slab": "Netherite Plating Slab",
   "block.pixelsofmc.netherite_plating_stairs": "Netherite Plating Stairs",
+  "block.pixelsofmc.titanium_gold_plating_block": "Titanium Gold Plating Block",
+  "block.pixelsofmc.titanium_gold_plating_slab": "Titanium Gold Plating Slab",
+  "block.pixelsofmc.titanium_gold_plating_stairs": "Titanium Gold Plating Stairs",
   "block.pixelsofmc.titanium_diboride_plating_block": "True Netherite Plating Block",
   "block.pixelsofmc.titanium_diboride_plating_slab": "True Netherite Plating Slab",
   "block.pixelsofmc.titanium_diboride_plating_stairs": "True Netherite Plating Stairs",
@@ -580,6 +592,7 @@
   "block.pixelsofmc.advanced_casing_1": "Advanced Casing I",
   "block.pixelsofmc.perfected_casing_1": "Perfected Casing I",
   "block.pixelsofmc.strong_casing": "Strong Casing",
+  "block.pixelsofmc.strengthened_casing": "Strengthened Casing",
   "block.pixelsofmc.reinforced_casing": "Reinforced Casing",
   "block.pixelsofmc.reinforced_glass": "Reinforced Glass",
   "block.pixelsofmc.copper_spool": "Copper Spool",

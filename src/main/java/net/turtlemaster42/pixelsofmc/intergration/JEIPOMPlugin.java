@@ -13,10 +13,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -35,6 +32,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCategories(new GrinderRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HotIsostaticPressRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new FusionRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new PixelSplitterRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -43,6 +41,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(POMblocks.GRINDER.get()), new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get()), new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.SDS_CONTROLLER.get()), new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_SPLITTER.get()), new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class));
     }
 
 
@@ -55,11 +54,13 @@ public class JEIPOMPlugin implements IModPlugin {
         List<GrinderRecipe> grinding = rm.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
         List<HotIsostaticPressRecipe> pressing = rm.getAllRecipesFor(HotIsostaticPressRecipe.Type.INSTANCE);
         List<FusionRecipe> fusing = rm.getAllRecipesFor(FusionRecipe.Type.INSTANCE);
+        List<PixelSplitterRecipe> splitting = rm.getAllRecipesFor(PixelSplitterRecipe.Type.INSTANCE);
 
         registration.addRecipes(new RecipeType<>(BallMillRecipeCategory.UID, BallMillRecipe.class), milling);
         registration.addRecipes(new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class), grinding);
         registration.addRecipes(new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class), pressing);
         registration.addRecipes(new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class), fusing);
+        registration.addRecipes(new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class), splitting);
     }
 
     @Override

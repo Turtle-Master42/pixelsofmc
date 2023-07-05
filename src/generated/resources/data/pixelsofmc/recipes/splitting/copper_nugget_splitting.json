@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 138,
+      "G": 193,
+      "R": 231
+    },
+    {
+      "B": 65,
+      "G": 90,
+      "R": 124
+    },
+    {
+      "B": 41,
+      "G": 54,
+      "R": 86
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:copper_nugget"
+    }
+  },
+  "outputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "structure": "element.pixelsofmc.copper"
+}

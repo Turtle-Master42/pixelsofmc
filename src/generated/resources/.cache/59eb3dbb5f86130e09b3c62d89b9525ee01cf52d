@@ -1,4 +1,4 @@
-// 1.19.3	2023-06-23T09:51:41.426848	Loot Tables
+// 1.19.3	2023-07-04T14:25:42.744808	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
@@ -36,6 +36,7 @@ a579ffd6a3576006dc32317ccc32c87d10934544 data/pixelsofmc/loot_tables/blocks/silv
 216a1ce9f34bc94ec818ddc3481dc1a7f4f81a25 data/pixelsofmc/loot_tables/blocks/silver_spool.json
 386d012840176c356c5dfa32e06bc5ceda057d95 data/pixelsofmc/loot_tables/blocks/simple_casing_1.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/star.json
+f63db2b3018a58f40db4b1c388b826e29da1041b data/pixelsofmc/loot_tables/blocks/strengthened_casing.json
 4890c52821ed862fdb3975f64e60ba33295fc8c0 data/pixelsofmc/loot_tables/blocks/strong_casing.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/sulfuric_acid.json
 b6a9c5f7c1fadc12e3526dd3bdb27e19c48c869e data/pixelsofmc/loot_tables/blocks/titanium_block.json
@@ -43,6 +44,10 @@ e02a4be4204c58e18250a0c79f6024bbe33f6947 data/pixelsofmc/loot_tables/blocks/tita
 215c7501bdb158978e836204c23212859a753644 data/pixelsofmc/loot_tables/blocks/titanium_diboride_plating_block.json
 9d58c94aebb311c20c8ec132c06cd5c93e5ca3f2 data/pixelsofmc/loot_tables/blocks/titanium_diboride_plating_slab.json
 54ddedd933e534b3303df63b7e1b7b9a25541ff1 data/pixelsofmc/loot_tables/blocks/titanium_diboride_plating_stairs.json
+0b30f1d3a871ed0f7fd4b07fc4f3f884983ee0e2 data/pixelsofmc/loot_tables/blocks/titanium_gold_block.json
+69af97a7c1f52d12e3860cecb5b9e7062e2a454a data/pixelsofmc/loot_tables/blocks/titanium_gold_plating_block.json
+1c73efa3174616e847e1918c7d5aa0a20c8cef20 data/pixelsofmc/loot_tables/blocks/titanium_gold_plating_slab.json
+47b1f8351f079ca6c1349793f00934a9ff7f99b0 data/pixelsofmc/loot_tables/blocks/titanium_gold_plating_stairs.json
 5b95a7e768a37a6f0e5f0eb680a1a141bfa09dda data/pixelsofmc/loot_tables/blocks/titanium_ore.json
 e94c9a88a86131484593384e040b2775ab799c81 data/pixelsofmc/loot_tables/blocks/titanium_plating_block.json
 2b6c10afa1461835d780011ff2a549da009421ef data/pixelsofmc/loot_tables/blocks/titanium_plating_slab.json

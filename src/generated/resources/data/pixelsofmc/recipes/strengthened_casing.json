@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_gold_ingot"
+    },
+    "B": {
+      "item": "pixelsofmc:obsidian_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:strong_casing"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:strengthened_casing"
+  }
+}

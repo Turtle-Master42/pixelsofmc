@@ -21,7 +21,7 @@
   "pattern": [
     "ABC",
     "BDB",
-    "EBC"
+    "EBA"
   ],
   "result": {
     "item": "pixelsofmc:resonance_detector"

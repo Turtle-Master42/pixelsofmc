@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 166,
+      "G": 229,
+      "R": 232
+    },
+    {
+      "B": 81,
+      "G": 153,
+      "R": 197
+    },
+    {
+      "B": 53,
+      "G": 95,
+      "R": 152
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:titanium_gold_nugget"
+    }
+  },
+  "outputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "structure": "structure.pixelsofmc.titanium_gold"
+}

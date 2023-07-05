@@ -187,13 +187,13 @@ public class PixelsOfMc {
 
 	private void addCreative(CreativeModeTabEvent.BuildContents event) {
 		if (event.getTab() == CreativeModeTabs.OP_BLOCKS && event.hasPermissions())
-			event.accept(POMitems.DEBUGUIM_INGOT);
+			event.accept(POMitems.DEBUGIUM_INGOT);
 
 		if (event.getTab() == POMtabs.PIXELS_OF_MINECRAFT_TAB) {
 			event.accept(POMitems.BOOK_1);
 
 			if (event.hasPermissions()) {
-				event.accept(POMitems.DEBUGUIM_INGOT);
+				event.accept(POMitems.DEBUGIUM_INGOT);
 				event.accept(POMitems.TEST_ITEM);
 				event.accept(POMblocks.STAR);
 				event.accept(POMblocks.REINFORCED_THING);

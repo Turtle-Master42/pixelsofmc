@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_gold_ingot"
+    },
+    {
+      "item": "pixelsofmc:titanium_gold_ingot"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:titanium_gold_plating"
+  }
+}

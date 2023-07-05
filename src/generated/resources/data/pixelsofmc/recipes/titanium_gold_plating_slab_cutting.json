@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "pixelsofmc:titanium_gold_plating_block"
+  },
+  "result": "pixelsofmc:titanium_gold_plating_slab"
+}

@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -71,16 +72,24 @@ public class POMitemTagProvider extends ItemTagsProvider {
         tag(Tags.Items.NETHER_STARS).add(POMitems.POWER_ORB.get());
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());
         tag(Tags.Items.GLASS).add(POMblocks.REINFORCED_GLASS.get().asItem());
+        tag(ItemTags.PIGLIN_LOVED)
+                .add(POMitems.TITANIUM_GOLD_INGOT.get())
+                .add(POMitems.TITANIUM_GOLD_DUST.get())
+                .add(POMitems.TITANIUM_GOLD_PLATING.get())
+                .add(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem())
+                .add(POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get().asItem())
+                .add(POMblocks.TITANIUM_GOLD_PLATING_SLAB.get().asItem())
+                .add(POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get().asItem())
+                .add(Element.GOLD.dust().asItem());
 
-        tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
+        tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_GOLD_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         tag(POMtags.Items.MILLING_BALL)
-                .addTag(Tags.Items.STONE)
-                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.RUBBER_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get())
                 .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
 
         tag(POMtags.Items.BALL_1)
@@ -91,6 +100,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .addTag(Tags.Items.STONE)
                 .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.RUBBER_BALL.get())
+                .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get())
                 .add(POMitems.NETHERITE_BALL.get())
@@ -100,9 +110,11 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_4)
                 .add(POMitems.NETHERITE_BALL.get())
+                .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_5)
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
@@ -122,7 +134,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         //ingots
         tag(Tags.Items.INGOTS)
-                .add(POMitems.TITANIUM_DIBORIDE_INGOT.get());
+                .add(POMitems.TITANIUM_DIBORIDE_INGOT.get()).add(POMitems.TITANIUM_GOLD_INGOT.get());
+
 
 
         //nuggets
