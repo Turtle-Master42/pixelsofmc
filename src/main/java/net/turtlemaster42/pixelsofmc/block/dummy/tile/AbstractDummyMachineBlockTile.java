@@ -4,9 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -65,11 +62,11 @@ public class AbstractDummyMachineBlockTile extends BlockEntity implements IDummy
         //first we check if hasClientMainPos is false, we do this so it only tries to send info to the client if
         //it hasn't received it yet. then we get the connection of the client, this is only true if the client is
         //in the actual game, so not still in the "joining game" screen, otherwise the packet doesn't go through.
-        //when the packet is send and will be received, we set hasClientMainPos to true so it won't send packets until
+        //when the packet is sent, and will be received, we set hasClientMainPos to true so it won't send packets until
         //it needs to.
         //we need to resend the packets every time someone logs in or the chunk is reloaded, luckily, hasClientMainPos will automatically revert
-        //to its default state of "false" when relogging because the information is never fully stored.
-        //but to make sure that it is resend when the chunk is reloaded we send a update every 100 ticks or 5 seconds
+        //to its default state of "false" when re-logging because the information is never fully stored.
+        //but to make sure that it is resend when the chunk is reloaded we send an update every 100 ticks or 5 seconds
         //POMmessages.sendToClients(new PacketSyncMainPosToClient(pBlockEntity.getMainPos(), pPos));
 
         tick++;

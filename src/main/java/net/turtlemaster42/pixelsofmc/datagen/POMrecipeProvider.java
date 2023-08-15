@@ -123,18 +123,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.BLACK_DIAMOND.get())))
                 .save(fConsumer, toRL(Items.DIAMOND.toString()));
-//        ShapedRecipeBuilder.shaped(POMitems.VIOLET_DIAMOND.get())
-//                .define('C', Items.DIAMOND)
-//                .pattern("CC")
-//                .pattern("CC")
-//                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-//                .save(fConsumer);
-//        ShapedRecipeBuilder.shaped(POMitems.RED_DIAMOND.get())
-//                .define('C', POMitems.VIOLET_DIAMOND.get())
-//                .pattern("CC")
-//                .pattern("CC")
-//                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-//                .save(fConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.SCREWDRIVER.get())

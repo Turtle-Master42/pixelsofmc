@@ -5,7 +5,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -95,9 +94,5 @@ public class PixelItem extends Item implements DyeableLeatherItem {
             pTooltipComponents.add(Component.translatable(pixelAmount + "x").withStyle(ChatFormatting.RED));
             pTooltipComponents.add(Component.translatable(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
         }
-//        if (!getExtraTooltip(pStack)[0].isEmpty() && Screen.hasShiftDown())
-//            for (int i = 0; i < getExtraTooltip(pStack).length; i++) {
-//                pTooltipComponents.add(Component.translatable(getExtraTooltip(pStack)[i]));
-//            }
     }
 }

@@ -67,20 +67,20 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return SDSFusionControllerTile.this.progress;
-                    case 1: return SDSFusionControllerTile.this.maxProgress;
-                    case 2: return SDSFusionControllerTile.this.capacity;
-                    case 3: return SDSFusionControllerTile.this.maxReceive;
-                    case 4: return SDSFusionControllerTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> SDSFusionControllerTile.this.progress;
+                    case 1 -> SDSFusionControllerTile.this.maxProgress;
+                    case 2 -> SDSFusionControllerTile.this.capacity;
+                    case 3 -> SDSFusionControllerTile.this.maxReceive;
+                    case 4 -> SDSFusionControllerTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: SDSFusionControllerTile.this.progress = value; break;
-                    case 1: SDSFusionControllerTile.this.maxProgress = value; break;
+                switch (index) {
+                    case 0 -> SDSFusionControllerTile.this.progress = value;
+                    case 1 -> SDSFusionControllerTile.this.maxProgress = value;
                 }
             }
 

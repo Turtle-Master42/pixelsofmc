@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import org.jetbrains.annotations.NotNull;
 
 public class AbstractPillarFusionCasing extends AbstractFusionCasing  {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
@@ -25,24 +26,22 @@ public class AbstractPillarFusionCasing extends AbstractFusionCasing  {
      * possible. Implementing/overriding is fine.
      */
     @Deprecated
-    public BlockState rotate(BlockState pState, Rotation pRot) {
+    public @NotNull BlockState rotate(@NotNull BlockState pState, @NotNull Rotation pRot) {
         return rotatePillar(pState, pRot);
     }
 
     public static BlockState rotatePillar(BlockState pState, Rotation pRotation) {
         switch (pRotation) {
-            case COUNTERCLOCKWISE_90:
-            case CLOCKWISE_90:
-                switch (pState.getValue(AXIS)) {
-                    case X:
-                        return pState.setValue(AXIS, Direction.Axis.Z);
-                    case Z:
-                        return pState.setValue(AXIS, Direction.Axis.X);
-                    default:
-                        return pState;
-                }
-            default:
+            case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> {
+                return switch (pState.getValue(AXIS)) {
+                    case X -> pState.setValue(AXIS, Direction.Axis.Z);
+                    case Z -> pState.setValue(AXIS, Direction.Axis.X);
+                    default -> pState;
+                };
+            }
+            default -> {
                 return pState;
+            }
         }
     }
 

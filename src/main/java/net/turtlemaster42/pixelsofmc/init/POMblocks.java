@@ -27,7 +27,6 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.EnergyInputFusionTile;
 import net.turtlemaster42.pixelsofmc.fluid.AcidLiquidBlock;
 import net.turtlemaster42.pixelsofmc.fluid.SupercooledLiquidBlock;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -119,9 +118,6 @@ public class POMblocks {
     public static final RegistryObject<Block> ENDSTONE_TITANIUM_ORE = registerBlock("endstone_titanium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).sound(SoundType.STONE)
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
-    //    public static final RegistryObject<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
-//            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(6f, 12f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ACANTHITE = registerBlock("acanthite",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.LAPIS).strength(2.0F, 3.0F).requiresCorrectToolForDrops()));

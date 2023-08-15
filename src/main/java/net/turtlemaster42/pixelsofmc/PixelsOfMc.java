@@ -1,11 +1,9 @@
 package net.turtlemaster42.pixelsofmc;
 
-import com.github.alexthe666.citadel.client.render.LightningRender;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.LightningBoltRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -13,7 +11,6 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -105,7 +101,7 @@ public class PixelsOfMc {
 			};
 
 			DispenseItemBehavior energyCell = new DefaultDispenseItemBehavior() {
-				public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
+				public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 					BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					BlockState state = source.getLevel().getBlockState(blockpos);
 					BlockEntity entity = source.getLevel().getBlockEntity(blockpos);

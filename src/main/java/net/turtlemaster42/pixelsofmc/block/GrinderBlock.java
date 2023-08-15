@@ -44,23 +44,19 @@ public class GrinderBlock extends BaseEntityBlock {
 
 
     private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, -16, 32, 4, 32), //base-plate
+            box(-16, 0, -16, 32, 4, 32), //baseplate
             box(-16, 4, 0, 32, 32, 32) //base
 
     );
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case EAST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case SOUTH:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case WEST:
-                return SHAPE;
-            default:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-        }
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case WEST -> SHAPE;
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+        };
     }
 
 

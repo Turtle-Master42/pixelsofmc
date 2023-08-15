@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.turtlemaster42.pixelsofmc.block.tile.EnergyInputFusionTile;
@@ -16,7 +15,7 @@ public class EnergyInputFusionBlock extends AbstractFusionCasing {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new EnergyInputFusionTile(pPos, pState);
     }
 }

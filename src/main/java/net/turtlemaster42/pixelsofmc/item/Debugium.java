@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
@@ -40,7 +39,7 @@ public class Debugium extends ElementItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
         PixelsOfMc.LOGGER.info("Color white: {}", new Color(255, 255, 255).getRGB());
         PixelsOfMc.LOGGER.info("Color green: {}", new Color(0, 255, 125).getRGB());
         PixelsOfMc.LOGGER.info("Color blue: {}", new Color(0, 255, 255).getRGB());

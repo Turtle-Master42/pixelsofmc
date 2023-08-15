@@ -70,22 +70,22 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         super(POMtiles.GRINDER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return GrinderTile.this.progress;
-                    case 1: return GrinderTile.this.maxProgress;
-                    case 2: return GrinderTile.this.speedUpgrade;
-                    case 3: return GrinderTile.this.capacity;
-                    case 4: return GrinderTile.this.maxReceive;
-                    case 5: return GrinderTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> GrinderTile.this.progress;
+                    case 1 -> GrinderTile.this.maxProgress;
+                    case 2 -> GrinderTile.this.speedUpgrade;
+                    case 3 -> GrinderTile.this.capacity;
+                    case 4 -> GrinderTile.this.maxReceive;
+                    case 5 -> GrinderTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: GrinderTile.this.progress = value; break;
-                    case 1: GrinderTile.this.maxProgress = value; break;
-                    case 2: GrinderTile.this.speedUpgrade = value; break;
+                switch (index) {
+                    case 0 -> GrinderTile.this.progress = value;
+                    case 1 -> GrinderTile.this.maxProgress = value;
+                    case 2 -> GrinderTile.this.speedUpgrade = value;
                 }
             }
             public int getCount() {

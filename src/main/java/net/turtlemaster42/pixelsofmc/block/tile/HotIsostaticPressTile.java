@@ -80,33 +80,33 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         super(POMtiles.HOT_ISOSTATIC_PRESS.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return HotIsostaticPressTile.this.progress;
-                    case 1: return HotIsostaticPressTile.this.maxProgress;
-                    case 2: return HotIsostaticPressTile.this.speedUpgrade;
-                    case 3: return HotIsostaticPressTile.this.capacity;
-                    case 4: return HotIsostaticPressTile.this.maxReceive;
-                    case 5: return HotIsostaticPressTile.this.energyStorage.getEnergyStored();
-                    case 6: return HotIsostaticPressTile.this.heat;
-                    case 7: return HotIsostaticPressTile.this.maxHeat;
-                    case 8: return HotIsostaticPressTile.this.burnTime;
-                    case 9: return HotIsostaticPressTile.this.soulBurnTime;
-                    case 10: return HotIsostaticPressTile.this.maxBurnTime;
-                    case 11: return HotIsostaticPressTile.this.maxSoulHeat;
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> HotIsostaticPressTile.this.progress;
+                    case 1 -> HotIsostaticPressTile.this.maxProgress;
+                    case 2 -> HotIsostaticPressTile.this.speedUpgrade;
+                    case 3 -> HotIsostaticPressTile.this.capacity;
+                    case 4 -> HotIsostaticPressTile.this.maxReceive;
+                    case 5 -> HotIsostaticPressTile.this.energyStorage.getEnergyStored();
+                    case 6 -> HotIsostaticPressTile.this.heat;
+                    case 7 -> HotIsostaticPressTile.this.maxHeat;
+                    case 8 -> HotIsostaticPressTile.this.burnTime;
+                    case 9 -> HotIsostaticPressTile.this.soulBurnTime;
+                    case 10 -> HotIsostaticPressTile.this.maxBurnTime;
+                    case 11 -> HotIsostaticPressTile.this.maxSoulHeat;
+                    default -> 0;
+                };
             }
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: HotIsostaticPressTile.this.progress = value; break;
-                    case 1: HotIsostaticPressTile.this.maxProgress = value; break;
-                    case 2: HotIsostaticPressTile.this.speedUpgrade = value; break;
-                    case 6: HotIsostaticPressTile.this.heat = value; break;
-                    case 7: HotIsostaticPressTile.this.maxHeat = value; break;
-                    case 8: HotIsostaticPressTile.this.burnTime = value; break;
-                    case 9: HotIsostaticPressTile.this.soulBurnTime = value; break;
-                    case 10: HotIsostaticPressTile.this.maxBurnTime = value; break;
-                    case 11: HotIsostaticPressTile.this.maxSoulHeat = value; break;
+                switch (index) {
+                    case 0 -> HotIsostaticPressTile.this.progress = value;
+                    case 1 -> HotIsostaticPressTile.this.maxProgress = value;
+                    case 2 -> HotIsostaticPressTile.this.speedUpgrade = value;
+                    case 6 -> HotIsostaticPressTile.this.heat = value;
+                    case 7 -> HotIsostaticPressTile.this.maxHeat = value;
+                    case 8 -> HotIsostaticPressTile.this.burnTime = value;
+                    case 9 -> HotIsostaticPressTile.this.soulBurnTime = value;
+                    case 10 -> HotIsostaticPressTile.this.maxBurnTime = value;
+                    case 11 -> HotIsostaticPressTile.this.maxSoulHeat = value;
                 }
             }
 

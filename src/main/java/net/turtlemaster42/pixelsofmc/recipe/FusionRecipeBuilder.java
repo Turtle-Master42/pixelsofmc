@@ -93,7 +93,7 @@ public class FusionRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
-
+            ResourceLocation id = this.id;
             return new ResourceLocation(PixelsOfMc.MOD_ID,
                     "fusing/"+result.asItem()+"_fusing");
         }

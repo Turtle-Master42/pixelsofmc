@@ -92,6 +92,7 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
+            ResourceLocation id = this.id;
             String name = this.ingredient.getItems()[0].getItem().toString();
             String jsonString = this.ingredient.toJson().toString();
 

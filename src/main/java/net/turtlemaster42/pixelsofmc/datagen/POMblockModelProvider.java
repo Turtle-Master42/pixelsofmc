@@ -1,11 +1,9 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
-import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
-import net.turtlemaster42.pixelsofmc.block.AbstractPillarFusionCasing;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;

@@ -118,7 +118,7 @@ public class DummyMachineEnergyBlockTile extends AbstractDummyMachineBlockTile {
         }
 
         @Override
-        public void load(CompoundTag nbt) {
+        public void load(@NotNull CompoundTag nbt) {
             super.load(nbt);
             energyStorage.setEnergy(nbt.getInt("Energy"));
         }

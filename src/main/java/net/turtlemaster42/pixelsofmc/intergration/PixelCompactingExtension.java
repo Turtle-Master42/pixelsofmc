@@ -21,9 +21,6 @@ public record PixelCompactingExtension(PixelCompactingRecipe recipe) implements 
         List<ItemStack> inputs = new ArrayList<>();
         List<ItemStack> outputs = new ArrayList<>();
 
-//        craftingGridHelper.createAndSetInputs(builder, inputs, 0, 0);
-//        craftingGridHelper.createAndSetOutputs(builder, outputs);
-
         for (Element m : Element.values()) {
             inputs.add(m.pixel());
             outputs.add(m.pixelPile());

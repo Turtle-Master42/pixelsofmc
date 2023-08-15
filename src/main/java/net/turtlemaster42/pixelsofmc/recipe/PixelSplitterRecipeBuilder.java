@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
-import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -121,6 +120,7 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
+            ResourceLocation id = this.id;
             String name = this.ingredient.getItems()[0].getItem().toString();
             String jsonString = this.ingredient.toJson().toString();
 

@@ -124,22 +124,22 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         super(POMtiles.CHEMICAL_SEPARATOR.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return ChemicalSeparatorTile.this.progress;
-                    case 1: return ChemicalSeparatorTile.this.maxProgress;
-                    case 2: return ChemicalSeparatorTile.this.speedUpgrade;
-                    case 3: return ChemicalSeparatorTile.this.capacity;
-                    case 4: return ChemicalSeparatorTile.this.maxReceive;
-                    case 5: return ChemicalSeparatorTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> ChemicalSeparatorTile.this.progress;
+                    case 1 -> ChemicalSeparatorTile.this.maxProgress;
+                    case 2 -> ChemicalSeparatorTile.this.speedUpgrade;
+                    case 3 -> ChemicalSeparatorTile.this.capacity;
+                    case 4 -> ChemicalSeparatorTile.this.maxReceive;
+                    case 5 -> ChemicalSeparatorTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: ChemicalSeparatorTile.this.progress = value; break;
-                    case 1: ChemicalSeparatorTile.this.maxProgress = value; break;
-                    case 2: ChemicalSeparatorTile.this.speedUpgrade = value; break;
+                switch (index) {
+                    case 0 -> ChemicalSeparatorTile.this.progress = value;
+                    case 1 -> ChemicalSeparatorTile.this.maxProgress = value;
+                    case 2 -> ChemicalSeparatorTile.this.speedUpgrade = value;
                 }
             }
             public int getCount() {

@@ -86,10 +86,10 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: BallMillTile.this.progress = value; break;
-                    case 1: BallMillTile.this.maxProgress = value; break;
-                    case 2: BallMillTile.this.speedUpgrade = value; break;
+                switch (index) {
+                    case 0 -> BallMillTile.this.progress = value;
+                    case 1 -> BallMillTile.this.maxProgress = value;
+                    case 2 -> BallMillTile.this.speedUpgrade = value;
                 }
             }
 

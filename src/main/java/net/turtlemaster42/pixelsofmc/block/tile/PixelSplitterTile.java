@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -74,21 +73,21 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
         super(POMtiles.PIXEL_SPLITTER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return PixelSplitterTile.this.progress;
-                    case 1: return PixelSplitterTile.this.maxProgress;
-                    case 2: return PixelSplitterTile.this.speedUpgrade;
-                    case 3: return PixelSplitterTile.this.capacity;
-                    case 4: return PixelSplitterTile.this.maxReceive;
-                    case 5: return PixelSplitterTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> PixelSplitterTile.this.progress;
+                    case 1 -> PixelSplitterTile.this.maxProgress;
+                    case 2 -> PixelSplitterTile.this.speedUpgrade;
+                    case 3 -> PixelSplitterTile.this.capacity;
+                    case 4 -> PixelSplitterTile.this.maxReceive;
+                    case 5 -> PixelSplitterTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: PixelSplitterTile.this.progress = value; break;
-                    case 1: PixelSplitterTile.this.maxProgress = value; break;
-                    case 2: PixelSplitterTile.this.speedUpgrade = value; break;
+                switch (index) {
+                    case 0 -> PixelSplitterTile.this.progress = value;
+                    case 1 -> PixelSplitterTile.this.maxProgress = value;
+                    case 2 -> PixelSplitterTile.this.speedUpgrade = value;
                 }
             }
             public int getCount() {

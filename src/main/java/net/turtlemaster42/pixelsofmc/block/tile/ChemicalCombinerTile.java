@@ -121,22 +121,22 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         super(POMtiles.CHEMICAL_COMBINER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return ChemicalCombinerTile.this.progress;
-                    case 1: return ChemicalCombinerTile.this.maxProgress;
-                    case 2: return ChemicalCombinerTile.this.speedUpgrade;
-                    case 3: return ChemicalCombinerTile.this.capacity;
-                    case 4: return ChemicalCombinerTile.this.maxReceive;
-                    case 5: return ChemicalCombinerTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> ChemicalCombinerTile.this.progress;
+                    case 1 -> ChemicalCombinerTile.this.maxProgress;
+                    case 2 -> ChemicalCombinerTile.this.speedUpgrade;
+                    case 3 -> ChemicalCombinerTile.this.capacity;
+                    case 4 -> ChemicalCombinerTile.this.maxReceive;
+                    case 5 -> ChemicalCombinerTile.this.energyStorage.getEnergyStored();
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: ChemicalCombinerTile.this.progress = value; break;
-                    case 1: ChemicalCombinerTile.this.maxProgress = value; break;
-                    case 2: ChemicalCombinerTile.this.speedUpgrade = value; break;
+                switch (index) {
+                    case 0 -> ChemicalCombinerTile.this.progress = value;
+                    case 1 -> ChemicalCombinerTile.this.maxProgress = value;
+                    case 2 -> ChemicalCombinerTile.this.speedUpgrade = value;
                 }
             }
             public int getCount() {

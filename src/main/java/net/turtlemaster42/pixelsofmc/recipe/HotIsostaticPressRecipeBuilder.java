@@ -97,6 +97,7 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
+            ResourceLocation id = this.id;
             String name = this.result.asItem().toString();
             String jsonString = this.result.ingredient().toJson().toString();
 

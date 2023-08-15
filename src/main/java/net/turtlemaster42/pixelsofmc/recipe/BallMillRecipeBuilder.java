@@ -85,8 +85,8 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
         @Override
         public void serializeRecipeData(@NotNull JsonObject pJson) {
             JsonArray jsonarray = new JsonArray();
-            for (int i = 0; i < ingredients.size(); i++) {
-                jsonarray.add(ingredients.get(i).toJson());
+            for (CountedIngredient ingredient : ingredients) {
+                jsonarray.add(ingredient.toJson());
             }
             pJson.add("inputs", jsonarray);
 
@@ -99,6 +99,7 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
+            ResourceLocation id = this.id;
             String ingredient1 = "";
             String ingredient2 = "";
             String ingredient3 = "";

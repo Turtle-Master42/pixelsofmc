@@ -22,6 +22,6 @@ public class book1 extends Item {
         if (world.isClientSide) {
             PixelsOfMc.PROXY.openBookGUI(itemStack);
         }
-        return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, itemStack);
+        return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
     }
 }

@@ -114,7 +114,7 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRand) {
         if (pState.getValue(ACTIVE)) {
             double d0 = (double)pPos.getX() + 0.5D;
-            double d1 = (double)pPos.getY();
+            double d1 = pPos.getY();
             double d2 = (double)pPos.getZ() + 0.5D;
 
             Direction direction = pState.getValue(FACING);

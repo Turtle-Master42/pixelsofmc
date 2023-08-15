@@ -161,7 +161,7 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new SDSFusionControllerTile(pPos, pState);
     }
 

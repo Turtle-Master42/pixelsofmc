@@ -50,16 +50,12 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case EAST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            case SOUTH:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case WEST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            default:
-                return SHAPE;
-        }
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            default -> SHAPE;
+        };
     }
 
 
@@ -138,7 +134,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new SDSFusionControllerTile(pPos, pState);
     }
 
@@ -163,10 +159,6 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     public int getLength() {return 5;}
     @Override
     public BlockPos fusionStarPos() {return new BlockPos(2, 2, 2);}
-    @Override
-    public int fusionStarLevel() {
-        return super.fusionStarLevel();
-    }
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
         return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, 0, 1, pos);

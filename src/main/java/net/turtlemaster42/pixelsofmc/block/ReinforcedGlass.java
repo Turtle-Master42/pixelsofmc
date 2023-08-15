@@ -21,10 +21,4 @@ public class ReinforcedGlass extends AbstractFusionCasing {
         return true;
     }
 
-//    @Override
-//    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-//        if (getMainBlockPos(level, pos) != null)
-//            return 15;
-//        return 0;
-//    }
 }

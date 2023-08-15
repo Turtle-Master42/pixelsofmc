@@ -71,10 +71,10 @@ public class EnergyInputFusionTile extends AbstractMultiBlockTile{
 
             @Override
             public int get(int index) {
-                switch (index) {
-                    case 0: return EnergyInputFusionTile.this.energyStorage.getEnergyStored();
-                    default: return 0;
+                if (index == 0) {
+                    return EnergyInputFusionTile.this.energyStorage.getEnergyStored();
                 }
+                return 0;
             }
 
             @Override
@@ -119,7 +119,7 @@ public class EnergyInputFusionTile extends AbstractMultiBlockTile{
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }

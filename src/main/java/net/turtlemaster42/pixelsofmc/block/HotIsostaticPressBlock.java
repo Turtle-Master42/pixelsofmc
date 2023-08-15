@@ -56,16 +56,12 @@ public class HotIsostaticPressBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case EAST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH:
-                return SHAPE;
-            case WEST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        }
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case SOUTH -> SHAPE;
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+        };
     }
 
 

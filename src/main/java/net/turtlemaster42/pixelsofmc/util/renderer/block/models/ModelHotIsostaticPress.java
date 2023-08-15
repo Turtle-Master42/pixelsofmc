@@ -73,10 +73,6 @@ public class ModelHotIsostaticPress extends AdvancedEntityModel<Entity> {
         return ImmutableList.of(root);
     }
 
-//    @Override
-//    public void m_6973_(Entity entity, float v, float v1, float v2, float v3, float v4) {
-//    }
-
     public void renderIndecator(HotIsostaticPressTile tile, float partialTick) {
         float rotation = (float)(0.0017*tile.getHeat())/Mth.TWO_PI;
         this.setRotateAngle(needle, -rotation , 0 ,0);

@@ -88,7 +88,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     }
 
     @Deprecated
-    public InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
         //when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
@@ -109,7 +109,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
 
     @Deprecated
     public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
-        //when a dummy block receives a blockupdate it will check if the main block still exists,
+        //when a dummy block receives a block-update it will check if the main block still exists,
         // if not, it will destroy itself and thereby update the surrounding dummy blocks
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
         BlockState mainState = pLevel.getBlockState(mainPos);

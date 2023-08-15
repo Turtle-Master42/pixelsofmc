@@ -111,6 +111,7 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
+            ResourceLocation id = this.id;
             String ingredient1 = "";
             String ingredient2 = "";
             String ingredient3 = "";
