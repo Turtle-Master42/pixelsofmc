@@ -1,9 +1,11 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
+import net.turtlemaster42.pixelsofmc.block.AbstractPillarFusionCasing;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -44,6 +46,9 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.STRENGTHENED_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
+        multiBlockWithItem(POMblocks.FUSION_ENERGY_INPUT);
+        multiBlockWithItem(POMblocks.FUSION_ITEM_OUTPUT);
+        multiBlockWithItem(POMblocks.FUSION_ITEM_INPUT);
         multiBlockWithItem(POMblocks.REINFORCED_THING);
 
         blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
@@ -62,6 +67,10 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());
         logBlock(POMblocks.TUNGSTEN_SPOOL.get());
+        logBlock(POMblocks.REDSTONE_LAYERED_COPPER_SPOOL.get());
+        logBlock(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL.get());
+        logBlock(POMblocks.RED_TUNGSTEN_SPOOL.get());
+        logBlock(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
     }
 
     public ModelFile flowerPotCross(String name) {

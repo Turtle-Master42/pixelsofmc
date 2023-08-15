@@ -87,7 +87,7 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
 
                     BlockPos rotatedOffsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
 
-                    if (level.getBlockState(rotatedOffsetPos) == MULTIBLOCK_STRUCTURE[y][z][x]) {
+                    if (level.getBlockState(rotatedOffsetPos).getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
                         correctBlocks++;
                     } else if (MULTIBLOCK_STRUCTURE[y][z][x].is(POMblocks.REINFORCED_GLASS.get())) {
                         if (level.getBlockState(rotatedOffsetPos).getBlock() instanceof AbstractFusionCasing) {

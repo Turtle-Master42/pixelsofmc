@@ -21,6 +21,7 @@
   "item.pixelsofmc.redstone_layered_copper_wire": "Redstone Layered Copper Wire",
   "item.pixelsofmc.redstone_imbued_silver_wire": "Redstone Imbued Silver Wire",
   "item.pixelsofmc.red_tungsten_wire": "Red Tungsten Wire",
+  "item.pixelsofmc.superconductive_wire": "Superconductive Wire",
   "item.pixelsofmc.power_orb": "Power Orb",
   "item.pixelsofmc.micro_chip": "Micro Chip",
   "item.pixelsofmc.redstone_counter": "Redstone Counter",
@@ -43,6 +44,8 @@
   "item.pixelsofmc.raw_titanium": "Raw Titanium",
   "item.pixelsofmc.titanium_gold_ingot": "Titanium Gold Ingot",
   "item.pixelsofmc.titanium_diboride_ingot": "True Netherite Ingot",
+  "item.pixelsofmc.superconductive_ingot": "Superconductive Ingot",
+  "item.pixelsofmc.red_tungsten_ingot": "Red Tungsten Ingot",
 
   "item.pixelsofmc.copper_nugget": "Copper Nugget",
   "item.pixelsofmc.silver_nugget": "Silver Nugget",
@@ -52,6 +55,8 @@
   "item.pixelsofmc.titanium_gold_nugget": "Titanium Gold Nugget",
   "item.pixelsofmc.netherite_nugget": "Netherite Nugget",
   "item.pixelsofmc.titanium_diboride_nugget": "True Netherite Nugget",
+  "item.pixelsofmc.superconductive_nugget": "Superconductive Nugget",
+  "item.pixelsofmc.red_tungsten_nugget": "Red Tungsten Nugget",
 
   "item.pixelsofmc.titanium_gear": "Titanium Gear",
   "item.pixelsofmc.titanium_plating": "Titanium Plating",
@@ -103,6 +108,8 @@
   "item.pixelsofmc.coal_dust": "Coal Dust",
   "item.pixelsofmc.titanium_dust": "Titanium Dust",
   "item.pixelsofmc.titanium_diboride_dust": "True Netherite Dust",
+  "item.pixelsofmc.superconductive_dust": "Niobium Titanium Dust",
+  "item.pixelsofmc.red_tungsten_dust": "Red Tungsten Dust",
 
   "item.pixelsofmc.aluminium_dust": "Aluminium Dust",
   "item.pixelsofmc.ancient_debris_dust": "Ancient Debris Dust",
@@ -132,6 +139,7 @@
   "item.pixelsofmc.lead_dust": "Lead Dust",
   "item.pixelsofmc.zinc_dust": "Zinc Dust",
   "item.pixelsofmc.silver_dust": "Silver Dust",
+  "item.pixelsofmc.niobium_dust": "Niobium Dust",
 
 
   "item.pixelsofmc.pixel": "Pixel",
@@ -595,9 +603,19 @@
   "block.pixelsofmc.strengthened_casing": "Strengthened Casing",
   "block.pixelsofmc.reinforced_casing": "Reinforced Casing",
   "block.pixelsofmc.reinforced_glass": "Reinforced Glass",
+  "block.pixelsofmc.fusion_casing": "Fusion Casing",
+  "block.pixelsofmc.superconductive_fusion_casing": "Superconductive Fusion Casing",
+  "block.pixelsofmc.fusion_corner": "Fusion Corner",
+  "block.pixelsofmc.fusion_item_output": "Fusion Item Output",
+  "block.pixelsofmc.fusion_energy_input": "Fusion Energy Input",
+  "block.pixelsofmc.fusion_item_input": "Fusion Item Input",
   "block.pixelsofmc.copper_spool": "Copper Spool",
   "block.pixelsofmc.silver_spool": "Silver Spool",
   "block.pixelsofmc.tungsten_spool": "Tungsten Spool",
+  "block.pixelsofmc.redstone_layered_copper_spool": "Redstone Layered Copper Spool",
+  "block.pixelsofmc.redstone_imbued_silver_spool": "Redstone Imbued Silver Spool",
+  "block.pixelsofmc.red_tungsten_spool": "Red Tungsten Spool",
+  "block.pixelsofmc.superconductive_spool": "Superconductive Spool",
 
   "fluid": "------------------------------FLUID--------------------------------------------------------",
   "fluid.pixelsofmc.hydrogen_fluid": "Liquid Hydrogen",

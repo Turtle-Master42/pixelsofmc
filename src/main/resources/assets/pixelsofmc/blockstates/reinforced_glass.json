@@ -1,7 +1,25 @@
 {
   "variants": {
-    "": {
+    "plating=0": {
       "model": "pixelsofmc:block/reinforced_glass"
+    },
+    "plating=1": {
+      "model": "pixelsofmc:block/reinforced_glass_titanium"
+    },
+    "plating=2": {
+      "model": "pixelsofmc:block/reinforced_glass_titanium_diboride"
+    },
+    "plating=3": {
+      "model": "pixelsofmc:block/reinforced_glass_titanium_gold"
+    },
+    "plating=4": {
+      "model": "pixelsofmc:block/reinforced_glass_netherite"
+    },
+    "plating=5": {
+      "model": "pixelsofmc:block/reinforced_glass_obsidian"
+    },
+    "plating=6": {
+      "model": "pixelsofmc:block/reinforced_glass_crying"
     }
   }
 }

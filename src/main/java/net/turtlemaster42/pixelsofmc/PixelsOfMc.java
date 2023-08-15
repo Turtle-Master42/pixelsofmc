@@ -1,22 +1,31 @@
 package net.turtlemaster42.pixelsofmc;
 
+import com.github.alexthe666.citadel.client.render.LightningRender;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.LightningBoltRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
@@ -95,6 +104,30 @@ public class PixelsOfMc {
 				}
 			};
 
+			DispenseItemBehavior energyCell = new DefaultDispenseItemBehavior() {
+				public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
+					BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+					BlockState state = source.getLevel().getBlockState(blockpos);
+					BlockEntity entity = source.getLevel().getBlockEntity(blockpos);
+					if (entity != null) {
+						IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
+						if (EnergyHandlerFrom != null) {
+							int maxReceive = 10000;
+
+							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
+							stack.shrink(1);
+							return stack;
+						}
+					}
+					if (state.canBeReplaced()) {
+						source.getLevel().sendParticles(ParticleTypes.SOUL, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 50, 0.5f, 0.5f, 0.5f, 0.01);
+						stack.shrink(1);
+						return stack;
+					}
+					return stack;
+				}
+			};
+
 			DispenserBlock.registerBehavior(POMitems.LIQUID_HYDROGEN_BUCKET.get(), bucketBehavior);
 			DispenserBlock.registerBehavior(POMitems.LIQUID_NITROGEN_BUCKET.get(), bucketBehavior);
 			DispenserBlock.registerBehavior(POMitems.LIQUID_OXYGEN_BUCKET.get(), bucketBehavior);
@@ -104,6 +137,7 @@ public class PixelsOfMc {
 			DispenserBlock.registerBehavior(POMitems.MERCURY_BUCKET.get(), bucketBehavior);
 			DispenserBlock.registerBehavior(POMitems.SULFURIC_ACID_BUCKET.get(), bucketBehavior);
 
+			DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		});
 
 

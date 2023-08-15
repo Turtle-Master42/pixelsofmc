@@ -16,7 +16,7 @@ public class AbstractMultiBlockTile extends BlockEntity {
     }
 
     public void setMainPos(BlockPos pos) {
-        if (level != null && pos != this.worldPosition && !level.isClientSide) {
+        if (level != null && !level.isClientSide) {
             this.mainPos = pos;
             setChanged();
         }

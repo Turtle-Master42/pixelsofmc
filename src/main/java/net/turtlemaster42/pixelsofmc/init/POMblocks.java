@@ -27,6 +27,7 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
+import net.turtlemaster42.pixelsofmc.block.tile.EnergyInputFusionTile;
 import net.turtlemaster42.pixelsofmc.fluid.AcidLiquidBlock;
 import net.turtlemaster42.pixelsofmc.fluid.SupercooledLiquidBlock;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -149,6 +150,16 @@ public class POMblocks {
     public static final RegistryObject<RotatedPillarBlock> TUNGSTEN_SPOOL = registerBlock("tungsten_spool",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).color(MaterialColor.WARPED_STEM)));
 
+    public static final RegistryObject<RotatedPillarBlock> REDSTONE_LAYERED_COPPER_SPOOL = registerBlock("redstone_layered_copper_spool",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).color(MaterialColor.COLOR_ORANGE)));
+    public static final RegistryObject<RotatedPillarBlock> REDSTONE_IMBUED_SILVER_SPOOL = registerBlock("redstone_imbued_silver_spool",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).color(MaterialColor.COLOR_RED)));
+    public static final RegistryObject<RotatedPillarBlock> RED_TUNGSTEN_SPOOL = registerBlock("red_tungsten_spool",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).color(MaterialColor.TERRACOTTA_MAGENTA)));
+    public static final RegistryObject<RotatedPillarBlock> SUPERCONDUCTIVE_SPOOL = registerBlock("superconductive_spool",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).color(MaterialColor.DIAMOND)));
+
+
 
     public static final RegistryObject<Block> STAR = registerBlock("star",
             () -> new StarBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).color(MaterialColor.COLOR_ORANGE)
@@ -193,6 +204,19 @@ public class POMblocks {
 
     public static final RegistryObject<AbstractMultiBlock> REINFORCED_THING = registerBlock("reinforced_thing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get())));
+
+    public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",
+            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<AbstractFusionCasing> SUPERCONDUCTIVE_FUSION_CASING = registerBlock("superconductive_fusion_casing",
+            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<AbstractFusionCasing> FUSION_CORNER = registerBlock("fusion_corner",
+            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<EnergyInputFusionBlock> FUSION_ENERGY_INPUT = registerBlock("fusion_energy_input",
+            () -> new EnergyInputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<ItemOutputFusionBlock> FUSION_ITEM_OUTPUT = registerBlock("fusion_item_output",
+            () -> new ItemOutputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<ItemInputFusionBlock> FUSION_ITEM_INPUT = registerBlock("fusion_item_input",
+            () -> new ItemInputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
 
 
 

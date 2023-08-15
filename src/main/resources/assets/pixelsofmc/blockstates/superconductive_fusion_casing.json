@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "axis=x,plating=0": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=0": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing"
+    },
+    "axis=z,plating=0": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing",
+      "x": 90
+    },
+    "axis=x,plating=1": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=1": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium"
+    },
+    "axis=z,plating=1": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium",
+      "x": 90
+    },
+    "axis=x,plating=2": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_diboride",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=2": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_diboride"
+    },
+    "axis=z,plating=2": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_diboride",
+      "x": 90
+    },
+    "axis=x,plating=3": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_gold",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=3": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_gold"
+    },
+    "axis=z,plating=3": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_titanium_gold",
+      "x": 90
+    },
+    "axis=x,plating=4": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_netherite",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=4": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_netherite"
+    },
+    "axis=z,plating=4": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_netherite",
+      "x": 90
+    },
+    "axis=x,plating=5": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_obsidian",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=5": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_obsidian"
+    },
+    "axis=z,plating=5": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_obsidian",
+      "x": 90
+    },
+    "axis=x,plating=6": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_crying",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=6": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_crying"
+    },
+    "axis=z,plating=6": {
+      "model": "pixelsofmc:block/superconductive_fusion_casing_crying",
+      "x": 90
+    }
+  }
+}

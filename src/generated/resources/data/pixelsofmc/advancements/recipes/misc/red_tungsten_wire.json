@@ -1,15 +1,17 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "items": [
+              "pixelsofmc:red_tungsten_nugget"
+            ]
           },
           {
             "items": [
-              "pixelsofmc:tungsten_wire"
+              "minecraft:stick"
             ]
           }
         ]
@@ -25,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],

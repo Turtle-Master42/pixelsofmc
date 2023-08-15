@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:redstone_layered_copper_spool"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:redstone_layered_copper_wire"
+  }
+}

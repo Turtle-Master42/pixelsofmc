@@ -51,9 +51,20 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.COPPER_SPOOL.get());
         this.dropSelf(POMblocks.SILVER_SPOOL.get());
         this.dropSelf(POMblocks.TUNGSTEN_SPOOL.get());
+        this.dropSelf(POMblocks.REDSTONE_LAYERED_COPPER_SPOOL.get());
+        this.dropSelf(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL.get());
+        this.dropSelf(POMblocks.RED_TUNGSTEN_SPOOL.get());
+        this.dropSelf(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
 
         this.dropSelf(POMblocks.REINFORCED_GLASS.get());
         this.dropSelf(POMblocks.REINFORCED_THING.get());
+
+        this.dropSelf(POMblocks.FUSION_CASING.get());
+        this.dropSelf(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
+        this.dropSelf(POMblocks.FUSION_CORNER.get());
+        this.dropSelf(POMblocks.FUSION_ENERGY_INPUT.get());
+        this.dropSelf(POMblocks.FUSION_ITEM_OUTPUT.get());
+        this.dropSelf(POMblocks.FUSION_ITEM_INPUT.get());
 
         this.dropSelf(POMblocks.TITANIUM_PLATING_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_PLATING_SLAB.get());

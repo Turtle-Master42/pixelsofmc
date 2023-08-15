@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "pixelsofmc:superconductive_dust"
+  },
+  "result": "pixelsofmc:superconductive_ingot"
+}

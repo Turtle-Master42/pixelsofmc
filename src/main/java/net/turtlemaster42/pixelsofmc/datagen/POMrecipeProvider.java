@@ -195,24 +195,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         HAS_REDSTONE, toItemP(POMitems.COPPER_WIRE.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_IMBUED_SILVER_WIRE.get())
-                .define('B', Tags.Items.DUSTS_REDSTONE)
-                .define('C', POMitems.SILVER_WIRE.get())
-                .pattern(" B ")
-                .pattern("BCB")
-                .pattern(" B ")
-                .unlockedBy("has_items", inventoryTrigger(
-                        HAS_REDSTONE, toItemP(POMitems.SILVER_WIRE.get())))
-                .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.RED_TUNGSTEN_WIRE.get())
-                .define('B', Tags.Items.DUSTS_REDSTONE)
-                .define('C', POMitems.TUNGSTEN_WIRE.get())
-                .pattern(" B ")
-                .pattern("BCB")
-                .pattern(" B ")
-                .unlockedBy("has_items", inventoryTrigger(
-                        HAS_REDSTONE, toItemP(POMitems.TUNGSTEN_WIRE.get())))
-                .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DRAGON_EYE.get())
                 .define('B', Items.ENDER_EYE)
                 .define('C', Items.DRAGON_BREATH)
@@ -641,6 +623,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(toI(Element.GOLD.dustTag()), 2, toI(POMitems.ANCIENT_DEBRIS_DUST.get()), 2, POMitems.NETHERITE_DUST.get(), 1, POMtags.Items.BALL_4, fConsumer);
         BallMill(toI(Element.BORON.dustTag()), 2, toI(Element.TITANIUM.dustTag()), 1, POMitems.TITANIUM_DIBORIDE_DUST.get(), 2, POMtags.Items.BALL_4, fConsumer);
         BallMill(toI(Element.TITANIUM.dustTag()), 3, toI(Element.GOLD.dustTag()), 1, POMitems.TITANIUM_GOLD_DUST.get(), 4, POMtags.Items.BALL_4, fConsumer);
+        BallMill(toI(Element.TITANIUM.dustTag()), 1, toI(Element.NIOBIUM.dustTag()), 1, POMitems.SUPERCONDUCTIVE_DUST.get(), 1, POMtags.Items.BALL_4, fConsumer);
+
 
         BallMill(toI(Items.DANDELION), 1, Items.YELLOW_DYE, 2, POMtags.Items.BALL_2, fConsumer);
         BallMill(toI(Items.POPPY), 1, Items.RED_DYE, 2, POMtags.Items.BALL_2, fConsumer);
@@ -733,6 +717,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Pressing(toI(Element.IRON.dustTag()), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.IRON_INGOT), 1, 1811, 3134, fConsumer);
         Pressing(toI(Element.COPPER.dustTag()), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.COPPER_INGOT), 1, 1358, 2835, fConsumer);
         Pressing(toI(POMitems.NETHERITE_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.NETHERITE_INGOT), 1, 2500, 4000, fConsumer);
+        Pressing(toI(POMitems.SUPERCONDUCTIVE_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.SUPERCONDUCTIVE_INGOT.get()), 1, 2300, 3500, fConsumer);
+        Pressing(toI(POMitems.RED_TUNGSTEN_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.RED_TUNGSTEN_INGOT.get()), 1, 2900, 4500, fConsumer);
+
 
         //chemical separating
 
@@ -753,6 +740,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(Element.COPPER.nugget(), Items.STICK, POMitems.COPPER_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.SILVER.nugget(), Items.STICK, POMitems.SILVER_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.TUNGSTEN.nugget(), Items.STICK, POMitems.TUNGSTEN_WIRE.get(), fConsumer);
+        SimpleSurroundRecipe(POMitems.RED_TUNGSTEN_NUGGET.get(), Items.STICK, POMitems.RED_TUNGSTEN_WIRE.get(), fConsumer);
+        SimpleSurroundRecipe(POMitems.SUPERCONDUCTIVE_NUGGET.get(), Items.STICK, POMitems.SUPERCONDUCTIVE_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.TITANIUM.item(), Items.NETHERITE_BLOCK, POMblocks.SIMPLE_CASING_1.get(), fConsumer);
 
         SimpleFullCrossRecipe(POMitems.OBSIDIAN_PLATING.get(), POMitems.NETHERITE_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
@@ -777,11 +766,17 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         SimpleCompactingRecipe(POMitems.RAW_TITANIUM.get(), POMblocks.RAW_TITANIUM_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT, fConsumer);
+        SimpleCompactingRecipe(POMitems.SUPERCONDUCTIVE_NUGGET.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.RED_TUNGSTEN_NUGGET.get(), POMitems.RED_TUNGSTEN_INGOT.get(), fConsumer);
         SimpleCompactingRecipe(Element.COPPER.nugget(), Items.COPPER_INGOT, fConsumer);
         SimpleCompactingRecipe(POMitems.ALUMINIUM_SCRAP.get(), POMblocks.ALUMINIUM_SCRAP_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.COPPER_WIRE.get(), POMblocks.COPPER_SPOOL.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.SILVER_WIRE.get(), POMblocks.SILVER_SPOOL.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.TUNGSTEN_WIRE.get(), POMblocks.TUNGSTEN_SPOOL.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.REDSTONE_LAYERED_COPPER_WIRE.get(), POMblocks.REDSTONE_LAYERED_COPPER_SPOOL.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.REDSTONE_IMBUED_SILVER_WIRE.get(), POMblocks.REDSTONE_IMBUED_SILVER_SPOOL.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.RED_TUNGSTEN_WIRE.get(), POMblocks.RED_TUNGSTEN_SPOOL.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.SUPERCONDUCTIVE_WIRE.get(), POMblocks.SUPERCONDUCTIVE_SPOOL.get(), fConsumer);
 
 
         //Furnace
@@ -791,6 +786,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, 200 , fConsumer, toItemP(Element.ALUMINIUM.dustTag()), "");
 
         SimpleSmeltingRecipe(POMitems.TITANIUM_GOLD_DUST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.TITANIUM_GOLD_DUST.get()), "");
+        SimpleSmeltingRecipe(POMitems.RED_TUNGSTEN_DUST.get(), POMitems.RED_TUNGSTEN_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.RED_TUNGSTEN_DUST.get()), "");
+        SimpleSmeltingRecipe(POMitems.SUPERCONDUCTIVE_DUST.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.SUPERCONDUCTIVE_DUST.get()), "");
 
         SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.BIO_COMPOUND.get()),  "");
         SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.FIRE_PROOF_COMPOUND.get()), "");

@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "forge:dusts/redstone"
+    "A": {
+      "item": "pixelsofmc:red_tungsten_nugget"
     },
-    "C": {
-      "item": "pixelsofmc:tungsten_wire"
+    "B": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
-    " B ",
-    "BCB",
-    " B "
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
     "item": "pixelsofmc:red_tungsten_wire"

@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "plating=0": {
+      "model": "pixelsofmc:block/fusion_corner"
+    },
+    "plating=1": {
+      "model": "pixelsofmc:block/fusion_corner_titanium"
+    },
+    "plating=2": {
+      "model": "pixelsofmc:block/fusion_corner_titanium_diboride"
+    },
+    "plating=3": {
+      "model": "pixelsofmc:block/fusion_corner_titanium_gold"
+    },
+    "plating=4": {
+      "model": "pixelsofmc:block/fusion_corner_netherite"
+    },
+    "plating=5": {
+      "model": "pixelsofmc:block/fusion_corner_obsidian"
+    },
+    "plating=6": {
+      "model": "pixelsofmc:block/fusion_corner_crying"
+    }
+  }
+}

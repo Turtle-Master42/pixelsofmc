@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "pixelsofmc:block/superconductive_fusion_casing_top",
+    "side": "pixelsofmc:block/superconductive_fusion_casing_titanium_gold"
+  }
+}

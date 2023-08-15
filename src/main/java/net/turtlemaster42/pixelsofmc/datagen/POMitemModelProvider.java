@@ -51,6 +51,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.REDSTONE_LAYERED_COPPER_WIRE);
         simpleItem(POMitems.REDSTONE_IMBUED_SILVER_WIRE);
         simpleItem(POMitems.RED_TUNGSTEN_WIRE);
+        simpleItem(POMitems.SUPERCONDUCTIVE_WIRE);
         simpleItem(POMitems.POWER_ORB);
         simpleItem(POMitems.MICRO_CHIP);
         simpleItem(POMitems.REDSTONE_COUNTER);
@@ -73,10 +74,14 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.RAW_TITANIUM);
         simpleItem(POMitems.TITANIUM_GOLD_INGOT);
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT);
+        simpleItem(POMitems.SUPERCONDUCTIVE_INGOT);
+        simpleItem(POMitems.RED_TUNGSTEN_INGOT);
 
         simpleItem(POMitems.NETHERITE_NUGGET);
         simpleItem(POMitems.TITANIUM_GOLD_NUGGET);
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET);
+        simpleItem(POMitems.SUPERCONDUCTIVE_NUGGET);
+        simpleItem(POMitems.RED_TUNGSTEN_NUGGET);
 
         simpleItem(POMitems.TITANIUM_PLATING);
         simpleItem(POMitems.RUSTED_PLATING);
@@ -132,6 +137,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.NETHERITE_DUST);
         dustItem(POMitems.TITANIUM_GOLD_DUST);
         dustItem(POMitems.TITANIUM_OXIDE_DUST);
+        dustItem(POMitems.SUPERCONDUCTIVE_DUST);
+        dustItem(POMitems.RED_TUNGSTEN_DUST);
 
         simpleItem(POMitems.SULFUR);
         simpleItem(POMitems.DENSE_CARBON_CUBE);
@@ -145,6 +152,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.COPPER_SPOOL);
         complexBlock(POMblocks.SILVER_SPOOL);
         complexBlock(POMblocks.TUNGSTEN_SPOOL);
+        complexBlock(POMblocks.REDSTONE_LAYERED_COPPER_SPOOL);
+        complexBlock(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL);
+        complexBlock(POMblocks.RED_TUNGSTEN_SPOOL);
+        complexBlock(POMblocks.SUPERCONDUCTIVE_SPOOL);
 
         complexBlock(POMblocks.PIXEL_SPLITTER);
         complexBlock(POMblocks.GRINDER);

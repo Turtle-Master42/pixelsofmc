@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:superconductive_spool"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:superconductive_wire"
+  }
+}

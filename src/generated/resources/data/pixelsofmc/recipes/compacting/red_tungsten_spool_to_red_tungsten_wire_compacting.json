@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:red_tungsten_spool"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:red_tungsten_wire"
+  }
+}

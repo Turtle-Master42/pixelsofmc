@@ -49,7 +49,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     private int speedUpgrade = 0;
     private int energyUpgrade = 0;
     private final int capacity = 1024000;
-    private final int maxReceive = 4096;
+    private final int maxReceive = 40960;
     private static final int energyConsumption = 256;
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 

@@ -49,7 +49,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     private int maxProgress = 72;
     private int speedUpgrade = 0;
     private final int capacity = 512000;
-    private final int maxReceive = 4096;
+    private final int maxReceive = 40960;
     private static final int energyConsumption = 128;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();

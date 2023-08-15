@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 2900,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:red_tungsten_dust"
+    }
+  },
+  "max_heat": 4500,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:red_tungsten_ingot"
+    }
+  }
+}

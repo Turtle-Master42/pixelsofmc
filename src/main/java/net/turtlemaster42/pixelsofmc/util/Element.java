@@ -55,7 +55,7 @@ public enum Element {
     STRONTIUM(new Info(1050, 1650, "B59B83", "866443", "423222", Danger.FLAMMABLE)), //red flame
     YTTRIUM(new Info(1799, 3203, "599E78", "31704B", "1A3B29", Danger.TOXIC)), //red flame
     ZIRCONIUM(new Info(2125, 4650, "A797D8", "6C5D95", "352E49")), //red flame
-    NIOBIUM(new Info(2750, 5017, "697EC3", "3A3C8D", "1B1E45")), //blue-green flame
+    NIOBIUM(true, false, false, new Info(2750, 5017, "697EC3", "3A3C8D", "1B1E45")), //blue-green flame
     MOLYBDENUM(Type.INGOT, true, false, false, new Info(2896, 4912, "585D76", "3A4056", "232733", Danger.TOXIC)), //yellow-green flame
     TECHNETIUM(new Info(2430, 4538, "CFA3ED", "9D55B3", "4D2A59", Danger.RADIOACTIVE)),
     RUTHENIUM(new Info(2607, 4423, "E7829C", "BC2D53", "5D1629")),
