@@ -62,9 +62,8 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.FUSION_CASING.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
         this.dropSelf(POMblocks.FUSION_CORNER.get());
-        this.dropSelf(POMblocks.FUSION_ENERGY_INPUT.get());
-        this.dropSelf(POMblocks.FUSION_ITEM_OUTPUT.get());
-        this.dropSelf(POMblocks.FUSION_ITEM_INPUT.get());
+        this.dropSelf(POMblocks.FUSION_ENERGY_PORT.get());
+        this.dropSelf(POMblocks.FUSION_ITEM_PORT.get());
 
         this.dropSelf(POMblocks.TITANIUM_PLATING_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_PLATING_SLAB.get());

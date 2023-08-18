@@ -67,9 +67,9 @@ public class DummyMachineItemBlockTile extends AbstractDummyMachineBlockTile {
                 if (ItemHandlerFrom != null) {
                     if (!ItemHandlerFrom.isValidOutput(slot))
                         return ItemStack.EMPTY;
-                    itemHandler.setStackInSlot(slot, ItemHandlerFrom.getStackInSlot(4));
-                    ItemHandlerFrom.extractItem(4, amount, simulate);
-                    return super.extractItem(4, amount, simulate);
+                    itemHandler.setStackInSlot(slot, ItemHandlerFrom.getStackInSlot(slot));
+                    ItemHandlerFrom.extractItem(slot, amount, simulate);
+                    return super.extractItem(slot, amount, simulate);
                 }
             }
             return ItemStack.EMPTY;

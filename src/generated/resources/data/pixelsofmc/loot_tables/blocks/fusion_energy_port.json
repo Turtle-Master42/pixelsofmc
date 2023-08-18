@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:fusion_energy_input"
+          "name": "pixelsofmc:fusion_energy_port"
         }
       ],
       "rolls": 1.0

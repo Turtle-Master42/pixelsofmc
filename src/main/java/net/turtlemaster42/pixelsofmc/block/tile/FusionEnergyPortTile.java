@@ -10,14 +10,16 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class EnergyInputFusionTile extends AbstractMultiBlockTile{
+public class FusionEnergyPortTile extends AbstractMultiBlockTile {
 
     protected final ContainerData data;
 
@@ -38,19 +40,21 @@ public class EnergyInputFusionTile extends AbstractMultiBlockTile{
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
-                //credits Cyclic
-                if (getMainPos() == worldPosition)
-                    return 0;
-                BlockPos posTarget = getMainPos();
-                BlockEntity tile = level.getBlockEntity(posTarget);
-                if (tile != null) {
-                    IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
-                    if (EnergyHandlerFrom != null) {
-                        //ok go
-                        int receive = EnergyHandlerFrom.receiveEnergy(maxReceive, true);
-                        EnergyHandlerFrom.receiveEnergy(maxReceive, simulate);
-                        energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
-                        return receive;
+                if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(2)) {
+                    //credits Cyclic
+                    BlockPos posTarget = getMainPos();
+                    if (posTarget.equals(worldPosition))
+                        return 0;
+                    BlockEntity tile = level.getBlockEntity(posTarget);
+                    if (tile != null) {
+                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        if (EnergyHandlerFrom != null) {
+                            //ok go
+                            int receive = EnergyHandlerFrom.receiveEnergy(maxReceive, true);
+                            EnergyHandlerFrom.receiveEnergy(maxReceive, simulate);
+                            energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
+                            return receive;
+                        }
                     }
                 }
                 return 0;
@@ -58,21 +62,38 @@ public class EnergyInputFusionTile extends AbstractMultiBlockTile{
 
             @Override
             public int extractEnergy(int maxExtract, boolean simulate) {
-                return super.extractEnergy(maxExtract, simulate);
+                if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(1)) {
+                    //credits Cyclic
+                    BlockPos posTarget = getMainPos();
+                    if (posTarget.equals(worldPosition))
+                        return 0;
+                    BlockEntity tile = level.getBlockEntity(posTarget);
+                    if (tile != null) {
+                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        if (EnergyHandlerFrom != null) {
+                            //ok go
+                            int extract = EnergyHandlerFrom.extractEnergy(maxReceive, true);
+                            EnergyHandlerFrom.extractEnergy(maxReceive, simulate);
+                            energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
+                            return extract;
+                        }
+                    }
+                }
+                return 0;
             }
         };
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
-    public EnergyInputFusionTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(pWorldPosition, pBlockState);
+    public FusionEnergyPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.FUSION_ENERGY_PORT.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
 
             @Override
             public int get(int index) {
                 if (index == 0) {
-                    return EnergyInputFusionTile.this.energyStorage.getEnergyStored();
+                    return FusionEnergyPortTile.this.energyStorage.getEnergyStored();
                 }
                 return 0;
             }

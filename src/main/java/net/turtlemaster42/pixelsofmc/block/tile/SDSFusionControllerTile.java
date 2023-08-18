@@ -21,6 +21,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
@@ -58,6 +59,12 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 onEnergyChanged();
                 return super.receiveEnergy(maxReceive, simulate);
             }
+
+            @Override
+            public int extractEnergy(int maxExtract, boolean simulate) {
+                onEnergyChanged();
+                return super.extractEnergy(maxExtract, simulate);
+            }
         };
     }
 
@@ -92,7 +99,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot < 4;
+        return slot < 4 && (stack.is(POMtags.Items.ATOM));
     }
     @Override
     protected boolean isSlotValidOutput(int slot) {

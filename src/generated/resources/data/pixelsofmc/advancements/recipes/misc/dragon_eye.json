@@ -9,8 +9,8 @@
           },
           {
             "items": [
-              "minecraft:dragon_breath",
-              "minecraft:ender_eye"
+              "minecraft:ender_eye",
+              "minecraft:dragon_breath"
             ]
           }
         ]

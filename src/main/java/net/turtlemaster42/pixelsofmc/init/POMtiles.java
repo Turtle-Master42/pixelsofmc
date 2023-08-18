@@ -20,18 +20,12 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> MACHINE_ITEM_BLOCK =
 			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
 
-	public static final RegistryObject<BlockEntityType<AbstractMultiBlockTile>> MULTIBLOCK =
-			TILES.register("multiblock", () -> BlockEntityType.Builder.of(AbstractMultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.REINFORCED_THING.get(), POMblocks.REINFORCED_CASING.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get()).build(null));
-
-	public static final RegistryObject<BlockEntityType<EnergyInputFusionTile>> ENERGY_INPUT_FUSION =
-			TILES.register("energy_input_fusion", () -> BlockEntityType.Builder.of(EnergyInputFusionTile::new, POMblocks.FUSION_ENERGY_INPUT.get()).build(null));
-
-	public static final RegistryObject<BlockEntityType<ItemOutputFusionTile>> ITEM_OUTPUT_FUSION =
-			TILES.register("item_output_fusion", () -> BlockEntityType.Builder.of(ItemOutputFusionTile::new, POMblocks.FUSION_ITEM_OUTPUT.get()).build(null));
-
-	public static final RegistryObject<BlockEntityType<ItemInputFusionTile>> ITEM_INPUT_FUSION =
-			TILES.register("item_input_fusion", () -> BlockEntityType.Builder.of(ItemInputFusionTile::new, POMblocks.FUSION_ITEM_INPUT.get()).build(null));
-
+	public static final RegistryObject<BlockEntityType<MultiBlockTile>> MULTIBLOCK =
+			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.REINFORCED_THING.get(), POMblocks.REINFORCED_CASING.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
+			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =
+			TILES.register("fusion_item_port", () -> BlockEntityType.Builder.of(FusionItemPortTile::new, POMblocks.FUSION_ITEM_PORT.get()).build(null));
 
 
 

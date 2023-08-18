@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:fusion_item_output"
+          "name": "pixelsofmc:fusion_item_port"
         }
       ],
       "rolls": 1.0

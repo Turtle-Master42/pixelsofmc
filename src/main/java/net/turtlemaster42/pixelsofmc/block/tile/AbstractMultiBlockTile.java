@@ -4,15 +4,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
 
 public class AbstractMultiBlockTile extends BlockEntity {
 
     private BlockPos mainPos = worldPosition;
-    public AbstractMultiBlockTile(BlockPos pPos, BlockState pBlockState) {
-        super(POMtiles.MULTIBLOCK.get(), pPos, pBlockState);
+    public AbstractMultiBlockTile(BlockEntityType<?> type, BlockPos pPos, BlockState pBlockState) {
+        super(type, pPos, pBlockState);
     }
 
     public void setMainPos(BlockPos pos) {

@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.MultiBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,6 +58,6 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new AbstractMultiBlockTile(pPos, pState);
+        return new MultiBlockTile(pPos, pState);
     }
 }

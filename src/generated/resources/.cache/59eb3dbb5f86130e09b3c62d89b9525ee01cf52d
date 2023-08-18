@@ -1,4 +1,4 @@
-// 1.19.3	2023-08-15T12:21:44.893364	Loot Tables
+// 1.19.3	2023-08-17T13:26:41.296204	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
@@ -13,9 +13,8 @@ a9eba5f58038b6074e740d73bbc344cc32e45889 data/pixelsofmc/loot_tables/blocks/deep
 a691bef14d05f8f91522c0daade5875de2c3cefe data/pixelsofmc/loot_tables/blocks/endstone_titanium_ore.json
 2dcdf64792236e9a13ca8be32702b63cf81c2dc6 data/pixelsofmc/loot_tables/blocks/fusion_casing.json
 2cf5e80ba61dd049ca997519848b36508083c788 data/pixelsofmc/loot_tables/blocks/fusion_corner.json
-7ed8295df549da6cffc2872939ae803fc36cbeb7 data/pixelsofmc/loot_tables/blocks/fusion_energy_input.json
-01ec9158dcf20166540f88b46170f995e8645d53 data/pixelsofmc/loot_tables/blocks/fusion_item_input.json
-316b936d593d87fc20117934552caf55953f3aed data/pixelsofmc/loot_tables/blocks/fusion_item_output.json
+81874e68575ebd850514e7637cd0b0098d4608cf data/pixelsofmc/loot_tables/blocks/fusion_energy_port.json
+9d7ec76f1730706c317aef40b5f2f24c64563eac data/pixelsofmc/loot_tables/blocks/fusion_item_port.json
 caf6a894b3eca41253421e984b4f19dd715be5b8 data/pixelsofmc/loot_tables/blocks/grinder.json
 498b42411d24b75d7e406c0f782547e41acf1ddf data/pixelsofmc/loot_tables/blocks/hot_isostatic_press.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/hydrogen.json

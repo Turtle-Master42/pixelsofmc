@@ -29,6 +29,7 @@ import javax.annotation.Nonnull;
 
 public abstract class AbstractMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile, IEnergyHandlingTile, IFluidHandlingTile {
 
+    Tile tile;
     public AbstractMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
         super(pType, pWorldPosition, pBlockState);
     }

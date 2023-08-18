@@ -207,12 +207,10 @@ public class POMblocks {
             () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CORNER = registerBlock("fusion_corner",
             () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
-    public static final RegistryObject<EnergyInputFusionBlock> FUSION_ENERGY_INPUT = registerBlock("fusion_energy_input",
-            () -> new EnergyInputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
-    public static final RegistryObject<ItemOutputFusionBlock> FUSION_ITEM_OUTPUT = registerBlock("fusion_item_output",
-            () -> new ItemOutputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
-    public static final RegistryObject<ItemInputFusionBlock> FUSION_ITEM_INPUT = registerBlock("fusion_item_input",
-            () -> new ItemInputFusionBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<FusionEnergyPortBlock> FUSION_ENERGY_PORT = registerBlock("fusion_energy_port",
+            () -> new FusionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+    public static final RegistryObject<FusionItemPortBlock> FUSION_ITEM_PORT = registerBlock("fusion_item_port",
+            () -> new FusionItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
 
 
 
