@@ -28,6 +28,8 @@ public class POMmessages {
 
         INSTANCE = net;
 
+        //CLIENT
+
         net.messageBuilder(PacketSyncEnergyToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncEnergyToClient::new)
                 .encoder(PacketSyncEnergyToClient::toBytes)
@@ -56,6 +58,21 @@ public class POMmessages {
                 .decoder(PacketSyncMainPosToClient::new)
                 .encoder(PacketSyncMainPosToClient::toBytes)
                 .consumerMainThread(PacketSyncMainPosToClient::handle)
+                .add();
+
+
+        //SERVER
+
+        net.messageBuilder(PacketSyncSlotMaxToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketSyncSlotMaxToServer::new)
+                .encoder(PacketSyncSlotMaxToServer::toBytes)
+                .consumerMainThread(PacketSyncSlotMaxToServer::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncLockedSlotToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketSyncLockedSlotToServer::new)
+                .encoder(PacketSyncLockedSlotToServer::toBytes)
+                .consumerMainThread(PacketSyncLockedSlotToServer::handle)
                 .add();
 
     }

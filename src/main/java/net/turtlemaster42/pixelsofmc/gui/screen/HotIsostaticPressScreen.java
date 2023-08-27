@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class HotIsostaticPressScreen extends AbstractContainerScreen<HotIsostaticPressGuiMenu> {
+public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPressGuiMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/hot_isotopic_press_gui.png");
     private static final ResourceLocation BUTTON = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
     private EnergyInfoArea energyInfoArea;

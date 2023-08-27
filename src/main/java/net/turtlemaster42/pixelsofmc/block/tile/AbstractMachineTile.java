@@ -52,6 +52,12 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         public boolean isValidOutput(int slot) {
             return isSlotValidOutput(slot);
         }
+
+        @Override
+        public int getSlotLimit(int slot)
+        {
+            return getSlotLimits(slot);
+        }
     };
 
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
@@ -62,6 +68,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
     }
     protected int itemHandlerSize() {return 1;}
     protected void contentsChanged(int slot) {}
+    protected int getSlotLimits(int slot) {return 64;}
 
     @Override
     public void setHandler(ItemStackHandler handler) {

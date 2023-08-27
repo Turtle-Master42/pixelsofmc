@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "pixelsofmc:block/fusion_energy_port"
+    },
+    "mode=1": {
+      "model": "pixelsofmc:block/fusion_energy_port_input"
+    },
+    "mode=2": {
+      "model": "pixelsofmc:block/fusion_energy_port_output"
+    }
+  }
+}

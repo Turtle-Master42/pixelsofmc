@@ -8,69 +8,125 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fluids.FluidStack;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncLockedSlotToServer;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncSlotMaxToServer;
 import org.jetbrains.annotations.NotNull;
 
-public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements IEnergyMenu {
+import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
+
+public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IDuoFluidMenu {
     public final SDSFusionControllerTile blockEntity;
     private final Level level;
     private final ContainerData data;
+    private FluidStack fluid;
+    private FluidStack duoFluid;
 
     public SDSFusionControllerGuiMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
 
     public SDSFusionControllerGuiMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(POMmenuType.SDS_CONTROLLER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 5);
+        checkContainerSize(inv, 10);
         blockEntity = ((SDSFusionControllerTile) entity);
         this.level = inv.player.level;
         this.data = data;
-
+        this.fluid = blockEntity.getFluid();
+        this.duoFluid = blockEntity.getDuoFluid();
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModResultSlot(handler, 4, 125, 40));
-            this.addSlot(new ModTagRestrictedSlot(handler, 0, 35, 32, () -> POMtags.Items.ATOM));
-            this.addSlot(new ModTagRestrictedSlot(handler, 1, 53, 32, () -> POMtags.Items.ATOM));
-            this.addSlot(new ModTagRestrictedSlot(handler, 2, 35, 50, () -> POMtags.Items.ATOM));
-            this.addSlot(new ModTagRestrictedSlot(handler, 3, 53, 50, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModResultSlot(handler, 9, 139, 35));
+            this.addSlot(new ModTagRestrictedSlot(handler, 0, 35, 18, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 1, 53, 18, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 2, 71, 18, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 3, 35, 36, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 4, 53, 36, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 5, 71, 36, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 6, 35, 54, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 7, 53, 54, () -> POMtags.Items.ATOM));
+            this.addSlot(new ModTagRestrictedSlot(handler, 8, 71, 54, () -> POMtags.Items.ATOM));
+
         });
 
         addDataSlots(data);
-
     }
 
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
+    public int getReason() {
+        return data.get(5);
+    }
+    public int getElement() {
+        return data.get(6);
+    }
 
-    public int getScaledProgressOne() {
+    public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int speedUpgrade = this.data.get(2); // Speed upgrades
-        int progressArrowSize = 82; // This is the height in pixels of your arrow
+        int progressArrowSize = 48; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     public int getScaledEnergy() { //energy test
-        int energy = this.data.get(5); //stored energy
-        int maxEnergy = this.data.get(3);  // Max Energy
+        int energy = this.data.get(4) / 1000000; //stored energy
+        int maxEnergy = this.data.get(2) / 1000000;  // Max Energy
         int progressArrowSize = 44; // This is the height in pixels of your arrow
 
-
-        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
+        return maxEnergy != 0 && energy != 0 ? ((energy * progressArrowSize) / maxEnergy) : 0;
     }
 
+    public void setSlotLimit(int slotLimit) {
+        if (slotLimit > 64)
+            slotLimit = 64;
+        this.blockEntity.setSlotLimit(slotLimit);
+        sendToServer(new PacketSyncSlotMaxToServer(blockEntity.getBlockPos(), slotLimit));
+    }
+
+    public int getSlotLimit() {
+        return this.blockEntity.getSlotLimit();
+    }
+
+    public void setSlotLock(boolean locked, int slot) {
+        this.blockEntity.setSlotLock(locked, slot);
+        sendToServer(new PacketSyncLockedSlotToServer(blockEntity.getBlockPos(), locked, slot));
+    }
+    public boolean getSlotLock(int slot) {
+        return this.blockEntity.getSlotLock(slot);
+    }
+
+    @Override
+    public void setDuoFluid(FluidStack fluidStack) {
+        this.duoFluid = fluidStack;
+    }
+    @Override
+    public FluidStack getDuoFluid() {
+        return duoFluid;
+    }
+    @Override
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+    public FluidStack getFluid() {
+        return fluid;
+    }
+    public void setFluid(FluidStack fluid) {
+        this.fluid = fluid;
+    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -88,7 +144,7 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 10;  // must be the number of slots you have!
 
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
@@ -99,14 +155,16 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
 
         // Check if the slot clicked is one of the vanilla container slots
         if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+            PixelsOfMc.LOGGER.info("vanilla slot");
             // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
+            if (!customMoveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
         } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+            PixelsOfMc.LOGGER.info("TE slot");
             // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+            if (!customMoveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
@@ -122,6 +180,94 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
         sourceSlot.onTake(playerIn, sourceStack);
         return copyOfSourceStack;
     }
+
+
+    protected boolean customMoveItemStackTo(ItemStack pStack, int pStartIndex, int pEndIndex, boolean pReverseDirection) {
+        boolean flag = false;
+        int i = pStartIndex;
+        if (pReverseDirection) {
+            i = pEndIndex - 1;
+        }
+
+        if (pStack.isStackable()) {
+            while(!pStack.isEmpty()) {
+                if (pReverseDirection) {
+                    if (i < pStartIndex) {
+                        break;
+                    }
+                } else if (i >= pEndIndex) {
+                    break;
+                }
+
+                Slot slot = this.slots.get(i);
+                ItemStack itemstack = slot.getItem();
+                if (!itemstack.isEmpty() && ItemStack.isSameItemSameTags(pStack, itemstack)) {
+                    int j = itemstack.getCount() + pStack.getCount();
+                    int maxSize = Math.min(slot.getMaxStackSize(), pStack.getMaxStackSize());
+                    if (j <= maxSize) {
+                        pStack.setCount(0);
+                        itemstack.setCount(j);
+                        slot.setChanged();
+                        flag = true;
+                    } else if (itemstack.getCount() < maxSize) {
+                        pStack.shrink(maxSize - itemstack.getCount());
+                        itemstack.setCount(maxSize);
+                        slot.setChanged();
+                        flag = true;
+                    }
+                }
+
+                if (pReverseDirection) {
+                    --i;
+                } else {
+                    ++i;
+                }
+            }
+        }
+
+        if (!pStack.isEmpty()) {
+            if (pReverseDirection) {
+                i = pEndIndex - 1;
+            } else {
+                i = pStartIndex;
+            }
+
+            while(true) {
+                if (pReverseDirection) {
+                    if (i < pStartIndex) {
+                        break;
+                    }
+                } else if (i >= pEndIndex) {
+                    break;
+                }
+
+                Slot slot1 = this.slots.get(i);
+                ItemStack itemstack1 = slot1.getItem();
+                if (itemstack1.isEmpty() && slot1.getMaxStackSize() > 0 && slot1.mayPlace(pStack)) {
+                    if (pStack.getCount() > slot1.getMaxStackSize()) {
+                        slot1.set(pStack.split(slot1.getMaxStackSize()));
+                    } else {
+                        slot1.set(pStack.split(pStack.getCount()));
+                    }
+
+                    slot1.setChanged();
+                    flag = true;
+                    break;
+                }
+
+                if (pReverseDirection) {
+                    --i;
+                } else {
+                    ++i;
+                }
+            }
+        }
+
+        return flag;
+    }
+
+
+
 
     @Override
     public boolean stillValid(@NotNull Player pPlayer) {
@@ -141,11 +287,6 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
-    }
-
-    @Override
-    public BlockEntity getBlockEntity() {
-        return this.blockEntity;
     }
 }
 

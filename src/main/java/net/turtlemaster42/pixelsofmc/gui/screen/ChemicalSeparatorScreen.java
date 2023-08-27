@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class ChemicalSeparatorScreen extends AbstractContainerScreen<ChemicalSeparatorGuiMenu> {
+public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparatorGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_seperator_gui.png");
     private EnergyInfoArea energyInfoArea;

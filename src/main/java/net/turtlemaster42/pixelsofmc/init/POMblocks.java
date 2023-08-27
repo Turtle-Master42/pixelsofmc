@@ -60,6 +60,19 @@ public class POMblocks {
     public static final RegistryObject<LiquidBlock> SULFURIC_ACID_BLOCK = POMblocks.BLOCKS.register("sulfuric_acid",
             () -> new AcidLiquidBlock(POMfluids.SULFURIC_ACID_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_YELLOW)));
 
+    //gas
+    public static final RegistryObject<LiquidBlock> HYDROGEN_GAS_BLOCK = POMblocks.BLOCKS.register("hydrogen_gas",
+            () -> new LiquidBlock(POMfluids.HYDROGEN_GAS_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.SNOW)));
+    public static final RegistryObject<LiquidBlock> NITROGEN_GAS_BLOCK = POMblocks.BLOCKS.register("nitrogen_gas",
+            () -> new LiquidBlock(POMfluids.NITROGEN_GAS_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.COLOR_PURPLE)));
+    public static final RegistryObject<LiquidBlock> OXYGEN_GAS_BLOCK = POMblocks.BLOCKS.register("oxygen_gas",
+            () -> new LiquidBlock(POMfluids.OXYGEN_GAS_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.LAPIS)));
+    public static final RegistryObject<LiquidBlock> CHLORINE_GAS_BLOCK = POMblocks.BLOCKS.register("chlorine_gas",
+            () -> new LiquidBlock(POMfluids.CHLORINE_GAS_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<LiquidBlock> BROMINE_GAS_BLOCK = POMblocks.BLOCKS.register("bromine_gas",
+            () -> new LiquidBlock(POMfluids.BROMINE_GAS_SOURCE.get(), BlockBehaviour.Properties.of(Material.WATER).color(MaterialColor.TERRACOTTA_PINK)));
+
+
     public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);

@@ -63,7 +63,7 @@ public class PixelsOfMc {
 		POMblocks.register(bus);
 		POMitems.register(bus);
 		POMfluids.register(bus);
-		POMFluidType.register(bus);
+		POMFluidType.registerFluid(bus);
 		POMmenuType.MENUS.register(bus);
 
 		POMrecipes.register(bus);

@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class BallMillGuiScreen extends AbstractContainerScreen<BallMillGuiMenu> {
+public class BallMillGuiScreen extends AbstractPOMscreen<BallMillGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/ball_mill_gui.png");
     private EnergyInfoArea energyInfoArea;

@@ -93,7 +93,7 @@ public class FluidTankRenderer {
             scaledAmount = height;
         }
 
-        drawTiledSprite(poseStack, width, height, fluidColor, scaledAmount, fluidStillSprite);
+        drawTiledSprite(poseStack, width, height, fluidColor, scaledAmount, fluidStillSprite, fluidStack.getFluid().getFluidType().isLighterThanAir());
     }
 
     public TextureAtlasSprite getStillFluidSprite(FluidStack fluidStack) {
@@ -113,7 +113,7 @@ public class FluidTankRenderer {
         return renderProperties.getTintColor(ingredient);
     }
 
-    private static void drawTiledSprite(PoseStack poseStack, final int tiledWidth, final int tiledHeight, int color, long scaledAmount, TextureAtlasSprite sprite) {
+    private static void drawTiledSprite(PoseStack poseStack, final int tiledWidth, final int tiledHeight, int color, long scaledAmount, TextureAtlasSprite sprite, boolean gaseous) {
         RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
         Matrix4f matrix = poseStack.last().pose();
         setGLColorFromInt(color);
@@ -135,7 +135,11 @@ public class FluidTankRenderer {
                     long maskTop = TEXTURE_SIZE - height;
                     int maskRight = TEXTURE_SIZE - width;
 
-                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100);
+                    if (gaseous) {
+                        y = (yTile * TEXTURE_SIZE);
+                    }
+
+                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100, gaseous);
                 }
             }
         }
@@ -150,7 +154,7 @@ public class FluidTankRenderer {
         RenderSystem.setShaderColor(red, green, blue, alpha);
     }
 
-    private static void drawTextureWithMasking(Matrix4f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel) {
+    private static void drawTextureWithMasking(Matrix4f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel, boolean gaseous) {
         float uMin = textureSprite.getU0();
         float uMax = textureSprite.getU1();
         float vMin = textureSprite.getV0();
@@ -162,13 +166,23 @@ public class FluidTankRenderer {
 
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuilder();
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.vertex(matrix, xCoord, yCoord + 16, zLevel).uv(uMin, vMax).endVertex();
-        bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord + 16, zLevel).uv(uMax, vMax).endVertex();
-        bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord + maskTop, zLevel).uv(uMax, vMin).endVertex();
-        bufferBuilder.vertex(matrix, xCoord, yCoord + maskTop, zLevel).uv(uMin, vMin).endVertex();
+        if (gaseous) {
+            bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+            bufferBuilder.vertex(matrix, xCoord, yCoord + 16 - maskTop, zLevel).uv(uMin, vMax).endVertex(); //left (0, 16)
+            bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord + 16 - maskTop, zLevel).uv(uMax, vMax).endVertex(); //end (16, 16)
+            bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord, zLevel).uv(uMax, vMin).endVertex(); //right (16, 0)
+            bufferBuilder.vertex(matrix, xCoord, yCoord, zLevel).uv(uMin, vMin).endVertex(); //start (0, 0)
+
+        } else {
+            bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+            bufferBuilder.vertex(matrix, xCoord, yCoord + 16, zLevel).uv(uMin, vMax).endVertex(); //left (0, 16)
+            bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord + 16, zLevel).uv(uMax, vMax).endVertex(); //end (16, 16)
+            bufferBuilder.vertex(matrix, xCoord + 16 - maskRight, yCoord + maskTop, zLevel).uv(uMax, vMin).endVertex(); //right (16, 0)
+            bufferBuilder.vertex(matrix, xCoord, yCoord + maskTop, zLevel).uv(uMin, vMin).endVertex(); //start (0, 0)
+        }
         tessellator.end();
     }
+
 
     public List<Component> getTooltip(FluidStack fluidStack, TooltipFlag tooltipFlag, Component extra) {
         List<Component> tooltip = new ArrayList<>();

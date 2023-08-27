@@ -98,6 +98,11 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.LIQUID_OXYGEN_BUCKET);
         simpleItem(POMitems.LIQUID_CHLORINE_BUCKET);
         simpleItem(POMitems.LIQUID_BROMINE_BUCKET);
+        simpleItem(POMitems.HYDROGEN_GAS_BUCKET);
+        simpleItem(POMitems.NITROGEN_GAS_BUCKET);
+        simpleItem(POMitems.OXYGEN_GAS_BUCKET);
+        simpleItem(POMitems.CHLORINE_GAS_BUCKET);
+        simpleItem(POMitems.BROMINE_GAS_BUCKET);
 
         simpleItem(POMitems.MOVING_PARTS);
         simpleItem(POMitems.POWER_CELL);

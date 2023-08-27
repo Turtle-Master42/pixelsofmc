@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitterGuiMenu> {
+public class PixelSplitterGuiScreen extends AbstractPOMscreen<PixelSplitterGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
     private EnergyInfoArea energyInfoArea;
@@ -39,6 +39,7 @@ public class PixelSplitterGuiScreen extends AbstractContainerScreen<PixelSplitte
         int y = (height - imageHeight) / 2;
 
         this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752);
+
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
         renderProgressArea(pPoseStack, pMouseX, pMouseY, x, y);
     }

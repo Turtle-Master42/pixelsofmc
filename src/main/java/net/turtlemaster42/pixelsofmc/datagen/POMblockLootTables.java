@@ -85,6 +85,11 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropOther(POMblocks.OXYGEN_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.CHLORINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.BROMINE_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.HYDROGEN_GAS_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.NITROGEN_GAS_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.OXYGEN_GAS_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.CHLORINE_GAS_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.BROMINE_GAS_BLOCK.get(), Items.AIR);
 
         this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);

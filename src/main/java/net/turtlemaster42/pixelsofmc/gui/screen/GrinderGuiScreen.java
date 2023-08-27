@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
+public class GrinderGuiScreen extends AbstractPOMscreen<GrinderGuiMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/grinder_gui.png");
     private EnergyInfoArea energyInfoArea;

@@ -17,6 +17,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerGuiMenu;
@@ -24,9 +27,12 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
+import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -35,7 +41,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> {
+public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IDuoFluidHandlingTile {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -43,6 +49,15 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     private final int capacity = 102400000;
     private final int maxReceive = 512000;
     private static final int energyConsumption = 12000;
+    private int cantCraftReason = 0;
+    private int cantCraftElement = 0;
+
+    public int inputSlotLimit = 64;
+    public boolean[] slotLock = new boolean[]{false, false, false, false, false, false, false, false, false};
+
+
+
+
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -70,6 +85,60 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
+    private final FluidTank fluidTank = new FluidTank(50000) {
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
+            if(level != null && !level.isClientSide()) {
+                POMmessages.sendToClients(new PacketSyncFluidToClient(this.fluid, worldPosition));
+            }
+        }
+
+        @Override
+        public boolean isFluidValid(FluidStack stack) {
+            return true;
+        }
+    };
+
+    private final FluidTank duoFluidTank = new FluidTank(50000) {
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
+            if(level != null && !level.isClientSide()) {
+                POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.fluid, worldPosition));
+            }
+        }
+
+        @Override
+        public boolean isFluidValid(FluidStack stack) {
+            return true;
+        }
+    };
+
+    @Override
+    public void setFluid(FluidStack stack) {
+        this.fluidTank.setFluid(stack);
+    }
+
+    @Override
+    public FluidStack getFluid() {
+        return this.fluidTank.getFluid();
+    }
+
+    @Override
+    public void setDuoFluid(FluidStack fluid) {
+        this.duoFluidTank.setFluid(fluid);
+    }
+
+    @Override
+    public FluidStack getDuoFluid() {
+        return this.duoFluidTank.getFluid();
+    }
+    private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
+    private LazyOptional<IFluidHandler> lazyDuoFluidHandler = LazyOptional.empty();
+
+
+
     public SDSFusionControllerTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
@@ -80,6 +149,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                     case 2 -> SDSFusionControllerTile.this.capacity;
                     case 3 -> SDSFusionControllerTile.this.maxReceive;
                     case 4 -> SDSFusionControllerTile.this.energyStorage.getEnergyStored();
+                    case 5 -> SDSFusionControllerTile.this.cantCraftReason;
+                    case 6 -> SDSFusionControllerTile.this.cantCraftElement;
                     default -> 0;
                 };
             }
@@ -92,23 +163,55 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             }
 
             public int getCount() {
-                return 5;
+                return 7;
             }
         };
     }
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return slot < 4 && (stack.is(POMtags.Items.ATOM));
+        PixelsOfMc.LOGGER.info("isInputValid?");
+        return slot < 9 && (stack.is(POMtags.Items.ATOM)) && getSlotLimits(slot) != 0;
     }
     @Override
     protected boolean isSlotValidOutput(int slot) {
-        return slot == 4;
+        return slot == 9;
     }
     @Override
-    protected int itemHandlerSize() {return 7;}
+    protected int itemHandlerSize() {return 10;}
 
+    @Override
+    protected int getSlotLimits(int slot) {
+        if (slot < 9)
+            if (slot == 0 && slotLock[0])
+                return 0;
+            else if (slot == 1 && slotLock[1])
+                return 0;
+            else if (slot == 2 && slotLock[2])
+                return 0;
+            else if (slot == 3 && slotLock[3])
+                return 0;
+            else if (slot == 4 && slotLock[4])
+                return 0;
+            else if (slot == 5 && slotLock[5])
+                return 0;
+            else if (slot == 6 && slotLock[6])
+                return 0;
+            else if (slot == 7 && slotLock[7])
+                return 0;
+            else if (slot == 8 && slotLock[8])
+                return 0;
+            else
+                return inputSlotLimit;
+        else
+            return 64;
+    }
 
+    @Override
+    protected void contentsChanged(int slot) {
+        this.cantCraftReason = 0;
+        this.cantCraftElement = 0;
+    }
 
     @Override
     public @NotNull Component getDisplayName() {
@@ -118,6 +221,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
+        POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
+        POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
+        POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
         return new SDSFusionControllerGuiMenu(pContainerId, pInventory, this, this.data);
     }
 
@@ -130,6 +236,11 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergyHandler.cast();
         }
+        if(cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (side == Direction.UP)
+                return lazyDuoFluidHandler.cast();
+            else return lazyFluidHandler.cast();
+        }
 
         return super.getCapability(cap, side);
     }
@@ -139,6 +250,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
         lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
+        lazyFluidHandler = LazyOptional.of(() -> fluidTank);
+        lazyDuoFluidHandler = LazyOptional.of(() -> duoFluidTank);
     }
 
     @Override
@@ -146,6 +259,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         super.invalidateCaps();
         lazyItemHandler.invalidate();
         lazyEnergyHandler.invalidate();
+        lazyFluidHandler.invalidate();
+        lazyDuoFluidHandler.invalidate();
     }
 
     @Override
@@ -154,6 +269,22 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         tag.putInt("progress", progress);
         tag.putInt("powerCapacity", capacity);
         tag.putInt("Energy", energyStorage.getEnergyStored());
+        tag.putInt("slotLimit", inputSlotLimit);
+        tag = fluidTank.writeToNBT(tag);
+        CompoundTag fluidTag = new CompoundTag();
+        fluidTag = duoFluidTank.writeToNBT(fluidTag);
+        tag.put("outFluid", fluidTag);
+        CompoundTag slotTag = new CompoundTag();
+        slotTag.putBoolean("0", slotLock[0]);
+        slotTag.putBoolean("1", slotLock[1]);
+        slotTag.putBoolean("2", slotLock[2]);
+        slotTag.putBoolean("3", slotLock[3]);
+        slotTag.putBoolean("4", slotLock[4]);
+        slotTag.putBoolean("5", slotLock[5]);
+        slotTag.putBoolean("6", slotLock[6]);
+        slotTag.putBoolean("7", slotLock[7]);
+        slotTag.putBoolean("8", slotLock[8]);
+        tag.put("lockedSlot", slotTag);
         super.saveAdditional(tag);
     }
 
@@ -163,7 +294,39 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");
         energyStorage.setEnergy(nbt.getInt("Energy"));
+        inputSlotLimit = nbt.getInt("slotLimit");
+        fluidTank.readFromNBT(nbt);
+        duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
+        slotLock[0] = nbt.getCompound("lockedSlot").getBoolean("0");
+        slotLock[1] = nbt.getCompound("lockedSlot").getBoolean("1");
+        slotLock[2] = nbt.getCompound("lockedSlot").getBoolean("2");
+        slotLock[3] = nbt.getCompound("lockedSlot").getBoolean("3");
+        slotLock[4] = nbt.getCompound("lockedSlot").getBoolean("4");
+        slotLock[5] = nbt.getCompound("lockedSlot").getBoolean("5");
+        slotLock[6] = nbt.getCompound("lockedSlot").getBoolean("6");
+        slotLock[7] = nbt.getCompound("lockedSlot").getBoolean("7");
+        slotLock[8] = nbt.getCompound("lockedSlot").getBoolean("8");
     }
+
+    public void setSlotLimit(int slotLimit) {
+        this.inputSlotLimit = slotLimit;
+        setChanged();
+    }
+
+    public int getSlotLimit() {
+        return this.inputSlotLimit;
+    }
+
+    public void setSlotLock(boolean locked, int slot) {
+        this.slotLock[slot] = locked;
+        setChanged();
+    }
+
+    public boolean getSlotLock(int slot) {
+        return this.slotLock[slot];
+    }
+
+
 
     //---RECIPE---//
 
@@ -193,7 +356,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         }
     }
 
-    private static boolean hasRecipe(SDSFusionControllerTile entity) {
+    private boolean hasRecipe(SDSFusionControllerTile entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -205,7 +368,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                && isFusible(match.get().getResultItem());
     }
 
     private static boolean hasPower(SDSFusionControllerTile entity) {
@@ -227,14 +391,14 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             List<CountedIngredient> recipeItems = match.get().getInputs();
 
             // Iterate over the slots -q-
-            for (int q = 0; q < 4; q++) {
+            for (int q = 0; q < 9; q++) {
                 if (entity.itemHandler.getStackInSlot(q).getItem() instanceof AtomItem) {
                     entity.itemHandler.extractItem(q, 1, false);
                 }
             }
 
-            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
+            entity.itemHandler.setStackInSlot(9, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(9).getCount() + (match.get().getOutputCount())));
 
             entity.resetProgress();
             entity.errorEnergyReset();
@@ -245,10 +409,24 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(4).getItem() == output.getItem() || inventory.getItem(4).isEmpty();
+        return inventory.getItem(9).getItem() == output.getItem() || inventory.getItem(9).isEmpty();
     }
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
-        return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
+        return inventory.getItem(9).getMaxStackSize() >= inventory.getItem(9).getCount() + count;
+    }
+
+    private boolean isFusible(ItemStack stack) {
+        if (stack.getItem() instanceof AtomItem atomItem) {
+            if (stack.is(POMtags.Items.SDS)) {
+                this.cantCraftReason = 0;
+                return true;
+            }
+            this.cantCraftReason = 1;
+            this.cantCraftElement = atomItem.getElement().getElement();
+            return false;
+        }
+        this.cantCraftReason = 2;
+        return false;
     }
 
 

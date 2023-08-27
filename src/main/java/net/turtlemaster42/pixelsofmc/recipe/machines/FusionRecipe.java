@@ -33,21 +33,21 @@ public class FusionRecipe extends BaseRecipe {
         this.electronCount = electronCount;
     }
 
-    //credits EnderIO
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
-        if (output.is(POMtags.Items.MDS) || output.is(POMtags.Items.MNS)) return false;
         int protonCount = 0;
         int neutronCount = 0;
         int electronCount = 0;
+        int filledSlotCount = 0;
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 9; i++) {
             if (container.getItem(i).getItem() instanceof AtomItem item) {
+                filledSlotCount++;
                 ItemStack stack = new ItemStack(item);
                 int multiplier = 1;
                 if (stack.is(POMtags.Items.ATOM512)) multiplier = 8;
-                if (output.is(POMtags.Items.ATOM512) && !stack.is(POMtags.Items.ATOM512) && item.getProtonCount() < Element.values().length) return false;
+                //if (output.is(POMtags.Items.ATOM512) && !stack.is(POMtags.Items.ATOM512) && item.getProtonCount() < Element.values().length) return false;
 
                 protonCount = protonCount + (item.getProtonCount()*multiplier);
                 neutronCount = neutronCount + (item.getNeutronCount()*multiplier);
@@ -55,7 +55,7 @@ public class FusionRecipe extends BaseRecipe {
             }
         }
 
-        return this.protonCount == protonCount && this.neutronCount <= neutronCount && this.electronCount <= electronCount;
+        return this.protonCount == protonCount && this.neutronCount <= neutronCount && this.electronCount <= electronCount && filledSlotCount > 1;
     }
 
 

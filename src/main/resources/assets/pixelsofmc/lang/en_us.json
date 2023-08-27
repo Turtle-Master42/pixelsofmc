@@ -75,6 +75,12 @@
   "item.pixelsofmc.liquid_chlorine_bucket": "Liquid Chlorine Bucket",
   "item.pixelsofmc.liquid_bromine_bucket": "Liquid Bromine Bucket",
 
+  "item.pixelsofmc.hydrogen_gas_bucket": "Hydrogen Bucket",
+  "item.pixelsofmc.nitrogen_gas_bucket": "Nitrogen Bucket",
+  "item.pixelsofmc.oxygen_gas_bucket": "Oxygen Bucket",
+  "item.pixelsofmc.chlorine_gas_bucket": "Chlorine Bucket",
+  "item.pixelsofmc.bromine_gas_bucket": "Bromine Bucket",
+
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.power_cell": "Power Cell",
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
@@ -625,6 +631,12 @@
   "fluid.pixelsofmc.mercury_fluid": "Liquid Mercury",
   "fluid.pixelsofmc.sulfuric_acid_fluid": "Sulfuric Acid",
 
+  "fluid.pixelsofmc.hydrogen_gas": "Hydrogen Gas",
+  "fluid.pixelsofmc.nitrogen_gas": "Nitrogen Gas",
+  "fluid.pixelsofmc.oxygen_gas": "Oxygen Gas",
+  "fluid.pixelsofmc.chlorine_gas": "Chlorine Gas",
+  "fluid.pixelsofmc.bromine_gas": "Bromine Gas",
+
   "fluid_type.pixelsofmc.hydrogen_fluid": "Liquid Hydrogen",
   "fluid_type.pixelsofmc.nitrogen_fluid": "Liquid Nitrogen",
   "fluid_type.pixelsofmc.oxygen_fluid": "Liquid Oxygen",
@@ -632,6 +644,12 @@
   "fluid_type.pixelsofmc.bromine_fluid": "Liquid Bromine",
   "fluid_type.pixelsofmc.mercury_fluid": "Liquid Mercury",
   "fluid_type.pixelsofmc.sulfuric_acid_fluid": "Sulfuric Acid",
+
+  "fluid_type.pixelsofmc.hydrogen_gas": "Hydrogen Gas",
+  "fluid_type.pixelsofmc.nitrogen_gas": "Nitrogen Gas",
+  "fluid_type.pixelsofmc.oxygen_gas": "Oxygen Gas",
+  "fluid_type.pixelsofmc.chlorine_gas": "Chlorine Gas",
+  "fluid_type.pixelsofmc.bromine_gas": "Bromine Gas",
 
   "itemGroup": "------------------------------TABS--------------------------------------------------------",
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
@@ -673,6 +691,10 @@
   "tooltip.pixelsofmc.block.bh_controller.shift": "§7Black Hole Fusion Reactor Controller, the ultimate fusion reactor, can fuse all elements and costs very little energy to run",
   "tooltip.pixelsofmc.block.bh_controller.alt": "§7This machine requires a §r§c5x2x2§r§7 area.",
 
+  "tooltip.pixelsofmc.gui.info.crafting.fusion.1":  "§cFusion Generator",
+  "tooltip.pixelsofmc.gui.info.crafting.fusion.2":  "§cnot strong enough",
+  "tooltip.pixelsofmc.gui.info.crafting.fusion.3":  "§cto create element %s (%s)",
+  "tooltip.pixelsofmc.gui.sds_fusion":  "S.D.S Generator",
 
   "tooltip.pixelsofmc.energy.dot": ".",
 
@@ -693,6 +715,9 @@
   "tooltip.pixelsofmc.protons": "§7Protobits: §9%s",
   "tooltip.pixelsofmc.neutrons": "§7Neutrobits: §c%s",
   "tooltip.pixelsofmc.electrons": "§7Electrobits: §e%s",
+  "tooltip.pixelsofmc.protons.512": "§7Protobits: §9%s x8 (%s)",
+  "tooltip.pixelsofmc.neutrons.512": "§7Neutrobits: §c%s x8 (%s)",
+  "tooltip.pixelsofmc.electrons.512": "§7Electrobits: §e%s x8 (%s)",
   "tooltip.pixelsofmc.state": "§7State: ",
   "tooltip.pixelsofmc.state.solid": "§3      ⏹",
   "tooltip.pixelsofmc.state.liquid": "§b      \uD83E\uDEA3",
