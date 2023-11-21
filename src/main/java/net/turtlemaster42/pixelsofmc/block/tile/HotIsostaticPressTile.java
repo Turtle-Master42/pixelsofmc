@@ -43,7 +43,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private int maxProgress = 144;
     private int speedUpgrade = 0;
     private final int capacity = 1024000;
-    private final int maxReceive = 40960;
+    private final int maxReceive = 1024000;
     private static final int energyConsumption = 512;
     private int heat;
     private int maxHeat = 2500;

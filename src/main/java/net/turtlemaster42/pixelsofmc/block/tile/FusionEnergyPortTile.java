@@ -23,7 +23,7 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile {
 
     protected final ContainerData data;
 
-    private final int capacity = 512000;
+    private final int capacity = -1;
     private final int maxReceive = 512000;
 
 

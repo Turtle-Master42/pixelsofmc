@@ -42,7 +42,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     private int maxProgress = 120;
     private int speedUpgrade = 0;
     private final int capacity = 1024000;
-    private final int maxReceive = 40960;
+    private final int maxReceive = 1024000;
     private static final int energyConsumption = 256;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();

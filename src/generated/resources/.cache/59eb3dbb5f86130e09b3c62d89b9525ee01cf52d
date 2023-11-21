@@ -1,4 +1,4 @@
-// 1.19.3	2023-08-27T15:06:21.90744	Loot Tables
+// 1.19.3	2023-10-17T20:08:27.439081	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 a3e4fef78ae8b4c4a0ef6536f0d56a2d190dbb35 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
@@ -32,10 +32,12 @@ d5c1e85d49ec0a655e85628348b3ccef87facbcd data/pixelsofmc/loot_tables/blocks/mns_
 f580e39328bc1a2564880e47b8dfc625665c7f5e data/pixelsofmc/loot_tables/blocks/netherite_plating_stairs.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/nitrogen.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/nitrogen_gas.json
+4f017099bc065d0e9e11443017f6f54463618a0c data/pixelsofmc/loot_tables/blocks/overcharged_power_cell_array.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/oxygen.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/oxygen_gas.json
 02fc98afbf1b63058bb3a6cbaf089c3550eeb158 data/pixelsofmc/loot_tables/blocks/perfected_casing_1.json
 8b73d380fc1573730c7bcc85cb5e0545b5f1c59b data/pixelsofmc/loot_tables/blocks/pixel_splitter.json
+dbf069396841794a2cd70f042023f6263eae1c7b data/pixelsofmc/loot_tables/blocks/power_cell_array.json
 899a2001ff745824d195a07df77ab452115a06b3 data/pixelsofmc/loot_tables/blocks/raw_titanium_block.json
 a58edae6cc41827cc2c9313250eb8d7fa09ae282 data/pixelsofmc/loot_tables/blocks/red_tungsten_spool.json
 ce01070597dc58fb4be810d85c8daa5ddc5aa8c1 data/pixelsofmc/loot_tables/blocks/redstone_imbued_silver_spool.json
@@ -51,6 +53,7 @@ a579ffd6a3576006dc32317ccc32c87d10934544 data/pixelsofmc/loot_tables/blocks/silv
 f63db2b3018a58f40db4b1c388b826e29da1041b data/pixelsofmc/loot_tables/blocks/strengthened_casing.json
 4890c52821ed862fdb3975f64e60ba33295fc8c0 data/pixelsofmc/loot_tables/blocks/strong_casing.json
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/sulfuric_acid.json
+19cfb9445a42aa9e68a42c32805ed35b802b92fc data/pixelsofmc/loot_tables/blocks/supercharged_power_cell_array.json
 a492f6e9a6ab324d5b33baa9d4cdcfce34b487f6 data/pixelsofmc/loot_tables/blocks/superconductive_fusion_casing.json
 9b653a3681630977c6b160533e7b4e57b8fb9c11 data/pixelsofmc/loot_tables/blocks/superconductive_spool.json
 b6a9c5f7c1fadc12e3526dd3bdb27e19c48c869e data/pixelsofmc/loot_tables/blocks/titanium_block.json

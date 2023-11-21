@@ -114,14 +114,14 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
                                           @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof SDSFusionControllerTile) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (SDSFusionControllerTile)entity, pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
-            }
-        }
+//        if (!pLevel.isClientSide()) {
+//            BlockEntity entity = pLevel.getBlockEntity(pPos);
+//            if(entity instanceof SDSFusionControllerTile) {
+//                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (SDSFusionControllerTile)entity, pPos);
+//            } else {
+//                throw new IllegalStateException("Our Container provider is missing!");
+//            }
+//        }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }

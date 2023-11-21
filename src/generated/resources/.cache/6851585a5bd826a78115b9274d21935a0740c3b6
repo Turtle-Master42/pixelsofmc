@@ -1,4 +1,4 @@
-// 1.19.3	2023-08-27T15:06:22.027131	Item Models: pixelsofmc
+// 1.19.3	2023-10-17T20:08:27.464854	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -237,6 +237,8 @@ dab6ae1b1d3c7aebaa762cd9375c2c8d83658677 assets/pixelsofmc/models/item/nitrogen_
 8d26b21ab46d16efb81f50cf7e655b9c8af78bc0 assets/pixelsofmc/models/item/osmium_atom_512.json
 2b713bbedc95cdd0096f4f7756ee97994d7a93c3 assets/pixelsofmc/models/item/osmium_atom_64.json
 48ccf59a478b0e2f8ecd2f4f3bd83f7713fe11e8 assets/pixelsofmc/models/item/osmium_ingot.json
+a64b34928c2b5cda7fb4adbe3b0f640a544839c9 assets/pixelsofmc/models/item/overcharged_power_cell.json
+42bb9649de4de31ad17d5baae5321d3f130b2433 assets/pixelsofmc/models/item/overcharged_power_cell_array.json
 9ae0f75d16b477154ba11be3d0d3d9868c37d047 assets/pixelsofmc/models/item/oxygen_atom_512.json
 6b9b7f450a85b468c2a896926ed8eef5fa0d3727 assets/pixelsofmc/models/item/oxygen_atom_64.json
 b8dd68ceb645dc66b63b922674348f7f596ccc07 assets/pixelsofmc/models/item/oxygen_canister.json
@@ -266,6 +268,7 @@ f322f87bf97723b33fdba5a733e1453ba2a7d0a0 assets/pixelsofmc/models/item/potassium
 dda2c61c01346efaae2e26c00c17869902728e4d assets/pixelsofmc/models/item/potassium_dust.json
 1b29e8aa86295079c1a25fa8be1958ad9ae1db6d assets/pixelsofmc/models/item/potassium_ingot.json
 85f71af3c6d6b0bf9f391948f68d6ecc25a1afb9 assets/pixelsofmc/models/item/power_cell.json
+b6fd3cd0d1d6f32b1a1e04741d7e27c61dd7c2ee assets/pixelsofmc/models/item/power_cell_array.json
 5d285ccc51ffb4281e4950f187a3a391f4a443c7 assets/pixelsofmc/models/item/power_orb.json
 93291240b4b3eabf548dbc7690b0a2c548255cd3 assets/pixelsofmc/models/item/praseodymium_atom_512.json
 50bdd588fc32cfb667d7f6254fa005506b3b43e8 assets/pixelsofmc/models/item/praseodymium_atom_64.json
@@ -296,6 +299,7 @@ f98c4530037722198949e16a34337eedd8807ddb assets/pixelsofmc/models/item/red_tungs
 d818b672ac989b86a86121332fcde5b3bbe0f2fd assets/pixelsofmc/models/item/redstone_layered_copper_spool.json
 a8d205006e6668bc5d12a54ed953816d0996c8ec assets/pixelsofmc/models/item/redstone_layered_copper_wire.json
 5025434e46da26fbe1ab61534c360bf952b00679 assets/pixelsofmc/models/item/redstone_timer.json
+b52aca458e985b090405d9eb3da245b72e1ff17c assets/pixelsofmc/models/item/refined_redstone.json
 99770ad6b2a8b6a1a0281dbb37a1838f5ce9db3e assets/pixelsofmc/models/item/repelling_compound.json
 c660ca1cc722a47ec2bc4b51bd99ab07f6ab10be assets/pixelsofmc/models/item/repelling_plastic.json
 8ff76ef11a26816a16de55f710ca5319a1e41b8f assets/pixelsofmc/models/item/repelling_rubber_ball.json
@@ -352,6 +356,8 @@ da54d5fbf5de461b351b20bb05e41f127fca060f assets/pixelsofmc/models/item/strontium
 a4c22cac49519795c59c539d2bd99a4d2933ccb6 assets/pixelsofmc/models/item/sulfur_cube.json
 1376083a18445977b46dd0e44b84610c25548894 assets/pixelsofmc/models/item/sulfur_dust.json
 14124f3097e0f79d5728780189a3dcd76cb97e99 assets/pixelsofmc/models/item/sulfuric_acid_bucket.json
+bcf2632236cda4f8ce27b2d6478c9d8016d14161 assets/pixelsofmc/models/item/supercharged_power_cell.json
+c28261d06f6e32c7e5bfe788dc1b9b7967c4419b assets/pixelsofmc/models/item/supercharged_power_cell_array.json
 da96c9bb64dfe63babf29c4df48ca85d78765222 assets/pixelsofmc/models/item/superconductive_dust.json
 fdbcb79deedb28568ec3be9971a675240f757a13 assets/pixelsofmc/models/item/superconductive_ingot.json
 6d7f3474348c084725be52af00507c6e083266db assets/pixelsofmc/models/item/superconductive_nugget.json
@@ -432,6 +438,7 @@ e97ed3b3d189da12136ef900260ec572e3d0c7f6 assets/pixelsofmc/models/item/wirecutte
 1e29221526b33dbc38ddb09931d6298f53747fba assets/pixelsofmc/models/item/xenon_atom_512.json
 c2c65736194d1981af539bc547723d60f21d580f assets/pixelsofmc/models/item/xenon_atom_64.json
 a7a5cf80751495e827f7f5e6d8093dee2a543fe9 assets/pixelsofmc/models/item/xenon_canister.json
+c166196c5267b26c43002f757290293fa267fde2 assets/pixelsofmc/models/item/yellowcake_uranium.json
 5d2c01443ea118b50c8622b18fe54eca2eddf4bd assets/pixelsofmc/models/item/ytterbium_atom_512.json
 7b76991e932b041e2f056ad807be3f2e459010b3 assets/pixelsofmc/models/item/ytterbium_atom_64.json
 1404f7b2b24c60b93da129949bec7af1779821d8 assets/pixelsofmc/models/item/ytterbium_ingot.json

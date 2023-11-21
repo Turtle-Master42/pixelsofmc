@@ -53,6 +53,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.RED_TUNGSTEN_WIRE);
         simpleItem(POMitems.SUPERCONDUCTIVE_WIRE);
         simpleItem(POMitems.POWER_ORB);
+        simpleItem(POMitems.OVERCHARGED_POWER_CELL);
+        simpleItem(POMitems.SUPERCHARGED_POWER_CELL);
         simpleItem(POMitems.MICRO_CHIP);
         simpleItem(POMitems.REDSTONE_COUNTER);
         simpleItem(POMitems.REDSTONE_TIMER);
@@ -144,6 +146,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.TITANIUM_OXIDE_DUST);
         dustItem(POMitems.SUPERCONDUCTIVE_DUST);
         dustItem(POMitems.RED_TUNGSTEN_DUST);
+        dustItem(POMitems.YELLOWCAKE_URANIUM);
+        dustItem(POMitems.REFINED_REDSTONE);
 
         simpleItem(POMitems.SULFUR);
         simpleItem(POMitems.DENSE_CARBON_CUBE);
@@ -161,6 +165,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL);
         complexBlock(POMblocks.RED_TUNGSTEN_SPOOL);
         complexBlock(POMblocks.SUPERCONDUCTIVE_SPOOL);
+
+        complexBlock(POMblocks.POWER_CELL_ARRAY);
+        complexBlock(POMblocks.OVERCHARGED_POWER_CELL_ARRAY);
+        complexBlock(POMblocks.SUPERCHARGED_POWER_CELL_ARRAY);
 
         complexBlock(POMblocks.PIXEL_SPLITTER);
         complexBlock(POMblocks.GRINDER);

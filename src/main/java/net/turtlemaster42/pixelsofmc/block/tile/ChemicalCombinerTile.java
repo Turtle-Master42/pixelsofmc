@@ -21,6 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.ChemicalCombinerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -46,7 +47,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     private int maxProgress = 72;
     private int speedUpgrade = 0;
     private final int capacity = 512000;
-    private final int maxReceive = 40960;
+    private final int maxReceive = 512000;
     private static final int energyConsumption = 128;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
@@ -190,9 +191,41 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
             return lazyEnergyHandler.cast();
         }
         if(cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == Direction.UP)
-                return lazyDuoFluidHandler.cast();
-            else return lazyFluidHandler.cast();
+            Direction localDir = this.getBlockState().getValue(ChemicalCombinerBlock.FACING);
+            return switch (localDir) {
+                case EAST -> {
+                    if (side == Direction.SOUTH)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.NORTH)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                case SOUTH -> {
+                    if (side == Direction.WEST)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.EAST)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                case WEST -> {
+                    if (side == Direction.NORTH)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.SOUTH)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                default -> {
+                    if (side == Direction.EAST)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.WEST)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+            };
         }
         return super.getCapability(cap, side);
     }
@@ -298,10 +331,12 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     }
 
     private void fillTankWithFluid(ChemicalCombinerTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item) {
-       fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
+        fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
 
-       pBlockEntity.itemHandler.extractItem(6, 1, false);
-       pBlockEntity.itemHandler.insertItem(6, item, false);
+        PixelsOfMc.LOGGER.info("item: {}", item.toString());
+
+        pBlockEntity.itemHandler.extractItem(6, 1, false);
+        pBlockEntity.itemHandler.setStackInSlot(6, item);
     }
 
     private void drainTankWithFluid(ChemicalCombinerTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item, int slot) {

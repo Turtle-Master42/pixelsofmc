@@ -10,8 +10,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
-import java.awt.*;
-
 public class SlotLockButton extends Button {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
@@ -51,7 +49,7 @@ public class SlotLockButton extends Button {
 
         this.blit(pPoseStack, this.getX(), this.getY(), slotlockbutton$icon.getX(), slotlockbutton$icon.getY(), this.width, this.height);
         if (this.isLocked()) {
-            this.fillGradient(pPoseStack, slotX, slotY, slotX + 16, slotY + 16, new Color(255, 0, 0).getRGB(), new Color(255, 0, 0).getRGB());
+            this.blit(pPoseStack, slotX, slotY, 48, 0, 16, 16);
         }
     }
 

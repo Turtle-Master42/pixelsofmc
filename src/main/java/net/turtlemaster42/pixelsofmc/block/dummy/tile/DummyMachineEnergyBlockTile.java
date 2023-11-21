@@ -22,8 +22,8 @@ import javax.annotation.Nonnull;
 public class DummyMachineEnergyBlockTile extends AbstractDummyMachineBlockTile {
         protected final ContainerData data;
 
-        private final int capacity = 40960;
-        private final int maxReceive = 40960;
+        private final int capacity = 1024000;
+        private final int maxReceive = 1024000;
 
 
 

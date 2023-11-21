@@ -17,7 +17,7 @@ public class StarModel extends AdvancedEntityModel<Entity> {
 
     public StarModel() {
         texWidth = 192;
-        texHeight = 112;
+        texHeight = 208;
 
         root = new AdvancedModelBox(this, "root");
         root.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -124,6 +124,7 @@ public class StarModel extends AdvancedEntityModel<Entity> {
         star_2.rotateAngleY = rotation;
         star_2.rotateAngleZ = rotation * 1.1f;
         star_2.setScale(scale, scale, scale);
+
         disc.rotateAngleY = rotation * 0.5f;
         disc.setScale(1, 1,1);
     }

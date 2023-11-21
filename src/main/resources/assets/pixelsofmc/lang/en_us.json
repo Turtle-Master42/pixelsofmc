@@ -83,6 +83,8 @@
 
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.power_cell": "Power Cell",
+  "item.pixelsofmc.overcharged_power_cell": "Overcharged Power Cell",
+  "item.pixelsofmc.supercharged_power_cell": "Supercharged Power Cell",
   "item.pixelsofmc.advanced_laser": "Advanced Laser",
   "item.pixelsofmc.titanium_circle_saw": "Titanium Circle Saw",
   "item.pixelsofmc.titanium_gold_circle_saw": "Titanium Gold Circle Saw",
@@ -146,12 +148,16 @@
   "item.pixelsofmc.zinc_dust": "Zinc Dust",
   "item.pixelsofmc.silver_dust": "Silver Dust",
   "item.pixelsofmc.niobium_dust": "Niobium Dust",
+  "item.pixelsofmc.yellowcake_uranium": "Yellowcake Uranium",
+  "item.pixelsofmc.refined_redstone": "Refined Redstone",
 
 
   "item.pixelsofmc.pixel": "Pixel",
   "item.pixelsofmc.pixel_pile": "Pile O' Pixels",
   "item.pixelsofmc.place_holder": "You can ignore this",
   "item.pixelsofmc.debugium_ingot": "Debugium Ingot",
+
+  "item.pixelsofmc.river_shell": "River Shell",
 
   "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
@@ -705,6 +711,10 @@
   "tooltip.pixelsofmc.test": "line 1\nline 2\nline 3\nline 4\ntest %s",
 
   "tooltip.pixelsofmc.heat.required": "§7Required:",
+  "tooltip.pixelsofmc.fusion.required": "Fusion Requirement:",
+  "tooltip.pixelsofmc.fusion.sds": "S.D.S Generator",
+  "tooltip.pixelsofmc.fusion.mds": "M.D.S Generator",
+  "tooltip.pixelsofmc.fusion.mns": "M.N.S Generator",
 
   "tooltip.pixelsofmc.fluid.input": "§bFluid input",
   "tooltip.pixelsofmc.fluid.output": "§6Fluid output",
@@ -739,8 +749,19 @@
   "tooltip.pixelsofmc.danger.corrosive.text": "    §2Corrosive",
   "tooltip.pixelsofmc.danger.none.text": "      §dNone",
 
+  "tooltip.pixelsofmc.stored_power": "§b%s (%s) §7FE Stored",
+  "tooltip.pixelsofmc.stored_power_shift": "§b%s/%s §7FE Stored",
+  "tooltip.pixelsofmc.power_cell": "§b10000 §7FE Stored",
+  "tooltip.pixelsofmc.power_cell.overcharged": "§d90000 §7FE Stored",
+  "tooltip.pixelsofmc.power_cell.supercharged": "§c810000 §7FE Stored",
+
 
   "tooltip.pixelsofmc.jei.pixel": "Structure Formula",
+
+  "tooltip.pixelsofmc.entity.health": "%s ❤",
+  "tooltip.pixelsofmc.entity.age": "%s ⏳",
+  "tooltip.pixelsofmc.entity.effects": "Effects \uD83E\uDDEA:",
+  "tooltip.pixelsofmc.entity.effect": "  %s %s %s ⏳",
 
 
   "death.attack.pixelsofmc.supercooled_liquid": "%1$s went swimming in supercooled liquid",

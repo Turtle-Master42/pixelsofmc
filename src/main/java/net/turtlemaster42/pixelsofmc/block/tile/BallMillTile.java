@@ -21,6 +21,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
+import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -40,12 +42,13 @@ import java.util.Optional;
 public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 120;
+    public int progress = 0;
+    public int maxProgress = 120;
     private int speedUpgrade = 0;
     private final int capacity = 1024000;
-    private final int maxReceive = 40960;
+    private final int maxReceive = 1024000;
     private static final int energyConsumption = 512;
+    public int rotation = 0;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -191,16 +194,19 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
-            if (pBlockEntity.progress > 0 && !pState.getValue(BlockStateProperties.LIT)) {
-                pState.setValue(BlockStateProperties.LIT, true);
+            if (pBlockEntity.progress > 0 && !pState.getValue(BallMillBlock.ACTIVE)) {
+                level.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, true), 2);
             }
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                 craftItem(pBlockEntity);
-                pState.setValue(BlockStateProperties.LIT, false);
+                level.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
             }
         } else {
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
+        }
+        if (pState.getValue(BallMillBlock.ACTIVE)) {
+            pBlockEntity.rotation++;
         }
     }
 

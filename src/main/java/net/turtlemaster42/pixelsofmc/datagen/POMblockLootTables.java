@@ -56,6 +56,10 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.RED_TUNGSTEN_SPOOL.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
 
+        this.dropSelf(POMblocks.POWER_CELL_ARRAY.get());
+        this.dropSelf(POMblocks.OVERCHARGED_POWER_CELL_ARRAY.get());
+        this.dropSelf(POMblocks.SUPERCHARGED_POWER_CELL_ARRAY.get());
+
         this.dropSelf(POMblocks.REINFORCED_GLASS.get());
         this.dropSelf(POMblocks.REINFORCED_THING.get());
 

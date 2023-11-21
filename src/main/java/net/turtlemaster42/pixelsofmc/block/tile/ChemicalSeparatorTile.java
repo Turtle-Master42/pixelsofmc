@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -22,6 +23,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.ChemicalSeparatorBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -32,6 +34,7 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,7 +52,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     private int maxProgress = 72;
     private int speedUpgrade = 0;
     private final int capacity = 512000;
-    private final int maxReceive = 40960;
+    private final int maxReceive = 512000;
     private static final int energyConsumption = 128;
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
@@ -193,9 +196,41 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
             return lazyEnergyHandler.cast();
         }
         if(cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == Direction.UP)
-                return lazyDuoFluidHandler.cast();
-            else return lazyFluidHandler.cast();
+            Direction localDir = this.getBlockState().getValue(ChemicalSeparatorBlock.FACING);
+            return switch (localDir) {
+                case EAST -> {
+                    if (side == Direction.SOUTH)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.NORTH)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                case SOUTH -> {
+                    if (side == Direction.WEST)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.EAST)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                case WEST -> {
+                    if (side == Direction.NORTH)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.SOUTH)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+                default -> {
+                    if (side == Direction.EAST)
+                        yield lazyFluidHandler.cast();
+                    else if (side == Direction.WEST)
+                        yield lazyDuoFluidHandler.cast();
+                    else
+                        yield super.getCapability(cap, side);
+                }
+            };
         }
         return super.getCapability(cap, side);
     }
@@ -301,10 +336,12 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     }
 
     private void fillTankWithFluid(ChemicalSeparatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item) {
-       fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
+        fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
 
-       pBlockEntity.itemHandler.extractItem(6, 1, false);
-       pBlockEntity.itemHandler.insertItem(6, item, false);
+        PixelsOfMc.LOGGER.info("item: {}", item.toString());
+
+        pBlockEntity.itemHandler.extractItem(6, 1, false);
+        pBlockEntity.itemHandler.setStackInSlot(6, item);
     }
 
     private void drainTankWithFluid(ChemicalSeparatorTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item, int slot) {

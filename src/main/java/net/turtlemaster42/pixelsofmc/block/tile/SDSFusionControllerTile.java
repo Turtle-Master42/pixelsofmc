@@ -47,7 +47,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     private int progress = 0;
     private int maxProgress = 10;
     private final int capacity = 102400000;
-    private final int maxReceive = 512000;
+    private final int maxReceive = 102400000;
     private static final int energyConsumption = 12000;
     private int cantCraftReason = 0;
     private int cantCraftElement = 0;
@@ -170,7 +170,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     @Override
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        PixelsOfMc.LOGGER.info("isInputValid?");
         return slot < 9 && (stack.is(POMtags.Items.ATOM)) && getSlotLimits(slot) != 0;
     }
     @Override
@@ -344,11 +343,12 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(energyConsumption);
             if (pBlockEntity.progress > 0 && pState.getValue(SDSFusionControllerBlock.ACTIVE) != 3) {
-                pState.setValue(SDSFusionControllerBlock.ACTIVE, 3);
+                level.setBlock(pPos, pState.setValue(SDSFusionControllerBlock.ACTIVE, 3), 2);
             }
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
-                pState.setValue(SDSFusionControllerBlock.ACTIVE, 2);
+                if (!hasRecipe(pBlockEntity))
+                    level.setBlock(pPos, pState.setValue(SDSFusionControllerBlock.ACTIVE, 2), 2);
             }
         } else {
             pBlockEntity.resetProgress();

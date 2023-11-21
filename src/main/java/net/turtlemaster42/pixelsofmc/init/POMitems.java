@@ -1,8 +1,11 @@
 package net.turtlemaster42.pixelsofmc.init;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,9 +14,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -22,6 +29,8 @@ public class POMitems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 	public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 	public static final RegistryObject<Item> BOOK_1 = BLOCK_ITEMS.register("book_1", () -> new book1(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+	public static final RegistryObject<Item> RIVER_SHELL = ITEMS.register("river_shell", () -> new RiverShellEntityItem(new Item.Properties().stacksTo(1)));
 
 	//upgrades
 	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8)));
@@ -123,7 +132,9 @@ public class POMitems {
 
 	//machine parts
 	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 10000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
+	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 90000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
+	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 810000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
 
 	//dusts
@@ -140,6 +151,8 @@ public class POMitems {
 	public static final RegistryObject<Item> TITANIUM_OXIDE_DUST = ITEMS.register("titanium_oxide_dust", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SUPERCONDUCTIVE_DUST = ITEMS.register("superconductive_dust", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RED_TUNGSTEN_DUST = ITEMS.register("red_tungsten_dust", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> YELLOWCAKE_URANIUM = ITEMS.register("yellowcake_uranium", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REFINED_REDSTONE = ITEMS.register("refined_redstone", () -> new Item(new Item.Properties()));
 
 	//fluids
 	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));

@@ -1,0 +1,33 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "fluid_input": {
+    "Amount": 333,
+    "FluidName": "minecraft:water"
+  },
+  "fluid_output": {
+    "Amount": 333,
+    "FluidName": "pixelsofmc:hydrogen_gas"
+  },
+  "input": {
+    "count": 8,
+    "ingredient": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:yellowcake_uranium"
+      }
+    },
+    {
+      "chance": 1.0,
+      "count": 8,
+      "ingredient": {
+        "item": "pixelsofmc:refined_redstone"
+      }
+    }
+  ]
+}

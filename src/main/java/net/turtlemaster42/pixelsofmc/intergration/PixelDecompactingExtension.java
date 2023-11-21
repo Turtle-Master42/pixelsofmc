@@ -12,12 +12,14 @@ import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public record PixelDecompactingExtension(PixelDecompactingRecipe recipe) implements ICraftingCategoryExtension {
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull ICraftingGridHelper craftingGridHelper, @NotNull IFocusGroup focuses) {
         List<ItemStack> inputs = new ArrayList<>();
+        List<ItemStack> air = new ArrayList<>();
         List<ItemStack> outputs = new ArrayList<>();
 
         for (Element m : Element.values()) {
@@ -27,11 +29,11 @@ public record PixelDecompactingExtension(PixelDecompactingRecipe recipe) impleme
             outputs.add(out);
         }
 
-        List<IRecipeSlotBuilder> gridSlots = craftingGridHelper.createAndSetInputs(builder, List.of(inputs), 0, 0);
+        List<IRecipeSlotBuilder> gridSlots = craftingGridHelper.createAndSetInputs(builder, Arrays.asList(inputs, air), 1, 1);
         IRecipeSlotBuilder outSlot = craftingGridHelper.createAndSetOutputs(builder, outputs);
 
         builder.createFocusLink(new IRecipeSlotBuilder[] {
-                outSlot
+                 outSlot
         });
     }
 

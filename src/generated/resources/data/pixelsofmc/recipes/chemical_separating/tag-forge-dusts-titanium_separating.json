@@ -6,7 +6,7 @@
   },
   "fluid_output": {
     "Amount": 100,
-    "FluidName": "pixelsofmc:hydrogen_fluid"
+    "FluidName": "pixelsofmc:hydrogen_gas"
   },
   "input": {
     "count": 1,

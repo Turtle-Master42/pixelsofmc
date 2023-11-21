@@ -90,6 +90,12 @@ public class POMblocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.CLAY)
                     .strength(6f, 12f).requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> POWER_CELL_ARRAY = registerBlock("power_cell_array",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(5.0F, 25.0F)));
+    public static final RegistryObject<Block> OVERCHARGED_POWER_CELL_ARRAY = registerBlock("overcharged_power_cell_array",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(5.0F, 25.0F)));
+    public static final RegistryObject<Block> SUPERCHARGED_POWER_CELL_ARRAY = registerBlock("supercharged_power_cell_array",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(5.0F, 25.0F)));
 
 
     public static final RegistryObject<Block> TITANIUM_PLATING_BLOCK = registerBlock("titanium_plating_block",

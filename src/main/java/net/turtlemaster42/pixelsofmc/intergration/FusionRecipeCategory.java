@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +33,7 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     private final IDrawable icon;
 
     public FusionRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 108, 66);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 158, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.SDS_CONTROLLER.get()));
     }
 
@@ -67,9 +68,19 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
         int stringWidth1 = fontRenderer.width(proton);
         int stringWidth2 = fontRenderer.width(neutron);
         int stringWidth3 = fontRenderer.width(electron);
-        fontRenderer.drawShadow(poseStack, proton, background.getWidth() - stringWidth1 - 80, 10, 0xFF5555FF);
-        fontRenderer.drawShadow(poseStack, neutron, background.getWidth() - stringWidth2 - 80, 30, 0xFFFF5555);
-        fontRenderer.drawShadow(poseStack, electron, background.getWidth() - stringWidth3 - 80, 50, 0xFFFFFF55);
+
+        fontRenderer.drawShadow(poseStack, proton, background.getWidth() - stringWidth1 - 125, 10, 0xFF5555FF);
+        fontRenderer.drawShadow(poseStack, neutron, background.getWidth() - stringWidth2 - 125, 30, 0xFFFF5555);
+        fontRenderer.drawShadow(poseStack, electron, background.getWidth() - stringWidth3 - 125, 50, 0xFFFFFF55);
+
+        fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.required"), 43, 3, 0xFF2CBAA8);
+        if (recipe.getResultItem().is(POMtags.Items.MNS)) {
+            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.mns"), 43, 13, 0xFFFFAA00);
+        } else if (recipe.getResultItem().is(POMtags.Items.MDS)) {
+            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.mds"), 43, 13, 0xFFFFAA00);
+        } else {
+            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.sds"), 43, 13, 0xFFFFAA00);
+        }
     }
 
 
