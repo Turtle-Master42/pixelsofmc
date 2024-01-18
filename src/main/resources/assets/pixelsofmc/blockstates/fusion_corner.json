@@ -20,6 +20,15 @@
     },
     "plating=6": {
       "model": "pixelsofmc:block/fusion_corner_crying"
+    },
+    "plating=7": {
+      "model": "pixelsofmc:block/fusion_corner_lead"
+    },
+    "plating=8": {
+      "model": "pixelsofmc:block/fusion_corner_tungsten"
+    },
+    "plating=9": {
+      "model": "pixelsofmc:block/fusion_corner_pyrolytic"
     }
   }
 }

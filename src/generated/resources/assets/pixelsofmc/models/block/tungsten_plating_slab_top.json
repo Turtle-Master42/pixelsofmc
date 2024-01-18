@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "pixelsofmc:block/tungsten_plating_block",
+    "side": "pixelsofmc:block/tungsten_plating_block",
+    "top": "pixelsofmc:block/tungsten_plating_block"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fire_proof_plastic"
+    },
+    "B": {
+      "item": "pixelsofmc:violet_diamond_lens"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_imbued_silver_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:improved_micro_chip"
+    },
+    "E": {
+      "item": "pixelsofmc:silver_wire"
+    },
+    "F": {
+      "item": "pixelsofmc:dragon_sensor"
+    },
+    "G": {
+      "item": "pixelsofmc:advanced_circuit_board_2"
+    }
+  },
+  "pattern": [
+    "EDE",
+    "GAG",
+    "FCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:perfected_circuit_board_2"
+  }
+}

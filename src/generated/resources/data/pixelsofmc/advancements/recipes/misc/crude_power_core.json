@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:redstone_core"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_gold_plating"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:amethyst_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:crude_power_core"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:crude_power_core"
+    ]
+  }
+}

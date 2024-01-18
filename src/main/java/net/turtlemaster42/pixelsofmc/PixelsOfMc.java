@@ -5,6 +5,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -12,7 +13,9 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -23,7 +26,6 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fml.DistExecutor;
@@ -36,17 +38,14 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.turtlemaster42.pixelsofmc.entity.client.RiverShellRenderer;
 import net.turtlemaster42.pixelsofmc.events.EventListener;
-import net.turtlemaster42.pixelsofmc.events.KeyEventListener;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
-import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.BallMillRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -160,6 +159,19 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
 
 		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);
+
+		ItemProperties.register(POMitems.POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+			return energy.getEnergyStored() <= 0 ? 1 : 0;
+		});
+		ItemProperties.register(POMitems.OVERCHARGED_POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+			return energy.getEnergyStored() <= 0 ? 1 : 0;
+		});
+		ItemProperties.register(POMitems.SUPERCHARGED_POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+			return energy.getEnergyStored() <= 0 ? 1 : 0;
+		});
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {

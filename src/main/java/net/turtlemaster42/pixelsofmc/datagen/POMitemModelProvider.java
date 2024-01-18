@@ -52,10 +52,14 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.REDSTONE_IMBUED_SILVER_WIRE);
         simpleItem(POMitems.RED_TUNGSTEN_WIRE);
         simpleItem(POMitems.SUPERCONDUCTIVE_WIRE);
+        simpleItem(POMitems.REDSTONE_CORE);
+        simpleItem(POMitems.CRUDE_POWER_CORE);
         simpleItem(POMitems.POWER_ORB);
-        simpleItem(POMitems.OVERCHARGED_POWER_CELL);
-        simpleItem(POMitems.SUPERCHARGED_POWER_CELL);
+        simpleItem(POMitems.OVERCHARGED_POWER_ORB);
+        simpleItem(POMitems.SUPERCHARGED_POWER_ORB);
+        simpleItem(POMitems.EMPTY_CELL);
         simpleItem(POMitems.MICRO_CHIP);
+        simpleItem(POMitems.IMPROVED_MICRO_CHIP);
         simpleItem(POMitems.REDSTONE_COUNTER);
         simpleItem(POMitems.REDSTONE_TIMER);
         simpleItem(POMitems.RESONANCE_DETECTOR);
@@ -67,22 +71,33 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.DIAMOND_LENS);
         simpleItem(POMitems.VIOLET_DIAMOND_LENS);
         simpleItem(POMitems.RED_DIAMOND_LENS);
+        simpleItem(POMitems.FUSION_LINING);
+        simpleItem(POMitems.FUSION_PLATING);
+        simpleItem(POMitems.EMPTY_FUEL_CELL);
+        simpleItem(POMitems.URANIUM_FUEL_CELL);
+        simpleItem(POMitems.ENRICHED_URANIUM_FUEL_CELL);
 
         simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_1);
         simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1);
         simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_1);
+        simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_2);
+        simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_2);
+        simpleItem(POMitems.PERFECTED_CIRCUIT_BOARD_2);
 
         simpleItem(POMitems.SOUL_COAL);
+        simpleItem(POMitems.PYROLYTIC_CARBON);
         simpleItem(POMitems.RAW_TITANIUM);
         simpleItem(POMitems.TITANIUM_GOLD_INGOT);
         simpleItem(POMitems.TITANIUM_DIBORIDE_INGOT);
         simpleItem(POMitems.SUPERCONDUCTIVE_INGOT);
+        simpleItem(POMitems.REDSTONE_IMBUED_SILVER_INGOT);
         simpleItem(POMitems.RED_TUNGSTEN_INGOT);
 
         simpleItem(POMitems.NETHERITE_NUGGET);
         simpleItem(POMitems.TITANIUM_GOLD_NUGGET);
         simpleItem(POMitems.TITANIUM_DIBORIDE_NUGGET);
         simpleItem(POMitems.SUPERCONDUCTIVE_NUGGET);
+        simpleItem(POMitems.REDSTONE_IMBUED_SILVER_NUGGET);
         simpleItem(POMitems.RED_TUNGSTEN_NUGGET);
 
         simpleItem(POMitems.TITANIUM_PLATING);
@@ -92,6 +107,9 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.TITANIUM_DIBORIDE_PLATING);
         simpleItem(POMitems.OBSIDIAN_PLATING);
         simpleItem(POMitems.CRYING_OBSIDIAN_PLATING);
+        simpleItem(POMitems.LEAD_PLATING);
+        simpleItem(POMitems.TUNGSTEN_PLATING);
+        simpleItem(POMitems.PYROLYTIC_CARBON_SHEET);
 
         simpleItem(POMitems.MERCURY_BUCKET);
         simpleItem(POMitems.SULFURIC_ACID_BUCKET);
@@ -107,7 +125,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.BROMINE_GAS_BUCKET);
 
         simpleItem(POMitems.MOVING_PARTS);
-        simpleItem(POMitems.POWER_CELL);
         simpleItem(POMitems.ADVANCED_LASER);
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW);
         simpleItem(POMitems.TITANIUM_GOLD_CIRCLE_SAW);
@@ -145,6 +162,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.TITANIUM_GOLD_DUST);
         dustItem(POMitems.TITANIUM_OXIDE_DUST);
         dustItem(POMitems.SUPERCONDUCTIVE_DUST);
+        dustItem(POMitems.REDSTONE_IMBUED_SILVER_DUST);
         dustItem(POMitems.RED_TUNGSTEN_DUST);
         dustItem(POMitems.YELLOWCAKE_URANIUM);
         dustItem(POMitems.REFINED_REDSTONE);
@@ -182,6 +200,12 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.TITANIUM_GOLD_PLATING_STAIRS);
         complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB);
         complexBlock(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS);
+        complexBlock(POMblocks.LEAD_PLATING_SLAB);
+        complexBlock(POMblocks.LEAD_PLATING_STAIRS);
+        complexBlock(POMblocks.TUNGSTEN_PLATING_SLAB);
+        complexBlock(POMblocks.TUNGSTEN_PLATING_STAIRS);
+        complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB);
+        complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

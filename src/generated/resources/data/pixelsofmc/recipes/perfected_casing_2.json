@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:advanced_casing_2"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_gold_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:violet_diamond_block"
+    },
+    "D": {
+      "item": "pixelsofmc:advanced_circuit_board_2"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "DAD",
+    "BCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:perfected_casing_2"
+  }
+}

@@ -83,6 +83,42 @@
     "axis=z,plating=6": {
       "model": "pixelsofmc:block/fusion_casing_crying",
       "x": 90
+    },
+    "axis=x,plating=7": {
+      "model": "pixelsofmc:block/fusion_casing_lead",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=7": {
+      "model": "pixelsofmc:block/fusion_casing_lead"
+    },
+    "axis=z,plating=7": {
+      "model": "pixelsofmc:block/fusion_casing_lead",
+      "x": 90
+    },
+    "axis=x,plating=8": {
+      "model": "pixelsofmc:block/fusion_casing_tungsten",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=8": {
+      "model": "pixelsofmc:block/fusion_casing_tungsten"
+    },
+    "axis=z,plating=8": {
+      "model": "pixelsofmc:block/fusion_casing_tungsten",
+      "x": 90
+    },
+    "axis=x,plating=9": {
+      "model": "pixelsofmc:block/fusion_casing_pyrolytic",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,plating=9": {
+      "model": "pixelsofmc:block/fusion_casing_pyrolytic"
+    },
+    "axis=z,plating=9": {
+      "model": "pixelsofmc:block/fusion_casing_pyrolytic",
+      "x": 90
     }
   }
 }

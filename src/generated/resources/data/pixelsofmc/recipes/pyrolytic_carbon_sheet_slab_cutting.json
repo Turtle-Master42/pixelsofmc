@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "pixelsofmc:pyrolytic_carbon_sheet_block"
+  },
+  "result": "pixelsofmc:pyrolytic_carbon_sheet_slab"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/enriched_uranium_fuel_cell"
+  }
+}

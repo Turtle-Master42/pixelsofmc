@@ -1,4 +1,4 @@
-// 1.19.3	2023-08-14T11:46:52.344131	Tags for minecraft:item mod id pixelsofmc
+// 1.19.3	2024-01-13T14:05:06.945463	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
@@ -117,7 +117,6 @@ e086203a3eb334b779e641a03abbbd7bc3687120 data/forge/tags/items/ingots/zinc.json
 df915371d85f3f28519fbfaa27f06ed32f6c1206 data/forge/tags/items/iodine_cube.json
 97b71448b11adb09a015100b6212cd1478e78e35 data/forge/tags/items/krypton_canister.json
 1c5760a1d5eadcbdc6283e78b04f855b63e47216 data/forge/tags/items/neon_canister.json
-36c7176ab2c56cfdf9219fa2f3d3572899d3a663 data/forge/tags/items/nether_stars.json
 8e42f0025f7390f4cd3e2546ad97da8e9965cbb7 data/forge/tags/items/nitrogen_canister.json
 da620b41b82530bc3f9e182ffee75a1eaed00ce0 data/forge/tags/items/nuggets.json
 2ae94496cb1f0df6a185df50a219eb5cc1f8a3fc data/forge/tags/items/nuggets/copper.json

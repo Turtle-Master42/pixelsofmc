@@ -20,6 +20,15 @@
     },
     "plating=6": {
       "model": "pixelsofmc:block/reinforced_glass_crying"
+    },
+    "plating=7": {
+      "model": "pixelsofmc:block/reinforced_glass_lead"
+    },
+    "plating=8": {
+      "model": "pixelsofmc:block/reinforced_glass_tungsten"
+    },
+    "plating=9": {
+      "model": "pixelsofmc:block/reinforced_glass_pyrolytic"
     }
   }
 }

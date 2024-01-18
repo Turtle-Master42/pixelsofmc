@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 250,
+    "FluidName": "pixelsofmc:hydrogen_gas"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:coal_dust"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:pyrolytic_carbon"
+    }
+  }
+}

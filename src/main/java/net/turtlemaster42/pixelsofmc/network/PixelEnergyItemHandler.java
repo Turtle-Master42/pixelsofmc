@@ -17,6 +17,7 @@ public class PixelEnergyItemHandler extends PixelEnergyStorage {
         this.energy = stack.hasTag() && Objects.requireNonNull(stack.getTag()).contains("Energy") ? stack.getTag().getInt("Energy") : 0;
     }
 
+
     @NotNull
     public ItemStack getStack()
     {

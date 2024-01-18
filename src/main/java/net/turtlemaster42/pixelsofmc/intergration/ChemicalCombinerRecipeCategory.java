@@ -86,11 +86,11 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
             int x = 1 + (9 * p);
             int y = 21 + (18 * p);
-            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(recipe.getInputs().get(p).ingredient());
+            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 56).addIngredients(recipe.getOutput().ingredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 56).addIngredients(Ingredient.of(recipe.getResultItem()));
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
     }
 }

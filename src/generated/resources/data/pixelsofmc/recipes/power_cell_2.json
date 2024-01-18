@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:empty_cell"
+    },
+    {
+      "item": "pixelsofmc:power_orb"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:power_cell"
+  }
+}

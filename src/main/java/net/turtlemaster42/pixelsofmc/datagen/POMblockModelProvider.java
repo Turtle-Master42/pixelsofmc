@@ -37,9 +37,13 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.TITANIUM_GOLD_BLOCK);
         blockWithItem(POMblocks.ACANTHITE);
 
+        blockWithItem(POMblocks.VIOLET_DIAMOND_BLOCK);
         blockWithItem(POMblocks.SIMPLE_CASING_1);
         blockWithItem(POMblocks.ADVANCED_CASING_1);
         blockWithItem(POMblocks.PERFECTED_CASING_1);
+        blockWithItem(POMblocks.SIMPLE_CASING_2);
+        blockWithItem(POMblocks.ADVANCED_CASING_2);
+        blockWithItem(POMblocks.PERFECTED_CASING_2);
         blockWithItem(POMblocks.STRONG_CASING);
         blockWithItem(POMblocks.STRENGTHENED_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
@@ -58,6 +62,17 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK);
         slabBlock((SlabBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
         stairsBlock((StairBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
+        blockWithItem(POMblocks.LEAD_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.LEAD_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"));
+        stairsBlock((StairBlock) POMblocks.LEAD_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"));
+        blockWithItem(POMblocks.TUNGSTEN_PLATING_BLOCK);
+        slabBlock((SlabBlock) POMblocks.TUNGSTEN_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TUNGSTEN_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"));
+        blockWithItem(POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK);
+        slabBlock((SlabBlock) POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"));
+        stairsBlock((StairBlock) POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"));
+
+
 
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());

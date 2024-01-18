@@ -94,6 +94,10 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
         return recipeItems;
     }
 
+    public ItemStack getInput(int input) {
+        return recipeItems.get(input).getItems()[0];
+    }
+
     public ChanceIngredient getOutput() {
         return output;
     }

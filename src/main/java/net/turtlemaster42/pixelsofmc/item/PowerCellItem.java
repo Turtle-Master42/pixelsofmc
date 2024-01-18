@@ -5,7 +5,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +17,6 @@ import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class PowerCellItem extends Item  {
@@ -49,7 +47,7 @@ public class PowerCellItem extends Item  {
     @Override
     public boolean isBarVisible(ItemStack pStack) {
         IEnergyStorage energy = pStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-        return energy.getEnergyStored() != energy.getMaxEnergyStored();
+        return energy.getEnergyStored() < energy.getMaxEnergyStored() && energy.getEnergyStored() > 0;
     }
 
     @Override
@@ -64,7 +62,6 @@ public class PowerCellItem extends Item  {
         }
         return super.use(pLevel, pPlayer, pUsedHand);
     }
-
 
 
     @Override

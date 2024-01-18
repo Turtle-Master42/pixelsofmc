@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 1500,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:redstone_imbued_silver_dust"
+    }
+  },
+  "max_heat": 2500,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:redstone_imbued_silver_ingot"
+    }
+  }
+}

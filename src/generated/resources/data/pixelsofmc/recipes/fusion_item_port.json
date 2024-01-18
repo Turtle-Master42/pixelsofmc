@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "B": {
+      "item": "minecraft:hopper"
+    },
+    "C": {
+      "item": "pixelsofmc:advanced_circuit_board_2"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:fusion_item_port"
+  }
+}

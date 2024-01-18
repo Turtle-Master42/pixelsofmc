@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:simple_circuit_board_2"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_core"
+    },
+    "D": {
+      "item": "pixelsofmc:tungsten_spool"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ADA",
+    "ACA"
+  ],
+  "result": {
+    "item": "pixelsofmc:fusion_casing"
+  }
+}

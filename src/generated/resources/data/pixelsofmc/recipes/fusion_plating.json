@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:titanium_diboride_plating"
+    },
+    {
+      "item": "pixelsofmc:lead_plating"
+    },
+    {
+      "item": "pixelsofmc:fusion_lining"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:fusion_plating"
+  }
+}

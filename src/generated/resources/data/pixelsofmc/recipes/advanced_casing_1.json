@@ -13,12 +13,15 @@
     },
     "D": {
       "tag": "forge:ingots/gold"
+    },
+    "E": {
+      "item": "pixelsofmc:power_cell"
     }
   },
   "pattern": [
     "BCB",
     "DAD",
-    "BCB"
+    "BEB"
   ],
   "result": {
     "item": "pixelsofmc:advanced_casing_1"

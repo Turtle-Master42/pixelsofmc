@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/tungsten"
+      }
+    },
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "pixelsofmc:refined_redstone"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 3,
+    "ingredient": {
+      "item": "pixelsofmc:red_tungsten_dust"
+    }
+  }
+}

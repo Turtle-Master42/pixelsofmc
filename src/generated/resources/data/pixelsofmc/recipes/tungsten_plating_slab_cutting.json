@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "pixelsofmc:tungsten_plating_block"
+  },
+  "result": "pixelsofmc:tungsten_plating_slab"
+}

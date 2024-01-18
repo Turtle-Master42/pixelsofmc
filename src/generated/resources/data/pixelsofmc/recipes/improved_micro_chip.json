@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_nugget"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:fire_proof_compound"
+    },
+    "D": {
+      "tag": "forge:nuggets/silver"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "BCB",
+    "DDD"
+  ],
+  "result": {
+    "item": "pixelsofmc:improved_micro_chip"
+  }
+}

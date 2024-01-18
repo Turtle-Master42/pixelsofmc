@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:redstone_imbued_silver_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:redstone_imbued_silver_nugget"
+  }
+}

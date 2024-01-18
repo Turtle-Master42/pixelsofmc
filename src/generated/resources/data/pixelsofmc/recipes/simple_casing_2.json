@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_gold_ingot"
+    },
+    "B": {
+      "item": "pixelsofmc:simple_casing_1"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "result": {
+    "item": "pixelsofmc:simple_casing_2"
+  }
+}

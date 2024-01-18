@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:simple_circuit_board_2"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_core"
+    },
+    "D": {
+      "item": "pixelsofmc:red_tungsten_spool"
+    },
+    "E": {
+      "item": "pixelsofmc:refined_redstone"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "EDE",
+    "ACA"
+  ],
+  "result": {
+    "item": "pixelsofmc:fusion_corner"
+  }
+}

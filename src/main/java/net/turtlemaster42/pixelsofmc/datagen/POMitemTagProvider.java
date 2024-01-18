@@ -69,7 +69,6 @@ public class POMitemTagProvider extends ItemTagsProvider {
             }
         }
 
-        tag(Tags.Items.NETHER_STARS).add(POMitems.POWER_ORB.get());
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());
         tag(Tags.Items.GLASS).add(POMblocks.REINFORCED_GLASS.get().asItem());
         tag(ItemTags.PIGLIN_LOVED)

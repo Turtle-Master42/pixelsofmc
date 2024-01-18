@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "pixelsofmc:block/pyrolytic_carbon_sheet_block",
+    "side": "pixelsofmc:block/pyrolytic_carbon_sheet_block",
+    "top": "pixelsofmc:block/pyrolytic_carbon_sheet_block"
+  }
+}

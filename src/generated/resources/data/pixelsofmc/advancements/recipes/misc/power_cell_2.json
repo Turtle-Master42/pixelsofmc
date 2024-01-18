@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_items": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:power_orb"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:empty_cell"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:power_cell_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_items",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:power_cell_2"
+    ]
+  }
+}

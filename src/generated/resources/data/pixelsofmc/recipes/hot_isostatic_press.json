@@ -6,7 +6,7 @@
       "item": "minecraft:piston"
     },
     "B": {
-      "tag": "forge:dusts/redstone"
+      "item": "pixelsofmc:perfected_circuit_board_1"
     },
     "C": {
       "item": "pixelsofmc:titanium_gold_plating"

@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 250,
+  "heat": 2500,
   "input": {
     "count": 4,
     "ingredient": {
       "item": "pixelsofmc:crying_obsidian_dust"
     }
   },
-  "max_heat": 700,
+  "max_heat": 5000,
   "mold": {
     "count": 1,
     "ingredient": {

@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone_block"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_plating"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:redstone_core"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:redstone_core"
+    ]
+  }
+}

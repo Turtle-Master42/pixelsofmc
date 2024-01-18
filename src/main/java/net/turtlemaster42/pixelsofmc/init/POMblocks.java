@@ -89,6 +89,15 @@ public class POMblocks {
     public static final RegistryObject<Block> PERFECTED_CASING_1 = registerBlock("perfected_casing_1",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.CLAY)
                     .strength(6f, 12f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SIMPLE_CASING_2 = registerBlock("simple_casing_2",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_YELLOW)
+                    .strength(10f, 24f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> ADVANCED_CASING_2 = registerBlock("advanced_casing_2",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_YELLOW)
+                    .strength(10f, 24f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PERFECTED_CASING_2 = registerBlock("perfected_casing_2",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_YELLOW)
+                    .strength(10f, 24f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> POWER_CELL_ARRAY = registerBlock("power_cell_array",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(5.0F, 25.0F)));
@@ -113,11 +122,32 @@ public class POMblocks {
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(25.0F, 1200.0F)));
 
     public static final RegistryObject<Block> TITANIUM_GOLD_PLATING_BLOCK = registerBlock("titanium_gold_plating_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.GOLD).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_YELLOW).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TITANIUM_GOLD_PLATING_STAIRS = registerBlock("titanium_gold_plating_stairs",
-            () -> new StairBlock(() -> TITANIUM_GOLD_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.GOLD).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new StairBlock(() -> TITANIUM_GOLD_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_YELLOW).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TITANIUM_GOLD_PLATING_SLAB = registerBlock("titanium_gold_plating_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.GOLD).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_YELLOW).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> LEAD_PLATING_BLOCK = registerBlock("lead_plating_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LEAD_PLATING_STAIRS = registerBlock("lead_plating_stairs",
+            () -> new StairBlock(() -> LEAD_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LEAD_PLATING_SLAB = registerBlock("lead_plating_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> TUNGSTEN_PLATING_BLOCK = registerBlock("tungsten_plating_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_CYAN).strength(16.0F, 75F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> TUNGSTEN_PLATING_STAIRS = registerBlock("tungsten_plating_stairs",
+            () -> new StairBlock(() -> TUNGSTEN_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_CYAN).strength(16.0F, 75F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> TUNGSTEN_PLATING_SLAB = registerBlock("tungsten_plating_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_CYAN).strength(16.0F, 75F).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> PYROLYTIC_CARBON_SHEET_BLOCK = registerBlock("pyrolytic_carbon_sheet_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(2.0F, 8F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PYROLYTIC_CARBON_SHEET_STAIRS = registerBlock("pyrolytic_carbon_sheet_stairs",
+            () -> new StairBlock(() -> PYROLYTIC_CARBON_SHEET_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(2.0F, 8F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PYROLYTIC_CARBON_SHEET_SLAB = registerBlock("pyrolytic_carbon_sheet_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(2.0F, 8F).requiresCorrectToolForDrops()));
 
 
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_PLATING_BLOCK = registerBlock("titanium_diboride_plating_block",
@@ -150,12 +180,16 @@ public class POMblocks {
                     .strength(4f, 6.0F).requiresCorrectToolForDrops()) );
 
     public static final RegistryObject<Block> TITANIUM_GOLD_BLOCK = registerBlock("titanium_gold_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.GOLD).sound(SoundType.NETHERITE_BLOCK)
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_YELLOW).sound(SoundType.NETHERITE_BLOCK)
                     .strength(12f, 50f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_BLOCK = registerBlock("titanium_diboride_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_GRAY).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
+
+    public static final RegistryObject<Block> VIOLET_DIAMOND_BLOCK = registerBlock("violet_diamond_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_PURPLE)
+                    .strength(7f, 10f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
     public static final RegistryObject<RotatedPillarBlock> COPPER_SPOOL = registerBlock("copper_spool",
@@ -207,12 +241,11 @@ public class POMblocks {
     public static final RegistryObject<Block> STRONG_CASING = registerBlock("strong_casing",
             () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_BLACK).sound(SoundType.NETHERITE_BLOCK)
                     .strength(25f, 1200f).requiresCorrectToolForDrops()), true);
-
     public static final RegistryObject<Block> STRENGTHENED_CASING = registerBlock("strengthened_casing",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.GOLD).sound(SoundType.NETHERITE_BLOCK)
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.TERRACOTTA_YELLOW).sound(SoundType.NETHERITE_BLOCK)
                     .strength(27f, 1200f).requiresCorrectToolForDrops()), true);
     public static final RegistryObject<Block> REINFORCED_CASING = registerBlock("reinforced_casing",
-            () -> new AbstractFusionCasing(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_BLACK).sound(SoundType.NETHERITE_BLOCK)
+            () -> new AbstractFusionCasing(BlockBehaviour.Properties.of(Material.HEAVY_METAL, MaterialColor.COLOR_GRAY).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
     public static final RegistryObject<AbstractFusionCasing> REINFORCED_GLASS = registerBlock("reinforced_glass",
             () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(15f)));

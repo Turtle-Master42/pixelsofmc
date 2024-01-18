@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:crude_power_core"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:bio_compound"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:power_orb_crude"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:power_orb_crude"
+    ]
+  }
+}

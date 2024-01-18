@@ -1,11 +1,11 @@
 {
   "type": "pixelsofmc:chemical_separating",
   "fluid_input": {
-    "Amount": 333,
+    "Amount": 500,
     "FluidName": "minecraft:water"
   },
   "fluid_output": {
-    "Amount": 333,
+    "Amount": 500,
     "FluidName": "pixelsofmc:hydrogen_gas"
   },
   "input": {

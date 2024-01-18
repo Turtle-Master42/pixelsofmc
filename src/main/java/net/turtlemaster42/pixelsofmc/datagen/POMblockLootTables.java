@@ -45,6 +45,9 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());
         this.dropSelf(POMblocks.PERFECTED_CASING_1.get());
+        this.dropSelf(POMblocks.SIMPLE_CASING_2.get());
+        this.dropSelf(POMblocks.ADVANCED_CASING_2.get());
+        this.dropSelf(POMblocks.PERFECTED_CASING_2.get());
         this.dropSelf(POMblocks.STRONG_CASING.get());
         this.dropSelf(POMblocks.STRENGTHENED_CASING.get());
         this.dropSelf(POMblocks.REINFORCED_CASING.get());
@@ -55,6 +58,7 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL.get());
         this.dropSelf(POMblocks.RED_TUNGSTEN_SPOOL.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
+        this.dropSelf(POMblocks.VIOLET_DIAMOND_BLOCK.get());
 
         this.dropSelf(POMblocks.POWER_CELL_ARRAY.get());
         this.dropSelf(POMblocks.OVERCHARGED_POWER_CELL_ARRAY.get());
@@ -81,6 +85,15 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.LEAD_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.LEAD_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.LEAD_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.TUNGSTEN_PLATING_BLOCK.get());
+        this.dropSelf(POMblocks.TUNGSTEN_PLATING_SLAB.get());
+        this.dropSelf(POMblocks.TUNGSTEN_PLATING_STAIRS.get());
+        this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK.get());
+        this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get());
+        this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get());
 
         this.dropOther(POMblocks.MERCURY_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.SULFURIC_ACID_BLOCK.get(), Items.AIR);

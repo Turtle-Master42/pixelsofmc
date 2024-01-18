@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/power_cell"
+  },
+  "overrides": [
+    { "predicate": { "pixelsofmc:empty": 0 }, "model": "pixelsofmc:item/power_cell_0" },
+    { "predicate": { "pixelsofmc:empty": 1 }, "model": "pixelsofmc:item/power_cell_1" }
+  ]
+}

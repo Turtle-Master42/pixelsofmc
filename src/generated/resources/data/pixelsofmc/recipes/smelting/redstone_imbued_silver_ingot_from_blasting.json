@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "pixelsofmc:redstone_imbued_silver_dust"
+  },
+  "result": "pixelsofmc:redstone_imbued_silver_ingot"
+}

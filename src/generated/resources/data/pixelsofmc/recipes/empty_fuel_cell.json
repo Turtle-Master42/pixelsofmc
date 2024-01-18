@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:reinforced_glass"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_diboride_plating"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "A A",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:empty_fuel_cell"
+  }
+}

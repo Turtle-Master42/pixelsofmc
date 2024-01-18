@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:pyrolytic_carbon_sheet_block"
+    }
+  },
+  "pattern": [
+    "A  ",
+    "AA ",
+    "AAA"
+  ],
+  "result": {
+    "count": 4,
+    "item": "pixelsofmc:pyrolytic_carbon_sheet_stairs"
+  }
+}

@@ -76,23 +76,23 @@ public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
 
         front_foot_left = new POMAdvancedModelBox(this, "front_foot_left");
         front_leg_left.addChild(front_foot_left);
-        front_foot_left.setPOMTextureOffset(0, 23).addPOMBox(-3F, 0.05f, 6.5F, 3F, 0F, 3F, 0.0F, false);
+        front_foot_left.setPOMTextureOffset(0, 23).addPOMBox(-3F, 0.05f, 6.5F, 3F, 0.01F, 3F, 0.0F, false);
 
         front_foot_right = new POMAdvancedModelBox(this, "front_foot_right");
         front_leg_right.addChild(front_foot_right);
-        front_foot_right.setPOMTextureOffset(12, 23).addPOMBox(6F, 0.05f, 6.5F, 3F, 0F, 3F, 0.0F, false);
+        front_foot_right.setPOMTextureOffset(12, 23).addPOMBox(6F, 0.05f, 6.5F, 3F, 0.01F, 3F, 0.0F, false);
 
         back_foot_left = new POMAdvancedModelBox(this, "back_foot_left");
         back_leg_left.addChild(back_foot_left);
-        back_foot_left.setPOMTextureOffset(24, 23).addPOMBox(-3F, 0.05f, -0.5F, 3F, 0F, 3F, 0.0F, false);
+        back_foot_left.setPOMTextureOffset(24, 23).addPOMBox(-3F, 0.05f, -0.5F, 3F, 0.01F, 3F, 0.0F, false);
 
         back_foot_right = new POMAdvancedModelBox(this, "back_foot_right");
         back_leg_right.addChild(back_foot_right);
-        back_foot_right.setPOMTextureOffset(36, 23).addPOMBox(6F, 0.05f, -0.5F, 3F, 0F, 3F, 0.0F, false);
+        back_foot_right.setPOMTextureOffset(36, 23).addPOMBox(6F, 0.05f, -0.5F, 3F, 0.01F, 3F, 0.0F, false);
 
         tail_pivot = new POMAdvancedModelBox(this, "tail_pivot");
         tail_pivot.setRotationPoint(-0.5F, -3F, 4.0F);
-        tail_pivot.rotateAngleX = -20;
+        tail_pivot.rotateAngleX = -45;
         shell_retractable.addChild(tail_pivot);
 
         tail = new POMAdvancedModelBox(this, "tail");

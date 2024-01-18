@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "pixelsofmc:lead_plating_block"
+  },
+  "result": "pixelsofmc:lead_plating_stairs"
+}

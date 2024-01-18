@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fire_proof_plastic"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "C": {
+      "item": "pixelsofmc:silver_wire"
+    },
+    "D": {
+      "item": "pixelsofmc:improved_micro_chip"
+    },
+    "E": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "pattern": [
+    "EDE",
+    "AAA",
+    "BCB"
+  ],
+  "result": {
+    "item": "pixelsofmc:simple_circuit_board_2"
+  }
+}

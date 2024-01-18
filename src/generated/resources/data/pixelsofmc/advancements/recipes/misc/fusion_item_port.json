@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:advanced_circuit_board_2"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:fusion_plating"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:hopper"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:fusion_item_port"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:fusion_item_port"
+    ]
+  }
+}

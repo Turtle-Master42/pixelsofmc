@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_items": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:silver_wire",
+              "pixelsofmc:fire_proof_plastic",
+              "pixelsofmc:improved_micro_chip"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:simple_circuit_board_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_items",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:simple_circuit_board_2"
+    ]
+  }
+}

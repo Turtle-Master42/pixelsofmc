@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pixelsofmc:block/pyrolytic_carbon_sheet_slab"
+    },
+    "type=double": {
+      "model": "pixelsofmc:block/pyrolytic_carbon_sheet_block"
+    },
+    "type=top": {
+      "model": "pixelsofmc:block/pyrolytic_carbon_sheet_slab_top"
+    }
+  }
+}

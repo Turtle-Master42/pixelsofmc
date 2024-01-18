@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:simple_casing_2"
+    },
+    "B": {
+      "tag": "forge:ingots/silver"
+    },
+    "C": {
+      "item": "pixelsofmc:simple_circuit_board_2"
+    },
+    "D": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "E": {
+      "item": "pixelsofmc:power_cell"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "DAD",
+    "BEB"
+  ],
+  "result": {
+    "item": "pixelsofmc:advanced_casing_2"
+  }
+}

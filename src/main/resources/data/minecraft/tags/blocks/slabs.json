@@ -3,6 +3,9 @@
     "pixelsofmc:titanium_plating_slab",
     "pixelsofmc:netherite_plating_slab",
     "pixelsofmc:titanium_diboride_plating_slab",
-    "pixelsofmc:titanium_gold_plating_slab"
+    "pixelsofmc:titanium_gold_plating_slab",
+    "pixelsofmc:lead_plating_slab",
+    "pixelsofmc:tungsten_plating_slab",
+    "pixelsofmc:pyrolytic_carbon_sheet_slab"
   ]
 }

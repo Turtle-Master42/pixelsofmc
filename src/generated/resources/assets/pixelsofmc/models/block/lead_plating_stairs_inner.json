@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "pixelsofmc:block/lead_plating_block",
+    "side": "pixelsofmc:block/lead_plating_block",
+    "top": "pixelsofmc:block/lead_plating_block"
+  }
+}

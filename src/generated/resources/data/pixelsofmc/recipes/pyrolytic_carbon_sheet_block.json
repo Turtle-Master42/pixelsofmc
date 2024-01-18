@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:pyrolytic_carbon_sheet"
+    }
+  },
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "result": {
+    "count": 2,
+    "item": "pixelsofmc:pyrolytic_carbon_sheet_block"
+  }
+}

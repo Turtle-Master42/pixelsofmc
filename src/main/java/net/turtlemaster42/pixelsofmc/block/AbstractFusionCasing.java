@@ -20,7 +20,7 @@ import net.turtlemaster42.pixelsofmc.init.POMitems;
 import org.jetbrains.annotations.NotNull;
 
 public class AbstractFusionCasing extends AbstractMultiBlock {
-    public static final IntegerProperty PLATING = IntegerProperty.create("plating", 0, 6);
+    public static final IntegerProperty PLATING = IntegerProperty.create("plating", 0, 9);
     public AbstractFusionCasing(Properties pProperties) {
         super(pProperties);
     }
@@ -61,6 +61,18 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
                 plate = 6;
                 if (!pPlayer.isCreative())
                     pPlayer.getMainHandItem().shrink(1);
+            } else if (mainHand == POMitems.LEAD_PLATING.get()) {
+                plate = 7;
+                if (!pPlayer.isCreative())
+                    pPlayer.getMainHandItem().shrink(1);
+            } else if (mainHand == POMitems.TUNGSTEN_PLATING.get()) {
+                plate = 8;
+                if (!pPlayer.isCreative())
+                    pPlayer.getMainHandItem().shrink(1);
+            } else if (mainHand == POMitems.PYROLYTIC_CARBON_SHEET.get()) {
+                plate = 9;
+                if (!pPlayer.isCreative())
+                    pPlayer.getMainHandItem().shrink(1);
             } else if (offHand == POMitems.TITANIUM_PLATING.get()) {
                 plate = 1;
                 if (!pPlayer.isCreative())
@@ -83,6 +95,18 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
                     pPlayer.getOffhandItem().shrink(1);
             } else if (offHand == POMitems.CRYING_OBSIDIAN_PLATING.get()) {
                 plate = 6;
+                if (!pPlayer.isCreative())
+                    pPlayer.getOffhandItem().shrink(1);
+            } else if (offHand == POMitems.LEAD_PLATING.get()) {
+                plate = 7;
+                if (!pPlayer.isCreative())
+                    pPlayer.getOffhandItem().shrink(1);
+            } else if (offHand == POMitems.TUNGSTEN_PLATING.get()) {
+                plate = 8;
+                if (!pPlayer.isCreative())
+                    pPlayer.getOffhandItem().shrink(1);
+            } else if (offHand == POMitems.PYROLYTIC_CARBON_SHEET.get()) {
+                plate = 9;
                 if (!pPlayer.isCreative())
                     pPlayer.getOffhandItem().shrink(1);
             }
@@ -108,6 +132,12 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
                 plateItem = POMitems.OBSIDIAN_PLATING.get();
             } else if (plating == 6) {
                 plateItem = POMitems.CRYING_OBSIDIAN_PLATING.get();
+            } else if (plating == 7) {
+                plateItem = POMitems.LEAD_PLATING.get();
+            } else if (plating == 8) {
+                plateItem = POMitems.TUNGSTEN_PLATING.get();
+            } else if (plating == 9) {
+                plateItem = POMitems.PYROLYTIC_CARBON_SHEET.get();
             }
             popResourceFromFace(pLevel, pPos, pHit.getDirection(), new ItemStack(plateItem));
             pLevel.playLocalSound(pPos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.3f, 1.8f, false);
@@ -136,6 +166,12 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
             popResource(pLevel, pPos, new ItemStack(POMitems.OBSIDIAN_PLATING.get()));
         } else if (pState.getValue(PLATING) == 6) {
             popResource(pLevel, pPos, new ItemStack(POMitems.CRYING_OBSIDIAN_PLATING.get()));
+        } else if (pState.getValue(PLATING) == 7) {
+            popResource(pLevel, pPos, new ItemStack(POMitems.LEAD_PLATING.get()));
+        } else if (pState.getValue(PLATING) == 8) {
+            popResource(pLevel, pPos, new ItemStack(POMitems.TUNGSTEN_PLATING.get()));
+        } else if (pState.getValue(PLATING) == 9) {
+            popResource(pLevel, pPos, new ItemStack(POMitems.PYROLYTIC_CARBON_SHEET.get()));
         }
     }
 }
