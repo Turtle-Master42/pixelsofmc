@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 114,
+      "G": 184,
+      "R": 235
+    },
+    {
+      "B": 41,
+      "G": 137,
+      "R": 186
+    },
+    {
+      "B": 22,
+      "G": 74,
+      "R": 100
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cadmium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.cadmium"
+}

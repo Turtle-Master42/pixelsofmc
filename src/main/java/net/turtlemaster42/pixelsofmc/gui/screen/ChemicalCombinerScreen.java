@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -13,10 +12,8 @@ import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
 
 public class ChemicalCombinerScreen extends AbstractPOMscreen<ChemicalCombinerGuiMenu> {
@@ -71,14 +68,6 @@ public class ChemicalCombinerScreen extends AbstractPOMscreen<ChemicalCombinerGu
         }
     }
 
-    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
-            renderTooltip(pPoseStack, tooltip,
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
-
     @Override
     protected void renderBg(@NotNull PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -110,10 +99,6 @@ public class ChemicalCombinerScreen extends AbstractPOMscreen<ChemicalCombinerGu
 
     private void assignFluidRenderer() {
         renderer = new FluidTankRenderer(16000, true, 25, 11);
-    }
-
-    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }
 

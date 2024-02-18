@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 219,
+      "G": 212,
+      "R": 198
+    },
+    {
+      "B": 174,
+      "G": 164,
+      "R": 141
+    },
+    {
+      "B": 93,
+      "G": 81,
+      "R": 64
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:silver_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.silver"
+}

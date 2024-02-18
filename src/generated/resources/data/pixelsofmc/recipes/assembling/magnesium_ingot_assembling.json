@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 223,
+      "G": 228,
+      "R": 231
+    },
+    {
+      "B": 171,
+      "G": 176,
+      "R": 179
+    },
+    {
+      "B": 106,
+      "G": 110,
+      "R": 114
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:magnesium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.magnesium"
+}

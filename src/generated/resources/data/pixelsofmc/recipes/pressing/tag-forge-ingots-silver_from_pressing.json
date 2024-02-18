@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 1235,
+  "heat": 1250,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/silver"
     }
   },
-  "max_heat": 2435,
+  "max_heat": 2450,
   "mold": {
     "count": 1,
     "ingredient": {

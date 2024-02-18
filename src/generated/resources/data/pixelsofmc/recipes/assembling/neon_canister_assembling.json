@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 115,
+      "G": 141,
+      "R": 255
+    },
+    {
+      "B": 68,
+      "G": 85,
+      "R": 183
+    },
+    {
+      "B": 37,
+      "G": 47,
+      "R": 109
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neon_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.neon"
+}

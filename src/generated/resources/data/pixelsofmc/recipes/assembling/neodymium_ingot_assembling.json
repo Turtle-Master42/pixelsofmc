@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 196,
+      "G": 213,
+      "R": 150
+    },
+    {
+      "B": 138,
+      "G": 147,
+      "R": 78
+    },
+    {
+      "B": 77,
+      "G": 75,
+      "R": 40
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neodymium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.neodymium"
+}

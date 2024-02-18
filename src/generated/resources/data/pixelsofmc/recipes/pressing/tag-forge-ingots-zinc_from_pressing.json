@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 693,
+  "heat": 700,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/zinc"
     }
   },
-  "max_heat": 1180,
+  "max_heat": 1200,
   "mold": {
     "count": 1,
     "ingredient": {

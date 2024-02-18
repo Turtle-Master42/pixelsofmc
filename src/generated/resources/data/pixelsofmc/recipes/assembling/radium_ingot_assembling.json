@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 116,
+      "G": 207,
+      "R": 113
+    },
+    {
+      "B": 70,
+      "G": 128,
+      "R": 67
+    },
+    {
+      "B": 38,
+      "G": 74,
+      "R": 38
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:radium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.radium"
+}

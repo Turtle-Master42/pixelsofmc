@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 81,
+      "G": 130,
+      "R": 255
+    },
+    {
+      "B": 30,
+      "G": 69,
+      "R": 183
+    },
+    {
+      "B": 20,
+      "G": 31,
+      "R": 93
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:rubidium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.rubidium"
+}

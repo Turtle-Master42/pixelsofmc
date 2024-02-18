@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 174,
+      "G": 159,
+      "R": 166
+    },
+    {
+      "B": 138,
+      "G": 116,
+      "R": 126
+    },
+    {
+      "B": 78,
+      "G": 65,
+      "R": 67
+    }
+  ],
+  "inputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:titanium_nugget"
+    }
+  },
+  "structure": "element.pixelsofmc.titanium"
+}

@@ -63,6 +63,13 @@ public class POMAdvancedModelBox extends AdvancedModelBox {
         return this;
     }
 
+    public void setPOMRotationPoint(float rotationPointXIn, float rotationPointYIn, float rotationPointZIn) {
+        this.rotationPointX = -rotationPointXIn;
+        this.rotationPointY = -rotationPointYIn;
+        this.rotationPointZ = -rotationPointZIn;
+    }
+
+
     public void setPOMPos(float xIn, float yIn, float zIn) {
         super.setPos(-xIn, -yIn, -zIn);
     }

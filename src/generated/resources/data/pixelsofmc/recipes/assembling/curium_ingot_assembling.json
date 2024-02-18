@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 73,
+      "G": 99,
+      "R": 206
+    },
+    {
+      "B": 36,
+      "G": 46,
+      "R": 144
+    },
+    {
+      "B": 24,
+      "G": 31,
+      "R": 88
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:curium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.curium"
+}

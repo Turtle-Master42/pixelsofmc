@@ -1,17 +1,16 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
-import net.turtlemaster42.pixelsofmc.gui.renderer.MachineProgressArea;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
+import net.turtlemaster42.pixelsofmc.gui.renderer.MachineProgressArea;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -30,7 +29,6 @@ public class PixelSplitterGuiScreen extends AbstractPOMscreen<PixelSplitterGuiMe
     protected void init() {
         super.init();
         assignEnergyInfoArea();
-        assignProgressInfoArea();
     }
 
     @Override
@@ -38,22 +36,16 @@ public class PixelSplitterGuiScreen extends AbstractPOMscreen<PixelSplitterGuiMe
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752);
+        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 4, 4210752);
 
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
-        renderProgressArea(pPoseStack, pMouseX, pMouseY, x, y);
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 54, 43, 113, 54, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
+        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 64, 35, 91, 42, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
     }
 
     private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
             renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
-    private void renderProgressArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 0, 0, 10, 10)) {
-            renderTooltip(pPoseStack, progressArea.getTooltips(),
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
@@ -87,14 +79,5 @@ public class PixelSplitterGuiScreen extends AbstractPOMscreen<PixelSplitterGuiMe
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 22, menu.blockEntity.energyStorage, 10, 44);
-    }
-
-    private void assignProgressInfoArea() {
-        progressArea = new MachineProgressArea(((width - imageWidth) / 2),
-                ((height - imageHeight) / 2), menu.blockEntity.getProgress(), menu.blockEntity.getMaxProgress(), 10, 44);
-    }
-
-    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 107,
+      "G": 227,
+      "R": 183
+    },
+    {
+      "B": 43,
+      "G": 165,
+      "R": 102
+    },
+    {
+      "B": 24,
+      "G": 86,
+      "R": 47
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:praseodymium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.praseodymium"
+}

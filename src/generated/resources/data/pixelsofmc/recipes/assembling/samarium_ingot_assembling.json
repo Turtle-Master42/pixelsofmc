@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 120,
+      "G": 150,
+      "R": 221
+    },
+    {
+      "B": 73,
+      "G": 100,
+      "R": 152
+    },
+    {
+      "B": 39,
+      "G": 52,
+      "R": 79
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:samarium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.samarium"
+}

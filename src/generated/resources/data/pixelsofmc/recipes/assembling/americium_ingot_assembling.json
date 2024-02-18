@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 112,
+      "G": 247,
+      "R": 246
+    },
+    {
+      "B": 69,
+      "G": 164,
+      "R": 168
+    },
+    {
+      "B": 38,
+      "G": 93,
+      "R": 105
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:americium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.americium"
+}

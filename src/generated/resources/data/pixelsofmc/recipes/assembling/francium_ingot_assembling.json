@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 75,
+      "G": 109,
+      "R": 173
+    },
+    {
+      "B": 37,
+      "G": 60,
+      "R": 128
+    },
+    {
+      "B": 22,
+      "G": 36,
+      "R": 75
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:francium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.francium"
+}

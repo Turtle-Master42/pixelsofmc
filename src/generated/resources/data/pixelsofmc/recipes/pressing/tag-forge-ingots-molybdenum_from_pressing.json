@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 2896,
+  "heat": 2900,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/molybdenum"
     }
   },
-  "max_heat": 4912,
+  "max_heat": 4900,
   "mold": {
     "count": 1,
     "ingredient": {

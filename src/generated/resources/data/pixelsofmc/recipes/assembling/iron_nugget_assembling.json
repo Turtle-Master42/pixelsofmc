@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 216,
+      "G": 216,
+      "R": 216
+    },
+    {
+      "B": 130,
+      "G": 130,
+      "R": 130
+    },
+    {
+      "B": 94,
+      "G": 94,
+      "R": 94
+    }
+  ],
+  "inputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "structure": "element.pixelsofmc.iron"
+}

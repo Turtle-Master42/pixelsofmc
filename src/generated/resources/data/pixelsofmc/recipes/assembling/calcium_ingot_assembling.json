@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 210,
+      "G": 219,
+      "R": 225
+    },
+    {
+      "B": 165,
+      "G": 190,
+      "R": 203
+    },
+    {
+      "B": 73,
+      "G": 102,
+      "R": 116
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:calcium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.calcium"
+}

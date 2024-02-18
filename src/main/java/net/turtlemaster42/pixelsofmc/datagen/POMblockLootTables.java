@@ -33,6 +33,7 @@ public class POMblockLootTables extends BlockLootSubProvider {
         this.dropSelf(POMblocks.ACANTHITE.get());
         this.dropSelf(POMblocks.HOT_ISOSTATIC_PRESS.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
+        this.dropSelf(POMblocks.PIXEL_ASSEMBLER.get());
         this.dropSelf(POMblocks.BALL_MILL.get());
         this.dropSelf(POMblocks.GRINDER.get());
         this.dropSelf(POMblocks.CHEMICAL_SEPARATOR.get());

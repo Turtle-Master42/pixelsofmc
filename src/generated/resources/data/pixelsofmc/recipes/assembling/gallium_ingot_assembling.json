@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 174,
+      "G": 149,
+      "R": 148
+    },
+    {
+      "B": 126,
+      "G": 93,
+      "R": 89
+    },
+    {
+      "B": 66,
+      "G": 47,
+      "R": 48
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gallium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.gallium"
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 156,
+      "G": 189,
+      "R": 165
+    },
+    {
+      "B": 87,
+      "G": 101,
+      "R": 92
+    },
+    {
+      "B": 49,
+      "G": 56,
+      "R": 50
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lithium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.lithium"
+}

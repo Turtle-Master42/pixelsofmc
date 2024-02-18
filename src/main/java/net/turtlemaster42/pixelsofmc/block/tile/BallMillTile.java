@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -243,17 +244,20 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
         if(match.isPresent()) {
             List<CountedIngredient> recipeItems = match.get().getInputs();
-            boolean[] matched = new boolean[3];
 
-            // Iterate over the slots -p-
-            for (int p = 0; p < 3; p++) {
-                // Iterate over the inputs -q-
-                for (int q = 0; q < recipeItems.size(); q++) {
-                    if (matched[q])
-                        continue;
-                    if (recipeItems.get(q).test(inventory.getItem(p))) {
-                        entity.itemHandler.extractItem(p, recipeItems.get(q).count(), false);
-                        matched[q] = true;
+            // Iterate over the recipeItems
+            for (CountedIngredient recipeItem : recipeItems) {
+                // Iterate over the slots
+                for (int slot = 0; slot < 3; slot++) {
+                    if (Ingredient.of(recipeItem.asItemStack()).test(inventory.getItem(slot))) {
+                        ItemStack slotStack = entity.itemHandler.getStackInSlot(slot);
+                        if (slotStack.getCount() < recipeItem.count()) {
+                            entity.itemHandler.extractItem(slot, slotStack.getCount(), false);
+                            recipeItem = CountedIngredient.of(recipeItem.count() - slotStack.getCount(), recipeItem.asItem());
+                        } else {
+                            entity.itemHandler.extractItem(slot, recipeItem.count(), false);
+                            break;
+                        }
                     }
                 }
             }

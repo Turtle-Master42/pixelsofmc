@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 143,
+      "G": 184,
+      "R": 226
+    },
+    {
+      "B": 90,
+      "G": 113,
+      "R": 140
+    },
+    {
+      "B": 44,
+      "G": 53,
+      "R": 72
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:germanium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.germanium"
+}

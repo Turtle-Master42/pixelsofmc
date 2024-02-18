@@ -235,6 +235,9 @@ public class POMblocks {
     public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).color(MaterialColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.pixel_splitter.shift", "", "");
+    public static final RegistryObject<Block> PIXEL_ASSEMBLER = registerBlock("pixel_assembler",
+            () -> new PixelAssemblerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).color(MaterialColor.CLAY)
+                    .noOcclusion()), "", "", "");
 
 
 

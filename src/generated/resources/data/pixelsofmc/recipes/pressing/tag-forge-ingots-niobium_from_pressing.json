@@ -7,7 +7,7 @@
       "tag": "forge:dusts/niobium"
     }
   },
-  "max_heat": 5017,
+  "max_heat": 5000,
   "mold": {
     "count": 1,
     "ingredient": {

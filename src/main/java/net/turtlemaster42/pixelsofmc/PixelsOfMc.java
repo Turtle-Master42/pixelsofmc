@@ -151,6 +151,7 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
 
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
+		MenuScreens.register(POMmenuType.PIXEL_ASSEMBLER_MENU.get(), PixelAssemblerGuiScreen::new);
 		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
 		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
 		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);

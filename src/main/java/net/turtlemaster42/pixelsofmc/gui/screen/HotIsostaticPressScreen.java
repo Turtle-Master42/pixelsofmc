@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +12,6 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -71,17 +69,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         }
     }
 
-    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
-        renderArea(pPoseStack, pMouseX, pMouseY, 0 ,0, x, y, fromX, fromY, toX, toY, tooltip);
-    }
-
-    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int offsetX, int offsetY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
-            renderTooltip(pPoseStack, tooltip,
-                    Optional.empty(), pMouseX - x + offsetX, pMouseY - y + offsetY);
-        }
-    }
-
     private void renderTooltip(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
         if(Screen.hasControlDown()) {
             renderTooltip(pPoseStack,
@@ -131,10 +118,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 22, menu.blockEntity.energyStorage, 10, 44);
-    }
-
-    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 
     public List<Component> getAllAreas(int progress, int maxProgress, int heat, int time, int energy, int maxEnergy) {

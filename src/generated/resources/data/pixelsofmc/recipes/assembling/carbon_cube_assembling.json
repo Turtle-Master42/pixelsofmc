@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 93,
+      "G": 84,
+      "R": 84
+    },
+    {
+      "B": 66,
+      "G": 59,
+      "R": 59
+    },
+    {
+      "B": 39,
+      "G": 34,
+      "R": 34
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:carbon_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.carbon"
+}

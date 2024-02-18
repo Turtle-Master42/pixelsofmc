@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 100,
+      "G": 199,
+      "R": 164
+    },
+    {
+      "B": 68,
+      "G": 139,
+      "R": 115
+    },
+    {
+      "B": 30,
+      "G": 76,
+      "R": 57
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:chlorine_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.chlorine"
+}

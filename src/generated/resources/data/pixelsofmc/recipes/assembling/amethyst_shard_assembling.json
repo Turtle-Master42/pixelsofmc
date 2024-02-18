@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 121,
+      "G": 255,
+      "R": 255
+    },
+    {
+      "B": 70,
+      "G": 170,
+      "R": 201
+    },
+    {
+      "B": 32,
+      "G": 97,
+      "R": 119
+    }
+  ],
+  "inputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    },
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "minecraft:lapis_lazuli"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "structure": "element.pixelsofmc.helium"
+}

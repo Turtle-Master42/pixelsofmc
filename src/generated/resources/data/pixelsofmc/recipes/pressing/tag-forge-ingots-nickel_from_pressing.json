@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 1728,
+  "heat": 1750,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/nickel"
     }
   },
-  "max_heat": 3003,
+  "max_heat": 3000,
   "mold": {
     "count": 1,
     "ingredient": {

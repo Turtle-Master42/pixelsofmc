@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 97,
+      "G": 109,
+      "R": 249
+    },
+    {
+      "B": 21,
+      "G": 30,
+      "R": 198
+    },
+    {
+      "B": 23,
+      "G": 13,
+      "R": 102
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iridium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.iridium"
+}

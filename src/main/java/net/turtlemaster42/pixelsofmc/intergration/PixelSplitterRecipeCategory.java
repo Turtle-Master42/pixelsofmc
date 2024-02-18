@@ -63,18 +63,23 @@ public class PixelSplitterRecipeCategory implements IRecipeCategory<PixelSplitte
         //grinding ball input
         builder.addSlot(RecipeIngredientRole.INPUT, 80, 18).addIngredients(Ingredient.of(POMtags.Items.CIRCLE_SAW));
         //output
+
+        int color1 = recipe.getColor(0).getRGB();
+        int color2 = recipe.getColor(1).getRGB();
+        int color3 = recipe.getColor(2).getRGB();
+
         ItemStack pixel = recipe.getResultItems(0);
-        PixelItem.createForPixel(pixel, recipe.getColor(0).getRGB(), recipe.getColor(1).getRGB(), recipe.getColor(2).getRGB(), recipe.getStructure());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 32).addIngredients(Ingredient.of(recipe.getResultItems(0)));
+        PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 32).addIngredients(Ingredient.of(pixel));
         if (recipe.getOutputs().size() > 1) {
             pixel = recipe.getResultItems(1);
-            PixelItem.createForPixel(pixel, recipe.getColor(0).getRGB(), recipe.getColor(1).getRGB(), recipe.getColor(2).getRGB(), recipe.getStructure());
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 50).addIngredients(Ingredient.of(recipe.getResultItems(1)));
+            PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 50).addIngredients(Ingredient.of(pixel));
         }
         if (recipe.getOutputs().size() > 2) {
             pixel = recipe.getResultItems(2);
-            PixelItem.createForPixel(pixel, recipe.getColor(0).getRGB(), recipe.getColor(1).getRGB(), recipe.getColor(2).getRGB(), recipe.getStructure());
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 134, 41).addIngredients(Ingredient.of(recipe.getResultItems(2)));
+            PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 134, 41).addIngredients(Ingredient.of(pixel));
         }
     }
 }

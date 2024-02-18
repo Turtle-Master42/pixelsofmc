@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 215,
+      "G": 111,
+      "R": 125
+    },
+    {
+      "B": 148,
+      "G": 64,
+      "R": 77
+    },
+    {
+      "B": 84,
+      "G": 40,
+      "R": 42
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:indium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.indium"
+}

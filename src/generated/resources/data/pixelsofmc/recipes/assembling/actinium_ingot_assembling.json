@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 255,
+      "G": 192,
+      "R": 104
+    },
+    {
+      "B": 169,
+      "G": 125,
+      "R": 66
+    },
+    {
+      "B": 101,
+      "G": 74,
+      "R": 36
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:actinium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.actinium"
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 138,
+      "G": 242,
+      "R": 186
+    },
+    {
+      "B": 69,
+      "G": 164,
+      "R": 86
+    },
+    {
+      "B": 55,
+      "G": 108,
+      "R": 44
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:astatine_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.astatine"
+}

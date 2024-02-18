@@ -934,22 +934,25 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //pixel splitter
-        PixelSplitting(Items.GOLD_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
-        PixelSplitting(Items.GOLD_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", toAInt(253, 220, 178), toAInt(254, 150, 100), toAInt(95, 19, 17), fConsumer);
+        autoPixelSplittingAndAssembling(Items.GOLD_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", Element.GOLD.hexToRGB(0), Element.GOLD.hexToRGB(1), Element.GOLD.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.GOLD_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.gold", Element.GOLD.hexToRGB(0), Element.GOLD.hexToRGB(1), Element.GOLD.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.GOLD_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", Element.GOLD.hexToRGB(0), Element.GOLD.hexToRGB(1), Element.GOLD.hexToRGB(2), fConsumer);
 
-        PixelSplitting(Items.IRON_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
-        PixelSplitting(Items.IRON_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", toAInt(216, 147, 94), toAInt(216, 147, 94), toAInt(216, 147, 94), fConsumer);
+        autoPixelSplittingAndAssembling(Items.IRON_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.IRON_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.IRON_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
 
-        PixelSplitting(Element.COPPER.nugget(), List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
-        PixelSplitting(Items.COPPER_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
-        PixelSplitting(Items.COPPER_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.COPPER_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Element.COPPER.nugget(), List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.COPPER_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
 
-        PixelSplitting(POMitems.TITANIUM_GOLD_NUGGET.get(), List.of(toCI(POMitems.PIXEL.get(), 9)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
-        PixelSplitting(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
-        PixelSplitting(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
+        PixelSplittingAndAssembling(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
+        PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_NUGGET.get(), List.of(toCI(POMitems.PIXEL.get(), 9)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
+        PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
 
+        //pixel assembler
+        PixelAssembling(POMitems.VOID_EYE.get(), List.of(toCI(POMitems.DRAGON_EYE.get(), 9)), "", fConsumer);
+        autoPixelAssembling(Items.AMETHYST_SHARD, List.of(toCI(POMitems.PIXEL.get(), 9), toCI(Items.LAPIS_LAZULI, 9)), "element.pixelsofmc.helium", Element.HELIUM.hexToRGB(0), Element.HELIUM.hexToRGB(1), Element.HELIUM.hexToRGB(2),  fConsumer);
 
         //pressing
         Pressing(POMitems.BIO_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.RUBBER_BALL.get(), 1, 0, 5000, fConsumer);
@@ -1071,7 +1074,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSmeltingRecipe(POMitems.SUPERCONDUCTIVE_DUST.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.SUPERCONDUCTIVE_DUST.get()), "");
 
         SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.BIO_COMPOUND.get()),  "");
-        SimpleFurnaceRecipe(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.FIRE_PROOF_COMPOUND.get()), "");
+        SimpleFurnaceRecipe(POMitems.FIRE_PROOF_COMPOUND.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.FIRE_PROOF_COMPOUND.get()), "");
         SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.REPELLING_COMPOUND.get()), "");
 
         //Smithing
@@ -1130,21 +1133,25 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             SimpleAtomCompacting(m.atom64(), m.atom512(), fConsumer);
             Fusing(m, fConsumer);
 
-            if (!m.isVanilla())
-                autoPixelSplitting(m.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
-            if (m.isMetal() && m.shouldAddDust())
+            if (!m.isVanilla()) {
+                autoPixelSplittingAndAssembling(m.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc." + m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+            }
+            if (m.isMetal() && m.shouldAddDust()) {
                 Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
-            if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM)
+            }
+            if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM) {
                 SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, toItemP(m.dustTag()), "_from_dust");
-            if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla())
+            }
+            if (m.shouldAddDust() && m!=Element.ALUMINIUM && !m.isVanilla()) {
                 Grinder(toI(m.itemTag()), fConsumer, toCHI(m.dustTag(), 1, 1));
+            }
             if (m.shouldAddNugget() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.nugget()), m.item(), fConsumer);
-                autoPixelSplitting(m.nugget(),  List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplittingAndAssembling(m.nugget(),  List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
             if (m.shouldAddBlock() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
-                autoPixelSplitting(m.blockItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplittingAndAssembling(m.blockItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
         }
     }
@@ -1310,6 +1317,34 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
+    }
+
+    private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, r, g, b)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, Consumer<FinishedRecipe> consumer) {
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, new int[]{0, 0, 0}, new int[]{0, 0, 0}, new int[]{0, 0, 0})
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void autoPixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer);
+    }
+
+    private void PixelSplittingAndAssembling(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
+        PixelSplitting(ingredient, output, structure, r, g, b, consumer);
+        PixelAssembling(ingredient, output, structure, r, g, b, consumer);
+    }
+
+    private void autoPixelSplittingAndAssembling(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
+        autoPixelSplitting(ingredient, output, structure, color1, color2, color3, consumer);
+        autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
     private void Pressing(ItemLike ingredient, int inCount, ItemLike mold, ItemLike output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {

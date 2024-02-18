@@ -34,6 +34,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCategories(new HotIsostaticPressRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new FusionRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new PixelSplitterRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new PixelAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalSeraratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalCombinerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
@@ -48,6 +49,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(POMblocks.MNS_CONTROLLER.get()), new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.BH_CONTROLLER.get()), new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_SPLITTER.get()), new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_ASSEMBLER.get()), new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()), new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_COMBINER.get()), new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class));
     }
@@ -62,6 +64,7 @@ public class JEIPOMPlugin implements IModPlugin {
         List<HotIsostaticPressRecipe> pressing = rm.getAllRecipesFor(HotIsostaticPressRecipe.Type.INSTANCE);
         List<FusionRecipe> fusing = rm.getAllRecipesFor(FusionRecipe.Type.INSTANCE);
         List<PixelSplitterRecipe> splitting = rm.getAllRecipesFor(PixelSplitterRecipe.Type.INSTANCE);
+        List<PixelAssemblerRecipe> assembling = rm.getAllRecipesFor(PixelAssemblerRecipe.Type.INSTANCE);
         List<ChemicalSeparatorRecipe> separating = rm.getAllRecipesFor(ChemicalSeparatorRecipe.Type.INSTANCE);
         List<ChemicalCombinerRecipe> combining = rm.getAllRecipesFor(ChemicalCombinerRecipe.Type.INSTANCE);
 
@@ -70,6 +73,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class), pressing);
         registration.addRecipes(new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class), fusing);
         registration.addRecipes(new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class), splitting);
+        registration.addRecipes(new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class), assembling);
         registration.addRecipes(new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class), separating);
         registration.addRecipes(new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class), combining);
     }

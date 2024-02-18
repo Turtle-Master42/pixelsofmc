@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 120,
+      "G": 160,
+      "R": 204
+    },
+    {
+      "B": 66,
+      "G": 104,
+      "R": 142
+    },
+    {
+      "B": 36,
+      "G": 53,
+      "R": 74
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:strontium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.strontium"
+}

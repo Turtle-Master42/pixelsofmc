@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 109,
+      "G": 178,
+      "R": 99
+    },
+    {
+      "B": 75,
+      "G": 121,
+      "R": 60
+    },
+    {
+      "B": 48,
+      "G": 65,
+      "R": 36
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:rhenium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.rhenium"
+}

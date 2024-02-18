@@ -7,17 +7,20 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BallMillRecipe extends BaseRecipe {
     private final ResourceLocation id;
@@ -32,40 +35,82 @@ public class BallMillRecipe extends BaseRecipe {
         this.recipeItems = recipeItems;
     }
 
-    //credits EnderIO
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
+        List<Item> slotItems = new ArrayList<>();
+        List<Integer> slotCounts = new ArrayList<>();
 
-        boolean[] matched = new boolean[3];
-
-        // Iterate over the slots
+        // Iterate over the slots and makes a list of the total ingredients
         for (int slot = 0; slot < 3; slot++) {
-            // Iterate over the inputs
-            for (int inp = 0; inp < 3; inp++) {
-                // If this ingredient has been matched already, continue
-                if (matched[inp])
-                    continue;
+            ItemStack stack = container.getItem(slot);
+            if (stack.isEmpty())
+                continue;
 
-                if (inp < recipeItems.size()) {
-                    // If we expect an input, test we have a match for it.
-                    if (recipeItems.get(inp).test(container.getItem(slot))) {
-                        matched[inp] = true;
-                    }
-                } else if (container.getItem(slot).isEmpty()) {
-                    // If we don't expect an input, make sure we have a blank for it.
-                    matched[inp] = true;
-                }
+            if (!slotItems.contains(stack.getItem())) {
+                slotItems.add(stack.getItem());
+                slotCounts.add(stack.getCount());
+            } else {
+                int index = slotItems.indexOf(stack.getItem());
+                slotCounts.set(index, slotCounts.get(index) + stack.getCount());
             }
         }
 
-        // If we matched all our ingredients, we win!
-        for (int i = 0; i < 3; i++) {
-            if (!matched[i])
-                return false;
+        // if slotItems and recipeItems are not equal there are ingredients missing or to many
+        if (slotItems.size() != recipeItems.size()) {
+            return false;
         }
 
+        // Iterates over the needed items
+        for (CountedIngredient recipeItem : recipeItems) {
+            Item item = recipeItem.asItem();
+            // Checks if the item is present in the slots
+            if (!slotItems.contains(item)) {
+                return false;
+            }
+            int index = slotItems.indexOf(item);
+            // Checks if there is enough items in the slots
+            if (recipeItem.count() > slotCounts.get(index)) {
+                return false;
+            }
+            // We win, the item is present and there is enough
+        }
         return ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
+
+
+
+
+
+        //credits EnderIO
+//        boolean[] matched = new boolean[3];
+//
+//        // Iterate over the slots
+//        for (int slot = 0; slot < 3; slot++) {
+//            // Iterate over the inputs
+//            for (int inp = 0; inp < 3; inp++) {
+//                // If this ingredient has been matched already, continue
+//                if (matched[inp])
+//                    continue;
+//
+//                if (inp < recipeItems.size()) {
+//                    // If we expect an input, test we have a match for it.
+//                    if (recipeItems.get(inp).test(container.getItem(slot))) {
+//                        matched[inp] = true;
+//                    }
+//                } else if (container.getItem(slot).isEmpty()) {
+//                    // If we don't expect an input, make sure we have a blank for it.
+//                    matched[inp] = true;
+//                }
+//            }
+//        }
+//
+//        // If we matched all our ingredients, we win!
+//        for (int i = 0; i < 3; i++) {
+//            if (!matched[i])
+//                return false;
+//        }
+//
+//        return ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
     }
 
 

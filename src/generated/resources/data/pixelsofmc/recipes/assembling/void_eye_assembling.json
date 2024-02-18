@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    },
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    },
+    {
+      "B": 0,
+      "G": 0,
+      "R": 0
+    }
+  ],
+  "inputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:dragon_eye"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:void_eye"
+    }
+  },
+  "structure": ""
+}

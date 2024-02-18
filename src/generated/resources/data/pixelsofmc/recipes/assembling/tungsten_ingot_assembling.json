@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 141,
+      "G": 133,
+      "R": 99
+    },
+    {
+      "B": 99,
+      "G": 90,
+      "R": 60
+    },
+    {
+      "B": 54,
+      "G": 51,
+      "R": 33
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tungsten_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.tungsten"
+}

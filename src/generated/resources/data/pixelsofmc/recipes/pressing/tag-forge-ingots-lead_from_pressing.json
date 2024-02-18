@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 601,
+  "heat": 600,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/lead"
     }
   },
-  "max_heat": 2022,
+  "max_heat": 2000,
   "mold": {
     "count": 1,
     "ingredient": {

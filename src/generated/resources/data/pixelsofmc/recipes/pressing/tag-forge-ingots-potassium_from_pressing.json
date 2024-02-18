@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 337,
+  "heat": 350,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/potassium"
     }
   },
-  "max_heat": 1031,
+  "max_heat": 1050,
   "mold": {
     "count": 1,
     "ingredient": {

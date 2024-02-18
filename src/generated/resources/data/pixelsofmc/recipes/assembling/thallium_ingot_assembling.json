@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 101,
+      "G": 182,
+      "R": 222
+    },
+    {
+      "B": 43,
+      "G": 118,
+      "R": 152
+    },
+    {
+      "B": 25,
+      "G": 51,
+      "R": 73
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thallium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.thallium"
+}

@@ -1,0 +1,47 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 86,
+      "G": 124,
+      "R": 231
+    },
+    {
+      "B": 54,
+      "G": 90,
+      "R": 193
+    },
+    {
+      "B": 41,
+      "G": 65,
+      "R": 138
+    }
+  ],
+  "inputs": [
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 27,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "structure": "element.pixelsofmc.copper"
+}

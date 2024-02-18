@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 123,
+      "G": 98,
+      "R": 94
+    },
+    {
+      "B": 90,
+      "G": 69,
+      "R": 63
+    },
+    {
+      "B": 55,
+      "G": 44,
+      "R": 39
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:molybdenum_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.molybdenum"
+}

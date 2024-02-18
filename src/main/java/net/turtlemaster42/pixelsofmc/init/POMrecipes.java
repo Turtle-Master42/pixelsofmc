@@ -15,6 +15,8 @@ public class POMrecipes {
 
 	public static final RegistryObject<RecipeSerializer<PixelSplitterRecipe>> PIXEL_SPLITTER_SERIALIZER =
 			SERIALIZERS.register("pixel_splitting", () -> PixelSplitterRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<PixelAssemblerRecipe>> PIXEL_ASSEMBLER_SERIALIZER =
+			SERIALIZERS.register("pixel_assembling", () -> PixelAssemblerRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<BallMillRecipe>> BALL_MILLING_SERIALIZER =
 			SERIALIZERS.register("ball_milling", () -> BallMillRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<GrinderRecipe>> GRINDING_SERIALIZER =

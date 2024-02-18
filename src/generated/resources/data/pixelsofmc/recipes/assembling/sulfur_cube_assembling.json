@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 69,
+      "G": 172,
+      "R": 215
+    },
+    {
+      "B": 50,
+      "G": 119,
+      "R": 183
+    },
+    {
+      "B": 38,
+      "G": 59,
+      "R": 114
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:sulfur_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.sulfur"
+}

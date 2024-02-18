@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 90,
+      "G": 86,
+      "R": 86
+    },
+    {
+      "B": 57,
+      "G": 54,
+      "R": 54
+    },
+    {
+      "B": 32,
+      "G": 31,
+      "R": 31
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:dysprosium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.dysprosium"
+}

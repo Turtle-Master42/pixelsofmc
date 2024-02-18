@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 153,
+      "G": 208,
+      "R": 185
+    },
+    {
+      "B": 84,
+      "G": 163,
+      "R": 127
+    },
+    {
+      "B": 45,
+      "G": 88,
+      "R": 67
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:beryllium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.beryllium"
+}

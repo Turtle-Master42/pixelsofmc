@@ -16,6 +16,8 @@ public class POMmenuType {
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, PixelsOfMc.MOD_ID);
     public static final RegistryObject<MenuType<PixelSplitterGuiMenu>> PIXEL_SPLITTER_MENU =
             registerMenuType(PixelSplitterGuiMenu::new, "pixel_splitter_menu");
+    public static final RegistryObject<MenuType<PixelAssemblerGuiMenu>> PIXEL_ASSEMBLER_MENU =
+            registerMenuType(PixelAssemblerGuiMenu::new, "pixel_assembler_menu");
     public static final RegistryObject<MenuType<BallMillGuiMenu>> BALL_MILL_MENU =
             registerMenuType(BallMillGuiMenu::new, "ball_mill_menu");
     public static final RegistryObject<MenuType<GrinderGuiMenu>> GRINDER_MENU =

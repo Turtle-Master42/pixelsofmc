@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 3695,
+  "heat": 3700,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/tungsten"
     }
   },
-  "max_heat": 6203,
+  "max_heat": 6200,
   "mold": {
     "count": 1,
     "ingredient": {

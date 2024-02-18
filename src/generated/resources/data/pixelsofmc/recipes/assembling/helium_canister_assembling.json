@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 119,
+      "G": 201,
+      "R": 255
+    },
+    {
+      "B": 97,
+      "G": 170,
+      "R": 255
+    },
+    {
+      "B": 32,
+      "G": 70,
+      "R": 121
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:helium_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.helium"
+}

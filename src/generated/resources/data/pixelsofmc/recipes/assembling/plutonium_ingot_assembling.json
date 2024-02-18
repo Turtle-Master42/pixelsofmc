@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 199,
+      "G": 239,
+      "R": 117
+    },
+    {
+      "B": 108,
+      "G": 173,
+      "R": 57
+    },
+    {
+      "B": 63,
+      "G": 110,
+      "R": 37
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:plutonium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.plutonium"
+}

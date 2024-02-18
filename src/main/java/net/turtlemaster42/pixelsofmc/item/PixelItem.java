@@ -36,10 +36,12 @@ public class PixelItem extends Item implements DyeableLeatherItem {
     }
 
     public static ItemStack createForPixel(ItemStack pStack, int color1, int color2, int color3, String tooltip) {
-        pStack.getOrCreateTagElement("display").putInt("color0", color1);
-        pStack.getOrCreateTagElement("display").putInt("color1", color2);
-        pStack.getOrCreateTagElement("display").putInt("color2", color3);
-        pStack.getOrCreateTagElement("structure").putString("text", tooltip);
+        if (pStack.getItem() instanceof PixelItem) {
+            pStack.getOrCreateTagElement("display").putInt("color0", color1);
+            pStack.getOrCreateTagElement("display").putInt("color1", color2);
+            pStack.getOrCreateTagElement("display").putInt("color2", color3);
+            pStack.getOrCreateTagElement("structure").putString("text", tooltip);
+        }
         return pStack;
     }
 
@@ -63,6 +65,10 @@ public class PixelItem extends Item implements DyeableLeatherItem {
         if (tag != null)
             return tag.getString("text");
         return "";
+    }
+
+    public String getStructure(ItemStack stack) {
+        return getTooltip(stack);
     }
 
     public String[] getExtraTooltip(ItemStack stack) {

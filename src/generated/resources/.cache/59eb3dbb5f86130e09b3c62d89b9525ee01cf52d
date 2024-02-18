@@ -1,4 +1,4 @@
-// 1.19.3	2024-01-18T13:14:04.61613	Loot Tables
+// 1.19.3	2024-02-17T11:14:18.523823	Loot Tables
 ab020596a44c934eda8434af11ba7f67fabab28a data/pixelsofmc/loot_tables/blocks/acanthite.json
 a9a8793973e2679914fb3c0ccc14e8497e24eb92 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 f923fae9cde2cb1964a3e7231d717dc0a895949b data/pixelsofmc/loot_tables/blocks/advanced_casing_2.json
@@ -41,6 +41,7 @@ f580e39328bc1a2564880e47b8dfc625665c7f5e data/pixelsofmc/loot_tables/blocks/neth
 2b2a4bde1a1c86393b28fa3ff9b81ef1ddeed22d data/pixelsofmc/loot_tables/blocks/oxygen_gas.json
 02fc98afbf1b63058bb3a6cbaf089c3550eeb158 data/pixelsofmc/loot_tables/blocks/perfected_casing_1.json
 8af1a7475a877211737e79ec3ad5d4c45d60b690 data/pixelsofmc/loot_tables/blocks/perfected_casing_2.json
+fce34e27880a22648bf1c629f2b5988a51a044e4 data/pixelsofmc/loot_tables/blocks/pixel_assembler.json
 8b73d380fc1573730c7bcc85cb5e0545b5f1c59b data/pixelsofmc/loot_tables/blocks/pixel_splitter.json
 dbf069396841794a2cd70f042023f6263eae1c7b data/pixelsofmc/loot_tables/blocks/power_cell_array.json
 6a1de842ec19ddf40cb3ee518be4b430d261d638 data/pixelsofmc/loot_tables/blocks/pyrolytic_carbon_sheet_block.json

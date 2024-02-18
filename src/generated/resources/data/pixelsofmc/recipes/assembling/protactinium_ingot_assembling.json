@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 76,
+      "G": 165,
+      "R": 112
+    },
+    {
+      "B": 55,
+      "G": 102,
+      "R": 75
+    },
+    {
+      "B": 35,
+      "G": 64,
+      "R": 45
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:protactinium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.protactinium"
+}

@@ -95,7 +95,7 @@ public class SDSFusionControllerGuiScreen extends AbstractPOMscreen<SDSFusionCon
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.font.draw(pPoseStack, Component.translatable("tooltip.pixelsofmc.gui.sds_fusion"), 5, 5, 4210752);
+        this.font.draw(pPoseStack, Component.translatable("tooltip.pixelsofmc.gui.sds_fusion"), 5, 4, 4210752);
         if (menu.getReason() == 1) {
             renderErrorArea(pPoseStack, pMouseX, pMouseY, x, y);
         }
@@ -264,9 +264,5 @@ public class SDSFusionControllerGuiScreen extends AbstractPOMscreen<SDSFusionCon
         });
         this.slotLock8.setLocked(menu.getSlotLock(8));
         this.addRenderableWidget(this.slotLock8);
-    }
-
-    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }

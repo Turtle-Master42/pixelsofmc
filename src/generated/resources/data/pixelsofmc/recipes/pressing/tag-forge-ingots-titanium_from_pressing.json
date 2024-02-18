@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 1941,
+  "heat": 1950,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:dusts/titanium"
     }
   },
-  "max_heat": 3560,
+  "max_heat": 3550,
   "mold": {
     "count": 1,
     "ingredient": {

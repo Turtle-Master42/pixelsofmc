@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 109,
+      "G": 121,
+      "R": 245
+    },
+    {
+      "B": 53,
+      "G": 55,
+      "R": 171
+    },
+    {
+      "B": 36,
+      "G": 26,
+      "R": 84
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:vanadium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.vanadium"
+}

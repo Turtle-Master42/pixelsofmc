@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 197,
+      "G": 138,
+      "R": 242
+    },
+    {
+      "B": 155,
+      "G": 69,
+      "R": 164
+    },
+    {
+      "B": 108,
+      "G": 44,
+      "R": 95
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iodine_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.iodine"
+}

@@ -15,105 +15,105 @@ import java.awt.*;
 import java.util.Locale;
 
 public enum Element {
-    HYDROGEN(Type.CANISTER, new Info(14, 20, "F3F1FE", "CCCAD5", "76757C", Danger.FLAMMABLE)), //pale blue flame
-    HELIUM(Type.CANISTER, new Info(1, 4, "FFB36A", "A86636", "5B3112")),
-    LITHIUM(new Info(454, 1603, "A7C09E", "5A6355", "2F352E", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
-    BERYLLIUM(new Info(1560, 2742, "B4C79D", "779355", "3B482A", Danger.TOXIC)), //white flame
-    BORON(Type.CUBE, true, false, false, new Info(2349, 4200, "3F3C4C", "262430", "1B1A1F")), //green flame
-    CARBON(Type.CUBE, true, false, false, new Info(3915, 3915, "525253", "363637", "1F1F20")), //orange flame
-    NITROGEN(Type.CANISTER, new Info(63, 77, "B097FF", "7162AF", "362E57")),
-    OXYGEN(Type.CANISTER, new Info(54, 90, "77ABF0", "4B6F9D", "22354D")),
-    FLUORINE(Type.CUBE, new Info(53, 85, "F0DCFF", "979EBB", "575B6B", Danger.CORROSIVE, Danger.TOXIC)), //canister
-    NEON(Type.CANISTER, new Info(25, 27, "FF826A", "B35342", "59261E")),
-    SODIUM(true, false, false, new Info(370, 1156, "F7E878", "C8AF49", "705D1F", Danger.CORROSIVE, Danger.FLAMMABLE)), //yellow flame
-    MAGNESIUM(new Info(923, 1363, Danger.FLAMMABLE)),
-    ALUMINIUM(true, false, false, new Info(933, 1221, "D1DAE0", "889EA3", "424D51")), //silver flame
-    SILICON(Type.CUBE, true, false, false, new Info(1680, 3538, "9DA7B8", "71687F", "3C3A44")),
-    PHOSPHORUS(Type.CUBE, new Info(317, 554, "A8403A", "7E2D29", "4A1715", Danger.FLAMMABLE, Danger.TOXIC)), //blue-green flame
-    SULFUR(Type.CUBE, true, false, false, new Info(388, 717, "DCB202", "9E6612", "5A2C08", Danger.FLAMMABLE)),
-    CHLORINE(Type.CANISTER, new Info(172, 238, "94B060", "5F723C", "2C3619", Danger.TOXIC)),
-    ARGON(Type.CANISTER, new Info(84, 87, "C395D8", "7F608D", "3D2D45")),
-    POTASSIUM(true, false, false, new Info(337, 1031, "C08CCF", "723F9E", "391F4D", Danger.CORROSIVE, Danger.FLAMMABLE)), //purple flame
-    CALCIUM(true, false, false, new Info(1115, 1757, "DCD6CC", "C4B69C", "695B3F", Danger.FLAMMABLE)), //orange flame
-    SCANDIUM(new Info(1814, 3109, "D0BA8B", "A08241", "5E4C26")), //orange
-    TITANIUM(true, true, true, new Info(1941, 3560, "A69FAE", "7E748A", "43414E")), //silver flame
-    VANADIUM(new Info(2183, 3680, "DC817E", "AB3735", "65201F", Danger.TOXIC)), //yellow-green flame
-    CHROMIUM(new Info(2180, 2944, "95D2B7", "45A666", "225133")), //silver flame
-    MANGANESE(new Info(1519, 2334, "8A6547", "5C422D", "312318", Danger.TOXIC)), //yellow-green flame
-    IRON(Type.VANILLA, true, false, false, new Info(1811, 3134, "D8D8D8", "828282", "5E5E5E")), //orange flame
-    COBALT(true, false, false, new Info(1768, 3200, "88A9DC", "3466B4", "1A3258")), //silver flame
-    NICKEL(true, false, false, new Info(1728, 3003, "DCA185", "A55E42", "522E1F")), //silver flame
-    COPPER(Type.VANILLA, true, true, false, new Info(1358,2835, "E77C56", "C15A36", "8A4129")), //blue-green flame
-    ZINC(true, false, false, new Info(693,1180, "97BBA6", "627A6C", "2F3C35")), //white flame
-    GALLIUM(new Info(303, 2673, "9A9AB0", "595C79", "2A2C3A", Danger.CORROSIVE)),
-    GERMANIUM(new Info(1211, 3106, "D3AC85", "8A7056", "453729")), //pale blue flame
-    ARSENIC(new Info(887, 887, "82BFB3", "547D74", "273E39", Danger.TOXIC, Danger.CORROSIVE)), //dark blue flame
-    SELENIUM(new Info(494, 958, "F85F5A", "EF3636", "751E1F")), //blue flame
-    BROMINE(Type.CANISTER, new Info(266, 332, "DA92A3", "8E5E69", "452B32", Danger.TOXIC, Danger.CORROSIVE)),
-    KRYPTON(Type.CANISTER, new Info(116, 120, "72B0BB", "497279", "21373B")),
-    RUBIDIUM(new Info(312, 961, "FA7F51", "B54A25", "5A2311", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
-    STRONTIUM(new Info(1050, 1650, "B59B83", "866443", "423222", Danger.FLAMMABLE)), //red flame
-    YTTRIUM(new Info(1799, 3203, "599E78", "31704B", "1A3B29", Danger.TOXIC)), //red flame
-    ZIRCONIUM(new Info(2125, 4650, "A797D8", "6C5D95", "352E49")), //red flame
-    NIOBIUM(true, false, false, new Info(2750, 5017, "697EC3", "3A3C8D", "1B1E45")), //blue-green flame
-    MOLYBDENUM(Type.INGOT, true, false, false, new Info(2896, 4912, "585D76", "3A4056", "232733", Danger.TOXIC)), //yellow-green flame
-    TECHNETIUM(new Info(2430, 4538, "CFA3ED", "9D55B3", "4D2A59", Danger.RADIOACTIVE)),
-    RUTHENIUM(new Info(2607, 4423, "E7829C", "BC2D53", "5D1629")),
-    RHODIUM(new Info(2237, 3968, "C696B1", "935076", "49283A")),
-    PALLADIUM(new Info(1828, 3236, "BBDA9E", "89B047", "425623", Danger.TOXIC)),
-    SILVER(Type.INGOT, true, true, true, new Info(1235, 2435, "B4C1C7", "869CA6", "40505C")),
-    CADMIUM(new Info(594, 1040, "F0BE70", "C08B22", "604411", Danger.TOXIC)), //red flame
-    INDIUM(new Info(430, 2345, "8175CE", "493D94", "29224F")), //dark blue flame
-    TIN(true, false, false, new Info(506, 2875, "CEAE84", "877155", "433728a")), //light-blue flame
-    ANTIMONY(new Info(904, 1908, "8ED6B5", "3EAA78", "1E543C", Danger.TOXIC)), //green flame
-    TELLURIUM(new Info(723, 1261, "E7EBF1", "AEB4BB", "55595F", Danger.TOXIC)), //green flame
-    IODINE(Type.CUBE, new Info(387, 457, "FF85FD", "B854A3", "5C2651", Danger.TOXIC)),
-    XENON(Type.CANISTER, new Info(161, 165, "6C87CF", "3B4D77", "253148")),
-    CAESIUM(new Info(302, 944, "FFCA7D", "D89B2F", "734F17", Danger.FLAMMABLE, Danger.CORROSIVE)), //violet flame
-    BARIUM(new Info(1000, 2118, "8BAFDE", "3C6EAE", "1E3656", Danger.FLAMMABLE, Danger.CORROSIVE, Danger.TOXIC)), //green flame
-    LANTHANUM(new Info(1193, 3737, "5C885C", "346135", "1B321B", Danger.FLAMMABLE)),
-    CERIUM(new Info(1068, 3716, "D688AD", "A3407C", "50203C", Danger.FLAMMABLE)),
-    PRASEODYMIUM(new Info(1208, 3403, "B0CF78", "66A331", "335017", Danger.FLAMMABLE)),
-    NEODYMIUM(new Info(1297, 3347, "95C7BD", "479288", "234843")),
-    PROMETHIUM(new Info(1315, 3273, "7ADC94", "2FB051", "175628", Danger.RADIOACTIVE)),
-    SAMARIUM(new Info(1345,2173, "CB9D89", "93634B", "483025", Danger.FLAMMABLE)),
-    EUROPIUM(new Info(1099, 1802, "507F6E", "2D5144", "15251F", Danger.FLAMMABLE)),
-    GADOLINIUM(new Info(1585, 3273, "DED062", "A6A31B", "52500D", Danger.FLAMMABLE)),
-    TERBIUM(new Info(1629, 3396, "996953", "664532", "37261B")),
-    DYSPROSIUM(new Info(1680, 2840, "4F4F54", "323235", "1A1A1B", Danger.FLAMMABLE)),
-    HOLMIUM(new Info(1734, 2873, "CA89A4", "9B407B", "4D203C")),
-    ERBIUM(new Info(1802, 3141, "E5C5DD", "BA6CA5", "643858")),
-    THULIUM(new Info(1818, 2223)),
-    YTTERBIUM(new Info(1097, 1469, Danger.TOXIC, Danger.FLAMMABLE)),
-    LUTETIUM(new Info(1925, 3675)),
-    HAFNIUM(new Info(2506, 4876, Danger.FLAMMABLE)), //white flame
-    TANTALUM(new Info(3290, 5731)), //blue flame
-    TUNGSTEN(Type.INGOT, true, true, true, new Info(3695, 6203)), //green
-    RHENIUM(new Info(3459, 5903)),
-    OSMIUM(new Info(3306, 5285)),
-    IRIDIUM(new Info(2719, 4403)),
-    PLATINUM(true, false, false, new Info(2041, 4098)),
-    GOLD(Type.VANILLA,true, false, false, new Info(1337, 3243)),
-    MERCURY(new Info(234, 630, Danger.TOXIC)), //red flame
-    THALLIUM(new Info(577, 1746, Danger.TOXIC)), //pure green flame
-    LEAD(true, false, false, new Info(601, 2022, Danger.TOXIC)), //light-blue flame
-    BISMUTH(new Info(545, 1837, Danger.RADIOACTIVE)), //light blue flame
-    POLONIUM(new Info(527, 1235, Danger.TOXIC, Danger.RADIOACTIVE)),
-    ASTATINE(Type.CUBE, new Info( 0, 0, Danger.RADIOACTIVE)),
-    RADON(Type.CANISTER, new Info(202, 212, Danger.RADIOACTIVE)),
-    FRANCIUM(new Info(300, 950, Danger.RADIOACTIVE)),
-    RADIUM(new Info(973, 2010, Danger.RADIOACTIVE)), //red flame
-    ACTINIUM(new Info(1500, 3500, Danger.RADIOACTIVE)),
-    THORIUM(new Info(2023, 5061, Danger.RADIOACTIVE)),
-    PROTACTINIUM(new Info(1841, 4300, Danger.RADIOACTIVE)),
-    URANIUM(true, false, false, new Info(1405, 4404, Danger.RADIOACTIVE)),
-    NEPTUNIUM(new Info(912, 4447, Danger.RADIOACTIVE)),
-    PLUTONIUM(new Info(913, 3505, Danger.RADIOACTIVE)),
-    AMERICIUM(new Info(1449, 2880, Danger.RADIOACTIVE)),
-    CURIUM(new Info(1613, 3363, Danger.RADIOACTIVE)),
-    BERKELIUM(new Info(1251, 2900, Danger.RADIOACTIVE)),
-    CALIFORNIUM(new Info(1173, 1743, Danger.RADIOACTIVE)),
-    EINSTEINIUM(new Info(1133, 1269, Danger.RADIOACTIVE)),
+    HYDROGEN(Type.CANISTER, new Info(15, 20, "FFFCFF", "DEDCE8", "79737F", Danger.FLAMMABLE)), //pale blue flame
+    HELIUM(Type.CANISTER, new Info(1, 5, "FFC977", "FFAA61", "794620")),
+    LITHIUM(new Info(450, 1600, "A5BD9C", "5C6557", "323831", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
+    BERYLLIUM(new Info(1550, 2750, "B9D099", "7FA354", "43582D", Danger.TOXIC)), //white flame
+    BORON(Type.CUBE, true, false, false, new Info(2350, 4200, "4F4F62", "363647", "22222E")), //green flame
+    CARBON(Type.CUBE, true, false, false, new Info(3900, 3900, "54545D", "3B3B42", "222227")), //orange flame
+    NITROGEN(Type.CANISTER, new Info(60, 80, "AD95FF", "7264AC", "3A325A")),
+    OXYGEN(Type.CANISTER, new Info(55, 90, "7DB0F8", "4F719D", "263950")),
+    FLUORINE(Type.CUBE, new Info(50, 85, "DBCAE7", "8787A3", "3C3A53", Danger.CORROSIVE, Danger.TOXIC)), //canister
+    NEON(Type.CANISTER, new Info(25, 30, "FF8D73", "B75544", "6D2F25")),
+    SODIUM(true, false, false, new Info(370, 1150, "FEEF7C", "CBB24A", "70581F", Danger.CORROSIVE, Danger.FLAMMABLE)), //yellow flame
+    MAGNESIUM(new Info(900, 1350, "E7E4DF", "B3B0AB", "726E6A", Danger.FLAMMABLE)),
+    ALUMINIUM(true, false, false, new Info(950, 1200, "D4DCE2", "90A5A9", "43565E")), //silver flame
+    SILICON(Type.CUBE, true, false, false, new Info(1700, 3550, "9B90AC", "7D6D91", "463B55")),
+    PHOSPHORUS(Type.CUBE, new Info(320, 550, "E15549", "7D002D", "4B002A", Danger.FLAMMABLE, Danger.TOXIC)), //blue-green flame
+    SULFUR(Type.CUBE, true, false, false, new Info(400, 700, "D7AC45", "B77732", "723B26", Danger.FLAMMABLE)),
+    CHLORINE(Type.CANISTER, new Info(170, 240, "A4C764", "738B44", "394C1E", Danger.TOXIC)),
+    ARGON(Type.CANISTER, new Info(85, 90, "E0B9EE", "A482B2", "584362")),
+    POTASSIUM(true, false, false, new Info(350, 1050, "C380D6", "73439C", "372351", Danger.CORROSIVE, Danger.FLAMMABLE)), //purple flame
+    CALCIUM(true, false, false, new Info(1100, 1750, "E1DBD2", "CBBEA5", "746649", Danger.FLAMMABLE)), //orange flame
+    SCANDIUM(new Info(1800, 3100, "EFCE79", "B08934", "563D19")), //orange
+    TITANIUM(true, true, true, new Info(1950, 3550, "A69FAE", "7E748A", "43414E")), //silver flame
+    VANADIUM(new Info(2200, 3700, "F5796D", "AB3735", "541A24", Danger.TOXIC)), //yellow-green flame
+    CHROMIUM(new Info(2200, 2950, "81E4A5", "42B26A", "255F42")), //silver flame
+    MANGANESE(new Info(1500, 2350, "936B49", "5E4530", "33231A", Danger.TOXIC)), //yellow-green flame
+    IRON(Type.VANILLA, true, false, false, new Info(1800, 3150, "D8D8D8", "828282", "5E5E5E")), //orange flame
+    COBALT(true, false, false, new Info(1750, 3200, "87ABD3", "3D6AAD", "233A63")), //silver flame
+    NICKEL(true, false, false, new Info(1750, 3000, "E7A081", "A56246", "562E23")), //silver flame
+    COPPER(Type.VANILLA, true, true, false, new Info(1350,2850, "E77C56", "C15A36", "8A4129")), //blue-green flame
+    ZINC(true, false, false, new Info(700,1200, "94CAAF", "5D816C", "274430")), //white flame
+    GALLIUM(new Info(300, 2650, "9495AE", "595D7E", "302F42", Danger.CORROSIVE)),
+    GERMANIUM(new Info(1200, 3100, "E2B88F", "8C715A", "48352C")), //pale blue flame
+    ARSENIC(new Info(900, 900, "45D7CE", "32A0B7", "265472", Danger.TOXIC, Danger.CORROSIVE)), //dark blue flame
+    SELENIUM(new Info(500, 950, "DB7441", "BE4C2B", "762223")), //blue flame
+    BROMINE(Type.CANISTER, new Info(250, 350, "E890A2", "965A68", "4C2C38", Danger.TOXIC, Danger.CORROSIVE)),
+    KRYPTON(Type.CANISTER, new Info(110, 120, "7EB8C2", "52777D", "293F43")),
+    RUBIDIUM(new Info(310, 950, "FF8251", "B7451E", "5D1F14", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
+    STRONTIUM(new Info(1050, 1650, "CCA078", "8E6842", "4A3524", Danger.FLAMMABLE)), //red flame
+    YTTRIUM(new Info(1800, 3200, "4CB179", "2C764A", "173E29", Danger.TOXIC)), //red flame
+    ZIRCONIUM(new Info(2100, 4650, "AA96E4", "6C5C98", "352D4A")), //red flame
+    NIOBIUM(true, false, false, new Info(2750, 5000, "748AD2", "42448C", "23264C")), //blue-green flame
+    MOLYBDENUM(Type.INGOT, true, false, false, new Info(2900, 4900, "5E627B", "3F455A", "272C37", Danger.TOXIC)), //yellow-green flame
+    TECHNETIUM(new Info(2450, 4550, "D891FF", "A352B9", "602E66", Danger.RADIOACTIVE)),
+    RUTHENIUM(new Info(2600, 4400, "FF688F", "C02B53", "641628")),
+    RHODIUM(new Info(2250, 4000, "D585BD", "975086", "4F2D4C")),
+    PALLADIUM(new Info(1850, 3250, "CAF190", "8EBE3D", "3E5E1E", Danger.TOXIC)),
+    SILVER(Type.INGOT, true, true, true, new Info(1250, 2450, "C6D4DB", "8DA4AE", "40515D")),
+    CADMIUM(new Info(600, 1050, "EBB872", "BA8929", "644A16", Danger.TOXIC)), //red flame
+    INDIUM(new Info(450, 2350, "7D6FD7", "4D4094", "2A2854")), //dark blue flame
+    TIN(true, false, false, new Info(500, 2900, "D1AD84", "87735A", "473A2D")), //light-blue flame
+    ANTIMONY(new Info(900, 1900, "9ADCB9", "4CB485", "28624F", Danger.TOXIC)), //green flame
+    TELLURIUM(new Info(700, 1250, "FFF6DE", "B79F93", "614B49", Danger.TOXIC)), //green flame
+    IODINE(Type.CUBE, new Info(400, 450, "F28AC5", "A4459B", "5F2C6C", Danger.TOXIC)),
+    XENON(Type.CANISTER, new Info(160, 165, "6C87CF", "3B4D77", "253148")),
+    CAESIUM(new Info(300, 950, "FFD17D", "DF9D28", "734717", Danger.FLAMMABLE, Danger.CORROSIVE)), //violet flame
+    BARIUM(new Info(1000, 2100, "8EB7DB", "4674AD", "273B5F", Danger.FLAMMABLE, Danger.CORROSIVE, Danger.TOXIC)), //green flame
+    LANTHANUM(new Info(1200, 3750, "79A979", "346135", "1D321B", Danger.FLAMMABLE)),
+    CERIUM(new Info(1050, 3700, "F794C7", "AD548B", "643155", Danger.FLAMMABLE)),
+    PRASEODYMIUM(new Info(1200, 3400, "B7E36B", "66A52B", "2F5618", Danger.FLAMMABLE)),
+    NEODYMIUM(new Info(1300, 3350, "96D5C4", "4E938A", "284B4D")),
+    PROMETHIUM(new Info(1300, 3300, "69F88C", "2DB852", "175F35", Danger.RADIOACTIVE)),
+    SAMARIUM(new Info(1350,2200, "DD9678", "986449", "4F3427", Danger.FLAMMABLE)),
+    EUROPIUM(new Info(1100, 1800, "3D9F7D", "246551", "133225", Danger.FLAMMABLE)),
+    GADOLINIUM(new Info(1600, 3300, "E7D058", "A7B010", "525E07", Danger.FLAMMABLE)),
+    TERBIUM(new Info(1650, 3400, "986D59", "694A38", "3D2C21")),
+    DYSPROSIUM(new Info(1700, 2850, "56565A", "363639", "1F1F20", Danger.FLAMMABLE)),
+    HOLMIUM(new Info(1750, 2900, "DA769E", "9E3F7C", "512147")),
+    ERBIUM(new Info(1800, 3150, "E1BDD8", "B96AA5", "693C69")),
+    THULIUM(new Info(1800, 2200, "81DAC2", "429482", "204844")),
+    YTTERBIUM(new Info(1100, 1450, "F49C55", "B95B1B", "5B270B", Danger.TOXIC, Danger.FLAMMABLE)),
+    LUTETIUM(new Info(1900, 3700, "FFA24B", "C85D00", "6C2900")),
+    HAFNIUM(new Info(2500, 4900, "556B9B", "2F446D", "1B2036", Danger.FLAMMABLE)), //white flame
+    TANTALUM(new Info(3300, 5750, "93C9E5", "658198", "353E4C")), //blue flame
+    TUNGSTEN(Type.INGOT, true, true, true, new Info(3700, 6200, "63858D", "3C5A63", "213336")), //green
+    RHENIUM(new Info(3450, 5900, "63B26D", "3C794B", "244130")),
+    OSMIUM(new Info(3300, 5300, "99C8DC", "518B9B", "2D434E")),
+    IRIDIUM(new Info(2700, 4400, "F96D61", "C61E15", "660D17")),
+    PLATINUM(true, false, false, new Info(2050, 4100, "93BED6", "5E7C8D", "323B47")),
+    GOLD(Type.VANILLA,true, false, false, new Info(1350, 3250, "FDF55F", "E9B115", "752802")),
+    MERCURY(new Info(230, 630, Danger.TOXIC)), //red flame
+    THALLIUM(new Info(600, 1750, "DEB665", "98762B", "493319", Danger.TOXIC)), //pure green flame
+    LEAD(true, false, false, new Info(600, 2000, "6F6B85", "49465D", "292733", Danger.TOXIC)), //light-blue flame
+    BISMUTH(new Info(550, 1850, "54EF5F", "951919", "430D7B", Danger.RADIOACTIVE)), //light blue flame
+    POLONIUM(new Info(550, 1250, "94DBDE", "529891", "2B484C", Danger.TOXIC, Danger.RADIOACTIVE)),
+    ASTATINE(Type.CUBE, new Info( 600, 650, "BAF28A", "56A445", "2C6C37", Danger.RADIOACTIVE)),
+    RADON(Type.CANISTER, new Info(200, 215, "FF7980", "D0484F", "671F22", Danger.RADIOACTIVE)),
+    FRANCIUM(new Info(300, 950, "AD6D4B", "803C25", "4B2416", Danger.RADIOACTIVE)),
+    RADIUM(new Info(950, 2000, "71CF74", "438046", "264A26", Danger.RADIOACTIVE)), //red flame
+    ACTINIUM(new Info(1500, 3500, "68C0FF", "427DA9", "244A65", Danger.RADIOACTIVE)),
+    THORIUM(new Info(2000, 5050, "C87F57", "7F2622", "43120F", Danger.RADIOACTIVE)),
+    PROTACTINIUM(new Info(1850, 4300, "70A54C", "4B6637", "2D4023", Danger.RADIOACTIVE)),
+    URANIUM(true, false, false, new Info(1400, 4400, "3AFF4F", "00AC3B", "007833", Danger.RADIOACTIVE)),
+    NEPTUNIUM(new Info(900, 4450, "71B898", "2B7A7C", "0B4347", Danger.RADIOACTIVE)),
+    PLUTONIUM(new Info(900, 3500, "75EFC7", "39AD6C", "256E3F", Danger.RADIOACTIVE)),
+    AMERICIUM(new Info(1450, 2900, "F6F770", "A8A445", "695D26", Danger.RADIOACTIVE)),
+    CURIUM(new Info(1600, 3350, "CE6349", "902E24", "581F18", Danger.RADIOACTIVE)),
+    BERKELIUM(new Info(1250, 2900, "E8D73B", "C9A700", "7D6400", Danger.RADIOACTIVE)),
+    CALIFORNIUM(new Info(1200, 1750, "C2E8EC", "89ADCB", "4C6486", Danger.RADIOACTIVE)),
+    EINSTEINIUM(new Info(1150, 1250, "6892E6", "536FE2", "30437A", Danger.RADIOACTIVE)),
     DEBUGIUM(new Info(10000, 1000000, Danger.RADIOACTIVE, Danger.TOXIC, Danger.FLAMMABLE, Danger.CORROSIVE)),
     ;
 

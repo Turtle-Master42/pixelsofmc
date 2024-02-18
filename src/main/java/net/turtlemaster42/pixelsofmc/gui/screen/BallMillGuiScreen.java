@@ -1,20 +1,17 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
-import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
 
 public class BallMillGuiScreen extends AbstractPOMscreen<BallMillGuiMenu> {
@@ -37,7 +34,7 @@ public class BallMillGuiScreen extends AbstractPOMscreen<BallMillGuiMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 5, 4210752); //+
+        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 5, 4, 4210752); //+
         renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 49, 19, 58, 68, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
         renderArea(pPoseStack, pMouseX, pMouseY, x, y, 59, 41, 68, 46, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
@@ -54,14 +51,6 @@ public class BallMillGuiScreen extends AbstractPOMscreen<BallMillGuiMenu> {
                     Optional.empty(), pMouseX - x, pMouseY - y);
         }
     }
-
-    private void renderArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, fromX, fromY, toX - fromX, toY-fromY)) {
-            renderTooltip(pPoseStack, tooltip,
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
 
     @Override
     protected void renderBg(@NotNull PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
@@ -90,10 +79,6 @@ public class BallMillGuiScreen extends AbstractPOMscreen<BallMillGuiMenu> {
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
                 ((height - imageHeight) / 2) + 22, menu.blockEntity.energyStorage, 10, 44);
-    }
-
-    private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }
 

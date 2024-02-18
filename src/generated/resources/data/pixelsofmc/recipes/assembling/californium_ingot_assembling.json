@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 236,
+      "G": 232,
+      "R": 194
+    },
+    {
+      "B": 203,
+      "G": 173,
+      "R": 137
+    },
+    {
+      "B": 134,
+      "G": 100,
+      "R": 76
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:californium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.californium"
+}

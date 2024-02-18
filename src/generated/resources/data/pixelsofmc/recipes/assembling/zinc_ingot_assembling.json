@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 175,
+      "G": 202,
+      "R": 148
+    },
+    {
+      "B": 108,
+      "G": 129,
+      "R": 93
+    },
+    {
+      "B": 48,
+      "G": 68,
+      "R": 39
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:zinc_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.zinc"
+}

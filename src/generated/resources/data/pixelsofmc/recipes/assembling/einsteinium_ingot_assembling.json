@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 230,
+      "G": 146,
+      "R": 104
+    },
+    {
+      "B": 226,
+      "G": 111,
+      "R": 83
+    },
+    {
+      "B": 122,
+      "G": 67,
+      "R": 48
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:einsteinium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.einsteinium"
+}

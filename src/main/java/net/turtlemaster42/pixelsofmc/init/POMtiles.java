@@ -35,6 +35,8 @@ public class POMtiles {
 
 	public static final RegistryObject<BlockEntityType<PixelSplitterTile>> PIXEL_SPLITTER =
 			TILES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<PixelAssemblerTile>> PIXEL_ASSEMBLER =
+			TILES.register("pixel_assembler", () -> BlockEntityType.Builder.of(PixelAssemblerTile::new, POMblocks.PIXEL_ASSEMBLER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BallMillTile>> BALL_MILL =
 			TILES.register("ball_mill", () -> BlockEntityType.Builder.of(BallMillTile::new, POMblocks.BALL_MILL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderTile>> GRINDER =

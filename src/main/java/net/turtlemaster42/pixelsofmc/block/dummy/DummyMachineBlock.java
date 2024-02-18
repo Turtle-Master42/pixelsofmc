@@ -1,6 +1,12 @@
 
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -10,13 +16,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
+	private final Vector3f DUST_COLOR = Vec3.fromRGB24(new Color(255, 255, 255).getRGB()).toVector3f();
 	public DummyMachineBlock() {
 		super(Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
@@ -33,35 +44,23 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
 	}
 
-//	@Override
-//	public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
-//		Minecraft instance = Minecraft.getInstance();
-//		if (instance.player.getMainHandItem().is(POMitems.DEBUGIUM_INGOT.get())) {
-//			if (pLevel.isClientSide()) {
-//					pLevel.addParticle(
-//							new DustParticleOptions(Vec3.fromRGB24(
-//									new Color(255, 255, 255).getRGB()).toVector3f(), 2f),
-//							pPos.getX() + pRandom.nextInt(0, 2),
-//							pPos.getY() + pRandom.nextInt(0, 2),
-//							pPos.getZ() + pRandom.nextInt(0, 2),
-//							0, 0, 0);
-//					pLevel.addParticle(
-//							new DustParticleOptions(Vec3.fromRGB24(
-//									new Color(255, 255, 255).getRGB()).toVector3f(), 2f),
-//							pPos.getX() + pRandom.nextInt(0, 2),
-//							pPos.getY() + pRandom.nextInt(0, 2),
-//							pPos.getZ() + pRandom.nextInt(0, 2),
-//							0, 0, 0);
-//			}
-//		}
-//	}
+	@Override
+	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+		if (pLevel.isClientSide()) {
+			ItemStack itemstack = Minecraft.getInstance().player.getMainHandItem();
+			if (itemstack.is(POMitems.DEBUGIUM_INGOT.get())) {
+				pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK_MARKER, Blocks.WHITE_STAINED_GLASS.defaultBlockState()), (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
 
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
 		if (!pLevel.isClientSide())
 			return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(), DummyMachineBlockTile::serverTick);
-		return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(),
-				pLevel.isClientSide ? DummyMachineBlockTile::particleTick : DummyMachineBlockTile::serverTick);
+		return null;
+//		return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(),
+//				pLevel.isClientSide ? DummyMachineBlockTile::particleTick : DummyMachineBlockTile::serverTick);
 	}
 }
