@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 304,
+  "element": 38,
   "neutron": 304,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:strontium_atom_512"
-    }
-  },
-  "proton": 304
+  "proton": 304,
+  "x512": true
 }

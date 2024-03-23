@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 400,
+  "element": 50,
   "neutron": 400,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:tin_atom_512"
-    }
-  },
-  "proton": 400
+  "proton": 400,
+  "x512": true
 }

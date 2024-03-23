@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 352,
+  "element": 44,
   "neutron": 352,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:ruthenium_atom_512"
-    }
-  },
-  "proton": 352
+  "proton": 352,
+  "x512": true
 }

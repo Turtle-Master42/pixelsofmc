@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 176,
+  "element": 22,
   "neutron": 176,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:titanium_atom_512"
-    }
-  },
-  "proton": 176
+  "proton": 176,
+  "x512": true
 }

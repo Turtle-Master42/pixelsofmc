@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 256,
+  "element": 32,
   "neutron": 256,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:germanium_atom_512"
-    }
-  },
-  "proton": 256
+  "proton": 256,
+  "x512": true
 }

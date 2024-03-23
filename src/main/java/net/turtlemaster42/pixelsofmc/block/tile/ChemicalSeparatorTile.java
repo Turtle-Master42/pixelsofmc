@@ -396,34 +396,12 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
 
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
-            boolean[] matched = new boolean[outputs.size()];
-            // Iterate over the outputs -out-
-            for (int out = 0;out < outputs.size(); out++) {
-                ItemStack beginStack =  match.get().getResultItems(out);
-                ItemStack newStack;
-                newStack = beginStack;
-                // Iterate over the slots -slot-
-                for (int slot = 1; slot < 4; slot++) {
-                    // if already matched continue output cycle
-                    if (matched[out])
-                        continue;
-                    //if it can insert it will, otherwise continue slot cycle
-                    if (canInsertItemIntoSlot(entity.itemHandler.getStackInSlot(slot), newStack)) {
-                        //inserts items and sets newStack to that what could not be inserted
-                        boolean chance = match.get().OutputChance(out) > random();
-                        if (chance && newStack==beginStack)
-                            newStack = entity.insertItemStack(slot, newStack, false);
-                        else newStack=ItemStack.EMPTY;
-                        // if newStack is empty match = true
-                        if (newStack.isEmpty()) {
-                            matched[out]=true;
-                        }
-                    }
-                }
-            }
+
+            entity.removeInput(0, match.get().getInputCount());
             entity.fluidTank.drain(match.get().getFluidInput().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+
+            entity.addMultiChanceOutput(outputs, 1, 3);
             entity.duoFluidTank.fill(match.get().getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
-            entity.itemHandler.extractItem(0, match.get().getInputCount(), false);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 58,
+  "element": 58,
   "neutron": 58,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:cerium_atom_64"
-    }
-  },
-  "proton": 58
+  "proton": 58,
+  "x512": false
 }

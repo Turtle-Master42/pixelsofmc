@@ -13,6 +13,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -20,11 +21,12 @@ import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncLockedSlotToServer;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncSlotMaxToServer;
+import net.turtlemaster42.pixelsofmc.network.PacketSyncSwitchToServer;
 import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
 
-public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IDuoFluidMenu {
+public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements IEnergyMenu, IDuoFluidMenu, IInfiniteEnergyMenu {
     public final SDSFusionControllerTile blockEntity;
     private final Level level;
     private final ContainerData data;
@@ -83,11 +85,18 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
     }
 
     public int getScaledEnergy() { //energy test
-        int energy = this.data.get(4) / 1000000; //stored energy
-        int maxEnergy = this.data.get(2) / 1000000;  // Max Energy
+        long energyPercent = this.blockEntity.getEnergyPercentage();
         int progressArrowSize = 44; // This is the height in pixels of your arrow
 
-        return maxEnergy != 0 && energy != 0 ? ((energy * progressArrowSize) / maxEnergy) : 0;
+        return (int) (progressArrowSize / 100f * energyPercent);
+    }
+
+    public int getScaledFusionPower() {
+        int fusionPower = this.blockEntity.getFusionPower(); // Current
+        int maxFusionPower = this.blockEntity.getMaxFusionPower();  // Max
+        int progressArrowSize = 36; // This is the height in pixels of your arrow
+
+        return maxFusionPower != 0 && fusionPower != 0 ? (int) (fusionPower * 1f / maxFusionPower  * progressArrowSize) : 0;
     }
 
     public void setSlotLimit(int slotLimit) {
@@ -105,8 +114,18 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
         this.blockEntity.setSlotLock(locked, slot);
         sendToServer(new PacketSyncLockedSlotToServer(blockEntity.getBlockPos(), locked, slot));
     }
+
     public boolean getSlotLock(int slot) {
         return this.blockEntity.getSlotLock(slot);
+    }
+
+    public void setSwitch(boolean on, int currentSwitch) {
+        this.blockEntity.setSwitches(on, currentSwitch);
+        sendToServer(new PacketSyncSwitchToServer(blockEntity.getBlockPos(), on, currentSwitch));
+    }
+
+    public boolean getSwitch(int currentSwitch) {
+        return this.blockEntity.getSwitch(currentSwitch);
     }
 
     @Override
@@ -155,14 +174,12 @@ public class SDSFusionControllerGuiMenu extends AbstractContainerMenu implements
 
         // Check if the slot clicked is one of the vanilla container slots
         if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            PixelsOfMc.LOGGER.info("vanilla slot");
             // This is a vanilla container slot so merge the stack into the tile inventory
             if (!customMoveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
         } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            PixelsOfMc.LOGGER.info("TE slot");
             // This is a TE slot so merge the stack into the players inventory
             if (!customMoveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;

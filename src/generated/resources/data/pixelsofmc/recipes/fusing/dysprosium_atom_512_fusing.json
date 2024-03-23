@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 528,
+  "element": 66,
   "neutron": 528,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:dysprosium_atom_512"
-    }
-  },
-  "proton": 528
+  "proton": 528,
+  "x512": true
 }

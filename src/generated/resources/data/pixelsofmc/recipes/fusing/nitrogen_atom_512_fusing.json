@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 56,
+  "element": 7,
   "neutron": 56,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:nitrogen_atom_512"
-    }
-  },
-  "proton": 56
+  "proton": 56,
+  "x512": true
 }

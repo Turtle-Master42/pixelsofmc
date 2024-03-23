@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 76,
+  "element": 76,
   "neutron": 76,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:osmium_atom_64"
-    }
-  },
-  "proton": 76
+  "proton": 76,
+  "x512": false
 }

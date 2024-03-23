@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 448,
+  "element": 56,
   "neutron": 448,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:barium_atom_512"
-    }
-  },
-  "proton": 448
+  "proton": 448,
+  "x512": true
 }

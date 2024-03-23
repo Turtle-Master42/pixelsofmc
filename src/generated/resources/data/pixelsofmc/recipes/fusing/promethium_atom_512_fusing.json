@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 488,
+  "element": 61,
   "neutron": 488,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:promethium_atom_512"
-    }
-  },
-  "proton": 488
+  "proton": 488,
+  "x512": true
 }

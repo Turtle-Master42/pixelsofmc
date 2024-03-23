@@ -87,7 +87,7 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
     }
 
     public boolean isEmpty() {
-        return asItemStack().isEmpty();
+        return ingredient.isEmpty();
     }
 
     @Override
@@ -114,5 +114,10 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
     public void toNetwork(FriendlyByteBuf buffer) {
         ingredient.toNetwork(buffer);
         buffer.writeShort(count());
+    }
+
+    @Override
+    public String toString() {
+        return this.count() + " " + this.asItem();
     }
 }

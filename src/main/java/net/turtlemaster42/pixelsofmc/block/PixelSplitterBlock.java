@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,6 +29,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +39,17 @@ import java.util.Random;
 public class PixelSplitterBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 14, 16);
+    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
+            box(0, 0, 0, 16, 14, 16), //base
+            box(0, 22, 0, 16, 30, 16), //base top
+            box(2, 30, 2, 14, 32, 14), //top
+            box(1, 14, 2, 4, 22, 5), //pillar back left
+            box(12, 14, 2, 15, 22, 5), //pillar back right
+            box(1, 14, 11, 4, 22, 14), //pillar front left
+            box(12, 14, 11, 15, 22, 14), //pillar front right
+            box(2, 14, 5, 3, 22, 11), //wall left
+            box(13, 14, 5, 14, 22, 11) //wall right
+    );
 
     public PixelSplitterBlock(Properties properties) {
         super(properties);
@@ -45,14 +58,27 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return SHAPE;
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case SOUTH -> SHAPE;
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+        };
     }
 	
 
     /* FACING */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        BlockPos blockpos = pContext.getClickedPos();
+        Level level = pContext.getLevel();
+        if (blockpos.getY() < level.getMaxBuildHeight() - 1 &&
+                level.getBlockState(blockpos.above()).canBeReplaced(pContext)
+        ) {
+            return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -83,6 +109,15 @@ public class PixelSplitterBlock extends BaseEntityBlock {
 
     public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
+        if (!pLevel.isClientSide()) {
+            BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
+
+            //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
+            Direction direction = pState.getValue(FACING);
+
+            //these are the location based on the default (NORTH) direction, they get turned automatically
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
+        }
     }
 
     @Override
@@ -109,27 +144,6 @@ public class PixelSplitterBlock extends BaseEntityBlock {
         }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
-    }
-
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRand) {
-        if (pState.getValue(ACTIVE)) {
-            double d0 = (double)pPos.getX() + 0.5D;
-            double d1 = pPos.getY();
-            double d2 = (double)pPos.getZ() + 0.5D;
-
-            Direction direction = pState.getValue(FACING);
-            Direction.Axis direction$axis = direction.getAxis();
-            double d3 = 0.52D;
-            double d4 = pRand.nextDouble() * 0.6D - 0.3D;
-            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52D : d4;
-            double d6 = pRand.nextDouble() * 6.0D / 16.0D;
-            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52D : d4;
-
-            double d8 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.05D : 0;
-            double d9 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.05D : 0;
-            pLevel.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6 + 1, d2 + d7, d8, 0.05D, d9);
-            pLevel.addParticle(ParticleTypes.CRIT, d0 + d5, d1 + d6 + 1, d2 + d7, d8, 0.01D, d9);
-        }
     }
 
     @Nullable

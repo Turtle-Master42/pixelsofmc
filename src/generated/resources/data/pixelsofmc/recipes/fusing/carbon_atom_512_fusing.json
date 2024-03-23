@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 48,
+  "element": 6,
   "neutron": 48,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:carbon_atom_512"
-    }
-  },
-  "proton": 48
+  "proton": 48,
+  "x512": true
 }

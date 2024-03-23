@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 720,
+  "element": 90,
   "neutron": 720,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:thorium_atom_512"
-    }
-  },
-  "proton": 720
+  "proton": 720,
+  "x512": true
 }

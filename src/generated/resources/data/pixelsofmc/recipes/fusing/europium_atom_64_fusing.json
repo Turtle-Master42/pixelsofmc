@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 63,
+  "element": 63,
   "neutron": 63,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:europium_atom_64"
-    }
-  },
-  "proton": 63
+  "proton": 63,
+  "x512": false
 }

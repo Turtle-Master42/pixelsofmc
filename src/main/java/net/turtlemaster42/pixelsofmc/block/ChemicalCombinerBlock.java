@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +24,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.block.tile.ChemicalCombinerTile;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -31,7 +35,18 @@ import javax.annotation.Nullable;
 public class ChemicalCombinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
+            box(0, 0, 0, 16, 12, 16), //base
+            box(0, 12, 0, 16, 24, 8), //tanks
+            box(2, 24, 2, 14, 26, 6), //tank thingy
+            box(5, 12, 8, 11, 19, 12), //combiner
+            box(11, 12, 8, 15, 16, 12), //combiner extend
+            box(3, 19, 8, 13, 21, 10), //tube
+            box(7, 19, 10, 9, 21, 11), //tube thingy
+            box(0, 12, 12, 8, 13, 16), //screen 1
+            box(0, 13, 12, 8, 14, 15), //screen 2
+            box(0, 14, 12, 8, 15, 14) //screen 3
+    );
 
     public ChemicalCombinerBlock(Properties properties) {
         super(properties);
@@ -40,14 +55,27 @@ public class ChemicalCombinerBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return SHAPE;
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case SOUTH -> SHAPE;
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+        };
     }
 
 
     /* FACING */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        BlockPos blockpos = pContext.getClickedPos();
+        Level level = pContext.getLevel();
+        if (blockpos.getY() < level.getMaxBuildHeight() - 1 &&
+                level.getBlockState(blockpos.above()).canBeReplaced(pContext)
+        ) {
+            return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -104,6 +132,15 @@ public class ChemicalCombinerBlock extends BaseEntityBlock {
 
     public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
+        if (!pLevel.isClientSide()) {
+            BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
+
+            //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
+            Direction direction = pState.getValue(FACING);
+
+            //these are the location based on the default (NORTH) direction, they get turned automatically
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
+        }
     }
 
     @Nullable

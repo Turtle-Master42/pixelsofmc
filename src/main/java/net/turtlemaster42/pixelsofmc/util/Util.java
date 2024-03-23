@@ -1,8 +1,10 @@
 package net.turtlemaster42.pixelsofmc.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
+
     private static final List<String> HEX = List.of("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
     private static final List<Integer> DEC = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
     public static int[] hexToRGB(String hex) {

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 360,
+  "element": 45,
   "neutron": 360,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:rhodium_atom_512"
-    }
-  },
-  "proton": 360
+  "proton": 360,
+  "x512": true
 }

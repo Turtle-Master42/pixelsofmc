@@ -55,10 +55,10 @@ public class SlotLockButton extends Button {
 
     @OnlyIn(Dist.CLIENT)
     enum Icon {
-        LOCKED(6, 46),
-        LOCKED_HOVER(6, 52),
-        UNLOCKED(0, 46),
-        UNLOCKED_HOVER(0, 52);
+        LOCKED(6, 58),
+        LOCKED_HOVER(6, 64),
+        UNLOCKED(0, 58),
+        UNLOCKED_HOVER(0, 64);
 
         private final int x;
         private final int y;

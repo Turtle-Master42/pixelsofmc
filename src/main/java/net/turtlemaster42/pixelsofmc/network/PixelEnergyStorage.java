@@ -1,19 +1,19 @@
 package net.turtlemaster42.pixelsofmc.network;
 
 import net.minecraftforge.energy.EnergyStorage;
+import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 
 public class PixelEnergyStorage extends EnergyStorage {
 
-    public PixelEnergyStorage(int capacity, int maxTransfer) {
-        super(capacity, maxTransfer, 0);
+    public PixelEnergyStorage(int capacity, int maxReceive) {
+        super(capacity, maxReceive, 0);
     }
-    public PixelEnergyStorage(int capacity, int maxTransfer, int maxExtract) {
-        super(capacity, maxTransfer, maxExtract);
+    public PixelEnergyStorage(int capacity, int maxReceive, int maxExtract) {
+        super(capacity, maxReceive, maxExtract);
     }
 
     // Override this to (for example) call setChanged() on your block entity
-    protected void onEnergyChanged() {
-    }
+    protected void onEnergyChanged() {}
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -29,7 +29,6 @@ public class PixelEnergyStorage extends EnergyStorage {
         int rc = super.extractEnergy(maxExtract, simulate);
         if (rc > 0 && !simulate) {
             onEnergyChanged();
-            return rc;
         }
         return rc;
     }

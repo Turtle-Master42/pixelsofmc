@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 296,
+  "element": 37,
   "neutron": 296,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:rubidium_atom_512"
-    }
-  },
-  "proton": 296
+  "proton": 296,
+  "x512": true
 }

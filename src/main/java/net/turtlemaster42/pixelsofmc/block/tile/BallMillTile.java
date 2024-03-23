@@ -12,18 +12,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
-import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -245,32 +242,14 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         if(match.isPresent()) {
             List<CountedIngredient> recipeItems = match.get().getInputs();
 
-            // Iterate over the recipeItems
-            for (CountedIngredient recipeItem : recipeItems) {
-                // Iterate over the slots
-                for (int slot = 0; slot < 3; slot++) {
-                    if (Ingredient.of(recipeItem.asItemStack()).test(inventory.getItem(slot))) {
-                        ItemStack slotStack = entity.itemHandler.getStackInSlot(slot);
-                        if (slotStack.getCount() < recipeItem.count()) {
-                            entity.itemHandler.extractItem(slot, slotStack.getCount(), false);
-                            recipeItem = CountedIngredient.of(recipeItem.count() - slotStack.getCount(), recipeItem.asItem());
-                        } else {
-                            entity.itemHandler.extractItem(slot, recipeItem.count(), false);
-                            break;
-                        }
-                    }
-                }
-            }
+            entity.removeMultiInput(recipeItems, 0, 2);
+            entity.addOutput(match.get().getResultItem(), 4);
 
             if (entity.itemHandler.getStackInSlot(3).isDamageableItem()) {
                 entity.itemHandler.getStackInSlot(3).hurt(1, RandomSource.create(), null); //ball
             } else {
                 entity.itemHandler.getStackInSlot(3).shrink(1);
             }
-
-            entity.itemHandler.setStackInSlot(4, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(4).getCount() + (match.get().getOutputCount())));
-
 
             setChanged(entity.level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();

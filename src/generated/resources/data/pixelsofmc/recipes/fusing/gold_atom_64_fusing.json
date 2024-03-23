@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 79,
+  "element": 79,
   "neutron": 79,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:gold_atom_64"
-    }
-  },
-  "proton": 79
+  "proton": 79,
+  "x512": false
 }

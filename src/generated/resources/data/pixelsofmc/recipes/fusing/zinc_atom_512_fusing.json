@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 240,
+  "element": 30,
   "neutron": 240,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:zinc_atom_512"
-    }
-  },
-  "proton": 240
+  "proton": 240,
+  "x512": true
 }

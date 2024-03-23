@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 29,
+  "element": 29,
   "neutron": 29,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:copper_atom_64"
-    }
-  },
-  "proton": 29
+  "proton": 29,
+  "x512": false
 }

@@ -939,7 +939,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelSplittingAndAssembling(Items.GOLD_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.gold", Element.GOLD.hexToRGB(0), Element.GOLD.hexToRGB(1), Element.GOLD.hexToRGB(2), fConsumer);
 
         autoPixelSplittingAndAssembling(Items.IRON_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
-        autoPixelSplittingAndAssembling(Items.IRON_NUGGET, List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
+        autoPixelSplittingAndAssembling(Items.IRON_NUGGET, List.of(toCI(POMitems.PIXEL_PILE.get(), 1), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
         autoPixelSplittingAndAssembling(Items.IRON_INGOT, List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.iron", Element.IRON.hexToRGB(0), Element.IRON.hexToRGB(1), Element.IRON.hexToRGB(2), fConsumer);
 
         autoPixelSplittingAndAssembling(Items.COPPER_BLOCK, List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc.copper", Element.COPPER.hexToRGB(0), Element.COPPER.hexToRGB(1), Element.COPPER.hexToRGB(2), fConsumer);
@@ -1147,7 +1147,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             }
             if (m.shouldAddNugget() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.nugget()), m.item(), fConsumer);
-                autoPixelSplittingAndAssembling(m.nugget(),  List.of(toCI(POMitems.PIXEL.get(), 9)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
+                autoPixelSplittingAndAssembling(m.nugget(),  List.of(toCI(POMitems.PIXEL_PILE.get(), 1), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
             if (m.shouldAddBlock() && !m.isVanilla()) {
                 SimpleCompactingRecipe(toI(m.item()), m.block(), fConsumer);
@@ -1395,11 +1395,16 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
     private void Fusing(Element element, Consumer<FinishedRecipe> consumer) {
-        Fusing(toCI(element.atom64(), 1), element.getElement(), element.getElement(), element.getElement(), consumer);
-        Fusing(toCI(element.atom512(), 1), element.getElement()*8, element.getElement()*8, element.getElement()*8, consumer);
+        if (element.equals(Element.HYDROGEN)) {
+            Fusing(element, false, element.getElement(), 0, element.getElement(), consumer);
+            Fusing(element, true, element.getElement() * 8, 0, element.getElement() * 8, consumer);
+        } else{
+            Fusing(element, false, element.getElement(), element.getElement(), element.getElement(), consumer);
+            Fusing(element, true, element.getElement() * 8, element.getElement() * 8, element.getElement() * 8, consumer);
+        }
     }
-    private void Fusing(CountedIngredient output, int proton, int neutron, int electron, Consumer<FinishedRecipe> consumer) {
-        new FusionRecipeBuilder(output.asItem(), output.count(), proton, neutron, electron)
+    private void Fusing(Element element, boolean x512, int proton, int neutron, int electron, Consumer<FinishedRecipe> consumer) {
+        new FusionRecipeBuilder(element, proton, neutron, electron, x512)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }

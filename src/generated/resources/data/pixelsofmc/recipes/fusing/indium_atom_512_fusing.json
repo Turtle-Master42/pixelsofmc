@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 392,
+  "element": 49,
   "neutron": 392,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:indium_atom_512"
-    }
-  },
-  "proton": 392
+  "proton": 392,
+  "x512": true
 }

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 88,
+  "element": 11,
   "neutron": 88,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:sodium_atom_512"
-    }
-  },
-  "proton": 88
+  "proton": 88,
+  "x512": true
 }

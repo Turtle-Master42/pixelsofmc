@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 12,
+  "element": 12,
   "neutron": 12,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:magnesium_atom_64"
-    }
-  },
-  "proton": 12
+  "proton": 12,
+  "x512": false
 }

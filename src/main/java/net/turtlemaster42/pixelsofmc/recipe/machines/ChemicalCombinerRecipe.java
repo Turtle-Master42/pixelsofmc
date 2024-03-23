@@ -38,39 +38,10 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
         this.fluidOutput = fluidOutput;
     }
 
-    //credits EnderIO
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
-
-        boolean[] matched = new boolean[3];
-
-        // Iterate over the slots
-        for (int slot = 0; slot < 3; slot++) {
-            // Iterate over the inputs
-            for (int inp = 0; inp < 3; inp++) {
-                // If this ingredient has been matched already, continue
-                if (matched[inp])
-                    continue;
-
-                if (inp < recipeItems.size()) {
-                    // If we expect an input, test we have a match for it.
-                    if (recipeItems.get(inp).test(container.getItem(slot))) {
-                        matched[inp] = true;
-                    }
-                } else if (container.getItem(slot).isEmpty()) {
-                    // If we don't expect an input, make sure we have a blank for it.
-                    matched[inp] = true;
-                }
-            }
-        }
-
-        // If we matched all our ingredients, we win!
-        for (int i = 0; i < 3; i++) {
-            if (!matched[i])
-                return false;
-        }
-        return true;
+        return matchMultiInput(container, recipeItems, 0, 2);
     }
 
     @Override

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 408,
+  "element": 51,
   "neutron": 408,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:antimony_atom_512"
-    }
-  },
-  "proton": 408
+  "proton": 408,
+  "x512": true
 }

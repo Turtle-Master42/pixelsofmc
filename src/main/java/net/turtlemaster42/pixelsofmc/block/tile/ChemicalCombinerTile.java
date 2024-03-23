@@ -392,25 +392,11 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
 
         if(match.isPresent()) {
             List<CountedIngredient> recipeItems = match.get().getInputs();
-            boolean[] matched = new boolean[3];
 
-            // Iterate over the slots -p-
-            for (int p = 0; p < 3; p++) {
-                // Iterate over the inputs -q-
-                for (int q = 0; q < recipeItems.size(); q++) {
-                    if (matched[q])
-                        continue;
-                    if (recipeItems.get(q).test(inventory.getItem(p))) {
-                        entity.itemHandler.extractItem(p, recipeItems.get(q).count(), false);
-                        matched[q] = true;
-                    }
-                }
-            }
-
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputCount())));
-
+            entity.removeMultiInput(recipeItems, 0, 2);
             entity.fluidTank.drain(match.get().getFluidInput().getAmount(), IFluidHandler.FluidAction.EXECUTE);
+
+            entity.addChanceOutput(match.get().getOutput(), 3);
             entity.duoFluidTank.fill(match.get().getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());

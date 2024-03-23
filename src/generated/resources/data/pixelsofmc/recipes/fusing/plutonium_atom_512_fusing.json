@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 752,
+  "element": 94,
   "neutron": 752,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:plutonium_atom_512"
-    }
-  },
-  "proton": 752
+  "proton": 752,
+  "x512": true
 }

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 704,
+  "element": 88,
   "neutron": 704,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:radium_atom_512"
-    }
-  },
-  "proton": 704
+  "proton": 704,
+  "x512": true
 }

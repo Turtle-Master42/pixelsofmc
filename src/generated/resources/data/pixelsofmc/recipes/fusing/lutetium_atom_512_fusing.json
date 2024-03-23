@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 568,
+  "element": 71,
   "neutron": 568,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:lutetium_atom_512"
-    }
-  },
-  "proton": 568
+  "proton": 568,
+  "x512": true
 }

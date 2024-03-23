@@ -14,6 +14,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -148,9 +149,9 @@ public class POMitems {
 	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 10000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
-	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 90000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
-	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 810000, 16733525, ChatFormatting.RED));
+	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8000000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
+	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64000000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
+	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512000000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new Item(new Item.Properties()));
@@ -246,6 +247,7 @@ public class POMitems {
 	public static final RegistryObject<Item> DEBUGIUM_INGOT = ITEMS.register("debugium_ingot", () -> new Debugium(Element.DEBUGIUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new PixelItem(new Item.Properties(), 4096));
 	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new PixelItem(new Item.Properties(), 32768));
+	public static final RegistryObject<Item> INFINITE_POWER_CELL = ITEMS.register("infinite_power_cell", () -> new InfinitePowerCellItem(new Item.Properties().rarity(Rarity.EPIC), new InfiniteNumber().fromString("1000000000000000000000000000000000000"), new Color(255, 170, 0).getRGB(), ChatFormatting.GOLD));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ITEMS.register(bus);

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/chemical_combiner"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/chemical_combiner",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/chemical_combiner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/chemical_combiner",
+      "y": 270
+    }
+  }
+}

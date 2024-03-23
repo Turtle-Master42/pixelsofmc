@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 192,
+  "element": 24,
   "neutron": 192,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:chromium_atom_512"
-    }
-  },
-  "proton": 192
+  "proton": 192,
+  "x512": true
 }

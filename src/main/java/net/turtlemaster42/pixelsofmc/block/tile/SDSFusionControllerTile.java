@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block.tile;
 
+import com.github.alexthe666.citadel.repack.jcodec.containers.mp4.MP4Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -27,12 +28,11 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.network.*;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
+import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IInfiniteEnergyHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,33 +41,37 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IDuoFluidHandlingTile {
+public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IDuoFluidHandlingTile, IInfiniteEnergyHandlingTile {
 
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 10;
-    private final int capacity = 102400000;
-    private final int maxReceive = 102400000;
+    private final InfiniteNumber capacity = new InfiniteNumber().fromLong(4096000000L);
+    private final int maxReceive = 2048000000;
     private static final int energyConsumption = 12000;
+    private int fusionPower = 0;
+    private final int maxFusionPower = 100000000;
     private int cantCraftReason = 0;
     private int cantCraftElement = 0;
 
     public int inputSlotLimit = 64;
     public boolean[] slotLock = new boolean[]{false, false, false, false, false, false, false, false, false};
+    public boolean[] switches = new boolean[]{false, false, false};
 
 
 
 
 
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
+    public final InfinitePixelEnergyStorage energyStorage = createEnergyStorage();
 
     @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
+    public InfinitePixelEnergyStorage createEnergyStorage() {
+        return new InfinitePixelEnergyStorage(capacity, maxReceive) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
                 POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
+                POMmessages.sendToClients(new PacketSyncInfiniteEnergyToClient(this.infiniteEnergy, worldPosition));
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -81,6 +85,10 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 return super.extractEnergy(maxExtract, simulate);
             }
         };
+    }
+
+    public long getEnergyPercentage() {
+        return new InfiniteNumber().getCrudePercentage(energyStorage.getInfiniteCapacity(), energyStorage.getInfiniteEnergy());
     }
 
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
@@ -146,7 +154,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 return switch (index) {
                     case 0 -> SDSFusionControllerTile.this.progress;
                     case 1 -> SDSFusionControllerTile.this.maxProgress;
-                    case 2 -> SDSFusionControllerTile.this.capacity;
+//                    case 2 -> SDSFusionControllerTile.this.capacity;
                     case 3 -> SDSFusionControllerTile.this.maxReceive;
                     case 4 -> SDSFusionControllerTile.this.energyStorage.getEnergyStored();
                     case 5 -> SDSFusionControllerTile.this.cantCraftReason;
@@ -221,6 +229,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
+        POMmessages.sendToClients(new PacketSyncInfiniteEnergyToClient(this.energyStorage.getInfiniteEnergy(), worldPosition));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
         return new SDSFusionControllerGuiMenu(pContainerId, pInventory, this, this.data);
@@ -266,8 +275,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("Inventory", itemHandler.serializeNBT());
         tag.putInt("progress", progress);
-        tag.putInt("powerCapacity", capacity);
         tag.putInt("Energy", energyStorage.getEnergyStored());
+        tag.putString("InfiniteEnergy", energyStorage.getInfiniteEnergy().toString());
+        tag.putInt("fusionPower", fusionPower);
         tag.putInt("slotLimit", inputSlotLimit);
         tag = fluidTank.writeToNBT(tag);
         CompoundTag fluidTag = new CompoundTag();
@@ -284,6 +294,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         slotTag.putBoolean("7", slotLock[7]);
         slotTag.putBoolean("8", slotLock[8]);
         tag.put("lockedSlot", slotTag);
+        tag.putBoolean("switch1", switches[0]);
+        tag.putBoolean("switch2", switches[1]);
+        tag.putBoolean("switch3", switches[2]);
         super.saveAdditional(tag);
     }
 
@@ -293,6 +306,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         progress = nbt.getInt("progress");
         energyStorage.setEnergy(nbt.getInt("Energy"));
+        energyStorage.setInfiniteEnergy(new InfiniteNumber().fromString(nbt.getString("InfiniteEnergy")));
+        fusionPower = nbt.getInt("fusionPower");
         inputSlotLimit = nbt.getInt("slotLimit");
         fluidTank.readFromNBT(nbt);
         duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
@@ -305,24 +320,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         slotLock[6] = nbt.getCompound("lockedSlot").getBoolean("6");
         slotLock[7] = nbt.getCompound("lockedSlot").getBoolean("7");
         slotLock[8] = nbt.getCompound("lockedSlot").getBoolean("8");
-    }
-
-    public void setSlotLimit(int slotLimit) {
-        this.inputSlotLimit = slotLimit;
-        setChanged();
-    }
-
-    public int getSlotLimit() {
-        return this.inputSlotLimit;
-    }
-
-    public void setSlotLock(boolean locked, int slot) {
-        this.slotLock[slot] = locked;
-        setChanged();
-    }
-
-    public boolean getSlotLock(int slot) {
-        return this.slotLock[slot];
+        switches[0] = nbt.getBoolean("switch1");
+        switches[1] = nbt.getBoolean("switch2");
+        switches[2] = nbt.getBoolean("switch3");
     }
 
 
@@ -338,6 +338,19 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, SDSFusionControllerTile pBlockEntity) {
+        if (getSwitch(0)) {
+            if (getSwitch(2))
+               addFusionPower(1000000);
+            else
+                addFusionPower(100000);
+        }
+        if (getSwitch(1)) {
+            if (getSwitch(2))
+                addFusionPower(-500000);
+            else
+                addFusionPower(-50000);
+        }
+
 
         if(hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
@@ -373,7 +386,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
     private static boolean hasPower(SDSFusionControllerTile entity) {
-        return entity.energyStorage.getEnergyStored() >= energyConsumption;
+        return entity.energyStorage.getInfiniteEnergy().isBiggerThenOrEquals(energyConsumption);
     }
 
 
@@ -388,17 +401,34 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 .getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            List<CountedIngredient> recipeItems = match.get().getInputs();
+            FusionRecipe recipe = match.get();
+            double inputMass = 0;
+            double outputMass = recipe.getElement().getMass();
+
+            if (recipe.x512()) {
+                outputMass = outputMass * 8;
+            }
+
 
             // Iterate over the slots -q-
             for (int q = 0; q < 9; q++) {
-                if (entity.itemHandler.getStackInSlot(q).getItem() instanceof AtomItem) {
-                    entity.itemHandler.extractItem(q, 1, false);
+                if (entity.itemHandler.getStackInSlot(q).getItem() instanceof AtomItem atom) {
+                    if (entity.itemHandler.getStackInSlot(q).is(POMtags.Items.ATOM512))
+                        inputMass += atom.getElementalMass() * 8;
+                    else
+                        inputMass += atom.getElementalMass();
+                    entity.removeInput(q);
                 }
             }
 
-            entity.itemHandler.setStackInSlot(9, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(9).getCount() + (match.get().getOutputCount())));
+            PixelsOfMc.LOGGER.info("Input Mass: {}", inputMass);
+            PixelsOfMc.LOGGER.info("Output Mass: {} {}", recipe.getElement().elementName(), outputMass);
+            double deltaMass = inputMass - outputMass;
+            double energy = deltaMass * 2.998 * Math.pow(10, 16);
+            PixelsOfMc.LOGGER.info("Energy J: {}, delta m: {}", energy, deltaMass);
+            PixelsOfMc.LOGGER.info("Energy FE: {}", energy * 0.4);
+
+            entity.addOutput(recipe.getResultItem(), 9);
 
             entity.resetProgress();
             entity.errorEnergyReset();
@@ -429,6 +459,52 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         return false;
     }
 
+    //---OTHER---//
+
+    public void setSlotLimit(int slotLimit) {
+        this.inputSlotLimit = slotLimit;
+        setChanged();
+    }
+
+    public int getSlotLimit() {
+        return this.inputSlotLimit;
+    }
+
+    public void setSlotLock(boolean locked, int slot) {
+        this.slotLock[slot] = locked;
+        setChanged();
+    }
+
+    public boolean getSlotLock(int slot) {
+        return this.slotLock[slot];
+    }
+
+    public boolean getSwitch(int currentSwitch) {
+        return switches[currentSwitch];
+    }
+
+    public void setSwitches(boolean on, int currentSwitch) {
+        this.switches[currentSwitch] = on;
+        setChanged();
+    }
+
+    public int getFusionPower() {
+        return fusionPower;
+    }
+
+    public void setFusionPower(int fusionPower) {
+        this.fusionPower = fusionPower;
+        setChanged();
+    }
+
+    public void addFusionPower(int fusionPower) {
+        this.fusionPower = Math.max(0, Math.min(maxFusionPower, this.fusionPower + fusionPower));
+        setChanged();
+    }
+
+    public int getMaxFusionPower() {
+        return maxFusionPower;
+    }
 
     //---ENERGY---//
 
@@ -441,10 +517,11 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         }
     }
 
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
+    @Override
+    public void setEnergyLevel(InfiniteNumber energyLevel) {
+        this.energyStorage.setInfiniteEnergy(energyLevel);
     }
 
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
+    public InfinitePixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
 }

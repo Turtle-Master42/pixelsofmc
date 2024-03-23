@@ -268,28 +268,12 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
         if(match.isPresent()) {
             List<CountedIngredient> recipeItems = match.get().getInputs();
 
-            // Iterate over the recipeItems
-            for (CountedIngredient recipeItem : recipeItems) {
-                // Iterate over the slots
-                for (int slot = 0; slot < 3; slot++) {
-                    if (Ingredient.of(recipeItem.asItemStack()).test(inventory.getItem(slot))) {
-                        ItemStack slotStack = entity.itemHandler.getStackInSlot(slot);
-                        if (slotStack.getCount() < recipeItem.count()) {
-                            entity.itemHandler.extractItem(slot, slotStack.getCount(), false);
-                            recipeItem = CountedIngredient.of(recipeItem.count() - slotStack.getCount(), recipeItem.asItem());
-                        } else {
-                            entity.itemHandler.extractItem(slot, recipeItem.count(), false);
-                            break;
-                        }
-                    }
-                }
-            }
 
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getResultItem().getCount())));
+            entity.removeMultiInput(recipeItems, 0, 2);
 
+            entity.addOutput(match.get().getResultItem(), 3);
 
-            setChanged(entity.level, entity.worldPosition, entity.getBlockState());
+            setChanged(level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
             entity.errorEnergyReset();
         }

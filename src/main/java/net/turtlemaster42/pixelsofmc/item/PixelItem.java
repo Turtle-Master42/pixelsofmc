@@ -10,17 +10,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PixelItem extends Item implements DyeableLeatherItem {
+public class PixelItem extends Item {
     private final int pixelAmount;
     public PixelItem(Properties properties, int pixelAmount) {
         super(properties);
         this.pixelAmount = pixelAmount;
     }
-
-    public int getColor(@NotNull ItemStack stack) {
-        return getColor(stack, 0);
-    }
-
 
     public int getColor(ItemStack stack, int index) {
         CompoundTag compoundtag = stack.getTagElement("display");

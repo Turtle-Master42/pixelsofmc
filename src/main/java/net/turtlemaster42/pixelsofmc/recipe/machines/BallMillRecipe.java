@@ -7,20 +7,17 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BallMillRecipe extends BaseRecipe {
     private final ResourceLocation id;
@@ -38,44 +35,7 @@ public class BallMillRecipe extends BaseRecipe {
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
-        List<Item> slotItems = new ArrayList<>();
-        List<Integer> slotCounts = new ArrayList<>();
-
-        // Iterate over the slots and makes a list of the total ingredients
-        for (int slot = 0; slot < 3; slot++) {
-            ItemStack stack = container.getItem(slot);
-            if (stack.isEmpty())
-                continue;
-
-            if (!slotItems.contains(stack.getItem())) {
-                slotItems.add(stack.getItem());
-                slotCounts.add(stack.getCount());
-            } else {
-                int index = slotItems.indexOf(stack.getItem());
-                slotCounts.set(index, slotCounts.get(index) + stack.getCount());
-            }
-        }
-
-        // if slotItems and recipeItems are not equal there are ingredients missing or to many
-        if (slotItems.size() != recipeItems.size()) {
-            return false;
-        }
-
-        // Iterates over the needed items
-        for (CountedIngredient recipeItem : recipeItems) {
-            Item item = recipeItem.asItem();
-            // Checks if the item is present in the slots
-            if (!slotItems.contains(item)) {
-                return false;
-            }
-            int index = slotItems.indexOf(item);
-            // Checks if there is enough items in the slots
-            if (recipeItem.count() > slotCounts.get(index)) {
-                return false;
-            }
-            // We win, the item is present and there is enough
-        }
-        return ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
+        return matchMultiInput(container, recipeItems, 0, 2) && ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
 
 
 

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 36,
+  "element": 36,
   "neutron": 36,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:krypton_atom_64"
-    }
-  },
-  "proton": 36
+  "proton": 36,
+  "x512": false
 }

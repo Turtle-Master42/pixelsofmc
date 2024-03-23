@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 32,
+  "element": 4,
   "neutron": 32,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:beryllium_atom_512"
-    }
-  },
-  "proton": 32
+  "proton": 32,
+  "x512": true
 }

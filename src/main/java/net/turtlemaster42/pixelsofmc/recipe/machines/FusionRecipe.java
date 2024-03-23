@@ -21,16 +21,24 @@ import java.util.List;
 
 public class FusionRecipe extends BaseRecipe {
     private final ResourceLocation id;
+    private final Element element;
     private final ItemStack output;
+    private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
     private final int electronCount;
-    public FusionRecipe(ResourceLocation id, ItemStack output, int protonCount, int neutronCount, int electronCount) {
+    public FusionRecipe(ResourceLocation id, Element element, int protonCount, int neutronCount, int electronCount, boolean x512) {
         this.id = id;
-        this.output = output;
+        this.element = element;
         this.protonCount = protonCount;
         this.neutronCount = neutronCount;
         this.electronCount = electronCount;
+        this.x512 = x512;
+        if (x512) {
+            this.output = new ItemStack(element.atom512());
+        } else {
+            this.output = new ItemStack(element.atom64());
+        }
     }
 
     @Override
@@ -47,11 +55,10 @@ public class FusionRecipe extends BaseRecipe {
                 ItemStack stack = new ItemStack(item);
                 int multiplier = 1;
                 if (stack.is(POMtags.Items.ATOM512)) multiplier = 8;
-                //if (output.is(POMtags.Items.ATOM512) && !stack.is(POMtags.Items.ATOM512) && item.getProtonCount() < Element.values().length) return false;
 
-                protonCount = protonCount + (item.getProtonCount()*multiplier);
-                neutronCount = neutronCount + (item.getNeutronCount()*multiplier);
-                electronCount = electronCount + (item.getElectronCount()*multiplier);
+                protonCount += item.getProtonCount() * multiplier;
+                neutronCount += item.getNeutronCount() * multiplier;
+                electronCount += item.getElectronCount() * multiplier;
             }
         }
 
@@ -82,6 +89,14 @@ public class FusionRecipe extends BaseRecipe {
     public int getElectronCount() {return electronCount;}
     public ItemStack getInput(int input) {
         return ItemStack.EMPTY;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public boolean x512() {
+        return x512;
     }
 
     @Override
@@ -116,24 +131,24 @@ public class FusionRecipe extends BaseRecipe {
 
         public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
-            CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
-            ItemStack output = new ItemStack(out.asItem(), out.count());
+            Element element = Element.fromJson(json);
+            boolean x512 = json.get("x512").getAsBoolean();
             int proton = json.get("proton").getAsInt();
             int neutron = json.get("neutron").getAsInt();
             int electron = json.get("electron").getAsInt();
             
-            return new FusionRecipe(id, output, proton, neutron, electron);
+            return new FusionRecipe(id, element, proton, neutron, electron, x512);
         }
 
         public FusionRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
-                ItemStack output = buf.readItem();
-                int outputCount = buf.readInt();
+                Element element = Element.fromNetwork(buf);
+                boolean x512 = buf.readBoolean();
                 int proton = buf.readInt();
                 int neutron = buf.readInt();
                 int electron = buf.readInt();
 
-                return new FusionRecipe(id, output, proton, neutron, electron);
+                return new FusionRecipe(id, element, proton, neutron, electron, x512);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading fusing recipe from packet.", ex);
                 throw ex;
@@ -142,8 +157,8 @@ public class FusionRecipe extends BaseRecipe {
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull FusionRecipe recipe) {
             try {
-                buf.writeItem(recipe.output);
-                buf.writeInt(recipe.getOutputCount());
+                recipe.element.toNetwork(buf);
+                buf.writeBoolean(recipe.x512);
                 buf.writeInt(recipe.protonCount);
                 buf.writeInt(recipe.neutronCount);
                 buf.writeInt(recipe.electronCount);

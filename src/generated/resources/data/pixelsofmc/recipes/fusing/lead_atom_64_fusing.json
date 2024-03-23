@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 82,
+  "element": 82,
   "neutron": 82,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:lead_atom_64"
-    }
-  },
-  "proton": 82
+  "proton": 82,
+  "x512": false
 }

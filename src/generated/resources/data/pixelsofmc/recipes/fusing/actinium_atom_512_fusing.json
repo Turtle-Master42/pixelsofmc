@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 712,
+  "element": 89,
   "neutron": 712,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:actinium_atom_512"
-    }
-  },
-  "proton": 712
+  "proton": 712,
+  "x512": true
 }

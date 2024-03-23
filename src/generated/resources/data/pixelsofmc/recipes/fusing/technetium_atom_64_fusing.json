@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 43,
+  "element": 43,
   "neutron": 43,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:technetium_atom_64"
-    }
-  },
-  "proton": 43
+  "proton": 43,
+  "x512": false
 }

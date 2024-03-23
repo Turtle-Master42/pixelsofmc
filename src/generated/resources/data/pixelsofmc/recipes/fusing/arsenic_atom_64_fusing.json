@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 33,
+  "element": 33,
   "neutron": 33,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:arsenic_atom_64"
-    }
-  },
-  "proton": 33
+  "proton": 33,
+  "x512": false
 }

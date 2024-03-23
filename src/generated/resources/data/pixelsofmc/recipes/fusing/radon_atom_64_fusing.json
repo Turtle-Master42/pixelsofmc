@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 86,
+  "element": 86,
   "neutron": 86,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:radon_atom_64"
-    }
-  },
-  "proton": 86
+  "proton": 86,
+  "x512": false
 }

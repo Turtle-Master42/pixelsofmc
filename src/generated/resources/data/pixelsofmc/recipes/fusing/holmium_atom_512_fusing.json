@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 536,
+  "element": 67,
   "neutron": 536,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:holmium_atom_512"
-    }
-  },
-  "proton": 536
+  "proton": 536,
+  "x512": true
 }

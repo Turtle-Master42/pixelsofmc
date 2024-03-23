@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 96,
+  "element": 96,
   "neutron": 96,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:curium_atom_64"
-    }
-  },
-  "proton": 96
+  "proton": 96,
+  "x512": false
 }

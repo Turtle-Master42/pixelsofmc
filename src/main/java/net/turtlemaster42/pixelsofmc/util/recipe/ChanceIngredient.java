@@ -87,6 +87,15 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
 
 
 
+    public static ChanceIngredient of(float chance, Ingredient ingredient) {
+        return new ChanceIngredient(ingredient, ingredient.getItems()[0].getCount(), chance);
+    }
+
+    public static ChanceIngredient of(float chance, ItemStack stack) {
+        return new ChanceIngredient(Ingredient.of(stack), stack.getCount(), chance);
+    }
+
+
 
 
     public ItemStack[] getItems() {
@@ -99,6 +108,14 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
 
     public Item asItem() {
         return ingredient.getItems()[0].getItem();
+    }
+
+    public ItemStack asItemStack() {
+        return ingredient.getItems()[0];
+    }
+
+    public boolean isEmpty() {
+        return ingredient.isEmpty();
     }
 
     @Override
@@ -127,5 +144,10 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
         ingredient.toNetwork(buffer);
         buffer.writeShort(count());
         buffer.writeFloat(chance());
+    }
+
+    @Override
+    public String toString() {
+        return this.count() + " " + this.asItem() + " " + this.chance() +"f";
     }
 }

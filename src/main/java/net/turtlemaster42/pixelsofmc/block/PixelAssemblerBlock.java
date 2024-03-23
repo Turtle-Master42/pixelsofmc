@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.block;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -25,7 +26,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeparatorTile;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelAssemblerTile;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,7 +38,18 @@ import java.util.Random;
 public class PixelAssemblerBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
+            box(0, 0, 0, 16, 6, 16), // base bottom
+            box(1, 6, 1, 15, 10, 15), // base middel
+            box(0, 10, 0, 16, 16, 16), // base top
+            box(0, 6, 3, 16, 10, 13), // plates
+            box(2, 16, 2, 14, 32, 14), // compressor
+            box(1, 17, 1, 15, 19, 15), // ring 1
+            box(1, 21, 1, 15, 23, 15), // ring 2
+            box(1, 25, 1, 15, 27, 15), // ring 3
+            box(1, 29, 1, 15, 31, 15), // ring 4
+            box(0, 16, 5, 16, 32, 11) // vents
+    );
 
     public PixelAssemblerBlock(Properties properties) {
         super(properties);
@@ -43,14 +58,27 @@ public class PixelAssemblerBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return SHAPE;
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case SOUTH -> SHAPE;
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+        };
     }
 	
 
     /* FACING */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        BlockPos blockpos = pContext.getClickedPos();
+        Level level = pContext.getLevel();
+        if (blockpos.getY() < level.getMaxBuildHeight() - 1 &&
+                level.getBlockState(blockpos.above()).canBeReplaced(pContext)
+        ) {
+            return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -81,6 +109,15 @@ public class PixelAssemblerBlock extends BaseEntityBlock {
 
     public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
+        if (!pLevel.isClientSide()) {
+            BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
+
+            //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
+            Direction direction = pState.getValue(FACING);
+
+            //these are the location based on the default (NORTH) direction, they get turned automatically
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
+        }
     }
 
     @Override

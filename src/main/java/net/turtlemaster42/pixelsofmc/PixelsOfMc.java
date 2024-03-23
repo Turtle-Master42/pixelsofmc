@@ -207,7 +207,7 @@ public class PixelsOfMc {
 				if (entity != null) {
 					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
 					if (EnergyHandlerFrom != null) {
-						int maxReceive = 10000;
+						int maxReceive = 8000000;
 
 						if (EnergyHandlerFrom.canReceive()) {
 							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
@@ -233,7 +233,7 @@ public class PixelsOfMc {
 				if (entity != null) {
 					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
 					if (EnergyHandlerFrom != null) {
-						int maxReceive = 90000;
+						int maxReceive = 64000000;
 
 						if (EnergyHandlerFrom.canReceive()) {
 							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
@@ -259,7 +259,7 @@ public class PixelsOfMc {
 				if (entity != null) {
 					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
 					if (EnergyHandlerFrom != null) {
-						int maxReceive = 810000;
+						int maxReceive = 512000000;
 
 						if (EnergyHandlerFrom.canReceive()) {
 							EnergyHandlerFrom.receiveEnergy(maxReceive, false);

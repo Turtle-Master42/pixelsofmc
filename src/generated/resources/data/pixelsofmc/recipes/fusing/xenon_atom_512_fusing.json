@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 432,
+  "element": 54,
   "neutron": 432,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:xenon_atom_512"
-    }
-  },
-  "proton": 432
+  "proton": 432,
+  "x512": true
 }

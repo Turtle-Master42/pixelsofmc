@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 376,
+  "element": 47,
   "neutron": 376,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:silver_atom_512"
-    }
-  },
-  "proton": 376
+  "proton": 376,
+  "x512": true
 }

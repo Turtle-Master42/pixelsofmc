@@ -254,7 +254,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
                     }
                 }
             }
-            entity.itemHandler.extractItem(0,1, false);
+            entity.removeInput(0);
             entity.itemHandler.getStackInSlot(1).hurt(1, RandomSource.create(), null); //saw
 
             setChanged(level, entity.worldPosition, entity.getBlockState());

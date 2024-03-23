@@ -121,9 +121,12 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}")
+    runtimeOnly(fg.deobf("curse.maven:ferritecore-429235:4147336"))
+
+    runtimeOnly(fg.deobf("curse.maven:immersive-engineering-231951:4416674"))
 //    runtimeOnly fg.deobf("curse.maven:mekanism-268560:4385637")
 //    runtimeOnly fg.deobf("curse.maven:configured-457570:4441589")
-    runtimeOnly fg.deobf("curse.maven:pipez-443900:4167539")
+//    runtimeOnly fg.deobf("curse.maven:pipez-443900:4167539")
 }
 
 mixin {

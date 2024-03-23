@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 97,
+  "element": 97,
   "neutron": 97,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:berkelium_atom_64"
-    }
-  },
-  "proton": 97
+  "proton": 97,
+  "x512": false
 }

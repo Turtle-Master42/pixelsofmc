@@ -36,6 +36,12 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncEnergyToClient::handle)
                 .add();
 
+        net.messageBuilder(PacketSyncInfiniteEnergyToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncInfiniteEnergyToClient::new)
+                .encoder(PacketSyncInfiniteEnergyToClient::toBytes)
+                .consumerMainThread(PacketSyncInfiniteEnergyToClient::handle)
+                .add();
+
         net.messageBuilder(PacketSyncItemStackToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncItemStackToClient::new)
                 .encoder(PacketSyncItemStackToClient::toBytes)
@@ -74,6 +80,13 @@ public class POMmessages {
                 .encoder(PacketSyncLockedSlotToServer::toBytes)
                 .consumerMainThread(PacketSyncLockedSlotToServer::handle)
                 .add();
+
+        net.messageBuilder(PacketSyncSwitchToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketSyncSwitchToServer::new)
+                .encoder(PacketSyncSwitchToServer::toBytes)
+                .consumerMainThread(PacketSyncSwitchToServer::handle)
+                .add();
+
 
     }
     public static <MSG> void sendToServer(MSG message) {

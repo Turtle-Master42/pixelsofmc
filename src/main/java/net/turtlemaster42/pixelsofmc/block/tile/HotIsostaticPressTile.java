@@ -299,10 +299,9 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
         if(match.isPresent()) {
 
-            entity.itemHandler.extractItem(2, match.get().getInput().getCount(), false);
+            entity.removeInput(2, match.get().getInput().getCount());
 
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + (match.get().getOutputCount())));
+            entity.addOutput(match.get().getResultItem(), 3);
 
             requiredHeat = -1;
             requiredMaxHeat = -1;

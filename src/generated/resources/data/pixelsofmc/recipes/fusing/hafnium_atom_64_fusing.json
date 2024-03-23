@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 72,
+  "element": 72,
   "neutron": 72,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:hafnium_atom_64"
-    }
-  },
-  "proton": 72
+  "proton": 72,
+  "x512": false
 }

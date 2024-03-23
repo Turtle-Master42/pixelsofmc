@@ -10,10 +10,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
+import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,17 +24,25 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 
 public class FusionRecipeBuilder implements RecipeBuilder {
-    private final CountedIngredient output;
+    private final Element element;
+    private final ItemStack output;
+    private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
     private final int electronCount;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public FusionRecipeBuilder(ItemLike result, int outputCount, int protonCount, int neutronCount, int electronCount) {
-        this.output = CountedIngredient.of(outputCount, result);
+    public FusionRecipeBuilder(Element element, int protonCount, int neutronCount, int electronCount, boolean x512) {
         this.protonCount = protonCount;
         this.neutronCount = neutronCount;
         this.electronCount = electronCount;
+        this.x512 = x512;
+        this.element = element;
+        if (x512) {
+            this.output = new ItemStack(element.atom512());
+        } else {
+            this.output = new ItemStack(element.atom64());
+        }
     }
 
     @Override
@@ -47,7 +58,7 @@ public class FusionRecipeBuilder implements RecipeBuilder {
 
     @Override
     public @NotNull Item getResult() {
-        return output.asItem();
+        return output.getItem();
     }
 
     @Override
@@ -57,7 +68,7 @@ public class FusionRecipeBuilder implements RecipeBuilder {
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
                 .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
 
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.output, this.protonCount, this.neutronCount, this.electronCount,
+        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.element, this.protonCount, this.neutronCount, this.electronCount, this.x512,
                 this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/fusing/"
                 + pRecipeId.getPath())));
 
@@ -65,27 +76,30 @@ public class FusionRecipeBuilder implements RecipeBuilder {
 
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
-        private final CountedIngredient result;
         private final int protonCount;
         private final int neutronCount;
         private final int electronCount;
+        private final Element element;
+        private final boolean x512;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, CountedIngredient pResult, int protonCount, int neutronCount, int electronCount, Advancement.Builder pAdvancement,
+        public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, int electronCount, boolean x512, Advancement.Builder pAdvancement,
                       ResourceLocation pAdvancementId) {
             this.id = pId;
-            this.result = pResult;
             this.protonCount = protonCount;
             this.neutronCount = neutronCount;
             this.electronCount = electronCount;
             this.advancement = pAdvancement;
             this.advancementId = pAdvancementId;
+            this.element = element;
+            this.x512 =x512;
         }
 
         @Override
         public void serializeRecipeData(JsonObject pJson) {
-            pJson.add("output", result.toJson());
+            element.toJson(pJson);
+            pJson.addProperty("x512", x512);
             pJson.addProperty("proton", protonCount);
             pJson.addProperty("neutron", neutronCount);
             pJson.addProperty("electron", electronCount);
@@ -94,8 +108,15 @@ public class FusionRecipeBuilder implements RecipeBuilder {
         @Override
         public @NotNull ResourceLocation getId() {
             ResourceLocation id = this.id;
+            String name;
+            if (x512) {
+                name = element.atom512().asItem().toString();
+            } else {
+                name = element.atom64().asItem().toString();
+            }
+
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "fusing/"+result.asItem()+"_fusing");
+                    "fusing/"+name+"_fusing");
         }
 
         @Override

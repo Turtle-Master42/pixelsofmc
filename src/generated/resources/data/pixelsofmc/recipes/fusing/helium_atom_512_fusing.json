@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 16,
+  "element": 2,
   "neutron": 16,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:helium_atom_512"
-    }
-  },
-  "proton": 16
+  "proton": 16,
+  "x512": true
 }

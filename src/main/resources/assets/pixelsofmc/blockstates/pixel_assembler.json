@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/pixel_assembler"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/pixel_assembler",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/pixel_assembler",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/pixel_assembler",
+      "y": 270
+    }
+  }
+}

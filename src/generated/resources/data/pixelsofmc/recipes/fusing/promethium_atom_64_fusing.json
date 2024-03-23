@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 61,
+  "element": 61,
   "neutron": 61,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:promethium_atom_64"
-    }
-  },
-  "proton": 61
+  "proton": 61,
+  "x512": false
 }

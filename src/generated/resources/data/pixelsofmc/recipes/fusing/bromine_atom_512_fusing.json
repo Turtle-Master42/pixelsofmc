@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 280,
+  "element": 35,
   "neutron": 280,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:bromine_atom_512"
-    }
-  },
-  "proton": 280
+  "proton": 280,
+  "x512": true
 }

@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 83,
+  "element": 83,
   "neutron": 83,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:bismuth_atom_64"
-    }
-  },
-  "proton": 83
+  "proton": 83,
+  "x512": false
 }

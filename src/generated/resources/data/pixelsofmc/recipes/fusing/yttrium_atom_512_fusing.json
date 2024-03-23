@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 312,
+  "element": 39,
   "neutron": 312,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:yttrium_atom_512"
-    }
-  },
-  "proton": 312
+  "proton": 312,
+  "x512": true
 }

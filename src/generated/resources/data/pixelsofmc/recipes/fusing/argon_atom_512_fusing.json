@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 144,
+  "element": 18,
   "neutron": 144,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:argon_atom_512"
-    }
-  },
-  "proton": 144
+  "proton": 144,
+  "x512": true
 }

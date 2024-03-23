@@ -735,6 +735,9 @@
   "tooltip.pixelsofmc.gui.info.crafting.fusion.2":  "§cnot strong enough",
   "tooltip.pixelsofmc.gui.info.crafting.fusion.3":  "§cto create element %s (%s)",
   "tooltip.pixelsofmc.gui.sds_fusion":  "S.D.S Generator",
+  "tooltip.pixelsofmc.gui.info.max_stack_size":  "§aMaximum amount in slots",
+  "tooltip.pixelsofmc.gui.info.lock_slots":  "§aLock slot",
+  "tooltip.pixelsofmc.gui.info.fusion_power": "§6%s / %s Fusion Power",
 
   "tooltip.pixelsofmc.energy.dot": ".",
 
@@ -784,6 +787,7 @@
   "tooltip.pixelsofmc.danger.none.text": "      §dNone",
 
   "tooltip.pixelsofmc.stored_power": "§b%s (%s) §7FE Stored",
+  "tooltip.pixelsofmc.stored_power_altern": "§b%s (%s) §7%s Stored",
   "tooltip.pixelsofmc.stored_power_shift": "§b%s/%s §7FE Stored",
   "tooltip.pixelsofmc.power_cell": "§b10000 §7FE Stored",
   "tooltip.pixelsofmc.power_cell.overcharged": "§d90000 §7FE Stored",

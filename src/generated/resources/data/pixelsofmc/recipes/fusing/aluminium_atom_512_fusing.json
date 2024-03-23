@@ -1,12 +1,8 @@
 {
   "type": "pixelsofmc:fusing",
   "electron": 104,
+  "element": 13,
   "neutron": 104,
-  "output": {
-    "count": 1,
-    "ingredient": {
-      "item": "pixelsofmc:aluminium_atom_512"
-    }
-  },
-  "proton": 104
+  "proton": 104,
+  "x512": true
 }

@@ -26,6 +26,7 @@ public class ElementItem extends Item {
     }
 
     public Element getElement() {return e;}
+    public double getElementalMass() {return e.getMass();}
     public int getProtonCount() {return e.getElement();}
     public int getNeutronCount() {
         if (e.equals(Element.HYDROGEN))
