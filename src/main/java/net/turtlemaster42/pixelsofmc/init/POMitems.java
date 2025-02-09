@@ -1,11 +1,9 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,28 +13,38 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.item.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class POMitems {
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> NUGGETS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> DUSTS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> BUCKETS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> ELEMENTS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> ATOMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 	public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
+	public static final DeferredRegister<Item> STORAGE_BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PixelsOfMc.MOD_ID);
 	public static final RegistryObject<Item> BOOK_1 = BLOCK_ITEMS.register("book_1", () -> new book1(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 
-	public static final RegistryObject<Item> RIVER_SHELL = ITEMS.register("river_shell", () -> new RiverShellEntityItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> RIVER_SHELL = ITEMS.register("river_shell", () -> new RiverShellItem(new Item.Properties().stacksTo(1)));
+//	public static final RegistryObject<Item> NEW_RIVER_SHELL = ITEMS.register("new_river_shell", () -> new RiverShellItem(new Item.Properties().stacksTo(1)));
 
 	//upgrades
-	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(8)));
-	public static final RegistryObject<Item> ENERGY_UPGRADE = ITEMS.register("energy_upgrade", () -> new Item(new Item.Properties().stacksTo(8)));
-	public static final RegistryObject<Item> HEAT_UPGRADE = ITEMS.register("heat_upgrade", () -> new Item(new Item.Properties().stacksTo(8)));
+	public static final RegistryObject<Item> TITANIUM_UPGRADE_TEMPLATE = ITEMS.register("titanium_upgrade_template", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_UPGRADE_TEMPLATE = ITEMS.register("titanium_diboride_upgrade_template", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SPEED_UPGRADE_1 = ITEMS.register("speed_upgrade_1", () -> new Item(new Item.Properties().stacksTo(4)));
+	public static final RegistryObject<Item> ENERGY_UPGRADE_1 = ITEMS.register("energy_upgrade_1", () -> new Item(new Item.Properties().stacksTo(4)));
+	public static final RegistryObject<Item> HEAT_UPGRADE_1 = ITEMS.register("heat_upgrade_1", () -> new Item(new Item.Properties().stacksTo(4)));
+	public static final RegistryObject<Item> SPEED_UPGRADE_2 = ITEMS.register("speed_upgrade_2", () -> new Item(new Item.Properties().stacksTo(8)));
+	public static final RegistryObject<Item> ENERGY_UPGRADE_2 = ITEMS.register("energy_upgrade_2", () -> new Item(new Item.Properties().stacksTo(8)));
+	public static final RegistryObject<Item> HEAT_UPGRADE_2 = ITEMS.register("heat_upgrade_2", () -> new Item(new Item.Properties().stacksTo(8)));
+
 
 	//milling balls
 	public static final RegistryObject<Item> RUBBER_BALL = ITEMS.register("rubber_ball", () -> new Item(new Item.Properties().durability(100)));
@@ -55,10 +63,10 @@ public class POMitems {
 	public static final RegistryObject<Item> PLATE_CAST = ITEMS.register("plate_cast", () -> new SawItem(new Item.Properties()));
 
 	//tools
-	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new ToolItem(new Item.Properties().durability(64)));
-	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new ToolItem(new Item.Properties().durability(128)));
-	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new ToolItem(new Item.Properties().durability(128)));
-	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new ToolItem(new Item.Properties().durability(256).fireResistant()));
+	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new ToolItem(new Item.Properties().durability(80)));
+	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new ToolItem(new Item.Properties().durability(240)));
+	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new ToolItem(new Item.Properties().durability(240)));
+	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new ToolItem(new Item.Properties().durability(380).fireResistant()));
 	public static final RegistryObject<Item> CLEANING_SPONGE = ITEMS.register("cleaning_sponge", () -> new SpongeItem(new Item.Properties().stacksTo(1)));
 
 
@@ -79,16 +87,16 @@ public class POMitems {
 	public static final RegistryObject<Item> TITANIUM_DIBORIDE_INGOT = ITEMS.register("titanium_diboride_ingot", () -> new Item(new Item.Properties().fireResistant()));
 
 	public static final RegistryObject<Item> SUPERCONDUCTIVE_INGOT = ITEMS.register("superconductive_ingot", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> REDSTONE_IMBUED_SILVER_INGOT = ITEMS.register("redstone_imbued_silver_ingot", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> RED_TUNGSTEN_INGOT = ITEMS.register("red_tungsten_ingot", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> RED_SILVER_INGOT = ITEMS.register("red_silver_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROYAL_TUNGSTEN_INGOT = ITEMS.register("royal_tungsten_ingot", () -> new Item(new Item.Properties().fireResistant()));
 
 	//nuggets
-	public static final RegistryObject<Item> TITANIUM_GOLD_NUGGET = ITEMS.register("titanium_gold_nugget", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> TITANIUM_DIBORIDE_NUGGET = ITEMS.register("titanium_diboride_nugget", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> NETHERITE_NUGGET = ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> SUPERCONDUCTIVE_NUGGET = ITEMS.register("superconductive_nugget", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> REDSTONE_IMBUED_SILVER_NUGGET = ITEMS.register("redstone_imbued_silver_nugget", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> RED_TUNGSTEN_NUGGET = ITEMS.register("red_tungsten_nugget", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> TITANIUM_GOLD_NUGGET = NUGGETS.register("titanium_gold_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_NUGGET = NUGGETS.register("titanium_diboride_nugget", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> NETHERITE_NUGGET = NUGGETS.register("netherite_nugget", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> SUPERCONDUCTIVE_NUGGET = NUGGETS.register("superconductive_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RED_SILVER_NUGGET = NUGGETS.register("red_silver_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROYAL_TUNGSTEN_NUGGET = NUGGETS.register("royal_tungsten_nugget", () -> new Item(new Item.Properties().fireResistant()));
 
 	//crafting ingredients
 	public static final RegistryObject<Item> TITANIUM_PLATING = ITEMS.register("titanium_plating", () -> new Item(new Item.Properties()));
@@ -101,7 +109,8 @@ public class POMitems {
 	public static final RegistryObject<Item> LEAD_PLATING = ITEMS.register("lead_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TUNGSTEN_PLATING = ITEMS.register("tungsten_plating", () -> new Item(new Item.Properties().fireResistant()));
 	public static final RegistryObject<Item> PYROLYTIC_CARBON_SHEET = ITEMS.register("pyrolytic_carbon_sheet", () -> new FuelItem(8000, new Item.Properties()));
-
+	public static final RegistryObject<Item> COPPER_SHEET = ITEMS.register("copper_sheet", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SILICON_SHEET = ITEMS.register("silicon_sheet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DENSE_CARBON_CUBE = ITEMS.register("dense_carbon_cube", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBONARO_CLUMP = ITEMS.register("carbonado_clump", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLACK_DIAMOND = ITEMS.register("black_diamond", () -> new Item(new Item.Properties()));
@@ -115,12 +124,12 @@ public class POMitems {
 	public static final RegistryObject<Item> SILVER_WIRE = ITEMS.register("silver_wire", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TUNGSTEN_WIRE = ITEMS.register("tungsten_wire", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REDSTONE_LAYERED_COPPER_WIRE = ITEMS.register("redstone_layered_copper_wire", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> REDSTONE_IMBUED_SILVER_WIRE = ITEMS.register("redstone_imbued_silver_wire", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> RED_TUNGSTEN_WIRE = ITEMS.register("red_tungsten_wire", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RED_SILVER_WIRE = ITEMS.register("red_silver_wire", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROYAL_TUNGSTEN_WIRE = ITEMS.register("royal_tungsten_wire", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SUPERCONDUCTIVE_WIRE = ITEMS.register("superconductive_wire", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REDSTONE_COUNTER = ITEMS.register("redstone_counter", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REDSTONE_TIMER = ITEMS.register("redstone_timer", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> RESONANCE_DETECTOR = ITEMS.register("resonance_detector", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REDSTONE_DETECTOR = ITEMS.register("redstone_detector", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DRAGON_EYE = ITEMS.register("dragon_eye", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> VOID_EYE = ITEMS.register("void_eye", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ENDER_SENSOR = ITEMS.register("ender_sensor", () -> new Item(new Item.Properties()));
@@ -134,8 +143,13 @@ public class POMitems {
 	public static final RegistryObject<Item> POWER_ORB = ITEMS.register("power_orb", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> OVERCHARGED_POWER_ORB = ITEMS.register("overcharged_power_orb", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_ORB = ITEMS.register("supercharged_power_orb", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> URANIUM_FUEL_PELLET = ITEMS.register("uranium_fuel_pellet", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> URANIUM_FUEL_CORE = ITEMS.register("uranium_fuel_core", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_PELLET = ITEMS.register("plutonium_fuel_pellet", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_CORE = ITEMS.register("plutonium_fuel_core", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MICRO_CHIP = ITEMS.register("micro_chip", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IMPROVED_MICRO_CHIP = ITEMS.register("improved_micro_chip", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> COPPER_HEAT_SINK = ITEMS.register("copper_heat_sink", () -> new Item(new Item.Properties()));
 
 	//circuit boards
 	public static final RegistryObject<Item> SIMPLE_CIRCUIT_BOARD_1 = ITEMS.register("simple_circuit_board_1", () -> new Item(new Item.Properties()));
@@ -149,49 +163,58 @@ public class POMitems {
 	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8000000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
-	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64000000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
-	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512000000, 16733525, ChatFormatting.RED));
+	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8_000_000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
+	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64_000_000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
+	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512_000_000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new Item(new Item.Properties())); //8_000_000 FE
+	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new Item(new Item.Properties())); //64_000_000 FE
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new Item(new Item.Properties())); //512_000_000 FE
+	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new Item(new Item.Properties())); //4_096_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> FISSION_PLATING = ITEMS.register("fission_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_LINING = ITEMS.register("fusion_lining", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_PLATING = ITEMS.register("fusion_plating", () -> new Item(new Item.Properties()));
 
 	//dusts
-	public static final RegistryObject<Item> COAL_DUST = ITEMS.register("coal_dust", () -> new FuelItem(1200, new Item.Properties()));
-	public static final RegistryObject<Item> TITANIUM_GOLD_DUST = ITEMS.register("titanium_gold_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> TITANIUM_DIBORIDE_DUST = ITEMS.register("titanium_diboride_dust", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> ANCIENT_DEBRIS_DUST = ITEMS.register("ancient_debris_dust", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> MERCURY_SULFIDE_DUST = ITEMS.register("mercury_sulfide_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> ACANTHITE_DUST = ITEMS.register("acanthite_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> OBSIDIAN_DUST = ITEMS.register("obsidian_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> CRYING_OBSIDIAN_DUST = ITEMS.register("crying_obsidian_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> MINERAL_GRIT = ITEMS.register("mineral_grit", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> NETHERITE_DUST = ITEMS.register("netherite_dust", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> TITANIUM_OXIDE_DUST = ITEMS.register("titanium_oxide_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> SUPERCONDUCTIVE_DUST = ITEMS.register("superconductive_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> REDSTONE_IMBUED_SILVER_DUST = ITEMS.register("redstone_imbued_silver_dust", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> RED_TUNGSTEN_DUST = ITEMS.register("red_tungsten_dust", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> YELLOWCAKE_URANIUM = ITEMS.register("yellowcake_uranium", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> REFINED_REDSTONE = ITEMS.register("refined_redstone", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> COAL_DUST = DUSTS.register("coal_dust", () -> new FuelItem(1200, new Item.Properties()));
+	public static final RegistryObject<Item> QUARTZ_DUST = DUSTS.register("quartz_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANIUM_GOLD_DUST = DUSTS.register("titanium_gold_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_DUST = DUSTS.register("titanium_diboride_dust", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> ANCIENT_DEBRIS_DUST = DUSTS.register("ancient_debris_dust", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> MERCURY_SULFIDE_DUST = DUSTS.register("mercury_sulfide_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ACANTHITE_DUST = DUSTS.register("acanthite_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> OBSIDIAN_DUST = DUSTS.register("obsidian_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CRYING_OBSIDIAN_DUST = DUSTS.register("crying_obsidian_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MINERAL_GRIT = DUSTS.register("mineral_grit", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_DUST = DUSTS.register("netherite_dust", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> TITANIUM_OXIDE_DUST = DUSTS.register("titanium_oxide_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SUPERCONDUCTIVE_DUST = DUSTS.register("superconductive_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> RED_SILVER_DUST = DUSTS.register("red_silver_dust", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROYAL_TUNGSTEN_DUST = DUSTS.register("royal_tungsten_dust", () -> new Item(new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> YELLOWCAKE_URANIUM = DUSTS.register("yellowcake_uranium", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> REFINED_REDSTONE = DUSTS.register("refined_redstone", () -> new Item(new Item.Properties()));
 
 	//fluids
-	public static final RegistryObject<Item> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> SULFURIC_ACID_BUCKET = ITEMS.register("sulfuric_acid_bucket", () -> new BucketItem(POMfluids.SULFURIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> REINFORCED_BUCKET = BUCKETS.register("reinforced_bucket", () -> new ReinforcedBucket(new Item.Properties().stacksTo(1), 4000));
 
-	public static final RegistryObject<Item> LIQUID_HYDROGEN_BUCKET = ITEMS.register("liquid_hydrogen_bucket", () -> new BucketItem(POMfluids.HYDROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> LIQUID_NITROGEN_BUCKET = ITEMS.register("liquid_nitrogen_bucket", () -> new BucketItem(POMfluids.NITROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> LIQUID_OXYGEN_BUCKET = ITEMS.register("liquid_oxygen_bucket", () -> new BucketItem(POMfluids.OXYGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> LIQUID_CHLORINE_BUCKET = ITEMS.register("liquid_chlorine_bucket", () -> new BucketItem(POMfluids.CHLORINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> LIQUID_BROMINE_BUCKET = ITEMS.register("liquid_bromine_bucket", () -> new BucketItem(POMfluids.BROMINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> MERCURY_BUCKET = BUCKETS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> SULFURIC_ACID_BUCKET = BUCKETS.register("sulfuric_acid_bucket", () -> new BucketItem(POMfluids.SULFURIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+	public static final RegistryObject<Item> LIQUID_HYDROGEN_BUCKET = BUCKETS.register("liquid_hydrogen_bucket", () -> new BucketItem(POMfluids.HYDROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_NITROGEN_BUCKET = BUCKETS.register("liquid_nitrogen_bucket", () -> new BucketItem(POMfluids.NITROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_OXYGEN_BUCKET = BUCKETS.register("liquid_oxygen_bucket", () -> new BucketItem(POMfluids.OXYGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_CHLORINE_BUCKET = BUCKETS.register("liquid_chlorine_bucket", () -> new BucketItem(POMfluids.CHLORINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> LIQUID_BROMINE_BUCKET = BUCKETS.register("liquid_bromine_bucket", () -> new BucketItem(POMfluids.BROMINE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	//gas
-	public static final RegistryObject<Item> HYDROGEN_GAS_BUCKET = ITEMS.register("hydrogen_gas_bucket", () -> new GasBucketItem(POMfluids.HYDROGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> NITROGEN_GAS_BUCKET = ITEMS.register("nitrogen_gas_bucket", () -> new GasBucketItem(POMfluids.NITROGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> OXYGEN_GAS_BUCKET = ITEMS.register("oxygen_gas_bucket", () -> new GasBucketItem(POMfluids.OXYGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> CHLORINE_GAS_BUCKET = ITEMS.register("chlorine_gas_bucket", () -> new GasBucketItem(POMfluids.CHLORINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final RegistryObject<Item> BROMINE_GAS_BUCKET = ITEMS.register("bromine_gas_bucket", () -> new GasBucketItem(POMfluids.BROMINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> STEAM_BUCKET = BUCKETS.register("steam_bucket", () -> new GasBucketItem(POMfluids.STEAM_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> BLAZING_STEAM_BUCKET = BUCKETS.register("blazing_steam_bucket", () -> new GasBucketItem(POMfluids.BLAZING_STEAM_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> HYDROGEN_GAS_BUCKET = BUCKETS.register("hydrogen_gas_bucket", () -> new GasBucketItem(POMfluids.HYDROGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> NITROGEN_GAS_BUCKET = BUCKETS.register("nitrogen_gas_bucket", () -> new GasBucketItem(POMfluids.NITROGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> OXYGEN_GAS_BUCKET = BUCKETS.register("oxygen_gas_bucket", () -> new GasBucketItem(POMfluids.OXYGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> CHLORINE_GAS_BUCKET = BUCKETS.register("chlorine_gas_bucket", () -> new GasBucketItem(POMfluids.CHLORINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> BROMINE_GAS_BUCKET = BUCKETS.register("bromine_gas_bucket", () -> new GasBucketItem(POMfluids.BROMINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
 
 
 	public static final class Metals {
@@ -219,12 +242,12 @@ public class POMitems {
 					properties = new Item.Properties().fireResistant();
 				final Item.Properties finalProperties = properties;
 
-				if (m.shouldAddBlock()) block = register(elementName+"_block", () -> new ElementBlockItem(m, m.block(), finalProperties));
-				if (!m.isVanilla()) element = register(elementName+"_"+type, () -> new ElementItem(m, finalProperties));
-				if (m.shouldAddNugget()) nugget = register(elementName+"_nugget", () -> new ElementItem(m, finalProperties));
-				if (m.shouldAddDust()) dust = register(elementName+"_dust", () -> new ElementItem(m, finalProperties));
-				atomx512 = register(elementName+"_atom_512", () -> new AtomItem(m, finalProperties));
-				atomx64 = register(elementName+"_atom_64", () -> new AtomItem(m, finalProperties));
+				if (m.shouldAddBlock()) block = registerStorageBlockItem(elementName+"_block", () -> new ElementBlockItem(m, m.block(), finalProperties));
+				if (!m.isVanilla()) element = registerElement(elementName+"_"+type, () -> new ElementItem(m, finalProperties));
+				if (m.shouldAddNugget()) nugget = registerNugget(elementName+"_nugget", () -> new ElementItem(m, finalProperties));
+				if (m.shouldAddDust()) dust = registerDust(elementName+"_dust", () -> new ElementItem(m, finalProperties));
+				atomx64 = registerAtom(elementName+"_atom_64", () -> new AtomItem(m, finalProperties));
+				atomx512 = registerAtom(elementName+"_atom_512", () -> new AtomItem(m, finalProperties));
 
 				ATOMX64.put(m, atomx64.regObject);
 				ATOMX512.put(m, atomx512.regObject);
@@ -248,10 +271,20 @@ public class POMitems {
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new PixelItem(new Item.Properties(), 4096));
 	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new PixelItem(new Item.Properties(), 32768));
 	public static final RegistryObject<Item> INFINITE_POWER_CELL = ITEMS.register("infinite_power_cell", () -> new InfinitePowerCellItem(new Item.Properties().rarity(Rarity.EPIC), new InfiniteNumber().fromString("1000000000000000000000000000000000000"), new Color(255, 170, 0).getRGB(), ChatFormatting.GOLD));
+	public static final RegistryObject<Item> DEUTERIUM_ATOM_64 = ATOMS.register("deuterium_atom_64", () -> new AtomItem(Element.HYDROGEN, 1));
+	public static final RegistryObject<Item> TRITIUM_ATOM_64 = ATOMS.register("tritium_atom_64", () -> new AtomItem(Element.HYDROGEN, 2));
+	public static final RegistryObject<Item> DEUTERIUM_ATOM_512 = ATOMS.register("deuterium_atom_512", () -> new AtomItem(Element.HYDROGEN, 1));
+	public static final RegistryObject<Item> TRITIUM_ATOM_512 = ATOMS.register("tritium_atom_512", () -> new AtomItem(Element.HYDROGEN, 2));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ITEMS.register(bus);
+		STORAGE_BLOCK_ITEMS.register(bus);
 		ITEMS.register(bus);
+		NUGGETS.register(bus);
+		DUSTS.register(bus);
+		BUCKETS.register(bus);
+		ELEMENTS.register(bus);
+		ATOMS.register(bus);
 		Metals.init();
 	}
 
@@ -259,6 +292,27 @@ public class POMitems {
 	//Immersive Engineering
 	private static <T extends Item> ItemRegObject<T> register(String name, Supplier<? extends T> make) {
 		return new ItemRegObject<>(ITEMS.register(name, make));
+	}
+
+	private static <T extends Item> ItemRegObject<T> registerElement(String name, Supplier<? extends T> make) {
+		return new ItemRegObject<>(ELEMENTS.register(name, make));
+	}
+
+	private static <T extends Item> ItemRegObject<T> registerNugget(String name, Supplier<? extends T> make) {
+		return new ItemRegObject<>(NUGGETS.register(name, make));
+	}
+
+	private static <T extends Item> ItemRegObject<T> registerDust(String name, Supplier<? extends T> make) {
+		return new ItemRegObject<>(DUSTS.register(name, make));
+	}
+
+	private static <T extends Item> ItemRegObject<T> registerStorageBlockItem(String name, Supplier<? extends T> make) {
+		return new ItemRegObject<>(STORAGE_BLOCK_ITEMS.register(name, make));
+	}
+
+
+	private static <T extends Item> ItemRegObject<T> registerAtom(String name, Supplier<? extends T> make) {
+		return new ItemRegObject<>(ATOMS.register(name, make));
 	}
 
 	public static class ItemRegObject<T extends Item> implements Supplier<T>, ItemLike {

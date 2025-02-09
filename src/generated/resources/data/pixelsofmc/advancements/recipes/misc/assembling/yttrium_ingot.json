@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:yttrium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:supercharged_power_cell"
-  }
+  },
+  "show_notification": true
 }

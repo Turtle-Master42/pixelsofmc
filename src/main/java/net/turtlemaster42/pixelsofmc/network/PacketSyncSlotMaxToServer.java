@@ -33,11 +33,11 @@ public class PacketSyncSlotMaxToServer {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER!
             ServerPlayer player = context.getSender();
-            ServerLevel level = player.getLevel();
+            ServerLevel level = (ServerLevel) player.level();
 
-            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
-                tile.setSlotLimit(max);
-            }
+//            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
+//                tile.setSlotLimit(max);
+//            }
         });
         return true;
     }

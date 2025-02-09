@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/dysprosium_atom_64_to_dysprosium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

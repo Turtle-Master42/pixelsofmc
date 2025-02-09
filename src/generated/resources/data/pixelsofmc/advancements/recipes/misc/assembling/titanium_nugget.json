@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_nugget"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

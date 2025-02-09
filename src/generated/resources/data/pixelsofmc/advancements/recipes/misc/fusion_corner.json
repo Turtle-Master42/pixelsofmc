@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:fusion_corner"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

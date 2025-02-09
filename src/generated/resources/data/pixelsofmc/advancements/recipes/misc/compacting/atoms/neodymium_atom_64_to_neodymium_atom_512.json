@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/neodymium_atom_64_to_neodymium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

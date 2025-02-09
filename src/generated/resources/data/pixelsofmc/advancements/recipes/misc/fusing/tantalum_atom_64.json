@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:tantalum_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

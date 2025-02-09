@@ -106,7 +106,7 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "grinding/" + name + "_grinding");
+                    "grinding/" + name);
         }
 
         @Override

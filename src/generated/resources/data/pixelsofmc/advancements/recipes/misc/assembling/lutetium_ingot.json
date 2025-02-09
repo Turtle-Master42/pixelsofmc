@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:lutetium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

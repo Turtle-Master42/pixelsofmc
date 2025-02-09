@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:fire_proof_compound"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

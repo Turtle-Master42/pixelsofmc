@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/raw_titanium_to_raw_titanium_block_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

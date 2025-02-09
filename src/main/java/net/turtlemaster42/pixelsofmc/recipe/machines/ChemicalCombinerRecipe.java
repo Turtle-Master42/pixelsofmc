@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
@@ -45,12 +46,12 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return getResultItem();
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+        return getResultItem(registryAccess);
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return output.getItems()[0];
     }
 
@@ -71,6 +72,9 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
     public ChanceIngredient getOutput() {
         return output;
+    }
+    public ItemStack getBaseOutput() {
+        return output.asItemStack();
     }
 
     public int getOutputCount() {

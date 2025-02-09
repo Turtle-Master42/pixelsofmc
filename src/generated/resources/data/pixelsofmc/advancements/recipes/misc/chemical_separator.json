@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:chemical_separator"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:cobbled_deepslate"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

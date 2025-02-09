@@ -10,6 +10,6 @@ import java.util.Set;
 public class POMlootTableProvider {
     public static LootTableProvider create(PackOutput output) {
         return new LootTableProvider(output, Set.of(),
-                List.of(new LootTableProvider.SubProviderEntry(POMblockLootTables::new, LootContextParamSets.BLOCK)));
+                List.of(new LootTableProvider.SubProviderEntry(POMblockLootTableProvider::new, LootContextParamSets.BLOCK)));
     }
 }

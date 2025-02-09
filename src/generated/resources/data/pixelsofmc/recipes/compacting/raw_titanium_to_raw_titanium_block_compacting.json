@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:raw_titanium_block"
-  }
+  },
+  "show_notification": true
 }

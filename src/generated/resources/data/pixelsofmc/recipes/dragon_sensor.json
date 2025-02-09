@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_gold_nugget"
+      "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "B": {
       "item": "pixelsofmc:silver_nugget"
@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:dragon_sensor"
-  }
+  },
+  "show_notification": true
 }

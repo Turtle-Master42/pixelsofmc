@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/copper_atom_512_to_copper_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:smelting/aluminium_scrap"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

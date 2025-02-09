@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/gold_atom_64_to_gold_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:copper_spool"
-  }
+  },
+  "show_notification": true
 }

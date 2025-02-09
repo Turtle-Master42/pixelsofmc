@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_gold_dust"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

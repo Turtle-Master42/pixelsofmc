@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:netherite_plating_stairs_cutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

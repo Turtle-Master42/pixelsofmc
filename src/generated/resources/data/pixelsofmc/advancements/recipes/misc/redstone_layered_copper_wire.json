@@ -33,5 +33,6 @@
     "recipes": [
       "pixelsofmc:redstone_layered_copper_wire"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

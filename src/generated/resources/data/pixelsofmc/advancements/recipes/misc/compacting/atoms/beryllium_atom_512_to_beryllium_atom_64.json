@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/beryllium_atom_512_to_beryllium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

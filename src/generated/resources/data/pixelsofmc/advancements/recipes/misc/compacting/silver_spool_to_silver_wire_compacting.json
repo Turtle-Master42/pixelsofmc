@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/silver_spool_to_silver_wire_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

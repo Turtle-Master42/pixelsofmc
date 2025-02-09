@@ -33,5 +33,6 @@
     "recipes": [
       "pixelsofmc:supercharged_power_cell"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

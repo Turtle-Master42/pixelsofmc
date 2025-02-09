@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/curium_atom_512_to_curium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

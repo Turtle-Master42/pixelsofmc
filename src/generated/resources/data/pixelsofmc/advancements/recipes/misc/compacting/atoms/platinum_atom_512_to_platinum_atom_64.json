@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/platinum_atom_512_to_platinum_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

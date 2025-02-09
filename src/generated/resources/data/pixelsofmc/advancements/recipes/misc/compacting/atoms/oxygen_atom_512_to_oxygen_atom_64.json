@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/oxygen_atom_512_to_oxygen_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

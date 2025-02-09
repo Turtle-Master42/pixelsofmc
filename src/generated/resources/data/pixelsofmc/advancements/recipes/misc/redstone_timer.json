@@ -33,5 +33,6 @@
     "recipes": [
       "pixelsofmc:redstone_timer"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:titanium_gold_ingot"
+              "pixelsofmc:titanium_diboride_ingot"
             ]
           },
           {
@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:simple_casing_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

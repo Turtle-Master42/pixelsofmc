@@ -11,12 +11,12 @@
           },
           {
             "items": [
-              "pixelsofmc:titanium_gold_ingot"
+              "pixelsofmc:titanium_diboride_ingot"
             ]
           },
           {
             "items": [
-              "pixelsofmc:titanium_gold_plating"
+              "pixelsofmc:titanium_diboride_plating"
             ]
           }
         ]
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:strengthened_casing"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

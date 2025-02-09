@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.util.renderer.block.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -30,7 +31,7 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
         int seed = pBlockEntity.getBlockPos().getX() + pBlockEntity.getBlockPos().getY() + pBlockEntity.getBlockPos().getZ();
         //renderToBuffer(PoseStack, VertexConsumer, light, colorOverlay?, red, green, blue, ?)
         if (pBlockEntity.getBlockState().getValue(StarBlock.STAR_STAGE) == 4) {
-            MODEL.renderBlackHole(pBlockEntity, pPartialTick);
+            MODEL.renderBlackHole(pBlockEntity, pPartialTick, Minecraft.getInstance().player.getEyePosition());
             MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderHelper.plasmaShine(HOLE)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin((pBlockEntity.ticksExisted + pPartialTick) / 32) * 0.05f + 0.08f;
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xff84f6, 0.9f, 0.02f, scale + 0.05f, 0.02f, seed + 11);

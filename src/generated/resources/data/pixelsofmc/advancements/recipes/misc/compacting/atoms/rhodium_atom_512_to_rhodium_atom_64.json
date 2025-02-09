@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/rhodium_atom_512_to_rhodium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

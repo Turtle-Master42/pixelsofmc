@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:superconductive_wire"
-  }
+  },
+  "show_notification": true
 }

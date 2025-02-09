@@ -22,7 +22,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.ChemicalCombinerBlock;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalCombinerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -99,7 +99,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
 
     @NotNull
     public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
+        return new PixelEnergyStorage(capacity, maxReceive, 512000) {
             @Override
             public void onEnergyChanged() {
                 POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
@@ -110,6 +110,12 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
                 onEnergyChanged();
                 setChanged();
                 return super.receiveEnergy(maxReceive, simulate);
+            }
+            @Override
+            public int extractEnergy(int maxReceive, boolean simulate) {
+                onEnergyChanged();
+                setChanged();
+                return super.extractEnergy(maxReceive, simulate);
             }
         };
     }
@@ -178,7 +184,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
-        return new ChemicalCombinerGuiMenu(pContainerId, pInventory, this, this.data);
+        return new ChemicalCombinerMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -361,7 +367,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
                 .getRecipeFor(ChemicalCombinerRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent()
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().asItemStack())
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutput().count())
                 && canExtractInputFluid(entity, match.get().getFluidInput())
                 && canInsertOutputFluid(entity, match.get().getResultFluid());
@@ -408,17 +414,15 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(4).getCount();
+        this.speedUpgrade = this.maxProgress - speedUpgrade();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
-        return energyConsumption / 10 * amount;
+        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(5).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(4).getCount();
-        return maxProgress / 10 * amount;
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(4).getCount()));
     }
 
 
@@ -450,6 +454,10 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     }
     @Override
     public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
+
+    public FluidTank getFluidTank() { return fluidTank; }
+
+    public FluidTank getDuoFluidTank() { return duoFluidTank; }
 }
 
 

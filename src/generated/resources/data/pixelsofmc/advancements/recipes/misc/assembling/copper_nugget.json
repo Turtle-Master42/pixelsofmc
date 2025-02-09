@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:copper_nugget"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

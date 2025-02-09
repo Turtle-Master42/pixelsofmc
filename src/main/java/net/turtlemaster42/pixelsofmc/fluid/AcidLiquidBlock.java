@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -24,7 +25,7 @@ public class AcidLiquidBlock extends LiquidBlock {
 
     @Override
     public void entityInside(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Entity pEntity) {
-        pEntity.hurt(new DamageSource("pixelsofmc.acid").bypassArmor().bypassEnchantments().bypassMagic().setNoAggro(), 1);
+        pEntity.hurt(POMdamage.acid(pLevel), 1);
     }
 
     public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {

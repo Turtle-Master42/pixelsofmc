@@ -33,5 +33,6 @@
     "recipes": [
       "pixelsofmc:overcharged_power_cell"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

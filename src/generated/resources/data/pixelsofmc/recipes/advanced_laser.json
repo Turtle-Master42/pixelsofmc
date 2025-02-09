@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "pixelsofmc:advanced_laser"
-  }
+  },
+  "show_notification": true
 }

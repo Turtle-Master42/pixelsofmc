@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:antimony_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

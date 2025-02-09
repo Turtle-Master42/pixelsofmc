@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/actinium_atom_512_to_actinium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:supercharged_power_cell_array"
-  }
+  },
+  "show_notification": true
 }

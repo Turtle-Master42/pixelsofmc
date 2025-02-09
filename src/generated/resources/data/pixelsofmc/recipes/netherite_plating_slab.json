@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "pixelsofmc:netherite_plating_slab"
-  }
+  },
+  "show_notification": true
 }

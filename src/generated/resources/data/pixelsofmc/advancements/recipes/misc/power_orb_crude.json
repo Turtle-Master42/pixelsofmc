@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:power_orb_crude"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/ytterbium_atom_64_to_ytterbium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

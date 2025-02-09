@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:germanium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

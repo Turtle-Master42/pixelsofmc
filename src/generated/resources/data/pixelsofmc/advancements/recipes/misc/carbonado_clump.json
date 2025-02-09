@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:carbonado_clump"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

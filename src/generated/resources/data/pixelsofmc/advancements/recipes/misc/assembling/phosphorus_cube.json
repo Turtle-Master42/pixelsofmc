@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:phosphorus_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

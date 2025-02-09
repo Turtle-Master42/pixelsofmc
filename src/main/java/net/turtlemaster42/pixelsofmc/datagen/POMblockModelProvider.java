@@ -36,6 +36,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_BLOCK);
         blockWithItem(POMblocks.TITANIUM_GOLD_BLOCK);
         blockWithItem(POMblocks.ACANTHITE);
+        blockWithItem(POMblocks.ACANTHITE_ORE);
+        blockWithItem(POMblocks.LESSER_ACANTHITE_ORE);
 
         blockWithItem(POMblocks.VIOLET_DIAMOND_BLOCK);
         blockWithItem(POMblocks.SIMPLE_CASING_1);
@@ -48,7 +50,9 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.STRENGTHENED_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
-        multiBlockWithItem(POMblocks.REINFORCED_THING);
+        multiBlockWithItem(POMblocks.MULTIBLOCK_CASING);
+        multiBlockWithItem(POMblocks.ARMORED_MULTIBLOCK_CASING);
+        multiBlockWithItem(POMblocks.FISSION_CASING);
 
         blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
         slabBlock((SlabBlock) POMblocks.TITANIUM_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"));
@@ -78,8 +82,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.SILVER_SPOOL.get());
         logBlock(POMblocks.TUNGSTEN_SPOOL.get());
         logBlock(POMblocks.REDSTONE_LAYERED_COPPER_SPOOL.get());
-        logBlock(POMblocks.REDSTONE_IMBUED_SILVER_SPOOL.get());
-        logBlock(POMblocks.RED_TUNGSTEN_SPOOL.get());
+        logBlock(POMblocks.RED_SILVER_SPOOL.get());
+        logBlock(POMblocks.ROYAL_TUNGSTEN_SPOOL.get());
         logBlock(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
     }
 
@@ -117,8 +121,8 @@ public class POMblockModelProvider extends BlockStateProvider {
 
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
-                new ResourceLocation(PixelsOfMc.MOD_ID, "block/" + textureName + state.getValue(block.getAgeProperty()))));
+        models[0] = new ConfiguredModel(models().crop(modelName + block.getAge(state),
+                new ResourceLocation(PixelsOfMc.MOD_ID, "block/" + textureName + block.getAge(state))));
 
         return models;
     }

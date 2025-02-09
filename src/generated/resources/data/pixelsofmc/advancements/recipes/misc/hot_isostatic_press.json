@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:hot_isostatic_press"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

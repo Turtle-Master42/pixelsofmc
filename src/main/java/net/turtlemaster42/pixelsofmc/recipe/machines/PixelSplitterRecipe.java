@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -51,12 +52,12 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return getResultItem();
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+        return getResultItem(registryAccess);
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 

@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/violet_diamond_to_violet_diamond_block_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

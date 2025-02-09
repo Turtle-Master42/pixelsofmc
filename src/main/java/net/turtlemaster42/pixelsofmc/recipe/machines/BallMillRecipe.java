@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,10 +23,10 @@ import java.util.List;
 
 public class BallMillRecipe extends BaseRecipe {
     private final ResourceLocation id;
-    private final ItemStack output;
+    private final ChanceIngredient output;
     private final NonNullList<Ingredient> ball;
     private final List<CountedIngredient> recipeItems;
-    public BallMillRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> ball,
+    public BallMillRecipe(ResourceLocation id, ChanceIngredient output, NonNullList<Ingredient> ball,
                           List<CountedIngredient> recipeItems) {
         this.id = id;
         this.output = output;
@@ -73,23 +75,18 @@ public class BallMillRecipe extends BaseRecipe {
 //        return ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
     }
 
-
-    public int getOutputCount() {
-        return output.getCount();
-    }
-
     public NonNullList<Ingredient> getBall() {
         return ball;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return output;
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+        return output.asItemStack();
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
-        return output.copy();
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+        return output.asItemStack().copy();
     }
 
     public List<CountedIngredient> getInputs() {
@@ -98,6 +95,21 @@ public class BallMillRecipe extends BaseRecipe {
     public ItemStack getInput(int input) {
         return recipeItems.get(input).getItems()[0];
     }
+
+
+    public ChanceIngredient getOutput() {
+        return output;
+    }
+    public ItemStack getBaseOutput() {
+        return output.asItemStack();
+    }
+
+    public int getOutputCount() {return output.count();}
+
+    public float getOutputChance() {
+        return output.chance();
+    }
+
 
     @Override
     public @NotNull ResourceLocation getId() {
@@ -131,8 +143,7 @@ public class BallMillRecipe extends BaseRecipe {
 
         public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
-            CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
-            ItemStack output = new ItemStack(out.asItem(), out.count());
+            ChanceIngredient output = ChanceIngredient.fromJson(json.getAsJsonObject("output"));
 
             //inputs
             JsonArray jsonInputs = json.getAsJsonArray("inputs");
@@ -161,11 +172,11 @@ public class BallMillRecipe extends BaseRecipe {
                     ball.set(i, Ingredient.fromNetwork(buf));
                 }
 
-                ItemStack output = buf.readItem();
+                ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
 
                 return new BallMillRecipe(id, output, ball, inputs);
             } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                PixelsOfMc.LOGGER.error("Error reading ball mill recipe from packet.", ex);
                 throw ex;
             }
         }
@@ -177,12 +188,10 @@ public class BallMillRecipe extends BaseRecipe {
                 for (Ingredient ing : recipe.getIngredients()) {
                     ing.toNetwork(buf);
                 }
-                buf.writeItem(recipe.output);
-
-                buf.writeInt(recipe.getOutputCount());
+                recipe.output.toNetwork(buf);
 
             } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
+                PixelsOfMc.LOGGER.error("Error reading ball mill recipe from packet.", ex);
                 throw ex;
             }
         }

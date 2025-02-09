@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/uranium_atom_64_to_uranium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/radium_atom_512_to_radium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:pyrolytic_carbon_sheet_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

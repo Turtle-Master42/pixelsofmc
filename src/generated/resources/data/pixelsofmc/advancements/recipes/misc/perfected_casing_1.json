@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:perfected_casing_1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

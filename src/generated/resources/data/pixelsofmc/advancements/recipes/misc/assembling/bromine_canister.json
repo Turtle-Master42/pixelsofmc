@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:bromine_canister"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

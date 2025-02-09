@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:titanium_circle_saw"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

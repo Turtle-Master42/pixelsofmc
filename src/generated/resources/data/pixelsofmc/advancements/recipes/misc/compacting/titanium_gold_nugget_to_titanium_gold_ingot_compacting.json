@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/titanium_gold_nugget_to_titanium_gold_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

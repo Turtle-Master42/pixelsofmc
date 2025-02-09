@@ -6,7 +6,7 @@
       "item": "minecraft:obsidian"
     },
     "B": {
-      "item": "pixelsofmc:netherite_plating"
+      "item": "pixelsofmc:obsidian_plating"
     },
     "C": {
       "item": "minecraft:netherite_block"
@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:strong_casing"
-  }
+  },
+  "show_notification": true
 }

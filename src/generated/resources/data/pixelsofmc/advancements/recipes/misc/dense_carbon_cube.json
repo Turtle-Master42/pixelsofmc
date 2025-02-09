@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:dense_carbon_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

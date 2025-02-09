@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:fusion_plating"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

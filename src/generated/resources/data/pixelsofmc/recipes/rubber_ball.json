@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:rubber_ball"
-  }
+  },
+  "show_notification": true
 }

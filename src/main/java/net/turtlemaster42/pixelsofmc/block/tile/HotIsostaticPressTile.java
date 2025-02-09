@@ -21,8 +21,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressGuiMenu;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -159,7 +158,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        return new HotIsostaticPressGuiMenu(pContainerId, pInventory, this, this.data);
+        return new HotIsostaticPressMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -271,7 +270,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
             requiredHeat = match.get().getHeat();
             requiredMaxHeat = match.get().getMaxHeat();
             return canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                    && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
+                    && canInsertItemIntoOutputSlot(inventory, match.get().getBaseOutput())
                     && hasHeat(entity, match.get().getHeat())
                     && !hasHeat(entity, match.get().getMaxHeat()+1);
         }
@@ -301,7 +300,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
             entity.removeInput(2, match.get().getInput().getCount());
 
-            entity.addOutput(match.get().getResultItem(), 3);
+            entity.addOutput(match.get().getBaseOutput(), 3);
 
             requiredHeat = -1;
             requiredMaxHeat = -1;
@@ -336,21 +335,15 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     }
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(4).getItem() == POMitems.SPEED_UPGRADE.get()) {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(4).getCount();
-        } else {
-            this.speedUpgrade = 0;
-        }
+        this.speedUpgrade = this.maxProgress - speedUpgrade();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
-        return energyConsumption / 10 * amount;
+        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(5).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(4).getCount();
-        return maxProgress / 10 * amount;
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(4).getCount()));
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {

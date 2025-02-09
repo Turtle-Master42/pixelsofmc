@@ -1,8 +1,0 @@
-{
-  "type": "pixelsofmc:fusing",
-  "electron": 512,
-  "element": 64,
-  "neutron": 512,
-  "proton": 512,
-  "x512": true
-}

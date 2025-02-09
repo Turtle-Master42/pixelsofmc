@@ -17,8 +17,8 @@ public class PixelItem extends Item {
         this.pixelAmount = pixelAmount;
     }
 
-    public int getColor(ItemStack stack, int index) {
-        CompoundTag compoundtag = stack.getTagElement("display");
+    public int getColor(ItemStack itemStack, int index) {
+        CompoundTag compoundtag = itemStack.getTagElement("display");
 
         if (compoundtag != null && compoundtag.contains("color"+index, 99)) return compoundtag.getInt("color"+index);
         else if (index == 0) return 16777215;
@@ -26,48 +26,48 @@ public class PixelItem extends Item {
         else return 6579300;
     }
 
-    public static void setColor(ItemStack pStack, int pColor, int index) {
-        pStack.getOrCreateTagElement("display").putInt("color"+index, pColor);
+    public static void setColor(ItemStack itemStack, int color, int index) {
+        itemStack.getOrCreateTagElement("display").putInt("color"+index, color);
     }
 
-    public static ItemStack createForPixel(ItemStack pStack, int color1, int color2, int color3, String tooltip) {
-        if (pStack.getItem() instanceof PixelItem) {
-            pStack.getOrCreateTagElement("display").putInt("color0", color1);
-            pStack.getOrCreateTagElement("display").putInt("color1", color2);
-            pStack.getOrCreateTagElement("display").putInt("color2", color3);
-            pStack.getOrCreateTagElement("structure").putString("text", tooltip);
+    public static ItemStack createForPixel(ItemStack itemStack, int color1, int color2, int color3, String tooltip) {
+        if (itemStack.getItem() instanceof PixelItem) {
+            itemStack.getOrCreateTagElement("display").putInt("color0", color1);
+            itemStack.getOrCreateTagElement("display").putInt("color1", color2);
+            itemStack.getOrCreateTagElement("display").putInt("color2", color3);
+            itemStack.getOrCreateTagElement("structure").putString("text", tooltip);
         }
-        return pStack;
+        return itemStack;
     }
 
-    public static ItemStack createForPixel(ItemStack pStack, int color1, int color2, int color3, String tooltip, String[] extra) {
+    public static ItemStack createForPixel(ItemStack itemStack, int color1, int color2, int color3, String tooltip, String[] extra) {
         for (int i = 0; i < extra.length; i++)
-            pStack.getOrCreateTagElement("extra").putString("text_"+i, extra[i]);
-        return createForPixel(pStack, color1, color2, color3, tooltip);
+            itemStack.getOrCreateTagElement("extra").putString("text_"+i, extra[i]);
+        return createForPixel(itemStack, color1, color2, color3, tooltip);
     }
 
-    public static void setTooltip(ItemStack stack, String tooltip) {
-        stack.getOrCreateTagElement("structure").putString("text", tooltip);
+    public static void setTooltip(ItemStack itemStack, String tooltip) {
+        itemStack.getOrCreateTagElement("structure").putString("text", tooltip);
     }
 
-    public static void setExtraTooltip(ItemStack stack, String[] tooltip) {
+    public static void setExtraTooltip(ItemStack itemStack, String[] tooltip) {
         for (int i = 0; i < tooltip.length; i++)
-            stack.getOrCreateTagElement("extra").putString("text_"+i, tooltip[i]);
+            itemStack.getOrCreateTagElement("extra").putString("text_"+i, tooltip[i]);
     }
 
-    public String getTooltip(ItemStack stack) {
-        CompoundTag tag = stack.getTagElement("structure");
+    public String getTooltip(ItemStack itemStack) {
+        CompoundTag tag = itemStack.getTagElement("structure");
         if (tag != null)
             return tag.getString("text");
         return "";
     }
 
-    public String getStructure(ItemStack stack) {
-        return getTooltip(stack);
+    public String getStructure(ItemStack itemStack) {
+        return getTooltip(itemStack);
     }
 
-    public String[] getExtraTooltip(ItemStack stack) {
-        CompoundTag tag = stack.getTagElement("extra");
+    public String[] getExtraTooltip(ItemStack itemStack) {
+        CompoundTag tag = itemStack.getTagElement("extra");
         if (tag != null) {
             int loop = 0;
 
@@ -88,12 +88,12 @@ public class PixelItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
+        super.appendHoverText(itemStack, level, tooltipComponents, isAdvanced);
 
-        if (!getTooltip(pStack).isEmpty()) {
-            pTooltipComponents.add(Component.translatable(pixelAmount + "x").withStyle(ChatFormatting.RED));
-            pTooltipComponents.add(Component.translatable(getTooltip(pStack)).withStyle(ChatFormatting.GRAY));
+        if (!getTooltip(itemStack).isEmpty()) {
+            tooltipComponents.add(Component.translatable(pixelAmount + "x").withStyle(ChatFormatting.RED));
+            tooltipComponents.add(Component.translatable(getTooltip(itemStack)).withStyle(ChatFormatting.GRAY));
         }
     }
 }

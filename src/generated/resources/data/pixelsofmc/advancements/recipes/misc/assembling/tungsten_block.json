@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:tungsten_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

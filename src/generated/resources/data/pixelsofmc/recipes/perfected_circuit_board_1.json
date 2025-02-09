@@ -26,10 +26,11 @@
   },
   "pattern": [
     "EDE",
-    "GAG",
+    "AGA",
     "FCB"
   ],
   "result": {
     "item": "pixelsofmc:perfected_circuit_board_1"
-  }
+  },
+  "show_notification": true
 }

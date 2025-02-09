@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/cerium_atom_512_to_cerium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

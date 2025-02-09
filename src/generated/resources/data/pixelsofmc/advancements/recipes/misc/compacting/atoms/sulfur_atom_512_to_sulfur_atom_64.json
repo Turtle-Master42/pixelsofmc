@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/sulfur_atom_512_to_sulfur_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

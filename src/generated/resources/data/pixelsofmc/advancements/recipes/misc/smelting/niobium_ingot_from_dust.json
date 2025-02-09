@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:smelting/niobium_ingot_from_dust"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

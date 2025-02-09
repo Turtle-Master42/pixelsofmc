@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/iodine_atom_512_to_iodine_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:dense_carbon_cube"
-  }
+  },
+  "show_notification": true
 }

@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:silver_spool"
-  }
+  },
+  "show_notification": true
 }

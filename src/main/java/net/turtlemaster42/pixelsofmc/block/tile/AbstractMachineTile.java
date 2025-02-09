@@ -159,6 +159,20 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
     }
 
+    public void addOverflowChanceOutput(ChanceIngredient ingredient, int slot) {
+        // stores the chance
+        float chance = ingredient.chance();
+
+        // keeps repeating until it is less than 100%
+        while (chance > 1f) {
+            // outputs the output without chance, because the chance is bigger then 100%
+            chance--;
+            addOutput(ingredient, slot);
+        }
+        // outputs the output with a % chance
+        addChanceOutput(ingredient, slot);
+    }
+
     public void addMultiOutput(List<CountedIngredient> recipeOutputs, int min_slot, int max_slot) {
         // Iterate over the recipeOutputs
         for (CountedIngredient output : recipeOutputs) {
@@ -194,6 +208,41 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
     }
 
+    public void addOverflowMultiChanceOutput(List<ChanceIngredient> recipeOutputs, int min_slot, int max_slot) {
+        // Iterate over the recipeOutputs
+        for (ChanceIngredient output : recipeOutputs) {
+            // stores the chance for a single output
+            float chance = output.chance();
+
+            // keeps repeating until it is less than 100%
+            while (chance > 1f) {
+                // outputs the output without chance, because the chance is bigger then 100%
+                chance--;
+                for (int slot = min_slot; slot <= max_slot; slot++) {
+                    if (output.isEmpty()) {
+                        break;
+                    }
+                    // tries to insert output
+                    ItemStack stack = insertItemStack(slot, output.asItemStack(), false);
+                    // sets output to the not inserted stack and tries to add it to other slots
+                    output = ChanceIngredient.of(stack);
+                }
+            }
+            // rolls if the remaining output should be outputted
+            if (chance >= random()) {
+                // Iterate over the slots
+                for (int slot = min_slot; slot <= max_slot; slot++) {
+                    if (output.isEmpty()) {
+                        break;
+                    }
+                    // tries to insert output
+                    ItemStack stack = insertItemStack(slot, output.asItemStack(), false);
+                    // sets output to the not inserted stack and tries to add it to other slots
+                    output = ChanceIngredient.of(stack);
+                }
+            }
+        }
+    }
 
     public void removeInput(int slot, int amount) {
         itemHandler.extractItem(slot, amount, false);

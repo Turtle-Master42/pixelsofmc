@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:empty_cell"
-  }
+  },
+  "show_notification": true
 }

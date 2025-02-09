@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_gold_ingot"
+      "item": "pixelsofmc:titanium_diboride_ingot"
     },
     "B": {
-      "item": "pixelsofmc:titanium_gold_plating"
+      "item": "pixelsofmc:titanium_diboride_plating"
     },
     "C": {
       "item": "pixelsofmc:strong_casing"
@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:strengthened_casing"
-  }
+  },
+  "show_notification": true
 }

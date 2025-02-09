@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:aluminium_scrap_block"
-  }
+  },
+  "show_notification": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:tantalum_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -3,30 +3,40 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
 import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
-public class FusionEnergyPortTile extends AbstractMultiBlockTile {
+public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEnergyHandlingTile {
 
     protected final ContainerData data;
 
     private final int capacity = -1;
     private final int maxReceive = 512000;
-
-
 
     public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -47,12 +57,13 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile {
                         return 0;
                     BlockEntity tile = level.getBlockEntity(posTarget);
                     if (tile != null) {
-                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
-                        if (EnergyHandlerFrom != null) {
+                        IEnergyStorage energyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        if (energyHandlerFrom != null) {
                             //ok go
-                            int receive = EnergyHandlerFrom.receiveEnergy(maxReceive, true);
-                            EnergyHandlerFrom.receiveEnergy(maxReceive, simulate);
-                            energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
+                            int receive = energyHandlerFrom.receiveEnergy(maxReceive, true);
+                            energyHandlerFrom.receiveEnergy(maxReceive, simulate);
+                            energyStorage.setEnergy(energyHandlerFrom.getEnergyStored());
+                            onEnergyChanged();
                             return receive;
                         }
                     }
@@ -69,12 +80,13 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile {
                         return 0;
                     BlockEntity tile = level.getBlockEntity(posTarget);
                     if (tile != null) {
-                        IEnergyStorage EnergyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
-                        if (EnergyHandlerFrom != null) {
+                        IEnergyStorage energyHandlerFrom = tile.getCapability(ForgeCapabilities.ENERGY, Direction.UP.getOpposite()).orElse(null);
+                        if (energyHandlerFrom != null) {
                             //ok go
-                            int extract = EnergyHandlerFrom.extractEnergy(maxReceive, true);
-                            EnergyHandlerFrom.extractEnergy(maxReceive, simulate);
-                            energyStorage.setEnergy(EnergyHandlerFrom.getEnergyStored());
+                            int extract = energyHandlerFrom.extractEnergy(maxExtract, true);
+                            energyHandlerFrom.extractEnergy(maxExtract, simulate);
+                            energyStorage.setEnergy(energyHandlerFrom.getEnergyStored());
+                            onEnergyChanged();
                             return extract;
                         }
                     }
@@ -143,5 +155,58 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile {
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         energyStorage.setEnergy(nbt.getInt("Energy"));
+    }
+
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FusionEnergyPortTile e) {
+        if (blockState.getValue(FusionEnergyPortBlock.PUSHING) && e.isMainPosValid()) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+            BlockState facingState = level.getBlockState(facingPos);
+            e.energyStorage.extractEnergy(1, true);
+            if ((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) {
+                if (e.energyStorage.getEnergyStored() <= 0) {
+                    return;
+                }
+                if (Math.random() < 0.2) {
+                    List<Entity> entities = level.getEntities((Entity) null, new AABB(facingPos), (entity) -> entity.isAlive() && entity instanceof LivingEntity);
+                    if (!entities.isEmpty()) {
+                        e.energyStorage.extractEnergy(12000, false);
+                    }
+                    for (Entity entity : entities) {
+                        entity.hurt(level.damageSources().lightningBolt(), 4);
+                    }
+                }
+                e.energyStorage.extractEnergy(50, false);
+            } else {
+                BlockEntity facingTile = level.getBlockEntity(facingPos);
+                if (facingTile != null && e.energyStorage.getEnergyStored() < e.capacity) {
+                    EnergyStorage energy = (EnergyStorage) facingTile.getCapability(ForgeCapabilities.ENERGY, blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION).getOpposite()).orElse(null);
+                    if (energy != null) {
+                        energy.receiveEnergy(e.energyStorage.extractEnergy(Math.min(100, e.energyStorage.getMaxEnergyStored() - e.energyStorage.getEnergyStored()), false), false);
+                    }
+                }
+            }
+        }
+    }
+
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, FusionEnergyPortTile e) {
+        if (blockState.getValue(FusionEnergyPortBlock.PUSHING)) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+            BlockState facingState = level.getBlockState(facingPos);
+            if (((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) && e.energyStorage.getEnergyStored() > 0) {
+                Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
+                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
+                level.addParticle(POMparticles.ELECTRIC_SPARK.get(), posVec.x + (Math.random() - 0.5) / 2, posVec.y + (Math.random() - 0.5) / 2, posVec.z + (Math.random() - 0.5) / 2, 0, 0, 0);
+            }
+        }
+    }
+
+    @Override
+    public void setEnergyLevel(int energy) {
+        energyStorage.setEnergy(energy);
+    }
+
+    @Override
+    public IEnergyStorage getEnergyStorage() {
+        return energyStorage;
     }
 }

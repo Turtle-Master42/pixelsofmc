@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:lead_plating_slab_cutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

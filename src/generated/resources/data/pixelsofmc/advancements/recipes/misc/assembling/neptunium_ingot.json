@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:neptunium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/germanium_atom_64_to_germanium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

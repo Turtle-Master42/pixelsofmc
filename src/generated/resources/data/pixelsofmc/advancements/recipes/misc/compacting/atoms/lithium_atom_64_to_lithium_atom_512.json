@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/lithium_atom_64_to_lithium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

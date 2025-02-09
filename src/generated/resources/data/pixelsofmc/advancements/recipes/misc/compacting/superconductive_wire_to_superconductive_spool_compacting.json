@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/superconductive_wire_to_superconductive_spool_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

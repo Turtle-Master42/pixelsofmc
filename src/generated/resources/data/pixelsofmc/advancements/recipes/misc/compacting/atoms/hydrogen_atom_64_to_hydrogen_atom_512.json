@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/hydrogen_atom_64_to_hydrogen_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

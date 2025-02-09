@@ -25,6 +25,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -32,6 +33,7 @@ import net.turtlemaster42.pixelsofmc.entity.AI.ShellLookAtPlayerGoal;
 import net.turtlemaster42.pixelsofmc.entity.AI.ShellRandomLookAroundGoal;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -108,11 +110,11 @@ public class RiverShellEntity extends Animal {
     }
 
     public boolean shouldEnterWater() {
-        return this.level.getDayTime() > 12000;
+        return this.level().getDayTime() > 12000;
     }
 
     public boolean shouldExitWater() {
-        return this.level.getDayTime() < 12000;
+        return this.level().getDayTime() < 12000;
     }
 
     @Override
@@ -121,7 +123,7 @@ public class RiverShellEntity extends Animal {
     }
 
     public void updateAnimations() {
-        if (retractAnimationTime > 50) {
+        if (retractAnimationTime > 60) {
             retractAnimationTime = -1;
             return;
         }
@@ -156,21 +158,21 @@ public class RiverShellEntity extends Animal {
     public void tick() {
         updateAnimations();
         if (isInShell())
-            level.addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 0 , 0, 0);
+            level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 0 , 0, 0);
 
         if (speedingTime > 0) {
-            level.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0 , 0, 0);
-            if (speedingTime >= 50) {
+            level().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 0 , 0, 0);
+            if (speedingTime >= 45) {
                 inShell = 1;
             }
         }
 
-        if (!this.isOnGround()) {
+        if (!this.onGround()) {
             Vec3 deltaMovement = this.getDeltaMovement();
             double combinedSpeed = Math.abs(deltaMovement.x) + Math.abs(deltaMovement.y) + Math.abs(deltaMovement.z);
             //PixelsOfMc.LOGGER.info("combinedSpeed: {}", combinedSpeed);
             if (combinedSpeed >= 0.75) {
-                speedingTime = speedingTime + 10;
+                speedingTime = speedingTime + 9;
             }
         } else {
             if (speedingTime < 1) {
@@ -259,7 +261,7 @@ public class RiverShellEntity extends Animal {
         }
 
         public boolean canUse() {
-            if (this.riverShell.onGround && !this.riverShell.level.getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell()){
+            if (this.riverShell.onGround() && !this.riverShell.level().getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell()){
                 if(this.riverShell.shouldEnterWater() && (this.riverShell.getTarget() != null || this.riverShell.getRandom().nextInt(20) == 0)){
                     targetPos = findWater();
                     return targetPos != null;
@@ -273,7 +275,7 @@ public class RiverShellEntity extends Animal {
                 this.riverShell.getNavigation().stop();
                 return false;
             }
-            return !this.riverShell.getNavigation().isDone() && targetPos != null && !this.riverShell.level.getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell();
+            return !this.riverShell.getNavigation().isDone() && targetPos != null && !this.riverShell.level().getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell();
         }
 
         public void start() {
@@ -294,10 +296,10 @@ public class RiverShellEntity extends Animal {
             int range = 10;
             for(int i = 0; i < 14; i++){
                 BlockPos blockpos1 = this.riverShell.blockPosition().offset(random.nextInt(range) - range/2, 3, random.nextInt(range) - range/2);
-                while(this.riverShell.level.isEmptyBlock(blockpos1) && blockpos1.getY() > Math.max(blockpos1.getY() - 5, -64)) {
+                while(this.riverShell.level().isEmptyBlock(blockpos1) && blockpos1.getY() > Math.max(blockpos1.getY() - 5, -64)) {
                     blockpos1 = blockpos1.below();
                 }
-                if(this.riverShell.level.getFluidState(blockpos1).is(FluidTags.WATER)){
+                if(this.riverShell.level().getFluidState(blockpos1).is(FluidTags.WATER)){
                     blockpos = blockpos1;
                 }
             }
@@ -317,7 +319,7 @@ public class RiverShellEntity extends Animal {
         }
 
         public boolean canUse() {
-            if (this.riverShell.level.getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && (this.riverShell.getTarget() != null || this.riverShell.getRandom().nextInt(20) == 0)) {
+            if (this.riverShell.level().getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && (this.riverShell.getTarget() != null || this.riverShell.getRandom().nextInt(20) == 0)) {
                 if (this.riverShell.shouldExitWater()) {
                     targetPos = findLand();
                     return targetPos != null;
@@ -331,7 +333,7 @@ public class RiverShellEntity extends Animal {
                 this.riverShell.getNavigation().stop();
                 return false;
             }
-            return !this.riverShell.getNavigation().isDone() && targetPos != null && !this.riverShell.level.getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell();
+            return !this.riverShell.getNavigation().isDone() && targetPos != null && !this.riverShell.level().getFluidState(this.riverShell.blockPosition()).is(FluidTags.WATER) && !this.riverShell.isInShell();
         }
 
         public void start() {
@@ -347,20 +349,20 @@ public class RiverShellEntity extends Animal {
         }
 
         private BlockPos findLand() {
-            Vec3 vector3d = LandRandomPos.getPos(this.riverShell, 16, 5);
+            Vec3 vec3 = LandRandomPos.getPos(this.riverShell, 16, 5);
             int tries = 0;
-            while(vector3d != null && tries < 8) {
+            while(vec3 != null && tries < 8) {
                 boolean waterDetected = false;
-                for(BlockPos blockpos1 : BlockPos.betweenClosed(Mth.floor(vector3d.x - 2.0D), Mth.floor(vector3d.y - 1.0D), Mth.floor(vector3d.z - 2.0D), Mth.floor(vector3d.x + 2.0D), Mth.floor(vector3d.y), Mth.floor(vector3d.z + 2.0D))) {
-                    if (this.riverShell.level.getFluidState(blockpos1).is(FluidTags.WATER)) {
+                for(BlockPos blockpos1 : BlockPos.betweenClosed(Mth.floor(vec3.x - 2.0D), Mth.floor(vec3.y - 1.0D), Mth.floor(vec3.z - 2.0D), Mth.floor(vec3.x + 2.0D), Mth.floor(vec3.y), Mth.floor(vec3.z + 2.0D))) {
+                    if (this.riverShell.level().getFluidState(blockpos1).is(FluidTags.WATER)) {
                         waterDetected = true;
                         break;
                     }
                 }
                 if (waterDetected) {
-                    vector3d = LandRandomPos.getPos(this.riverShell, 16, 5);
+                    vec3 = LandRandomPos.getPos(this.riverShell, 16, 5);
                 } else {
-                    return new BlockPos(vector3d);
+                    return Util.blockPos(vec3);
                 }
                 tries++;
             }

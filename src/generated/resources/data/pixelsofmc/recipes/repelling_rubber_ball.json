@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:repelling_rubber_ball"
-  }
+  },
+  "show_notification": true
 }

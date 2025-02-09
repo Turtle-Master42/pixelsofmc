@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/tantalum_atom_512_to_tantalum_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

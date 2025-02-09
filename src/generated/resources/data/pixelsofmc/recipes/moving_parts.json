@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:moving_parts"
-  }
+  },
+  "show_notification": true
 }

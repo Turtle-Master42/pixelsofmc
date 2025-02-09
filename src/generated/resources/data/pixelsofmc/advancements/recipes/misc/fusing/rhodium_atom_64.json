@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:rhodium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

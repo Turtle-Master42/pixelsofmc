@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/protactinium_atom_512_to_protactinium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

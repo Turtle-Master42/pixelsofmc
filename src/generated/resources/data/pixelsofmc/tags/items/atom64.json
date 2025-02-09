@@ -98,6 +98,8 @@
     "pixelsofmc:curium_atom_64",
     "pixelsofmc:berkelium_atom_64",
     "pixelsofmc:californium_atom_64",
-    "pixelsofmc:einsteinium_atom_64"
+    "pixelsofmc:einsteinium_atom_64",
+    "pixelsofmc:deuterium_atom_64",
+    "pixelsofmc:tritium_atom_64"
   ]
 }

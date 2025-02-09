@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:francium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

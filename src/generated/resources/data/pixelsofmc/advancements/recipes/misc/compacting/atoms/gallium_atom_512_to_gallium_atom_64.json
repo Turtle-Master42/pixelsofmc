@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/gallium_atom_512_to_gallium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

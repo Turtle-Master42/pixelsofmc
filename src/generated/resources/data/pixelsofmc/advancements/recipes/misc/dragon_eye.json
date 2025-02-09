@@ -9,8 +9,8 @@
           },
           {
             "items": [
-              "minecraft:ender_eye",
-              "minecraft:dragon_breath"
+              "minecraft:dragon_breath",
+              "minecraft:ender_eye"
             ]
           }
         ]
@@ -34,5 +34,6 @@
     "recipes": [
       "pixelsofmc:dragon_eye"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

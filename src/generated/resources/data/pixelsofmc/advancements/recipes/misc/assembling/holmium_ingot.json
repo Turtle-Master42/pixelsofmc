@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:holmium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -12,6 +12,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -48,8 +49,13 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override
@@ -58,28 +64,25 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     }
 
     @Override
-    public void draw(FusionRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(FusionRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
         String proton = String.valueOf(recipe.getProtonCount());
         String neutron = String.valueOf(recipe.getNeutronCount());
-        String electron = String.valueOf(recipe.getElectronCount());
 
         Minecraft minecraft = Minecraft.getInstance();
-        Font fontRenderer = minecraft.font;
-        int stringWidth1 = fontRenderer.width(proton);
-        int stringWidth2 = fontRenderer.width(neutron);
-        int stringWidth3 = fontRenderer.width(electron);
+        Font font = minecraft.font;
+        int stringWidth1 = font.width(proton);
+        int stringWidth2 = font.width(neutron);
 
-        fontRenderer.drawShadow(poseStack, proton, background.getWidth() - stringWidth1 - 125, 10, 0xFF5555FF);
-        fontRenderer.drawShadow(poseStack, neutron, background.getWidth() - stringWidth2 - 125, 30, 0xFFFF5555);
-        fontRenderer.drawShadow(poseStack, electron, background.getWidth() - stringWidth3 - 125, 50, 0xFFFFFF55);
+        guiGraphics.drawString(font, proton, background.getWidth() - stringWidth1 - 125, 10, 0xFF5555FF, true);
+        guiGraphics.drawString(font, neutron, background.getWidth() - stringWidth2 - 125, 30, 0xFFFF5555, true);
 
-        fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.required"), 43, 3, 0xFF2CBAA8);
-        if (recipe.getResultItem().is(POMtags.Items.MNS)) {
-            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.mns"), 43, 13, 0xFFFFAA00);
-        } else if (recipe.getResultItem().is(POMtags.Items.MDS)) {
-            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.mds"), 43, 13, 0xFFFFAA00);
+        guiGraphics.drawString(font, Component.translatable("tooltip.pixelsofmc.fusion.required"), 43, 3, 0xFF2CBAA8, true);
+        if (recipe.getBaseOutput().is(POMtags.Items.MNS)) {
+            guiGraphics.drawString(font, Component.translatable("tooltip.pixelsofmc.fusion.mns"), 43, 13, 0xFFFFAA00, true);
+        } else if (recipe.getBaseOutput().is(POMtags.Items.MDS)) {
+            guiGraphics.drawString(font, Component.translatable("tooltip.pixelsofmc.fusion.mds"), 43, 13, 0xFFFFAA00, true);
         } else {
-            fontRenderer.drawShadow(poseStack, Component.translatable("tooltip.pixelsofmc.fusion.sds"), 43, 13, 0xFFFFAA00);
+            guiGraphics.drawString(font, Component.translatable("tooltip.pixelsofmc.fusion.sds"), 43, 13, 0xFFFFAA00, true);
         }
     }
 
@@ -87,6 +90,6 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull FusionRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 25).addIngredients(Ingredient.of(recipe.getResultItem()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 25).addIngredients(Ingredient.of(recipe.getBaseOutput()));
     }
 }

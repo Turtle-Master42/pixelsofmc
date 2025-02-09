@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:sodium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

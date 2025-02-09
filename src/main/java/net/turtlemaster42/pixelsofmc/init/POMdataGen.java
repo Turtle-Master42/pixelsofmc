@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.minecraft.data.DataGenerator;
@@ -25,7 +26,9 @@ public class POMdataGen {
 
         generator.addProvider(true, new POMblockModelProvider(packOutput, existingFileHelper));
         generator.addProvider(true, new POMitemModelProvider(packOutput, existingFileHelper));
-        generator.addProvider(true, new POMitemTagProvider(packOutput, lookupProvider, existingFileHelper));
+        BlockTagsProvider blockTagsProvider = new POMblockTagProvider(packOutput, lookupProvider, existingFileHelper);
+        generator.addProvider(true, blockTagsProvider);
+        generator.addProvider(true, new POMitemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(true, POMlootTableProvider.create(packOutput));
         generator.addProvider(true, new POMrecipeProvider(packOutput));
     }

@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:sticky_piston"
+      "item": "minecraft:piston"
     },
     "B": {
       "tag": "forge:storage_blocks/redstone"
@@ -15,18 +15,16 @@
       "item": "minecraft:hopper"
     },
     "E": {
-      "item": "pixelsofmc:titanium_gold_plating"
-    },
-    "F": {
-      "tag": "forge:dusts/redstone"
+      "item": "pixelsofmc:titanium_diboride_ingot"
     }
   },
   "pattern": [
+    "ECE",
     "ABA",
-    "CDC",
-    "EFE"
+    "EDE"
   ],
   "result": {
     "item": "pixelsofmc:redstone_timer"
-  }
+  },
+  "show_notification": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:cerium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

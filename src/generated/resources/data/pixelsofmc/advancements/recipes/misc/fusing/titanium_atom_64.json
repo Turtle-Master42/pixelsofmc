@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

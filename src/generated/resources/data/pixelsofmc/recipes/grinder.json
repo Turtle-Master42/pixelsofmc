@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "pixelsofmc:grinder"
-  }
+  },
+  "show_notification": true
 }

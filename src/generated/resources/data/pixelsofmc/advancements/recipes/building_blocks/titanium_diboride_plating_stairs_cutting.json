@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_diboride_plating_stairs_cutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

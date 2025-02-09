@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AbstractFusionCasing extends AbstractMultiBlock {
     public static final IntegerProperty PLATING = IntegerProperty.create("plating", 0, 9);
+
     public AbstractFusionCasing(Properties pProperties) {
         super(pProperties);
     }
@@ -34,111 +35,38 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
     public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         Item mainHand = pPlayer.getMainHandItem().getItem();
         Item offHand = pPlayer.getOffhandItem().getItem();
+        Item[] PLATE_ITEMS = new Item[]{
+                POMitems.TITANIUM_PLATING.get(),
+                POMitems.TITANIUM_DIBORIDE_PLATING.get(),
+                POMitems.TITANIUM_GOLD_PLATING.get(),
+                POMitems.NETHERITE_PLATING.get(),
+                POMitems.OBSIDIAN_PLATING.get(),
+                POMitems.CRYING_OBSIDIAN_PLATING.get(),
+                POMitems.LEAD_PLATING.get(),
+                POMitems.TUNGSTEN_PLATING.get(),
+                POMitems.PYROLYTIC_CARBON_SHEET.get()
+        };
+
         if (pState.getValue(PLATING) == 0) {
             int plate = 0;
 
-            if (mainHand == POMitems.TITANIUM_PLATING.get()) {
-                plate = 1;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.TITANIUM_DIBORIDE_PLATING.get()) {
-                plate = 2;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.TITANIUM_GOLD_PLATING.get()) {
-                plate = 3;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.NETHERITE_PLATING.get()) {
-                plate = 4;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.OBSIDIAN_PLATING.get()) {
-                plate = 5;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.CRYING_OBSIDIAN_PLATING.get()) {
-                plate = 6;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.LEAD_PLATING.get()) {
-                plate = 7;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.TUNGSTEN_PLATING.get()) {
-                plate = 8;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (mainHand == POMitems.PYROLYTIC_CARBON_SHEET.get()) {
-                plate = 9;
-                if (!pPlayer.isCreative())
-                    pPlayer.getMainHandItem().shrink(1);
-            } else if (offHand == POMitems.TITANIUM_PLATING.get()) {
-                plate = 1;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.TITANIUM_DIBORIDE_PLATING.get()) {
-                plate = 2;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.TITANIUM_GOLD_PLATING.get()) {
-                plate = 3;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.NETHERITE_PLATING.get()) {
-                plate = 4;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.OBSIDIAN_PLATING.get()) {
-                plate = 5;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.CRYING_OBSIDIAN_PLATING.get()) {
-                plate = 6;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.LEAD_PLATING.get()) {
-                plate = 7;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.TUNGSTEN_PLATING.get()) {
-                plate = 8;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
-            } else if (offHand == POMitems.PYROLYTIC_CARBON_SHEET.get()) {
-                plate = 9;
-                if (!pPlayer.isCreative())
-                    pPlayer.getOffhandItem().shrink(1);
+            for (int i = 0; i < PLATE_ITEMS.length; i++) {
+                if (mainHand == PLATE_ITEMS[i]) {
+                    plate = i+1;
+                    break;
+                }
             }
-
             if (plate > 0) {
+                if (!pPlayer.isCreative())
+                    pPlayer.getMainHandItem().shrink(1);
                 pLevel.playLocalSound(pPos, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.4f, 1.2f, false);
                 pLevel.setBlock(pPos, pState.setValue(PLATING, plate), 3);
                 return InteractionResult.SUCCESS;
             }
         }
-        if ((mainHand == POMitems.SCREWDRIVER.get() || offHand == POMitems.SCREWDRIVER.get()) && pState.getValue(PLATING) != 0) {
+        if ((mainHand == POMitems.SCREWDRIVER.get() || offHand == POMitems.SCREWDRIVER.get()) && pState.getValue(PLATING) > 0) {
             int plating = pState.getValue(PLATING);
-            Item plateItem = Items.AIR;
-            if (plating == 1) {
-                plateItem = POMitems.TITANIUM_PLATING.get();
-            } else if (plating == 2) {
-                plateItem = POMitems.TITANIUM_DIBORIDE_PLATING.get();
-            } else if (plating == 3) {
-                plateItem = POMitems.TITANIUM_GOLD_PLATING.get();
-            } else if (plating == 4) {
-                plateItem = POMitems.NETHERITE_PLATING.get();
-            } else if (plating == 5) {
-                plateItem = POMitems.OBSIDIAN_PLATING.get();
-            } else if (plating == 6) {
-                plateItem = POMitems.CRYING_OBSIDIAN_PLATING.get();
-            } else if (plating == 7) {
-                plateItem = POMitems.LEAD_PLATING.get();
-            } else if (plating == 8) {
-                plateItem = POMitems.TUNGSTEN_PLATING.get();
-            } else if (plating == 9) {
-                plateItem = POMitems.PYROLYTIC_CARBON_SHEET.get();
-            }
+            Item plateItem = PLATE_ITEMS[plating-1];
             popResourceFromFace(pLevel, pPos, pHit.getDirection(), new ItemStack(plateItem));
             pLevel.playLocalSound(pPos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.3f, 1.8f, false);
             pLevel.setBlock(pPos, pState.setValue(PLATING, 0), 3);
@@ -154,24 +82,20 @@ public class AbstractFusionCasing extends AbstractMultiBlock {
     }
 
     public void onDestroy(@NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pState) {
-        if (pState.getValue(PLATING) == 1) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.TITANIUM_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 2) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.TITANIUM_DIBORIDE_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 3) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.TITANIUM_GOLD_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 4) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.NETHERITE_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 5) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.OBSIDIAN_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 6) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.CRYING_OBSIDIAN_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 7) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.LEAD_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 8) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.TUNGSTEN_PLATING.get()));
-        } else if (pState.getValue(PLATING) == 9) {
-            popResource(pLevel, pPos, new ItemStack(POMitems.PYROLYTIC_CARBON_SHEET.get()));
+        int plating = pState.getValue(PLATING);
+        if (plating > 0) {
+            Item[] PLATE_ITEMS = new Item[]{
+                    POMitems.TITANIUM_PLATING.get(),
+                    POMitems.TITANIUM_DIBORIDE_PLATING.get(),
+                    POMitems.TITANIUM_GOLD_PLATING.get(),
+                    POMitems.NETHERITE_PLATING.get(),
+                    POMitems.OBSIDIAN_PLATING.get(),
+                    POMitems.CRYING_OBSIDIAN_PLATING.get(),
+                    POMitems.LEAD_PLATING.get(),
+                    POMitems.TUNGSTEN_PLATING.get(),
+                    POMitems.PYROLYTIC_CARBON_SHEET.get()
+            };
+            popResource(pLevel, pPos, new ItemStack(PLATE_ITEMS[plating-1]));
         }
     }
 }

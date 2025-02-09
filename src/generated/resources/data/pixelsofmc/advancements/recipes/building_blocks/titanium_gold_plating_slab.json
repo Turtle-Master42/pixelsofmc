@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:titanium_gold_plating_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

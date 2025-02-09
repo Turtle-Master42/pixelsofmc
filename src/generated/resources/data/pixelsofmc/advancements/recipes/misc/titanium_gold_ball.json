@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:titanium_gold_ball"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

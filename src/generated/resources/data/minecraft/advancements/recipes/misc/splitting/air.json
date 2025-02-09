@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:air"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

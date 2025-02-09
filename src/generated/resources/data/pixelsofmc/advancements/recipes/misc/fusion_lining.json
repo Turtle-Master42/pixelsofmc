@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:fusion_lining"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

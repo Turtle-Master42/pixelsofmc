@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/einsteinium_atom_512_to_einsteinium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

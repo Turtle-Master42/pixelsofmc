@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "pixelsofmc:titanium_gold_plating_slab"
-  }
+  },
+  "show_notification": true
 }

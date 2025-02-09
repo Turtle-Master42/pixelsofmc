@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,63 +14,21 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.tile.AbstractFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.IFusionControllerBlock;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AbstractFusionControllerBlock extends BaseEntityBlock implements IFusionControllerBlock {
-
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
+public abstract class AbstractFusionControllerBlock extends AbstractMultiControllerBlock implements IFusionControllerBlock {
     protected AbstractFusionControllerBlock(Properties pProperties) {
         super(pProperties);
     }
 
-    @Override
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
-        return RenderShape.MODEL;
-    }
-
-    @Deprecated
-    public @NotNull PushReaction getPistonPushReaction(@NotNull BlockState state) {
-        return PushReaction.BLOCK;
-    }
-
-    @Override
-    public void playerWillDestroy(Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Player pPlayer) {
-        if (!pLevel.isClientSide())
-            invalidateMultiBlock(pLevel, pPos);
-        super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return null;
-    }
-
-
-
-
     // --- Multi Block --- //
-
-    //BlockState[y][z][x]
-    // ^ facing you
-    // < left
-    // > right
-    // \/ facing away from you
-    private final BlockState[][][] MULTIBLOCK_STRUCTURE = getMultiblockStructure();
-
-    public BlockState[][][] getMultiblockStructure() {
-        return new BlockState[][][]{{{}}};
-    }
-    public int getHeight() {return 0;}
-    public int getWidth() {return 0;}
-    public int getLength() {return 0;}
-
     public void validateMultiBlock(Level level, BlockPos controllerPos) {
 
         if (level.isClientSide()) return;
@@ -78,6 +37,7 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
         Direction direction = controllerState.getValue(FACING);
         int correctBlocks =0;
         int totalBlocks = 0;
+        int heatSinkCount = 0;
 
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
@@ -86,25 +46,28 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
                     totalBlocks++;
 
                     BlockPos rotatedOffsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
+                    BlockState rotatedBlockState = level.getBlockState(rotatedOffsetPos);
 
-                    if (level.getBlockState(rotatedOffsetPos).getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
-                        BlockState state = level.getBlockState(rotatedOffsetPos);
-                        if (state.hasProperty(AbstractFusionCasing.PLATING)) {
-                            BlockState changedState = state.setValue(AbstractFusionCasing.PLATING, 0);
+                    if (rotatedBlockState.getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
+                        if (rotatedBlockState.hasProperty(AbstractFusionCasing.PLATING)) {
+                            BlockState changedState = rotatedBlockState.setValue(AbstractFusionCasing.PLATING, 0);
                             if (changedState == MULTIBLOCK_STRUCTURE[y][z][x]) {
                                 correctBlocks++;
                             }
-                        } else if (state == MULTIBLOCK_STRUCTURE[y][z][x]) {
+                        } else if (rotatedBlockState == MULTIBLOCK_STRUCTURE[y][z][x]) {
                             correctBlocks++;
                         }
                     } else if (MULTIBLOCK_STRUCTURE[y][z][x].is(POMblocks.REINFORCED_GLASS.get())) {
-                        if (level.getBlockState(rotatedOffsetPos).getBlock() instanceof AbstractFusionCasing) {
+                        if (rotatedBlockState.getBlock() instanceof AbstractFusionCasing) {
                             correctBlocks++;
                         }
                     }
-                    if (level.getBlockState(rotatedOffsetPos).getBlock() instanceof AbstractMultiBlock) {
+                    if (rotatedBlockState.getBlock() instanceof AbstractMultiBlock) {
                         if (level.getBlockEntity(rotatedOffsetPos) instanceof AbstractMultiBlockTile multiBlockTile)
                             multiBlockTile.setMainPos(controllerPos);
+                    }
+                    if (rotatedBlockState.getBlock().equals(POMblocks.HEAT_SINK.get())) {
+                        heatSinkCount++;
                     }
                 }
 
@@ -112,10 +75,16 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
 
         }
         PixelsOfMc.LOGGER.info("{} out of {}", correctBlocks, totalBlocks);
+        PixelsOfMc.LOGGER.info("Heat Sinks: {}", heatSinkCount);
         if (correctBlocks == totalBlocks) {
             if (controllerState.getValue(ACTIVE) != 3)
                 level.setBlock(controllerPos, controllerState.setValue(ACTIVE, 2), 2);
             level.setBlock(rotatedOffsetBlock(direction, fusionStarPos(), controllerPos), POMblocks.STAR.get().defaultBlockState().setValue(StarBlock.STAR_STAGE, fusionStarLevel()), 2);
+
+            if (level.getBlockEntity(controllerPos) instanceof SDSFusionControllerTile fusionControllerTile) {
+                fusionControllerTile.setHeatSinkAmount(heatSinkCount);
+            }
+
         }  else {
             invalidateMultiBlock(level, controllerPos);
         }
@@ -151,37 +120,6 @@ public class AbstractFusionControllerBlock extends BaseEntityBlock implements IF
         PixelsOfMc.LOGGER.info("invalidated {} blocks", totalBlocks);
     }
 
-    public void forcePlaceMultiBlock(Level level, BlockPos controllerPos) {
-        if (level.isClientSide()) return;
-        Direction direction = level.getBlockState(controllerPos).getValue(FACING);
-        int totalBlocks = 0;
-        for (int y = 0; y < getHeight(); y++) {
-            for (int z = 0; z < getLength(); z++) {
-                for (int x = 0; x < getWidth(); x++) {
-                    if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
-                    totalBlocks++;
-                    level.setBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), MULTIBLOCK_STRUCTURE[y][z][x], 2);
-                }
-            }
-        }
-        PixelsOfMc.LOGGER.info("placed {} blocks", totalBlocks);
-    }
-
     public BlockPos fusionStarPos() {return new BlockPos(0, 0, 0);}
     public int fusionStarLevel() {return 1;}
-
-    public BlockPos rotatedOffsetBlock (Direction direction, int x, int y, int z, BlockPos startPos) {
-        return offsetMultiBlock(BigMachineBlockUtil.rotateBlockPosOnDirection(direction, x, y, z, startPos), direction);
-    }
-
-    public BlockPos rotatedOffsetBlock (Direction direction, BlockPos offset, BlockPos startPos) {
-        return rotatedOffsetBlock(direction, offset.getX(), offset.getY(), offset.getZ(), startPos);
-    }
-
-    public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
-        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, 0, 0, 0, pos);
-    }
-    public BlockPos offsetMultiBlock(int x, int y, int z, Direction direction) {
-        return offsetMultiBlock(new BlockPos(x,y,z), direction);
-    }
 }

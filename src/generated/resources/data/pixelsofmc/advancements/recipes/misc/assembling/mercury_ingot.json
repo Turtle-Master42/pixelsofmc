@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:mercury_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

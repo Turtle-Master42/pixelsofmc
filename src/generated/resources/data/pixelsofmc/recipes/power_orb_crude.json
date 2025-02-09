@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:power_orb"
-  }
+  },
+  "show_notification": true
 }

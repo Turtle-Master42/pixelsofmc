@@ -12,6 +12,6 @@ public class ModSpeedUpgradeSlot extends SlotItemHandler {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return stack.is(POMtags.Items.SPEED_UPGRADE) || stack.is(POMitems.SPEED_UPGRADE.get());
+        return stack.is(POMtags.Items.SPEED_UPGRADE);
     }
 }

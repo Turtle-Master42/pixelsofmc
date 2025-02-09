@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:tungsten_spool"
-  }
+  },
+  "show_notification": true
 }

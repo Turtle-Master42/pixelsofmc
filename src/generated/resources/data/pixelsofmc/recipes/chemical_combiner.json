@@ -15,21 +15,22 @@
       "item": "pixelsofmc:perfected_casing_2"
     },
     "E": {
-      "item": "pixelsofmc:redstone_imbued_silver_wire"
+      "item": "pixelsofmc:red_silver_wire"
     },
     "F": {
       "item": "pixelsofmc:titanium_diboride_plating"
     },
     "G": {
-      "item": "pixelsofmc:reinforced_casing"
+      "item": "pixelsofmc:strengthened_casing"
     }
   },
   "pattern": [
     "CBE",
-    "ADA",
-    "FGF"
+    "AGA",
+    "FDF"
   ],
   "result": {
     "item": "pixelsofmc:chemical_combiner"
-  }
+  },
+  "show_notification": true
 }

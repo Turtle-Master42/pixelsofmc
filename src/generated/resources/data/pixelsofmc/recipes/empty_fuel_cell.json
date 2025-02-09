@@ -11,10 +11,11 @@
   },
   "pattern": [
     "ABA",
-    "A A",
+    "AAA",
     "ABA"
   ],
   "result": {
     "item": "pixelsofmc:empty_fuel_cell"
-  }
+  },
+  "show_notification": true
 }

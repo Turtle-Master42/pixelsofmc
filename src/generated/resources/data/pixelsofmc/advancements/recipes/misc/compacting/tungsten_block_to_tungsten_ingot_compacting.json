@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/tungsten_block_to_tungsten_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

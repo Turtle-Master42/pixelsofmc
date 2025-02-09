@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:netherite_plating_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

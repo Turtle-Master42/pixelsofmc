@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:fluorine_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

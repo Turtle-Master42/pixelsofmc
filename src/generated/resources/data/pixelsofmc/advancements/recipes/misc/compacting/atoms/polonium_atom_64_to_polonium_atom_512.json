@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/polonium_atom_64_to_polonium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

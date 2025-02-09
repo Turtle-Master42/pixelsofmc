@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:manganese_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

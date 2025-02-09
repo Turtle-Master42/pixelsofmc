@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -114,17 +115,20 @@ public class PixelAssemblerRecipe extends BaseRecipe {
 
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
-        return getResultItem();
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+        return getResultItem(registryAccess);
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {return output.asItemStack().copy();}
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {return output.asItemStack().copy();}
 
 
     public String getStructure() {return structure;}
 
     public List<CountedIngredient> getInputs() {return recipeItems;}
+    public ItemStack getBaseOutput() {
+        return output.asItemStack();
+    }
 
     public Color getColor(int index) {
         return new Color(R[index], G[index], B[index]);

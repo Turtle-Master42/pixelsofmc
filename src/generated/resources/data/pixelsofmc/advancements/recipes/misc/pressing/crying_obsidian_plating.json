@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:crying_obsidian_plating"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

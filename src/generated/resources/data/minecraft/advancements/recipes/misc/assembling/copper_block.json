@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:copper_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

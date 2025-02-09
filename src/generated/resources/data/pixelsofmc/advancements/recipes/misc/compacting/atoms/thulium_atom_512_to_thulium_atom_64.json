@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/thulium_atom_512_to_thulium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

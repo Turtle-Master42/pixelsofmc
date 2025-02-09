@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:smelting/titanium_ingot_from_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

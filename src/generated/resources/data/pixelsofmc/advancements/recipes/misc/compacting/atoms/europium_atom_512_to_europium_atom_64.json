@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/europium_atom_512_to_europium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

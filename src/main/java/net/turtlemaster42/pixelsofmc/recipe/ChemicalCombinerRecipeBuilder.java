@@ -158,7 +158,7 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "chemical_combining/"+ingredient1+ingredient2+ingredient3+"to_"+output+"_combining");
+                    "chemical_combining/"+ingredient1+ingredient2+ingredient3+"to_"+output);
         }
 
         @Override

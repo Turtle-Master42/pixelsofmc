@@ -112,7 +112,7 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
 
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "pressing/" + name + "_from_pressing");
+                    "pressing/to_" + name);
         }
 
         @Override

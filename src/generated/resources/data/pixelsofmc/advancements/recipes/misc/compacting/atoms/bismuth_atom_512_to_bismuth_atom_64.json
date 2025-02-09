@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/bismuth_atom_512_to_bismuth_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

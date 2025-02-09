@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/tungsten_wire_to_tungsten_spool_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

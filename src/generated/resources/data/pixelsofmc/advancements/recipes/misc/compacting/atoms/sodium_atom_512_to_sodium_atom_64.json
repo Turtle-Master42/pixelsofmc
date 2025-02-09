@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/sodium_atom_512_to_sodium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

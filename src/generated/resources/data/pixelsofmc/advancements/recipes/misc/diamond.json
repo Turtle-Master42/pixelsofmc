@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:diamond"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

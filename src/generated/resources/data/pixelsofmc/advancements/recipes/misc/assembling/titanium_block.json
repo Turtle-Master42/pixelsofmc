@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

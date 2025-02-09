@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:power_cell"
-  }
+  },
+  "show_notification": true
 }

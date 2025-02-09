@@ -1,104 +1,90 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.TooltipFlag;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorGuiMenu;
-import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyInfoArea;
-import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
-import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
-public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparatorGuiMenu> {
+public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparatorMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_seperator_gui.png");
-    private EnergyInfoArea energyInfoArea;
-    private FluidTankRenderer renderer;
+    private EnergyArea energyArea;
+    private FluidArea fluidArea1;
+    private FluidArea fluidArea2;
+    private NameArea nameArea;
+    private ProgressArea progressArea;
 
-    public ChemicalSeparatorScreen(ChemicalSeparatorGuiMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-        super(pMenu, pPlayerInventory, pTitle);
+    public ChemicalSeparatorScreen(ChemicalSeparatorMenu guiMenu, Inventory playerInventory, Component title) {
+        super(guiMenu, playerInventory, title);
     }
 
     @Override
     protected void init() {
         super.init();
-        assignEnergyInfoArea();
-        assignFluidRenderer();
+        assignAreas();
     }
 
     @Override
-    protected void renderLabels(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY) {
+    protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.font.draw(pPoseStack, menu.blockEntity.getDisplayName(), 6, 76, 4210752);
-        renderEnergyArea(pPoseStack, pMouseX, pMouseY, x, y);
-        renderFluidArea(pPoseStack, pMouseX, pMouseY, x, y, Component.translatable("tooltip.pixelsofmc.fluid.input"));
-        renderDuoFluidArea(pPoseStack, pMouseX, pMouseY, x, y, Component.translatable("tooltip.pixelsofmc.fluid.output"));
-        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 66, 52, 103, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
-        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 104, 52, 113, 75, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
-        renderArea(pPoseStack, pMouseX, pMouseY, x, y, 109, 34, 119, 57, new GuiTooltips().getProgressArea(menu.getProgress(), menu.getMaxProgress()));
-    }
-
-    private void renderFluidArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, Component extra) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 58, 8, renderer.getWidth(), renderer.getHeight())) {
-            renderTooltip(pPoseStack, renderer.getTooltip(menu.getFluid(), TooltipFlag.Default.NORMAL, extra),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
-    private void renderDuoFluidArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y, Component extra) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 58, 23, renderer.getWidth(), renderer.getHeight())) {
-            renderTooltip(pPoseStack, renderer.getTooltip(menu.getDuoFluid(), TooltipFlag.Default.NORMAL, extra),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
-    }
-
-    private void renderEnergyArea(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, 11, 22, 9, 44)) {
-            renderTooltip(pPoseStack, energyInfoArea.getTooltips(),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
-        }
+        nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        fluidArea1.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        fluidArea2.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(@NotNull PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
+
+        nameArea.draw(guiGraphics);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 66, y + 34, 0, 168, menu.getScaledProgress(), 44);
+            guiGraphics.blit(TEXTURE, x + 66, y + 34, 0, 168, menu.getScaledProgress(), 43);
         }
-        blit(pPoseStack, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
-        renderer.render(pPoseStack, x + 58, y + 8, menu.getFluid());
-        renderer.render(pPoseStack, x + 58, y + 23, menu.getDuoFluid());
+        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
+        fluidArea1.draw(guiGraphics);
+        fluidArea2.draw(guiGraphics);
     }
 
     @Override
-    public void render(@NotNull PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
-        renderBackground(pPoseStack);
-        super.render(pPoseStack, mouseX, mouseY, delta);
-        renderTooltip(pPoseStack, mouseX, mouseY);
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyInfoArea(((width - imageWidth) / 2) + 11,
-                ((height - imageHeight) / 2) + 22, menu.blockEntity.getEnergyStorage(), 10, 44);
-    }
+    private void assignAreas() {
+        int x = ((width - imageWidth) / 2);
+        int y = ((height - imageHeight) / 2);
 
-    private void assignFluidRenderer() {
-        renderer = new FluidTankRenderer(16000, true, 25, 11);
+        energyArea = new EnergyArea(x + 11, y + 22,
+                menu.blockEntity.getEnergyStorage(), 10, 44);
+        fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
+                new Rect2i(x + 58, y + 8, 25, 11));
+        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
+                new Rect2i(x + 58, y + 23, 25, 11));
+        nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
+        progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
+                new Rect2i(x + 66, y + 50, 55, 10),
+                new Rect2i(x + 110, y + 34, 12, 16),
+                new Rect2i(x + 110, y + 61, 9, 15)
+        );
     }
 }
 

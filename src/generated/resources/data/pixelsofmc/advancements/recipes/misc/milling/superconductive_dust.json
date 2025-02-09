@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:superconductive_dust"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/supercharged_power_cell_array_to_supercharged_power_cell_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

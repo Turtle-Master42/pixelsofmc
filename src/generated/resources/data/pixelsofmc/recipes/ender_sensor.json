@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:ender_sensor"
-  }
+  },
+  "show_notification": true
 }

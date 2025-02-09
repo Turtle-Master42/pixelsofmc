@@ -130,7 +130,7 @@ public class PixelAssemblerRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "assembling/"+name + "_assembling");
+                    "assembling/"+name);
         }
 
         @Override

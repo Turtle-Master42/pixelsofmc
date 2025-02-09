@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/chromium_atom_512_to_chromium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

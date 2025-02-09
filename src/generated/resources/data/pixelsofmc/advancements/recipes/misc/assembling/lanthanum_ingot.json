@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:lanthanum_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

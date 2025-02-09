@@ -9,6 +9,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractFusionControllerBlock;
+import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -17,19 +18,19 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 
 public class Debugium extends ElementItem {
-    public Debugium(Element e, Properties pProperties) {
-        super(e, pProperties);
+    public Debugium(Element e, Properties properties) {
+        super(e, properties);
     }
 
     @Override
-    public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractFusionControllerBlock fusionController) {
-            fusionController.forcePlaceMultiBlock(pContext.getLevel(), pContext.getClickedPos());
+    public @NotNull InteractionResult useOn(UseOnContext context) {
+        if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
+            multiController.forcePlaceMultiBlock(context.getLevel(), context.getClickedPos());
             return InteractionResult.CONSUME;
-        } else if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractDummyMachineBlock) {
-            if (pContext.getLevel().getBlockEntity(pContext.getClickedPos()) instanceof AbstractDummyMachineBlockTile dummyTile) {
-                if (pContext.getLevel().getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractFusionControllerBlock fusionController) {
-                    fusionController.forcePlaceMultiBlock(pContext.getLevel(), dummyTile.getMainPos());
+        } else if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractDummyMachineBlock) {
+            if (context.getLevel().getBlockEntity(context.getClickedPos()) instanceof AbstractDummyMachineBlockTile dummyTile) {
+                if (context.getLevel().getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
+                    multiController.forcePlaceMultiBlock(context.getLevel(), dummyTile.getMainPos());
                     return InteractionResult.CONSUME;
                 }
             }
@@ -39,11 +40,11 @@ public class Debugium extends ElementItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
         PixelsOfMc.LOGGER.info("Color white: {}", new Color(255, 255, 255).getRGB());
         PixelsOfMc.LOGGER.info("Color green: {}", new Color(0, 255, 125).getRGB());
         PixelsOfMc.LOGGER.info("Color blue: {}", new Color(0, 255, 255).getRGB());
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return super.use(level, player, usedHand);
     }
 
 //    [10:50:45] [Server thread/INFO] [ne.tu.pi.PixelsOfMc/]: Color white: ( 1,000E+0  1,000E+0  1,000E+0)

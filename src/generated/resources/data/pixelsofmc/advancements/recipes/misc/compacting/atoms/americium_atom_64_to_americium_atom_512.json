@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/americium_atom_64_to_americium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

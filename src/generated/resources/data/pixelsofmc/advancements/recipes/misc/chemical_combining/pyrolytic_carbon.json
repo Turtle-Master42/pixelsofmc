@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:pyrolytic_carbon"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:magnesium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

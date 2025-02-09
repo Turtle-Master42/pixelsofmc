@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:diamond_lens"
-  }
+  },
+  "show_notification": true
 }

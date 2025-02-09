@@ -1,7 +1,9 @@
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -103,6 +105,10 @@ public class BallMillBlock extends BaseEntityBlock {
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
         } else {
+            Player player = Minecraft.getInstance().player;
+            if (player != null && pContext.getLevel().isClientSide()) {
+                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.ball_mill.alt"));
+            }
             return null;
         }
     }

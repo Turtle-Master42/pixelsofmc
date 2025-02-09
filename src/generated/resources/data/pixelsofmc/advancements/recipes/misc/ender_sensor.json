@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:ender_sensor"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

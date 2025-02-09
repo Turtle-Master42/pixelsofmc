@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:thorium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

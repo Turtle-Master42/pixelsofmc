@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/iron_atom_64_to_iron_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

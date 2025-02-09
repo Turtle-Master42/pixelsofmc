@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/lanthanum_atom_512_to_lanthanum_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

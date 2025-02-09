@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/rhenium_atom_512_to_rhenium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

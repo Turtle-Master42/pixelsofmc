@@ -2,13 +2,16 @@ package net.turtlemaster42.pixelsofmc.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import org.jetbrains.annotations.Nullable;
 
 public class RedSwitchButton extends Button {
     private static final ResourceLocation TEXTURE =
@@ -18,6 +21,11 @@ public class RedSwitchButton extends Button {
 
     public RedSwitchButton(int pX, int pY, OnPress pOnPress) {
         super(pX, pY, 7, 14, Component.literal(""), pOnPress, DEFAULT_NARRATION);
+    }
+
+    public RedSwitchButton(int pX, int pY, Component tooltip, OnPress pOnPress) {
+        super(pX, pY, 7, 14, Component.literal(""), pOnPress, DEFAULT_NARRATION);
+        setTooltip(Tooltip.create(tooltip));
     }
 
     public boolean isOn() {
@@ -32,7 +40,7 @@ public class RedSwitchButton extends Button {
         this.on = !this.on;
     }
 
-    public void renderButton(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -43,8 +51,7 @@ public class RedSwitchButton extends Button {
         } else {
             switchButton$icon = this.on ? RedSwitchButton.Icon.ON : RedSwitchButton.Icon.OFF;
         }
-
-        this.blit(pPoseStack, this.getX(), this.getY(), switchButton$icon.getX(), switchButton$icon.getY(), this.width, this.height);
+        pGuiGraphics.blit(TEXTURE, this.getX(), this.getY(), switchButton$icon.getX(), switchButton$icon.getY(), this.width, this.height);
     }
 
     @OnlyIn(Dist.CLIENT)

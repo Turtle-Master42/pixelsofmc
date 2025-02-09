@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "pixelsofmc:ball_mill"
-  }
+  },
+  "show_notification": true
 }

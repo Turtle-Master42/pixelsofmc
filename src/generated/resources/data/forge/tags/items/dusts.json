@@ -25,6 +25,19 @@
     "#forge:dusts/uranium",
     "#forge:dusts/ancient_debris",
     "#forge:dusts/coal",
+    "pixelsofmc:titanium_gold_dust",
+    "pixelsofmc:acanthite_dust",
+    "pixelsofmc:crying_obsidian_dust",
+    "pixelsofmc:mercury_sulfide_dust",
+    "pixelsofmc:obsidian_dust",
+    "pixelsofmc:red_silver_dust",
+    "pixelsofmc:royal_tungsten_dust",
+    "pixelsofmc:superconductive_dust",
+    "pixelsofmc:titanium_diboride_dust",
+    "pixelsofmc:titanium_oxide_dust",
+    "pixelsofmc:titanium_gold_dust",
+    "pixelsofmc:refined_redstone",
+    "pixelsofmc:quartz_dust",
     "#forge:dusts/netherite"
   ]
 }

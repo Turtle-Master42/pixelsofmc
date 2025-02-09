@@ -16,7 +16,7 @@
           },
           {
             "items": [
-              "pixelsofmc:netherite_plating"
+              "pixelsofmc:obsidian_plating"
             ]
           }
         ]
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:strong_casing"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

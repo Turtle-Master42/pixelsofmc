@@ -13,22 +13,28 @@ import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockT
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
+
 public class ToolItem extends Item {
     public ToolItem(Properties pProperties) {
         super(pProperties);
     }
 
     //immersive engineering
-    public ItemStack getContainerItem(ItemStack itemStack)
+    @Nonnull
+    @Override
+    public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack)
     {
-        ItemStack container = itemStack.copy();
+        ItemStack container = stack.copy();
         if(container.hurt(1, RandomSource.create(), null))
             return ItemStack.EMPTY;
         else
             return container;
     }
+
     //immersive engineering
-    public boolean hasContainerItem(ItemStack stack)
+    @Override
+    public boolean hasCraftingRemainingItem(@Nonnull ItemStack stack)
     {
         return true;
     }

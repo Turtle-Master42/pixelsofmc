@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/argon_atom_512_to_argon_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

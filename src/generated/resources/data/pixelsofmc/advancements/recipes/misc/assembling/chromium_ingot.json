@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:chromium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

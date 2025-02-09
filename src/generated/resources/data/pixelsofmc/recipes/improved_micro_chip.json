@@ -6,21 +6,25 @@
       "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "B": {
-      "tag": "forge:storage_blocks/redstone"
+      "item": "pixelsofmc:silicon_sheet"
     },
     "C": {
       "item": "pixelsofmc:fire_proof_compound"
     },
     "D": {
       "tag": "forge:nuggets/silver"
+    },
+    "E": {
+      "item": "pixelsofmc:redstone_core"
     }
   },
   "pattern": [
-    "AAA",
+    "AEA",
     "BCB",
     "DDD"
   ],
   "result": {
     "item": "pixelsofmc:improved_micro_chip"
-  }
+  },
+  "show_notification": true
 }

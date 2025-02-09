@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:samarium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

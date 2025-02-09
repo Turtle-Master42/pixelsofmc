@@ -16,6 +16,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -24,14 +25,20 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class BallMillRecipeBuilder implements RecipeBuilder {
-    private final CountedIngredient output;
+    private final ChanceIngredient output;
     private final List<CountedIngredient> ingredients;
     private final Ingredient ball;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ItemLike result, int outputCount, Ingredient ball) {
         this.ingredients = ingredients;
-        this.output = CountedIngredient.of(outputCount, result);
+        this.output = ChanceIngredient.of(outputCount, 1f, result);
+        this.ball = ball;
+    }
+
+    public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ChanceIngredient output, Ingredient ball) {
+        this.ingredients = ingredients;
+        this.output = output;
         this.ball = ball;
     }
 
@@ -66,13 +73,13 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
 
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
-        private final CountedIngredient result;
+        private final ChanceIngredient result;
         private final List<CountedIngredient> ingredients;
         private final Ingredient ball;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, CountedIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement,
+        public Result(ResourceLocation pId, ChanceIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement,
                       ResourceLocation pAdvancementId) {
             this.id = pId;
             this.result = pResult;
@@ -146,7 +153,7 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output+"_milling");
+                    "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output);
         }
 
         @Override

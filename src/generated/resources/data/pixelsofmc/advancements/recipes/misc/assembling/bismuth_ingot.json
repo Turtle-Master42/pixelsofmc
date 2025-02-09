@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:bismuth_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

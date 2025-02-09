@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/zirconium_atom_512_to_zirconium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

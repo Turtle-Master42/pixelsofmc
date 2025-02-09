@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.network;
 
 import net.minecraftforge.energy.EnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 
 public class PixelEnergyStorage extends EnergyStorage {

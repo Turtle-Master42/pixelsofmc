@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:yttrium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

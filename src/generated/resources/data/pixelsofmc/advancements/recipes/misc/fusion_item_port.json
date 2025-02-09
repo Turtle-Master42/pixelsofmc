@@ -16,7 +16,7 @@
           },
           {
             "items": [
-              "minecraft:hopper"
+              "pixelsofmc:silver_wire"
             ]
           }
         ]
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:fusion_item_port"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -4,14 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,17 +21,15 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelAssemblerGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.PixelAssemblerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelAssemblerRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -154,7 +150,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
-        return new PixelAssemblerGuiMenu(pContainerId, pInventory, this, this.data);
+        return new PixelAssemblerMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -271,7 +267,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
 
             entity.removeMultiInput(recipeItems, 0, 2);
 
-            entity.addOutput(match.get().getResultItem(), 3);
+            entity.addOutput(match.get().getBaseOutput(), 3);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());
             entity.resetProgress();
@@ -288,14 +284,14 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     }
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
+        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE_1.get()) {
             this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
         } else {
             this.speedUpgrade = 0;
         }
     }
     private void energyUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE.get()) {
+        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE_1.get()) {
             this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(6).getCount();
         } else {
             this.energyUpgrade = 0;
@@ -369,5 +365,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
         this.energyStorage.setEnergy(energyLevel);
     }
     public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
-
+    public FluidTank getFluidTank() {
+        return fluidTank;
+    }
 }

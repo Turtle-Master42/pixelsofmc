@@ -134,7 +134,7 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "splitting/"+name + "_splitting");
+                    "splitting/"+name);
         }
 
         @Override

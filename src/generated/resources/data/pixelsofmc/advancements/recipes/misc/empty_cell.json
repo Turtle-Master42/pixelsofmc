@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:empty_cell"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

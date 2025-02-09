@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:argon_canister"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

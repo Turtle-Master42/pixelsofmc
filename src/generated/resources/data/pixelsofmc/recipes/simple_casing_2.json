@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_gold_ingot"
+      "item": "pixelsofmc:titanium_diboride_ingot"
     },
     "B": {
       "item": "pixelsofmc:simple_casing_1"
@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:simple_casing_2"
-  }
+  },
+  "show_notification": true
 }

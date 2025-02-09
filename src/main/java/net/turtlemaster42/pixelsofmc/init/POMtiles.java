@@ -21,11 +21,15 @@ public class POMtiles {
 			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<MultiBlockTile>> MULTIBLOCK =
-			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.REINFORCED_THING.get(), POMblocks.REINFORCED_CASING.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get()).build(null));
+			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.ARMORED_MULTIBLOCK_CASING.get(), POMblocks.FISSION_CASING.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
 			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =
 			TILES.register("fusion_item_port", () -> BlockEntityType.Builder.of(FusionItemPortTile::new, POMblocks.FUSION_ITEM_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FusionFluidPortTile>> FUSION_FLUID_PORT =
+			TILES.register("fusion_fluid_port", () -> BlockEntityType.Builder.of(FusionFluidPortTile::new, POMblocks.FUSION_FLUID_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FusionPlasmaPortTile>> FUSION_PLASMA_PORT =
+			TILES.register("fusion_plasma_port", () -> BlockEntityType.Builder.of(FusionPlasmaPortTile::new, POMblocks.FUSION_PLASMA_PORT.get()).build(null));
 
 
 
@@ -49,6 +53,8 @@ public class POMtiles {
 			TILES.register("chemical_combiner", () -> BlockEntityType.Builder.of(ChemicalCombinerTile::new, POMblocks.CHEMICAL_COMBINER.get()).build(null));
 
 
+	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
+			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.SDS_CONTROLLER.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
 			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get(), POMblocks.MDS_CONTROLLER.get(), POMblocks.MNS_CONTROLLER.get(), POMblocks.BH_CONTROLLER.get()).build(null));

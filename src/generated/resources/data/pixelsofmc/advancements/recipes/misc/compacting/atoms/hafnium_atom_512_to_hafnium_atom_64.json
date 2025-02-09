@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/hafnium_atom_512_to_hafnium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/potassium_atom_512_to_potassium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

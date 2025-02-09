@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.intergration;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -10,6 +11,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +39,7 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     private final FluidTankRenderer renderer;
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 35, 3, 122, 74);
+        this.background = helper.createDrawable(TEXTURE, 39, 4, 111, 72);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_COMBINER.get()));
         this.renderer = new FluidTankRenderer(16000, true, 25, 11);
     }
@@ -53,8 +55,13 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override
@@ -63,34 +70,32 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     }
 
     @Override
-    public void draw(ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        renderer.render(stack, 79, 9, recipe.getFluidInput());
-        renderer.render(stack, 79, 24, recipe.getResultFluid());
+    public void draw(ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        renderer.render(guiGraphics, 69, 4, recipe.getFluidInput());
+        renderer.render(guiGraphics, 69, 19, recipe.getResultFluid());
     }
 
     @Override
-    public @NotNull List<Component> getTooltipStrings(ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (mouseX >= 79 && mouseX <= 105 && mouseY >= 9 && mouseY <= 20) {
-            return renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input"));
+    public void getTooltip(ITooltipBuilder tooltip, ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 69 && mouseX <= 94 && mouseY >= 4 && mouseY <= 15) {
+            tooltip.addAll(renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
         }
-        if (mouseX >= 79 && mouseX <= 105 && mouseY >= 24 && mouseY <= 35) {
-            return renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output"));
+        if (mouseX >= 69 && mouseX <= 94 && mouseY >= 19 && mouseY <= 30) {
+            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
         }
-
-        return new ArrayList<>();
     }
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalCombinerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            int x = 1 + (9 * p);
-            int y = 21 + (18 * p);
+            int x = 3 + (2 * p);
+            int y = 12 + (20 * p);
             builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 56).addIngredients(Ingredient.of(recipe.getResultItem()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 51).addIngredients(Ingredient.of(recipe.getOutput().asItemStack()));
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
     }
 }

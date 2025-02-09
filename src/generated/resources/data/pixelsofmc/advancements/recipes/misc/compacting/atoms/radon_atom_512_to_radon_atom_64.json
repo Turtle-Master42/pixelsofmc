@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/radon_atom_512_to_radon_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

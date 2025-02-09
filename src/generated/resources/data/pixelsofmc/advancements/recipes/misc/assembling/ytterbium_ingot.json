@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:ytterbium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

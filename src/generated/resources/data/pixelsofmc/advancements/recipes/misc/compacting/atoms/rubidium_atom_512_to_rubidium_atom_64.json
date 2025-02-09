@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/rubidium_atom_512_to_rubidium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -17,10 +17,11 @@
   },
   "pattern": [
     "ABA",
-    "CDD",
+    "DCD",
     "ABA"
   ],
   "result": {
     "item": "pixelsofmc:redstone_counter"
-  }
+  },
+  "show_notification": true
 }

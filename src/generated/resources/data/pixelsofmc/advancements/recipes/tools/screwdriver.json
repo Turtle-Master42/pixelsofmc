@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:screwdriver"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

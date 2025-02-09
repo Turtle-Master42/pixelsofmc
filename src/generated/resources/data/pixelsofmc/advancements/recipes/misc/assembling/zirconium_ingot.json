@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:zirconium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

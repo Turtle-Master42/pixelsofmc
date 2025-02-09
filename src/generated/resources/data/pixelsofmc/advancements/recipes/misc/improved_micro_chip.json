@@ -33,5 +33,6 @@
     "recipes": [
       "pixelsofmc:improved_micro_chip"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

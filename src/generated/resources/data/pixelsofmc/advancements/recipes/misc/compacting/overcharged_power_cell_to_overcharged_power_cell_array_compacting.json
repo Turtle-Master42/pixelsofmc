@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/overcharged_power_cell_to_overcharged_power_cell_array_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

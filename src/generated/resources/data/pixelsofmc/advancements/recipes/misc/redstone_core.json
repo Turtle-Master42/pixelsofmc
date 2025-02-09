@@ -11,7 +11,7 @@
           },
           {
             "items": [
-              "pixelsofmc:titanium_plating"
+              "minecraft:barrier"
             ]
           },
           {
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:redstone_core"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

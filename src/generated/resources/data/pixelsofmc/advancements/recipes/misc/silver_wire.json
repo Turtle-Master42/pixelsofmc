@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:silver_wire"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

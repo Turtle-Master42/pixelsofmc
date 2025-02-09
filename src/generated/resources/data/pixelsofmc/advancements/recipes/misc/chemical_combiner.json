@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:chemical_combiner"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

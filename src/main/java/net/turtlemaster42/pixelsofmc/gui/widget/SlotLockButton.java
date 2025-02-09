@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -35,7 +36,7 @@ public class SlotLockButton extends Button {
         this.locked = !this.locked;
     }
 
-    public void renderButton(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -47,9 +48,9 @@ public class SlotLockButton extends Button {
             slotlockbutton$icon = this.locked ? SlotLockButton.Icon.LOCKED : SlotLockButton.Icon.UNLOCKED;
         }
 
-        this.blit(pPoseStack, this.getX(), this.getY(), slotlockbutton$icon.getX(), slotlockbutton$icon.getY(), this.width, this.height);
+        pGuiGraphics.blit(TEXTURE, this.getX(), this.getY(), slotlockbutton$icon.getX(), slotlockbutton$icon.getY(), this.width, this.height);
         if (this.isLocked()) {
-            this.blit(pPoseStack, slotX, slotY, 48, 0, 16, 16);
+            pGuiGraphics.blit(TEXTURE, slotX, slotY, 48, 0, 16, 16);
         }
     }
 

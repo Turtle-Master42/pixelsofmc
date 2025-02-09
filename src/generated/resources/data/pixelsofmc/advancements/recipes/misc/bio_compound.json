@@ -6,11 +6,11 @@
         "items": [
           {
             "items": [
-              "minecraft:sugar_cane",
               "minecraft:honeycomb",
               "minecraft:warped_fungus",
+              "minecraft:kelp",
               "minecraft:warped_roots",
-              "minecraft:kelp"
+              "minecraft:sugar_cane"
             ]
           },
           {
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:bio_compound"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

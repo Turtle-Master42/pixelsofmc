@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:erbium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

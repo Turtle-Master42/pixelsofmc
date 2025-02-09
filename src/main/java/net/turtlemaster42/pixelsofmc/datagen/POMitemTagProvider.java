@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -18,9 +19,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class POMitemTagProvider extends ItemTagsProvider {
 
-    public POMitemTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pLookupProvider, new POMblockTagProvider(pOutput, pLookupProvider, existingFileHelper),
-                PixelsOfMc.MOD_ID, existingFileHelper);
+    public POMitemTagProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> tagLookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+        super(pOutput, pLookupProvider, tagLookupCompletableFuture, PixelsOfMc.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -96,8 +96,6 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
                 .add(POMitems.REPELLING_RUBBER_BALL.get());
         tag(POMtags.Items.BALL_2)
-                .addTag(Tags.Items.STONE)
-                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.RUBBER_BALL.get())
                 .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
@@ -106,7 +104,6 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.TITANIUM_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_3)
-                .addTag(Tags.Items.OBSIDIAN)
                 .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_BALL.get())
                 .add(POMitems.TITANIUM_GOLD_BALL.get())
@@ -121,15 +118,34 @@ public class POMitemTagProvider extends ItemTagsProvider {
         tag(POMtags.Items.SOUL_FUELS)
                 .add(POMitems.SOUL_COAL.get());
 
+        tag(POMtags.Items.ORES_TITANIUM)
+                .add(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem())
+                .add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem())
+                .add(POMblocks.TITANIUM_ORE.get().asItem());
+
         //dusts
         tag(Tags.Items.DUSTS)
                 .addTag(POMtags.Items.DUST_ANCIENT_DEBRIS)
                 .addTag(POMtags.Items.DUST_COAL)
+                .add(POMitems.TITANIUM_GOLD_DUST.get())
+                .add(POMitems.ACANTHITE_DUST.get())
+                .add(POMitems.CRYING_OBSIDIAN_DUST.get())
+                .add(POMitems.MERCURY_SULFIDE_DUST.get())
+                .add(POMitems.OBSIDIAN_DUST.get())
+                .add(POMitems.RED_SILVER_DUST.get())
+                .add(POMitems.ROYAL_TUNGSTEN_DUST.get())
+                .add(POMitems.SUPERCONDUCTIVE_DUST.get())
+                .add(POMitems.TITANIUM_DIBORIDE_DUST.get())
+                .add(POMitems.TITANIUM_OXIDE_DUST.get())
+                .add(POMitems.TITANIUM_GOLD_DUST.get())
+                .add(POMitems.REFINED_REDSTONE.get())
+                .add(POMitems.QUARTZ_DUST.get())
                 .addTag(POMtags.Items.DUST_NETHERITE);
 
         tag(POMtags.Items.DUST_NETHERITE).add(POMitems.NETHERITE_DUST.get());
         tag(POMtags.Items.DUST_ANCIENT_DEBRIS).add(POMitems.ANCIENT_DEBRIS_DUST.get());
         tag(POMtags.Items.DUST_COAL).add(POMitems.COAL_DUST.get());
+        tag(POMtags.Items.DUST_QUARTZ).add(POMitems.QUARTZ_DUST.get());
 
         //ingots
         tag(Tags.Items.INGOTS)
@@ -143,5 +159,18 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(POMtags.Items.NUGGET_NETHERITE).add(POMitems.NETHERITE_NUGGET.get());
 
+
+        // atoms
+        tag(POMtags.Items.ATOM)
+                .add(POMitems.DEUTERIUM_ATOM_64.get())
+                .add(POMitems.TRITIUM_ATOM_64.get())
+                .add(POMitems.DEUTERIUM_ATOM_512.get())
+                .add(POMitems.TRITIUM_ATOM_512.get());
+        tag(POMtags.Items.ATOM64)
+                .add(POMitems.DEUTERIUM_ATOM_64.get())
+                .add(POMitems.TRITIUM_ATOM_64.get());
+        tag(POMtags.Items.ATOM512)
+                .add(POMitems.DEUTERIUM_ATOM_512.get())
+                .add(POMitems.TRITIUM_ATOM_512.get());
     }
 }

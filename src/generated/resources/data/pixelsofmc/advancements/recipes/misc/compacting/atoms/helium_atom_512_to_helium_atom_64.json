@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/helium_atom_512_to_helium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

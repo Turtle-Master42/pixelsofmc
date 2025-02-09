@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:ruthenium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

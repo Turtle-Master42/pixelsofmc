@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:ruthenium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

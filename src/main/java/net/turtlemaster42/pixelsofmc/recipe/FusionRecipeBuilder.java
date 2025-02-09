@@ -29,13 +29,11 @@ public class FusionRecipeBuilder implements RecipeBuilder {
     private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
-    private final int electronCount;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public FusionRecipeBuilder(Element element, int protonCount, int neutronCount, int electronCount, boolean x512) {
+    public FusionRecipeBuilder(Element element, int protonCount, int neutronCount, boolean x512) {
         this.protonCount = protonCount;
         this.neutronCount = neutronCount;
-        this.electronCount = electronCount;
         this.x512 = x512;
         this.element = element;
         if (x512) {
@@ -68,7 +66,7 @@ public class FusionRecipeBuilder implements RecipeBuilder {
                         RecipeUnlockedTrigger.unlocked(pRecipeId))
                 .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
 
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.element, this.protonCount, this.neutronCount, this.electronCount, this.x512,
+        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.element, this.protonCount, this.neutronCount, this.x512,
                 this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/fusing/"
                 + pRecipeId.getPath())));
 
@@ -78,18 +76,16 @@ public class FusionRecipeBuilder implements RecipeBuilder {
         private final ResourceLocation id;
         private final int protonCount;
         private final int neutronCount;
-        private final int electronCount;
         private final Element element;
         private final boolean x512;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, int electronCount, boolean x512, Advancement.Builder pAdvancement,
+        public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, boolean x512, Advancement.Builder pAdvancement,
                       ResourceLocation pAdvancementId) {
             this.id = pId;
             this.protonCount = protonCount;
             this.neutronCount = neutronCount;
-            this.electronCount = electronCount;
             this.advancement = pAdvancement;
             this.advancementId = pAdvancementId;
             this.element = element;
@@ -102,7 +98,6 @@ public class FusionRecipeBuilder implements RecipeBuilder {
             pJson.addProperty("x512", x512);
             pJson.addProperty("proton", protonCount);
             pJson.addProperty("neutron", neutronCount);
-            pJson.addProperty("electron", electronCount);
         }
 
         @Override
@@ -116,7 +111,7 @@ public class FusionRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "fusing/"+name+"_fusing");
+                    "fusing/"+name);
         }
 
         @Override

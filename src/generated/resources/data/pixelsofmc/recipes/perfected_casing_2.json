@@ -6,7 +6,7 @@
       "item": "pixelsofmc:advanced_casing_2"
     },
     "B": {
-      "item": "pixelsofmc:titanium_gold_plating"
+      "item": "pixelsofmc:titanium_diboride_plating"
     },
     "C": {
       "item": "pixelsofmc:violet_diamond_block"
@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "pixelsofmc:perfected_casing_2"
-  }
+  },
+  "show_notification": true
 }

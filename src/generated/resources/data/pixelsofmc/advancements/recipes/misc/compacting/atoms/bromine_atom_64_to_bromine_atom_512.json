@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/bromine_atom_64_to_bromine_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

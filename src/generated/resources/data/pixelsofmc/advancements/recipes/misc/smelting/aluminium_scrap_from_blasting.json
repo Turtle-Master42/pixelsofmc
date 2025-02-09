@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:smelting/aluminium_scrap_from_blasting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

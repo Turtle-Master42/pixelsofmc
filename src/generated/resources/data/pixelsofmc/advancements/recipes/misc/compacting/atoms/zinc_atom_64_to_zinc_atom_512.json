@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/zinc_atom_64_to_zinc_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

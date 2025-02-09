@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.util.recipe;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -95,9 +96,6 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
         return new ChanceIngredient(Ingredient.of(stack), stack.getCount(), chance);
     }
 
-
-
-
     public ItemStack[] getItems() {
         ItemStack[] matchingStacks = ingredient.getItems();
         for (ItemStack matchingStack : matchingStacks) {
@@ -116,6 +114,17 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
 
     public boolean isEmpty() {
         return ingredient.isEmpty();
+    }
+
+    public Ingredient asIngredient() {
+        return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
+    }
+
+    public Ingredient asOverflowIngredient() {
+        if (chance > 1f) {
+            return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count* Mth.floor(chance)));
+        }
+        return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
     }
 
     @Override

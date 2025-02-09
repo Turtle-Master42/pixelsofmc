@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "pixelsofmc:pyrolytic_carbon_sheet_slab"
-  }
+  },
+  "show_notification": true
 }

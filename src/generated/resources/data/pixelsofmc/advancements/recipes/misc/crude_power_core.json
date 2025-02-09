@@ -16,7 +16,7 @@
           },
           {
             "items": [
-              "minecraft:amethyst_shard"
+              "minecraft:amethyst_block"
             ]
           }
         ]
@@ -40,5 +40,6 @@
     "recipes": [
       "pixelsofmc:crude_power_core"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -15,8 +15,8 @@ import java.util.List;
 
 public class ElementBlockItem extends BlockItem {
     Element e;
-    public ElementBlockItem(Element e, Block pBlock, Properties pProperties) {
-        super(pBlock, pProperties);
+    public ElementBlockItem(Element e, Block block, Properties properties) {
+        super(block, properties);
         this.e = e;
     }
     public ElementBlockItem(Element e, Block pBlock) {
@@ -24,29 +24,29 @@ public class ElementBlockItem extends BlockItem {
         this.e = e;
     }
 
-    public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
+    public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
         if (Screen.hasShiftDown()) {
 
             int dangerAmount = e.getInfo().getDangerAmount();
 
             if (Screen.hasControlDown()) {
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state"));
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state."+e.getState()+".text"));
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger"));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state"));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state."+e.getState()+".text"));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger"));
                 if (dangerAmount == 0)
-                    pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger.none.text"));
+                    tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger.none.text"));
                 else
                     for (int d = 0; d < dangerAmount; d++)
-                        pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger."+e.getInfo().getDangerName(d)+".text"));
+                        tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger."+e.getInfo().getDangerName(d)+".text"));
             } else {
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state"));
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state."+e.getState()));
-                pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger"));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state"));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state."+e.getState()));
+                tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger"));
                 if (dangerAmount == 0)
-                    pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger.none"));
+                    tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger.none"));
                 else
                     for (int d = 0; d < dangerAmount; d++)
-                        pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger."+e.getInfo().getDangerName(d)));
+                        tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.danger."+e.getInfo().getDangerName(d)));
             }
         }
     }

@@ -1,7 +1,9 @@
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -90,8 +92,6 @@ public class MNSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        BlockPos blockpos = pContext.getClickedPos();
-        Level level = pContext.getLevel();
         if (BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 0, 0) &&
                 BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, 0) &&
                 BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, -1) &&
@@ -101,6 +101,10 @@ public class MNSFusionControllerBlock extends AbstractFusionControllerBlock {
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, 1);
         } else {
+            Player player = Minecraft.getInstance().player;
+            if (player != null && pContext.getLevel().isClientSide()) {
+                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.mns_controller.alt"));
+            }
             return null;
         }
     }

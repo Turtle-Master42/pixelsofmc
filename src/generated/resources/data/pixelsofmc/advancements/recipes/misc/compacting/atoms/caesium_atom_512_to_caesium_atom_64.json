@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/caesium_atom_512_to_caesium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

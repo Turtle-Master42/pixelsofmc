@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/netherite_nugget_to_netherite_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

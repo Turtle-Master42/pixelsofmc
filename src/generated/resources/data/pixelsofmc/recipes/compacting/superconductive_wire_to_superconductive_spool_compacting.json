@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:superconductive_spool"
-  }
+  },
+  "show_notification": true
 }

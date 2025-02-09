@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:lead_plating"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

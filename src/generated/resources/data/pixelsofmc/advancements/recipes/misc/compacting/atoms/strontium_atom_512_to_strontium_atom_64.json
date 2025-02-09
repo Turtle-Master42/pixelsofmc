@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/strontium_atom_512_to_strontium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

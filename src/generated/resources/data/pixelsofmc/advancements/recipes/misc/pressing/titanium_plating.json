@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:titanium_plating"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

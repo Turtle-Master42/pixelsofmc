@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/californium_atom_64_to_californium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

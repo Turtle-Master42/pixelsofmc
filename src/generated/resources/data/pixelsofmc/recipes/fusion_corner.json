@@ -12,7 +12,7 @@
       "item": "pixelsofmc:redstone_core"
     },
     "D": {
-      "item": "pixelsofmc:red_tungsten_spool"
+      "item": "pixelsofmc:red_silver_spool"
     },
     "E": {
       "item": "pixelsofmc:refined_redstone"
@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:fusion_corner"
-  }
+  },
+  "show_notification": true
 }

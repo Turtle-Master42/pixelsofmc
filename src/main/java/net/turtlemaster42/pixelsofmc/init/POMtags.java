@@ -38,6 +38,7 @@ public class POMtags {
         public static final TagKey<Item> BALL_6 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "ball_6"));
         public static final TagKey<Item> SPEED_UPGRADE = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "speed_upgrade"));
         public static final TagKey<Item> ENERGY_UPGRADE = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "energy_upgrade"));
+        public static final TagKey<Item> HEAT_UPGRADE = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "heat_upgrade"));
         public static final TagKey<Item> SOUL_FUELS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "soul_fuels"));
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/netherite"));
 
@@ -45,6 +46,9 @@ public class POMtags {
         public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/netherite"));
         public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/ancient_debris"));
         public static final TagKey<Item> DUST_COAL = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
+        public static final TagKey<Item> DUST_QUARTZ = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/quartz"));
+
+        public static final TagKey<Item> ORES_TITANIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "ores/titanium"));
     }
 
 

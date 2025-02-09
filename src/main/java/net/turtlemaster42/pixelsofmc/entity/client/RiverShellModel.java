@@ -1,13 +1,20 @@
 package net.turtlemaster42.pixelsofmc.entity.client;
 
+import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
+import com.github.alexthe666.citadel.client.model.ModelAnimator;
 import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
+import net.turtlemaster42.pixelsofmc.util.renderer.ItemstackRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.POMAdvancedModelBox;
 
 public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
@@ -124,33 +131,65 @@ public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
         this.resetToDefaultPose();
         float partialTick = ageInTicks - riverShellEntity.tickCount;
         float retractAnimationTime = riverShellEntity.getRetractAnimationTime() + partialTick; //0 - 10, 10 - 50
+        float walkSpeed = 2F;
+        float walkDegree = 2F;
 
         progressRotationPrev(jaw, riverShellEntity.attackAnim, 0f, (float)Math.toRadians(45), 0f, 1);
 
-        progressPositionPrev(head, animationNodeProgress(retractAnimationTime, 0, 7), 0f, 0f, 6f, 1f);
+        if (riverShellEntity.onGround() && !riverShellEntity.isInShell()) {
+            this.walk(front_leg_right, walkSpeed, walkDegree, false, 0F, 0F, limbSwing, limbSwingAmount);
+            this.walk(front_leg_left, walkSpeed, walkDegree, true, 0F, 0F, limbSwing, limbSwingAmount);
+            this.walk(back_leg_right, walkSpeed, walkDegree, true, 0F, 0F, limbSwing, limbSwingAmount);
+            this.walk(back_leg_left, walkSpeed, walkDegree, false, 0F, 0F, limbSwing, limbSwingAmount);
+            this.walk(tail, walkSpeed, walkDegree * 0.1F, true, 1F, -0.6F, limbSwing, limbSwingAmount);
+            this.bob(shell, walkSpeed, walkDegree, true, limbSwing, limbSwingAmount);
+            this.bob(head, walkSpeed, -walkDegree / 2, false, limbSwing, limbSwingAmount);
+        }
+
+        //retract
+        progressPositionPrev(head, animationNodeProgress(retractAnimationTime, 0, 7), 0f, 0f, 7.5f, 1f);
         progressPositionPrev(shell, animationNodeProgress(retractAnimationTime, 0, 10), 0f, 1f, 0f, 1f);
         float legRetractProgress1 = animationNodeProgress(retractAnimationTime, 1, 6);
         progressRotationPrev(front_leg_left, legRetractProgress1, 0, 0, (float)Math.toRadians(-80), 1f);
         progressRotationPrev(front_leg_right, legRetractProgress1, 0, 0, (float)Math.toRadians(80),  1f);
         progressRotationPrev(back_leg_left, legRetractProgress1, 0, 0, (float)Math.toRadians(-80),  1f);
         progressRotationPrev(back_leg_right, legRetractProgress1, 0, 0, (float)Math.toRadians(80),  1f);
+        progressRotationPrev(tail, legRetractProgress1, 0, (float)Math.toRadians(80), 0,  1f);
         progressPositionPrev(front_leg_left, legRetractProgress1, 0f, 2f, 0f, 1f);
         progressPositionPrev(front_leg_right, legRetractProgress1, 0f, 2f, 0f,  1f);
         progressPositionPrev(back_leg_left, legRetractProgress1, 0f, 2f, 0f,  1f);
         progressPositionPrev(back_leg_right, legRetractProgress1, 0f, 2f, 0f,  1f);
         float legRetractProgress2 = animationNodeProgress(retractAnimationTime, 6, 10);
+
         progressPositionPrev(front_leg_left, legRetractProgress2, -4f, -1f, 0.6f, 1f);
         progressPositionPrev(front_leg_right, legRetractProgress2, 4f, -1f, 0.6f,  1f);
         progressPositionPrev(back_leg_left, legRetractProgress2, -4f, -1f, 0f,  1f);
         progressPositionPrev(back_leg_right, legRetractProgress2, 4f, -1f, 0f,  1f);
+        progressPositionPrev(tail, legRetractProgress1, 0f, 2f, 0f,  1f);
 
-
-        progressPositionPrev(head, animationNodeProgress(retractAnimationTime, 10, 15), 0f, 0f, -4f, 1f);
-//        progressRotationPrev(head, animationNodeProgress(retractAnimationTime, 20, 25), (float)Math.toRadians(-45), 0, 0, 1f);
-//        progressRotationPrev(head, animationNodeProgress(retractAnimationTime, 25, 35), (float)Math.toRadians(45), 0, 0, 1f);
-//        progressRotationPrev(head, animationNodeProgress(retractAnimationTime, 35, 40), 0, 0, 0, 1f);
+        //extend
+        progressPositionPrev(head, animationNodeProgress(retractAnimationTime, 10, 15), 0f, 0f, -5.5f, 1f);
         progressPositionPrev(head, animationNodeProgress(retractAnimationTime, 40, 45), 0f, 0f, -2f, 1f);
-        progressPositionPrev(shell, animationNodeProgress(retractAnimationTime, 45, 50), 0f, -1f, 0f, 1f);
+        float legExtendProgress1 = animationNodeProgress(retractAnimationTime, 45, 52);
+        progressPositionPrev(front_leg_left, legExtendProgress1, 4f, 1f, -0.6f, 1f);
+        progressPositionPrev(front_leg_right, legExtendProgress1, -4f, 1f, -0.6f,  1f);
+        progressPositionPrev(back_leg_left, legExtendProgress1, 4f, 1f, 0f,  1f);
+        progressPositionPrev(back_leg_right, legExtendProgress1, -4f, 1f, 0f,  1f);
+        progressPositionPrev(tail, legExtendProgress1, 0f, -2f, 0f,  1f);
+        float legExtendProgress2 = animationNodeProgress(retractAnimationTime, 52, 55);
+
+        progressRotationPrev(front_leg_left, legExtendProgress2, 0, 0, (float)Math.toRadians(80), 1f);
+        progressRotationPrev(front_leg_right, legExtendProgress2, 0, 0, (float)Math.toRadians(-80),  1f);
+        progressRotationPrev(back_leg_left, legExtendProgress2, 0, 0, (float)Math.toRadians(80),  1f);
+        progressRotationPrev(back_leg_right, legExtendProgress2, 0, 0, (float)Math.toRadians(-80),  1f);
+        progressRotationPrev(tail, legExtendProgress2, 0, (float)Math.toRadians(-80), 0,  1f);
+        progressPositionPrev(front_leg_left, legExtendProgress2, 0f, -2f, 0f, 1f);
+        progressPositionPrev(front_leg_right, legExtendProgress2, 0f, -2f, 0f,  1f);
+        progressPositionPrev(back_leg_left, legExtendProgress2, 0f, -2f, 0f,  1f);
+        progressPositionPrev(back_leg_right, legExtendProgress2, 0f, -2f, 0f,  1f);
+
+        progressPositionPrev(shell, animationNodeProgress(retractAnimationTime, 53, 55), 0f, -1.8f, 0f, 1f);
+        progressPositionPrev(shell, animationNodeProgress(retractAnimationTime, 55, 60), 0f, 0.8f, 0f, 1f);
 
 
         if (!riverShellEntity.isInShell()) {
@@ -159,9 +198,25 @@ public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
 
     }
 
+    public void animateStack(ItemStack itemStack) {
+        this.resetToDefaultPose();
+        float partialTick = Minecraft.getInstance().getFrameTime();
+        float tick = Minecraft.getInstance().player == null ? 0 : partialTick + Minecraft.getInstance().player.tickCount;
+        if(Minecraft.getInstance().isPaused()){
+            tick = ItemstackRenderer.ticksExisted;
+        }
+        shell.rotateAngleX = (float)Math.toRadians(-90);
+        head_pivot.setPOMPos(0, 2.2f, 4.5f);
+        head_pivot.rotateAngleX = (float) Math.toRadians(85);
+        front_leg_left.rotateAngleZ = (float) Math.toRadians(22);
+        front_leg_left.rotateAngleX = (float) Math.toRadians(25);
+        front_leg_right.rotateAngleZ = (float) Math.toRadians(-22);
+        front_leg_right.rotateAngleX = (float) Math.toRadians(25);
+        this.bob(head, 0.1f, 0.1f, false, tick, 1);
+    }
+
     @Override
     public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-
         matrixStackIn.translate(0f, 1.5f ,0f);
 
         if (this.young) {

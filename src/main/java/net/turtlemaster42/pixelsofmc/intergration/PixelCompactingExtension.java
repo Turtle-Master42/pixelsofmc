@@ -34,7 +34,6 @@ public record PixelCompactingExtension(PixelCompactingRecipe recipe) implements 
         });
     }
 
-
     @Override
     public ResourceLocation getRegistryName() {
         return recipe.getId();

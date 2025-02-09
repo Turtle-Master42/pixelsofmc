@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:netherite_dust"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

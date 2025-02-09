@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:lead_plating_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

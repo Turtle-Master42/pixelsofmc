@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:iron_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

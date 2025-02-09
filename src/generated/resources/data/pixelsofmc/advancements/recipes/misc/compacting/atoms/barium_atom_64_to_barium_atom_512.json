@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/barium_atom_64_to_barium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -49,8 +49,13 @@ public class PixelAssemblerRecipeCategory implements IRecipeCategory<PixelAssemb
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override
@@ -62,7 +67,7 @@ public class PixelAssemblerRecipeCategory implements IRecipeCategory<PixelAssemb
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PixelAssemblerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 128-25, 38-25).addIngredients(Ingredient.of(recipe.getResultItem()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 128-25, 38-25).addIngredients(Ingredient.of(recipe.getBaseOutput()));
 
         //inputs
         List<CountedIngredient> recipeInputs = recipe.getInputs();

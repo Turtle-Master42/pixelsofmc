@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:fire_proof_rubber_ball"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

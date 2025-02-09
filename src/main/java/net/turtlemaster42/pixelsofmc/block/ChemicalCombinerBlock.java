@@ -1,7 +1,9 @@
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -74,6 +76,10 @@ public class ChemicalCombinerBlock extends BaseEntityBlock {
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
         } else {
+            Player player = Minecraft.getInstance().player;
+            if (player != null && pContext.getLevel().isClientSide()) {
+                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.chemical_combiner.alt"));
+            }
             return null;
         }
     }

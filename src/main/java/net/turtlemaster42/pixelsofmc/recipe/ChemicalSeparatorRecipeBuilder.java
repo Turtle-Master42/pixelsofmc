@@ -126,7 +126,7 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
             }
 
             return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "chemical_separating/" + name + "_separating");
+                    "chemical_separating/" + name);
         }
 
         @Override

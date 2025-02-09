@@ -81,6 +81,26 @@ public class POMfluids {
 
     //-----------GAS-----------//
 
+    public static final RegistryObject<FlowingFluid> STEAM_SOURCE
+            = FLUIDS.register("steam", () -> new ForgeFlowingFluid.Source(POMfluids.STEAM_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> STEAM_FLOWING
+            = FLUIDS.register("steam_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.STEAM_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties STEAM_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.STEAM_TYPE, STEAM_SOURCE, STEAM_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(5)
+            .block(POMblocks.STEAM_BLOCK).bucket(POMitems.STEAM_BUCKET);
+
+    public static final RegistryObject<FlowingFluid> BLAZING_STEAM_SOURCE
+            = FLUIDS.register("blazing_steam", () -> new ForgeFlowingFluid.Source(POMfluids.BLAZING_STEAM_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> BLAZING_STEAM_FLOWING
+            = FLUIDS.register("blazing_steam_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.BLAZING_STEAM_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties BLAZING_STEAM_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.BLAZING_STEAM_TYPE, BLAZING_STEAM_SOURCE, BLAZING_STEAM_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(5)
+            .block(POMblocks.BLAZING_STEAM_BLOCK).bucket(POMitems.BLAZING_STEAM_BUCKET);
+
+
+
     public static final RegistryObject<FlowingFluid> HYDROGEN_GAS_SOURCE
             = FLUIDS.register("hydrogen_gas", () -> new ForgeFlowingFluid.Source(POMfluids.HYDROGEN_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> HYDROGEN_GAS_FLOWING

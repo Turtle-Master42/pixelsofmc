@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -42,16 +43,16 @@ public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplit
             case SOUTH -> pPoseStack.mulPose(Axis.YP.rotationDegrees(90));
             case WEST -> pPoseStack.mulPose(Axis.YP.rotationDegrees(180));
         }
-        itemRenderer.renderStatic(saw, ItemTransforms.TransformType.GUI, getLightLevel(pBlockEntity.getLevel(),
-                        pBlockEntity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, 1);
+        itemRenderer.renderStatic(saw, ItemDisplayContext.GUI, getLightLevel(pBlockEntity.getLevel(),
+                pBlockEntity.getBlockPos()), OverlayTexture.NO_OVERLAY,
+                pPoseStack, pBufferSource, pBlockEntity.getLevel(), 1);
 
         pPoseStack.translate(0f, -0.5625f, 0f);
         pPoseStack.scale(0.6f, 0.6f, 0.6f);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(90));
-        itemRenderer.renderStatic(input, ItemTransforms.TransformType.GUI, getLightLevel(pBlockEntity.getLevel(),
-                        pBlockEntity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, 1);
+        itemRenderer.renderStatic(input, ItemDisplayContext.GUI, getLightLevel(pBlockEntity.getLevel(),
+                        pBlockEntity.getBlockPos()), OverlayTexture.NO_OVERLAY,
+                pPoseStack, pBufferSource, pBlockEntity.getLevel(), 1);
         pPoseStack.popPose();
     }
 

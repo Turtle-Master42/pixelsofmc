@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:hafnium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

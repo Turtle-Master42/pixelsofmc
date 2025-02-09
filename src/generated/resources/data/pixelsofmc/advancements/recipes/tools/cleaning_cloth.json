@@ -34,5 +34,6 @@
     "recipes": [
       "pixelsofmc:cleaning_cloth"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

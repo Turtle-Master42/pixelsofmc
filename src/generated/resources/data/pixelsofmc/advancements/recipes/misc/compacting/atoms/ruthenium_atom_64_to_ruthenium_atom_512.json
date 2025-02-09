@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/ruthenium_atom_64_to_ruthenium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:hydrogen_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

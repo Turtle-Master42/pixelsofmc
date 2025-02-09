@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/calcium_atom_512_to_calcium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

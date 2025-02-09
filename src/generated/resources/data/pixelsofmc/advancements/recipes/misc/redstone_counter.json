@@ -31,5 +31,6 @@
     "recipes": [
       "pixelsofmc:redstone_counter"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

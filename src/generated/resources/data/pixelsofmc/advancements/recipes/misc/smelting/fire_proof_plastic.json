@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:smelting/fire_proof_plastic"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

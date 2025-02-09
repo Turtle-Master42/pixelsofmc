@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/tellurium_atom_512_to_tellurium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

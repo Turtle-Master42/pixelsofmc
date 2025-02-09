@@ -11,7 +11,7 @@
           },
           {
             "items": [
-              "minecraft:netherite_block"
+              "minecraft:netherite_ingot"
             ]
           }
         ]
@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:simple_casing_1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

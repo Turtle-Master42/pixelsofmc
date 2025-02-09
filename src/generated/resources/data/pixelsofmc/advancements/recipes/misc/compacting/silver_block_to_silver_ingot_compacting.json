@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/silver_block_to_silver_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:fusion_casing"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

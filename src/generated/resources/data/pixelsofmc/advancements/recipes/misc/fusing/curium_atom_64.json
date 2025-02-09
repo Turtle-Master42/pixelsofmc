@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:curium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

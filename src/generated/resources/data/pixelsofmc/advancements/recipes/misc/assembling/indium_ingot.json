@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:indium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

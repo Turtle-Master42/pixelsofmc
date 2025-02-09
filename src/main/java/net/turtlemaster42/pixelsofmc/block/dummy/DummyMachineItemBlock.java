@@ -13,8 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -25,7 +24,7 @@ import javax.annotation.Nullable;
 public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
 
     public DummyMachineItemBlock() {
-        super(Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
+        super(Properties.of().mapColor(MapColor.CLAY).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
                 .isRedstoneConductor((bs, br, bp) -> false));
     }
 

@@ -15,10 +15,10 @@
       "item": "minecraft:blaze_powder"
     },
     {
-      "item": "minecraft:soul_sand"
+      "tag": "minecraft:soul_fire_base_blocks"
     },
     {
-      "item": "minecraft:soul_sand"
+      "tag": "minecraft:soul_fire_base_blocks"
     }
   ],
   "result": {

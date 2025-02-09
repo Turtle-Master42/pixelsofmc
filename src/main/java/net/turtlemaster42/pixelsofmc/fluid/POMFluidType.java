@@ -53,6 +53,16 @@ public class POMFluidType {
 
     //-----------GAS-----------//
 
+    public static final RegistryObject<FluidType> STEAM_TYPE = registerGas("steam", 240, 240, 245,
+            FluidType.Properties.create().lightLevel(0).temperature(450).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
+                    .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> BLAZING_STEAM_TYPE = registerGas("blazing_steam", 240, 240, 245,
+            FluidType.Properties.create().lightLevel(0).temperature(1200).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
+                    .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+
+
     public static final RegistryObject<FluidType> HYDROGEN_GAS_TYPE = registerGas("hydrogen_gas", 225, 223, 235,
             FluidType.Properties.create().lightLevel(0).temperature(300).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
@@ -83,7 +93,7 @@ public class POMFluidType {
                 new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
     }
 
-    public static void registerFluid(IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         FLUID_TYPES.register(eventBus);
     }
 }

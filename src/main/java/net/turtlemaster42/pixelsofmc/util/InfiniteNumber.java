@@ -9,7 +9,7 @@ public class InfiniteNumber {
 
     // not truly infinite, it can't get bigger than a number consisting of a 1 with 38654705646 zeros - 1
     // in other words, the maximum number is 10^38654705646 - 1, for context, the observable universe
-    // measured in plancklength (smallest measurable length) is about 5,44*10^61, soooooo, I don't think you wil ever hit the limit
+    // measured in plancklength (smallest measurable length) is about 5,44*10^61, soooooo, I don't think you will ever hit the limit
     // still not as big as a googleplex though.
 
     private List<Long> INFINITE_NUMBER = new ArrayList<>();

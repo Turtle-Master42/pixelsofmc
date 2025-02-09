@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:astatine_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

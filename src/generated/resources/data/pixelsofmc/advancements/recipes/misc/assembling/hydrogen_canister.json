@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:hydrogen_canister"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:xenon_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:scandium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

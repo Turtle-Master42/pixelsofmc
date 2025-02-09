@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:nitrogen_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

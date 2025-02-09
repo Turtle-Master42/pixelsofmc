@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:titanium_gold_ball"
-  }
+  },
+  "show_notification": true
 }

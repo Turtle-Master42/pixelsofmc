@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/cadmium_atom_64_to_cadmium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

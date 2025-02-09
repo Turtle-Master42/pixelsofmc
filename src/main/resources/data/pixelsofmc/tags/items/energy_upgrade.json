@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pixelsofmc:energy_upgrade"
+    "pixelsofmc:energy_upgrade_1",
+    "pixelsofmc:energy_upgrade_2"
   ]
 }

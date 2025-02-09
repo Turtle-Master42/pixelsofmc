@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
+import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import org.jetbrains.annotations.NotNull;
 
 public class SupercooledLiquidBlock extends LiquidBlock {
@@ -33,7 +34,7 @@ public class SupercooledLiquidBlock extends LiquidBlock {
         pEntity.setTicksFrozen((int) (pEntity.getTicksFrozen() * 1.3f));
         pEntity.setIsInPowderSnow(true);
         if (pEntity.isFullyFrozen())
-            pEntity.hurt(new DamageSource("pixelsofmc.supercooled_liquid").bypassArmor().setNoAggro(), 4);
+            pEntity.hurt(POMdamage.super_cooled(pLevel), 4);
     }
 
     @Deprecated // FORGE: Use FluidInteractionRegistry#canInteract instead

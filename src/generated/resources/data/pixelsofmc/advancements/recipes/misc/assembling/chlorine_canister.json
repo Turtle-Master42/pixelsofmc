@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:chlorine_canister"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

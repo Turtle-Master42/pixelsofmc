@@ -15,7 +15,7 @@
       "tag": "forge:storage_blocks/gold"
     },
     "E": {
-      "item": "pixelsofmc:power_cell"
+      "item": "pixelsofmc:overcharged_power_orb"
     }
   },
   "pattern": [
@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:advanced_casing_2"
-  }
+  },
+  "show_notification": true
 }

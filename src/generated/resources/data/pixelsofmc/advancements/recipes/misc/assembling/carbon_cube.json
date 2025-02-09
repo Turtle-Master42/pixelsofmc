@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:carbon_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "pixelsofmc:fusion_casing"
-  }
+  },
+  "show_notification": true
 }

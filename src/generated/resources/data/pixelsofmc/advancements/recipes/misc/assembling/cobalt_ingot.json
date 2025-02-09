@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:cobalt_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

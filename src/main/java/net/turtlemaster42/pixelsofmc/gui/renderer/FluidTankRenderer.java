@@ -5,7 +5,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joml.Matrix4f;
@@ -24,14 +27,13 @@ import org.joml.Matrix4f;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // CREDIT: https://github.com/mezz/JustEnoughItems by mezz
 // Under MIT-License: https://github.com/mezz/JustEnoughItems/blob/1.19/LICENSE.txt
 // Includes major rewrites and methods from:
 // https://github.com/mezz/JustEnoughItems/blob/1.19/Forge/src/main/java/mezz/jei/forge/platform/FluidHelper.java
 public class FluidTankRenderer {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     private static final NumberFormat nf = NumberFormat.getIntegerInstance();
     private static final int TEXTURE_SIZE = 16;
     private static final int MIN_FLUID_HEIGHT = 1; // ensure tiny amounts of fluid are still visible
@@ -62,7 +64,9 @@ public class FluidTankRenderer {
         this.height = height;
     }
 
-    public void render(PoseStack poseStack, int x, int y, FluidStack fluidStack) {
+    public void render(GuiGraphics guiGraphics, int x, int y, FluidStack fluidStack) {
+        PoseStack poseStack = guiGraphics.pose();
+
         RenderSystem.enableBlend();
         poseStack.pushPose();
         {
@@ -183,8 +187,8 @@ public class FluidTankRenderer {
         tessellator.end();
     }
 
+    public List<Component> getTooltip(FluidStack fluidStack, TooltipFlag flag, Component extra) {
 
-    public List<Component> getTooltip(FluidStack fluidStack, TooltipFlag tooltipFlag, Component extra) {
         List<Component> tooltip = new ArrayList<>();
 
         Fluid fluidType = fluidStack.getFluid();
@@ -207,11 +211,9 @@ public class FluidTankRenderer {
                 tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
             }
         } catch (RuntimeException e) {
-            LOGGER.error("Failed to get tooltip for fluid: " + e);
+            PixelsOfMc.LOGGER.error("Failed to get tooltip for fluid: " + e);
         }
 
-        if (!extra.getString().equals(""))
-            tooltip.add(extra);
         return tooltip;
     }
 

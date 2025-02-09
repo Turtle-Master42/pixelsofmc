@@ -45,8 +45,13 @@ public class PixelSplitterRecipeCategory implements IRecipeCategory<PixelSplitte
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override

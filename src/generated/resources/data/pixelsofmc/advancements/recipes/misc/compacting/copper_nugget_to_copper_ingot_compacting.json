@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/copper_nugget_to_copper_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

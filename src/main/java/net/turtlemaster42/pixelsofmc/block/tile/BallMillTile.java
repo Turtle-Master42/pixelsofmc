@@ -21,7 +21,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
-import net.turtlemaster42.pixelsofmc.gui.menu.BallMillGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.BallMillMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -41,7 +41,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     protected final ContainerData data;
     public int progress = 0;
-    public int maxProgress = 120;
+    public int maxProgress = 96;
     private int speedUpgrade = 0;
     private final int capacity = 1024000;
     private final int maxReceive = 1024000;
@@ -129,7 +129,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        return new BallMillGuiMenu(pContainerId, pInventory, this, this.data);
+        return new BallMillMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -189,9 +189,8 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
+            pBlockEntity.energyStorage.consumeEnergy(pBlockEntity.energyUpgrade());
             if (pBlockEntity.progress > 0 && !pState.getValue(BallMillBlock.ACTIVE)) {
                 level.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, true), 2);
             }
@@ -220,7 +219,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
+                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().asItemStack());
     }
 
     private static boolean hasPower(BallMillTile entity) {
@@ -243,7 +242,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             List<CountedIngredient> recipeItems = match.get().getInputs();
 
             entity.removeMultiInput(recipeItems, 0, 2);
-            entity.addOutput(match.get().getResultItem(), 4);
+            entity.addOverflowChanceOutput(match.get().getOutput(), 4);
 
             if (entity.itemHandler.getStackInSlot(3).isDamageableItem()) {
                 entity.itemHandler.getStackInSlot(3).hurt(1, RandomSource.create(), null); //ball
@@ -260,17 +259,15 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
+        this.speedUpgrade = this.maxProgress - speedUpgrade();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(6).getCount();
-        return energyConsumption / 10 * amount;
+        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(6).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
-        return maxProgress / 10 * amount;
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(5).getCount()));
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {

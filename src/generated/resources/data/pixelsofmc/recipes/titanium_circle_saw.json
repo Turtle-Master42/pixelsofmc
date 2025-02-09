@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:titanium_circle_saw"
-  }
+  },
+  "show_notification": true
 }

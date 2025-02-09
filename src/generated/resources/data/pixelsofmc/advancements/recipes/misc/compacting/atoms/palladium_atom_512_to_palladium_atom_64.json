@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/palladium_atom_512_to_palladium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

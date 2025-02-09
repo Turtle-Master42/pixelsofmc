@@ -5,11 +5,12 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.screen.AbstractPOMscreen;
+import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
@@ -86,6 +87,28 @@ public class JEIPOMPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addGenericGuiContainerHandler(AbstractPOMscreen.class, new GuiSizeExtension());
+
+        registration.addRecipeClickArea(BallMillScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.ball_mill").getString()), 15,
+                new RecipeType<>(BallMillRecipeCategory.UID, BallMillRecipe.class));
+        registration.addRecipeClickArea(GrinderScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.grinder").getString()), 15,
+                new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class));
+        registration.addRecipeClickArea(HotIsostaticPressScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.hot_isostatic_press").getString()), 15,
+                new RecipeType<>(HotIsostaticPressRecipeCategory.UID, HotIsostaticPressRecipe.class));
+        registration.addRecipeClickArea(ChemicalCombinerScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.chemical_combiner").getString()), 15,
+                new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class));
+        registration.addRecipeClickArea(ChemicalSeparatorScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.chemical_separator").getString()), 15,
+                new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
+        registration.addRecipeClickArea(PixelAssemblerScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.pixel_assembler").getString()), 15,
+                new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class));
+        registration.addRecipeClickArea(PixelSplitterScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.pixel_splitter").getString()), 15,
+                new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class));
     }
 
     @Override

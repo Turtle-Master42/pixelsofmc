@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -32,7 +33,7 @@ public class GraySwitchButton extends Button {
         this.on = !this.on;
     }
 
-    public void renderButton(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -44,7 +45,7 @@ public class GraySwitchButton extends Button {
             switchButton$icon = this.on ? GraySwitchButton.Icon.ON : GraySwitchButton.Icon.OFF;
         }
 
-        this.blit(pPoseStack, this.getX(), this.getY(), switchButton$icon.getX(), switchButton$icon.getY(), this.width, this.height);
+        pGuiGraphics.blit(TEXTURE, this.getX(), this.getY(), switchButton$icon.getX(), switchButton$icon.getY(), this.width, this.height);
     }
 
     @OnlyIn(Dist.CLIENT)

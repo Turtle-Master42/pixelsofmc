@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:gold_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

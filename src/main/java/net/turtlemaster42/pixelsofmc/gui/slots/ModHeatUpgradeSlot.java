@@ -4,6 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 
 public class ModHeatUpgradeSlot extends SlotItemHandler {
     public ModHeatUpgradeSlot(IItemHandler itemHandler, int index, int x, int y) {
@@ -11,6 +12,6 @@ public class ModHeatUpgradeSlot extends SlotItemHandler {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return stack.is(POMitems.HEAT_UPGRADE.get());
+        return stack.is(POMtags.Items.HEAT_UPGRADE);
     }
 }

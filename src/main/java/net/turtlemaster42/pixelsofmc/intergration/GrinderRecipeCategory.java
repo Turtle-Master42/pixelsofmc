@@ -49,8 +49,13 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override
@@ -65,18 +70,18 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
             IDrawable overlay = chanceOverlay;
-            String display = "§6"+recipe.OutputChance(p)*100+"%";
+            String display = "§6"+Math.round(recipe.getOutputChance(p)*100)+"%";
             int x = 81 + 18*(p/4);
             int y = 9*((p-4*(p/4))*2+1)-6;
 
-            if (recipe.OutputChance(p) < 0.5)
+            if (recipe.getOutputChance(p) < 0.5)
                 overlay = smallChanceOverlay;
             if(p > 3)
                 display=display+"\n§cThis item may not appear if the 4 official slots are full";
 
-            if (recipe.OutputChance(p) < 1)
+            if (recipe.getOutputChance(p) < 1)
                 builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)))
-                    .setBackground(overlay, 0, 0).addTooltipCallback(new JEItooltip(display));
+                    .setBackground(overlay, 0, 0).addRichTooltipCallback(new JEItooltip(display));
             else if (p > 3)
                 builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p))).setBackground(slot, 0, 0);
             else

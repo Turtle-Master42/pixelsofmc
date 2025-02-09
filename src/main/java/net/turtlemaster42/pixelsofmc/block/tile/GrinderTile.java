@@ -18,7 +18,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.GrinderGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.GrinderMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -118,7 +118,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        return new GrinderGuiMenu(pContainerId, pInventory, this, this.data);
+        return new GrinderMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -223,7 +223,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
 
-            entity.removeInput(2, match.get().getInput().getItems()[0].getCount());
+            entity.removeInput(2, 1);
             entity.addMultiChanceOutput(outputs, 1, 4);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());
@@ -235,17 +235,15 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
+        this.speedUpgrade = this.maxProgress - speedUpgrade();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(6).getCount();
-        return energyConsumption / 10 * amount;
+        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(6).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
-        return maxProgress / 10 * amount;
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(5).getCount()));
     }
 
 
@@ -253,7 +251,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         return (inputStack.getItem()==slotStack.getItem() && slotStack.getCount() + inputStack.getCount() <= slotStack.getMaxStackSize()) || slotStack.isEmpty();
     }
 
-    private static boolean canInsertIntoOutputSlot (GrinderTile entity, GrinderRecipe match) {
+    private static boolean canInsertIntoOutputSlot(GrinderTile entity, GrinderRecipe match) {
         boolean[] matched = new boolean[match.getOutputs().size()];
         boolean[] matchNeeded = new boolean[match.getOutputs().size()];
         ItemStack[] newStackInSlot = new ItemStack[5];

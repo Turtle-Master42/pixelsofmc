@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:pyrolytic_carbon_sheet_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

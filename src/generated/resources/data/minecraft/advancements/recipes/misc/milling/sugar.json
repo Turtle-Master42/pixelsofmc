@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:sugar"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

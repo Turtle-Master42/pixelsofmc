@@ -1,5 +1,7 @@
 {
   "values": [
+    "pixelsofmc:helium_atom_64",
+    "pixelsofmc:helium_atom_512",
     "pixelsofmc:lithium_atom_64",
     "pixelsofmc:lithium_atom_512",
     "pixelsofmc:beryllium_atom_64",

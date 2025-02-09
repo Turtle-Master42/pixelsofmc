@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
@@ -11,6 +12,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
+import net.turtlemaster42.pixelsofmc.item.IsotopeItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -26,13 +28,12 @@ public class FusionRecipe extends BaseRecipe {
     private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
-    private final int electronCount;
-    public FusionRecipe(ResourceLocation id, Element element, int protonCount, int neutronCount, int electronCount, boolean x512) {
+    private int extraNeutrons;
+    public FusionRecipe(ResourceLocation id, Element element, int protonCount, int neutronCount, boolean x512) {
         this.id = id;
         this.element = element;
         this.protonCount = protonCount;
         this.neutronCount = neutronCount;
-        this.electronCount = electronCount;
         this.x512 = x512;
         if (x512) {
             this.output = new ItemStack(element.atom512());
@@ -46,10 +47,9 @@ public class FusionRecipe extends BaseRecipe {
         if (level.isClientSide) return false;
         int protonCount = 0;
         int neutronCount = 0;
-        int electronCount = 0;
         int filledSlotCount = 0;
         
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 2; i++) {
             if (container.getItem(i).getItem() instanceof AtomItem item) {
                 filledSlotCount++;
                 ItemStack stack = new ItemStack(item);
@@ -58,11 +58,13 @@ public class FusionRecipe extends BaseRecipe {
 
                 protonCount += item.getProtonCount() * multiplier;
                 neutronCount += item.getNeutronCount() * multiplier;
-                electronCount += item.getElectronCount() * multiplier;
             }
         }
-
-        return this.protonCount == protonCount && this.neutronCount <= neutronCount && this.electronCount <= electronCount && filledSlotCount > 1;
+        if (this.protonCount == protonCount && this.neutronCount <= neutronCount && filledSlotCount > 1) {
+            extraNeutrons = neutronCount - this.neutronCount;
+            return true;
+        }
+        return false;
     }
 
 
@@ -71,22 +73,37 @@ public class FusionRecipe extends BaseRecipe {
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer simpleContainer, RegistryAccess registryAccess) {
         return output;
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return output.copy();
     }
 
-    public List<CountedIngredient> getInputs() {
-        return Collections.singletonList(CountedIngredient.EMPTY);
+    public ItemStack getResultItems(int index) {
+        return List.of(output, new ItemStack(Element.HYDROGEN.atom64(), extraNeutrons)).get(index);
+    }
+
+    public List<CountedIngredient> getOutputs() {
+        if (extraNeutrons > 0) {
+            return List.of(CountedIngredient.of(output), CountedIngredient.of(extraNeutrons, Element.HYDROGEN.atom64()));
+        }
+        return List.of(CountedIngredient.of(output));
+    }
+
+    @Override
+    public ItemStack getBaseOutput() {
+        return output;
+    }
+
+    public int getOutputsCount(int index) {
+        return getOutputs().get(index).count();
     }
 
     public int getProtonCount() {return protonCount;}
     public int getNeutronCount() {return neutronCount;}
-    public int getElectronCount() {return electronCount;}
     public ItemStack getInput(int input) {
         return ItemStack.EMPTY;
     }
@@ -135,9 +152,8 @@ public class FusionRecipe extends BaseRecipe {
             boolean x512 = json.get("x512").getAsBoolean();
             int proton = json.get("proton").getAsInt();
             int neutron = json.get("neutron").getAsInt();
-            int electron = json.get("electron").getAsInt();
-            
-            return new FusionRecipe(id, element, proton, neutron, electron, x512);
+
+            return new FusionRecipe(id, element, proton, neutron, x512);
         }
 
         public FusionRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
@@ -146,9 +162,8 @@ public class FusionRecipe extends BaseRecipe {
                 boolean x512 = buf.readBoolean();
                 int proton = buf.readInt();
                 int neutron = buf.readInt();
-                int electron = buf.readInt();
 
-                return new FusionRecipe(id, element, proton, neutron, electron, x512);
+                return new FusionRecipe(id, element, proton, neutron, x512);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading fusing recipe from packet.", ex);
                 throw ex;
@@ -161,7 +176,6 @@ public class FusionRecipe extends BaseRecipe {
                 buf.writeBoolean(recipe.x512);
                 buf.writeInt(recipe.protonCount);
                 buf.writeInt(recipe.neutronCount);
-                buf.writeInt(recipe.electronCount);
 
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading fusing recipe from packet.", ex);

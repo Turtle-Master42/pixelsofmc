@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/superconductive_nugget_to_superconductive_ingot_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

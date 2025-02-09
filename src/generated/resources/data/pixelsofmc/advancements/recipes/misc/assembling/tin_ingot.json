@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:tin_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

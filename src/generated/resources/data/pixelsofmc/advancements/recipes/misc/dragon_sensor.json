@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:dragon_sensor"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

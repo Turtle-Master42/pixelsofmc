@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:copper_wire"
-  }
+  },
+  "show_notification": true
 }

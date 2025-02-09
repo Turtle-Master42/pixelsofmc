@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:rubber_ball"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

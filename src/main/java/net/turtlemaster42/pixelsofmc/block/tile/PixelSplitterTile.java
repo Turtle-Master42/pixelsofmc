@@ -20,7 +20,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterMenu;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -118,7 +118,7 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        return new PixelSplitterGuiMenu(pContainerId, pInventory, this, this.data);
+        return new PixelSplitterMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -268,14 +268,14 @@ public class PixelSplitterTile extends AbstractMachineTile<PixelSplitterTile> {
     }
 
     private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE.get()) {
+        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE_1.get()) {
             this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
         } else {
             this.speedUpgrade = 0;
         }
     }
     private void energyUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE.get()) {
+        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE_1.get()) {
             this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(6).getCount();
         } else {
             this.energyUpgrade = 0;

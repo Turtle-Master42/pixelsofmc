@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:fire_proof_rubber_ball"
-  }
+  },
+  "show_notification": true
 }

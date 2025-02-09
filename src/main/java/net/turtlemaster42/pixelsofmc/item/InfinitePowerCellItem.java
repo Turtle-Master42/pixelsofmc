@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.network.InfinitePixelEnergyItemProvider;
 import net.turtlemaster42.pixelsofmc.network.InfinitePixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -26,38 +27,38 @@ public class InfinitePowerCellItem extends Item {
     public final InfiniteNumber maxPower;
     public final int color;
     public final ChatFormatting style;
-    public InfinitePowerCellItem(Properties pProperties, InfiniteNumber maxPower, int color, ChatFormatting style) {
-        super(pProperties.stacksTo(1));
+    public InfinitePowerCellItem(Properties properties, InfiniteNumber maxPower, int color, ChatFormatting style) {
+        super(properties.stacksTo(1));
         this.maxPower = maxPower;
         this.color = color;
         this.style = style;
     }
 
     @Override
-    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, @Nullable net.minecraft.nbt.CompoundTag nbt) {
-        return new InfinitePixelEnergyItemProvider(stack, maxPower, maxPower.toInt());
+    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack itemStack, @Nullable net.minecraft.nbt.CompoundTag nbt) {
+        return new InfinitePixelEnergyItemProvider(itemStack, maxPower, maxPower.toInt());
     }
 
-    public int getBarColor(@NotNull ItemStack pStack) {
+    public int getBarColor(@NotNull ItemStack itemStack) {
         return this.color;
     }
 
     @Override
-    public boolean isBarVisible(ItemStack pStack) {
+    public boolean isBarVisible(ItemStack itemStack) {
         return true;
     }
 
     @Override
-    public int getBarWidth(ItemStack pStack) {
-        InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) pStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+    public int getBarWidth(ItemStack itemStack) {
+        InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) itemStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
         return Math.round(13.0F / 100f * new InfiniteNumber().getCrudePercentage(energy.getInfiniteCapacity(), energy.getInfiniteEnergy()));
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (!pLevel.isClientSide()) {
-            InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) pPlayer.getItemInHand(pUsedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-            if (pPlayer.isCrouching()) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        if (!level.isClientSide()) {
+            InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) player.getItemInHand(usedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+            if (player.isCrouching()) {
                 energy.addEnergy(new InfiniteNumber().fromString("1000000000000000000000000000000000000"));
 //                energy.receiveEnergy(maxPower / 100 * 5, false);
             } else {
@@ -65,72 +66,17 @@ public class InfinitePowerCellItem extends Item {
             }
 //            PixelsOfMc.LOGGER.info(infiniteNumber.toString());
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return super.use(level, player, usedHand);
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack, @org.jetbrains.annotations.Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
-        InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) pStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+    public void appendHoverText(@NotNull ItemStack itemStack, @org.jetbrains.annotations.Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
+        InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) itemStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
         if (Screen.hasShiftDown()) {
-            pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.stored_power_shift", energy.getInfiniteEnergy(), energy.getInfiniteCapacity()).withStyle(style));
+            tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.stored_power_shift", Util.formatNumber(energy.getInfiniteEnergy()), Util.formatNumber(energy.getInfiniteCapacity())).withStyle(style));
         } else {
-            String energyString = energy.getInfiniteEnergy().toString();
-
-            String compactEnergyName = "FE";
-
-            String newEnergyString = energyString;
-
-            if (energyString.length() <= 3) {
-                compactEnergyName = "FE";
-            } else if (energyString.length() <= 6) {
-                compactEnergyName = "KFE";
-                int split = energyString.length() - 3;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 9) {
-                compactEnergyName = "MFE";
-                int split = energyString.length() - 6;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 12) {
-                compactEnergyName = "GFE";
-                int split = energyString.length() - 9;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 15) {
-                compactEnergyName = "TFE";
-                int split = energyString.length() - 12;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 18) {
-                compactEnergyName = "PFE";
-                int split = energyString.length() - 15;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 21) {
-                compactEnergyName = "EFE";
-                int split = energyString.length() - 18;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 24) {
-                compactEnergyName = "ZFE";
-                int split = energyString.length() - 21;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 27) {
-                compactEnergyName = "YFE";
-                int split = energyString.length() - 24;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else if (energyString.length() <= 30) {
-                compactEnergyName = "RFE";
-                int split = energyString.length() - 27;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            } else {
-                compactEnergyName = "QFE";
-                int split = energyString.length() - 30;
-                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-            }
-
-//            } else if (energyString.length() <= 33) {
-//                compactEnergyName = "QFE";
-//                int split = energyString.length() - 30;
-//                newEnergyString = energyString.substring(0, split) + "." + energyString.substring(split, split + 2);
-//            }
-
-            pTooltipComponents.add(Component.translatable("tooltip.pixelsofmc.stored_power_altern", newEnergyString, new InfiniteNumber().getCrudePercentage(energy.getInfiniteCapacity(), energy.getInfiniteEnergy()) + "%", compactEnergyName).withStyle(style));
+            String[] compactString = Util.compactMetricNumber(energy.getInfiniteEnergy());
+            tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.stored_power_altern", Util.formatNumber(compactString[0]), new InfiniteNumber().getCrudePercentage(energy.getInfiniteCapacity(), energy.getInfiniteEnergy()) + "%", "§7"+compactString[1]+"FE").withStyle(style));
         }
     }
 }

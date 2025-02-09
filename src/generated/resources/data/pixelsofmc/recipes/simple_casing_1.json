@@ -6,7 +6,7 @@
       "item": "pixelsofmc:titanium_ingot"
     },
     "B": {
-      "item": "minecraft:netherite_block"
+      "item": "minecraft:netherite_ingot"
     }
   },
   "pattern": [
@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:simple_casing_1"
-  }
+  },
+  "show_notification": true
 }

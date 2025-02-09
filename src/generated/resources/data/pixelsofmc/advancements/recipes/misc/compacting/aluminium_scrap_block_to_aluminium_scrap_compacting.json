@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/aluminium_scrap_block_to_aluminium_scrap_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

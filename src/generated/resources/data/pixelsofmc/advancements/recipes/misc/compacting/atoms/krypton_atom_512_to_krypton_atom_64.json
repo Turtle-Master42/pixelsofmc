@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/krypton_atom_512_to_krypton_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

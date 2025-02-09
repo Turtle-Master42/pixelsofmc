@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:void_eye"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

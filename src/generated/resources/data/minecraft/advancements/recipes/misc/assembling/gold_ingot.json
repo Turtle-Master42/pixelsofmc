@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:gold_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

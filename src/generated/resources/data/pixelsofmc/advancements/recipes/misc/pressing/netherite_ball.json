@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:netherite_ball"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

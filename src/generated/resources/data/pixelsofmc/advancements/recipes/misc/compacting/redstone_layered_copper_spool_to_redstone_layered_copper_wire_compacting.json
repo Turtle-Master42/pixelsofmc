@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/redstone_layered_copper_spool_to_redstone_layered_copper_wire_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

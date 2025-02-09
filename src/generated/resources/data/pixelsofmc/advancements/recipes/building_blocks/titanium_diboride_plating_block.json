@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:titanium_diboride_plating_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -61,4 +61,8 @@ public abstract class BaseRecipe implements Recipe<SimpleContainer> {
         }
         return true;
     }
+
+    public ItemStack getBaseOutput() {
+        return ItemStack.EMPTY;
+    }
 }

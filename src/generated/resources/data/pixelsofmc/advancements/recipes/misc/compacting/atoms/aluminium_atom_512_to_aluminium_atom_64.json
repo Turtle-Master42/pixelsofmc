@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/aluminium_atom_512_to_aluminium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,6 +29,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -68,10 +70,14 @@ public class PixelsOfMc {
 		POMitems.register(bus);
 		POMfluids.register(bus);
 		POMentities.register(bus);
-		POMFluidType.registerFluid(bus);
+		POMFluidType.register(bus);
+		POMfeature.register(bus);
+
 		POMmenuType.MENUS.register(bus);
+		POMtabs.REGISTER.register(bus);
 
 		POMrecipes.register(bus);
+		POMparticles.register(bus);
 		POMtags.register();
 		
 		POMtiles.TILES.register(bus);
@@ -150,14 +156,17 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
 
-		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterGuiScreen::new);
-		MenuScreens.register(POMmenuType.PIXEL_ASSEMBLER_MENU.get(), PixelAssemblerGuiScreen::new);
-		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillGuiScreen::new);
-		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderGuiScreen::new);
+		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
+
+		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterScreen::new);
+		MenuScreens.register(POMmenuType.PIXEL_ASSEMBLER_MENU.get(), PixelAssemblerScreen::new);
+		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillScreen::new);
+		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderScreen::new);
 		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
 		MenuScreens.register(POMmenuType.CHEMICAL_SEPARATOR_MENU.get(), ChemicalSeparatorScreen::new);
 		MenuScreens.register(POMmenuType.CHEMICAL_COMBINER_MENU.get(), ChemicalCombinerScreen::new);
-		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerGuiScreen::new);
+		MenuScreens.register(POMmenuType.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
+		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerScreen::new);
 
 		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);
 
@@ -173,6 +182,19 @@ public class PixelsOfMc {
 			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 			return energy.getEnergyStored() <= 0 ? 1 : 0;
 		});
+		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "bucket_state"), (stack, world, entity, seed) -> {
+			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
+			if (fluid.isEmpty())
+				return 0;
+			else if (fluid.getFluid().isSame(Fluids.WATER))
+				return 3;
+			else if (fluid.getFluid().isSame(Fluids.LAVA))
+				return 4;
+			else if (fluid.getFluid().getFluidType().isLighterThanAir())
+				return 2;
+			else
+				return 1;
+		});
     }
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
@@ -181,6 +203,7 @@ public class PixelsOfMc {
 		event.registerBlockEntityRenderer(POMtiles.STAR.get(), StarRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.BALL_MILL.get(), BallMillRenderer::new);
 	}
+
 
 	public void setupBlockBehavior() {
 		//Credits The Undergarden

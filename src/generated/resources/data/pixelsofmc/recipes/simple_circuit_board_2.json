@@ -6,7 +6,7 @@
       "item": "pixelsofmc:fire_proof_plastic"
     },
     "B": {
-      "tag": "forge:storage_blocks/redstone"
+      "tag": "forge:dusts/redstone"
     },
     "C": {
       "item": "pixelsofmc:silver_wire"
@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:simple_circuit_board_2"
-  }
+  },
+  "show_notification": true
 }

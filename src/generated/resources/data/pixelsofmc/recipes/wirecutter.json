@@ -15,5 +15,6 @@
   ],
   "result": {
     "item": "pixelsofmc:wirecutter"
-  }
+  },
+  "show_notification": true
 }

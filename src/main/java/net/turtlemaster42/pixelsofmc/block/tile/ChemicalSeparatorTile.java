@@ -12,7 +12,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,7 +23,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.ChemicalSeparatorBlock;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorGuiMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -34,7 +33,6 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
-import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,8 +40,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
-
-import static java.lang.Math.random;
 
 public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparatorTile> implements IDuoFluidHandlingTile {
 
@@ -183,7 +179,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
-        return new ChemicalSeparatorGuiMenu(pContainerId, pInventory, this, this.data);
+        return new ChemicalSeparatorMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -412,17 +408,15 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     private void resetProgress() {this.progress = 0;}
 
     private void speedUpgradeCheck() {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(4).getCount();
+        this.speedUpgrade = this.maxProgress - speedUpgrade();
     }
 
     private int energyUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(5).getCount();
-        return energyConsumption / 10 * amount;
+        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(5).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
     }
 
     private int speedUpgrade() {
-        int amount = this.itemHandler.getStackInSlot(4).getCount();
-        return maxProgress / 10 * amount;
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(4).getCount()));
     }
 
 
@@ -430,7 +424,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
     }
 
-    private static boolean canInsertIntoOutputSlot (ChemicalSeparatorTile entity, ChemicalSeparatorRecipe match) {
+    private static boolean canInsertIntoOutputSlot(ChemicalSeparatorTile entity, ChemicalSeparatorRecipe match) {
         boolean[] matched = new boolean[match.getOutputs().size()];
         boolean[] matchNeeded = new boolean[match.getOutputs().size()];
         ItemStack[] newStackInSlot = new ItemStack[5];
@@ -486,6 +480,10 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     }
     @Override
     public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
+
+    public FluidTank getFluidTank() { return fluidTank; }
+
+    public FluidTank getDuoFluidTank() { return duoFluidTank; }
 }
 
 

@@ -9,7 +9,7 @@
       "item": "pixelsofmc:violet_diamond_lens"
     },
     "C": {
-      "item": "pixelsofmc:redstone_imbued_silver_wire"
+      "item": "pixelsofmc:red_silver_wire"
     },
     "D": {
       "item": "pixelsofmc:improved_micro_chip"
@@ -26,10 +26,11 @@
   },
   "pattern": [
     "EDE",
-    "GAG",
+    "AGA",
     "FCB"
   ],
   "result": {
     "item": "pixelsofmc:perfected_circuit_board_2"
-  }
+  },
+  "show_notification": true
 }

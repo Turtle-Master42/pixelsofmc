@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:lutetium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

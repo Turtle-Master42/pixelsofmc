@@ -38,11 +38,11 @@ public class PacketSyncLockedSlotToServer {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER!
             ServerPlayer player = context.getSender();
-            ServerLevel level = player.getLevel();
+            ServerLevel level = (ServerLevel) player.level();
 
-            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
-                tile.setSlotLock(locked, slot);
-            }
+//            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
+//                tile.setSlotLock(locked, slot);
+//            }
         });
         return true;
     }

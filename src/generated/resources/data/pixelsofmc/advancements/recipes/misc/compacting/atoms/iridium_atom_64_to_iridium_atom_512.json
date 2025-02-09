@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/iridium_atom_64_to_iridium_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

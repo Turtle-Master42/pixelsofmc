@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -76,7 +77,7 @@ public class RiverShellEntityItem extends Item {
         } else {
             ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
 
-            RiverShellEntity riverShell = POMentities.RIVER_SHELL.get().spawn((ServerLevel)pLevel, itemstack, pPlayer, new BlockPos(pPlayer.position()).above(2), MobSpawnType.SPAWN_EGG, false, false);
+            RiverShellEntity riverShell = POMentities.RIVER_SHELL.get().spawn((ServerLevel)pLevel, itemstack, pPlayer, Util.blockPos(pPlayer.position()).above(2), MobSpawnType.SPAWN_EGG, false, false);
             if (riverShell != null) {
                 RiverShellEntity.loadEntityDataFromStack(itemstack, riverShell);
                 riverShell.setDeltaMovement(pPlayer.getDeltaMovement());

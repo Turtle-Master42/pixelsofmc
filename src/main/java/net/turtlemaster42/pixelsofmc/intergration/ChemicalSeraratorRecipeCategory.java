@@ -1,8 +1,8 @@
 package net.turtlemaster42.pixelsofmc.intergration;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -10,9 +10,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,13 +19,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +36,7 @@ public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<Chemical
     private final FluidTankRenderer renderer;
 
     public ChemicalSeraratorRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 23, 3, 118, 79);
+        this.background = helper.createDrawable(TEXTURE, 40, 4, 105, 80);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()));
         this.renderer = new FluidTankRenderer(16000, true, 25, 11);
     }
@@ -56,8 +52,13 @@ public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<Chemical
     }
 
     @Override
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return this.background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return this.background.getHeight();
     }
 
     @Override
@@ -66,32 +67,30 @@ public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<Chemical
     }
 
     @Override
-    public void draw(ChemicalSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        renderer.render(stack, 35, 5, recipe.getFluidInput());
-        renderer.render(stack, 35, 20, recipe.getResultFluid());
+    public void draw(ChemicalSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        renderer.render(guiGraphics, 18, 4, recipe.getFluidInput());
+        renderer.render(guiGraphics, 18, 19, recipe.getResultFluid());
     }
 
     @Override
-    public @NotNull List<Component> getTooltipStrings(ChemicalSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (mouseX >= 35 && mouseX <= 61 && mouseY >= 5 && mouseY <= 16) {
-            return renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input"));
+    public void getTooltip(ITooltipBuilder tooltip, ChemicalSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 18 && mouseX <= 43 && mouseY >= 4 && mouseY <= 14) {
+            tooltip.addAll(renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
         }
-        if (mouseX >= 35 && mouseX <= 61 && mouseY >= 20 && mouseY <= 31) {
-            return renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output"));
+        if (mouseX >= 18 && mouseX <= 43 && mouseY >= 19 && mouseY <= 29) {
+            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
         }
-
-        return new ArrayList<>();
     }
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalSeparatorRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addSlot(RecipeIngredientRole.INPUT, 25, 44).addIngredients(recipe.getInput());
+        builder.addSlot(RecipeIngredientRole.INPUT, 8, 43).addIngredients(recipe.getInput());
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
-            int x = 101 - (4 * p);
-            int y = 26 + (18 * p);
+            int x = 85 - (2 * p);
+            int y = 25 + (18 * p);
             builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)));
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());

@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "pixelsofmc:block/fusion_item_port_output"
+    "top": "pixelsofmc:block/fusion_item_port_output",
+    "side": "pixelsofmc:block/fusion_item_port_side",
+    "bottom": "pixelsofmc:block/fusion_port_back"
   }
 }

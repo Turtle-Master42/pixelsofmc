@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_gold_nugget"
+      "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "B": {
       "item": "pixelsofmc:violet_diamond"
@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "pixelsofmc:violet_diamond_lens"
-  }
+  },
+  "show_notification": true
 }

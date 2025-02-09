@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:advanced_laser"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

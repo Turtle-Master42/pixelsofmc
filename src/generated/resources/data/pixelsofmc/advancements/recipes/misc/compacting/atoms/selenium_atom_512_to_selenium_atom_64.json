@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/selenium_atom_512_to_selenium_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

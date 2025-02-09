@@ -2,20 +2,19 @@
 package net.turtlemaster42.pixelsofmc.block.dummy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.Level;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -29,7 +28,7 @@ import java.awt.*;
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	private final Vector3f DUST_COLOR = Vec3.fromRGB24(new Color(255, 255, 255).getRGB()).toVector3f();
 	public DummyMachineBlock() {
-		super(Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
+		super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
 	}
 

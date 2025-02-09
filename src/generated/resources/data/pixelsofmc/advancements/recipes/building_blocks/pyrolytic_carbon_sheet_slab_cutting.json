@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:pyrolytic_carbon_sheet_slab_cutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

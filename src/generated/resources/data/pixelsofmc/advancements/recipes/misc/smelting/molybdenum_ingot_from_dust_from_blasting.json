@@ -28,5 +28,6 @@
     "recipes": [
       "pixelsofmc:smelting/molybdenum_ingot_from_dust_from_blasting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

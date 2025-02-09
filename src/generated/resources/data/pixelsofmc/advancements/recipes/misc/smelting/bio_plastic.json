@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:smelting/bio_plastic"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

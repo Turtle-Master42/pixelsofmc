@@ -26,5 +26,6 @@
     "recipes": [
       "minecraft:cobblestone"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

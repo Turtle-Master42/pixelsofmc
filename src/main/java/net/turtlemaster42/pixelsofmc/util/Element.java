@@ -198,6 +198,13 @@ public enum Element {
     public boolean isFireResistant() {return this.info.isFireProof();}
 
     public ItemLike item() {
+        if (this.equals(Element.IRON)) {
+            return Items.IRON_INGOT;
+        } else if (this.equals(Element.GOLD)) {
+            return Items.GOLD_INGOT;
+        } else if (this.equals(Element.COPPER)) {
+            return Items.COPPER_INGOT;
+        }
         return POMitems.Metals.ELEMENTS.get(this).get();
     }
     public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this).get();}
@@ -346,6 +353,10 @@ public enum Element {
         return Util.hexToRGB(this.info.color[index]);
     }
 
+    // fusion factor of 325
+    // fusion constant 8.9x10^9
+    // r = 1.25x10^−15 * (atomic number)^(1/3)
+    // mole to pixel constant = 2 * 10^22
 
     public static Element fromJson(JsonObject json) {
         return Element.values()[json.get("element").getAsInt() - 1];

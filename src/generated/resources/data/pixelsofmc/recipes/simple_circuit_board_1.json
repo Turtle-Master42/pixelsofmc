@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:simple_circuit_board_1"
-  }
+  },
+  "show_notification": true
 }

@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:dragon_eye"
-  }
+  },
+  "show_notification": true
 }

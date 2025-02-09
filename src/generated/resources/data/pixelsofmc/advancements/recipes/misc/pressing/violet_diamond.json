@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:violet_diamond"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

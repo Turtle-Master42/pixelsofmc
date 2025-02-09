@@ -9,10 +9,10 @@
       "item": "pixelsofmc:perfected_circuit_board_1"
     },
     "C": {
-      "item": "pixelsofmc:titanium_gold_plating"
+      "item": "pixelsofmc:titanium_gold_block"
     },
     "D": {
-      "item": "pixelsofmc:strengthened_casing"
+      "item": "pixelsofmc:strong_casing"
     },
     "E": {
       "item": "pixelsofmc:perfected_casing_1"
@@ -28,5 +28,6 @@
   ],
   "result": {
     "item": "pixelsofmc:hot_isostatic_press"
-  }
+  },
+  "show_notification": true
 }

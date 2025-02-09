@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:tungsten_wire"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

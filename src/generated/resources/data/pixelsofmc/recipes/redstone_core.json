@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:titanium_plating"
+      "tag": "forge:ingots/titanium"
     },
     "B": {
       "item": "minecraft:redstone"
@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:redstone_core"
-  }
+  },
+  "show_notification": true
 }

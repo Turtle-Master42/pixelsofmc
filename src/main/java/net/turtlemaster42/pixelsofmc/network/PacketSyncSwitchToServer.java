@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
+import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 
 import java.util.function.Supplier;
 
@@ -37,10 +38,10 @@ public class PacketSyncSwitchToServer {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER!
             ServerPlayer player = context.getSender();
-            ServerLevel level = player.getLevel();
+            ServerLevel level = (ServerLevel) player.level();
 
-            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
-                tile.setSwitches(on, currentSwitch);
+            if (level.getBlockEntity(pos) instanceof IButtonTile tile) {
+                tile.setSwitch(on, currentSwitch);
             }
         });
         return true;

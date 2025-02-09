@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:cerium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -17,9 +19,9 @@ import java.util.function.Supplier;
 
 public class GasBucketItem extends BucketItem {
     private final java.util.function.Supplier<? extends Fluid> fluidSupplier;
-    public GasBucketItem(Fluid pContent, Properties pProperties) {
-        super(pContent, pProperties);
-        this.fluidSupplier = net.minecraftforge.registries.ForgeRegistries.FLUIDS.getDelegateOrThrow(pContent);
+    public GasBucketItem(Fluid fluid, Properties properties) {
+        super(fluid, properties);
+        this.fluidSupplier = net.minecraftforge.registries.ForgeRegistries.FLUIDS.getDelegateOrThrow(fluid);
     }
 
     public GasBucketItem(Supplier<? extends Fluid> supplier, Properties builder) {
@@ -31,23 +33,26 @@ public class GasBucketItem extends BucketItem {
     public @NotNull Fluid getFluid() { return fluidSupplier.get(); }
 
     @Override
-    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, @Nullable net.minecraft.nbt.CompoundTag nbt) {
+    public @NotNull ICapabilityProvider initCapabilities(@NotNull ItemStack itemStack, @Nullable CompoundTag nbt) {
         if (this.getClass() == GasBucketItem.class)
-            return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
+            return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(itemStack);
         else
-            return super.initCapabilities(stack, nbt);
+            return super.initCapabilities(itemStack, nbt);
     }
 
 
     @Override
-    public boolean emptyContents(@Nullable Player pPlayer, Level pLevel, BlockPos pPos, @Nullable BlockHitResult pResult, @Nullable ItemStack container) {
-        int i = pPos.getX();
-        int j = pPos.getY();
-        int k = pPos.getZ();
-        pLevel.playSound(pPlayer, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (pLevel.random.nextFloat() - pLevel.random.nextFloat()) * 0.8F);
+    public boolean emptyContents(@Nullable Player player, Level level, BlockPos pos, @Nullable BlockHitResult hitResult, @Nullable ItemStack container) {
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        level.playSound(player, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
 
         for(int l = 0; l < 8; ++l) {
-            pLevel.addParticle(ParticleTypes.LARGE_SMOKE, (double)i + Math.random(), (double)j + Math.random(), (double)k + Math.random(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.CLOUD, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
+            if (getFluid().getFluidType().getTemperature() > 1000) {
+                level.addParticle(ParticleTypes.FLAME, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
+            }
         }
         return true;
     }

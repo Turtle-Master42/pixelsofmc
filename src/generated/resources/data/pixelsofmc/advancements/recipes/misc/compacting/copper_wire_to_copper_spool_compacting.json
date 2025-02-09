@@ -30,5 +30,6 @@
     "recipes": [
       "pixelsofmc:compacting/copper_wire_to_copper_spool_compacting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

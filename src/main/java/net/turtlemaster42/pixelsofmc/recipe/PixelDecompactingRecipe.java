@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.recipe;
 
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -60,7 +61,7 @@ public class PixelDecompactingRecipe extends CustomRecipe {
         return "";
     }
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, RegistryAccess registryAccess) {
         ItemStack out = POMitems.PIXEL.get().getDefaultInstance();
 
         PixelItem.setColor(out, inColor[0], 0);

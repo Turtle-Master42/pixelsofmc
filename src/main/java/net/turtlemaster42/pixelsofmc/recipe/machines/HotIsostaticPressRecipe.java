@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -44,12 +45,12 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         return output.getItems()[0].getCount();
     }
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
         return output.getItems()[0];
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return output.getItems()[0];
     }
     public int getHeat() {return heat;}
@@ -58,6 +59,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     public ItemStack getInput() {
         return recipeItem.getItems()[0];
     }
+    public ItemStack getBaseOutput() {return output.getItems()[0];}
     public ItemStack getMold() {
         return mold.getItems()[0];
     }

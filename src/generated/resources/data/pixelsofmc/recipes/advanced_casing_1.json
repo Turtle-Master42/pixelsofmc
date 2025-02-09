@@ -15,7 +15,7 @@
       "tag": "forge:ingots/gold"
     },
     "E": {
-      "item": "pixelsofmc:power_cell"
+      "item": "pixelsofmc:power_orb"
     }
   },
   "pattern": [
@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "pixelsofmc:advanced_casing_1"
-  }
+  },
+  "show_notification": true
 }

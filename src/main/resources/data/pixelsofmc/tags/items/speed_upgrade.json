@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "pixelsofmc:speed_upgrade"
+    "pixelsofmc:speed_upgrade_1",
+    "pixelsofmc:speed_upgrade_2"
   ]
 }

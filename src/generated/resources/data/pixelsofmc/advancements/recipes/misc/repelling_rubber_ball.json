@@ -35,5 +35,6 @@
     "recipes": [
       "pixelsofmc:repelling_rubber_ball"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

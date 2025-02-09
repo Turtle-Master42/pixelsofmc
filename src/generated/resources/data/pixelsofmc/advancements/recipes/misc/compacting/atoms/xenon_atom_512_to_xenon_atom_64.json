@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/xenon_atom_512_to_xenon_atom_64"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:compacting/atoms/mercury_atom_64_to_mercury_atom_512"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -6,9 +6,9 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:improved_micro_chip",
+              "pixelsofmc:fire_proof_plastic",
               "pixelsofmc:silver_wire",
-              "pixelsofmc:fire_proof_plastic"
+              "pixelsofmc:improved_micro_chip"
             ]
           }
         ]
@@ -32,5 +32,6 @@
     "recipes": [
       "pixelsofmc:perfected_circuit_board_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

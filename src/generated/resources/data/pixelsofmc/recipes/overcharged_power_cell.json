@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "pixelsofmc:overcharged_power_cell"
-  }
+  },
+  "show_notification": true
 }

@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
+import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -62,8 +63,8 @@ public class StarBlock extends BaseEntityBlock {
     @Override
     public void entityInside(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Entity pEntity) {
         if (pState.getValue(STAR_STAGE) == 4)
-            pEntity.hurt(new DamageSource("pixelsofmc.black_hole").bypassArmor().bypassMagic(), 50);
-        else pEntity.hurt(new DamageSource("pixelsofmc.sun").bypassArmor().bypassMagic().setIsFire(), 15);
+            pEntity.hurt(POMdamage.black_hole(pLevel), 50);
+        else pEntity.hurt(POMdamage.sun(pLevel), 15);
     }
 
     @Nullable

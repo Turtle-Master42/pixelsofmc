@@ -13,5 +13,6 @@
   ],
   "result": {
     "item": "pixelsofmc:redstone_layered_copper_spool"
-  }
+  },
+  "show_notification": true
 }

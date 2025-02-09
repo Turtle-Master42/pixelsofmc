@@ -6,8 +6,8 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:bio_plastic",
               "pixelsofmc:copper_wire",
+              "pixelsofmc:bio_plastic",
               "pixelsofmc:micro_chip"
             ]
           }
@@ -32,5 +32,6 @@
     "recipes": [
       "pixelsofmc:advanced_circuit_board_1"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

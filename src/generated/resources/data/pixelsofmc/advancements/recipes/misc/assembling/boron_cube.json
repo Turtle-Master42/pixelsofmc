@@ -26,5 +26,6 @@
     "recipes": [
       "pixelsofmc:boron_cube"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }
