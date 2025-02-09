@@ -1,0 +1,104 @@
+package net.turtlemaster42.pixelsofmc.gui.menu;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.block.tile.ChemicalCombinerTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStacksizeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import org.jetbrains.annotations.NotNull;
+
+public class ChemicalCombinerMenu extends AbstractMachineMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu {
+    public final ChemicalCombinerTile blockEntity;
+    public final ItemStackHandler itemHandler;
+    private FluidStack fluid;
+    private FluidStack duoFluid;
+
+    public ChemicalCombinerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+    }
+
+    public ChemicalCombinerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(9, inv, data, POMmenuType.CHEMICAL_COMBINER_MENU.get(), pContainerId);
+        checkContainerSize(inv, 9);
+        blockEntity = ((ChemicalCombinerTile) entity);
+        itemHandler = blockEntity.getItemStackHandler();
+        this.fluid = blockEntity.getFluid();
+        this.duoFluid = blockEntity.getDuoFluid();
+
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+            this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
+            this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
+            this.addSlot(new SlotItemHandler(handler, 6, 90, 5));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 7, 135, 5, 1));
+            this.addSlot(new ModMaxStacksizeSlot(handler, 8, 135, 21, 1));
+            this.addSlot(new ModResultSlot(handler, 3, 118, 55));
+            this.addSlot(new SlotItemHandler(handler, 0, 42, 16));
+            this.addSlot(new SlotItemHandler(handler, 1, 44, 36));
+            this.addSlot(new SlotItemHandler(handler, 2, 46, 56));
+        });
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+    public int getProgress() {return this.data.get(0);}
+    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int speedUpgrade = this.data.get(2); // Speed upgrades
+        int progressArrowSize = 56; // This is the height in pixels of your arrow
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+    }
+
+    public int getScaledEnergy() { //energy test
+        int energy = this.data.get(5); //stored energy
+        int maxEnergy = this.data.get(3);  // Max Energy
+        int progressArrowSize = 44; // This is the height in pixels of your arrow
+        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
+    }
+
+    @Override
+    public void setDuoFluid(FluidStack fluidStack) {
+        this.duoFluid = fluidStack;
+    }
+    @Override
+    public FluidStack getDuoFluid() {
+        return duoFluid;
+    }
+    @Override
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+    public FluidStack getFluid() {
+        return fluid;
+    }
+    public void setFluid(FluidStack fluid) {
+        this.fluid = fluid;
+    }
+
+    @Override
+    public boolean stillValid(@NotNull Player pPlayer) {
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+                pPlayer, POMblocks.CHEMICAL_COMBINER.get());
+    }
+}
+
+

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 79,
+      "G": 255,
+      "R": 58
+    },
+    {
+      "B": 59,
+      "G": 172,
+      "R": 0
+    },
+    {
+      "B": 51,
+      "G": 120,
+      "R": 0
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:uranium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.uranium"
+}

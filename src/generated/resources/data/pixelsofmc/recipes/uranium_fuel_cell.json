@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:empty_fuel_cell"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_pellet"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:uranium_fuel_cell"
+  }
+}

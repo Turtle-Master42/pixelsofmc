@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 214,
+      "G": 128,
+      "R": 195
+    },
+    {
+      "B": 156,
+      "G": 67,
+      "R": 115
+    },
+    {
+      "B": 81,
+      "G": 35,
+      "R": 55
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:potassium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.potassium"
+}

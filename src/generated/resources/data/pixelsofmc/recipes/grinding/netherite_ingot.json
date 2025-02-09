@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:netherite_dust"
+      }
+    }
+  ]
+}

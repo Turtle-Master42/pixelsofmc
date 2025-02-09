@@ -1,0 +1,43 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:red_sandstone"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.8,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.3,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.08,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/iron"
+      }
+    },
+    {
+      "chance": 0.01,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/aluminium"
+      }
+    }
+  ]
+}

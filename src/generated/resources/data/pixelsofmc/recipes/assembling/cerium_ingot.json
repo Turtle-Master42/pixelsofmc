@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 199,
+      "G": 148,
+      "R": 247
+    },
+    {
+      "B": 139,
+      "G": 84,
+      "R": 173
+    },
+    {
+      "B": 85,
+      "G": 49,
+      "R": 100
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cerium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.cerium"
+}

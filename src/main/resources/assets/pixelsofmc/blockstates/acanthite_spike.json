@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "facing=north,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small",
+      "x": 90,
+      "y": 0
+    },
+    "facing=north,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike",
+      "x": 90,
+      "y": 0
+    },
+    "facing=north,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double",
+      "x": 90,
+      "y": 0
+    },
+    "facing=east,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double",
+      "x": 90,
+      "y": 90
+    },
+    "facing=south,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small",
+      "x": 270
+    },
+    "facing=south,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike",
+      "x": 270
+    },
+    "facing=south,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double",
+      "x": 270
+    },
+    "facing=west,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small"
+    },
+    "facing=up,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike"
+    },
+    "facing=up,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double"
+    },
+    "facing=down,spike_type=0": {
+      "model": "pixelsofmc:block/acanthite_spike_small",
+      "x": 180
+    },
+    "facing=down,spike_type=1": {
+      "model": "pixelsofmc:block/acanthite_spike",
+      "x": 180
+    },
+    "facing=down,spike_type=2": {
+      "model": "pixelsofmc:block/acanthite_spike_double",
+      "x": 180
+    }
+  }
+}

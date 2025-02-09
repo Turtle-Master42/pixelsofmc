@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 155,
+      "G": 107,
+      "R": 85
+    },
+    {
+      "B": 109,
+      "G": 68,
+      "R": 47
+    },
+    {
+      "B": 54,
+      "G": 32,
+      "R": 27
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:hafnium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.hafnium"
+}

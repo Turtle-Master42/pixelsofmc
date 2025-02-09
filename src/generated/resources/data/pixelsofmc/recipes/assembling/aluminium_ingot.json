@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 226,
+      "G": 220,
+      "R": 212
+    },
+    {
+      "B": 169,
+      "G": 165,
+      "R": 144
+    },
+    {
+      "B": 94,
+      "G": 86,
+      "R": 67
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:aluminium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.aluminium"
+}

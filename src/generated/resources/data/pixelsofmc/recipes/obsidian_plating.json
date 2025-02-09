@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "item": "pixelsofmc:obsidian_dust"
+    },
+    {
+      "item": "pixelsofmc:obsidian_dust"
+    },
+    {
+      "item": "pixelsofmc:obsidian_dust"
+    },
+    {
+      "item": "pixelsofmc:obsidian_dust"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:obsidian_plating"
+  }
+}

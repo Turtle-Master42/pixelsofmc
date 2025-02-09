@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 129,
+      "G": 160,
+      "R": 231
+    },
+    {
+      "B": 70,
+      "G": 98,
+      "R": 165
+    },
+    {
+      "B": 35,
+      "G": 46,
+      "R": 86
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:nickel_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.nickel"
+}

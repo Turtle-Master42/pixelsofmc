@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 200,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:sponge"
+    }
+  },
+  "max_heat": 400,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cleaning_sponge"
+    }
+  }
+}

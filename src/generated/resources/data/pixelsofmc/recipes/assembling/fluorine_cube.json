@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 231,
+      "G": 202,
+      "R": 219
+    },
+    {
+      "B": 163,
+      "G": 135,
+      "R": 135
+    },
+    {
+      "B": 83,
+      "G": 58,
+      "R": 60
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:fluorine_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.fluorine"
+}

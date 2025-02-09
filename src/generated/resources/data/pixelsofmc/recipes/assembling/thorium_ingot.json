@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 87,
+      "G": 127,
+      "R": 200
+    },
+    {
+      "B": 34,
+      "G": 38,
+      "R": 127
+    },
+    {
+      "B": 15,
+      "G": 18,
+      "R": 67
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thorium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.thorium"
+}

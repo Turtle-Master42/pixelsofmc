@@ -1,0 +1,115 @@
+{
+  "type": "pixelsofmc:custom_geode",
+  "config": {
+    "blocks": {
+      "alternate_inner_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pixelsofmc:acanthite"
+        }
+      },
+      "cannot_replace": "#pixelsofmc:acanthite_geode_cannot_replace",
+      "filling_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:water"
+        }
+      },
+      "inner_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pixelsofmc:acanthite"
+        }
+      },
+      "inner_placements": [
+        {
+          "Name": "pixelsofmc:acanthite_spike",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        }
+      ],
+      "invalid_blocks": "#minecraft:geode_invalid_blocks",
+      "middle_layer_provider": {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "weight": 2,
+            "data": {
+              "Name": "pixelsofmc:lesser_acanthite_ore"
+            }
+          },
+          {
+            "weight": 3,
+            "data": {
+              "Name": "pixelsofmc:acanthite_ore"
+            }
+          },
+          {
+            "weight": 1,
+            "data": {
+              "Name": "minecraft:end_stone"
+            }
+          }
+        ]
+      },
+      "outer_layer_provider": {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "weight": 1,
+            "data": {
+              "Name": "pixelsofmc:lesser_acanthite_ore"
+            }
+          },
+          {
+            "weight": 3,
+            "data": {
+              "Name": "minecraft:end_stone"
+            }
+          }
+        ]
+      }
+    },
+    "crack": {
+      "base_crack_size": 2,
+      "crack_point_offset": 2,
+      "generate_crack_chance": 0
+    },
+    "distribution_points": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 4,
+        "min_inclusive": 3
+      }
+    },
+    "invalid_blocks_threshold": 1,
+    "layers": {
+      "filling": 0.3,
+      "inner_layer": 0.35,
+      "middle_layer": 0.8,
+      "outer_layer": 1.2
+    },
+    "max_gen_offset": 16,
+    "min_gen_offset": -16,
+    "noise_multiplier": 0.05,
+    "outer_wall_distance": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 8,
+        "min_inclusive": 7
+      }
+    },
+    "placements_require_layer0_alternate": true,
+    "point_offset": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      }
+    },
+    "use_alternate_layer0_chance": 0.85,
+    "use_potential_placements_chance": 1
+  }
+}

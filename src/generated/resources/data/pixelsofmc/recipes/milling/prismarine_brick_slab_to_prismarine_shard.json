@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_4"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:prismarine_brick_slab"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 3,
+    "ingredient": {
+      "item": "minecraft:prismarine_shard"
+    }
+  }
+}

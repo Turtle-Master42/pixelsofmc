@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 73,
+      "G": 107,
+      "R": 147
+    },
+    {
+      "B": 48,
+      "G": 69,
+      "R": 94
+    },
+    {
+      "B": 26,
+      "G": 35,
+      "R": 51
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:manganese_ingot"
+    }
+  },
+  "outputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "structure": "element.pixelsofmc.manganese"
+}

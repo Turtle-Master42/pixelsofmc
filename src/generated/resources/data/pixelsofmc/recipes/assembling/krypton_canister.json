@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 194,
+      "G": 184,
+      "R": 126
+    },
+    {
+      "B": 125,
+      "G": 119,
+      "R": 82
+    },
+    {
+      "B": 67,
+      "G": 63,
+      "R": 41
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:krypton_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.krypton"
+}

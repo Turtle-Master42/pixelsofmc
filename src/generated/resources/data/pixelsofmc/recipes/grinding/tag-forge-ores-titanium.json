@@ -1,0 +1,36 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "forge:ores/titanium"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 4,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_dust"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:iron_dust"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    }
+  ]
+}

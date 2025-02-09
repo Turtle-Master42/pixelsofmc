@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:royal_tungsten_ingot"
+    },
+    "B": {
+      "item": "minecraft:redstone_torch"
+    },
+    "C": {
+      "item": "minecraft:calibrated_sculk_sensor"
+    },
+    "D": {
+      "item": "minecraft:comparator"
+    },
+    "E": {
+      "item": "minecraft:daylight_detector"
+    },
+    "F": {
+      "item": "minecraft:observer"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ECF",
+    "ADA"
+  ],
+  "result": {
+    "item": "pixelsofmc:redstone_detector"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:titanium_gold_ingot"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:titanium_gold_dust"
+      }
+    }
+  ]
+}

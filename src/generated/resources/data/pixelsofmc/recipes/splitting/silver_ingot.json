@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 219,
+      "G": 212,
+      "R": 198
+    },
+    {
+      "B": 174,
+      "G": 164,
+      "R": 141
+    },
+    {
+      "B": 93,
+      "G": 81,
+      "R": 64
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:silver_ingot"
+    }
+  },
+  "outputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "structure": "element.pixelsofmc.silver"
+}

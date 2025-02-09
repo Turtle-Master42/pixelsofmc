@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 158,
+      "G": 118,
+      "R": 218
+    },
+    {
+      "B": 124,
+      "G": 63,
+      "R": 158
+    },
+    {
+      "B": 71,
+      "G": 33,
+      "R": 81
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:holmium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.holmium"
+}

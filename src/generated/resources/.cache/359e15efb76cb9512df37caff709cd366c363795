@@ -1,0 +1,6 @@
+// 1.20.1	2024-12-20T22:11:46.766228	Tags for minecraft:block mod id pixelsofmc
+d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/blocks/glass.json
+a34496cb2289d6f18b7acbb3adc00530cedea480 data/minecraft/tags/blocks/mineable/pickaxe.json
+d66b6da03a158bf60bb3dbb06185bab002dfcd12 data/minecraft/tags/blocks/needs_diamond_tool.json
+89784adf086f43bd64cdb095bf0cc80ec0302992 data/minecraft/tags/blocks/needs_iron_tool.json
+68db9266b09cba7c70ed4f912761c8f13291428a data/minecraft/tags/blocks/needs_stone_tool.json

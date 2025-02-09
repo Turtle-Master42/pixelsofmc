@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:copper_heat_sink"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_core"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "pixelsofmc:heat_sink"
+  },
+  "show_notification": true
+}

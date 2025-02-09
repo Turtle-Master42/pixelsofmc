@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "minecraft:soul_fire_base_blocks"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.4,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    }
+  ]
+}

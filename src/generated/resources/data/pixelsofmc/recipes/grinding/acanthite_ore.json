@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:acanthite_ore"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:acanthite_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 4,
+      "ingredient": {
+        "item": "pixelsofmc:acanthite_dust"
+      }
+    },
+    {
+      "chance": 0.01,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/silver"
+      }
+    }
+  ]
+}

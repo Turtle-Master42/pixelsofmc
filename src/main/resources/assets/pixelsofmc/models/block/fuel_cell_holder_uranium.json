@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "pixelsofmc:block/fuel_cell_holder_top_uranium",
+    "side": "pixelsofmc:block/fuel_cell_holder_side_uranium",
+    "bottom": "pixelsofmc:block/fission_casing"
+  }
+}

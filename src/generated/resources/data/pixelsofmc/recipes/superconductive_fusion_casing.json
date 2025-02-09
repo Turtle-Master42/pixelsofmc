@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:advanced_circuit_board_2"
+    },
+    "C": {
+      "item": "pixelsofmc:redstone_core"
+    },
+    "D": {
+      "item": "pixelsofmc:superconductive_spool"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ADA",
+    "ACA"
+  ],
+  "result": {
+    "item": "pixelsofmc:superconductive_fusion_casing"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,35 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 86,
+      "G": 124,
+      "R": 231
+    },
+    {
+      "B": 54,
+      "G": 90,
+      "R": 193
+    },
+    {
+      "B": 41,
+      "G": 65,
+      "R": 138
+    }
+  ],
+  "inputs": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:copper_nugget"
+    }
+  },
+  "structure": "element.pixelsofmc.copper"
+}

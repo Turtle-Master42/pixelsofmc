@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:lead_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:copper_heat_sink"
+    },
+    "C": {
+      "item": "pixelsofmc:simple_circuit_board_2"
+    },
+    "D": {
+      "item": "pixelsofmc:fission_casing"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "B B",
+    "ADA"
+  ],
+  "result": {
+    "item": "pixelsofmc:fuel_cell_holder"
+  },
+  "show_notification": true
+}

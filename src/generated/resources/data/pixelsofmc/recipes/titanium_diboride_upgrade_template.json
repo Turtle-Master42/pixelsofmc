@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_upgrade_template"
+    },
+    "C": {
+      "item": "pixelsofmc:violet_diamond"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "AAA"
+  ],
+  "result": {
+    "item": "pixelsofmc:titanium_diboride_upgrade_template"
+  },
+  "show_notification": true
+}

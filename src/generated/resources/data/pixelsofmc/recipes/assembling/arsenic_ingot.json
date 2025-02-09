@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 206,
+      "G": 215,
+      "R": 69
+    },
+    {
+      "B": 183,
+      "G": 160,
+      "R": 50
+    },
+    {
+      "B": 114,
+      "G": 84,
+      "R": 38
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:arsenic_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.arsenic"
+}

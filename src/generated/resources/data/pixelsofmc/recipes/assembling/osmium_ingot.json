@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 220,
+      "G": 200,
+      "R": 153
+    },
+    {
+      "B": 155,
+      "G": 139,
+      "R": 81
+    },
+    {
+      "B": 78,
+      "G": 67,
+      "R": 45
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:osmium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.osmium"
+}

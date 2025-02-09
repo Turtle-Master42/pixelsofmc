@@ -1,0 +1,108 @@
+{
+  "variants": {
+    "facing=north,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port",
+      "x": 90,
+      "y": 180
+    },
+    "facing=north,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input",
+      "x": 90,
+      "y": 180
+    },
+    "facing=north,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output",
+      "x": 90,
+      "y": 180
+    },
+    "facing=east,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output",
+      "x": 90,
+      "y": 270
+    },
+    "facing=south,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port",
+      "x": 90
+    },
+    "facing=south,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input",
+      "x": 90
+    },
+    "facing=south,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output",
+      "x": 90
+    },
+    "facing=west,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output",
+      "x": 90,
+      "y": 90
+    },
+    "facing=up,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port"
+    },
+    "facing=up,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input"
+    },
+    "facing=up,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output"
+    },
+    "facing=down,mode=0,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port",
+      "x": 180
+    },
+    "facing=down,mode=1,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_input",
+      "x": 180
+    },
+    "facing=down,mode=2,pushing=false": {
+      "model": "pixelsofmc:block/fusion_fluid_port_output",
+      "x": 180
+    },
+    "facing=north,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing",
+      "x": 90,
+      "y": 180
+    },
+    "facing=east,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing",
+      "x": 90,
+      "y": 270
+    },
+    "facing=south,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing",
+      "x": 90
+    },
+    "facing=west,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing",
+      "x": 90,
+      "y": 90
+    },
+    "facing=up,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing"
+    },
+    "facing=down,mode=2,pushing=true": {
+      "model": "pixelsofmc:block/fusion_fluid_port_pushing",
+      "x": 180
+    }
+  }
+}

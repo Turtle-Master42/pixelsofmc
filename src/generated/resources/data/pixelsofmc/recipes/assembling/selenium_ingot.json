@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 65,
+      "G": 116,
+      "R": 219
+    },
+    {
+      "B": 43,
+      "G": 76,
+      "R": 190
+    },
+    {
+      "B": 35,
+      "G": 34,
+      "R": 118
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:selenium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.selenium"
+}

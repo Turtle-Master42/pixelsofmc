@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 128,
+      "G": 121,
+      "R": 255
+    },
+    {
+      "B": 79,
+      "G": 72,
+      "R": 208
+    },
+    {
+      "B": 34,
+      "G": 31,
+      "R": 103
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:radon_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.radon"
+}

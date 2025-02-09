@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 95,
+      "G": 245,
+      "R": 253
+    },
+    {
+      "B": 21,
+      "G": 177,
+      "R": 233
+    },
+    {
+      "B": 2,
+      "G": 40,
+      "R": 117
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.gold"
+}

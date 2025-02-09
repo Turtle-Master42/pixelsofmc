@@ -1,0 +1,50 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "minecraft:blackstone"
+  },
+  "outputs": [
+    {
+      "chance": 0.4,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/boron"
+      }
+    },
+    {
+      "chance": 0.4,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/iron"
+      }
+    },
+    {
+      "chance": 0.1,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/nickel"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/cobalt"
+      }
+    },
+    {
+      "chance": 0.01,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/platinum"
+      }
+    }
+  ]
+}

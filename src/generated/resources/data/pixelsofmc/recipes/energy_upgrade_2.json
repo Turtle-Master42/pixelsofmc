@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "B": {
+      "tag": "forge:ingots/silver"
+    },
+    "C": {
+      "tag": "forge:dusts/tungsten"
+    },
+    "D": {
+      "item": "pixelsofmc:titanium_diboride_upgrade_template"
+    }
+  },
+  "pattern": [
+    " B ",
+    "ACA",
+    " D "
+  ],
+  "result": {
+    "item": "pixelsofmc:energy_upgrade_2"
+  },
+  "show_notification": true
+}

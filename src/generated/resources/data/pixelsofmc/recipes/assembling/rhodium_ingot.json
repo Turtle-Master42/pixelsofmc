@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 189,
+      "G": 133,
+      "R": 213
+    },
+    {
+      "B": 134,
+      "G": 80,
+      "R": 151
+    },
+    {
+      "B": 76,
+      "G": 45,
+      "R": 79
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:rhodium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.rhodium"
+}

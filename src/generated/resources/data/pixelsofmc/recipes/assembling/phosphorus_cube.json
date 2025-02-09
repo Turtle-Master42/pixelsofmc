@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 73,
+      "G": 85,
+      "R": 225
+    },
+    {
+      "B": 45,
+      "G": 0,
+      "R": 125
+    },
+    {
+      "B": 42,
+      "G": 0,
+      "R": 75
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:phosphorus_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.phosphorus"
+}

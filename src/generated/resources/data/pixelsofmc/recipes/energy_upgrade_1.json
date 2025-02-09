@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/titanium"
+    },
+    "B": {
+      "tag": "forge:ingots/copper"
+    },
+    "C": {
+      "tag": "forge:dusts/gold"
+    },
+    "D": {
+      "item": "pixelsofmc:titanium_upgrade_template"
+    }
+  },
+  "pattern": [
+    " B ",
+    "ACA",
+    " D "
+  ],
+  "result": {
+    "item": "pixelsofmc:energy_upgrade_1"
+  },
+  "show_notification": true
+}

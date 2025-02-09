@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 88,
+      "G": 208,
+      "R": 231
+    },
+    {
+      "B": 16,
+      "G": 176,
+      "R": 167
+    },
+    {
+      "B": 7,
+      "G": 94,
+      "R": 82
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gadolinium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.gadolinium"
+}

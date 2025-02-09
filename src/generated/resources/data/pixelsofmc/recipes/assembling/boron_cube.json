@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 98,
+      "G": 79,
+      "R": 79
+    },
+    {
+      "B": 71,
+      "G": 54,
+      "R": 54
+    },
+    {
+      "B": 46,
+      "G": 34,
+      "R": 34
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:boron_cube"
+    }
+  },
+  "structure": "element.pixelsofmc.boron"
+}

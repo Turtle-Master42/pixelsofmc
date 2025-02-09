@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:lead_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:multiblock_casing"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "item": "pixelsofmc:fission_casing"
+  },
+  "show_notification": true
+}

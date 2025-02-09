@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 228,
+      "G": 150,
+      "R": 170
+    },
+    {
+      "B": 152,
+      "G": 92,
+      "R": 108
+    },
+    {
+      "B": 74,
+      "G": 45,
+      "R": 53
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:zirconium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.zirconium"
+}

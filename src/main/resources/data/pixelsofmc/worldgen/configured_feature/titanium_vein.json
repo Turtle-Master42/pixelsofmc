@@ -1,0 +1,39 @@
+{
+  "type": "pixelsofmc:large_vein",
+  "config": {
+    "blocks": {
+      "ore": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pixelsofmc:endstone_titanium_ore"
+        }
+      },
+      "raw_ore_block": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "pixelsofmc:raw_titanium_block"
+        }
+      },
+      "filler": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:end_stone"
+        }
+      },
+      "min_y": 5,
+      "max_y": 80,
+      "can_replace": "#pixelsofmc:large_vein_replaceable"
+    },
+    "veininess_threshold": 0.4,
+    "edge_roundoff_begin": 20,
+    "max_edge_roundoff": 0.2,
+    "vein_solidness": 0.9,
+    "min_richness": 0.2,
+    "max_richness": 0.5,
+    "max_richness_threshold": 0.7,
+    "raw_ore_block_chance": 0.05,
+    "max_gen_offset": 16,
+    "min_gen_offset": -16,
+    "noise_multiplier": 1
+  }
+}

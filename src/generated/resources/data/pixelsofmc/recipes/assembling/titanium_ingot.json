@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 174,
+      "G": 159,
+      "R": 166
+    },
+    {
+      "B": 138,
+      "G": 116,
+      "R": 126
+    },
+    {
+      "B": 78,
+      "G": 65,
+      "R": 67
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:titanium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.titanium"
+}

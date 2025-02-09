@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 143,
+      "G": 104,
+      "R": 255
+    },
+    {
+      "B": 83,
+      "G": 43,
+      "R": 192
+    },
+    {
+      "B": 40,
+      "G": 22,
+      "R": 100
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ruthenium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.ruthenium"
+}

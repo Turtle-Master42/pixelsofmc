@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "pixelsofmc:acanthite_geode",
+    "pixelsofmc:titanium_vein"
+  ],
+  "step": "underground_ores"
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 255,
+      "G": 252,
+      "R": 255
+    },
+    {
+      "B": 232,
+      "G": 220,
+      "R": 222
+    },
+    {
+      "B": 127,
+      "G": 115,
+      "R": 121
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:hydrogen_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.hydrogen"
+}

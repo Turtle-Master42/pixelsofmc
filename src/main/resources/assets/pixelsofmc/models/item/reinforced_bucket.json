@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/reinforced_bucket"
+  },
+  "overrides": [
+    { "predicate": { "pixelsofmc:bucket_state": 0 }, "model": "pixelsofmc:item/reinforced_bucket_0" },
+    { "predicate": { "pixelsofmc:bucket_state": 1 }, "model": "pixelsofmc:item/reinforced_bucket_1" },
+    { "predicate": { "pixelsofmc:bucket_state": 2 }, "model": "pixelsofmc:item/reinforced_bucket_2" },
+    { "predicate": { "pixelsofmc:bucket_state": 3 }, "model": "pixelsofmc:item/reinforced_bucket_3" },
+    { "predicate": { "pixelsofmc:bucket_state": 4 }, "model": "pixelsofmc:item/reinforced_bucket_4" }
+  ]
+}

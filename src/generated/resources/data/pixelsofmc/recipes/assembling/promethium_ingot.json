@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 140,
+      "G": 248,
+      "R": 105
+    },
+    {
+      "B": 82,
+      "G": 184,
+      "R": 45
+    },
+    {
+      "B": 53,
+      "G": 95,
+      "R": 23
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:promethium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.promethium"
+}

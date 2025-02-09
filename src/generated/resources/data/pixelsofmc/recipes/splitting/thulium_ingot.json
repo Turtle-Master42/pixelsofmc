@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_splitting",
+  "colors": [
+    {
+      "B": 194,
+      "G": 218,
+      "R": 129
+    },
+    {
+      "B": 130,
+      "G": 148,
+      "R": 66
+    },
+    {
+      "B": 68,
+      "G": 72,
+      "R": 32
+    }
+  ],
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thulium_ingot"
+    }
+  },
+  "outputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "structure": "element.pixelsofmc.thulium"
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 121,
+      "G": 169,
+      "R": 121
+    },
+    {
+      "B": 53,
+      "G": 97,
+      "R": 52
+    },
+    {
+      "B": 27,
+      "G": 50,
+      "R": 29
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lanthanum_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.lanthanum"
+}

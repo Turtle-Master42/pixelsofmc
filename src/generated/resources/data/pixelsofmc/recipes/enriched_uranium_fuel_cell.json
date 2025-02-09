@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:empty_fuel_cell"
+    },
+    {
+      "item": "pixelsofmc:uranium_fuel_core"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:enriched_uranium_fuel_cell"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 144,
+      "G": 241,
+      "R": 202
+    },
+    {
+      "B": 61,
+      "G": 190,
+      "R": 142
+    },
+    {
+      "B": 30,
+      "G": 94,
+      "R": 62
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:palladium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.palladium"
+}

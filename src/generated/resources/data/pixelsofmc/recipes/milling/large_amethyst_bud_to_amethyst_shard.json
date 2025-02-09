@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": [
+    {
+      "tag": "pixelsofmc:ball_3"
+    }
+  ],
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:large_amethyst_bud"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.6,
+    "count": 2,
+    "ingredient": {
+      "item": "minecraft:amethyst_shard"
+    }
+  }
+}

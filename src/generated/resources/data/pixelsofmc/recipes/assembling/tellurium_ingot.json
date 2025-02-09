@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 222,
+      "G": 246,
+      "R": 255
+    },
+    {
+      "B": 147,
+      "G": 159,
+      "R": 183
+    },
+    {
+      "B": 73,
+      "G": 75,
+      "R": 97
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tellurium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.tellurium"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "forge:ores/copper"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 20,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 5,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    },
+    {
+      "chance": 0.55,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:sulfur_dust"
+      }
+    },
+    {
+      "chance": 0.55,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:carbon_dust"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 121,
+      "G": 206,
+      "R": 239
+    },
+    {
+      "B": 52,
+      "G": 137,
+      "R": 176
+    },
+    {
+      "B": 25,
+      "G": 61,
+      "R": 86
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:scandium_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.scandium"
+}

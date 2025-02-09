@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_diboride_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:simple_casing_2"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "count": 4,
+    "item": "pixelsofmc:armored_multiblock_casing"
+  },
+  "show_notification": true
+}

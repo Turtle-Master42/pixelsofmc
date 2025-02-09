@@ -1,0 +1,36 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "forge:raw_materials/copper"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:copper_dust"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:sulfur_dust"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:carbon_dust"
+      }
+    }
+  ]
+}

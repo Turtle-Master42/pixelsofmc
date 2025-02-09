@@ -1,0 +1,22 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:lesser_acanthite_ore"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 5,
+      "ingredient": {
+        "item": "pixelsofmc:acanthite_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:acanthite_dust"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 255,
+      "G": 149,
+      "R": 173
+    },
+    {
+      "B": 172,
+      "G": 100,
+      "R": 114
+    },
+    {
+      "B": 90,
+      "G": 50,
+      "R": 58
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:nitrogen_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.nitrogen"
+}

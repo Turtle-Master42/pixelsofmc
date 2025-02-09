@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 162,
+      "G": 144,
+      "R": 232
+    },
+    {
+      "B": 104,
+      "G": 90,
+      "R": 150
+    },
+    {
+      "B": 56,
+      "G": 44,
+      "R": 76
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:bromine_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.bromine"
+}

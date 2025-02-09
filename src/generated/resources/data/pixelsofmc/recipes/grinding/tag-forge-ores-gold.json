@@ -1,0 +1,29 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "tag": "forge:ores/gold"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 4,
+      "ingredient": {
+        "item": "pixelsofmc:gold_dust"
+      }
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:gold_dust"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/quartz"
+      }
+    }
+  ]
+}

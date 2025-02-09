@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 207,
+      "G": 135,
+      "R": 108
+    },
+    {
+      "B": 119,
+      "G": 77,
+      "R": 59
+    },
+    {
+      "B": 72,
+      "G": 49,
+      "R": 37
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:xenon_canister"
+    }
+  },
+  "structure": "element.pixelsofmc.xenon"
+}

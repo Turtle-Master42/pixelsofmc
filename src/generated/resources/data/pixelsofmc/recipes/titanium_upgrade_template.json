@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/titanium"
+    },
+    "B": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    "C": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "AAA"
+  ],
+  "result": {
+    "item": "pixelsofmc:titanium_upgrade_template"
+  },
+  "show_notification": true
+}

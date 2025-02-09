@@ -1,0 +1,41 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 214,
+      "G": 190,
+      "R": 147
+    },
+    {
+      "B": 141,
+      "G": 124,
+      "R": 94
+    },
+    {
+      "B": 71,
+      "G": 59,
+      "R": 50
+    }
+  ],
+  "inputs": [
+    {
+      "count": 10,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:platinum_ingot"
+    }
+  },
+  "structure": "element.pixelsofmc.platinum"
+}

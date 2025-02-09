@@ -1,0 +1,38 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/tungsten"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "pixelsofmc:refined_redstone"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:amethyst_shard"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 3,
+    "ingredient": {
+      "item": "pixelsofmc:royal_tungsten_dust"
+    }
+  }
+}
