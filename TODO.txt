@@ -1,2 +1,2 @@
 - royal tungsten amalgamation
--
+- remake the multiblock code to use a custom blockState that does not contain the default properties and only checks for the required blockStateProperties

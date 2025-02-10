@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.AbstractFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;

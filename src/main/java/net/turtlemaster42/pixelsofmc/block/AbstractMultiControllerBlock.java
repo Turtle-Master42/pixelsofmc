@@ -1,9 +1,7 @@
 package net.turtlemaster42.pixelsofmc.block;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -11,15 +9,14 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
-import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
-import net.turtlemaster42.pixelsofmc.util.block.IFusionControllerBlock;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,10 +88,57 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
     public int getWidth() {return 0;}
     public int getLength() {return 0;}
 
+//    public void oldValidateMultiBlock(Level level, BlockPos controllerPos) {
+//        if (level.isClientSide()) return;
+//
+//        BlockState controllerState = level.getBlockState(controllerPos);
+//        Direction direction = controllerState.getValue(FACING);
+//        int correctBlocks =0;
+//        int totalBlocks = 0;
+//
+//        for (int y = 0; y < getHeight(); y++) {
+//            for (int z = 0; z < getLength(); z++) {
+//                for (int x = 0; x < getWidth(); x++) {
+//                    if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
+//                    totalBlocks++;
+//
+//                    BlockPos blockPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
+//                    BlockState blockState = level.getBlockState(blockPos);
+//
+//                    if (blockState.getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
+//                        if (blockState.hasProperty(AbstractFusionCasing.PLATING)) {
+//                            BlockState changedState = blockState.setValue(AbstractFusionCasing.PLATING, 0);
+//                            if (changedState == MULTIBLOCK_STRUCTURE[y][z][x]) {
+//                                correctBlocks++;
+//                            }
+//                        } else if (blockState == MULTIBLOCK_STRUCTURE[y][z][x]) {
+//                            correctBlocks++;
+//                        }
+//                    } else if (MULTIBLOCK_STRUCTURE[y][z][x].is(POMblocks.REINFORCED_GLASS.get())) {
+//                        if (blockState.getBlock() instanceof AbstractFusionCasing) {
+//                            correctBlocks++;
+//                        }
+//                    }
+//                    if (blockState.getBlock() instanceof AbstractMultiBlock) {
+//                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile)
+//                            multiBlockTile.setMainPos(controllerPos);
+//                    }
+//                }
+//
+//            }
+//
+//        }
+//        PixelsOfMc.LOGGER.info("{} out of {}", correctBlocks, totalBlocks);
+//        if (correctBlocks == totalBlocks) {
+//            if (controllerState.getValue(ACTIVE) != 3)
+//                level.setBlock(controllerPos, controllerState.setValue(ACTIVE, 2), 2);
+//        }  else {
+//            invalidateMultiBlock(level, controllerPos);
+//        }
+//    }
+
     public void validateMultiBlock(Level level, BlockPos controllerPos) {
-
         if (level.isClientSide()) return;
-
         BlockState controllerState = level.getBlockState(controllerPos);
         Direction direction = controllerState.getValue(FACING);
         int correctBlocks =0;
@@ -103,28 +147,33 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
                 for (int x = 0; x < getWidth(); x++) {
-                    if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
+                    BlockState multiBlockState = MULTIBLOCK_STRUCTURE[y][z][x];
+                    if (multiBlockState == null) continue;
                     totalBlocks++;
 
-                    BlockPos rotatedOffsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
-                    BlockState rotatedBlockState = level.getBlockState(rotatedOffsetPos);
+                    BlockPos blockPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
+                    BlockState blockState = level.getBlockState(blockPos);
+                    Block block = blockState.getBlock();
 
-                    if (rotatedBlockState.getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
-                        if (rotatedBlockState.hasProperty(AbstractFusionCasing.PLATING)) {
-                            BlockState changedState = rotatedBlockState.setValue(AbstractFusionCasing.PLATING, 0);
-                            if (changedState == MULTIBLOCK_STRUCTURE[y][z][x]) {
-                                correctBlocks++;
-                            }
-                        } else if (rotatedBlockState == MULTIBLOCK_STRUCTURE[y][z][x]) {
-                            correctBlocks++;
-                        }
-                    } else if (MULTIBLOCK_STRUCTURE[y][z][x].is(POMblocks.REINFORCED_GLASS.get())) {
-                        if (rotatedBlockState.getBlock() instanceof AbstractFusionCasing) {
-                            correctBlocks++;
-                        }
+                    if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock) {
+                        correctBlocks++;
+                        continue;
                     }
-                    if (rotatedBlockState.getBlock() instanceof AbstractMultiBlock) {
-                        if (level.getBlockEntity(rotatedOffsetPos) instanceof AbstractMultiBlockTile multiBlockTile)
+
+                    if (multiBlockState.hasProperty(BlockStateProperties.FACING) && blockState.hasProperty(BlockStateProperties.FACING)) {
+                        if (blockState.getValue(BlockStateProperties.FACING) == multiBlockState.getValue(BlockStateProperties.FACING)) {
+                            correctBlocks++;
+                        }
+                    } else if (multiBlockState.hasProperty(BlockStateProperties.AXIS) && blockState.hasProperty(BlockStateProperties.AXIS)) {
+                        if (blockState.getValue(BlockStateProperties.AXIS) == multiBlockState.getValue(BlockStateProperties.AXIS)) {
+                            correctBlocks++;
+                        }
+                    } else if (multiBlockState.is(block)) {
+                        correctBlocks++;
+                    }
+
+                    if (blockState.getBlock() instanceof AbstractMultiBlock) {
+                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile)
                             multiBlockTile.setMainPos(controllerPos);
                     }
                 }
