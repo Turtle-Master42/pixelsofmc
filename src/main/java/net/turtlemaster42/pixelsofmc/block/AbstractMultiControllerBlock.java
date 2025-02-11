@@ -17,10 +17,12 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
+import net.turtlemaster42.pixelsofmc.util.block.IMultiControllerBlock;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
+public abstract class AbstractMultiControllerBlock extends BaseEntityBlock implements IMultiControllerBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
@@ -79,63 +81,14 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
     // < left
     // > right
     // \/ facing away from you
-    protected final BlockState[][][] MULTIBLOCK_STRUCTURE = getMultiblockStructure();
+    protected final GhostBlockState[][][] MULTIBLOCK_STRUCTURE = getMultiblockStructure();
 
-    public BlockState[][][] getMultiblockStructure() {
-        return new BlockState[][][]{{{}}};
+    public GhostBlockState[][][] getMultiblockStructure() {
+        return new GhostBlockState[][][]{{{}}};
     }
     public int getHeight() {return 0;}
     public int getWidth() {return 0;}
     public int getLength() {return 0;}
-
-//    public void oldValidateMultiBlock(Level level, BlockPos controllerPos) {
-//        if (level.isClientSide()) return;
-//
-//        BlockState controllerState = level.getBlockState(controllerPos);
-//        Direction direction = controllerState.getValue(FACING);
-//        int correctBlocks =0;
-//        int totalBlocks = 0;
-//
-//        for (int y = 0; y < getHeight(); y++) {
-//            for (int z = 0; z < getLength(); z++) {
-//                for (int x = 0; x < getWidth(); x++) {
-//                    if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
-//                    totalBlocks++;
-//
-//                    BlockPos blockPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
-//                    BlockState blockState = level.getBlockState(blockPos);
-//
-//                    if (blockState.getBlock() == MULTIBLOCK_STRUCTURE[y][z][x].getBlock()) {
-//                        if (blockState.hasProperty(AbstractFusionCasing.PLATING)) {
-//                            BlockState changedState = blockState.setValue(AbstractFusionCasing.PLATING, 0);
-//                            if (changedState == MULTIBLOCK_STRUCTURE[y][z][x]) {
-//                                correctBlocks++;
-//                            }
-//                        } else if (blockState == MULTIBLOCK_STRUCTURE[y][z][x]) {
-//                            correctBlocks++;
-//                        }
-//                    } else if (MULTIBLOCK_STRUCTURE[y][z][x].is(POMblocks.REINFORCED_GLASS.get())) {
-//                        if (blockState.getBlock() instanceof AbstractFusionCasing) {
-//                            correctBlocks++;
-//                        }
-//                    }
-//                    if (blockState.getBlock() instanceof AbstractMultiBlock) {
-//                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile)
-//                            multiBlockTile.setMainPos(controllerPos);
-//                    }
-//                }
-//
-//            }
-//
-//        }
-//        PixelsOfMc.LOGGER.info("{} out of {}", correctBlocks, totalBlocks);
-//        if (correctBlocks == totalBlocks) {
-//            if (controllerState.getValue(ACTIVE) != 3)
-//                level.setBlock(controllerPos, controllerState.setValue(ACTIVE, 2), 2);
-//        }  else {
-//            invalidateMultiBlock(level, controllerPos);
-//        }
-//    }
 
     public void validateMultiBlock(Level level, BlockPos controllerPos) {
         if (level.isClientSide()) return;
@@ -147,28 +100,21 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
                 for (int x = 0; x < getWidth(); x++) {
-                    BlockState multiBlockState = MULTIBLOCK_STRUCTURE[y][z][x];
+                    GhostBlockState multiBlockState = MULTIBLOCK_STRUCTURE[y][z][x];
                     if (multiBlockState == null) continue;
                     totalBlocks++;
 
                     BlockPos blockPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
                     BlockState blockState = level.getBlockState(blockPos);
-                    Block block = blockState.getBlock();
 
                     if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock) {
                         correctBlocks++;
                         continue;
                     }
 
-                    if (multiBlockState.hasProperty(BlockStateProperties.FACING) && blockState.hasProperty(BlockStateProperties.FACING)) {
-                        if (blockState.getValue(BlockStateProperties.FACING) == multiBlockState.getValue(BlockStateProperties.FACING)) {
-                            correctBlocks++;
-                        }
-                    } else if (multiBlockState.hasProperty(BlockStateProperties.AXIS) && blockState.hasProperty(BlockStateProperties.AXIS)) {
-                        if (blockState.getValue(BlockStateProperties.AXIS) == multiBlockState.getValue(BlockStateProperties.AXIS)) {
-                            correctBlocks++;
-                        }
-                    } else if (multiBlockState.is(block)) {
+                    if (multiBlockState.presentIn(blockState)) {
+                        correctBlocks++;
+                    } else if (multiBlockState.is(blockState.getBlock())) {
                         correctBlocks++;
                     }
 
@@ -228,7 +174,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock {
                 for (int x = 0; x < getWidth(); x++) {
                     if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
                     totalBlocks++;
-                    level.setBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), MULTIBLOCK_STRUCTURE[y][z][x], 2);
+                    level.setBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), MULTIBLOCK_STRUCTURE[y][z][x].toBlockState(), 2);
                 }
             }
         }

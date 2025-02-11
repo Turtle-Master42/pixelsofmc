@@ -27,6 +27,7 @@ import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
@@ -136,7 +137,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
 
     // --- Multi Block --- //
     @Override
-    public BlockState[][][] getMultiblockStructure() {
+    public GhostBlockState[][][] getMultiblockStructure() {
         return MultiBlockStructures.SDS_STRUCTURE;
     }
     @Override

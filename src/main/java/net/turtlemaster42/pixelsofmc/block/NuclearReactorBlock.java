@@ -20,6 +20,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
+import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
 import org.jetbrains.annotations.NotNull;
 
@@ -92,7 +93,7 @@ public class NuclearReactorBlock extends AbstractMultiControllerBlock {
 
     // --- Multi Block --- //
     @Override
-    public BlockState[][][] getMultiblockStructure() {
+    public GhostBlockState[][][] getMultiblockStructure() {
         return MultiBlockStructures.NUCLEAR_REACTOR;
     }
     @Override

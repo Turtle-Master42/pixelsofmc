@@ -7,14 +7,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 public class Debugium extends ElementItem {
     public Debugium(Element e, Properties properties) {
@@ -34,15 +31,14 @@ public class Debugium extends ElementItem {
                 }
             }
         }
-
         return InteractionResult.PASS;
     }
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
-        PixelsOfMc.LOGGER.info("Color white: {}", new Color(255, 255, 255).getRGB());
-        PixelsOfMc.LOGGER.info("Color green: {}", new Color(0, 255, 125).getRGB());
-        PixelsOfMc.LOGGER.info("Color blue: {}", new Color(0, 255, 255).getRGB());
+//        PixelsOfMc.LOGGER.info("Color white: {}", new Color(255, 255, 255).getRGB());
+//        PixelsOfMc.LOGGER.info("Color green: {}", new Color(0, 255, 125).getRGB());
+//        PixelsOfMc.LOGGER.info("Color blue: {}", new Color(0, 255, 255).getRGB());
         return super.use(level, player, usedHand);
     }
 

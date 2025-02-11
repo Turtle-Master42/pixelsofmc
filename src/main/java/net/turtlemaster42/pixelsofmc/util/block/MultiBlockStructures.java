@@ -2,35 +2,34 @@ package net.turtlemaster42.pixelsofmc.util.block;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.turtlemaster42.pixelsofmc.block.AbstractPillarFusionCasing;
 import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class MultiBlockStructures {
     //normal
-    private static final BlockState GLASS = POMblocks.REINFORCED_GLASS.get().defaultBlockState();
-    private static final BlockState AIR = Blocks.AIR.defaultBlockState();
-    private static final BlockState WATER = Blocks.WATER.defaultBlockState();
-    private static final BlockState OTHER = POMblocks.REINFORCED_CASING.get().defaultBlockState();
-    private static final BlockState CASING = POMblocks.MULTIBLOCK_CASING.get().defaultBlockState();
-    private static final BlockState ARMORED_CASING = POMblocks.ARMORED_MULTIBLOCK_CASING.get().defaultBlockState();
+    private static final GhostBlockState GLASS = new GhostBlockState(POMblocks.REINFORCED_GLASS.get());
+    private static final GhostBlockState AIR = new GhostBlockState(Blocks.AIR);
+    private static final GhostBlockState WATER = new GhostBlockState(Blocks.WATER);
+    private static final GhostBlockState OTHER = new GhostBlockState(POMblocks.REINFORCED_CASING.get());
+    private static final GhostBlockState CASING = new GhostBlockState(POMblocks.MULTIBLOCK_CASING.get());
+    private static final GhostBlockState ARMORED_CASING = new GhostBlockState(POMblocks.ARMORED_MULTIBLOCK_CASING.get());
 
     //fission
-    private static final BlockState FISSION_CASING = POMblocks.FISSION_CASING.get().defaultBlockState();
-    private static final BlockState FUEL_CELL_HOLDER = POMblocks.FUEL_CELL_HOLDER.get().defaultBlockState().setValue(FuelCellHolderBlock.FACING, Direction.UP);
+    private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
+    private static final GhostBlockState FUEL_CELL_HOLDER = new GhostBlockState(POMblocks.FUEL_CELL_HOLDER.get()).addProperty(FuelCellHolderBlock.FACING, Direction.UP);
 
     //fusion
-    private static final BlockState FUSION_CASING = POMblocks.FUSION_CASING.get().defaultBlockState();
-    private static final BlockState FUSION_CASING_UP = FUSION_CASING.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
-    private static final BlockState FUSION_CASING_FORWARD = FUSION_CASING.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
-    private static final BlockState FUSION_CASING_SIDE = FUSION_CASING.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);
+    private static final GhostBlockState FUSION_CASING = new GhostBlockState(POMblocks.FUSION_CASING.get());
+    private static final GhostBlockState FUSION_CASING_UP = FUSION_CASING.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
+    private static final GhostBlockState FUSION_CASING_FORWARD = FUSION_CASING.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
+    private static final GhostBlockState FUSION_CASING_SIDE = FUSION_CASING.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);
 
-    private static final BlockState SUPERCONDUCTIVE = POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get().defaultBlockState();
-    private static final BlockState SUPERCONDUCTIVE_UP = SUPERCONDUCTIVE.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
-    private static final BlockState SUPERCONDUCTIVE_FORWARD = SUPERCONDUCTIVE.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
-    private static final BlockState SUPERCONDUCTIVE_SIDE = SUPERCONDUCTIVE.setValue(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);
-    private static final BlockState FUSION_CORNER = POMblocks.FUSION_CORNER.get().defaultBlockState();
+    private static final GhostBlockState SUPERCONDUCTIVE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
+    private static final GhostBlockState SUPERCONDUCTIVE_UP = SUPERCONDUCTIVE.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
+    private static final GhostBlockState SUPERCONDUCTIVE_FORWARD = SUPERCONDUCTIVE.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
+    private static final GhostBlockState SUPERCONDUCTIVE_SIDE = SUPERCONDUCTIVE.addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);
+    private static final GhostBlockState FUSION_CORNER = new GhostBlockState(POMblocks.FUSION_CORNER.get());
 
 
     //BlockState[y][z][x]
@@ -40,7 +39,7 @@ public class MultiBlockStructures {
     // \/ facing away from you
 
     //NUCLEAR REACTOR
-    public static final BlockState[][][] NUCLEAR_REACTOR = {
+    public static final GhostBlockState[][][] NUCLEAR_REACTOR = {
             {
                     {null, null, FISSION_CASING, null, null},
                     {null, FISSION_CASING, FISSION_CASING, FISSION_CASING, null},
@@ -79,7 +78,7 @@ public class MultiBlockStructures {
     };
 
     //SDS
-    public static final BlockState[][][] SDS_STRUCTURE = {
+    public static final GhostBlockState[][][] SDS_STRUCTURE = {
             {
                     {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
                     {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
@@ -117,7 +116,7 @@ public class MultiBlockStructures {
             }
     };
     //MDS
-    public static final BlockState[][][] MDS_STRUCTURE = {
+    public static final GhostBlockState[][][] MDS_STRUCTURE = {
             {
                     {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, SUPERCONDUCTIVE_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
                     {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
@@ -183,7 +182,7 @@ public class MultiBlockStructures {
             }
     };
     //MNS
-    public static final BlockState[][][] MNS_STRUCTURE = {
+    public static final GhostBlockState[][][] MNS_STRUCTURE = {
             {
                     {null, null, FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CORNER, null, null},
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
@@ -249,7 +248,7 @@ public class MultiBlockStructures {
             }
     };
     //BH
-    public static final BlockState[][][] BH_STRUCTURE = {
+    public static final GhostBlockState[][][] BH_STRUCTURE = {
             {
                     {null, null, null, null, null, null, null, null, null},
                     {null, null, null, FUSION_CASING, FUSION_CASING, FUSION_CASING, null, null, null},
