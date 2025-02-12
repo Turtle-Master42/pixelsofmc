@@ -40,12 +40,7 @@ public abstract class AbstractFusionControllerBlock extends AbstractMultiControl
 
                     if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock) {
                         correctBlocks++;
-                        continue;
-                    }
-
-                    if (multiBlockState.presentIn(blockState)) {
-                        correctBlocks++;
-                    } else if (multiBlockState.is(blockState.getBlock())) {
+                    } else if (multiBlockState.presentIn(blockState)) {
                         correctBlocks++;
                     }
 

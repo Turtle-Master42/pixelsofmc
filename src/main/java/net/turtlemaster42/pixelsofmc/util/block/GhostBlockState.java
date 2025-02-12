@@ -1,9 +1,11 @@
 package net.turtlemaster42.pixelsofmc.util.block;
 
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.openjdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 
 import java.util.Collection;
@@ -20,17 +22,22 @@ public class GhostBlockState {
         this.states = new HashMap<>();
     }
 
-    public <T extends Comparable<T>, V extends T> GhostBlockState addProperty(Property<T> property, V value) {
+    public GhostBlockState(Block block, Map<Property<?>, Comparable<?>> states) {
+        this.block = block;
+        this.states = states;
+    }
+
+    public GhostBlockState addProperty(Property<?> property, Comparable<?> value) {
         Collection<?> possibleValues = property.getPossibleValues();
         if (!this.block.defaultBlockState().hasProperty(property))
-            throw new IllegalArgumentException(this.block + " can't contain property: " + property.getName());
+            throw new IllegalArgumentException("Cannot add property " + property + " as it does not exist in " + this.block);
         if (!possibleValues.contains(value))
-            throw new ValueException(property.getName() + " can't contain value: " + value.toString());
+            throw new ValueException(property.getName() + " can't contain value " + value.toString());
         this.states.put(property, value);
         return this;
     }
 
-    public <T extends Comparable<T>> GhostBlockState removeProperty(Property<T> property) {
+    public GhostBlockState removeProperty(Property<?> property) {
         this.states.remove(property);
         return this;
     }
@@ -40,6 +47,7 @@ public class GhostBlockState {
             return false;
         }
         for (Map.Entry<Property<?>, Comparable<?>> state : this.states.entrySet()) {
+            PixelsOfMc.LOGGER.info("{}: !blockState.hasProperty({})={}, {} != {}={}", this.block, state.getKey(), !blockState.hasProperty(state.getKey()), blockState.getValue(state.getKey()), state.getValue(), blockState.getValue(state.getKey()) != state.getValue());
             if (!blockState.hasProperty(state.getKey())) {
                 return false;
             } else if (blockState.getValue(state.getKey()) != state.getValue()) {
@@ -52,6 +60,14 @@ public class GhostBlockState {
     public boolean is(Block block) {
         return this.block == block;
     }
+
+    public boolean is(TagKey<Block> pTag) {
+        return this.block.builtInRegistryHolder().is(pTag);
+    }
+
+//    public GhostBlockState copy() {
+//        return new GhostBlockState(this.block, this.states);
+//    }
 
     public boolean equals(BlockState blockState) {
         if (blockState.getBlock() != this.block) {
@@ -78,6 +94,10 @@ public class GhostBlockState {
         } else {
             return pProperty.getValueClass().cast(comparable);
         }
+    }
+
+    public Block getBlock() {
+        return block;
     }
 
     //TODO might want to see if there is a way to do this without an unchecked cast
@@ -108,5 +128,18 @@ public class GhostBlockState {
             blockState = blockState.setValue(GhostBlockState.getProperty(state.getKey()), this.getValue(state.getKey()));
         }
         return blockState;
+    }
+
+    public static GhostBlockState reapGhostBlockState(BlockState blockState) {
+        BlockState defaultState = blockState.getBlock().defaultBlockState();
+        GhostBlockState ghostState = new GhostBlockState(blockState.getBlock());
+
+        for (Property<?> property : defaultState.getProperties()) {
+            if (defaultState.getValue(property) == blockState.getValue(property)) {
+                continue;
+            }
+            ghostState.addProperty(property, blockState.getValue(property));
+        }
+        return ghostState; //should output a GhostBlockState only containing the non default values of the BlockState
     }
 }
