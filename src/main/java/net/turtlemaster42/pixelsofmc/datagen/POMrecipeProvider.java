@@ -192,7 +192,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(toItemP(Element.LEAD.itemTag())))
                 .save(fConsumer);
 
-
 //        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.FISSION_PLATING.get(), 2)
 //                .requires(POMitems.TITANIUM_PLATING.get())
 //                .requires(POMitems.LEAD_PLATING.get(), 2)
@@ -310,19 +309,19 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(POMitems.POWER_ORB.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.POWER_ORB.get()), toItemP(POMitems.EMPTY_CELL.get())))
-                .save(fConsumer, toRL(POMitems.POWER_CELL.get().toString() + "_2"));
+                .save(fConsumer, toRL(POMitems.POWER_CELL.get() + "_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.OVERCHARGED_POWER_CELL.get())
                 .requires(POMitems.EMPTY_CELL.get())
                 .requires(POMitems.OVERCHARGED_POWER_ORB.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.OVERCHARGED_POWER_ORB.get()), toItemP(POMitems.EMPTY_CELL.get())))
-                .save(fConsumer, toRL(POMitems.OVERCHARGED_POWER_CELL.get().toString() + "_2"));
+                .save(fConsumer, toRL(POMitems.OVERCHARGED_POWER_CELL.get() + "_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SUPERCHARGED_POWER_CELL.get())
                 .requires(POMitems.EMPTY_CELL.get())
                 .requires(POMitems.SUPERCHARGED_POWER_ORB.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.SUPERCHARGED_POWER_ORB.get()), toItemP(POMitems.EMPTY_CELL.get())))
-                .save(fConsumer, toRL(POMitems.SUPERCHARGED_POWER_CELL.get().toString() + "_2"));
+                .save(fConsumer, toRL(POMitems.SUPERCHARGED_POWER_CELL.get() + "_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.URANIUM_FUEL_CELL.get())
                 .requires(POMitems.URANIUM_FUEL_PELLET.get(), 4)
                 .requires(POMitems.EMPTY_FUEL_CELL.get())
@@ -1046,9 +1045,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         Grinder(toI(POMitems.ALUMINIUM_SCRAP.get()), fConsumer, toCHI(Element.ALUMINIUM.dust(), 1, 1f));
 
-//        Grinder(toI(Items.STONE), fConsumer, toCHI(Element.SILICON.dustTag(), 2, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f) ,toCHI(Element.SILICON.dustTag(), 1, 0.55f) ,toCHI(Element.SILICON.dustTag(), 1, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f), toCHI(Element.SILICON.dustTag(), 1, 0.55f));
-//        Grinder(toI(Items.GOLD_BLOCK), fConsumer, toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f), toCHI(Element.GOLD.dustTag(), 1, 1f));
-
         Grinder(toI(ItemTags.WOOL), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
         Grinder(toI(ItemTags.WOOL_CARPETS), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
         Grinder(toI(Items.COBWEB), fConsumer, toCHI(Items.STRING, 2, 1f), toCHI(Items.STRING, 1, 0.33f), toCHI(Items.STRING, 1, 0.33f));
@@ -1524,27 +1520,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer, toRL("compacting/atoms/"+atomx512.asItem()+"_to_"+atomx64.asItem()));
     }
-
-//    private void BallMill(Ingredient input1, int count1, Ingredient input2, int count2, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
-//        BallMill(input1, count1, input2, count2, Ingredient.EMPTY, 0, output, outputCount, ball, consumer);
-//    }
-//    private void BallMill(Ingredient input1, int count1, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
-//        BallMill(input1, count1, Ingredient.EMPTY, 0, Ingredient.EMPTY, 0, output, outputCount, ball, consumer);
-//    }
-//    private void BallMill(Ingredient input1, int count1, Ingredient input2, int count2, Ingredient input3, int count3, ItemLike output, int outputCount, TagKey<Item> ball, Consumer<FinishedRecipe> consumer) {
-//        if (input2.isEmpty() && input3.isEmpty())
-//            new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1)), output, outputCount, Ingredient.of(ball))
-//                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-//                .save(consumer);
-//        else if (input3.isEmpty())
-//            new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1), CountedIngredient.of(count2, input2)), output, outputCount, Ingredient.of(ball))
-//                    .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-//                    .save(consumer);
-//        else
-//            new BallMillRecipeBuilder(List.of(CountedIngredient.of(count1, input1), CountedIngredient.of(count2, input2), CountedIngredient.of(count3, input3)), output, outputCount, Ingredient.of(ball))
-//                    .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-//                    .save(consumer);
-//    }
 
     private void BallMill(Ingredient output, TagKey<Item> ball, Consumer<FinishedRecipe> consumer, CountedIngredient... inputs) {
         BallMill(new ChanceIngredient(output, 1, 1f), ball, consumer, inputs);

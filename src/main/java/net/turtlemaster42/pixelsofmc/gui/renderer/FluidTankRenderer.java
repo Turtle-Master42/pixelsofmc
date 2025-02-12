@@ -7,7 +7,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -20,14 +19,11 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.joml.Matrix4f;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 // CREDIT: https://github.com/mezz/JustEnoughItems by mezz
 // Under MIT-License: https://github.com/mezz/JustEnoughItems/blob/1.19/LICENSE.txt
@@ -105,10 +101,9 @@ public class FluidTankRenderer {
         IClientFluidTypeExtensions renderProperties = IClientFluidTypeExtensions.of(fluid);
         ResourceLocation fluidStill = renderProperties.getStillTexture(fluidStack);
 
-        TextureAtlasSprite sprite = Minecraft.getInstance()
+        return Minecraft.getInstance()
                 .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
                 .apply(fluidStill);
-        return sprite;
     }
 
     public int getColorTint(FluidStack ingredient) {
@@ -127,14 +122,12 @@ public class FluidTankRenderer {
         final long yTileCount = scaledAmount / TEXTURE_SIZE;
         final long yRemainder = scaledAmount - (yTileCount * TEXTURE_SIZE);
 
-        final int yStart = tiledHeight;
-
         for (int xTile = 0; xTile <= xTileCount; xTile++) {
             for (int yTile = 0; yTile <= yTileCount; yTile++) {
                 int width = (xTile == xTileCount) ? xRemainder : TEXTURE_SIZE;
                 long height = (yTile == yTileCount) ? yRemainder : TEXTURE_SIZE;
                 int x = (xTile * TEXTURE_SIZE);
-                int y = yStart - ((yTile + 1) * TEXTURE_SIZE);
+                int y = tiledHeight - ((yTile + 1) * TEXTURE_SIZE);
                 if (width > 0 && height > 0) {
                     long maskTop = TEXTURE_SIZE - height;
                     int maskRight = TEXTURE_SIZE - width;
@@ -211,7 +204,7 @@ public class FluidTankRenderer {
                 tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
             }
         } catch (RuntimeException e) {
-            PixelsOfMc.LOGGER.error("Failed to get tooltip for fluid: " + e);
+            PixelsOfMc.LOGGER.error("Failed to get tooltip for fluid: {}", String.valueOf(e));
         }
 
         return tooltip;

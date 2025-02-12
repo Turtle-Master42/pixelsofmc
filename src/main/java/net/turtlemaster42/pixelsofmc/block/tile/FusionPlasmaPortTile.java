@@ -1,36 +1,17 @@
 package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
-import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
 import net.turtlemaster42.pixelsofmc.block.FusionPlasmaPortBlock;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
-import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 public class FusionPlasmaPortTile extends AbstractMultiBlockTile {
 

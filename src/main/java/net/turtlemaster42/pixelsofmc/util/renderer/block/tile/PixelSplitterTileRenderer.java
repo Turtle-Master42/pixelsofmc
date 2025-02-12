@@ -6,7 +6,6 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -16,10 +15,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.block.PixelSplitterBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
-import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplitterTile> {

@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.world.feature.configurations.LargeVeinConfiguration;
 
@@ -39,9 +38,7 @@ public class LargeVeinFeature extends Feature<LargeVeinConfiguration> {
         WorldGenLevel worldgenlevel = context.level();
         int minGenOffset = config.minGenOffset;
         int maxGenOffset = config.maxGenOffset;
-        Predicate<BlockState> predicate = (blockState) -> {
-            return blockState.is(config.vein_block_settings.can_replace);
-        };
+        Predicate<BlockState> predicate = (blockState) -> blockState.is(config.vein_block_settings.can_replace);
 
         WorldgenRandom worldgenrandom = new WorldgenRandom(new LegacyRandomSource(worldgenlevel.getSeed()));
         // vein placement, effects how big veins are

@@ -25,7 +25,7 @@ public class POMtabs {
 			Registries.CREATIVE_MODE_TAB, PixelsOfMc.MOD_ID
 	);
 
-	private static RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
+	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
 			"elements_tab",
 			// TODO what am I supposed to do with the row/col args
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
@@ -36,7 +36,7 @@ public class POMtabs {
 					.build()
 	);
 
-	private static RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = REGISTER.register(
+	private static final RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = REGISTER.register(
 			"main_tab",
 			// TODO what am I supposed to do with the row/col args
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)

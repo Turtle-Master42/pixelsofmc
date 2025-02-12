@@ -195,10 +195,11 @@ public class StarModel extends AdvancedEntityModel<Entity> {
         double dx = toPos.x - fromPos.x;
         double dy = toPos.y - fromPos.y;
         double dz = toPos.z - fromPos.z;
+        double sqrt = Math.sqrt(dx * dx + dz * dz);
         if (dy < 0) {
-            return Mth.atan2(dy, Math.sqrt(dx*dx+dz*dz));
+            return Mth.atan2(dy, sqrt);
         }
-        return -Mth.atan2(dy, Math.sqrt(dx*dx+dz*dz));
+        return -Mth.atan2(dy, sqrt);
     }
 
     protected static double getYRotD(Vec3 toPos, Vec3 fromPos) {

@@ -163,15 +163,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     protected int itemHandlerSize() {return 4;}
 
     @Override
-    protected int getSlotLimits(int slot) {
-            return 64;
-    }
-
-    @Override
-    protected void contentsChanged(int slot) {
-    }
-
-    @Override
     public @NotNull Component getDisplayName() {
         return Component.translatable("block.pixelsofmc.nuclear_reactor");
     }
@@ -293,9 +284,9 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy " + energyStorage.getEnergyStored() + " is higher than max " + energyStorage.getMaxEnergyStored());
+            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
             energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
+            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
         }
     }
 

@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +21,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -64,16 +62,12 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case EAST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            case SOUTH:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case WEST:
-                return VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            default:
-                return SHAPE;
-        }
+        return switch (pState.getValue(FACING)) {
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            default -> SHAPE;
+        };
     }
 
 

@@ -73,7 +73,7 @@ public final class RenderHelper extends RenderType {
             Runnable[] vertices = {
                     () -> buffer.vertex(mat, -0.866F * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex(),
                     () -> buffer.vertex(mat, 0.866F * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex(),
-                    () -> buffer.vertex(mat, 0, f3, 1F * f4).color(0, 0, 0, 0).endVertex(),
+                    () -> buffer.vertex(mat, 0, f3, f4).color(0, 0, 0, 0).endVertex(),
                     () -> buffer.vertex(mat, -0.866F * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex()
             };
             triangleFan(center, vertices);

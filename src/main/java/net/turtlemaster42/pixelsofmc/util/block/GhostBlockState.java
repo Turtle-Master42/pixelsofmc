@@ -5,7 +5,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.openjdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 
 import java.util.Collection;
@@ -15,7 +14,7 @@ import java.util.Map;
 public class GhostBlockState {
 
     private final Block block;
-    private Map<Property<?>, Comparable<?>> states;
+    private final Map<Property<?>, Comparable<?>> states;
 
     public GhostBlockState(Block block) {
         this.block = block;
@@ -47,7 +46,6 @@ public class GhostBlockState {
             return false;
         }
         for (Map.Entry<Property<?>, Comparable<?>> state : this.states.entrySet()) {
-            PixelsOfMc.LOGGER.info("{}: !blockState.hasProperty({})={}, {} != {}={}", this.block, state.getKey(), !blockState.hasProperty(state.getKey()), blockState.getValue(state.getKey()), state.getValue(), blockState.getValue(state.getKey()) != state.getValue());
             if (!blockState.hasProperty(state.getKey())) {
                 return false;
             } else if (blockState.getValue(state.getKey()) != state.getValue()) {
@@ -64,10 +62,6 @@ public class GhostBlockState {
     public boolean is(TagKey<Block> pTag) {
         return this.block.builtInRegistryHolder().is(pTag);
     }
-
-//    public GhostBlockState copy() {
-//        return new GhostBlockState(this.block, this.states);
-//    }
 
     public boolean equals(BlockState blockState) {
         if (blockState.getBlock() != this.block) {

@@ -14,7 +14,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
 import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;

@@ -5,7 +5,7 @@ package net.turtlemaster42.pixelsofmc.util.renderer;
 
 /*
  * This class is distributed as part of the Botania Mod.
- * Get the Source Code in github:
+ * Get the Source Code in GitHub:
  * https://github.com/Vazkii/Botania
  *
  * Botania is Open Source and distributed under the

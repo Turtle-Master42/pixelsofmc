@@ -12,13 +12,11 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
-import net.turtlemaster42.pixelsofmc.item.IsotopeItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.List;
 
 public class FusionRecipe extends BaseRecipe {

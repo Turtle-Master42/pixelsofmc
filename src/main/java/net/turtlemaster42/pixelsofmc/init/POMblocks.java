@@ -29,7 +29,6 @@ import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.FusionPlasmaPortTile;
 import net.turtlemaster42.pixelsofmc.fluid.AcidLiquidBlock;
 import net.turtlemaster42.pixelsofmc.fluid.SupercooledLiquidBlock;
 import net.turtlemaster42.pixelsofmc.util.Element;

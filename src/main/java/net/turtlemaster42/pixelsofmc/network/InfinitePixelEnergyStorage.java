@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.network;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 
 public class InfinitePixelEnergyStorage extends PixelEnergyStorage {

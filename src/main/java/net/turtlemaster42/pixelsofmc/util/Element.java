@@ -6,15 +6,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import java.awt.*;
 import java.util.Locale;

@@ -15,7 +15,6 @@ public class POMmessages {
     private static int id() {
         return packetId++;
     }
-    private static int index = 0;
 
     public static void register() {
 

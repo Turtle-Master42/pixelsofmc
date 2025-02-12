@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
@@ -11,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import org.jetbrains.annotations.Nullable;
 
 public class RedSwitchButton extends Button {
     private static final ResourceLocation TEXTURE =

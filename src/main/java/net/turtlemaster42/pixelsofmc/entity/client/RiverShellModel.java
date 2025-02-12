@@ -1,18 +1,13 @@
 package net.turtlemaster42.pixelsofmc.entity.client;
 
-import com.github.alexthe666.citadel.animation.Animation;
 import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.github.alexthe666.citadel.client.model.AdvancedModelBox;
-import com.github.alexthe666.citadel.client.model.ModelAnimator;
 import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
 import net.turtlemaster42.pixelsofmc.util.renderer.ItemstackRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.POMAdvancedModelBox;
@@ -225,17 +220,13 @@ public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
             head.setShouldScaleChildren(true);
             matrixStackIn.pushPose();
             matrixStackIn.scale(0.5f, 0.5f, 0.5f);
-            parts().forEach((part) -> {
-                part.render(matrixStackIn, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
+            parts().forEach((part) -> part.render(matrixStackIn, buffer, packedLight, packedOverlay, red, green, blue, alpha));
             matrixStackIn.popPose();
             this.head.setScale(1f, 1f, 1f);
         } else {
             this.head.setScale(1f, 1f, 1f);
             matrixStackIn.pushPose();
-            parts().forEach((part) -> {
-                part.render(matrixStackIn, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            });
+            parts().forEach((part) -> part.render(matrixStackIn, buffer, packedLight, packedOverlay, red, green, blue, alpha));
             matrixStackIn.popPose();
         }
     }

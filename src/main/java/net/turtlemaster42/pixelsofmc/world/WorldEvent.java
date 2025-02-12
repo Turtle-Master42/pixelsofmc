@@ -5,8 +5,4 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 @Mod.EventBusSubscriber(modid = PixelsOfMc.MOD_ID)
 public class WorldEvent {
-//    @SubscribeEvent
-//    public static void biomeLoadingEvent(final BiomeLoadingEvent event) {
-//        TitaniumOreGen.generateOres(event);
-//    }
 }

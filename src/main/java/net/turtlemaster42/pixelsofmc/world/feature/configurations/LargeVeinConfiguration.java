@@ -6,33 +6,31 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 
 public class LargeVeinConfiguration implements FeatureConfiguration {
     public static final Codec<Double> CHANCE_RANGE = Codec.doubleRange(0.0D, 1.0D);
-    public static final Codec<net.turtlemaster42.pixelsofmc.world.feature.configurations.LargeVeinConfiguration> CODEC = RecordCodecBuilder.create((configurationInstance) -> {
-        return configurationInstance.group(LargeVeinSettings.CODEC.fieldOf("blocks").forGetter((configuration) -> {
-            return configuration.vein_block_settings;
-        }), Codec.FLOAT.fieldOf("veininess_threshold").orElse(0.4f).forGetter((configuration) -> {
-            return configuration.veininess_threshold;
-        }), Codec.INT.fieldOf("edge_roundoff_begin").orElse(20).forGetter((configuration) -> {
-            return configuration.edge_roundoff_begin;
-        }), Codec.DOUBLE.fieldOf("max_edge_roundoff").orElse(0.2d).forGetter((configuration) -> {
-            return configuration.max_edge_roundoff;
-        }), Codec.FLOAT.fieldOf("vein_solidness").orElse(0.9f).forGetter((configuration) -> {
-            return configuration.vein_solidness;
-        }), Codec.FLOAT.fieldOf("min_richness").orElse(0.2f).forGetter((configuration) -> {
-            return configuration.min_richness;
-        }), Codec.FLOAT.fieldOf("max_richness").orElse(0.5f).forGetter((configuration) -> {
-            return configuration.max_richness;
-        }), Codec.FLOAT.fieldOf("max_richness_threshold").orElse(0.7f).forGetter((configuration) -> {
-            return configuration.max_richness_threshold;
-        }), Codec.FLOAT.fieldOf("raw_ore_block_chance").orElse(0.05f).forGetter((configuration) -> {
-            return configuration.raw_ore_block_chance;
-        }), Codec.INT.fieldOf("min_gen_offset").orElse(-16).forGetter((configuration) -> {
-            return configuration.minGenOffset;
-        }), Codec.INT.fieldOf("max_gen_offset").orElse(16).forGetter((configuration) -> {
-            return configuration.maxGenOffset;
-        }), CHANCE_RANGE.fieldOf("noise_multiplier").orElse(1D).forGetter((configuration) -> {
-            return configuration.noiseMultiplier;
-        })).apply(configurationInstance, net.turtlemaster42.pixelsofmc.world.feature.configurations.LargeVeinConfiguration::new);
-    });
+    public static final Codec<net.turtlemaster42.pixelsofmc.world.feature.configurations.LargeVeinConfiguration> CODEC = RecordCodecBuilder.create((configurationInstance) -> configurationInstance.group(LargeVeinSettings.CODEC.fieldOf("blocks").forGetter((configuration) -> {
+        return configuration.vein_block_settings;
+    }), Codec.FLOAT.fieldOf("veininess_threshold").orElse(0.4f).forGetter((configuration) -> {
+        return configuration.veininess_threshold;
+    }), Codec.INT.fieldOf("edge_roundoff_begin").orElse(20).forGetter((configuration) -> {
+        return configuration.edge_roundoff_begin;
+    }), Codec.DOUBLE.fieldOf("max_edge_roundoff").orElse(0.2d).forGetter((configuration) -> {
+        return configuration.max_edge_roundoff;
+    }), Codec.FLOAT.fieldOf("vein_solidness").orElse(0.9f).forGetter((configuration) -> {
+        return configuration.vein_solidness;
+    }), Codec.FLOAT.fieldOf("min_richness").orElse(0.2f).forGetter((configuration) -> {
+        return configuration.min_richness;
+    }), Codec.FLOAT.fieldOf("max_richness").orElse(0.5f).forGetter((configuration) -> {
+        return configuration.max_richness;
+    }), Codec.FLOAT.fieldOf("max_richness_threshold").orElse(0.7f).forGetter((configuration) -> {
+        return configuration.max_richness_threshold;
+    }), Codec.FLOAT.fieldOf("raw_ore_block_chance").orElse(0.05f).forGetter((configuration) -> {
+        return configuration.raw_ore_block_chance;
+    }), Codec.INT.fieldOf("min_gen_offset").orElse(-16).forGetter((configuration) -> {
+        return configuration.minGenOffset;
+    }), Codec.INT.fieldOf("max_gen_offset").orElse(16).forGetter((configuration) -> {
+        return configuration.maxGenOffset;
+    }), CHANCE_RANGE.fieldOf("noise_multiplier").orElse(1D).forGetter((configuration) -> {
+        return configuration.noiseMultiplier;
+    })).apply(configurationInstance, LargeVeinConfiguration::new));
     public final LargeVeinSettings vein_block_settings;
     public final float veininess_threshold ;
     public final int edge_roundoff_begin;

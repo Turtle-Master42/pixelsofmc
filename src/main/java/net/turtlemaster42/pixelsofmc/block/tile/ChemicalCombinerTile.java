@@ -338,9 +338,6 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
 
     private void fillTankWithFluid(ChemicalCombinerTile pBlockEntity, FluidTank fluidTank, FluidStack stack, ItemStack item) {
         fluidTank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
-
-        PixelsOfMc.LOGGER.info("item: {}", item.toString());
-
         pBlockEntity.itemHandler.extractItem(6, 1, false);
         pBlockEntity.itemHandler.setStackInSlot(6, item);
     }

@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ElementItem extends Item {
-    Element e;
+    final Element e;
     public ElementItem(Element e, Properties properties) {
         super(properties);
         this.e = e;

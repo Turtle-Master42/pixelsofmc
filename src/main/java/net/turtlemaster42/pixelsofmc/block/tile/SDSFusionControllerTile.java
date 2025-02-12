@@ -191,11 +191,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     protected int itemHandlerSize() {return 5;}
 
     @Override
-    protected int getSlotLimits(int slot) {
-            return 64;
-    }
-
-    @Override
     protected void contentsChanged(int slot) {
         this.cantCraftReason = 0;
         this.cantCraftElement = 0;
@@ -376,7 +371,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                         outputMass += atom.getElementalMass();
                 }
                 double deltaMass = atom1.getElementalMass() + atom2.getElementalMass() - outputMass;
-                double released_energy = 0;
+                double released_energy;
                 if (recipe.x512()) { // ∆mc^2 * fusionEnergyReleaseConstant * (amount of fusions)
                     released_energy = deltaMass * Constants.cSquared * Constants.fusionEnergyReleaseConstant * 512;
                 } else {
@@ -534,9 +529,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy " + energyStorage.getEnergyStored() + " is higher than max " + energyStorage.getMaxEnergyStored());
+            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
             energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at " + this.getBlockPos() + " was outside limits, energy reverted to 0");
+            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
         }
     }
 

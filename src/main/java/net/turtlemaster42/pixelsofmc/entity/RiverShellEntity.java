@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
@@ -25,10 +24,8 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.entity.AI.ShellLookAtPlayerGoal;
 import net.turtlemaster42.pixelsofmc.entity.AI.ShellRandomLookAroundGoal;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
@@ -133,7 +130,6 @@ public class RiverShellEntity extends Animal {
         }
         if (speedingTime < 10 && retractAnimationTime >= 10) {
             retractAnimationTime++;
-            return;
         }
     }
 

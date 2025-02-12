@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.intergration;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
@@ -21,13 +20,9 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
-import net.turtlemaster42.pixelsofmc.util.MouseUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalCombinerRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_combining");

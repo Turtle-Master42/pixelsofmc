@@ -11,23 +11,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
 
 public class AbstractFusionPort extends AbstractFusionCasing {
     public static final IntegerProperty MODE = IntegerProperty.create("mode", 0, 2);

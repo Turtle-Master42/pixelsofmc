@@ -14,10 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelAssemblerRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 

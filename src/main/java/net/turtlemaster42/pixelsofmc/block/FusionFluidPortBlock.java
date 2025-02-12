@@ -20,8 +20,6 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class FusionFluidPortBlock extends AbstractFusionPort {
     public FusionFluidPortBlock(Properties pProperties) {
         super(pProperties);

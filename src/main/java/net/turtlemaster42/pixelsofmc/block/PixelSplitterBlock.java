@@ -2,7 +2,6 @@ package net.turtlemaster42.pixelsofmc.block;
 
 
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.PushReaction;
@@ -33,8 +32,6 @@ import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class PixelSplitterBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

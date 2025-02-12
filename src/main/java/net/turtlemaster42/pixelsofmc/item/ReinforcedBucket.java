@@ -19,11 +19,9 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -38,7 +36,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.network.PixelFluidItemHandlerSimple;
 import org.jetbrains.annotations.NotNull;
@@ -98,15 +95,12 @@ public class ReinforcedBucket extends Item {
                 if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
                     BlockState blockstate1 = pLevel.getBlockState(blockpos);
                     if (blockstate1.getBlock() instanceof LiquidBlock liquidBlock) {
-                        PixelsOfMc.LOGGER.debug("Fluid {} == {}", liquidBlock.getFluid().getSource(), fluid.getRawFluid());
                         if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && blockstate1.getValue(LEVEL) == 0) {
                             pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
                             fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
 
                             pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                            liquidBlock.getPickupSound(blockstate1).ifPresent((p_150709_) -> {
-                                pPlayer.playSound(p_150709_, 1.0F, 1.0F);
-                            });
+                            liquidBlock.getPickupSound(blockstate1).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
                             pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
 
                             if (!pLevel.isClientSide) {
@@ -148,7 +142,7 @@ public class ReinforcedBucket extends Item {
             Block block = blockstate.getBlock();
             boolean canBeReplaced = blockstate.canBeReplaced(fluid);
             boolean conditionsMet = blockstate.isAir() || canBeReplaced || block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(pLevel, pPos, blockstate, fluid);
-            java.util.Optional<net.minecraftforge.fluids.FluidStack> containedFluidStack = java.util.Optional.ofNullable(pItemStack).flatMap(net.minecraftforge.fluids.FluidUtil::getFluidContained);
+            java.util.Optional<net.minecraftforge.fluids.FluidStack> containedFluidStack = java.util.Optional.of(pItemStack).flatMap(net.minecraftforge.fluids.FluidUtil::getFluidContained);
             if (!conditionsMet) {
                 return pResult != null && this.emptyContents(pPlayer, pLevel, pResult.getBlockPos().relative(pResult.getDirection()), null, pItemStack);
 
@@ -229,11 +223,6 @@ public class ReinforcedBucket extends Item {
         FluidStack fluid = pStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
         return fluid.getAmount() < capacity && fluid.getAmount() > 0 && !fluid.isEmpty();
     }
-//
-//    public static ItemStack getEmptySuccessItem(ItemStack pBucketStack, Player pPlayer) {
-//        return !pPlayer.getAbilities().instabuild ? new ItemStack(POMitems.REINFORCED_BUCKET.get()) : pBucketStack;
-//    }
-
 
     @Override
     public void appendHoverText(@NotNull ItemStack pStack, @org.jetbrains.annotations.Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {

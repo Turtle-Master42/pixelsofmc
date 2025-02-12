@@ -11,13 +11,10 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.ItemLike;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

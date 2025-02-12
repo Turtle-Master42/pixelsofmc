@@ -23,8 +23,6 @@ import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<ChemicalSeparatorRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_separating");

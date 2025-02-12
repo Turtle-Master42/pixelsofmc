@@ -2,12 +2,8 @@
 
 package net.turtlemaster42.pixelsofmc.gui.renderer;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.Rect2i;
-import net.minecraft.network.chat.Component;
-
-import java.util.List;
 
 /*
  *  BluSunrize

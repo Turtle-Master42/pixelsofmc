@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
-import org.apache.commons.compress.utils.ArchiveUtils;
 import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.function.Predicate;

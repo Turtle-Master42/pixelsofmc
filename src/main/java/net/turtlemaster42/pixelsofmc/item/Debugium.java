@@ -7,12 +7,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import org.jetbrains.annotations.NotNull;
 
 public class Debugium extends ElementItem {
@@ -32,8 +30,6 @@ public class Debugium extends ElementItem {
                     return InteractionResult.CONSUME;
                 }
             }
-        } else {
-            PixelsOfMc.LOGGER.info(GhostBlockState.reapGhostBlockState(context.getLevel().getBlockState(context.getClickedPos())).toString());
         }
         return InteractionResult.PASS;
     }

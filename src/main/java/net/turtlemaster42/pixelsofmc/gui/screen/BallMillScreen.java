@@ -38,6 +38,7 @@ public class BallMillScreen extends AbstractPOMscreen<BallMillMenu> {
 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
     }
 
     @Override

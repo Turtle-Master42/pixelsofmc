@@ -5,8 +5,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
@@ -97,26 +95,6 @@ public class SDSFusionControllerMenu extends AbstractMachineMenu implements IEne
 
         return maxFusionPower != 0 && fusionPower != 0 ? (int) (fusionPower * 1f / maxFusionPower  * progressArrowSize) : 0;
     }
-
-//    public void setSlotLimit(int slotLimit) {
-//        if (slotLimit > 64)
-//            slotLimit = 64;
-//        this.blockEntity.setSlotLimit(slotLimit);
-//        sendToServer(new PacketSyncSlotMaxToServer(blockEntity.getBlockPos(), slotLimit));
-//    }
-//
-//    public int getSlotLimit() {
-//        return this.blockEntity.getSlotLimit();
-//    }
-//
-//    public void setSlotLock(boolean locked, int slot) {
-//        this.blockEntity.setSlotLock(locked, slot);
-//        sendToServer(new PacketSyncLockedSlotToServer(blockEntity.getBlockPos(), locked, slot));
-//    }
-//
-//    public boolean getSlotLock(int slot) {
-//        return this.blockEntity.getSlotLock(slot);
-//    }
 
     public void setSwitch(boolean on, int currentSwitch) {
         this.blockEntity.setSwitch(on, currentSwitch);

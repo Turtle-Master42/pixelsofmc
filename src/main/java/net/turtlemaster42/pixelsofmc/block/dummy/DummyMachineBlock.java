@@ -59,7 +59,5 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 		if (!pLevel.isClientSide())
 			return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(), DummyMachineBlockTile::serverTick);
 		return null;
-//		return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_BLOCK.get(),
-//				pLevel.isClientSide ? DummyMachineBlockTile::particleTick : DummyMachineBlockTile::serverTick);
 	}
 }

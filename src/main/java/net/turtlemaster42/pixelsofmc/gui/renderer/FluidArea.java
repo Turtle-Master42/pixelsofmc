@@ -52,7 +52,7 @@ public class FluidArea extends InfoArea {
             tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
 
         } catch (RuntimeException e) {
-            PixelsOfMc.LOGGER.error("Failed to get tooltip for fluid: " + e);
+            PixelsOfMc.LOGGER.error("Failed to get tooltip for fluid: {}", String.valueOf(e));
         }
 
         return tooltip;

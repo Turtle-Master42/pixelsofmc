@@ -26,11 +26,7 @@ public class ColoredBlockParticleOptions implements ParticleOptions {
     private final BlockState state;
 
     public static Codec<ColoredBlockParticleOptions> codec(ParticleType<ColoredBlockParticleOptions> pType) {
-        return BlockState.CODEC.xmap((blockState) -> {
-            return new ColoredBlockParticleOptions(pType, blockState);
-        }, (particleOptions) -> {
-            return particleOptions.getState();
-        });
+        return BlockState.CODEC.xmap((blockState) -> new ColoredBlockParticleOptions(pType, blockState), ColoredBlockParticleOptions::getState);
     }
 
    public ColoredBlockParticleOptions(ParticleType<ColoredBlockParticleOptions> pType, BlockState pState) {

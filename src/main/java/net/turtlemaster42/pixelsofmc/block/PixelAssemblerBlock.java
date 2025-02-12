@@ -24,7 +24,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.tile.ChemicalSeparatorTile;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -32,8 +31,6 @@ import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class PixelAssemblerBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

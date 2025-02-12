@@ -39,7 +39,7 @@ public class RiverShellItem extends Item {
 
     @Override
     public void initializeClient(java.util.function.Consumer<IClientItemExtensions> consumer) {
-        consumer.accept((IClientItemExtensions) new ItemRenderProperties());
+        consumer.accept(new ItemRenderProperties());
     }
 
     @Override

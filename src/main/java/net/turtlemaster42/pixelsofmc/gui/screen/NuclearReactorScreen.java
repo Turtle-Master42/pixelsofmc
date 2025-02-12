@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Rect2i;
@@ -16,9 +15,6 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.GreenSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.RedSwitchButton;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.Optional;
 
 public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> {
     private static final ResourceLocation TEXTURE =

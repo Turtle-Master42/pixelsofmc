@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 

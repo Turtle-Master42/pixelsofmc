@@ -36,8 +36,8 @@ public class ProgressArea extends InfoArea {
     public void fillTooltip(GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY)
     {
         boolean inArea = false;
-        for (int i = 0; i < areas.length; i++) {
-            if (areas[i].contains(mouseX, mouseY)) {
+        for (Rect2i rect2i : areas) {
+            if (rect2i.contains(mouseX, mouseY)) {
                 inArea = true;
                 break;
             }
@@ -54,8 +54,7 @@ public class ProgressArea extends InfoArea {
 
     @Override
     public void draw(GuiGraphics guiGraphics) {
-        for (int i = 0; i < areas.length; i++) {
-            Rect2i area = areas[i];
+        for (Rect2i area : areas) {
             guiGraphics.fill(area.getX(), area.getY(), area.getX() + area.getWidth(), area.getY() + area.getHeight(), new Color(200, 0, 0).getRGB());
         }
     }

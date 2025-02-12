@@ -21,7 +21,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 import javax.annotation.Nullable;
@@ -34,7 +33,7 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
 
     public AcanthiteSpikeBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -42,36 +41,24 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
         double offset = 3;
         if (pState.getValue(SPIKE_TYPE) != 0) {
             double size = 16;
-            switch (direction) {
-                case NORTH:
-                    return Block.box(offset, offset, (16 - size), (16 - offset), (16 - offset), 16);
-                case SOUTH:
-                    return Block.box(offset, offset, 0, (16 - offset), (16 - offset), size);
-                case EAST:
-                    return Block.box(0, offset, offset, size, (16 - offset), (16 - offset));
-                case WEST:
-                    return Block.box(16 - size, offset, offset, 16, (16 - offset), (16 - offset));
-                case DOWN:
-                    return Block.box(offset, (16 - size), offset, (16 - offset), 16, (16 - offset));
-                default:
-                    return Block.box(offset, 0.0D, offset, (16 - offset), size, (16 - offset));
-            }
+            return switch (direction) {
+                case NORTH -> Block.box(offset, offset, (16 - size), (16 - offset), (16 - offset), 16);
+                case SOUTH -> Block.box(offset, offset, 0, (16 - offset), (16 - offset), size);
+                case EAST -> Block.box(0, offset, offset, size, (16 - offset), (16 - offset));
+                case WEST -> Block.box(16 - size, offset, offset, 16, (16 - offset), (16 - offset));
+                case DOWN -> Block.box(offset, (16 - size), offset, (16 - offset), 16, (16 - offset));
+                default -> Block.box(offset, 0.0D, offset, (16 - offset), size, (16 - offset));
+            };
         } else {
             double size = 8;
-            switch (direction) {
-                case NORTH:
-                    return Block.box(offset, offset, (16 - size), (16 - offset), (16 - offset), 16);
-                case SOUTH:
-                    return Block.box(offset, offset, 0, (16 - offset), (16 - offset), size);
-                case EAST:
-                    return Block.box(0, offset, offset, size, (16 - offset), (16 - offset));
-                case WEST:
-                    return Block.box(16 - size, offset, offset, 16, (16 - offset), (16 - offset));
-                case DOWN:
-                    return Block.box(offset, (16 - size), offset, (16 - offset), 16, (16 - offset));
-                default:
-                    return Block.box(offset, 0.0D, offset, (16 - offset), size, (16 - offset));
-            }
+            return switch (direction) {
+                case NORTH -> Block.box(offset, offset, (16 - size), (16 - offset), (16 - offset), 16);
+                case SOUTH -> Block.box(offset, offset, 0, (16 - offset), (16 - offset), size);
+                case EAST -> Block.box(0, offset, offset, size, (16 - offset), (16 - offset));
+                case WEST -> Block.box(16 - size, offset, offset, 16, (16 - offset), (16 - offset));
+                case DOWN -> Block.box(offset, (16 - size), offset, (16 - offset), 16, (16 - offset));
+                default -> Block.box(offset, 0.0D, offset, (16 - offset), size, (16 - offset));
+            };
         }
     }
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
@@ -106,11 +93,6 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
         if (pState.getValue(WATERLOGGED)) {
             pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
         }
-//        BlockPos facingPos = pPos.relative(pState.getValue(FACING), 1);
-//        BlockState facingState = pLevel.getBlockState(facingPos);
-//        if (facingState.getBlock().equals(POMblocks.ACANTHITE_SPIKE) && facingState.getValue(FACING) == pState.getValue(FACING).getOpposite() && facingState.getValue(SPIKE_TYPE) == 1) {
-//            return pState.setValue(SPIKE_TYPE, 1);
-//        }
 
         if (pDirection == pState.getValue(FACING)) {
             if (pNeighborState.getBlock() == POMblocks.ACANTHITE_SPIKE.get() && pNeighborState.getValue(FACING) == pState.getValue(FACING).getOpposite()) {
