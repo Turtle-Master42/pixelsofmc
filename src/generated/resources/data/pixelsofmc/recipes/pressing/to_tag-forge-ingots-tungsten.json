@@ -7,7 +7,7 @@
       "tag": "forge:dusts/tungsten"
     }
   },
-  "max_heat": 6200,
+  "max_heat": 5000,
   "mold": {
     "count": 1,
     "ingredient": {

@@ -63,6 +63,7 @@
   "item.pixelsofmc.soul_coal": "Soul Coal",
   "item.pixelsofmc.pyrolytic_carbon": "Pyrolytic Carbon",
   "item.pixelsofmc.raw_titanium": "Raw Titanium",
+  "item.pixelsofmc.royal_tungsten_amalgamation": "Royal Tungsten Amalgamation",
   "item.pixelsofmc.titanium_gold_ingot": "Titanium Gold Ingot",
   "item.pixelsofmc.titanium_diboride_ingot": "True Netherite Ingot",
   "item.pixelsofmc.superconductive_ingot": "Superconductive Ingot",
@@ -871,5 +872,6 @@
   "death.attack.acid": "%1$s dissolved in acid",
   "death.attack.acid.item": "%1$s dissolved in acid whiles fighting %2$s using %3$s",
   "death.attack.acid.player": "%1$s dissolved in acid whiles fighting %2$s",
-  "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor"
+  "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
+  "message.pixelsofmc.block.multiblock.invalid": "§cThe structure doesn't seem to be correct"
 }

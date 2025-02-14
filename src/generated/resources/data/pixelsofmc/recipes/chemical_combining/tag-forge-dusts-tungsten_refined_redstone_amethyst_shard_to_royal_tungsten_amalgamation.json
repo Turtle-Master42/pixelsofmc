@@ -30,9 +30,9 @@
   ],
   "output": {
     "chance": 1.0,
-    "count": 3,
+    "count": 1,
     "ingredient": {
-      "item": "pixelsofmc:royal_tungsten_dust"
+      "item": "pixelsofmc:royal_tungsten_amalgamation"
     }
   }
 }

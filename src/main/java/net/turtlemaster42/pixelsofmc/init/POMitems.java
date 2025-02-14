@@ -81,6 +81,7 @@ public class POMitems {
 	public static final RegistryObject<Item> SOUL_COAL = ITEMS.register("soul_coal", () -> new FuelItem(2400, new Item.Properties()));
 	public static final RegistryObject<Item> PYROLYTIC_CARBON = ITEMS.register("pyrolytic_carbon", () -> new FuelItem(2000, new Item.Properties()));
 	public static final RegistryObject<Item> RAW_TITANIUM = ITEMS.register("raw_titanium", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ROYAL_TUNGSTEN_AMALGAMATION = ITEMS.register("royal_tungsten_amalgamation", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ALUMINIUM_SCRAP = ITEMS.register("aluminium_scrap", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TITANIUM_GOLD_INGOT = ITEMS.register("titanium_gold_ingot", () -> new Item(new Item.Properties()));

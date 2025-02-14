@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-25T12:57:25.943796	Item Models: pixelsofmc
+// 1.20.1	2025-02-14T21:58:42.040156	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -339,6 +339,7 @@ d0141ad7a23a13184e3ff5230ad80b8ce64c640e assets/pixelsofmc/models/item/rhenium_a
 89ded9bfeb3162c90293965363b74703e160e88b assets/pixelsofmc/models/item/rhodium_atom_512.json
 bd8ec70ae4863be123bc62d38c4613d0c27d8fdb assets/pixelsofmc/models/item/rhodium_atom_64.json
 d0285b6666cd06c413fe0b3782d3c7e5d8adeebf assets/pixelsofmc/models/item/rhodium_ingot.json
+2ddab2366f6695bf8d509b1dd38d4bf33f779432 assets/pixelsofmc/models/item/royal_tungsten_amalgamation.json
 8cbe70dc1b02db3b5bb515ec464e78d99dbf3db8 assets/pixelsofmc/models/item/royal_tungsten_dust.json
 e2a075ae9f7094b95c5461deac00a2542f819790 assets/pixelsofmc/models/item/royal_tungsten_ingot.json
 7468bab3b24fdbd4f962aa883d599b2e3cfb1fd0 assets/pixelsofmc/models/item/royal_tungsten_nugget.json

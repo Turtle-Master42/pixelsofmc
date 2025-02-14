@@ -1098,6 +1098,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_STAIRS, 1));
         BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_SLAB, 1));
         BallMill(toCHI(Items.PRISMARINE_CRYSTALS, 1, 4.33f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SEA_LANTERN, 1));
+        BallMill(toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 2, 1f), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1));
 
         //dust mixing
         BallMill(toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 3), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_OXIDE_DUST.get(), 1));
@@ -1231,7 +1232,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 1), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag(), 1));
         ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));
-        ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 3, 1), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD, 1));
+        ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1, 1), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD, 1));
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -1369,7 +1370,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 autoPixelSplittingAndAssembling(m.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc." + m.elementName(), m.hexToRGB(0), m.hexToRGB(1), m.hexToRGB(2), fConsumer);
             }
             if (m.isMetal() && m.shouldAddDust()) {
-                Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), m.getInfo().getEvaporatingPoint(), fConsumer);
+                Pressing(toCI(m.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(m.itemTag(), 1), m.getInfo().getMeltingPoint(), Math.min(m.getInfo().getEvaporatingPoint(), 5000), fConsumer);
             }
             if (m.isMetal() && m.shouldAddDust() && m!=Element.ALUMINIUM) {
                 SimpleSmeltingRecipe(m.dustTag(), m.item(), 1f, 200, fConsumer, toItemP(m.dustTag()), "_from_dust");

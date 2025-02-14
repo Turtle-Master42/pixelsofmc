@@ -105,6 +105,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.SUPERCONDUCTIVE_INGOT);
         simpleItem(POMitems.RED_SILVER_INGOT);
         simpleItem(POMitems.ROYAL_TUNGSTEN_INGOT);
+        simpleItem(POMitems.ROYAL_TUNGSTEN_AMALGAMATION);
 
         simpleItem(POMitems.NETHERITE_NUGGET);
         simpleItem(POMitems.TITANIUM_GOLD_NUGGET);

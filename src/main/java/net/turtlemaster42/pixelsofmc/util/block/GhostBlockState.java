@@ -26,6 +26,7 @@ public class GhostBlockState {
         this.states = states;
     }
 
+    // Adds a BlockState Property to the GhostBlockState
     public GhostBlockState addProperty(Property<?> property, Comparable<?> value) {
         Collection<?> possibleValues = property.getPossibleValues();
         if (!this.block.defaultBlockState().hasProperty(property))
@@ -36,11 +37,13 @@ public class GhostBlockState {
         return this;
     }
 
+    // Removes a BlockState Property to the GhostBlockState
     public GhostBlockState removeProperty(Property<?> property) {
         this.states.remove(property);
         return this;
     }
 
+    // Checks if the given BlockState contains all the GhostBlockState properties with the correct values
     public boolean presentIn(BlockState blockState) {
         if (blockState.getBlock() != this.block) {
             return false;
@@ -63,6 +66,7 @@ public class GhostBlockState {
         return this.block.builtInRegistryHolder().is(pTag);
     }
 
+    // Checks if the given BlockState matches the GhostBlockState exactly
     public boolean equals(BlockState blockState) {
         if (blockState.getBlock() != this.block) {
             return false;
@@ -124,6 +128,7 @@ public class GhostBlockState {
         return blockState;
     }
 
+    // Outputs a GhostBlockState only containing the non default values of the given BlockState
     public static GhostBlockState reapGhostBlockState(BlockState blockState) {
         BlockState defaultState = blockState.getBlock().defaultBlockState();
         GhostBlockState ghostState = new GhostBlockState(blockState.getBlock());
@@ -134,6 +139,6 @@ public class GhostBlockState {
             }
             ghostState.addProperty(property, blockState.getValue(property));
         }
-        return ghostState; //should output a GhostBlockState only containing the non default values of the BlockState
+        return ghostState;
     }
 }
