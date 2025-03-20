@@ -26,7 +26,7 @@ import org.joml.Vector3f;
 
 import javax.annotation.Nonnull;
 
-public class FusionItemPortTile extends AbstractMultiBlockTile{
+public class FusionItemPortTile extends AbstractMultiBlockTile {
 
     private int itemCooldown = 0;
 

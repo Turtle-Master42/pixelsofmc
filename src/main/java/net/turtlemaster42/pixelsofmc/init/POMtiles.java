@@ -6,6 +6,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Block;
+import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
@@ -30,6 +31,8 @@ public class POMtiles {
 			TILES.register("fusion_fluid_port", () -> BlockEntityType.Builder.of(FusionFluidPortTile::new, POMblocks.FUSION_FLUID_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionPlasmaPortTile>> FUSION_PLASMA_PORT =
 			TILES.register("fusion_plasma_port", () -> BlockEntityType.Builder.of(FusionPlasmaPortTile::new, POMblocks.FUSION_PLASMA_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FuelCellHolderTile>> FUEL_CELL_HOLDER =
+			TILES.register("fuel_cell_holder", () -> BlockEntityType.Builder.of(FuelCellHolderTile::new, POMblocks.FUEL_CELL_HOLDER.get()).build(null));
 
 
 
@@ -54,7 +57,7 @@ public class POMtiles {
 
 
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
-			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.SDS_CONTROLLER.get()).build(null));
+			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.NUCLEAR_REACTOR.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
 			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get(), POMblocks.MDS_CONTROLLER.get(), POMblocks.MNS_CONTROLLER.get(), POMblocks.BH_CONTROLLER.get()).build(null));

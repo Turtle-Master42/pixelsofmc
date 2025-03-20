@@ -182,7 +182,7 @@ public class MNSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     public BlockPos fusionStarPos() {return new BlockPos(3, 3, 3);}
     @Override
-    public int fusionStarLevel() {return 3;}
+    public BlockState fusionStarBlock() {return POMblocks.STAR.get().defaultBlockState().setValue(StarBlock.STAR_STAGE, 3);}
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
         return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -3, 0, 1, pos);

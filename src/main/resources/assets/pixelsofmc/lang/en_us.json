@@ -621,6 +621,7 @@
   "block.pixelsofmc.chemical_combiner": "Chemical Combiner",
   "block.pixelsofmc.star": "Fusion Star",
 
+  "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
   "block.pixelsofmc.sds_controller": "S.D.S Fusion Reactor Controller",
   "block.pixelsofmc.mds_controller": "M.D.S Fusion Reactor Controller",
   "block.pixelsofmc.mns_controller": "M.N.S Fusion Reactor Controller",
@@ -845,7 +846,6 @@
   "tooltip.pixelsofmc.power_cell.overcharged": "§d90000 §7FE Stored",
   "tooltip.pixelsofmc.power_cell.supercharged": "§c810000 §7FE Stored",
 
-
   "tooltip.pixelsofmc.jei.pixel": "Structure Formula",
 
   "tooltip.pixelsofmc.entity.health": "%s ❤",
@@ -872,6 +872,6 @@
   "death.attack.acid": "%1$s dissolved in acid",
   "death.attack.acid.item": "%1$s dissolved in acid whiles fighting %2$s using %3$s",
   "death.attack.acid.player": "%1$s dissolved in acid whiles fighting %2$s",
-  "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
+
   "message.pixelsofmc.block.multiblock.invalid": "§cThe structure doesn't seem to be correct"
 }

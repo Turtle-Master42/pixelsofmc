@@ -37,7 +37,7 @@ public class GhostBlockState {
         return this;
     }
 
-    // Removes a BlockState Property to the GhostBlockState
+    // Removes a BlockState Property of the GhostBlockState
     public GhostBlockState removeProperty(Property<?> property) {
         this.states.remove(property);
         return this;

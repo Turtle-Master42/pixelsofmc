@@ -19,6 +19,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
@@ -150,15 +151,16 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
             }
         };
     }
-
-    @Override
-    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
-        return false;
-    }
     @Override
     protected boolean isSlotValidOutput(int slot) {
-        return false;
+        return true;
     }
+
+    @Override
+    protected int getSlotLimits(int slot) {
+        return 1;
+    }
+
     @Override
     protected int itemHandlerSize() {return 4;}
 
@@ -179,7 +181,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER && side == Direction.DOWN) {
             return lazyItemHandler.cast();
         }
         if (cap == ForgeCapabilities.ENERGY) {
@@ -277,6 +279,15 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
     public boolean getSwitch(int currentSwitch) {
         return switches[currentSwitch];
+    }
+
+    public void handleFuelCellHolder(ItemStackHandler itemHandler, int slot, boolean isLocked) {
+        if (isLocked) {
+            this.itemHandler.setStackInSlot(slot, itemHandler.getStackInSlot(0));
+        } else {
+//            setSwitch(false, 3 + slot); TODO: needs to be send to the client
+            this.itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
+        }
     }
 
     //---ENERGY---//

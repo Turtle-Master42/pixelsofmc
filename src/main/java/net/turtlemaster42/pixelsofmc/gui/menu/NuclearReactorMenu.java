@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.gui.menu;
 
+import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -7,6 +8,8 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
@@ -25,17 +28,17 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
     private FluidStack duoFluid;
 
     public NuclearReactorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
     public NuclearReactorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(4, inv, data, POMmenuType.NUCLEAR_REACTOR_MENU.get(), pContainerId);
         checkContainerSize(inv, 4);
-        blockEntity = ((NuclearReactorTile) entity);
+        this.blockEntity = (NuclearReactorTile) entity;
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(handler -> {
             this.addSlot(new ModDisplaySlot(handler, 0, 51, 21));
             this.addSlot(new ModDisplaySlot(handler, 1, 81, 21));
             this.addSlot(new ModDisplaySlot(handler, 2, 51, 51));

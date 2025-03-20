@@ -186,7 +186,7 @@ public class BHFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     public BlockPos fusionStarPos() {return new BlockPos(4, 2, 4);}
     @Override
-    public int fusionStarLevel() {return 4;}
+    public BlockState fusionStarBlock() {return POMblocks.STAR.get().defaultBlockState().setValue(StarBlock.STAR_STAGE, 4);}
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
         return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -4, 0, 1, pos);

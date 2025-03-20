@@ -22,12 +22,12 @@ public class Debugium extends ElementItem {
     public @NotNull InteractionResult useOn(UseOnContext context) {
         if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
             multiController.forcePlaceMultiBlock(context.getLevel(), context.getClickedPos());
-            return InteractionResult.CONSUME;
+            return InteractionResult.SUCCESS;
         } else if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractDummyMachineBlock) {
             if (context.getLevel().getBlockEntity(context.getClickedPos()) instanceof AbstractDummyMachineBlockTile dummyTile) {
                 if (context.getLevel().getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
                     multiController.forcePlaceMultiBlock(context.getLevel(), dummyTile.getMainPos());
-                    return InteractionResult.CONSUME;
+                    return InteractionResult.SUCCESS;
                 }
             }
         }

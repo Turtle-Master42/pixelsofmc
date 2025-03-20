@@ -64,7 +64,7 @@ public class ToolItem extends Item {
             if (blocks.isEmpty() && pContext.getPlayer() != null && !pContext.getLevel().isClientSide()) {
                 pContext.getPlayer().sendSystemMessage(Component.translatable("message.pixelsofmc.block.multiblock.invalid"));
             }
-            return InteractionResult.CONSUME;
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;

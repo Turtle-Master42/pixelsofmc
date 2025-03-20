@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.util.block.IFusionControllerBlock;
@@ -25,7 +26,7 @@ public abstract class AbstractFusionControllerBlock extends AbstractMultiControl
         if (blocks.containsKey(POMblocks.HEAT_SINK.get()) && level.getBlockEntity(controllerPos) instanceof SDSFusionControllerTile fusionControllerTile) {
             fusionControllerTile.setHeatSinkAmount(blocks.get(POMblocks.HEAT_SINK.get()));
         }
-        level.setBlock(rotatedOffsetBlock(level.getBlockState(controllerPos).getValue(FACING), fusionStarPos(), controllerPos), POMblocks.STAR.get().defaultBlockState().setValue(StarBlock.STAR_STAGE, fusionStarLevel()), 2);
+        level.setBlock(rotatedOffsetBlock(level.getBlockState(controllerPos).getValue(FACING), fusionStarPos(), controllerPos), fusionStarBlock(), 2);
 
         return blocks;
     }
@@ -37,5 +38,5 @@ public abstract class AbstractFusionControllerBlock extends AbstractMultiControl
     }
 
     public BlockPos fusionStarPos() {return new BlockPos(0, 0, 0);}
-    public int fusionStarLevel() {return 1;}
+    public BlockState fusionStarBlock() {return POMblocks.STAR.get().defaultBlockState();}
 }
