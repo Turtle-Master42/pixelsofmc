@@ -1048,6 +1048,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Grinder(toI(ItemTags.WOOL), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
         Grinder(toI(ItemTags.WOOL_CARPETS), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
         Grinder(toI(Items.COBWEB), fConsumer, toCHI(Items.STRING, 2, 1f), toCHI(Items.STRING, 1, 0.33f), toCHI(Items.STRING, 1, 0.33f));
+        Grinder(toI(Items.GLOWSTONE), fConsumer, toCHI(Items.GLOWSTONE_DUST, 4, 1f));
 
 
         //MILLING
@@ -1099,6 +1100,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_SLAB, 1));
         BallMill(toCHI(Items.PRISMARINE_CRYSTALS, 1, 4.33f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SEA_LANTERN, 1));
         BallMill(toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 2, 1f), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1));
+        BallMill(toCHI(Items.BRICK, 1, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.FLOWER_POT, 1));
+        BallMill(toCHI(Items.GLOWSTONE_DUST, 4, 1f), POMtags.Items.BALL_3, fConsumer, toCI(Items.GLOWSTONE, 1));
 
         //dust mixing
         BallMill(toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 3), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_OXIDE_DUST.get(), 1));
@@ -1123,10 +1126,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILY_OF_THE_VALLEY, 1));
         BallMill(toCI(Items.BLACK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WITHER_ROSE, 1));
         BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.SPORE_BLOSSOM, 1));
+        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_PETALS, 1));
+        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.TORCHFLOWER, 1));
+
         BallMill(toCI(Items.YELLOW_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.SUNFLOWER, 1));
         BallMill(toCI(Items.PINK_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PEONY, 1));
         BallMill(toCI(Items.RED_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.ROSE_BUSH, 1));
         BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILAC, 1));
+        BallMill(toCI(Items.CYAN_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PITCHER_PLANT, 1));
+
 
         //crushing
         BallMill(toCHI(Items.SUGAR, 1, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SUGAR_CANE, 1));

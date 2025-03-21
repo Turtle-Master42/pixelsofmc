@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -43,6 +44,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private final int capacity = 8_192_000;
     private final int maxReceive = 512_000;
     private static final int energyConsumption = 100;
+    private float efficiency_bonus = 1f;
 
     public boolean[] switches = new boolean[]{false, false, false, false, false, false, false};
 
@@ -223,6 +225,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         tag.put("outFluid", fluidTag);
         CompoundTag slotTag = new CompoundTag();
         tag.put("lockedSlot", slotTag);
+        tag.putFloat("efficiencyBonus", efficiency_bonus);
         tag.putBoolean("redSwitch1", switches[0]);
         tag.putBoolean("redSwitch2", switches[1]);
         tag.putBoolean("redSwitch3", switches[2]);
@@ -240,6 +243,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         energyStorage.setEnergy(nbt.getInt("Energy"));
         fluidTank.readFromNBT(nbt);
         duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
+        efficiency_bonus = nbt.getFloat("efficiencyBonus");
         switches[0] = nbt.getBoolean("redSwitch1");
         switches[1] = nbt.getBoolean("redSwitch2");
         switches[2] = nbt.getBoolean("redSwitch3");
@@ -275,10 +279,31 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     public void setSwitch(boolean on, int currentSwitch) {
         this.switches[currentSwitch] = on;
         setChanged();
+        calculateEfficiencyBonus();
+    }
+
+    private void calculateEfficiencyBonus() {
+        efficiency_bonus = 1f;
+        if (this.switches[3] && this.switches[4]) {
+            efficiency_bonus += 0.5f;
+        }
+        if (this.switches[3] && this.switches[5]) {
+            efficiency_bonus += 0.5f;
+        }
+        if (this.switches[5] && this.switches[6]) {
+            efficiency_bonus += 0.5f;
+        }
+        if (this.switches[4] && this.switches[6]) {
+            efficiency_bonus += 0.5f;
+        }
     }
 
     public boolean getSwitch(int currentSwitch) {
         return switches[currentSwitch];
+    }
+
+    public float getEfficiencyBonus() {
+        return this.efficiency_bonus;
     }
 
     public void handleFuelCellHolder(ItemStackHandler itemHandler, int slot, boolean isLocked) {

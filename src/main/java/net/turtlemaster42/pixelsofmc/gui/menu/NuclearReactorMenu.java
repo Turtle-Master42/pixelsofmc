@@ -63,6 +63,10 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
         return this.blockEntity.getSwitch(currentSwitch);
     }
 
+    public float getEfficiencyBonus() {
+        return this.blockEntity.getEfficiencyBonus();
+    }
+
     @Override
     public void setDuoFluid(FluidStack fluidStack) {
         this.duoFluid = fluidStack;

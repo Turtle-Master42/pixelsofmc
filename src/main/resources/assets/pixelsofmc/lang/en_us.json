@@ -857,9 +857,9 @@
   "death.attack.super_cooled": "%1$s went swimming in supercooled liquid",
   "death.attack.super_cooled.player": "%1$s went swimming in supercooled liquid trying to escape %2$s",
 
-  "death.attack.black_hole": "%1$s past the event horizon",
-  "death.attack.black_hole.item": "%1$s past the event horizon with help from %2$s using %3$s",
-  "death.attack.black_hole.player": "%1$s past the event horizon with help from %2$s",
+  "death.attack.black_hole": "%1$s passed the event horizon",
+  "death.attack.black_hole.item": "%1$s passed the event horizon with help from %2$s using %3$s",
+  "death.attack.black_hole.player": "%1$s passed the event horizon with help from %2$s",
 
   "death.attack.plasma": "%1$s discovered the true temperature of plasma",
   "death.attack.plasma.item": "%2$s helped %1$s discovered the true temperature of plasma using %3$s",

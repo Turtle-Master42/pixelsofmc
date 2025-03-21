@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Rect2i;
@@ -15,6 +16,9 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.GreenSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.RedSwitchButton;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.Optional;
 
 public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> {
     private static final ResourceLocation TEXTURE =
@@ -64,24 +68,21 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         fluidArea2.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
 
-//        float bonus = 0;
-//
-//        if (greenSwitch1.isOn() && greenSwitch2.isOn() && (mouseX >= x + 71 && mouseY >= y + 24 && mouseX < x + 76 && mouseY < y + 33)) {
-//            bonus = bonus + 0.5f;
-//            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-//        }
-//        if (greenSwitch1.isOn() && greenSwitch3.isOn() && (mouseX >= x + 54 && mouseY >= y + 41 && mouseX < x + 63 && mouseY < y + 46)) {
-//            bonus = bonus + 0.5f;
-//            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-//        }
-//        if (greenSwitch3.isOn() && greenSwitch4.isOn() && (mouseX >= x + 71 && mouseY >= y + 54 && mouseX < x + 76 && mouseY < y + 63)) {
-//            bonus = bonus + 0.5f;
-//            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-//        }
-//        if (greenSwitch2.isOn() && greenSwitch4.isOn() && (mouseX >= x + 84 && mouseY >= y + 41 && mouseX < x + 93 && mouseY < y + 46)) {
-//            bonus = bonus + 0.5f;
-//            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-//        }
+        if (greenSwitch1.isOn() && greenSwitch2.isOn() && (mouseX >= x + 71 && mouseY >= y + 24 && mouseX < x + 76 && mouseY < y + 33)) {
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
+        }
+        if (greenSwitch1.isOn() && greenSwitch3.isOn() && (mouseX >= x + 54 && mouseY >= y + 41 && mouseX < x + 63 && mouseY < y + 46)) {
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
+        }
+        if (greenSwitch3.isOn() && greenSwitch4.isOn() && (mouseX >= x + 71 && mouseY >= y + 54 && mouseX < x + 76 && mouseY < y + 63)) {
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
+        }
+        if (greenSwitch2.isOn() && greenSwitch4.isOn() && (mouseX >= x + 84 && mouseY >= y + 41 && mouseX < x + 93 && mouseY < y + 46)) {
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
+        }
+        if (mouseX >= x + 69 && mouseY >= y + 39 && mouseX < x + 78 && mouseY < y + 48) {
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(efficiencyBonusTooltip(menu.getEfficiencyBonus())), Optional.empty(), mouseX - x, mouseY - y);
+        }
     }
 
     @Override
@@ -161,31 +162,53 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         this.addRenderableWidget(this.redSwitch3);
 
         this.greenSwitch1 = new GreenSwitchButton(x + 38, y + 22, Component.literal("§dLock/Unlock"), (pButton) -> {
-            greenSwitch1.cycleOn();
-            menu.setSwitch(greenSwitch1.isOn(), 3);
+            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty()) {
+                greenSwitch1.cycleOn();
+                menu.setSwitch(greenSwitch1.isOn(), 3);
+            }
         });
         this.greenSwitch1.setOn(menu.getSwitch(3));
         this.addRenderableWidget(this.greenSwitch1);
 
         this.greenSwitch2 = new GreenSwitchButton(x + 103, y + 22, Component.literal("§dLock/Unlock"), (pButton) -> {
-            greenSwitch2.cycleOn();
-            menu.setSwitch(greenSwitch2.isOn(), 4);
+            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty()) {
+                greenSwitch2.cycleOn();
+                menu.setSwitch(greenSwitch2.isOn(), 4);
+            }
         });
         this.greenSwitch2.setOn(menu.getSwitch(4));
         this.addRenderableWidget(this.greenSwitch2);
 
         this.greenSwitch3 = new GreenSwitchButton(x + 38, y + 52, Component.literal("§dLock/Unlock"), (pButton) -> {
-            greenSwitch3.cycleOn();
-            menu.setSwitch(greenSwitch3.isOn(), 5);
+            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty()) {
+                greenSwitch3.cycleOn();
+                menu.setSwitch(greenSwitch3.isOn(), 5);
+            }
         });
         this.greenSwitch3.setOn(menu.getSwitch(5));
         this.addRenderableWidget(this.greenSwitch3);
 
         this.greenSwitch4 = new GreenSwitchButton(x + 103, y + 52, Component.literal("§dLock/Unlock"), (pButton) -> {
-            greenSwitch4.cycleOn();
-            menu.setSwitch(greenSwitch4.isOn(), 6);
+            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty()) {
+                greenSwitch4.cycleOn();
+                menu.setSwitch(greenSwitch4.isOn(), 6);
+            }
         });
         this.greenSwitch4.setOn(menu.getSwitch(6));
         this.addRenderableWidget(this.greenSwitch4);
+    }
+
+    private Component efficiencyBonusTooltip(float bonus) {
+        int efficiencyBonus = (int) ((bonus - 1f) * 100);
+        PixelsOfMc.LOGGER.info("{}, {}", efficiencyBonus, bonus);
+        if (efficiencyBonus == 50)
+            return Component.literal("§6+" + efficiencyBonus + "%");
+        else if (efficiencyBonus == 100) {
+            return Component.literal("§2+" + efficiencyBonus + "%");
+        }
+        else if (efficiencyBonus == 200) {
+            return Component.literal("§a+" + efficiencyBonus + "%");
+        }
+        return Component.literal("§c+" + efficiencyBonus + "%");
     }
 }
