@@ -13,6 +13,7 @@ import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
+import net.turtlemaster42.pixelsofmc.gui.widget.BigRedSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.GreenSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.RedSwitchButton;
 import org.jetbrains.annotations.NotNull;
@@ -31,10 +32,11 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     private RedSwitchButton redSwitch1;
     private RedSwitchButton redSwitch2;
     private RedSwitchButton redSwitch3;
-    private GreenSwitchButton greenSwitch1;
-    private GreenSwitchButton greenSwitch2;
-    private GreenSwitchButton greenSwitch3;
-    private GreenSwitchButton greenSwitch4;
+    private BigRedSwitchButton bigRedSwitch;
+    private boolean fuelCell1 = false;
+    private boolean fuelCell2 = false;
+    private boolean fuelCell3 = false;
+    private boolean fuelCell4 = false;
 
     public NuclearReactorScreen(NuclearReactorMenu guiMenu, Inventory playerInventory, Component title) {
         super(guiMenu, playerInventory, title);
@@ -68,19 +70,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         fluidArea2.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
 
-        if (greenSwitch1.isOn() && greenSwitch2.isOn() && (mouseX >= x + 71 && mouseY >= y + 24 && mouseX < x + 76 && mouseY < y + 33)) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-        }
-        if (greenSwitch1.isOn() && greenSwitch3.isOn() && (mouseX >= x + 54 && mouseY >= y + 41 && mouseX < x + 63 && mouseY < y + 46)) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-        }
-        if (greenSwitch3.isOn() && greenSwitch4.isOn() && (mouseX >= x + 71 && mouseY >= y + 54 && mouseX < x + 76 && mouseY < y + 63)) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-        }
-        if (greenSwitch2.isOn() && greenSwitch4.isOn() && (mouseX >= x + 84 && mouseY >= y + 41 && mouseX < x + 93 && mouseY < y + 46)) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(Component.literal("§a+50%")), Optional.empty(), mouseX - x, mouseY - y);
-        }
-        if (mouseX >= x + 69 && mouseY >= y + 39 && mouseX < x + 78 && mouseY < y + 48) {
+        if (mouseX >= x + 80 && mouseY >= y + 35 && mouseX < x + 95 && mouseY < y + 50) {
             guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(efficiencyBonusTooltip(menu.getEfficiencyBonus())), Optional.empty(), mouseX - x, mouseY - y);
         }
     }
@@ -101,17 +91,21 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
         guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 209, 44 - menu.getScaledEnergy(), 10, 44);
 
-        if (greenSwitch1.isOn() && greenSwitch2.isOn()) {
-            guiGraphics.blit(TEXTURE, x + 71, y + 28, 3, 168, 6, 2);
+        if (fuelCell1 && fuelCell2) {
+            guiGraphics.blit(TEXTURE, x + 70, y + 25, 0, 168, 5, 5);
+            guiGraphics.blit(TEXTURE, x + 81, y + 36, 0, 173, 3, 3);
         }
-        if (greenSwitch1.isOn() && greenSwitch3.isOn()) {
-            guiGraphics.blit(TEXTURE, x + 58, y + 41, 0, 168, 2, 6);
+        if (fuelCell1 && fuelCell3) {
+            guiGraphics.blit(TEXTURE, x + 101, y + 25, 5, 168, 5, 5);
+            guiGraphics.blit(TEXTURE, x + 92, y + 36, 3, 173, 3, 3);
         }
-        if (greenSwitch3.isOn() && greenSwitch4.isOn()) {
-            guiGraphics.blit(TEXTURE, x + 71, y + 58, 3, 168, 6, 2);
+        if (fuelCell3 && fuelCell4) {
+            guiGraphics.blit(TEXTURE, x + 101, y + 56, 0, 168, 5, 5);
+            guiGraphics.blit(TEXTURE, x + 92, y + 47, 0, 173, 3, 3);
         }
-        if (greenSwitch2.isOn() && greenSwitch4.isOn()) {
-            guiGraphics.blit(TEXTURE, x + 88, y + 41, 0, 168, 2, 6);
+        if (fuelCell2 && fuelCell4) {
+            guiGraphics.blit(TEXTURE, x + 70, y + 56, 5, 168, 5, 5);
+            guiGraphics.blit(TEXTURE, x + 81, y + 47, 3, 173, 3, 3);
         }
 
     }
@@ -161,41 +155,16 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         this.redSwitch3.setOn(menu.getSwitch(2));
         this.addRenderableWidget(this.redSwitch3);
 
-        this.greenSwitch1 = new GreenSwitchButton(x + 38, y + 22, Component.literal("§dLock/Unlock"), (pButton) -> {
-            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty()) {
-                greenSwitch1.cycleOn();
-                menu.setSwitch(greenSwitch1.isOn(), 3);
-            }
+        this.bigRedSwitch = new BigRedSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
+            bigRedSwitch.cycleOn();
+            menu.setSwitch(bigRedSwitch.isOn(), 3);
+            fuelCell1 = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
+            fuelCell2 = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
+            fuelCell3 = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
+            fuelCell4 = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
         });
-        this.greenSwitch1.setOn(menu.getSwitch(3));
-        this.addRenderableWidget(this.greenSwitch1);
-
-        this.greenSwitch2 = new GreenSwitchButton(x + 103, y + 22, Component.literal("§dLock/Unlock"), (pButton) -> {
-            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty()) {
-                greenSwitch2.cycleOn();
-                menu.setSwitch(greenSwitch2.isOn(), 4);
-            }
-        });
-        this.greenSwitch2.setOn(menu.getSwitch(4));
-        this.addRenderableWidget(this.greenSwitch2);
-
-        this.greenSwitch3 = new GreenSwitchButton(x + 38, y + 52, Component.literal("§dLock/Unlock"), (pButton) -> {
-            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty()) {
-                greenSwitch3.cycleOn();
-                menu.setSwitch(greenSwitch3.isOn(), 5);
-            }
-        });
-        this.greenSwitch3.setOn(menu.getSwitch(5));
-        this.addRenderableWidget(this.greenSwitch3);
-
-        this.greenSwitch4 = new GreenSwitchButton(x + 103, y + 52, Component.literal("§dLock/Unlock"), (pButton) -> {
-            if (!menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty()) {
-                greenSwitch4.cycleOn();
-                menu.setSwitch(greenSwitch4.isOn(), 6);
-            }
-        });
-        this.greenSwitch4.setOn(menu.getSwitch(6));
-        this.addRenderableWidget(this.greenSwitch4);
+        this.bigRedSwitch.setOn(menu.getSwitch(3));
+        this.addRenderableWidget(this.bigRedSwitch);
     }
 
     private Component efficiencyBonusTooltip(float bonus) {

@@ -18,7 +18,7 @@ public class MultiBlockStructures {
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
-    private static final GhostBlockState FUEL_CELL_HOLDER = new GhostBlockState(POMblocks.FUEL_CELL_HOLDER.get()).addProperty(FuelCellHolderBlock.FACING, Direction.UP);
+    private static final GhostBlockState FUEL_CELL_HOLDER = new GhostBlockState(POMblocks.FUEL_CELL_HOLDER.get()); //.addProperty(FuelCellHolderBlock.FACING, Direction.UP);
 
     //fusion
     private static final GhostBlockState FUSION_CASING = new GhostBlockState(POMblocks.FUSION_CASING.get());
@@ -43,37 +43,37 @@ public class MultiBlockStructures {
     public static final GhostBlockState[][][] NUCLEAR_REACTOR = {
             {
                     {null, null, FISSION_CASING, null, null},
-                    {null, FISSION_CASING, FISSION_CASING, FISSION_CASING, null},
-                    {FISSION_CASING, FISSION_CASING, FISSION_CASING, FISSION_CASING, FISSION_CASING},
-                    {null, FISSION_CASING, FISSION_CASING, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
                     {null, null, FISSION_CASING, null, null}
             },
             {
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, FUEL_CELL_HOLDER, FISSION_CASING, null},
                     {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
-                    {GLASS, WATER, WATER, WATER, GLASS},
                     {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null}
+                    {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
+                    {null, FISSION_CASING, FISSION_CASING, FISSION_CASING, null}
             },
             {
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
-                    {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
+                    {FISSION_CASING, FUEL_CELL_HOLDER, null, FUEL_CELL_HOLDER, FISSION_CASING},
                     {GLASS, WATER, WATER, WATER, GLASS},
-                    {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null}
+                    {GLASS, WATER, WATER, WATER, GLASS},
+                    {GLASS, WATER, WATER, WATER, GLASS},
+                    {FISSION_CASING, FISSION_CASING, FISSION_CASING, FISSION_CASING, FISSION_CASING}
             },
             {
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, FUEL_CELL_HOLDER, FISSION_CASING, null},
                     {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
-                    {GLASS, WATER, WATER, WATER, GLASS},
                     {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
-                    {null, FISSION_CASING, GLASS, FISSION_CASING, null}
+                    {FISSION_CASING, WATER, WATER, WATER, FISSION_CASING},
+                    {null, FISSION_CASING, FISSION_CASING, FISSION_CASING, null}
             },
             {
                     {null, null, FISSION_CASING, null, null},
-                    {null, FISSION_CASING, FUEL_CELL_HOLDER, FISSION_CASING, null},
-                    {FISSION_CASING, FUEL_CELL_HOLDER, null, FUEL_CELL_HOLDER, FISSION_CASING},
-                    {null, FISSION_CASING, FUEL_CELL_HOLDER, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
+                    {null, FISSION_CASING, GLASS, FISSION_CASING, null},
                     {null, null, FISSION_CASING, null, null}
             },
     };

@@ -6,11 +6,18 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
@@ -25,39 +32,38 @@ import javax.annotation.Nullable;
 
 public class NuclearReactorBlock extends AbstractMultiControllerBlock {
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
+    public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
 
     public NuclearReactorBlock(Properties properties) {
         super(properties);
     }
 
-//    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-//        if (!pLevel.isClientSide) {
-//            this.checkIfExtend(pLevel, pPos, pState);
-//        }
-//
-//    }
-//
-//    private void checkIfExtend(Level pLevel, BlockPos pPos, BlockState pState) {
-//        boolean flag = this.getNeighborSignal(pLevel, pPos);
-//        if (flag && pState.getValue(ACTIVE) == 2) {
-//            PixelsOfMc.LOGGER.info("{}, Received Signal", pLevel);
-//            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-//            pLevel.setBlock(pPos.north(), pLevel.getBlockState(pPos.north()).cycle(FuelCellHolderBlock.CELL_TYPE), 2);
-//            pLevel.setBlock(pPos.east(), pLevel.getBlockState(pPos.east()).cycle(FuelCellHolderBlock.CELL_TYPE), 2);
-//            pLevel.setBlock(pPos.south(), pLevel.getBlockState(pPos.south()).cycle(FuelCellHolderBlock.CELL_TYPE), 2);
-//            pLevel.setBlock(pPos.west(), pLevel.getBlockState(pPos.west()).cycle(FuelCellHolderBlock.CELL_TYPE), 2);
-//        }
-//    }
-//
-//    private boolean getNeighborSignal(SignalGetter pSignalGetter, BlockPos pPos) {
-//        for(Direction direction : Direction.values()) {
-//            if (pSignalGetter.hasSignal(pPos.relative(direction), direction)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    @Override
+    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
+        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+    }
+
+    @Override
+    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING, ACTIVE);
+    }
+
+    @Override
+    @javax.annotation.Nullable
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(FACING, pContext.getNearestLookingDirection().getOpposite()).setValue(ACTIVE, 1);
+    }
+
+    @Override
+    public Direction getControllerDirection(BlockState state) {
+        return state.getValue(FACING);
+    }
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
@@ -100,6 +106,6 @@ public class NuclearReactorBlock extends AbstractMultiControllerBlock {
     public int getLength() {return 5;}
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
-        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, -4, -2, pos);
+        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, -2, 0, pos);
     }
 }

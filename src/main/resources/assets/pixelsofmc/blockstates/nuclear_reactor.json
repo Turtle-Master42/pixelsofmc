@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "x": -90,
+      "y": 180
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "x": -90,
+      "y": 270
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "x": -90
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "x": -90,
+      "y": 90
+    },
+    "facing=up": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "y": 180
+    },
+    "facing=down": {
+      "model": "pixelsofmc:block/nuclear_reactor",
+      "x": 180,
+      "y": 180
+    }
+  }
+}

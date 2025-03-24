@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SignalGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,6 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,24 +45,24 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
     // received redstone signal
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        if (!pLevel.isClientSide) {
-            if (pLevel.hasNeighborSignal(pPos)) {
-                pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);
-                if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
-                    fuelCellTile.cycleLocking();
-                    BlockPos mainPos = fuelCellTile.getMainPos();
-                    if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
-                        PixelsOfMc.LOGGER.info("add items");
-                        if (mainPos.relative(Direction.NORTH).equals(pPos)) { //TODO: Needs to be made pretty
-                            reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());
-                        } else if (mainPos.relative(Direction.EAST).equals(pPos)) {
-                            reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 1, fuelCellTile.isLocked());
-                        } else if (mainPos.relative(Direction.SOUTH).equals(pPos)) {
-                            reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 2, fuelCellTile.isLocked());
-                        } else if (mainPos.relative(Direction.WEST).equals(pPos)) {
-                            reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 3, fuelCellTile.isLocked());
-                        }
-                    }
+        if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {
+            return;
+        }
+        pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);
+        if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
+            fuelCellTile.cycleLocking();
+            BlockPos mainPos = fuelCellTile.getMainPos();
+            if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
+                PixelsOfMc.LOGGER.info("add items");
+                Direction mainDirection = pLevel.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
+                if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) { //TODO: Needs to be made pretty
+                    reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());
+                } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, -1, 0, 0, mainPos).equals(pPos)) {
+                    reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 1, fuelCellTile.isLocked());
+                } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, -1, 0, mainPos).equals(pPos)) {
+                    reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 2, fuelCellTile.isLocked());
+                } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 1, 0, 0, mainPos).equals(pPos)) {
+                    reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 3, fuelCellTile.isLocked());
                 }
             }
         }

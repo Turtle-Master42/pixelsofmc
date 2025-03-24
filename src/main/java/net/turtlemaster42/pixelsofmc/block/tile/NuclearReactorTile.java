@@ -46,7 +46,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private static final int energyConsumption = 100;
     private float efficiency_bonus = 1f;
 
-    public boolean[] switches = new boolean[]{false, false, false, false, false, false, false};
+    public boolean[] switches = new boolean[]{false, false, false, false};
 
 
 
@@ -229,10 +229,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         tag.putBoolean("redSwitch1", switches[0]);
         tag.putBoolean("redSwitch2", switches[1]);
         tag.putBoolean("redSwitch3", switches[2]);
-        tag.putBoolean("greenSwitch1", switches[3]);
-        tag.putBoolean("greenSwitch2", switches[4]);
-        tag.putBoolean("greenSwitch3", switches[5]);
-        tag.putBoolean("greenSwitch4", switches[6]);
+        tag.putBoolean("bigRedSwitch", switches[3]);
         super.saveAdditional(tag);
     }
 
@@ -247,10 +244,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         switches[0] = nbt.getBoolean("redSwitch1");
         switches[1] = nbt.getBoolean("redSwitch2");
         switches[2] = nbt.getBoolean("redSwitch3");
-        switches[3] = nbt.getBoolean("greenSwitch1");
-        switches[4] = nbt.getBoolean("greenSwitch2");
-        switches[5] = nbt.getBoolean("greenSwitch3");
-        switches[6] = nbt.getBoolean("greenSwitch4");
+        switches[3] = nbt.getBoolean("bigRedSwitch");
     }
 
 
@@ -284,16 +278,16 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
     private void calculateEfficiencyBonus() {
         efficiency_bonus = 1f;
-        if (this.switches[3] && this.switches[4]) {
+        if (!itemHandler.getStackInSlot(0).isEmpty() && !itemHandler.getStackInSlot(1).isEmpty()) {
             efficiency_bonus += 0.5f;
         }
-        if (this.switches[3] && this.switches[5]) {
+        if (!itemHandler.getStackInSlot(0).isEmpty() && !itemHandler.getStackInSlot(2).isEmpty()) {
             efficiency_bonus += 0.5f;
         }
-        if (this.switches[5] && this.switches[6]) {
+        if (!itemHandler.getStackInSlot(2).isEmpty() && !itemHandler.getStackInSlot(3).isEmpty()) {
             efficiency_bonus += 0.5f;
         }
-        if (this.switches[4] && this.switches[6]) {
+        if (!itemHandler.getStackInSlot(1).isEmpty() && !itemHandler.getStackInSlot(3).isEmpty()) {
             efficiency_bonus += 0.5f;
         }
     }

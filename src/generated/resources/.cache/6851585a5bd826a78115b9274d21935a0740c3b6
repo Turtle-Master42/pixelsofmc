@@ -1,4 +1,4 @@
-// 1.20.1	2025-02-14T21:58:42.040156	Item Models: pixelsofmc
+// 1.20.1	2025-03-24T19:37:46.82161	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -254,6 +254,7 @@ ca60927e121dc0e81ad1378167a51775aa05bd0a assets/pixelsofmc/models/item/niobium_i
 a1b4b3c577c616a406f858da4be8e569651258a0 assets/pixelsofmc/models/item/nitrogen_atom_64.json
 69af4f48e92b7d517bc2391d2d045946f19c88db assets/pixelsofmc/models/item/nitrogen_canister.json
 dab6ae1b1d3c7aebaa762cd9375c2c8d83658677 assets/pixelsofmc/models/item/nitrogen_gas_bucket.json
+ba6fa448ae8913a2c1553587e7231b42e3a29bd4 assets/pixelsofmc/models/item/nuclear_reactor.json
 03ac720c8c8771b9c2589b384b5a2cb1a8491edc assets/pixelsofmc/models/item/obsidian_dust.json
 015350d52b5c539453d2ec778c219e9df2e2fe13 assets/pixelsofmc/models/item/obsidian_plating.json
 8d26b21ab46d16efb81f50cf7e655b9c8af78bc0 assets/pixelsofmc/models/item/osmium_atom_512.json

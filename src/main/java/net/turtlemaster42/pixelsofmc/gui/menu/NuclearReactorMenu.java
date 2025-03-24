@@ -4,12 +4,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.SlotItemHandler;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
@@ -39,10 +39,10 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
         this.duoFluid = blockEntity.getDuoFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(handler -> {
-            this.addSlot(new ModDisplaySlot(handler, 0, 51, 21));
-            this.addSlot(new ModDisplaySlot(handler, 1, 81, 21));
-            this.addSlot(new ModDisplaySlot(handler, 2, 51, 51));
-            this.addSlot(new ModDisplaySlot(handler, 3, 81, 51));
+            this.addSlot(new ModDisplaySlot(handler, 0, 80, 15));
+            this.addSlot(new ModDisplaySlot(handler, 1, 100, 35));
+            this.addSlot(new ModDisplaySlot(handler, 2, 80, 55));
+            this.addSlot(new ModDisplaySlot(handler, 3, 60, 35));
         });
 
     }

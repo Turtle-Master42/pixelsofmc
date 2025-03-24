@@ -92,12 +92,16 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
     public int getWidth() {return 0;}
     public int getLength() {return 0;}
 
+    public Direction getControllerDirection(BlockState state) {
+        return state.getValue(FACING);
+    }
+
     public Map<Block, Integer> validateMultiBlock(Level level, BlockPos controllerPos) {
         Map<Block, Integer> blocks = new HashMap<>();
         if (level.isClientSide()) return blocks;
 
         BlockState controllerState = level.getBlockState(controllerPos);
-        Direction direction = controllerState.getValue(FACING);
+        Direction direction = getControllerDirection(controllerState);
         int correctBlocks =0;
         int totalBlocks = 0;
 
@@ -148,7 +152,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
         if (level.isClientSide()) return;
 
         BlockState controllerState = level.getBlockState(controllerPos);
-        Direction direction = controllerState.getValue(FACING);
+        Direction direction = getControllerDirection(controllerState);
         int totalBlocks = 0;
 
         for (int y = 0; y < getHeight(); y++) {
@@ -173,7 +177,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
 
     public void forcePlaceMultiBlock(Level level, BlockPos controllerPos) {
         if (level.isClientSide()) return;
-        Direction direction = level.getBlockState(controllerPos).getValue(FACING);
+        Direction direction = getControllerDirection(level.getBlockState(controllerPos));
         int totalBlocks = 0;
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
@@ -187,11 +191,11 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
         PixelsOfMc.LOGGER.info("placed {} blocks", totalBlocks);
     }
 
-    public BlockPos rotatedOffsetBlock (Direction direction, int x, int y, int z, BlockPos startPos) {
+    public BlockPos rotatedOffsetBlock(Direction direction, int x, int y, int z, BlockPos startPos) {
         return offsetMultiBlock(BigMachineBlockUtil.rotateBlockPosOnDirection(direction, x, y, z, startPos), direction);
     }
 
-    public BlockPos rotatedOffsetBlock (Direction direction, BlockPos offset, BlockPos startPos) {
+    public BlockPos rotatedOffsetBlock(Direction direction, BlockPos offset, BlockPos startPos) {
         return rotatedOffsetBlock(direction, offset.getX(), offset.getY(), offset.getZ(), startPos);
     }
 

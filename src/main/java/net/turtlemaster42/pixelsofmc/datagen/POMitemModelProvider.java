@@ -217,6 +217,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.SDS_CONTROLLER);
 
         complexBlock(POMblocks.FUEL_CELL_HOLDER);
+        complexBlock(POMblocks.NUCLEAR_REACTOR);
 
         complexBlock(POMblocks.TITANIUM_PLATING_SLAB);
         complexBlock(POMblocks.TITANIUM_PLATING_STAIRS);

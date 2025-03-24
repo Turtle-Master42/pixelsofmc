@@ -65,32 +65,14 @@ public class BigMachineBlockUtil {
         } else if (direction == Direction.WEST) {
             return new BlockPos(X + Zoffset, Y + Yoffset, Z - Xoffset);
         } else if (direction == Direction.UP) {
-            return new BlockPos(X + Xoffset, Y + Zoffset, Z - Yoffset);
-        } else if (direction == Direction.DOWN) {
             return new BlockPos(X + Xoffset, Y - Zoffset, Z + Yoffset);
+        } else if (direction == Direction.DOWN) {
+            return new BlockPos(X + Xoffset, Y + Zoffset, Z - Yoffset);
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to chance position");
-            return null;
+            return new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
         }
     }
-
-//    public static BlockState rotateBlockStateOnDirection(Direction direction, Level level, BlockPos pos, Direction defaultDirection) {
-//        BlockState state = level.getBlockState(pos);
-//
-//        if (direction == Direction.NORTH) {
-//            if (state.rotate(level, pos, defaultDirection.));
-//
-//        } else if (direction == Direction.EAST) {
-//
-//        } else if (direction == Direction.SOUTH) {
-//
-//        } else if (direction == Direction.WEST) {
-//
-//        } else {
-//            PixelsOfMc.LOGGER.error("fail while trying to chance position");
-//            return null;
-//        }
-//    }
 
 
     public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int Xoffset, int Yoffset, int Zoffset) {
