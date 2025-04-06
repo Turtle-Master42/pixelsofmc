@@ -6,9 +6,17 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire"
+              "minecraft:ender_pearl"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:obsidian_dust"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:blaze_powder"
             ]
           }
         ]
@@ -17,7 +25,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:mana_amalgamation"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,7 +38,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:mana_amalgamation"
     ]
   },
   "sends_telemetry_event": false

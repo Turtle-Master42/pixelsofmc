@@ -82,6 +82,8 @@ public class PixelsOfMc {
 		
 		POMtiles.TILES.register(bus);
 
+		POMpotions.register(bus);
+
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::registerRenderers);
 		bus.addListener(this::setup);
@@ -94,6 +96,7 @@ public class PixelsOfMc {
 		event.enqueueWork(() -> {
 			POMmessages.register();
 			setupBlockBehavior();
+			POMpotions.addMixes();
 		});
 
 		FluidInteractionRegistry.addInteraction(ForgeMod.WATER_TYPE.get(),

@@ -3,22 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:bio_compound"
+      "tag": "forge:dusts/redstone"
     },
     "B": {
       "item": "pixelsofmc:mana_sphere"
-    },
-    "C": {
-      "item": "pixelsofmc:crude_power_core"
     }
   },
   "pattern": [
+    "AAA",
     "ABA",
-    "BCB",
-    "ABA"
+    "AAA"
   ],
   "result": {
-    "item": "pixelsofmc:power_orb"
+    "item": "pixelsofmc:crimson_mana_sphere"
   },
   "show_notification": true
 }

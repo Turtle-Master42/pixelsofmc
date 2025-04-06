@@ -6,9 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire"
+              "pixelsofmc:mana_sphere"
             ]
           }
         ]
@@ -17,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:crimson_mana_sphere"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:crimson_mana_sphere"
     ]
   },
   "sends_telemetry_event": false

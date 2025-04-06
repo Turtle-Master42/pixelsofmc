@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-24T19:37:46.82161	Item Models: pixelsofmc
+// 1.20.1	2025-04-06T09:51:28.090614	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -96,6 +96,7 @@ a1730feb22f7d065b62f29fdd4ef0d6ec567a12f assets/pixelsofmc/models/item/copper_nu
 404fecf855b8437fa01693bcc3367c495f4085dd assets/pixelsofmc/models/item/copper_sheet.json
 6afc1752aecdd3ad1dd61a8c69ed14909f34cc0c assets/pixelsofmc/models/item/copper_spool.json
 cdfccd6fc950da68452dc90e793688f95c2beaca assets/pixelsofmc/models/item/copper_wire.json
+38aa27374a9e9568358ebbe8f30be1d9ea121d83 assets/pixelsofmc/models/item/crimson_mana_sphere.json
 3688c0e576af20bfb8e57d68308219ef99b47d8f assets/pixelsofmc/models/item/crude_power_core.json
 310cdfc1a0b534d44f8970fa14b560a43e7d939c assets/pixelsofmc/models/item/crying_obsidian_dust.json
 8014b7a4bccef1f4190a4f667d5999f0cc40a2b1 assets/pixelsofmc/models/item/crying_obsidian_plating.json
@@ -150,6 +151,7 @@ d05372cfda7d5559c0bc2f3737959552ff611f25 assets/pixelsofmc/models/item/fusion_li
 58523cdc03f5fb3612ca5c262f02f67661699960 assets/pixelsofmc/models/item/germanium_atom_512.json
 05c14d3bb4fc13e93d7301fae7d9b1920a340604 assets/pixelsofmc/models/item/germanium_atom_64.json
 49b807617bf6981c2306c8bae01a62eee36737a0 assets/pixelsofmc/models/item/germanium_ingot.json
+05ea3965cc7bf6f7b0a7017a84eb7a1f28055d22 assets/pixelsofmc/models/item/gleaming_mana_sphere.json
 222e0346b5fc19f817dfed2673655c79c744c68a assets/pixelsofmc/models/item/gold_atom_512.json
 00ea22753a1ad03fbb6ac99d0c7ea8be2663e4f3 assets/pixelsofmc/models/item/gold_atom_64.json
 073665a6a2397143155d9a4e116b29ddaf0eae34 assets/pixelsofmc/models/item/gold_dust.json
@@ -212,6 +214,8 @@ ee2a04dd730c510e4102708597040f3e5d572ab4 assets/pixelsofmc/models/item/lutetium_
 01b477f02aee919e6e8633b78813b422a92b1d99 assets/pixelsofmc/models/item/magnesium_atom_512.json
 c322f733ca23e39b7a7c8c658b7ad2e612d1f7ce assets/pixelsofmc/models/item/magnesium_atom_64.json
 221306cafb7c59d8bb2bde2b8f3de7eb7e9f0463 assets/pixelsofmc/models/item/magnesium_ingot.json
+ff3a9eadfcdfa146363545b78b8bb8ed9fa7a02d assets/pixelsofmc/models/item/mana_amalgamation.json
+1c50aaea04f10618972049a03ee4220984e50562 assets/pixelsofmc/models/item/mana_sphere.json
 197dc40581324dfaf5e861069320c61eb7f868cb assets/pixelsofmc/models/item/manganese_atom_512.json
 b77b5f304c29a94f9b3fbc43e2be98c20fc10d3f assets/pixelsofmc/models/item/manganese_atom_64.json
 d7b07b15cad1db92ca12d5796a677c7ffe1b396b assets/pixelsofmc/models/item/manganese_ingot.json

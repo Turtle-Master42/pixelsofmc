@@ -117,8 +117,11 @@ public class POMitems {
 	public static final RegistryObject<Item> BLACK_DIAMOND = ITEMS.register("black_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> VIOLET_DIAMOND = ITEMS.register("violet_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RED_DIAMOND = ITEMS.register("red_diamond", () -> new Item(new Item.Properties()));
-	
-	
+	public static final RegistryObject<Item> MANA_AMALGAMATION = ITEMS.register("mana_amalgamation", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MANA_SPHERE = ITEMS.register("mana_sphere", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CRIMSON_MANA_SPHERE = ITEMS.register("crimson_mana_sphere", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GLEAMING_MANA_SPHERE = ITEMS.register("gleaming_mana_sphere", () -> new Item(new Item.Properties()));
+
 
 	//circuit parts
 	public static final RegistryObject<Item> COPPER_WIRE = ITEMS.register("copper_wire", () -> new Item(new Item.Properties()));

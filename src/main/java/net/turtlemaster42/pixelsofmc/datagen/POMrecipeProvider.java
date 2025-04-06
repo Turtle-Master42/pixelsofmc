@@ -10,13 +10,18 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -88,6 +93,44 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ItemTags.SOUL_FIRE_BASE_BLOCKS)
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(Items.SOUL_SAND), toItemP(Items.BLAZE_POWDER), toItemP(POMitems.COAL_DUST.get())))
+                .save(fConsumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.MANA_AMALGAMATION.get())
+                .requires(Items.ENDER_PEARL)
+                .requires(Items.BLAZE_POWDER)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .requires(POMitems.OBSIDIAN_DUST.get())
+                .requires(Element.SILVER.dustTag())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Items.ENDER_PEARL), toItemP(POMitems.OBSIDIAN_DUST.get()), toItemP(Items.BLAZE_POWDER)))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.MANA_SPHERE.get())
+                .define('A', POMitems.MANA_AMALGAMATION.get())
+                .define('B', Tags.Items.GEMS_DIAMOND)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.MANA_AMALGAMATION.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.GLEAMING_MANA_SPHERE.get())
+                .define('A', Tags.Items.DUSTS_GLOWSTONE)
+                .define('B', POMitems.MANA_SPHERE.get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.MANA_SPHERE.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CRIMSON_MANA_SPHERE.get())
+                .define('A', Tags.Items.DUSTS_REDSTONE)
+                .define('B', POMitems.MANA_SPHERE.get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.MANA_SPHERE.get())))
                 .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DENSE_CARBON_CUBE.get())
@@ -1259,7 +1302,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.STRENGTHENED_CASING.get(), fConsumer);
 //        SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRENGTHENED_CASING.get(), POMblocks.REINFORCED_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), fConsumer);
-        SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, POMitems.CRUDE_POWER_CORE.get(), POMitems.POWER_ORB.get(), fConsumer, "_crude");
+        SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), POMitems.MANA_SPHERE.get(), POMitems.CRUDE_POWER_CORE.get(), POMitems.POWER_ORB.get(), fConsumer, "_crude");
         SimpleFullCrossRecipe(toI(Element.TITANIUM.itemTag()), toI(Items.REDSTONE), toI(Items.REDSTONE_BLOCK), POMitems.REDSTONE_CORE.get(), fConsumer, "");
         SimpleFullCrossRecipe(POMitems.TITANIUM_GOLD_PLATING.get(), Items.AMETHYST_BLOCK, POMitems.REDSTONE_CORE.get(), POMitems.CRUDE_POWER_CORE.get(), fConsumer);
         SimpleFullCrossRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMitems.TITANIUM_PLATING.get(), POMitems.TITANIUM_CIRCLE_SAW.get(), fConsumer);

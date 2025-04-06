@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:mana_amalgamation"
+    },
+    "B": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "item": "pixelsofmc:mana_sphere"
+  },
+  "show_notification": true
+}
