@@ -51,6 +51,7 @@ public class InfinitePowerCellItem extends Item {
         return Math.round(13.0F / 100f * new InfiniteNumber().getCrudePercentage(energy.getInfiniteCapacity(), energy.getInfiniteEnergy()));
     }
 
+    //TODO: remove ones completed
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         if (!level.isClientSide()) {

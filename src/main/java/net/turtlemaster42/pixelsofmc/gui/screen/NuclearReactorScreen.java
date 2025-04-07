@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.gui.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
@@ -8,14 +9,15 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.BigRedSwitchButton;
-import net.turtlemaster42.pixelsofmc.gui.widget.GreenSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.RedSwitchButton;
+import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -33,10 +35,10 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     private RedSwitchButton redSwitch2;
     private RedSwitchButton redSwitch3;
     private BigRedSwitchButton bigRedSwitch;
-    private boolean fuelCell1 = false;
-    private boolean fuelCell2 = false;
-    private boolean fuelCell3 = false;
-    private boolean fuelCell4 = false;
+    private boolean fuelCellUp = false;
+    private boolean fuelCellDown = false;
+    private boolean fuelCellRight = false;
+    private boolean fuelCellLeft = false;
 
     public NuclearReactorScreen(NuclearReactorMenu guiMenu, Inventory playerInventory, Component title) {
         super(guiMenu, playerInventory, title);
@@ -71,7 +73,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
 
         if (mouseX >= x + 80 && mouseY >= y + 35 && mouseX < x + 95 && mouseY < y + 50) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(efficiencyBonusTooltip(menu.getEfficiencyBonus())), Optional.empty(), mouseX - x, mouseY - y);
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(efficiencyBonusTooltip(menu.getEfficiencyBonus()), energyPerTickTooltip(menu.blockEntity.getItemStackHandler(), menu.getEfficiencyBonus())), Optional.empty(), mouseX - x, mouseY - y);
         }
     }
 
@@ -91,19 +93,19 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
         guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 209, 44 - menu.getScaledEnergy(), 10, 44);
 
-        if (fuelCell1 && fuelCell2) {
+        if (fuelCellUp && fuelCellLeft) {
             guiGraphics.blit(TEXTURE, x + 70, y + 25, 0, 168, 5, 5);
             guiGraphics.blit(TEXTURE, x + 81, y + 36, 0, 173, 3, 3);
         }
-        if (fuelCell1 && fuelCell3) {
+        if (fuelCellRight && fuelCellUp) {
             guiGraphics.blit(TEXTURE, x + 101, y + 25, 5, 168, 5, 5);
             guiGraphics.blit(TEXTURE, x + 92, y + 36, 3, 173, 3, 3);
         }
-        if (fuelCell3 && fuelCell4) {
+        if (fuelCellDown && fuelCellRight) {
             guiGraphics.blit(TEXTURE, x + 101, y + 56, 0, 168, 5, 5);
             guiGraphics.blit(TEXTURE, x + 92, y + 47, 0, 173, 3, 3);
         }
-        if (fuelCell2 && fuelCell4) {
+        if (fuelCellDown && fuelCellLeft) {
             guiGraphics.blit(TEXTURE, x + 70, y + 56, 5, 168, 5, 5);
             guiGraphics.blit(TEXTURE, x + 81, y + 47, 3, 173, 3, 3);
         }
@@ -158,10 +160,10 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         this.bigRedSwitch = new BigRedSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
             bigRedSwitch.cycleOn();
             menu.setSwitch(bigRedSwitch.isOn(), 3);
-            fuelCell1 = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
-            fuelCell2 = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
-            fuelCell3 = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
-            fuelCell4 = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
+            fuelCellUp = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
+            fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
+            fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
+            fuelCellLeft = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
         });
         this.bigRedSwitch.setOn(menu.getSwitch(3));
         this.addRenderableWidget(this.bigRedSwitch);
@@ -169,7 +171,6 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
     private Component efficiencyBonusTooltip(float bonus) {
         int efficiencyBonus = (int) ((bonus - 1f) * 100);
-        PixelsOfMc.LOGGER.info("{}, {}", efficiencyBonus, bonus);
         if (efficiencyBonus == 50)
             return Component.literal("§6+" + efficiencyBonus + "%");
         else if (efficiencyBonus == 100) {
@@ -178,6 +179,32 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         else if (efficiencyBonus == 200) {
             return Component.literal("§a+" + efficiencyBonus + "%");
         }
-        return Component.literal("§c+" + efficiencyBonus + "%");
+        return Component.literal("§c§l+" + efficiencyBonus + "%");
+    }
+
+    private Component energyPerTickTooltip(ItemStackHandler stackHandler, float bonus) {
+        long heating = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (stackHandler.getStackInSlot(i).getItem() instanceof FuelCellItem fuelCell) {
+                heating += fuelCell.getEnergyPerTick(stackHandler.getStackInSlot(i));
+            }
+        }
+
+        //TODO: make this nicer
+        int total = 0;
+        if (fuelCellUp)
+            total += 1;
+        if (fuelCellDown)
+            total += 1;
+        if (fuelCellRight)
+            total += 1;
+        if (fuelCellLeft)
+            total += 1;
+
+        if (total > 0)
+            heating = heating + Math.round(((double) heating / ((double) total)) * (bonus - 1));
+
+        return Component.literal(heating + " FE/t").withStyle(ChatFormatting.GOLD);
     }
 }

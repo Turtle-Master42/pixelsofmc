@@ -51,6 +51,7 @@ public class PowerCellItem extends Item  {
         return energy.getEnergyStored() < energy.getMaxEnergyStored() && energy.getEnergyStored() > 0;
     }
 
+    //TODO: remove ones completed
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         if (!level.isClientSide()) {

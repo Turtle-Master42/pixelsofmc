@@ -39,10 +39,10 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
         this.duoFluid = blockEntity.getDuoFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(handler -> {
-            this.addSlot(new ModDisplaySlot(handler, 0, 80, 15));
-            this.addSlot(new ModDisplaySlot(handler, 1, 100, 35));
-            this.addSlot(new ModDisplaySlot(handler, 2, 80, 55));
-            this.addSlot(new ModDisplaySlot(handler, 3, 60, 35));
+            this.addSlot(new ModDisplaySlot(handler, 0, 80, 15)); // up
+            this.addSlot(new ModDisplaySlot(handler, 1, 100, 35)); // right
+            this.addSlot(new ModDisplaySlot(handler, 2, 80, 55)); // down
+            this.addSlot(new ModDisplaySlot(handler, 3, 60, 35)); // left
         });
 
     }

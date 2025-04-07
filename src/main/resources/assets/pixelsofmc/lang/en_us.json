@@ -849,6 +849,7 @@
   "tooltip.pixelsofmc.power_cell": "§b10000 §7FE Stored",
   "tooltip.pixelsofmc.power_cell.overcharged": "§d90000 §7FE Stored",
   "tooltip.pixelsofmc.power_cell.supercharged": "§c810000 §7FE Stored",
+  "tooltip.pixelsofmc.fuel_cell": "%s Depleted",
 
   "tooltip.pixelsofmc.jei.pixel": "Structure Formula",
 

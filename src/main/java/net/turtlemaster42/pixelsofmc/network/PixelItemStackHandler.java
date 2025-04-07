@@ -9,6 +9,8 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -28,8 +30,6 @@ public class PixelItemStackHandler extends ItemStackHandler implements ICapabili
     public boolean isValidOutput(int slot) {
         return true;
     }
-
-
 
     //Credits ImmersiveEngineering
     private final LazyOptional<IItemHandler> thisOpt = constantOptional(this);

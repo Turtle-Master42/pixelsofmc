@@ -19,6 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,7 +45,7 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
 
     // received redstone signal
     @Override
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+    public void neighborChanged(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
         if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {
             return;
         }
@@ -55,7 +56,7 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
             if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
                 PixelsOfMc.LOGGER.info("add items");
                 Direction mainDirection = pLevel.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
-                if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) { //TODO: Needs to be made pretty
+                if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) { //TODO: Needs to be made more pretty
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());
                 } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, -1, 0, 0, mainPos).equals(pPos)) {
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 1, fuelCellTile.isLocked());
@@ -71,13 +72,13 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
 
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (pHand.equals(InteractionHand.OFF_HAND))
             return InteractionResult.PASS;
 
         ItemStack handItem = pPlayer.getItemInHand(pHand);
         if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
-            ItemStackHandler cellItemHandler = fuelCellTile.getItemStackHandler();
+            PixelItemStackHandler cellItemHandler = (PixelItemStackHandler) fuelCellTile.getItemStackHandler();
             if (fuelCellTile.isLocked() || !fuelCellTile.isMainPosValid())
                 return InteractionResult.PASS;
 
@@ -92,14 +93,15 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
             } else {
                 if (cellItemHandler.getStackInSlot(0).isEmpty()) {
                     if (!pLevel.isClientSide()) {
-                        cellItemHandler.insertItem(0, new ItemStack(handItem.getItem(), 1, handItem.getTag()), false);
+                        ItemStack newStack = handItem.copy();
+                        newStack.setCount(1);
+                        cellItemHandler.insertItem(0, newStack, false);
                         pPlayer.setItemInHand(pHand, new ItemStack(handItem.getItem(), handItem.getCount() - 1, handItem.getTag()));
                         return InteractionResult.SUCCESS;
                     }
                 }
             }
         }
-
         return InteractionResult.PASS;
     }
 
