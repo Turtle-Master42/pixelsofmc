@@ -187,7 +187,7 @@ public enum Element {
         return state;
     }
     public boolean isMetal() {
-        return getType()==Type.INGOT;
+        return getType() == Type.INGOT || getType() == Type.VANILLA;
     }
     public boolean isVanilla() {
         return getType()==Type.VANILLA;
@@ -207,13 +207,25 @@ public enum Element {
     public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this).get();}
     public ItemLike atom512() {return POMitems.Metals.ATOMX512.get(this).get();}
     public Block block() {return POMblocks.Metals.BLOCKS.get(this).get();}
+
     public ItemLike blockItem() {
-        if (this.shouldAddBlock())
+        if (this.equals(Element.IRON)) {
+            return Items.IRON_BLOCK;
+        } else if (this.equals(Element.GOLD)) {
+            return Items.GOLD_BLOCK;
+        } else if (this.equals(Element.COPPER)) {
+            return Items.COPPER_BLOCK;
+        } else if (this.shouldAddBlock())
             return POMblocks.Metals.BLOCKS.get(this).asItem();
         return Items.AIR;
     }
+
     public ItemLike nugget() {
-        if (this.shouldAddNugget())
+        if (this.equals(Element.IRON)) {
+            return Items.IRON_INGOT;
+        } else if (this.equals(Element.GOLD)) {
+            return Items.GOLD_INGOT;
+        } else if (this.shouldAddNugget())
             return POMitems.Metals.NUGGETS.get(this).get();
         return Items.AIR;
     }

@@ -1,15 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:copper_wire"
-            ]
+            "tag": "forge:dusts/aluminium"
           }
         ]
       },
@@ -17,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:smelting/aluminium_ingot_from_dust_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:smelting/aluminium_ingot_from_dust_from_blasting"
     ]
   },
   "sends_telemetry_event": false

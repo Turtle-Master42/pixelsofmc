@@ -31,7 +31,7 @@ public class AbstractFusionPort extends AbstractFusionCasing {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(MODE, PUSHING, PUSH_DIRECTION);
-        super.createBlockStateDefinition(pBuilder);
+//        super.createBlockStateDefinition(pBuilder);
     }
 
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {

@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:amethyst_shard"
+        "recipe": "pixelsofmc:barrier19"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:amethyst_shard"
+      "pixelsofmc:barrier19"
     ]
   },
   "sends_telemetry_event": true

@@ -6,8 +6,8 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:micro_chip",
               "pixelsofmc:bio_plastic",
+              "pixelsofmc:micro_chip",
               "pixelsofmc:copper_wire"
             ]
           }

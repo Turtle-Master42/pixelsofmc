@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 1811,
+  "heat": 1350,
   "input": {
     "count": 1,
     "ingredient": {
-      "tag": "forge:dusts/iron"
+      "tag": "forge:dusts/gold"
     }
   },
-  "max_heat": 3134,
+  "max_heat": 3250,
   "mold": {
     "count": 1,
     "ingredient": {
@@ -17,7 +17,7 @@
   "output": {
     "count": 1,
     "ingredient": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/gold"
     }
   }
 }

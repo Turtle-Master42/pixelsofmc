@@ -4,14 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:dusts/iron"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:iron_block"
+        "recipe": "pixelsofmc:smelting/iron_ingot_from_dust_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,8 +26,8 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:iron_block"
+      "pixelsofmc:smelting/iron_ingot_from_dust_from_blasting"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }

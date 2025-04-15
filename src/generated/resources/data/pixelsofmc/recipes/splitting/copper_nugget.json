@@ -25,7 +25,13 @@
   },
   "outputs": [
     {
-      "count": 9,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
       "ingredient": {
         "item": "pixelsofmc:pixel"
       }

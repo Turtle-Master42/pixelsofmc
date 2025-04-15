@@ -4,14 +4,16 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "tag": "forge:dusts/gold"
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:void_eye"
+        "recipe": "pixelsofmc:smelting/gold_ingot_from_dust"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,8 +26,8 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:void_eye"
+      "pixelsofmc:smelting/gold_ingot_from_dust"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }

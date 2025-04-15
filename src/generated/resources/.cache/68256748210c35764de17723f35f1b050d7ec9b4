@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-28T14:21:20.237509	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-04-15T12:15:30.715295	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
@@ -37,7 +37,7 @@ c6ba4b98cb3d79bd08a4fa096f69cac4331aabc9 data/forge/tags/items/dusts/uranium.jso
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/items/glass.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium_canister.json
 48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen_canister.json
-b7a954d472a7a0015875d6d54a7c7a80692f0208 data/forge/tags/items/ingots.json
+8b3486a6e5c4760a2bbc2af564cc1fcf2e43fd9d data/forge/tags/items/ingots.json
 28cee7b5e0b7f26632ddef7b45ef49575d291974 data/forge/tags/items/ingots/actinium.json
 1199b6b43f9d3840ab981c3dfde11e0636dcf53c data/forge/tags/items/ingots/aluminium.json
 0d93d8aa18d6fc2ef1842675bfc85527c66cb67f data/forge/tags/items/ingots/americium.json
@@ -54,6 +54,7 @@ fa6cd1d208491d6f41d45ed2ba0aed501732bf8b data/forge/tags/items/ingots/cadmium.js
 62f72f5fd65f86201385c0feda22662edef6a1be data/forge/tags/items/ingots/cerium.json
 cd1079f5bbc8f30a0a5fba290549cdd5c1a0f13d data/forge/tags/items/ingots/chromium.json
 16343b2c2d5c47715298ec9c5d31758d08d0790a data/forge/tags/items/ingots/cobalt.json
+6222fd0d7d2ce08ee1f70be68a61f4e167dda650 data/forge/tags/items/ingots/copper.json
 f943bdd017c4c8ff0c2f962042657c2f2c2c1210 data/forge/tags/items/ingots/curium.json
 11cc4cb934a6c9c9d6d60e98b471bb90f7377cce data/forge/tags/items/ingots/dysprosium.json
 cd334c914a16ff7fe6ee3399a5f92fc689aec22d data/forge/tags/items/ingots/einsteinium.json
@@ -63,10 +64,12 @@ cda8e0314c671df81f176947bf4a59f23296e2c6 data/forge/tags/items/ingots/europium.j
 98d3a38ff06aee3b355ee2ac5523f43b55c27768 data/forge/tags/items/ingots/gadolinium.json
 c343e0f0c3ee0856d1f39297c62c127d6da4866a data/forge/tags/items/ingots/gallium.json
 c17ec89c8a50e74c2a10cf3f27a711bfe34f1790 data/forge/tags/items/ingots/germanium.json
+f2aa87f54e7951ea0cf81ac252c2abe279b0c936 data/forge/tags/items/ingots/gold.json
 fccb6b54481eadf310e029d55dc820ea05dc4378 data/forge/tags/items/ingots/hafnium.json
 d1d90d37ca7956dcc1ee9598ab9e4c5f564a2056 data/forge/tags/items/ingots/holmium.json
 3b2d61e760326fad554b947e86dcf826e358cb14 data/forge/tags/items/ingots/indium.json
 34df4442c0c9228e5052606e73a3b64da6fbb9a0 data/forge/tags/items/ingots/iridium.json
+736f4ef35696340b932cdb679c5a32e7b28db783 data/forge/tags/items/ingots/iron.json
 24c8b1b05dc8546062a21e57592af2180d5ceeca data/forge/tags/items/ingots/lanthanum.json
 2e890150cba7b1e2539cabf39952d86a385e9734 data/forge/tags/items/ingots/lead.json
 32e73de234b9ad3ad47c9a44a9c530674dfb4786 data/forge/tags/items/ingots/lithium.json

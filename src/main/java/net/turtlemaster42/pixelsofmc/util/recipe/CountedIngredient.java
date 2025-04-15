@@ -3,14 +3,22 @@ package net.turtlemaster42.pixelsofmc.util.recipe;
 //credits EnderIO
 
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.TagParser;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.tags.TagKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.*;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -79,6 +87,15 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
 
     public Item asItem() {
         return ingredient.getItems()[0].getItem();
+    }
+
+    public TagKey<Item> asTag() {
+        JsonObject pJson = this.toJson().get("ingredient").getAsJsonObject();
+        if (pJson.has("tag")) {
+            ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(pJson, "tag"));
+            return TagKey.create(Registries.ITEM, resourcelocation);
+        }
+        return null;
     }
 
     public ItemStack asItemStack() {
