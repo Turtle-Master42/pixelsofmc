@@ -147,6 +147,7 @@ public class POMitems {
 	public static final RegistryObject<Item> POWER_ORB = ITEMS.register("power_orb", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> OVERCHARGED_POWER_ORB = ITEMS.register("overcharged_power_orb", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_ORB = ITEMS.register("supercharged_power_orb", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> YELLOWCAKE_URANIUM = ITEMS.register("yellowcake_uranium", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> URANIUM_FUEL_PELLET = ITEMS.register("uranium_fuel_pellet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> URANIUM_FUEL_CORE = ITEMS.register("uranium_fuel_core", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PLUTONIUM_FUEL_PELLET = ITEMS.register("plutonium_fuel_pellet", () -> new Item(new Item.Properties()));
@@ -171,10 +172,10 @@ public class POMitems {
 	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64_000_000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512_000_000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 100, new Color(0, 160, 0).getRGB())); //total 8_000_000 FE
-	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 400, new Color(0, 255, 0).getRGB())); //total 32_000_000 FE
-	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 1600, new Color(0, 200, 175).getRGB())); //total 128_000_000 FE
-	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 6400, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
+	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 500, new Color(0, 160, 0).getRGB())); //total 8_000_000 FE
+	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 2000, new Color(0, 255, 0).getRGB())); //total 32_000_000 FE
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 8000, new Color(0, 200, 175).getRGB())); //total 128_000_000 FE
+	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 32000, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FISSION_PLATING = ITEMS.register("fission_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_LINING = ITEMS.register("fusion_lining", () -> new Item(new Item.Properties()));
@@ -196,7 +197,6 @@ public class POMitems {
 	public static final RegistryObject<Item> SUPERCONDUCTIVE_DUST = DUSTS.register("superconductive_dust", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RED_SILVER_DUST = DUSTS.register("red_silver_dust", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ROYAL_TUNGSTEN_DUST = DUSTS.register("royal_tungsten_dust", () -> new Item(new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> YELLOWCAKE_URANIUM = DUSTS.register("yellowcake_uranium", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REFINED_REDSTONE = DUSTS.register("refined_redstone", () -> new Item(new Item.Properties()));
 
 	//fluids

@@ -66,8 +66,8 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
         return id;
     }
 
-    public Ingredient getInput() {
-        return recipeItem.ingredient();
+    public CountedIngredient getInput() {
+        return recipeItem;
     }
     public int getInputCount() {
         return recipeItem.count();

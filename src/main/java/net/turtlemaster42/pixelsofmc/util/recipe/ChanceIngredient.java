@@ -109,7 +109,7 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
     }
 
     public ItemStack asItemStack() {
-        return ingredient.getItems()[0];
+        return new ItemStack(ingredient.getItems()[0].getItem(), count);
     }
 
     public boolean isEmpty() {

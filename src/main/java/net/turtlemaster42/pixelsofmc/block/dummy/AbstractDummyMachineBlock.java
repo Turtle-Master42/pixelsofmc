@@ -185,7 +185,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     private VoxelShape proxyShape(BlockGetter world, BlockPos pos, @Nullable CollisionContext context, ShapeProxy proxy) {
         BlockPos mainPos = getMainBlockPos(world, pos);
         if (mainPos == null) {
-            return Shapes.block();
+            return Shapes.box(0, 0, 0, 0.01, 0.01, 0.01);
         }
         BlockState mainState;
         try {
@@ -196,7 +196,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
             } else {
                 PixelsOfMc.LOGGER.error("Error getting bounding block shape, for position {}, with main position {}. World of type {}", pos, mainPos,
                         world.getClass().getName());
-                return Shapes.block();
+                return Shapes.box(0, 0, 0, 0.01, 0.01, 0.01);
             }
         }
         VoxelShape shape = proxy.getShape(mainState, world, mainPos, context);

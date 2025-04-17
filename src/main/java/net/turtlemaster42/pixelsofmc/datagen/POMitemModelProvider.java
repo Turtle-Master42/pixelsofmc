@@ -83,6 +83,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.FUSION_LINING);
         simpleItem(POMitems.FUSION_PLATING);
         simpleItem(POMitems.EMPTY_FUEL_CELL);
+        simpleItem(POMitems.YELLOWCAKE_URANIUM);
         simpleItem(POMitems.URANIUM_FUEL_CELL);
         simpleItem(POMitems.ENRICHED_URANIUM_FUEL_CELL);
         simpleItem(POMitems.PLUTONIUM_FUEL_CELL);
@@ -192,7 +193,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.SUPERCONDUCTIVE_DUST);
         dustItem(POMitems.RED_SILVER_DUST);
         dustItem(POMitems.ROYAL_TUNGSTEN_DUST);
-        dustItem(POMitems.YELLOWCAKE_URANIUM);
         dustItem(POMitems.REFINED_REDSTONE);
 
         simpleItem(POMitems.SULFUR);

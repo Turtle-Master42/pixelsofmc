@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/dusts/yellowcake_uranium"
+    "layer0": "pixelsofmc:item/yellowcake_uranium"
   }
 }

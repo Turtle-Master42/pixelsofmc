@@ -30,3 +30,29 @@ public class Constants {
 }
 
 //fusion power == kelvin in plasma
+
+
+
+// mekanism:
+// 1000 mb steam -> 2000 FE
+// 2 mb fuel per sec
+// 8,333 min per 1000 mb fuel
+// 1 mb fuel -> 20.000 mb steam
+
+// 1 mb fuel -> 40.000 FE
+// 1 yellowcake -> 20.000.000 FE
+
+// 10 fuel mb -> 1 plutonium mb
+// 20 yellowcake -> 1 plutonium pellet
+// 1000 plutonium mb -> 8000 fuel mb -> 320.000.000 FE
+
+
+// 2.66 meka yellowcake -> 40.000.000 FE    -> 1 uranium cell
+// 8    meka yellowcake -> 160.000.000 FE   -> 1 enriched uranium cell
+// 24   meka yellowcake -> 640.000.000 FE   -> 1 plutonium cell
+// 72   meka yellowcake -> 2.560.000.000 FE -> 1 enriched plutonium cell
+
+// 1 uranium cell = 500 FE/t
+// 1 enriched uranium cell = 2000 FE/t
+// 1 plutonium cell = 8.000 FE/t
+// 1 enriched plutonium cell = 32.000 FE/t

@@ -83,7 +83,7 @@ public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<Chemical
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalSeparatorRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addSlot(RecipeIngredientRole.INPUT, 8, 43).addIngredients(recipe.getInput());
+        builder.addSlot(RecipeIngredientRole.INPUT, 8, 43).addIngredients(Ingredient.of(recipe.getInput().asItemStack()));
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {

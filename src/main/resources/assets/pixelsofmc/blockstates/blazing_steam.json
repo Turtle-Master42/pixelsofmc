@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "pixelsofmc:block/blazing_steam.json"
+      "model": "pixelsofmc:block/blazing_steam"
     }
   }
 }

@@ -99,7 +99,7 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
     }
 
     public ItemStack asItemStack() {
-        return ingredient.getItems()[0];
+        return new ItemStack(ingredient.getItems()[0].getItem(), count);
     }
 
     public boolean isEmpty() {
