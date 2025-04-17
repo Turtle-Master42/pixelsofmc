@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +32,6 @@ public class AbstractFusionPort extends AbstractFusionCasing {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(MODE, PUSHING, PUSH_DIRECTION);
-//        super.createBlockStateDefinition(pBuilder);
     }
 
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
@@ -62,4 +62,8 @@ public class AbstractFusionPort extends AbstractFusionCasing {
         }
         return InteractionResult.PASS;
     }
+
+    // required to make sure the fusion casing does not search for PLATING property
+    @Override
+    public void onDestroy(@NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pState) {}
 }

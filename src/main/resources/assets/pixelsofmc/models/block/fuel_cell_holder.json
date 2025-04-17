@@ -3,6 +3,6 @@
   "textures": {
     "top": "pixelsofmc:block/fuel_cell_holder_top",
     "side": "pixelsofmc:block/fuel_cell_holder_side",
-    "bottom": "pixelsofmc:block/fission_casing"
+    "bottom": "pixelsofmc:block/fission_port_back"
   }
 }

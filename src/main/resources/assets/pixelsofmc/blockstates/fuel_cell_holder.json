@@ -6,7 +6,7 @@
       "y": 180
     },
     "facing=north,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium",
+      "model": "pixelsofmc:block/fuel_cell_holder_active",
       "x": 90,
       "y": 180
     },
@@ -16,7 +16,7 @@
       "y": 270
     },
     "facing=east,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium",
+      "model": "pixelsofmc:block/fuel_cell_holder_active",
       "x": 90,
       "y": 270
     },
@@ -25,7 +25,7 @@
       "x": 90
     },
     "facing=south,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium",
+      "model": "pixelsofmc:block/fuel_cell_holder_active",
       "x": 90
     },
     "facing=west,cell_type=0": {
@@ -34,7 +34,7 @@
       "y": 90
     },
     "facing=west,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium",
+      "model": "pixelsofmc:block/fuel_cell_holder_active",
       "x": 90,
       "y": 90
     },
@@ -42,14 +42,14 @@
       "model": "pixelsofmc:block/fuel_cell_holder"
     },
     "facing=up,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium"
+      "model": "pixelsofmc:block/fuel_cell_holder_active"
     },
     "facing=down,cell_type=0": {
       "model": "pixelsofmc:block/fuel_cell_holder",
       "x": 180
     },
     "facing=down,cell_type=1": {
-      "model": "pixelsofmc:block/fuel_cell_holder_uranium",
+      "model": "pixelsofmc:block/fuel_cell_holder_active",
       "x": 180
     }
   }

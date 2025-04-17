@@ -8,6 +8,7 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -65,14 +66,6 @@ public class POMblockTagProvider extends BlockTagsProvider {
                     POMblocks.LESSER_ACANTHITE_ORE.get(),
                     POMblocks.ACANTHITE_SPIKE.get(),
 
-                    POMblocks.COPPER_SPOOL.get(),
-                    POMblocks.SILVER_SPOOL.get(),
-                    POMblocks.TUNGSTEN_SPOOL.get(),
-                    POMblocks.REDSTONE_LAYERED_COPPER_SPOOL.get(),
-                    POMblocks.RED_SILVER_SPOOL.get(),
-                    POMblocks.ROYAL_TUNGSTEN_SPOOL.get(),
-                    POMblocks.SUPERCONDUCTIVE_SPOOL.get(),
-
                     POMblocks.GRINDER.get(),
                     POMblocks.BALL_MILL.get(),
                     POMblocks.HOT_ISOSTATIC_PRESS.get(),
@@ -84,6 +77,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                     POMblocks.MDS_CONTROLLER.get(),
                     POMblocks.MNS_CONTROLLER.get(),
                     POMblocks.BH_CONTROLLER.get(),
+                    POMblocks.NUCLEAR_REACTOR.get(),
 
                     POMblocks.REINFORCED_GLASS.get(),
                     POMblocks.MULTIBLOCK_CASING.get(),
@@ -114,7 +108,16 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
                 POMblocks.MACHINE_BLOCK.get(),
                 POMblocks.MACHINE_ENERGY_BLOCK.get(),
-                POMblocks.MACHINE_ITEM_BLOCK.get()
+                POMblocks.MACHINE_ITEM_BLOCK.get(),
+                POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
+                POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(),
+                POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(),
+                POMblocks.TUNGSTEN_PLATING_BLOCK.get(),
+                POMblocks.TUNGSTEN_PLATING_STAIRS.get(),
+                POMblocks.TUNGSTEN_PLATING_SLAB.get(),
+                POMblocks.NETHERITE_PLATING_BLOCK.get(),
+                POMblocks.NETHERITE_PLATING_STAIRS.get(),
+                POMblocks.NETHERITE_PLATING_SLAB.get()
         );
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
@@ -127,25 +130,22 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.TITANIUM_PLATING_BLOCK.get(),
                 POMblocks.TITANIUM_PLATING_STAIRS.get(),
                 POMblocks.TITANIUM_PLATING_SLAB.get(),
-                POMblocks.NETHERITE_PLATING_BLOCK.get(),
-                POMblocks.NETHERITE_PLATING_STAIRS.get(),
-                POMblocks.NETHERITE_PLATING_SLAB.get(),
                 POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get(),
                 POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get(),
                 POMblocks.TITANIUM_GOLD_PLATING_SLAB.get(),
-                POMblocks.LEAD_PLATING_BLOCK.get(),
-                POMblocks.LEAD_PLATING_STAIRS.get(),
-                POMblocks.LEAD_PLATING_SLAB.get(),
-                POMblocks.TUNGSTEN_PLATING_BLOCK.get(),
-                POMblocks.TUNGSTEN_PLATING_STAIRS.get(),
-                POMblocks.TUNGSTEN_PLATING_SLAB.get(),
                 POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK.get(),
                 POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(),
                 POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(),
-                POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
-                POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(),
-                POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get()
+                POMblocks.LEAD_PLATING_BLOCK.get(),
+                POMblocks.LEAD_PLATING_STAIRS.get(),
+                POMblocks.LEAD_PLATING_SLAB.get()
         );
 
+        for(Element element : Element.values()) {
+            if (element.shouldAddBlock()) {
+                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(element.block());
+                this.tag(BlockTags.NEEDS_IRON_TOOL).add(element.block());
+            }
+        }
     }
 }

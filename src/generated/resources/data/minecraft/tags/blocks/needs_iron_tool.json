@@ -3,6 +3,18 @@
     "pixelsofmc:raw_titanium_block",
     "pixelsofmc:machine_block",
     "pixelsofmc:machine_energy_block",
-    "pixelsofmc:machine_item_block"
+    "pixelsofmc:machine_item_block",
+    "pixelsofmc:titanium_diboride_plating_block",
+    "pixelsofmc:titanium_diboride_plating_stairs",
+    "pixelsofmc:titanium_diboride_plating_slab",
+    "pixelsofmc:tungsten_plating_block",
+    "pixelsofmc:tungsten_plating_stairs",
+    "pixelsofmc:tungsten_plating_slab",
+    "pixelsofmc:netherite_plating_block",
+    "pixelsofmc:netherite_plating_stairs",
+    "pixelsofmc:netherite_plating_slab",
+    "pixelsofmc:titanium_block",
+    "pixelsofmc:silver_block",
+    "pixelsofmc:tungsten_block"
   ]
 }

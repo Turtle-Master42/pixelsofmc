@@ -37,13 +37,6 @@
     "pixelsofmc:acanthite_ore",
     "pixelsofmc:lesser_acanthite_ore",
     "pixelsofmc:acanthite_spike",
-    "pixelsofmc:copper_spool",
-    "pixelsofmc:silver_spool",
-    "pixelsofmc:tungsten_spool",
-    "pixelsofmc:redstone_layered_copper_spool",
-    "pixelsofmc:red_silver_spool",
-    "pixelsofmc:royal_tungsten_spool",
-    "pixelsofmc:superconductive_spool",
     "pixelsofmc:grinder",
     "pixelsofmc:ball_mill",
     "pixelsofmc:hot_isostatic_press",
@@ -55,6 +48,7 @@
     "pixelsofmc:mds_controller",
     "pixelsofmc:mns_controller",
     "pixelsofmc:bh_controller",
+    "pixelsofmc:nuclear_reactor",
     "pixelsofmc:reinforced_glass",
     "pixelsofmc:multiblock_casing",
     "pixelsofmc:armored_multiblock_casing",
@@ -74,6 +68,9 @@
     "pixelsofmc:violet_diamond_block",
     "pixelsofmc:machine_block",
     "pixelsofmc:machine_energy_block",
-    "pixelsofmc:machine_item_block"
+    "pixelsofmc:machine_item_block",
+    "pixelsofmc:titanium_block",
+    "pixelsofmc:silver_block",
+    "pixelsofmc:tungsten_block"
   ]
 }

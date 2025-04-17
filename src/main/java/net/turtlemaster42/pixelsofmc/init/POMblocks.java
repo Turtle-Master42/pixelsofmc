@@ -130,11 +130,11 @@ public class POMblocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.CLAY).strength(4f, 10f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> NETHERITE_PLATING_BLOCK = registerBlock("netherite_plating_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(25.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(18f, 1200.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> NETHERITE_PLATING_STAIRS = registerBlock("netherite_plating_stairs",
-            () -> new StairBlock(() -> NETHERITE_PLATING_BLOCK.get().defaultBlockState() ,BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(25.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new StairBlock(() -> NETHERITE_PLATING_BLOCK.get().defaultBlockState() ,BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(18f, 1200.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> NETHERITE_PLATING_SLAB = registerBlock("netherite_plating_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(25.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(18f, 1200.0F).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> TITANIUM_GOLD_PLATING_BLOCK = registerBlock("titanium_gold_plating_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
@@ -144,11 +144,11 @@ public class POMblocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> LEAD_PLATING_BLOCK = registerBlock("lead_plating_block",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(8f, 50.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LEAD_PLATING_STAIRS = registerBlock("lead_plating_stairs",
-            () -> new StairBlock(() -> LEAD_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new StairBlock(() -> LEAD_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(8f, 50.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LEAD_PLATING_SLAB = registerBlock("lead_plating_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(10.0F, 50.0F).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).strength(8f, 50.0F).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> TUNGSTEN_PLATING_BLOCK = registerBlock("tungsten_plating_block",
             () -> new Block(BlockBehaviour.Properties.of().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_CYAN).strength(16.0F, 75F).requiresCorrectToolForDrops()));
@@ -165,11 +165,11 @@ public class POMblocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0F, 8F).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_PLATING_BLOCK = registerBlock("titanium_diboride_plating_block",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(18.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(16.0F, 1200.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_PLATING_STAIRS = registerBlock("titanium_diboride_plating_stairs",
-            () -> new StairBlock(() -> TITANIUM_DIBORIDE_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(18.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new StairBlock(() -> TITANIUM_DIBORIDE_PLATING_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(16.0F, 1200.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_PLATING_SLAB = registerBlock("titanium_diboride_plating_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(18.0F, 1200.0F).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(16.0F, 1200.0F).requiresCorrectToolForDrops()));
 
 
     public static final RegistryObject<Block> TITANIUM_ORE = registerBlock("titanium_ore",
@@ -183,7 +183,7 @@ public class POMblocks {
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ACANTHITE = registerBlock("acanthite",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.LAPIS).sound(SoundType.AMETHYST).strength(6f, 8f).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.LAPIS).sound(SoundType.AMETHYST).strength(3f, 8f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ACANTHITE_ORE = registerBlock("acanthite_ore",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(5f, 10f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LESSER_ACANTHITE_ORE = registerBlock("lesser_acanthite_ore",
@@ -207,27 +207,27 @@ public class POMblocks {
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
     public static final RegistryObject<Block> VIOLET_DIAMOND_BLOCK = registerStorageBlock("violet_diamond_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
-                    .strength(7f, 10f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+                    .strength(6f, 10f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 
     public static final RegistryObject<RotatedPillarBlock> COPPER_SPOOL = registerBlock("copper_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER)));
     public static final RegistryObject<RotatedPillarBlock> SILVER_SPOOL = registerBlock("silver_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.QUARTZ)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.QUARTZ)));
     public static final RegistryObject<RotatedPillarBlock> TUNGSTEN_SPOOL = registerBlock("tungsten_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.WARPED_STEM)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.WARPED_STEM)));
     public static final RegistryObject<RotatedPillarBlock> REDSTONE_LAYERED_COPPER_SPOOL = registerBlock("redstone_layered_copper_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_ORANGE)));
     public static final RegistryObject<RotatedPillarBlock> RED_SILVER_SPOOL = registerBlock("red_silver_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_RED)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_RED)));
     public static final RegistryObject<RotatedPillarBlock> ROYAL_TUNGSTEN_SPOOL = registerBlock("royal_tungsten_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_MAGENTA)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.COLOR_MAGENTA)));
     public static final RegistryObject<RotatedPillarBlock> SUPERCONDUCTIVE_SPOOL = registerBlock("superconductive_spool",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.DIAMOND)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1f, 4.0F).sound(SoundType.COPPER).mapColor(MapColor.DIAMOND)));
 
 
     public static final RegistryObject<AbstractFusionCasing> REINFORCED_GLASS = registerBlock("reinforced_glass",
-            () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(15f)));
+            () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(8f)));
     public static final RegistryObject<AbstractMultiBlock> MULTIBLOCK_CASING = registerBlock("multiblock_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
@@ -239,24 +239,24 @@ public class POMblocks {
 
 
     public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",
-            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> SUPERCONDUCTIVE_FUSION_CASING = registerBlock("superconductive_fusion_casing",
-            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CORNER = registerBlock("fusion_corner",
-            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> HEAT_SINK = registerBlock("heat_sink",
-            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionEnergyPortBlock> FUSION_ENERGY_PORT = registerBlock("fusion_energy_port",
-            () -> new FusionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new FusionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionItemPortBlock> FUSION_ITEM_PORT = registerBlock("fusion_item_port",
-            () -> new FusionItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new FusionItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionFluidPortBlock> FUSION_FLUID_PORT = registerBlock("fusion_fluid_port",
-            () -> new FusionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new FusionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionPlasmaPortBlock> FUSION_PLASMA_PORT = registerBlock("fusion_plasma_port",
-            () -> new FusionPlasmaPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(20f)));
+            () -> new FusionPlasmaPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
 
     public static final RegistryObject<Block> STAR = registerBlock("star",
-            () -> new StarBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_ORANGE)
+            () -> new StarBlock(BlockBehaviour.Properties.of().strength(20.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_ORANGE)
                     .noOcclusion()));
 
     //machines
@@ -283,7 +283,7 @@ public class POMblocks {
                     .noOcclusion()), "", "", "");
 
     public static final RegistryObject<Block> NUCLEAR_REACTOR = registerBlock("nuclear_reactor",
-            () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+            () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
 
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
