@@ -15,8 +15,8 @@ import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
-import net.turtlemaster42.pixelsofmc.gui.widget.BigRedSwitchButton;
-import net.turtlemaster42.pixelsofmc.gui.widget.RedSwitchButton;
+import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
+import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,10 +31,10 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     private NameArea nameArea;
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;
-    private RedSwitchButton redSwitch1;
-    private RedSwitchButton redSwitch2;
-    private RedSwitchButton redSwitch3;
-    private BigRedSwitchButton bigRedSwitch;
+    private SwitchButton switch1;
+    private SwitchButton switch2;
+    private SwitchButton switch3;
+    private BigSwitchButton bigSwitch;
     private boolean fuelCellUp = false;
     private boolean fuelCellDown = false;
     private boolean fuelCellRight = false;
@@ -136,37 +136,37 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     private void assignButtons() {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.redSwitch1 = new RedSwitchButton(x + 127, y + 6, Component.literal("§6???"), (pButton) -> {
-            redSwitch1.cycleOn();
-            menu.setSwitch(redSwitch1.isOn(), 0);
+        this.switch1 = new SwitchButton(x + 127, y + 6, Component.literal("§6???"), (pButton) -> {
+            switch1.cycleOn();
+            menu.setSwitch(switch1.isOn(), 0);
         });
-        this.redSwitch1.setOn(menu.getSwitch(0));
-        this.addRenderableWidget(this.redSwitch1);
+        this.switch1.setOn(menu.getSwitch(0));
+        this.addRenderableWidget(this.switch1);
 
-        this.redSwitch2 = new RedSwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
-            redSwitch2.cycleOn();
-            menu.setSwitch(redSwitch2.isOn(), 1);
+        this.switch2 = new SwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
+            switch2.cycleOn();
+            menu.setSwitch(switch2.isOn(), 1);
         });
-        this.redSwitch2.setOn(menu.getSwitch(1));
-        this.addRenderableWidget(this.redSwitch2);
+        this.switch2.setOn(menu.getSwitch(1));
+        this.addRenderableWidget(this.switch2);
 
-        this.redSwitch3 = new RedSwitchButton(x + 145, y + 6, Component.literal("§d???"), (pButton) -> {
-            redSwitch3.cycleOn();
-            menu.setSwitch(redSwitch3.isOn(), 2);
+        this.switch3 = new SwitchButton(x + 145, y + 6, Component.literal("§d???"), (pButton) -> {
+            switch3.cycleOn();
+            menu.setSwitch(switch3.isOn(), 2);
         });
-        this.redSwitch3.setOn(menu.getSwitch(2));
-        this.addRenderableWidget(this.redSwitch3);
+        this.switch3.setOn(menu.getSwitch(2));
+        this.addRenderableWidget(this.switch3);
 
-        this.bigRedSwitch = new BigRedSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
-            bigRedSwitch.cycleOn();
-            menu.setSwitch(bigRedSwitch.isOn(), 3);
+        this.bigSwitch = new BigSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
+            bigSwitch.cycleOn();
+            menu.setSwitch(bigSwitch.isOn(), 3);
             fuelCellUp = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
             fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
             fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
             fuelCellLeft = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
         });
-        this.bigRedSwitch.setOn(menu.getSwitch(3));
-        this.addRenderableWidget(this.bigRedSwitch);
+        this.bigSwitch.setOn(menu.getSwitch(3));
+        this.addRenderableWidget(this.bigSwitch);
     }
 
     private Component efficiencyBonusTooltip(float bonus) {

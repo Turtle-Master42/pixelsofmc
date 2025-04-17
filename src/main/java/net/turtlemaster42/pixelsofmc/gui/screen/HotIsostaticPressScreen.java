@@ -22,7 +22,6 @@ import java.util.List;
 
 public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPressMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/hot_isostatic_press_gui.png");
-    private static final ResourceLocation BUTTON = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;
@@ -36,9 +35,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
     protected void init() {
         super.init();
         assignAreas();
-        this.addRenderableWidget(new ImageButton((width - imageWidth) / 2 + 8, (height - imageHeight) / 2 + 69, 6, 6, pressed?0:6, 34, 6, BUTTON,256, 256,
-                (onPress) -> pressed=!pressed,
-                Component.literal("§eHOVERING")));
     }
 
     @Override
@@ -47,13 +43,11 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         int y = (height - imageHeight) / 2;
 
         renderTooltip(guiGraphics, mouseX, mouseY, x, y);
-        renderTooltip2(guiGraphics);
 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
 
-//        if (!Screen.hasControlDown()) {
         if (menu.isHeating()) {
             int offsetY = 0;
             if (hoveredSlot != null && hoveredSlot.hasItem())
@@ -63,17 +57,11 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         renderArea(guiGraphics, mouseX, mouseY, x, y, 37, 56, 49, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
         renderArea(guiGraphics, mouseX, mouseY, x, y, 50, 77, 67, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
         renderArea(guiGraphics, mouseX, mouseY, x, y, 68, 56, 77, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
-//        }
     }
 
     private void renderTooltip(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int x, int y) {
         if(Screen.hasControlDown()) {
             pGuiGraphics.renderComponentTooltip(Minecraft.getInstance().font, List.of(), pMouseX - x, pMouseY - y);
-        }
-    }
-    private void renderTooltip2(GuiGraphics pGuiGraphics) {
-        if(pressed) {
-            pGuiGraphics.renderComponentTooltip(Minecraft.getInstance().font, getAllAreas(menu.getProgress(), menu.getMaxProgress(), menu.getHeat(), menu.getTime() + menu.getSoulTime(), menu.getEnergy(), menu.getMaxEnergy()), 167, 83);
         }
     }
 
@@ -98,11 +86,7 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         guiGraphics.blit(TEXTURE, x + 36, y + 82 - menu.getScaledSoulHeat(), 195, 69-menu.getScaledSoulHeat(), 45, menu.getScaledSoulHeat());//soul heat
         guiGraphics.blit(TEXTURE, x + 36, y + 55, 195, 14, 45, menu.getScaledHeat());//heat
         if(menu.isHeating())
-            guiGraphics.blit(TEXTURE, x + 51, y + 75-menu.getScaledBurnTime(), 240, 29-menu.getScaledBurnTime(), 16, menu.getScaledBurnTime());//time
-        if (pressed)
-            guiGraphics.blit(TEXTURE, x + 6, y + 75, 252, 10, 4, 4);//button on
-        else
-            guiGraphics.blit(TEXTURE, x + 6, y + 75, 248, 10, 4, 4);//button off
+            guiGraphics.blit(TEXTURE, x + 51, y + 75 - menu.getScaledBurnTime(), 240, 29-menu.getScaledBurnTime(), 16, menu.getScaledBurnTime());//time
     }
 
     @Override
@@ -122,31 +106,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 54, y + 27, 10, 5),
                 new Rect2i(x + 69, y + 39, 39, 10)
-        );
-    }
-
-    public List<Component> getAllAreas(int progress, int maxProgress, int heat, int time, int energy, int maxEnergy) {
-        String l1 = "";
-        String l2 = "";
-        int multi = 1;
-        if (maxEnergy >= 1000000) {l1="K"; l2="M";}
-        else if (maxEnergy >= 1000000000) {l1="M"; l2="G"; multi=1000;}
-
-        if (Screen.hasShiftDown())
-            return List.of(
-                    Component.literal("§c"+(heat+273)+" K"),
-                    Component.literal("§9"+(time/20)+" s"),
-                    Component.literal("§6"+energy+"§r§7 FE"),
-                    Component.literal("§e"+maxEnergy+"§r§7 FE"),
-                    Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"),
-                    Component.literal("§9"+((maxProgress/20)-(progress/20))+" s")
-            );
-        else return List.of(
-                Component.literal("§c"+(heat)+" °C"),
-                Component.literal("§9"+(time/20)+" s"),
-                Component.literal(("§6"+energy/1000*multi) + "." + ((energy/10*multi) - ((energy/1000*multi)*100)+"§r§7 "+l1+"FE")),
-                Component.literal(("§e"+ (float) (maxEnergy / 10000*multi) /100) + "§r§7 "+l2+"FE"),
-                Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%")
         );
     }
 }

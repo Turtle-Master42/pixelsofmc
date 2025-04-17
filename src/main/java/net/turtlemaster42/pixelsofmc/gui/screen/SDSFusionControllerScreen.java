@@ -26,9 +26,9 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
     private NameArea nameArea;
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;
-    private RedSwitchButton switch1;
-    private RedSwitchButton switch2;
-    private RedSwitchButton switch3;
+    private SwitchButton switch1;
+    private SwitchButton switch2;
+    private SwitchButton switch3;
 
     public SDSFusionControllerScreen(SDSFusionControllerMenu guiMenu, Inventory playerInventory, Component title) {
         super(guiMenu, playerInventory, title);
@@ -142,21 +142,21 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
     private void assignButtons() {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.switch1 = new RedSwitchButton(x + 127, y + 6, Component.literal("§6Toggle Generate Plasma"), (pButton) -> {
+        this.switch1 = new SwitchButton(x + 127, y + 6, Component.literal("§6Toggle Generate Plasma"), (pButton) -> {
             switch1.cycleOn();
             menu.setSwitch(switch1.isOn(), 0);
         });
         this.switch1.setOn(menu.getSwitch(0));
         this.addRenderableWidget(this.switch1);
 
-        this.switch2 = new RedSwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
+        this.switch2 = new SwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
             switch2.cycleOn();
             menu.setSwitch(switch2.isOn(), 1);
         });
         this.switch2.setOn(menu.getSwitch(1));
         this.addRenderableWidget(this.switch2);
 
-        this.switch3 = new RedSwitchButton(x + 145, y + 6, Component.literal("§dToggle Overcharging"), (pButton) -> {
+        this.switch3 = new SwitchButton(x + 145, y + 6, Component.literal("§dToggle Overcharging"), (pButton) -> {
             switch3.cycleOn();
             menu.setSwitch(switch3.isOn(), 2);
         });
