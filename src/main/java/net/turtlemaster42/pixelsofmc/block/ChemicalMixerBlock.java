@@ -25,80 +25,51 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.block.tile.ChemicalMixerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class BallMillBlock extends BaseEntityBlock {
+public class ChemicalMixerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
+    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
+            box(0, 0, 0, 16, 32, 16) //base
+    );
 
-
-    public BallMillBlock(Properties properties) {
+    public ChemicalMixerBlock(Properties properties) {
         super(properties);
     }
 
-
-    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, -16, 32, 4, 32), //base
-            box(-6, 4, -6, 29, 30, 22), //barrel
-            box(-10, 4, -8, -6, 32, 24), //barrel rim
-            box(-16, 4, 16, -10, 16, 32), //electric intake
-            box(-14, 4, 2, -10, 8, 14), //support 1
-            box(-16, 8, 0, -10, 24, 16), //hinge 1
-            box(29, 4, 2, 32, 8, 14), //support 2
-            box(29, 8, 0, 32, 24, 16) //hinge 2
-    );
-
     @Override
     @Deprecated
-    public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case WEST -> SHAPE;
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            case SOUTH -> SHAPE;
+            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
+            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
         };
     }
 
 
     /* FACING */
-
     @Override
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockPos blockpos = pContext.getClickedPos();
         Level level = pContext.getLevel();
         if (blockpos.getY() < level.getMaxBuildHeight() - 1 &&
-                level.getBlockState(blockpos.north()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.east()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.south()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.west()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.north().east()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.east().south()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.south().west()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.west().north()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.north().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.east().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.south().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.west().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.north().east().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.east().south().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.south().west().above()).canBeReplaced(pContext) &&
-                level.getBlockState(blockpos.west().north().above()).canBeReplaced(pContext)
-
+                level.getBlockState(blockpos.above()).canBeReplaced(pContext)
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
         } else {
             Player player = Minecraft.getInstance().player;
             if (player != null && pContext.getLevel().isClientSide()) {
-                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.ball_mill.alt"));
+                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.chemical_combiner.alt"));
             }
             return null;
         }
@@ -133,8 +104,8 @@ public class BallMillBlock extends BaseEntityBlock {
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof BallMillTile) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (BallMillTile)entity, pPos);
+            if(entity instanceof ChemicalMixerTile) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ChemicalMixerTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -147,56 +118,38 @@ public class BallMillBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof BallMillTile) {
-                ((BallMillTile) blockEntity).drops();
+            if (blockEntity instanceof ChemicalMixerTile) {
+                ((ChemicalMixerTile) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
-    @Deprecated
+
+
     public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
             BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
-            BlockState MACHINE_ENERGY_BLOCK = POMblocks.MACHINE_ENERGY_BLOCK.get().defaultBlockState();
-            BlockState MACHINE_ITEM_BLOCK = POMblocks.MACHINE_ITEM_BLOCK.get().defaultBlockState();
 
             //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
             Direction direction = pState.getValue(FACING);
 
             //these are the location based on the default (NORTH) direction, they get turned automatically
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ITEM_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, MACHINE_ENERGY_BLOCK, pPos);
-
             BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 0, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, MACHINE_ITEM_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, -1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, -1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 1, MACHINE_BLOCK, pPos);
-            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, -1, MACHINE_BLOCK, pPos);
         }
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new BallMillTile(pPos, pState);
+        return new ChemicalMixerTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMtiles.BALL_MILL.get(),
-                pLevel.isClientSide ? BallMillTile::clientTick : BallMillTile::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.CHEMICAL_MIXER.get(),
+                pLevel.isClientSide ? ChemicalMixerTile::clientTick : ChemicalMixerTile::serverTick);
     }
 }

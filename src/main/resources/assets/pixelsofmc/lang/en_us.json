@@ -623,6 +623,7 @@
   "block.pixelsofmc.hot_isostatic_press": "Hot Isostatic Press",
   "block.pixelsofmc.chemical_separator": "Chemical Separator",
   "block.pixelsofmc.chemical_combiner": "Chemical Combiner",
+  "block.pixelsofmc.chemical_mixer": "Chemical Mixer",
   "block.pixelsofmc.star": "Fusion Star",
 
   "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
@@ -762,6 +763,9 @@
 
   "tooltip.pixelsofmc.block.chemical_combiner.shift": "§7Used to combine chemicals and materials",
   "tooltip.pixelsofmc.block.chemical_combiner.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",
+
+  "tooltip.pixelsofmc.block.chemical_mixer.shift": "§7Used to combine chemicals with each-other",
+  "tooltip.pixelsofmc.block.chemical_mixer.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",
 
   "tooltip.pixelsofmc.block.pixel_splitter.shift": "§7Used to split materials into their lose pixels",
   "tooltip.pixelsofmc.block.pixel_splitter.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",

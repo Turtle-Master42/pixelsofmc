@@ -16,7 +16,9 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
+import net.turtlemaster42.pixelsofmc.gui.widget.SpriteCycleButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
+import net.turtlemaster42.pixelsofmc.gui.widget.TemperatureScale;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import org.jetbrains.annotations.NotNull;
 

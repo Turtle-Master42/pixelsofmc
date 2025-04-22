@@ -271,10 +271,13 @@ public class POMblocks {
                     .noOcclusion()), "tooltip.pixelsofmc.block.hot_isostatic_press.shift", "", "tooltip.pixelsofmc.block.hot_isostatic_press.alt");
     public static final RegistryObject<Block> CHEMICAL_SEPARATOR = registerBlock("chemical_separator",
             () -> new ChemicalSeparatorBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
-                    .noOcclusion()), "tooltip.pixelsofmc.block.chemical_separator.shift", "", "");
+                    .noOcclusion()), "tooltip.pixelsofmc.block.chemical_separator.shift", "", "tooltip.pixelsofmc.block.chemical_combiner.alt");
     public static final RegistryObject<Block> CHEMICAL_COMBINER = registerBlock("chemical_combiner",
             () -> new ChemicalCombinerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
-                    .noOcclusion()), "tooltip.pixelsofmc.block.chemical_combiner.shift", "", "");
+                    .noOcclusion()), "tooltip.pixelsofmc.block.chemical_combiner.shift", "", "tooltip.pixelsofmc.block.chemical_combiner.alt");
+    public static final RegistryObject<Block> CHEMICAL_MIXER = registerBlock("chemical_mixer",
+            () -> new ChemicalMixerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+                    .noOcclusion()), "tooltip.pixelsofmc.block.chemical_mixer.shift", "", "tooltip.pixelsofmc.block.chemical_mixer.alt");
     public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
             () -> new PixelSplitterBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.pixel_splitter.shift", "", "");

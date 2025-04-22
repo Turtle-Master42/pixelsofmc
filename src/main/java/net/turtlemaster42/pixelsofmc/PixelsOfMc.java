@@ -44,7 +44,7 @@ import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.BallMillRenderer;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterTileRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -168,6 +168,7 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
 		MenuScreens.register(POMmenuType.CHEMICAL_SEPARATOR_MENU.get(), ChemicalSeparatorScreen::new);
 		MenuScreens.register(POMmenuType.CHEMICAL_COMBINER_MENU.get(), ChemicalCombinerScreen::new);
+		MenuScreens.register(POMmenuType.CHEMICAL_MIXER_MENU.get(), ChemicalMixerScreen::new);
 		MenuScreens.register(POMmenuType.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerScreen::new);
 
@@ -202,7 +203,7 @@ public class PixelsOfMc {
 
 	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
 		//BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), HotIsostaticPressRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterTileRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.STAR.get(), StarRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.BALL_MILL.get(), BallMillRenderer::new);
 	}

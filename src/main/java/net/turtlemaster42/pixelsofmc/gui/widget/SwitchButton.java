@@ -67,7 +67,7 @@ public class SwitchButton extends Button {
     }
 
     @OnlyIn(Dist.CLIENT)
-    enum Icon {
+    private enum Icon {
         ON(0, 0),
         ON_HOVER(0, 14),
         OFF(7, 0),

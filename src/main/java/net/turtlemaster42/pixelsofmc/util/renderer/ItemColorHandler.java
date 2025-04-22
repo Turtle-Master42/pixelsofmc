@@ -13,9 +13,7 @@ import net.turtlemaster42.pixelsofmc.item.PixelItem;
 public class ItemColorHandler {
     @SubscribeEvent
     public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
-        event.getItemColors().register((stack, color) ->
-                ((PixelItem) stack.getItem()).getColor(stack, color), POMitems.PIXEL.get());
-        event.getItemColors().register((stack, color) ->
-                ((PixelItem) stack.getItem()).getColor(stack, color), POMitems.PIXEL_PILE.get());
+        event.getItemColors().register((stack, color) -> ((PixelItem) stack.getItem()).getColor(stack, color), POMitems.PIXEL.get());
+        event.getItemColors().register((stack, color) -> ((PixelItem) stack.getItem()).getColor(stack, color), POMitems.PIXEL_PILE.get());
     }
 }

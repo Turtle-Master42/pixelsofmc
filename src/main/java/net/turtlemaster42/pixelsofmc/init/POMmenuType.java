@@ -28,6 +28,9 @@ public class POMmenuType {
             registerMenuType(ChemicalSeparatorMenu::new, "chemical_separator_menu");
     public static final RegistryObject<MenuType<ChemicalCombinerMenu>> CHEMICAL_COMBINER_MENU =
             registerMenuType(ChemicalCombinerMenu::new, "chemical_combiner_menu");
+    public static final RegistryObject<MenuType<ChemicalMixerMenu>> CHEMICAL_MIXER_MENU =
+            registerMenuType(ChemicalMixerMenu::new, "chemical_mixer_menu");
+
 
     public static final RegistryObject<MenuType<NuclearReactorMenu>> NUCLEAR_REACTOR_MENU =
             registerMenuType(NuclearReactorMenu::new, "nuclear_reactor_menu");
@@ -35,8 +38,7 @@ public class POMmenuType {
     public static final RegistryObject<MenuType<SDSFusionControllerMenu>> SDS_CONTROLLER_MENU =
             registerMenuType(SDSFusionControllerMenu::new, "sds_controller_menu");
 
-    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
-                                                                                                 String name) {
+    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }
 

@@ -55,6 +55,9 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<ChemicalCombinerTile>> CHEMICAL_COMBINER =
 			TILES.register("chemical_combiner", () -> BlockEntityType.Builder.of(ChemicalCombinerTile::new, POMblocks.CHEMICAL_COMBINER.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<ChemicalMixerTile>> CHEMICAL_MIXER =
+			TILES.register("chemical_mixer", () -> BlockEntityType.Builder.of(ChemicalMixerTile::new, POMblocks.CHEMICAL_MIXER.get()).build(null));
+
 
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
 			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.NUCLEAR_REACTOR.get()).build(null));

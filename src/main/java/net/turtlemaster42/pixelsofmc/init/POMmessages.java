@@ -59,6 +59,30 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncDuoFluidToClient::handle)
                 .add();
 
+        net.messageBuilder(PacketSyncTriFluidToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncTriFluidToClient::new)
+                .encoder(PacketSyncTriFluidToClient::toBytes)
+                .consumerMainThread(PacketSyncTriFluidToClient::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncQuadFluidToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncQuadFluidToClient::new)
+                .encoder(PacketSyncQuadFluidToClient::toBytes)
+                .consumerMainThread(PacketSyncQuadFluidToClient::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncQuinFluidToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncQuinFluidToClient::new)
+                .encoder(PacketSyncQuinFluidToClient::toBytes)
+                .consumerMainThread(PacketSyncQuinFluidToClient::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncHexaFluidToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncHexaFluidToClient::new)
+                .encoder(PacketSyncHexaFluidToClient::toBytes)
+                .consumerMainThread(PacketSyncHexaFluidToClient::handle)
+                .add();
+
         net.messageBuilder(PacketSyncMainPosToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncMainPosToClient::new)
                 .encoder(PacketSyncMainPosToClient::toBytes)
@@ -84,6 +108,12 @@ public class POMmessages {
                 .decoder(PacketSyncSwitchToServer::new)
                 .encoder(PacketSyncSwitchToServer::toBytes)
                 .consumerMainThread(PacketSyncSwitchToServer::handle)
+                .add();
+
+        net.messageBuilder(PacketSyncTemperatureSwitchToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketSyncTemperatureSwitchToServer::new)
+                .encoder(PacketSyncTemperatureSwitchToServer::toBytes)
+                .consumerMainThread(PacketSyncTemperatureSwitchToServer::handle)
                 .add();
 
 

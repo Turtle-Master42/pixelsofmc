@@ -19,8 +19,8 @@ import net.turtlemaster42.pixelsofmc.block.PixelSplitterBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import org.jetbrains.annotations.NotNull;
 
-public class PixelSplitterTileRenderer implements BlockEntityRenderer<PixelSplitterTile> {
-    public PixelSplitterTileRenderer(BlockEntityRendererProvider.Context context) {
+public class PixelSplitterRenderer implements BlockEntityRenderer<PixelSplitterTile> {
+    public PixelSplitterRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
