@@ -22,23 +22,27 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.ChemicalMixerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalMixerMenu;
+import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.*;
+import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.*;
+import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> implements IDuoFluidHandlingTile, ITriFluidHandlingTile, IQuadFluidHandlingTile, IQuinFluidHandlingTile, IHexaFluidHandlingTile, IButtonTile {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 16;
     private int speedUpgrade = 0;
     private final int capacity = 512000;
     private final int maxReceive = 512000;
@@ -420,6 +424,13 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
             transferFluidToTank(pBlockEntity, triFluidTank, 2);
         }
 
+        if (switches[0]) {
+            FluidStack air = new FluidStack(POMfluids.AIR_SOURCE.get(), 200);
+            fluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
+            duoFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
+            triFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
+        }
+
         if (switches[1]) {
             List<FluidStack> fluidStacks = new ArrayList<>();
             fluidStacks.add(fluidTank.drain(fluidTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE));
@@ -494,19 +505,27 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     }
 
     private static boolean hasRecipe(ChemicalMixerTile entity) {
-        return false;
-//        Level level = entity.level;
-//        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-//        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-//            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-//        }
-//
-//        Optional<ChemicalCombinerRecipe> match = level.getRecipeManager()
-//                .getRecipeFor(ChemicalCombinerRecipe.Type.INSTANCE, inventory, level);
-//
-//        return match.isPresent()
-//                && canExtractInputFluid(entity, match.get().getFluidInput())
-//                && canInsertOutputFluid(entity, match.get().getResultFluid());
+        Level level = entity.level;
+        FluidContainer fluidInventory = new FluidContainer(3);
+        FluidTank[] fluidTanks = {entity.fluidTank, entity.duoFluidTank, entity.triFluidTank};
+        for (int i = 0; i < 3; i++) {
+            fluidInventory.setFluid(i, fluidTanks[i].getFluid());
+        }
+
+        Optional<ChemicalMixerRecipe> match = level.getRecipeManager().getRecipeFor(ChemicalMixerRecipe.Type.INSTANCE, fluidInventory, level);
+
+        return match.isPresent()
+                && correctTemperature(entity, match.get().getTemperatureState())
+                && canExtractInputFluid(entity, match.get().getInputFluid(0))
+                && canExtractInputFluid(entity, match.get().getInputFluid(1))
+                && canExtractInputFluid(entity, match.get().getInputFluid(2))
+                && canInsertOutputFluid(entity, match.get().getResultFluid(0))
+                && canInsertOutputFluid(entity, match.get().getResultFluid(1))
+                && canInsertOutputFluid(entity, match.get().getResultFluid(2));
+    }
+
+    private static boolean correctTemperature(ChemicalMixerTile entity, int temperatureState) {
+        return entity.temperatureState == temperatureState;
     }
 
     private static boolean canInsertOutputFluid(ChemicalMixerTile entity, FluidStack resultFluid) {
@@ -533,6 +552,9 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         FluidTank[] outputTanks = {quadFluidTank, quinFluidTank, hexaFluidTank};
         // iterates over the fluidStacks
         for (FluidStack fluidOutput : fluidStacks) {
+            if (fluidOutput.getRawFluid().isSame(POMfluids.AIR_SOURCE.get())) { //can't output air
+                continue;
+            }
             // iterates over the tanks
             for (FluidTank tank : outputTanks) {
                 if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
@@ -581,26 +603,23 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     }
 
     private static void craftItem(ChemicalMixerTile entity) {
-//        Level level = entity.level;
-//        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-//        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-//            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-//        }
-//
-//        Optional<ChemicalCombinerRecipe> match = level.getRecipeManager()
-//                .getRecipeFor(ChemicalCombinerRecipe.Type.INSTANCE, inventory, level);
-//
-//        if(match.isPresent()) {
-//            List<CountedIngredient> recipeItems = match.get().getInputs();
-//
-//            entity.fluidTank.drain(match.get().getFluidInput().getAmount(), IFluidHandler.FluidAction.EXECUTE);
-//
-//            entity.duoFluidTank.fill(match.get().getResultFluid(), IFluidHandler.FluidAction.EXECUTE);
-//
-//            setChanged(level, entity.worldPosition, entity.getBlockState());
-//            entity.resetProgress();
-//            entity.errorEnergyReset();
-//        }
+        Level level = entity.level;
+        FluidContainer fluidInventory = new FluidContainer(3);
+        FluidTank[] fluidTanks = {entity.fluidTank, entity.duoFluidTank, entity.triFluidTank};
+        for (int i = 0; i < 3; i++) {
+            fluidInventory.setFluid(i, fluidTanks[i].getFluid());
+        }
+
+        Optional<ChemicalMixerRecipe> match = level.getRecipeManager().getRecipeFor(ChemicalMixerRecipe.Type.INSTANCE, fluidInventory, level);
+
+        if(match.isPresent()) {
+            entity.addFluidOutput(match.get().getResultFluids());
+            entity.removeFluidInput(match.get().getFluidInputs());
+
+            setChanged(level, entity.worldPosition, entity.getBlockState());
+            entity.resetProgress();
+            entity.errorEnergyReset();
+        }
     }
 
     private void resetProgress() {this.progress = 0;}

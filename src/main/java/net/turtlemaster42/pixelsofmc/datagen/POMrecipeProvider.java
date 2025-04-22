@@ -1273,6 +1273,20 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));
         ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1, 1), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD, 1));
 
+        //chemical mixing
+        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500), 2, toF(Fluids.WATER, 1000));
+        ChemicalMixing(fConsumer, toF(Fluids.WATER, 1000), 4, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500));
+
+        ChemicalMixing(fConsumer, toF(POMfluids.STEAM_SOURCE.get(), 100), 0, toF(Fluids.WATER, 100));
+        ChemicalMixing(fConsumer, toF(POMfluids.BLAZING_STEAM_SOURCE.get(), 20), 0, toF(POMfluids.STEAM_SOURCE.get(), 20));
+        ChemicalMixing(fConsumer, toF(POMfluids.AIR_SOURCE.get(), 10), 0, toF(POMfluids.NITROGEN_GAS_SOURCE.get(), 8), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 2)); //TODO: Chlorine should be Ammonia (NH3)
+
+        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 300), toF(POMfluids.NITROGEN_GAS_SOURCE.get(), 100), 3, toF(POMfluids.CHLORINE_SOURCE.get(), 200)); //TODO: Chlorine should be Ammonia (NH3)
+        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 150), toF(POMfluids.AIR_SOURCE.get(), 100), 3, toF(POMfluids.CHLORINE_SOURCE.get(), 100)); //TODO: Chlorine should be Ammonia (NH3)
+        ChemicalMixing(fConsumer, toF(POMfluids.CHLORINE_SOURCE.get(), 100), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 200), 2, toF(POMfluids.BROMINE_SOURCE.get(), 100), toF(Fluids.WATER, 100)); //TODO: Chlorine should be Ammonia (NH3), Bromine should be Nitric Acid (HNO3)
+        ChemicalMixing(fConsumer, toF(POMfluids.CHLORINE_SOURCE.get(), 10), toF(POMfluids.AIR_SOURCE.get(), 20), 2, toF(POMfluids.BROMINE_SOURCE.get(), 10), toF(Fluids.WATER, 10)); //TODO: Chlorine should be Ammonia (NH3), Bromine should be Nitric Acid (HNO3)
+
+
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.VIOLET_DIAMOND.get(), POMitems.VIOLET_DIAMOND_LENS.get(), fConsumer);
@@ -1642,11 +1656,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(consumer, toRL(output.asItem() + extra));
     }
 
-    private void Grinder(Ingredient input, ItemLike output, int outputCount, int outputChance, Consumer<FinishedRecipe> consumer) {
-        new GrinderRecipeBuilder(input, List.of(ChanceIngredient.of(outputCount, outputChance, output)))
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
-    }
     private void Grinder(Ingredient input, Consumer<FinishedRecipe> consumer, ChanceIngredient... output) {
         List<ChanceIngredient> outputList = new java.util.ArrayList<>();
         Collections.addAll(outputList, output);
@@ -1669,6 +1678,31 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         new ChemicalCombinerRecipeBuilder(output, inputFluid, outputFluid, inputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
+    }
+
+    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, int temperatureState, FluidStack... outputs) {
+        List<FluidStack> inputList = new java.util.ArrayList<>();
+        Collections.addAll(inputList, input1);
+        ChemicalMixing(consumer, temperatureState, inputList, outputs);
+    }
+
+    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, FluidStack input2, int temperatureState, FluidStack... outputs) {
+        List<FluidStack> inputList = new java.util.ArrayList<>();
+        Collections.addAll(inputList, input1, input2);
+        ChemicalMixing(consumer, temperatureState, inputList, outputs);
+    }
+
+    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, FluidStack input2, FluidStack input3, int temperatureState, FluidStack... outputs) {
+        List<FluidStack> inputList = new java.util.ArrayList<>();
+        Collections.addAll(inputList, input1, input2, input3);
+        ChemicalMixing(consumer, temperatureState, inputList, outputs);
+    }
+
+    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, int temperatureState, List<FluidStack> inputs, FluidStack... outputs) {
+        List<FluidStack> outputList = new java.util.ArrayList<>();
+        Collections.addAll(outputList, outputs);
+        new ChemicalMixerRecipeBuilder(inputs, outputList, temperatureState)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY)).save(consumer);
     }
 
 

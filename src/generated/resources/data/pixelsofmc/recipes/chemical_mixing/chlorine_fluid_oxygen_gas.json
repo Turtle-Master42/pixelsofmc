@@ -1,0 +1,24 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 100,
+      "FluidName": "pixelsofmc:chlorine_fluid"
+    },
+    {
+      "Amount": 200,
+      "FluidName": "pixelsofmc:oxygen_gas"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 100,
+      "FluidName": "pixelsofmc:bromine_fluid"
+    },
+    {
+      "Amount": 100,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "temperature_state": 2
+}

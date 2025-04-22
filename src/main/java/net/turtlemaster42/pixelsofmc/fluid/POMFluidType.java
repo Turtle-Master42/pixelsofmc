@@ -19,13 +19,14 @@ public class POMFluidType {
     public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
 
     public static final ResourceLocation GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/gas_still");
+    public static final ResourceLocation THIN_GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/thin_gas_still");
 
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, PixelsOfMc.MOD_ID);
 
     public static final RegistryObject<FluidType> MERCURY_FLUID_TYPE = registerFluid("mercury_fluid", 0, 21, 89,
             FluidType.Properties.create().lightLevel(2).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
-                    .motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
+                    .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
 
     public static final RegistryObject<FluidType> SULFURIC_ACID_FLUID_TYPE = registerFluid("sulfuric_acid_fluid", 214, 171, 42,
             FluidType.Properties.create().lightLevel(1).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
@@ -61,11 +62,15 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(0).temperature(1200).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
+    public static final RegistryObject<FluidType> AIR_TYPE = registerThinGas("air", 140, 140, 150,
+            FluidType.Properties.create().lightLevel(0).temperature(300).density(-1).viscosity(0).canDrown(false).canPushEntity(false));
+
 
 
     public static final RegistryObject<FluidType> HYDROGEN_GAS_TYPE = registerGas("hydrogen_gas", 225, 223, 235,
             FluidType.Properties.create().lightLevel(0).temperature(300).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
     public static final RegistryObject<FluidType> NITROGEN_GAS_TYPE = registerGas("nitrogen_gas", 151, 130, 230,
             FluidType.Properties.create().lightLevel(0).temperature(300).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
@@ -90,6 +95,11 @@ public class POMFluidType {
 
     private static RegistryObject<FluidType> registerGas(String name, int R, int G, int B, FluidType.Properties properties) {
         return FLUID_TYPES.register(name, () -> new BaseFluidType(GAS_STILL_RL, WATER_FLOWING_RL, WATER_OVERLAY_RL,
+                new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
+    }
+
+    private static RegistryObject<FluidType> registerThinGas(String name, int R, int G, int B, FluidType.Properties properties) {
+        return FLUID_TYPES.register(name, () -> new BaseFluidType(THIN_GAS_STILL_RL, WATER_FLOWING_RL, WATER_OVERLAY_RL,
                 new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
     }
 

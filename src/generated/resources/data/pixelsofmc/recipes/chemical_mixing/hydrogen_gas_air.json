@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 150,
+      "FluidName": "pixelsofmc:hydrogen_gas"
+    },
+    {
+      "Amount": 100,
+      "FluidName": "pixelsofmc:air"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 100,
+      "FluidName": "pixelsofmc:chlorine_fluid"
+    }
+  ],
+  "temperature_state": 3
+}

@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 500,
+      "FluidName": "pixelsofmc:hydrogen_gas"
+    },
+    {
+      "Amount": 500,
+      "FluidName": "pixelsofmc:oxygen_gas"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 1000,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "temperature_state": 2
+}

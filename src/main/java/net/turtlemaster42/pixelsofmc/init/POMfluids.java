@@ -99,6 +99,13 @@ public class POMfluids {
             POMFluidType.BLAZING_STEAM_TYPE, BLAZING_STEAM_SOURCE, BLAZING_STEAM_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(5)
             .block(POMblocks.BLAZING_STEAM_BLOCK).bucket(POMitems.BLAZING_STEAM_BUCKET);
 
+    public static final RegistryObject<FlowingFluid> AIR_SOURCE
+            = FLUIDS.register("air", () -> new ForgeFlowingFluid.Source(POMfluids.AIR_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> AIR_FLOWING
+            = FLUIDS.register("air_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.AIR_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties AIR_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.AIR_TYPE, AIR_SOURCE, AIR_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(15);
 
 
     public static final RegistryObject<FlowingFluid> HYDROGEN_GAS_SOURCE

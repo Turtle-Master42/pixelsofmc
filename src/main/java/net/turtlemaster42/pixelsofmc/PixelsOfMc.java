@@ -145,7 +145,8 @@ public class PixelsOfMc {
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.AIR_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.AIR_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_SOURCE.get(), RenderType.translucent());

@@ -99,7 +99,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     }
 
     public @NotNull ItemStack getToastSymbol() {
-        return new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get());
+        return new ItemStack(POMblocks.CHEMICAL_COMBINER.get());
     }
 
     public static class Type implements RecipeType<ChemicalCombinerRecipe> {
@@ -154,6 +154,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
                 for (Ingredient ing : recipe.getIngredients()) {
                     ing.toNetwork(buf);
                 }
+
                 recipe.output.toNetwork(buf);
 
                 buf.writeFluidStack(recipe.fluidInput);

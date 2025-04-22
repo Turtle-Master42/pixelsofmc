@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 10,
+      "FluidName": "pixelsofmc:air"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 8,
+      "FluidName": "pixelsofmc:nitrogen_gas"
+    },
+    {
+      "Amount": 2,
+      "FluidName": "pixelsofmc:oxygen_gas"
+    }
+  ],
+  "temperature_state": 0
+}

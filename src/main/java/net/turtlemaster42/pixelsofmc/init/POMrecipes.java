@@ -27,6 +27,8 @@ public class POMrecipes {
 			SERIALIZERS.register("chemical_separating", () -> ChemicalSeparatorRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<ChemicalCombinerRecipe>> CHEMICAL_COMBINER_SERIALIZER =
 			SERIALIZERS.register("chemical_combining", () -> ChemicalCombinerRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<ChemicalMixerRecipe>> CHEMICAL_MIXING_SERIALIZER =
+			SERIALIZERS.register("chemical_mixing", () -> ChemicalMixerRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
 

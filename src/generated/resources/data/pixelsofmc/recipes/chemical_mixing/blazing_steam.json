@@ -1,0 +1,16 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 20,
+      "FluidName": "pixelsofmc:blazing_steam"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 20,
+      "FluidName": "pixelsofmc:steam"
+    }
+  ],
+  "temperature_state": 0
+}

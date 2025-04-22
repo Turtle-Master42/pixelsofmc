@@ -89,7 +89,7 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
         int speedUpgrade = this.data.get(2); // Speed upgrades
-        int progressArrowSize = 56; // This is the height in pixels of your arrow
+        int progressArrowSize = 16; // This is the height in pixels of your arrow
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
     }
 
