@@ -32,6 +32,16 @@ public class POMfluids {
             POMFluidType.SULFURIC_ACID_FLUID_TYPE, SULFURIC_ACID_SOURCE, SULFURIC_ACID_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.SULFURIC_ACID_BLOCK).bucket(POMitems.SULFURIC_ACID_BUCKET);
 
+    public static final RegistryObject<FlowingFluid> NITRIC_ACID_SOURCE
+            = FLUIDS.register("nitric_acid_fluid", () -> new ForgeFlowingFluid.Source(POMfluids.NITRIC_ACID_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> NITRIC_ACID_FLOWING
+            = FLUIDS.register("nitric_acid_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.NITRIC_ACID_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties NITRIC_ACID_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.NITRIC_ACID_FLUID_TYPE, NITRIC_ACID_SOURCE, NITRIC_ACID_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.NITRIC_ACID_BLOCK).bucket(POMitems.NITRIC_ACID_BUCKET);
+
+
     //-----------SUPERCOOLED-----------//
 
     public static final RegistryObject<FlowingFluid> HYDROGEN_SOURCE
@@ -85,7 +95,6 @@ public class POMfluids {
             = FLUIDS.register("steam", () -> new ForgeFlowingFluid.Source(POMfluids.STEAM_PROPERTIES));
     public static final RegistryObject<FlowingFluid> STEAM_FLOWING
             = FLUIDS.register("steam_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.STEAM_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties STEAM_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.STEAM_TYPE, STEAM_SOURCE, STEAM_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(5)
             .block(POMblocks.STEAM_BLOCK).bucket(POMitems.STEAM_BUCKET);
@@ -94,7 +103,6 @@ public class POMfluids {
             = FLUIDS.register("blazing_steam", () -> new ForgeFlowingFluid.Source(POMfluids.BLAZING_STEAM_PROPERTIES));
     public static final RegistryObject<FlowingFluid> BLAZING_STEAM_FLOWING
             = FLUIDS.register("blazing_steam_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.BLAZING_STEAM_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties BLAZING_STEAM_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.BLAZING_STEAM_TYPE, BLAZING_STEAM_SOURCE, BLAZING_STEAM_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(5)
             .block(POMblocks.BLAZING_STEAM_BLOCK).bucket(POMitems.BLAZING_STEAM_BUCKET);
@@ -103,7 +111,6 @@ public class POMfluids {
             = FLUIDS.register("air", () -> new ForgeFlowingFluid.Source(POMfluids.AIR_PROPERTIES));
     public static final RegistryObject<FlowingFluid> AIR_FLOWING
             = FLUIDS.register("air_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.AIR_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties AIR_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.AIR_TYPE, AIR_SOURCE, AIR_FLOWING).slopeFindDistance(0).levelDecreasePerBlock(15);
 
@@ -112,7 +119,6 @@ public class POMfluids {
             = FLUIDS.register("hydrogen_gas", () -> new ForgeFlowingFluid.Source(POMfluids.HYDROGEN_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> HYDROGEN_GAS_FLOWING
             = FLUIDS.register("hydrogen_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.HYDROGEN_GAS_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties HYDROGEN_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.HYDROGEN_GAS_TYPE, HYDROGEN_GAS_SOURCE, HYDROGEN_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.HYDROGEN_GAS_BLOCK).bucket(POMitems.HYDROGEN_GAS_BUCKET);
@@ -121,7 +127,6 @@ public class POMfluids {
             = FLUIDS.register("nitrogen_gas", () -> new ForgeFlowingFluid.Source(POMfluids.NITROGEN_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> NITROGEN_GAS_FLOWING
             = FLUIDS.register("nitrogen_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.NITROGEN_GAS_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties NITROGEN_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.NITROGEN_GAS_TYPE, NITROGEN_GAS_SOURCE, NITROGEN_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.NITROGEN_GAS_BLOCK).bucket(POMitems.NITROGEN_GAS_BUCKET);
@@ -130,7 +135,6 @@ public class POMfluids {
             = FLUIDS.register("oxygen_gas", () -> new ForgeFlowingFluid.Source(POMfluids.OXYGEN_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> OXYGEN_GAS_FLOWING
             = FLUIDS.register("oxygen_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.OXYGEN_GAS_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties OXYGEN_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.OXYGEN_GAS_TYPE, OXYGEN_GAS_SOURCE, OXYGEN_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.OXYGEN_GAS_BLOCK).bucket(POMitems.OXYGEN_GAS_BUCKET);
@@ -139,7 +143,6 @@ public class POMfluids {
             = FLUIDS.register("chlorine_gas", () -> new ForgeFlowingFluid.Source(POMfluids.CHLORINE_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> CHLORINE_GAS_FLOWING
             = FLUIDS.register("chlorine_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.CHLORINE_GAS_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties CHLORINE_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.CHLORINE_GAS_TYPE, CHLORINE_GAS_SOURCE, CHLORINE_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.CHLORINE_GAS_BLOCK).bucket(POMitems.CHLORINE_GAS_BUCKET);
@@ -148,10 +151,17 @@ public class POMfluids {
             = FLUIDS.register("bromine_gas", () -> new ForgeFlowingFluid.Source(POMfluids.BROMINE_GAS_PROPERTIES));
     public static final RegistryObject<FlowingFluid> BROMINE_GAS_FLOWING
             = FLUIDS.register("bromine_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.BROMINE_GAS_PROPERTIES));
-
     public static final ForgeFlowingFluid.Properties BROMINE_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.BROMINE_GAS_TYPE, BROMINE_GAS_SOURCE, BROMINE_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.BROMINE_GAS_BLOCK).bucket(POMitems.BROMINE_GAS_BUCKET);
+
+    public static final RegistryObject<FlowingFluid> AMMONIA_GAS_SOURCE
+            = FLUIDS.register("ammonia_gas", () -> new ForgeFlowingFluid.Source(POMfluids.AMMONIA_GAS_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> AMMONIA_GAS_FLOWING
+            = FLUIDS.register("ammonia_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.AMMONIA_GAS_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties AMMONIA_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.AMMONIA_GAS_TYPE, AMMONIA_GAS_SOURCE, AMMONIA_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.AMMONIA_GAS_BLOCK).bucket(POMitems.AMMONIA_GAS_BUCKET);
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);

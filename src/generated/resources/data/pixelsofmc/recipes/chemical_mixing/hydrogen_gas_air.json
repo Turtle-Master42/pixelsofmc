@@ -13,7 +13,7 @@
   "fluid_outputs": [
     {
       "Amount": 100,
-      "FluidName": "pixelsofmc:chlorine_fluid"
+      "FluidName": "pixelsofmc:ammonia_gas"
     }
   ],
   "temperature_state": 3

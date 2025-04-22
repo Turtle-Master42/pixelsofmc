@@ -1,10 +1,11 @@
-// 1.20.1	2025-04-22T14:50:18.877336	Loot Tables
+// 1.20.1	2025-04-22T18:33:41.5679	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
 47bea54885fe506ee235e41665adb18425a5cd81 data/pixelsofmc/loot_tables/blocks/advanced_casing_1.json
 baa95e1d47de3b9322a030e03a868c5451c9debb data/pixelsofmc/loot_tables/blocks/advanced_casing_2.json
 a60802758df6093c0bb80a71d8b386dc66fe46e9 data/pixelsofmc/loot_tables/blocks/aluminium_scrap_block.json
+b32ffa02d8dc5a955aa02b874c4b1886a83e11ee data/pixelsofmc/loot_tables/blocks/ammonia_gas.json
 fae6037bced2e311e929f8f49d07e5f22190f853 data/pixelsofmc/loot_tables/blocks/armored_multiblock_casing.json
 b74c8d0a2eb37c9985eea6f97e727b37d3260a13 data/pixelsofmc/loot_tables/blocks/ball_mill.json
 405ce905b78b54ff61a44ce69c2d769a927fd586 data/pixelsofmc/loot_tables/blocks/bh_controller.json
@@ -46,6 +47,7 @@ c7858201b9dd3b7c54a363b68cf5e4798ee315a9 data/pixelsofmc/loot_tables/blocks/mds_
 0ff046c0ffdc34e62071ddbd83d05143d358e306 data/pixelsofmc/loot_tables/blocks/netherite_plating_block.json
 5724c11f13d3a03676cab3d0ad5960bcaad54495 data/pixelsofmc/loot_tables/blocks/netherite_plating_slab.json
 5744d26ec11b92a26ae3739655ab4501aa5cfdeb data/pixelsofmc/loot_tables/blocks/netherite_plating_stairs.json
+3adbfb201095c3ec12b97882fb2d388c12e80ada data/pixelsofmc/loot_tables/blocks/nitric_acid.json
 4feeddce4a17f7657b74fc2b9466717e30181804 data/pixelsofmc/loot_tables/blocks/nitrogen.json
 b16269251989a7e782bddb32b64d48c7616cbae0 data/pixelsofmc/loot_tables/blocks/nitrogen_gas.json
 e0070c281422aa3cc9bf12b07e1dde6ade703000 data/pixelsofmc/loot_tables/blocks/nuclear_reactor.json

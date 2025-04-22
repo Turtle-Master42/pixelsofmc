@@ -38,6 +38,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCategories(new PixelAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalSeraratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalCombinerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ChemicalMixerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -53,8 +54,8 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_ASSEMBLER.get()), new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()), new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_COMBINER.get()), new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_MIXER.get()), new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class));
     }
-
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
@@ -68,6 +69,7 @@ public class JEIPOMPlugin implements IModPlugin {
         List<PixelAssemblerRecipe> assembling = rm.getAllRecipesFor(PixelAssemblerRecipe.Type.INSTANCE);
         List<ChemicalSeparatorRecipe> separating = rm.getAllRecipesFor(ChemicalSeparatorRecipe.Type.INSTANCE);
         List<ChemicalCombinerRecipe> combining = rm.getAllRecipesFor(ChemicalCombinerRecipe.Type.INSTANCE);
+        List<ChemicalMixerRecipe> mixing = rm.getAllRecipesFor(ChemicalMixerRecipe.Type.INSTANCE);
 
         registration.addRecipes(new RecipeType<>(BallMillRecipeCategory.UID, BallMillRecipe.class), milling);
         registration.addRecipes(new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class), grinding);
@@ -77,11 +79,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class), assembling);
         registration.addRecipes(new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class), separating);
         registration.addRecipes(new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class), combining);
-    }
-
-    @Override
-    public void registerItemSubtypes(ISubtypeRegistration registration) {
-        registration.useNbtForSubtypes(POMitems.PIXEL.get(), POMitems.PIXEL_PILE.get());
+        registration.addRecipes(new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class), mixing);
     }
 
     @Override
@@ -109,6 +107,14 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeClickArea(PixelSplitterScreen.class, 3, -16,
                 Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.pixel_splitter").getString()), 15,
                 new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class));
+        registration.addRecipeClickArea(ChemicalMixerScreen.class, 3, -16,
+                Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.chemical_mixer").getString()), 15,
+                new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class));
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.useNbtForSubtypes(POMitems.PIXEL.get(), POMitems.PIXEL_PILE.get());
     }
 
     @Override

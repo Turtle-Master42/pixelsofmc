@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
@@ -77,7 +78,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         stairsBlock((StairBlock) POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"));
 
 
-
         logBlock(POMblocks.COPPER_SPOOL.get());
         logBlock(POMblocks.SILVER_SPOOL.get());
         logBlock(POMblocks.TUNGSTEN_SPOOL.get());
@@ -85,6 +85,23 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.RED_SILVER_SPOOL.get());
         logBlock(POMblocks.ROYAL_TUNGSTEN_SPOOL.get());
         logBlock(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
+
+        liquidBlock(POMblocks.MERCURY_BLOCK);
+        liquidBlock(POMblocks.SULFURIC_ACID_BLOCK);
+        liquidBlock(POMblocks.HYDROGEN_BLOCK);
+        liquidBlock(POMblocks.NITROGEN_BLOCK);
+        liquidBlock(POMblocks.OXYGEN_BLOCK);
+        liquidBlock(POMblocks.CHLORINE_BLOCK);
+        liquidBlock(POMblocks.BROMINE_BLOCK);
+        liquidBlock(POMblocks.HYDROGEN_GAS_BLOCK);
+        liquidBlock(POMblocks.NITROGEN_GAS_BLOCK);
+        liquidBlock(POMblocks.OXYGEN_GAS_BLOCK);
+        liquidBlock(POMblocks.CHLORINE_GAS_BLOCK);
+        liquidBlock(POMblocks.BROMINE_GAS_BLOCK);
+        liquidBlock(POMblocks.STEAM_BLOCK);
+        liquidBlock(POMblocks.BLAZING_STEAM_BLOCK);
+        liquidBlock(POMblocks.AMMONIA_GAS_BLOCK);
+        liquidBlock(POMblocks.NITRIC_ACID_BLOCK);
     }
 
     public ModelFile flowerPotCross(String name) {
@@ -110,6 +127,12 @@ public class POMblockModelProvider extends BlockStateProvider {
 
     private void block(RegistryObject<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+
+    private void liquidBlock(RegistryObject<? extends LiquidBlock> blockRegistryObject) {
+        String name = blockRegistryObject.get().getFluid().getSource().getFluidType().toString().split(":")[1];
+        PixelsOfMc.LOGGER.info(name);
+        simpleBlock(blockRegistryObject.get(), models().withExistingParent(name, "block/water"));
     }
 
 //    private void blockSlabStairSetWithItem(RegistryObject<Block> block, RegistryObject<Block> stair, RegistryObject<Block> slab, String location) {

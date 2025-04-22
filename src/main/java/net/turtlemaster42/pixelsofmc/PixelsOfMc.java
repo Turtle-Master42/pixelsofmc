@@ -145,8 +145,6 @@ public class PixelsOfMc {
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.AIR_SOURCE.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.AIR_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_SOURCE.get(), RenderType.translucent());
@@ -159,6 +157,8 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_SOURCE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_FLOWING.get(), RenderType.translucent());
 
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
 
@@ -313,6 +313,7 @@ public class PixelsOfMc {
 
 		DispenserBlock.registerBehavior(POMitems.MERCURY_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.SULFURIC_ACID_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.NITRIC_ACID_BUCKET.get(), bucketBehavior);
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);

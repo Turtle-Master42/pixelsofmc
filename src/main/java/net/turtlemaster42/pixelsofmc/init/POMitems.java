@@ -204,6 +204,7 @@ public class POMitems {
 
 	public static final RegistryObject<Item> MERCURY_BUCKET = BUCKETS.register("mercury_bucket", () -> new BucketItem(POMfluids.MERCURY_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> SULFURIC_ACID_BUCKET = BUCKETS.register("sulfuric_acid_bucket", () -> new BucketItem(POMfluids.SULFURIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> NITRIC_ACID_BUCKET = BUCKETS.register("nitric_acid_bucket", () -> new BucketItem(POMfluids.NITRIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final RegistryObject<Item> LIQUID_HYDROGEN_BUCKET = BUCKETS.register("liquid_hydrogen_bucket", () -> new BucketItem(POMfluids.HYDROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> LIQUID_NITROGEN_BUCKET = BUCKETS.register("liquid_nitrogen_bucket", () -> new BucketItem(POMfluids.NITROGEN_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -218,7 +219,7 @@ public class POMitems {
 	public static final RegistryObject<Item> OXYGEN_GAS_BUCKET = BUCKETS.register("oxygen_gas_bucket", () -> new GasBucketItem(POMfluids.OXYGEN_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> CHLORINE_GAS_BUCKET = BUCKETS.register("chlorine_gas_bucket", () -> new GasBucketItem(POMfluids.CHLORINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> BROMINE_GAS_BUCKET = BUCKETS.register("bromine_gas_bucket", () -> new GasBucketItem(POMfluids.BROMINE_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-
+	public static final RegistryObject<Item> AMMONIA_GAS_BUCKET = BUCKETS.register("ammonia_gas_bucket", () -> new GasBucketItem(POMfluids.AMMONIA_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
 
 	public static final class Metals {

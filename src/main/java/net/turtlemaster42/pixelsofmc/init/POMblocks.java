@@ -61,6 +61,8 @@ public class POMblocks {
             () -> new SupercooledLiquidBlock(POMfluids.BROMINE_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PINK).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> SULFURIC_ACID_BLOCK = POMblocks.BLOCKS.register("sulfuric_acid",
             () -> new AcidLiquidBlock(POMfluids.SULFURIC_ACID_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+    public static final RegistryObject<LiquidBlock> NITRIC_ACID_BLOCK = POMblocks.BLOCKS.register("nitric_acid",
+            () -> new AcidLiquidBlock(POMfluids.NITRIC_ACID_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
 
     //gas
     public static final RegistryObject<LiquidBlock> STEAM_BLOCK = POMblocks.BLOCKS.register("steam",
@@ -77,6 +79,9 @@ public class POMblocks {
             () -> new LiquidBlock(POMfluids.CHLORINE_GAS_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> BROMINE_GAS_BLOCK = POMblocks.BLOCKS.register("bromine_gas",
             () -> new LiquidBlock(POMfluids.BROMINE_GAS_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PINK).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+    public static final RegistryObject<LiquidBlock> AMMONIA_GAS_BLOCK = POMblocks.BLOCKS.register("ammonia_gas",
+            () -> new LiquidBlock(POMfluids.AMMONIA_GAS_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_MAGENTA).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+
 
     //machine block
     public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);

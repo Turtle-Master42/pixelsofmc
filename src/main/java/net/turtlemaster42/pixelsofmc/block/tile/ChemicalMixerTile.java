@@ -50,6 +50,7 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     public boolean[] switches = new boolean[]{false, false, false};
     public int temperatureState = 2;
 
+    //TODO: make input only insert and output only extract
     private final FluidTank fluidTank = new FluidTank(16000) {
         @Override
         protected void onContentsChanged() {
@@ -287,7 +288,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         return new ChemicalMixerMenu(pContainerId, pInventory, this, this.data);
     }
 
-    //TODO: upgrade
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
@@ -298,39 +298,66 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
             return lazyEnergyHandler.cast();
         }
         if(cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (side == Direction.UP) {
+                return lazyFluidHandler.cast();
+            } else if (side == Direction.DOWN) {
+                return lazyQuadFluidHandler.cast();
+            }
+
             Direction localDir = this.getBlockState().getValue(ChemicalMixerBlock.FACING);
+
             return switch (localDir) {
                 case EAST -> {
-                    if (side == Direction.SOUTH)
-                        yield lazyFluidHandler.cast();
-                    else if (side == Direction.NORTH)
+                    if (side == Direction.EAST) {
                         yield lazyDuoFluidHandler.cast();
-                    else
-                        yield super.getCapability(cap, side);
+                    } else if (side == Direction.WEST) {
+                        yield lazyTriFluidHandler.cast();
+                    } else if (side == Direction.SOUTH) {
+                        yield lazyQuinFluidHandler.cast();
+                    } else if (side == Direction.NORTH) {
+                        yield lazyHexaFluidHandler.cast();
+                    } else {
+                        yield lazyFluidHandler.cast();
+                    }
                 }
                 case SOUTH -> {
-                    if (side == Direction.WEST)
-                        yield lazyFluidHandler.cast();
-                    else if (side == Direction.EAST)
+                    if (side == Direction.SOUTH) {
                         yield lazyDuoFluidHandler.cast();
-                    else
-                        yield super.getCapability(cap, side);
+                    } else if (side == Direction.NORTH) {
+                        yield lazyTriFluidHandler.cast();
+                    } else if (side == Direction.WEST) {
+                        yield lazyQuinFluidHandler.cast();
+                    } else if (side == Direction.EAST) {
+                        yield lazyHexaFluidHandler.cast();
+                    } else {
+                        yield lazyFluidHandler.cast();
+                    }
                 }
                 case WEST -> {
-                    if (side == Direction.NORTH)
-                        yield lazyFluidHandler.cast();
-                    else if (side == Direction.SOUTH)
+                    if (side == Direction.WEST) {
                         yield lazyDuoFluidHandler.cast();
-                    else
-                        yield super.getCapability(cap, side);
+                    } else if (side == Direction.EAST) {
+                        yield lazyTriFluidHandler.cast();
+                    } else if (side == Direction.NORTH) {
+                        yield lazyQuinFluidHandler.cast();
+                    } else if (side == Direction.SOUTH) {
+                        yield lazyHexaFluidHandler.cast();
+                    } else {
+                        yield lazyFluidHandler.cast();
+                    }
                 }
                 default -> {
-                    if (side == Direction.EAST)
-                        yield lazyFluidHandler.cast();
-                    else if (side == Direction.WEST)
+                    if (side == Direction.NORTH) {
                         yield lazyDuoFluidHandler.cast();
-                    else
-                        yield super.getCapability(cap, side);
+                    } else if (side == Direction.SOUTH) {
+                        yield lazyTriFluidHandler.cast();
+                    } else if (side == Direction.EAST) {
+                        yield lazyQuinFluidHandler.cast();
+                    } else if (side == Direction.WEST) {
+                        yield lazyHexaFluidHandler.cast();
+                    } else {
+                        yield lazyFluidHandler.cast();
+                    }
                 }
             };
         }
@@ -371,14 +398,15 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         tag.putInt("powerCapacity", capacity);
         tag.putInt("Energy", energyStorage.getEnergyStored());
         tag.putInt("temperatureState", temperatureState);
-
+        tag.putBoolean("switch1", switches[0]);
+        tag.putBoolean("switch2", switches[1]);
+        tag.putBoolean("switch3", switches[2]);
         tag.put("tank1", fluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank2", duoFluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank3", triFluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank4", quadFluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank5", quinFluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank6", hexaFluidTank.writeToNBT(new CompoundTag()));
-
         super.saveAdditional(tag);
     }
 
@@ -390,7 +418,9 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         speedUpgrade = nbt.getInt("speedUpgrade");
         energyStorage.setEnergy(nbt.getInt("Energy"));
         temperatureState = nbt.getInt("temperatureState");
-
+        switches[0] = nbt.getBoolean("switch1");
+        switches[1] = nbt.getBoolean("switch2");
+        switches[2] = nbt.getBoolean("switch3");
         fluidTank.readFromNBT(nbt.getCompound("tank1"));
         duoFluidTank.readFromNBT(nbt.getCompound("tank2"));
         triFluidTank.readFromNBT(nbt.getCompound("tank3"));
@@ -424,27 +454,19 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
             transferFluidToTank(pBlockEntity, triFluidTank, 2);
         }
 
-        if (switches[0]) {
+        if (switches[0]) { // fill machine input with air
             FluidStack air = new FluidStack(POMfluids.AIR_SOURCE.get(), 200);
             fluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
             duoFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
             triFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
         }
 
-        if (switches[1]) {
+        if (switches[1]) { // move input fluid to output
             List<FluidStack> fluidStacks = new ArrayList<>();
             fluidStacks.add(fluidTank.drain(fluidTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE));
             fluidStacks.add(duoFluidTank.drain(duoFluidTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE));
             fluidStacks.add(triFluidTank.drain(triFluidTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE));
-
             addFluidOutput(fluidStacks);
-        }
-
-        if (switches[2]) {
-            List<FluidStack> fluidStacks = new ArrayList<>();
-            fluidStacks.add(quadFluidTank.drain(quadFluidTank.getFluidAmount(), IFluidHandler.FluidAction.EXECUTE));
-
-            removeFluidInput(fluidStacks);
         }
 
         if(hasRecipe(pBlockEntity)) {

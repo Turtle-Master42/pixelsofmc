@@ -74,7 +74,7 @@ public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
 
         if(menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 84, y + 8, 0, 168, menu.getScaledProgress(), 47);
+            guiGraphics.blit(TEXTURE, x + 84, y + 26, 0, 168, menu.getScaledProgress(), 10);
         }
         guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
 
@@ -116,9 +116,7 @@ public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
 
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
-                new Rect2i(x + 84, y + 8, 16, 10),
-                new Rect2i(x + 84, y + 26, 16, 10),
-                new Rect2i(x + 84, y + 44, 16, 10)
+                new Rect2i(x + 84, y + 26, 16, 10)
         );
     }
 

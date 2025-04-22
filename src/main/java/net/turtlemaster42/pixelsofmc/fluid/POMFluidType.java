@@ -28,9 +28,14 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(2).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
 
-    public static final RegistryObject<FluidType> SULFURIC_ACID_FLUID_TYPE = registerFluid("sulfuric_acid_fluid", 214, 171, 42,
+    public static final RegistryObject<FluidType> SULFURIC_ACID_FLUID_TYPE = registerFluid("sulfuric_acid_fluid", 161, 178, 48,
             FluidType.Properties.create().lightLevel(1).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> NITRIC_ACID_FLUID_TYPE = registerFluid("nitric_acid_fluid", 239, 211, 26,
+            FluidType.Properties.create().lightLevel(1).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
 
     //-----------SUPERCOOLED-----------//
     public static final RegistryObject<FluidType> HYDROGEN_FLUID_TYPE = registerFluid("hydrogen_fluid", 225, 223, 235,
@@ -84,6 +89,10 @@ public class POMFluidType {
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
     public static final RegistryObject<FluidType> BROMINE_GAS_TYPE = registerGas("bromine_gas", 218, 146, 163,
+            FluidType.Properties.create().lightLevel(0).temperature(300).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
+                    .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> AMMONIA_GAS_TYPE = registerGas("ammonia_gas", 117, 56, 95,
             FluidType.Properties.create().lightLevel(0).temperature(300).density(-15).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
