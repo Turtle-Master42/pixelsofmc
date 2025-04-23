@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 
 public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
     public DummyMachineEnergyBlock() {
-        super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).dynamicShape().strength(2f, 3600000f).noOcclusion()
+        super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).dynamicShape().strength(4f, 3600000f).noOcclusion()
                 .isRedstoneConductor((bs, br, bp) -> false));
     }
 

@@ -21,6 +21,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
@@ -60,6 +61,11 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     @Override
     public @NotNull IDrawable getIcon() {
         return this.icon;
+    }
+
+    @Override
+    public @Nullable IDrawable getBackground() {
+        return background;
     }
 
     @Override

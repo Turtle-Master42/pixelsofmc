@@ -13,7 +13,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class BigSwitchButton extends Button {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/buttons.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/buttons.png");
     private boolean on;
     private BigSwitchButton.Color color;
 

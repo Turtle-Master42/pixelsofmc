@@ -12,7 +12,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class SlotLockButton extends Button {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
     private boolean locked;
     private final int slotX;
     private final int slotY;

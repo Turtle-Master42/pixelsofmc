@@ -21,20 +21,20 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
 public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalCombinerRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_combining");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_combiner_gui.png");
-    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/chemical_combiner.png");
 
     private final IDrawable background;
     private final IDrawable icon;
     private final FluidTankRenderer renderer;
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 39, 4, 111, 72);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 106, 69);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_COMBINER.get()));
         this.renderer = new FluidTankRenderer(16000, true, 25, 11);
     }
@@ -65,17 +65,22 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     }
 
     @Override
+    public @Nullable IDrawable getBackground() {
+        return background;
+    }
+
+    @Override
     public void draw(ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        renderer.render(guiGraphics, 69, 4, recipe.getFluidInput());
-        renderer.render(guiGraphics, 69, 19, recipe.getResultFluid());
+        renderer.render(guiGraphics, 72, 9, recipe.getFluidInput());
+        renderer.render(guiGraphics, 72, 24, recipe.getResultFluid());
     }
 
     @Override
     public void getTooltip(ITooltipBuilder tooltip, ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (mouseX >= 69 && mouseX <= 94 && mouseY >= 4 && mouseY <= 15) {
+        if (mouseX >= 72 && mouseX <= 97 && mouseY >= 9 && mouseY <= 20) {
             tooltip.addAll(renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
         }
-        if (mouseX >= 69 && mouseX <= 94 && mouseY >= 19 && mouseY <= 30) {
+        if (mouseX >= 72 && mouseX <= 97 && mouseY >= 24 && mouseY <= 35) {
             tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
         }
     }
@@ -84,13 +89,13 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalCombinerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            int x = 3 + (2 * p);
-            int y = 12 + (20 * p);
+            int x = 7 + (2 * p);
+            int y = 7 + (20 * p);
             builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 51).addIngredients(recipe.getOutput().asIngredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(recipe.getOutput().asIngredient());
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
     }
 }

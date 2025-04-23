@@ -24,8 +24,8 @@ import javax.annotation.Nonnull;
 
 public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "ball_milling");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/ball_mill_gui.png");
-    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/ball_mill.png");
+    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
 
 
     private final IDrawable background;
@@ -35,7 +35,7 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     private final IDrawable icon;
 
     public BallMillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 28, 11, 120, 66);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 128, 75);
         this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
         this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();
@@ -81,18 +81,18 @@ public class BallMillRecipeCategory implements IRecipeCategory<BallMillRecipe> {
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 3, (14*(p+1)+8*p)-11).addIngredients(Ingredient.of(recipe.getInput(p)));
+            builder.addSlot(RecipeIngredientRole.INPUT, 7, 7 + (22 * p)).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
         //grinding ball input
-        builder.addSlot(RecipeIngredientRole.INPUT, 52, 25).addIngredients(recipe.getBall().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 56, 29).addIngredients(recipe.getBall().get(0));
         //output
         if (recipe.getOutputChance() < 1f) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addIngredients(recipe.getOutput().asIngredient()).setBackground(recipe.getOutputChance() < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0).addRichTooltipCallback(new JEItooltip("§6"+Math.round(recipe.getOutputChance()*100)+"%"));
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 105, 29).addIngredients(recipe.getOutput().asIngredient()).setBackground(recipe.getOutputChance() < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0).addRichTooltipCallback(new JEItooltip("§6"+Math.round(recipe.getOutputChance()*100)+"%"));
         } else if (recipe.getOutputChance() > 1f) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addIngredients(recipe.getOutput().asOverflowIngredient());
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 43).addIngredients(recipe.getOutput().asIngredient()).setBackground(recipe.getOutputChance() < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0).addRichTooltipCallback(new JEItooltip("§6"+Math.round((recipe.getOutputChance() - Mth.floor(recipe.getOutputChance()))*100)+"%"));
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 105, 29).addIngredients(recipe.getOutput().asOverflowIngredient());
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 105, 47).addIngredients(recipe.getOutput().asIngredient()).setBackground(recipe.getOutputChance() < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0).addRichTooltipCallback(new JEItooltip("§6"+Math.round((recipe.getOutputChance() - Mth.floor(recipe.getOutputChance()))*100)+"%"));
         } else {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 101, 25).addIngredients(recipe.getOutput().asIngredient());
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 105, 29).addIngredients(recipe.getOutput().asIngredient());
         }
     }
 }

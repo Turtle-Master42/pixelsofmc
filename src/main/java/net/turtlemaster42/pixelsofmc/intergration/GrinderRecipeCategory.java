@@ -16,13 +16,14 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
 public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "grinding");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/grinder_gui.png");
-    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/grinder.png");
+    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
 
     private final IDrawable background;
     private final IDrawable chanceOverlay;
@@ -31,7 +32,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     private final IDrawable icon;
 
     public GrinderRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 30, 6, 115, 75);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 98, 84);
         this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
         this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();
@@ -64,15 +65,20 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
+    public @Nullable IDrawable getBackground() {
+        return background;
+    }
+
+    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull GrinderRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-            builder.addSlot(RecipeIngredientRole.INPUT, 13, 30).addIngredients(recipe.getInput());
+            builder.addSlot(RecipeIngredientRole.INPUT, 7, 34).addIngredients(recipe.getInput());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
             IDrawable overlay = chanceOverlay;
             String display = "§6"+Math.round(recipe.getOutputChance(p)*100)+"%";
-            int x = 81 + 18*(p/4);
-            int y = 9*((p-4*(p/4))*2+1)-6;
+            int x = 75 + 18*(p/4);
+            int y = 7 * ((p-4*(p/4))*2+1)-6;
 
             if (recipe.getOutputChance(p) < 0.5)
                 overlay = smallChanceOverlay;

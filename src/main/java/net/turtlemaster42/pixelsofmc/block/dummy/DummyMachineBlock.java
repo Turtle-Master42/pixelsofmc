@@ -28,7 +28,7 @@ import java.awt.*;
 public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	private final Vector3f DUST_COLOR = Vec3.fromRGB24(new Color(255, 255, 255).getRGB()).toVector3f();
 	public DummyMachineBlock() {
-		super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).strength(2f, 3600000f).noOcclusion()
+		super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).strength(4f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
 	}
 

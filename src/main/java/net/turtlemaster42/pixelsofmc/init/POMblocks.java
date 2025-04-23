@@ -266,28 +266,28 @@ public class POMblocks {
 
     //machines
     public static final RegistryObject<Block> GRINDER = registerBlock("grinder",
-            () -> new GrinderBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+            () -> new GrinderBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.grinder.shift", "", "tooltip.pixelsofmc.block.grinder.alt");
     public static final RegistryObject<Block> BALL_MILL = registerBlock("ball_mill",
-            () -> new BallMillBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+            () -> new BallMillBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.ball_mill.shift", "", "tooltip.pixelsofmc.block.ball_mill.alt");
     public static final RegistryObject<Block> HOT_ISOSTATIC_PRESS = registerBlock("hot_isostatic_press",
-            () -> new HotIsostaticPressBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+            () -> new HotIsostaticPressBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.hot_isostatic_press.shift", "", "tooltip.pixelsofmc.block.hot_isostatic_press.alt");
     public static final RegistryObject<Block> CHEMICAL_SEPARATOR = registerBlock("chemical_separator",
-            () -> new ChemicalSeparatorBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new ChemicalSeparatorBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.chemical_separator.shift", "", "tooltip.pixelsofmc.block.chemical_combiner.alt");
     public static final RegistryObject<Block> CHEMICAL_COMBINER = registerBlock("chemical_combiner",
-            () -> new ChemicalCombinerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new ChemicalCombinerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.chemical_combiner.shift", "", "tooltip.pixelsofmc.block.chemical_combiner.alt");
     public static final RegistryObject<Block> CHEMICAL_MIXER = registerBlock("chemical_mixer",
-            () -> new ChemicalMixerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new ChemicalMixerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.chemical_mixer.shift", "", "tooltip.pixelsofmc.block.chemical_mixer.alt");
     public static final RegistryObject<Block> PIXEL_SPLITTER = registerBlock("pixel_splitter",
-            () -> new PixelSplitterBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+            () -> new PixelSplitterBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.pixel_splitter.shift", "", "");
     public static final RegistryObject<Block> PIXEL_ASSEMBLER = registerBlock("pixel_assembler",
-            () -> new PixelAssemblerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+            () -> new PixelAssemblerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "", "", "");
 
     public static final RegistryObject<Block> NUCLEAR_REACTOR = registerBlock("nuclear_reactor",
@@ -295,16 +295,16 @@ public class POMblocks {
 
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
-            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.sds_controller.shift", "", "tooltip.pixelsofmc.block.sds_controller.alt");
     public static final RegistryObject<Block> MDS_CONTROLLER = registerBlock("mds_controller",
-            () -> new MDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new MDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.mds_controller.shift", "", "tooltip.pixelsofmc.block.mds_controller.alt");
     public static final RegistryObject<Block> MNS_CONTROLLER = registerBlock("mns_controller",
-            () -> new MNSFusionControllerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new MNSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.mns_controller.shift", "", "tooltip.pixelsofmc.block.mns_controller.alt");
     public static final RegistryObject<Block> BH_CONTROLLER = registerBlock("bh_controller",
-            () -> new BHFusionControllerBlock(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new BHFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.bh_controller.shift", "", "tooltip.pixelsofmc.block.bh_controller.alt");
 
 

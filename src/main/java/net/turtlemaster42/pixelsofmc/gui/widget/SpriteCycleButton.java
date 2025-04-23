@@ -39,7 +39,7 @@ public class SpriteCycleButton extends AbstractButton {
     public SpriteCycleButton(int pX, int pY, int pWidth, int pHeight, int cycles, OnPress onPress, Component pMessage) {
         super(pX, pY, pWidth, pHeight, pMessage);
         this.maxState = cycles;
-        this.TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+        this.TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
         this.onPress = onPress;
     }
 

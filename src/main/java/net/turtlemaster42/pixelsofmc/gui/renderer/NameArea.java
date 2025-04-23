@@ -10,7 +10,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 public class NameArea extends InfoArea {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/widgets.png");
+            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
     private final Component name;
 
     public NameArea(Component name, int x,  int y) {

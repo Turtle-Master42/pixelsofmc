@@ -634,6 +634,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("FDF")
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
                 .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.CHEMICAL_MIXER.get())
+                .define('A', POMitems.EMPTY_CELL.get())
+                .define('B', POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .define('C', POMitems.PERFECTED_CIRCUIT_BOARD_2.get())
+                .define('D', POMblocks.PERFECTED_CASING_2.get())
+                .define('E', POMitems.RED_SILVER_WIRE.get())
+                .define('F', POMblocks.STRENGTHENED_CASING.get())
+                .pattern("ABA")
+                .pattern("AFA")
+                .pattern("CDE")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
+                .save(fConsumer);
 
 
 
