@@ -6,13 +6,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.util.block.IFusionControllerBlock;
 
 import java.util.Map;
 
 public abstract class AbstractFusionControllerBlock extends AbstractMultiControllerBlock implements IFusionControllerBlock {
     protected AbstractFusionControllerBlock(Properties pProperties) {
-        super(pProperties);
+        super(POMtags.Blocks.FUSION_CASINGS, pProperties);
     }
 
     // --- Multi Block --- //

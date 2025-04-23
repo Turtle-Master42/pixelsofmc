@@ -241,8 +241,6 @@ public class POMblocks {
             () -> new ItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FluidPortBlock> FLUID_PORT = registerBlock("fluid_port",
             () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-    public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
-            () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FuelCellHolderBlock> FUEL_CELL_HOLDER = registerBlock("fuel_cell_holder",
@@ -251,8 +249,8 @@ public class POMblocks {
             () -> new FissionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FissionFluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
             () -> new FissionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-
-
+    public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
+            () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",
             () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> SUPERCONDUCTIVE_FUSION_CASING = registerBlock("superconductive_fusion_casing",

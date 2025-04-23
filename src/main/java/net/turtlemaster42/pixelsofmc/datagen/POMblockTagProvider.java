@@ -180,9 +180,13 @@ public class POMblockTagProvider extends BlockTagsProvider {
         );
 
         this.tag(POMtags.Blocks.FISSION_CASINGS).add(
+                POMblocks.FUSION_CASING.get(),
+                POMblocks.FUSION_FLUID_PORT.get(),
+                POMblocks.FUSION_ENERGY_PORT.get(),
                 POMblocks.FISSION_CASING.get(),
                 POMblocks.FISSION_FLUID_PORT.get(),
                 POMblocks.FISSION_ENERGY_PORT.get(),
+                POMblocks.ARMORED_MULTIBLOCK_CASING.get(),
                 POMblocks.REINFORCED_GLASS.get()
         );
 
@@ -198,6 +202,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.ARMORED_MULTIBLOCK_CASING.get()
         );
 
+        //auto gen
         for(Element element : Element.values()) {
             if (element.shouldAddBlock()) {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(element.block());

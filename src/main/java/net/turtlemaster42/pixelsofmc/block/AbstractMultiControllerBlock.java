@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -28,8 +29,11 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
-    protected AbstractMultiControllerBlock(Properties pProperties) {
+    private final TagKey<Block> glassReplaceable;
+
+    protected AbstractMultiControllerBlock(TagKey<Block> glassReplaceable, Properties pProperties) {
         super(pProperties);
+        this.glassReplaceable = glassReplaceable;
     }
 
     @Override
@@ -122,7 +126,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                         blocks.put(block, 1);
                     }
 
-                    if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock) {
+                    if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock && blockState.is(glassReplaceable)) {
                         correctBlocks++;
                     } else if (multiBlockState.presentIn(blockState)) {
                         correctBlocks++;
