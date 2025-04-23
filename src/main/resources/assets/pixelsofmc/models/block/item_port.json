@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "pixelsofmc:block/item_port",
+    "side": "pixelsofmc:block/item_port_side",
+    "bottom": "pixelsofmc:block/port_back"
+  }
+}

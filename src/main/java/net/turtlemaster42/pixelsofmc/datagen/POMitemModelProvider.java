@@ -222,8 +222,22 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.GRINDER);
         complexBlock(POMblocks.SDS_CONTROLLER);
 
+        complexBlock(POMblocks.FUSION_CASING);
+        complexBlock(POMblocks.FUSION_CORNER);
+        complexBlock(POMblocks.FUSION_ENERGY_PORT);
+        complexBlock(POMblocks.FUSION_FLUID_PORT);
+        complexBlock(POMblocks.FUSION_ITEM_PORT);
+        complexBlock(POMblocks.FUSION_PLASMA_PORT);
+        complexBlock(POMblocks.HEAT_SINK);
+        complexBlock(POMblocks.SUPERCONDUCTIVE_FUSION_CASING);
+
         complexBlock(POMblocks.FUEL_CELL_HOLDER);
         complexBlock(POMblocks.NUCLEAR_REACTOR);
+        complexBlock(POMblocks.FISSION_FLUID_PORT);
+        complexBlock(POMblocks.FISSION_ENERGY_PORT);
+        complexBlock(POMblocks.FLUID_PORT);
+        complexBlock(POMblocks.ENERGY_PORT);
+        complexBlock(POMblocks.ITEM_PORT);
 
         complexBlock(POMblocks.TITANIUM_PLATING_SLAB);
         complexBlock(POMblocks.TITANIUM_PLATING_STAIRS);

@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-22T18:33:41.5679	Loot Tables
+// 1.20.1	2025-04-23T19:53:12.070072	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
@@ -20,7 +20,11 @@ e269bb9f9d9e6a6c7ec504e952359bcbc762f4a9 data/pixelsofmc/loot_tables/blocks/chem
 437f9a59fef453eaf7291beadab4c5762051ec27 data/pixelsofmc/loot_tables/blocks/copper_spool.json
 8f5d7b736d027b8ba3d5ed998eaba46a36a152fc data/pixelsofmc/loot_tables/blocks/deepslate_titanium_ore.json
 57fc4f01fcc5cb940a4d49193cc9e1fdf053bd2c data/pixelsofmc/loot_tables/blocks/endstone_titanium_ore.json
+a3e1b7974f481d981909def027b2d0df4c120cb2 data/pixelsofmc/loot_tables/blocks/energy_port.json
 354283702ff79d48ffd3d9a72d19ff37f9e6abec data/pixelsofmc/loot_tables/blocks/fission_casing.json
+0b09c98e66b48eabd9a19fb27ceba559ddc315a5 data/pixelsofmc/loot_tables/blocks/fission_energy_port.json
+24335f7dec72d5249675bd566c254f487796443a data/pixelsofmc/loot_tables/blocks/fission_fluid_port.json
+12017cdde3eb7a9b927a131767cf3b5231493998 data/pixelsofmc/loot_tables/blocks/fluid_port.json
 4889d1691e3f13de561326169bde268a7ebcb3d8 data/pixelsofmc/loot_tables/blocks/fuel_cell_holder.json
 d11a5fae788eba7e9fc58d4e24f9cd35a3fd6365 data/pixelsofmc/loot_tables/blocks/fusion_casing.json
 2770ce4ec2a41160f8171fbce8d808555c8b3de5 data/pixelsofmc/loot_tables/blocks/fusion_corner.json
@@ -33,6 +37,7 @@ f21c3ca576f727353fecd2d2a892f3b5fa422f63 data/pixelsofmc/loot_tables/blocks/fusi
 7ffe353003562ad32efa9845c87b2a98e1d6a589 data/pixelsofmc/loot_tables/blocks/hot_isostatic_press.json
 31c6b54270b1191cdb79d0d710e617f5c877c1cc data/pixelsofmc/loot_tables/blocks/hydrogen.json
 e356c8cca629b02e3913a296f0321ec8f52d4188 data/pixelsofmc/loot_tables/blocks/hydrogen_gas.json
+6a7b7a640e4d2d530293b478109473d5c305a207 data/pixelsofmc/loot_tables/blocks/item_port.json
 acdd981c8ca93ece00d188f932f29248e48b3a70 data/pixelsofmc/loot_tables/blocks/lead_plating_block.json
 7cbb0cf3892294cc79b852544348121df91e9802 data/pixelsofmc/loot_tables/blocks/lead_plating_slab.json
 d8044be9c380bab8b6b9d4297c4e82f75edeef41 data/pixelsofmc/loot_tables/blocks/lead_plating_stairs.json

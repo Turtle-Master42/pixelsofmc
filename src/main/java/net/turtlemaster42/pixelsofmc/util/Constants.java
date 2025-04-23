@@ -1,8 +1,6 @@
 package net.turtlemaster42.pixelsofmc.util;
 
 public class Constants {
-
-    //public final double name = 0;
     public static final double c = 2.99792458E8;
     public static final double cSquared = 8.987551787E16;
     public static final double e = 1.602176565E-19;

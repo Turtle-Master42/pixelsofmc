@@ -2,9 +2,11 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.versions.forge.ForgeVersion;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -14,19 +16,22 @@ import java.util.Map;
 
 public class POMtags {
 
-    public static void register() {Items.init();}
+    public static void register() {
+        Items.init();
+        Blocks.init();
+    }
     private static final Map<Element, MetalTags> elements = new EnumMap<>(Element.class);
 
     public static class Items {
         private static void init() {}
 
+        // items
         public static final TagKey<Item> ATOM = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom"));
         public static final TagKey<Item> ATOM64 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom64"));
         public static final TagKey<Item> ATOM512 = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "atom512"));
         public static final TagKey<Item> SDS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "sds"));
         public static final TagKey<Item> MDS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "mds"));
         public static final TagKey<Item> MNS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "mns"));
-
 
         public static final TagKey<Item> CIRCLE_SAW = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "circle_saw"));
         public static final TagKey<Item> MILLING_BALL = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "milling_ball"));
@@ -42,16 +47,29 @@ public class POMtags {
         public static final TagKey<Item> SOUL_FUELS = ItemTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "soul_fuels"));
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "nuggets/netherite"));
 
-
+        // forge items
         public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/netherite"));
         public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/ancient_debris"));
         public static final TagKey<Item> DUST_COAL = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
         public static final TagKey<Item> DUST_QUARTZ = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "dusts/quartz"));
 
         public static final TagKey<Item> ORES_TITANIUM = ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "ores/titanium"));
+
     }
 
+    public static class Blocks {
+        private static void init() {}
 
+        // blocks
+        public static final TagKey<Block> MACHINE_BLOCKS = BlockTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "machine_block"));
+        public static final TagKey<Block> MULTIBLOCK_CASINGS = BlockTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "multiblock/casing"));
+        public static final TagKey<Block> FISSION_CASINGS = BlockTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "multiblock/fission"));
+        public static final TagKey<Block> FUSION_CASINGS = BlockTags.create(new ResourceLocation(PixelsOfMc.MOD_ID, "multiblock/fusion"));
+
+        // forge blocks
+        public static final TagKey<Block> ORES_TITANIUM = BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, "ores/titanium"));
+
+    }
     //Immersive Engineering
 
     static

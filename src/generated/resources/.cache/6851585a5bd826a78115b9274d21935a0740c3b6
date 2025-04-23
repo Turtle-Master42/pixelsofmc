@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-22T18:33:41.573782	Item Models: pixelsofmc
+// 1.20.1	2025-04-23T19:53:12.077464	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -120,6 +120,7 @@ e1911121962be835b8d4f3f4cf32c27b74211dc4 assets/pixelsofmc/models/item/einsteini
 92595bfdb32391fd726ba7f438e10f67e2b9251f assets/pixelsofmc/models/item/empty_cell.json
 d9922e4a9fd337aba551a925ae641fdfc7f242c1 assets/pixelsofmc/models/item/empty_fuel_cell.json
 e2d6a2da2fdfc778f4ba63b38fa15134e688bc0e assets/pixelsofmc/models/item/ender_sensor.json
+665bb40ca2b509a19f26a065f42a6afe0b898d01 assets/pixelsofmc/models/item/energy_port.json
 4d13df6dae1778b3919d02be0da65c3228b5399e assets/pixelsofmc/models/item/energy_upgrade_1.json
 8bb9cb0fbbef606ec654857786e72ca1c473f749 assets/pixelsofmc/models/item/energy_upgrade_2.json
 9e1117a597d1ee040d1277ff18842afa07d0b0e8 assets/pixelsofmc/models/item/enriched_plutonium_fuel_cell.json
@@ -133,7 +134,10 @@ ff75f8f41dd388b988ef11ed6488148c9149419b assets/pixelsofmc/models/item/europium_
 f4e908c5f631dce7cb2a24f54796b3bc360a9c14 assets/pixelsofmc/models/item/fire_proof_compound.json
 df020c07604e2c50bf6104f921addd5453c253d6 assets/pixelsofmc/models/item/fire_proof_plastic.json
 b534f18d52a18bcf04fe58cc4115ab1981e19f89 assets/pixelsofmc/models/item/fire_proof_rubber_ball.json
+31af7c222510c4f8462ff586c6d5ebe47182b6d8 assets/pixelsofmc/models/item/fission_energy_port.json
+3319d4d85f25fa7ce0381e4e27dfb717ebad91a9 assets/pixelsofmc/models/item/fission_fluid_port.json
 9c106fb6534b24bb15f596ad4542a6889d8d06fe assets/pixelsofmc/models/item/fission_plating.json
+7d8c79bfb4181845fc092dc08b4e4e4fcf2b3919 assets/pixelsofmc/models/item/fluid_port.json
 b2c74b1a73a53e83988d0c21d202f1e855407056 assets/pixelsofmc/models/item/fluorine_atom_512.json
 8fa274f76c9ec419139c18e0572bf9d7cae6547a assets/pixelsofmc/models/item/fluorine_atom_64.json
 0204311244de86961c0de882a489b6999f849e14 assets/pixelsofmc/models/item/fluorine_cube.json
@@ -141,7 +145,13 @@ b2c74b1a73a53e83988d0c21d202f1e855407056 assets/pixelsofmc/models/item/fluorine_
 5b7a5b2aeac65e3b075d1d62315a636746e6d40d assets/pixelsofmc/models/item/francium_atom_64.json
 5b35cabf6910635c4687dd4562b32f271ba56b1b assets/pixelsofmc/models/item/francium_ingot.json
 d4f2f9fc32a3402392bed6cf7318859cd3ca6ebc assets/pixelsofmc/models/item/fuel_cell_holder.json
+d2f4adabb1b5cb734110e3559872726cb352386c assets/pixelsofmc/models/item/fusion_casing.json
+c13205e232692942401423812b9b9f1b76bd4419 assets/pixelsofmc/models/item/fusion_corner.json
+d0ff49e3719faf4670d7eb1b07e625ac9f11bf95 assets/pixelsofmc/models/item/fusion_energy_port.json
+655c552f0a69313a5b6f5ad44c795c32a5a78ac4 assets/pixelsofmc/models/item/fusion_fluid_port.json
+de255cd0b9725dc5b7c5f92df2e42e00cf44ddf2 assets/pixelsofmc/models/item/fusion_item_port.json
 d05372cfda7d5559c0bc2f3737959552ff611f25 assets/pixelsofmc/models/item/fusion_lining.json
+0ae6f995a3a1ebfa64188ab811e7ed64da4ebb46 assets/pixelsofmc/models/item/fusion_plasma_port.json
 56d194af04a744fd9dcb68d94ebde48dac21d214 assets/pixelsofmc/models/item/fusion_plating.json
 2f4ab3f21abee8a38c770020ec5fc469402dfadf assets/pixelsofmc/models/item/gadolinium_atom_512.json
 32ce32e8f9e6bfbbb8d97f0ef928eb63c40b2208 assets/pixelsofmc/models/item/gadolinium_atom_64.json
@@ -161,6 +171,7 @@ ef60be60fbfa71724b39b2c54df23371a5ded503 assets/pixelsofmc/models/item/grinder.j
 c6c154d875e87c8ab82cf837da830f042261c3c6 assets/pixelsofmc/models/item/hafnium_atom_64.json
 50868ce8a7a994ffa6be821c0b5aef59f859aa95 assets/pixelsofmc/models/item/hafnium_ingot.json
 668dc5e335002d0cae8076855d2ce1798144e1ed assets/pixelsofmc/models/item/hammer.json
+5806515c25e2ad6dfb295e328b2fc88416622032 assets/pixelsofmc/models/item/heat_sink.json
 0e6e78a8384f221f5470cd1a0dd180b2dfa935ae assets/pixelsofmc/models/item/heat_upgrade_1.json
 8865b007187647cb3f58c4bd71ee52fb05367388 assets/pixelsofmc/models/item/heat_upgrade_2.json
 0a54641c38faebd533dc7c76d206eb120466deb4 assets/pixelsofmc/models/item/helium_atom_512.json
@@ -188,6 +199,7 @@ b11012d8af555a47e8cc61c699a72c6e435f1d30 assets/pixelsofmc/models/item/iodine_cu
 6b56977c751f646dcd9da96f4b3bf1c1109ced54 assets/pixelsofmc/models/item/iron_atom_512.json
 9470689eacf79d880ded233ca24ce3b8f6ca4763 assets/pixelsofmc/models/item/iron_atom_64.json
 0f1dffc0404de55004a01c8661ca10c0099585c6 assets/pixelsofmc/models/item/iron_dust.json
+8756704e9ae813e7c98f648857823aa360a85867 assets/pixelsofmc/models/item/item_port.json
 9e538d91bf77ed75cdb2a758f3cfd64536e91c4b assets/pixelsofmc/models/item/krypton_atom_512.json
 62de2edcff1c2ee82bcafb651ca29b12db043329 assets/pixelsofmc/models/item/krypton_atom_64.json
 66080dd6e493a332f6631336b65b0fa826897a8d assets/pixelsofmc/models/item/krypton_canister.json
@@ -405,6 +417,7 @@ a4c22cac49519795c59c539d2bd99a4d2933ccb6 assets/pixelsofmc/models/item/sulfur_cu
 c28261d06f6e32c7e5bfe788dc1b9b7967c4419b assets/pixelsofmc/models/item/supercharged_power_cell_array.json
 2f35b97dc2cc99d8c9d6472b54cd53803dab031d assets/pixelsofmc/models/item/supercharged_power_orb.json
 da96c9bb64dfe63babf29c4df48ca85d78765222 assets/pixelsofmc/models/item/superconductive_dust.json
+5c29e788d9897cfe149e1493b5dd03598c3f705f assets/pixelsofmc/models/item/superconductive_fusion_casing.json
 fdbcb79deedb28568ec3be9971a675240f757a13 assets/pixelsofmc/models/item/superconductive_ingot.json
 6d7f3474348c084725be52af00507c6e083266db assets/pixelsofmc/models/item/superconductive_nugget.json
 e4e5acbb516c5ba2109d2c661ade86b59df31247 assets/pixelsofmc/models/item/superconductive_spool.json

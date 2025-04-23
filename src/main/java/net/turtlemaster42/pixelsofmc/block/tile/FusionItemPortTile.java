@@ -14,8 +14,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
-import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
+import net.turtlemaster42.pixelsofmc.block.AbstractFusionPort;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncItemStackToClient;
@@ -46,7 +45,7 @@ public class FusionItemPortTile extends AbstractMultiBlockTile {
         @Nonnull
         public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
             ItemStack insertSim = stack;
-            if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(2)) {
+            if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(2)) {
 
                 BlockPos posTarget = getMainPos();
                 if (posTarget.equals(worldPosition)) {
@@ -77,7 +76,7 @@ public class FusionItemPortTile extends AbstractMultiBlockTile {
         @Override
         @Nonnull
         public ItemStack extractItem(int slot,int amount, boolean simulate) {
-            if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(1)) {
+            if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(1)) {
                 BlockPos posTarget = getMainPos();
                 if (posTarget.equals(worldPosition)) {
                     return ItemStack.EMPTY;
@@ -147,8 +146,8 @@ public class FusionItemPortTile extends AbstractMultiBlockTile {
     }
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FusionItemPortTile e) {
-        if (blockState.getValue(FusionEnergyPortBlock.PUSHING) && e.isMainPosValid()) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+        if (blockState.getValue(AbstractFusionPort.PUSHING) && e.isMainPosValid()) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             e.itemCooldown++;
             if (e.itemCooldown >= 4) {
@@ -162,8 +161,8 @@ public class FusionItemPortTile extends AbstractMultiBlockTile {
                                     return;
 
                                 Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
-                                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionItemPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.8f);
-                                Vector3f launchVec = rotatedVecPos(blockState.getValue(FusionItemPortBlock.PUSH_DIRECTION), new Vector3f(0), 0, 0, 0.2f);
+                                Vector3f posVec = rotatedVecPos(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), centerVec, 0, 0, 0.8f);
+                                Vector3f launchVec = rotatedVecPos(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), new Vector3f(0), 0, 0, 0.2f);
                                 ItemEntity itementity = new ItemEntity(level, posVec.x, posVec.y, posVec.z, outStack);
                                 itementity.setDeltaMovement(launchVec.x, launchVec.y, launchVec.z);
                                 level.addFreshEntity(itementity);
@@ -174,7 +173,7 @@ public class FusionItemPortTile extends AbstractMultiBlockTile {
                 } else {
                     BlockEntity facingTile = level.getBlockEntity(facingPos);
                     if (facingTile != null) {
-                        IItemHandler itemStackHandler = facingTile.getCapability(ForgeCapabilities.ITEM_HANDLER, blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION).getOpposite()).orElse(null);
+                        IItemHandler itemStackHandler = facingTile.getCapability(ForgeCapabilities.ITEM_HANDLER, blockState.getValue(AbstractFusionPort.PUSH_DIRECTION).getOpposite()).orElse(null);
                         if (itemStackHandler != null && level.getBlockEntity(e.getMainPos()) instanceof AbstractMachineTile<?> tile) {
                             for (int inSlot = 0; inSlot < tile.itemHandler.getSlots(); inSlot++) {
                                 if (!tile.isSlotValidOutput(inSlot)) {

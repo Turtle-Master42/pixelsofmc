@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:empty_cell"
+    },
+    "B": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "C": {
+      "item": "pixelsofmc:perfected_circuit_board_2"
+    },
+    "D": {
+      "item": "pixelsofmc:perfected_casing_2"
+    },
+    "E": {
+      "item": "pixelsofmc:red_silver_wire"
+    },
+    "F": {
+      "item": "pixelsofmc:strengthened_casing"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "AFA",
+    "CDE"
+  ],
+  "result": {
+    "item": "pixelsofmc:chemical_mixer"
+  },
+  "show_notification": true
+}

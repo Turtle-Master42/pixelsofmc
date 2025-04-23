@@ -16,8 +16,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
-import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
+import net.turtlemaster42.pixelsofmc.block.AbstractFusionPort;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -50,7 +49,7 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEne
             }
             @Override
             public int receiveEnergy(int maxReceive, boolean simulate) {
-                if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(2)) {
+                if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(2)) {
                     //credits Cyclic
                     BlockPos posTarget = getMainPos();
                     if (posTarget.equals(worldPosition))
@@ -73,7 +72,7 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEne
 
             @Override
             public int extractEnergy(int maxExtract, boolean simulate) {
-                if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(1)) {
+                if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(1)) {
                     //credits Cyclic
                     BlockPos posTarget = getMainPos();
                     if (posTarget.equals(worldPosition))
@@ -158,8 +157,8 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEne
     }
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FusionEnergyPortTile e) {
-        if (blockState.getValue(FusionEnergyPortBlock.PUSHING) && e.isMainPosValid()) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+        if (blockState.getValue(AbstractFusionPort.PUSHING) && e.isMainPosValid()) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             e.energyStorage.extractEnergy(1, true);
             if ((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) {
@@ -179,7 +178,7 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEne
             } else {
                 BlockEntity facingTile = level.getBlockEntity(facingPos);
                 if (facingTile != null && e.energyStorage.getEnergyStored() < e.capacity) {
-                    EnergyStorage energy = (EnergyStorage) facingTile.getCapability(ForgeCapabilities.ENERGY, blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION).getOpposite()).orElse(null);
+                    EnergyStorage energy = (EnergyStorage) facingTile.getCapability(ForgeCapabilities.ENERGY, blockState.getValue(AbstractFusionPort.PUSH_DIRECTION).getOpposite()).orElse(null);
                     if (energy != null) {
                         energy.receiveEnergy(e.energyStorage.extractEnergy(Math.min(100, e.energyStorage.getMaxEnergyStored() - e.energyStorage.getEnergyStored()), false), false);
                     }
@@ -189,12 +188,12 @@ public class FusionEnergyPortTile extends AbstractMultiBlockTile implements IEne
     }
 
     public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, FusionEnergyPortTile e) {
-        if (blockState.getValue(FusionEnergyPortBlock.PUSHING)) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+        if (blockState.getValue(AbstractFusionPort.PUSHING)) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             if (((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) && e.energyStorage.getEnergyStored() > 0) {
                 Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
-                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
+                Vector3f posVec = rotatedVecPos(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
                 level.addParticle(POMparticles.ELECTRIC_SPARK.get(), posVec.x + (Math.random() - 0.5) / 2, posVec.y + (Math.random() - 0.5) / 2, posVec.z + (Math.random() - 0.5) / 2, 0, 0, 0);
             }
         }

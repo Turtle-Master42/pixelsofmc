@@ -235,12 +235,22 @@ public class POMblocks {
             () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(8f)));
     public static final RegistryObject<AbstractMultiBlock> MULTIBLOCK_CASING = registerBlock("multiblock_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<EnergyPortBlock> ENERGY_PORT = registerBlock("energy_port",
+            () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<ItemPortBlock> ITEM_PORT = registerBlock("item_port",
+            () -> new ItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<FluidPortBlock> FLUID_PORT = registerBlock("fluid_port",
+            () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FuelCellHolderBlock> FUEL_CELL_HOLDER = registerBlock("fuel_cell_holder",
             () -> new FuelCellHolderBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<FissionEnergyPortBlock> FISSION_ENERGY_PORT = registerBlock("fission_energy_port",
+            () -> new FissionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<FissionFluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
+            () -> new FissionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
 
 
     public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",

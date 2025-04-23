@@ -6,7 +6,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Block;
-import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
+import net.turtlemaster42.pixelsofmc.block.FluidPortBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.*;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
@@ -23,6 +23,16 @@ public class POMtiles {
 
 	public static final RegistryObject<BlockEntityType<MultiBlockTile>> MULTIBLOCK =
 			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.ARMORED_MULTIBLOCK_CASING.get(), POMblocks.FISSION_CASING.get()).build(null));
+	public static final RegistryObject<BlockEntityType<EnergyPortTile>> ENERGY_PORT =
+			TILES.register("energy_port", () -> BlockEntityType.Builder.of(EnergyPortTile::new, POMblocks.ENERGY_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ItemPortTile>> ITEM_PORT =
+			TILES.register("item_port", () -> BlockEntityType.Builder.of(ItemPortTile::new, POMblocks.ITEM_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FluidPortTile>> FLUID_PORT =
+			TILES.register("fluid_port", () -> BlockEntityType.Builder.of(FluidPortTile::new, POMblocks.FLUID_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FissionEnergyPortTile>> FISSION_ENERGY_PORT =
+			TILES.register("fission_energy_port", () -> BlockEntityType.Builder.of(FissionEnergyPortTile::new, POMblocks.FISSION_ENERGY_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FissionFluidPortTile>> FISSION_FLUID_PORT =
+			TILES.register("fission_fluid_port", () -> BlockEntityType.Builder.of(FissionFluidPortTile::new, POMblocks.FISSION_FLUID_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
 			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =

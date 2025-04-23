@@ -8,7 +8,7 @@
   ],
   "fluid_outputs": [
     {
-      "Amount": 500,
+      "Amount": 1000,
       "FluidName": "pixelsofmc:hydrogen_gas"
     },
     {

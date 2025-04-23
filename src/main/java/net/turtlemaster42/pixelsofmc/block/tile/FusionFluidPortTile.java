@@ -14,9 +14,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.block.FusionEnergyPortBlock;
-import net.turtlemaster42.pixelsofmc.block.FusionFluidPortBlock;
-import net.turtlemaster42.pixelsofmc.block.FusionItemPortBlock;
+import net.turtlemaster42.pixelsofmc.block.AbstractFusionPort;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -52,7 +50,7 @@ public class FusionFluidPortTile extends AbstractMultiBlockTile implements IFlui
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(2)) {
+            if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(2)) {
                 //credits Cyclic
                 BlockPos posTarget = getMainPos();
                 if (posTarget.equals(worldPosition))
@@ -89,7 +87,7 @@ public class FusionFluidPortTile extends AbstractMultiBlockTile implements IFlui
 
         @Override
         public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
-            if (!level.getBlockState(worldPosition).getValue(FusionItemPortBlock.MODE).equals(1)) {
+            if (!level.getBlockState(worldPosition).getValue(AbstractFusionPort.MODE).equals(1)) {
                 //credits Cyclic
                 BlockPos posTarget = getMainPos();
                 if (posTarget.equals(worldPosition))
@@ -187,8 +185,8 @@ public class FusionFluidPortTile extends AbstractMultiBlockTile implements IFlui
     }
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FusionFluidPortTile e) {
-        if (blockState.getValue(FusionEnergyPortBlock.PUSHING) && e.isMainPosValid()) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+        if (blockState.getValue(AbstractFusionPort.PUSHING) && e.isMainPosValid()) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             if ((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) {
                 if (e.fluidPlaceProgress > 200 && !e.duoFluidTank.getFluid().getFluid().getFluidType().isLighterThanAir()) {
@@ -201,7 +199,7 @@ public class FusionFluidPortTile extends AbstractMultiBlockTile implements IFlui
             } else {
                 BlockEntity facingTile = level.getBlockEntity(facingPos);
                 if (facingTile != null) {
-                    IFluidHandler fluid = facingTile.getCapability(ForgeCapabilities.FLUID_HANDLER, blockState.getValue(FusionEnergyPortBlock.PUSH_DIRECTION).getOpposite()).orElse(null);
+                    IFluidHandler fluid = facingTile.getCapability(ForgeCapabilities.FLUID_HANDLER, blockState.getValue(AbstractFusionPort.PUSH_DIRECTION).getOpposite()).orElse(null);
                     if (fluid != null) {
                         fluid.fill(new FluidStack(e.getDuoFluid().getFluid(), e.duoFluidTank.drain(Math.min(fluid.getTankCapacity(0) - fluid.getFluidInTank(0).getAmount(), 250), IFluidHandler.FluidAction.EXECUTE).getAmount()), IFluidHandler.FluidAction.EXECUTE);
                     }
@@ -211,13 +209,13 @@ public class FusionFluidPortTile extends AbstractMultiBlockTile implements IFlui
     }
 
     public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, FusionFluidPortTile e) {
-        if (blockState.getValue(FusionFluidPortBlock.PUSHING)) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionFluidPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+        if (blockState.getValue(AbstractFusionPort.PUSHING)) {
+            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             if ((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) {
                 Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
-                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionFluidPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
-                Vector3f speedVec = rotatedVecPos(blockState.getValue(FusionFluidPortBlock.PUSH_DIRECTION), new Vector3f(0), 0, 0, 0.5f);
+                Vector3f posVec = rotatedVecPos(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
+                Vector3f speedVec = rotatedVecPos(blockState.getValue(AbstractFusionPort.PUSH_DIRECTION), new Vector3f(0), 0, 0, 0.5f);
                 Fluid fluid = e.duoFluidTank.getFluid().getRawFluid();
                     level.addParticle(new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), fluid.defaultFluidState().createLegacyBlock()), posVec.x, posVec.y, posVec.z, speedVec.x, speedVec.y, speedVec.z);
                     level.addParticle(new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), fluid.defaultFluidState().createLegacyBlock()), posVec.x, posVec.y, posVec.z, speedVec.x, speedVec.y, speedVec.z);
