@@ -20,6 +20,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -369,6 +370,5 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         this.energyStorage.setEnergy(energyLevel);
     }
     public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
-
 }
 

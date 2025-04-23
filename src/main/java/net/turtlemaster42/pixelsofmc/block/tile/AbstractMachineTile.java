@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -312,4 +313,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
     public FluidStack getFluid() {
         return null;
     }
+
+    @Override
+    public FluidTank getFluidTank() {return null;}
 }

@@ -14,9 +14,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FissionFluidPortTile;
-import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,19 +32,20 @@ public class FissionFluidPortBlock extends AbstractPort {
         ItemStack handItem = pPlayer.getItemInHand(pHand);
         if (handItem.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()) {
             handItem.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
-                if (pLevel.getBlockEntity(pPos) instanceof FissionFluidPortTile tile) {
-                    if (pLevel.getBlockEntity(tile.getMainPos()) instanceof NuclearReactorTile controller) {
-                        if (!pState.getValue(MODE).equals(1) && handler.fill(controller.getDuoFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) { //handler.getFluidInTank(0).isEmpty() &&
-                            int fluidAmount = handler.fill(controller.getDuoFluid(), IFluidHandler.FluidAction.EXECUTE);
-                            controller.duoFluidTank.drain(fluidAmount, IFluidHandler.FluidAction.EXECUTE);
+                if (pLevel.getBlockEntity(pPos) instanceof AbstractMultiBlockTile tile) {
+                    BlockEntity mainEntity = pLevel.getBlockEntity(tile.getMainPos());
+                    if (mainEntity instanceof IFluidHandlingTile fluidHandler && mainEntity instanceof IDuoFluidHandlingTile duoFluidHandler) {
+                        if (!pState.getValue(MODE).equals(1) && handler.fill(duoFluidHandler.getDuoFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) { //handler.getFluidInTank(0).isEmpty() &&
+                            int fluidAmount = handler.fill(duoFluidHandler.getDuoFluid(), IFluidHandler.FluidAction.EXECUTE);
+                            duoFluidHandler.getDuoFluidTank().drain(fluidAmount, IFluidHandler.FluidAction.EXECUTE);
                             pPlayer.setItemInHand(pHand, handler.getContainer());
                         } else if (!pState.getValue(MODE).equals(2)) {
-                            int drainAmount = controller.fluidTank.getSpace();
+                            int drainAmount = fluidHandler.getFluidTank().getSpace();
                             FluidStack fluidStack = handler.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-                            if (controller.fluidTank.isFluidValid(fluidStack)) {
-                                if (controller.fluidTank.getFluid().isFluidEqual(fluidStack) || controller.fluidTank.getFluid().isEmpty()) {
+                            if (fluidHandler.getFluidTank().isFluidValid(fluidStack)) {
+                                if (fluidHandler.getFluid().isFluidEqual(fluidStack) || fluidHandler.getFluid().isEmpty()) {
                                     fluidStack = handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
-                                    controller.fluidTank.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+                                    fluidHandler.getFluidTank().fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
                                     pPlayer.setItemInHand(pHand, handler.getContainer());
                                 }
                             }

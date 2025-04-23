@@ -11,7 +11,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FusionItemPortBlock extends AbstractFusionPort {
+public class FusionItemPortBlock extends AbstractPort {
     public FusionItemPortBlock(Properties pProperties) {
         super(pProperties);
     }
@@ -25,7 +25,7 @@ public class FusionItemPortBlock extends AbstractFusionPort {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-        if (pState.getValue(AbstractFusionPort.PUSHING)) {
+        if (pState.getValue(AbstractPort.PUSHING)) {
             return createTickerHelper(pBlockEntityType, POMtiles.FUSION_ITEM_PORT.get(),
                     pLevel.isClientSide ? FusionItemPortTile::clientTick : FusionItemPortTile::serverTick);
         }
