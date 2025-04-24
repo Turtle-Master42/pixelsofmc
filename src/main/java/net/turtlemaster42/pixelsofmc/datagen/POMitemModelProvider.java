@@ -148,6 +148,11 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.BLAZING_STEAM_BUCKET);
         simpleItem(POMitems.AMMONIA_GAS_BUCKET);
         simpleItem(POMitems.NITRIC_ACID_BUCKET);
+        simpleItem(POMitems.PUREX_SOLUTION_BUCKET);
+        simpleItem(POMitems.NUCLEAR_WASTE_SOLUTION_BUCKET);
+        simpleItem(POMitems.URANIUM_SOLUTION_BUCKET);
+        simpleItem(POMitems.PLUTONIUM_SOLUTION_BUCKET);
+        simpleItem(POMitems.RED_OIL_BUCKET);
 
         simpleItem(POMitems.MOVING_PARTS);
         simpleItem(POMitems.ADVANCED_LASER);

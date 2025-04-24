@@ -19,6 +19,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidTankRenderer;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -95,7 +96,11 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
         //outputs
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(recipe.getOutput().asIngredient());
+        if (recipe.getOutput().isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(Ingredient.of(POMitems.PLACE_HOLDER.get()));
+        } else {
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(recipe.getOutput().asIngredient());
+        }
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
     }
 }

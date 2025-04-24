@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-23T19:53:12.077464	Item Models: pixelsofmc
+// 1.20.1	2025-04-24T17:27:35.010124	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -273,6 +273,7 @@ a1b4b3c577c616a406f858da4be8e569651258a0 assets/pixelsofmc/models/item/nitrogen_
 69af4f48e92b7d517bc2391d2d045946f19c88db assets/pixelsofmc/models/item/nitrogen_canister.json
 dab6ae1b1d3c7aebaa762cd9375c2c8d83658677 assets/pixelsofmc/models/item/nitrogen_gas_bucket.json
 ba6fa448ae8913a2c1553587e7231b42e3a29bd4 assets/pixelsofmc/models/item/nuclear_reactor.json
+57cc21591133f1410dcebfef8488ac27e2c0f1ba assets/pixelsofmc/models/item/nuclear_waste_solution_bucket.json
 03ac720c8c8771b9c2589b384b5a2cb1a8491edc assets/pixelsofmc/models/item/obsidian_dust.json
 015350d52b5c539453d2ec778c219e9df2e2fe13 assets/pixelsofmc/models/item/obsidian_plating.json
 8d26b21ab46d16efb81f50cf7e655b9c8af78bc0 assets/pixelsofmc/models/item/osmium_atom_512.json
@@ -305,6 +306,7 @@ b619e94da4ed558aa128ba23bf2af10dbef644ca assets/pixelsofmc/models/item/platinum_
 20e65e83a374d1d8047f2530392c8f27a1ff4285 assets/pixelsofmc/models/item/plutonium_fuel_core.json
 c33b1ad104dec085c65ce548ad4455142e7535db assets/pixelsofmc/models/item/plutonium_fuel_pellet.json
 2a5ac86d8edaadeeb7807663194187ddc3bc7993 assets/pixelsofmc/models/item/plutonium_ingot.json
+a85bd7f695af0d35b278ee1e405378c1d1c3d806 assets/pixelsofmc/models/item/plutonium_solution_bucket.json
 1ddc7bcbf54cb77f134791f0ce0c428aff92e357 assets/pixelsofmc/models/item/polonium_atom_512.json
 d4f3f882f9f258cd915ae648f3ab0b71e96b6340 assets/pixelsofmc/models/item/polonium_atom_64.json
 11d59899a79f51253c646d86fecfb3cfc31621e6 assets/pixelsofmc/models/item/polonium_ingot.json
@@ -323,6 +325,7 @@ c2ce17f980a5bf5aae4cc1961a240d1a39972a5f assets/pixelsofmc/models/item/promethiu
 1fd0ed811fbafe000df035b213fcaefc21f781ac assets/pixelsofmc/models/item/protactinium_atom_512.json
 a8ace8b6d535f59021a9828474eb359f0720cc15 assets/pixelsofmc/models/item/protactinium_atom_64.json
 6f6071bfb4698040c4d9de6adda06ef0e436d2e9 assets/pixelsofmc/models/item/protactinium_ingot.json
+89cb3904c811260bc9595222e655494fb0b668aa assets/pixelsofmc/models/item/purex_solution_bucket.json
 1c4276b730afe8c5545bb8bdd731d180e3f39d52 assets/pixelsofmc/models/item/pyrolytic_carbon.json
 4ac8f8a7b69a3d3c6b164d1f4d03919e9f9c3d49 assets/pixelsofmc/models/item/pyrolytic_carbon_sheet.json
 a65b57a8734bba284da1225ece3fb3be8717b59a assets/pixelsofmc/models/item/pyrolytic_carbon_sheet_slab.json
@@ -337,6 +340,7 @@ bd1fa19312a1b04fc88971d49791432adfe26bba assets/pixelsofmc/models/item/radon_ato
 c1099337fd67607050b3f016b8ee7ce5c9e816c1 assets/pixelsofmc/models/item/raw_titanium.json
 fd98d183621b9b91abd4b72ceab6c97307030211 assets/pixelsofmc/models/item/red_diamond.json
 e7c2621abd3d4efe3d10c16b9627ec57a6c30c95 assets/pixelsofmc/models/item/red_diamond_lens.json
+28e9b96a450a58aa42d2b1eeae17594ced67daf3 assets/pixelsofmc/models/item/red_oil_bucket.json
 33a4757418912dd8828e7deb66300f18ff506ce1 assets/pixelsofmc/models/item/red_silver_dust.json
 5fd09ccf8fe3d4e7735b1e14305782f08d408edf assets/pixelsofmc/models/item/red_silver_ingot.json
 63ee670d0d91fcda923f6e72e57746599413c489 assets/pixelsofmc/models/item/red_silver_nugget.json
@@ -496,6 +500,7 @@ cd5af961120e2dbe948fab0d155b88ef1d94dcd7 assets/pixelsofmc/models/item/uranium_a
 7a3bc62340fbeaf2bd65690adc0e60379567f267 assets/pixelsofmc/models/item/uranium_fuel_core.json
 5dfa995cc0c01a9c54930ec8cd5798d0a480d5d3 assets/pixelsofmc/models/item/uranium_fuel_pellet.json
 39b850e7095691de07ec473a1f40957f904af5bd assets/pixelsofmc/models/item/uranium_ingot.json
+48d08433a14392a0d5d7ba1ede081488eaa7a4bc assets/pixelsofmc/models/item/uranium_solution_bucket.json
 a3ad2e0e33fc875ffbb02e85078dc47e2d5049fd assets/pixelsofmc/models/item/vanadium_atom_512.json
 1a3c3a9f34fcddb121c5bccfe5840e1496851afb assets/pixelsofmc/models/item/vanadium_atom_64.json
 a8d8c0b33b4fdb59542642c9fe0157f9b80d0a52 assets/pixelsofmc/models/item/vanadium_ingot.json

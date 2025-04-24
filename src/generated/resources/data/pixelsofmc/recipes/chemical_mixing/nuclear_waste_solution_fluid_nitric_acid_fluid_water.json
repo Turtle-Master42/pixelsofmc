@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 1000,
+      "FluidName": "pixelsofmc:nuclear_waste_solution_fluid"
+    },
+    {
+      "Amount": 1000,
+      "FluidName": "pixelsofmc:nitric_acid_fluid"
+    },
+    {
+      "Amount": 1000,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 500,
+      "FluidName": "pixelsofmc:uranium_solution_fluid"
+    },
+    {
+      "Amount": 200,
+      "FluidName": "pixelsofmc:plutonium_solution_fluid"
+    },
+    {
+      "Amount": 500,
+      "FluidName": "pixelsofmc:red_oil_fluid"
+    }
+  ],
+  "temperature_state": 5
+}

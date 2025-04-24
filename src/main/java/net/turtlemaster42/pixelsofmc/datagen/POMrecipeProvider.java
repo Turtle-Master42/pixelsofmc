@@ -1285,6 +1285,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));
         ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1, 1), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD, 1));
 
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_FUNGUS, 1), toCI(POMitems.COAL_DUST.get(), 1));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_WART_BLOCK, 2), toCI(POMitems.COAL_DUST.get(), 1));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_ROOTS, 2), toCI(POMitems.COAL_DUST.get(), 1));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.NETHER_SPROUTS, 4), toCI(POMitems.COAL_DUST.get(), 1));
+
         //chemical mixing
         ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 1000), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500), 2, toF(Fluids.WATER, 1000));
         ChemicalMixing(fConsumer, toF(Fluids.WATER, 1000), 4, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 1000), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500));
@@ -1297,6 +1302,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 150), toF(POMfluids.AIR_SOURCE.get(), 100), 3, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 100));
         ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 100), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 200), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 100), toF(Fluids.WATER, 100));
         ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 10), toF(POMfluids.AIR_SOURCE.get(), 20), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 10), toF(Fluids.WATER, 10));
+
+        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 1000), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 1000), toF(Fluids.WATER, 1000), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 500), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 200), toF(POMfluids.RED_OIL_SOURCE.get(), 500));
 
 
         //ez crafting

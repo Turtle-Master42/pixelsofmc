@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
@@ -105,11 +106,15 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
     }
 
     public Item asItem() {
-        return ingredient.getItems()[0].getItem();
+        if (ingredient.getItems().length > 0) {
+            return ingredient.getItems()[0].getItem();
+        } else {
+            return Items.AIR;
+        }
     }
 
     public ItemStack asItemStack() {
-        return new ItemStack(ingredient.getItems()[0].getItem(), count);
+        return new ItemStack(asItem(), count);
     }
 
     public boolean isEmpty() {
