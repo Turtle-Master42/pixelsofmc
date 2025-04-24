@@ -47,6 +47,14 @@ public class POMfluids {
             POMFluidType.PUREX_SOLUTION_FLUID_TYPE, PUREX_SOLUTION_SOURCE, PUREX_SOLUTION_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.PUREX_SOLUTION_BLOCK).bucket(POMitems.PUREX_SOLUTION_BUCKET);
 
+    public static final RegistryObject<FlowingFluid> NUCLEAR_WASTE_SOURCE
+            = FLUIDS.register("nuclear_waste_fluid", () -> new ForgeFlowingFluid.Source(POMfluids.NUCLEAR_WASTE_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> NUCLEAR_WASTE_FLOWING
+            = FLUIDS.register("nuclear_waste_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.NUCLEAR_WASTE_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties NUCLEAR_WASTE_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.NUCLEAR_WASTE_FLUID_TYPE, NUCLEAR_WASTE_SOURCE, NUCLEAR_WASTE_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.NUCLEAR_WASTE_BLOCK).bucket(POMitems.NUCLEAR_WASTE_BUCKET);
+
     public static final RegistryObject<FlowingFluid> NUCLEAR_WASTE_SOLUTION_SOURCE
             = FLUIDS.register("nuclear_waste_solution_fluid", () -> new ForgeFlowingFluid.Source(POMfluids.NUCLEAR_WASTE_SOLUTION_PROPERTIES));
     public static final RegistryObject<FlowingFluid> NUCLEAR_WASTE_SOLUTION_FLOWING

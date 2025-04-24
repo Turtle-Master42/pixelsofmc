@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-24T17:27:35.003775	Loot Tables
+// 1.20.1	2025-04-24T21:08:25.758188	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
@@ -56,6 +56,7 @@ c7858201b9dd3b7c54a363b68cf5e4798ee315a9 data/pixelsofmc/loot_tables/blocks/mds_
 4feeddce4a17f7657b74fc2b9466717e30181804 data/pixelsofmc/loot_tables/blocks/nitrogen.json
 b16269251989a7e782bddb32b64d48c7616cbae0 data/pixelsofmc/loot_tables/blocks/nitrogen_gas.json
 e0070c281422aa3cc9bf12b07e1dde6ade703000 data/pixelsofmc/loot_tables/blocks/nuclear_reactor.json
+6290cb73602126e59260d00aae59f25b76d1855d data/pixelsofmc/loot_tables/blocks/nuclear_waste.json
 09fb870ab388fa607059497bccddad6f0fb0ccb5 data/pixelsofmc/loot_tables/blocks/nuclear_waste_solution.json
 787dbc50467b27bef9c3531bf9e97db99334d5c3 data/pixelsofmc/loot_tables/blocks/overcharged_power_cell_array.json
 9207129c34ab867d59cc7bb435da49683ea83d67 data/pixelsofmc/loot_tables/blocks/oxygen.json

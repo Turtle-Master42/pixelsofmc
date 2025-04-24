@@ -864,49 +864,49 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         toItemP(POMitems.COPPER_SHEET.get())))
                 .save(fConsumer, toRL(Items.CUT_COPPER.toString()));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.TITANIUM_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.NETHERITE_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.NETHERITE_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.NETHERITE_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.TITANIUM_GOLD_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_GOLD_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.TITANIUM_DIBORIDE_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.LEAD_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.LEAD_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.LEAD_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.LEAD_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TUNGSTEN_PLATING_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TUNGSTEN_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.TUNGSTEN_PLATING.get())
                 .pattern("AA")
                 .pattern("AA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TUNGSTEN_PLATING.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK.get(), 4)
                 .define('A', POMitems.PYROLYTIC_CARBON_SHEET.get())
                 .pattern("AA")
                 .pattern("AA")
@@ -1041,13 +1041,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.SOUL_COAL.get())))
                 .save(fConsumer, toRL(Items.SOUL_TORCH.toString()));
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.SOUL_CAMPFIRE, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.SOUL_CAMPFIRE)
                 .define('A', POMitems.SOUL_COAL.get())
                 .define('B', Items.STICK)
                 .define('C', ItemTags.LOGS_THAT_BURN)
                 .pattern(" B ")
                 .pattern("BAB")
                 .pattern("CCC")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.SOUL_COAL.get())))
+                .save(fConsumer, toRL(Items.SOUL_CAMPFIRE.toString()));
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Items.TNT)
+                .define('A', Tags.Items.SAND)
+                .define('B', POMitems.RED_OIL_BUCKET.get())
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.SOUL_COAL.get())))
                 .save(fConsumer, toRL(Items.SOUL_CAMPFIRE.toString()));
@@ -1280,6 +1289,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), FluidStack.EMPTY, toF(POMfluids.MERCURY_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag(), 1, 1));
         ChemicalSeperator(fConsumer, toCI(Items.REDSTONE, 8), toF(Fluids.WATER, 500), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toCHI(POMitems.YELLOWCAKE_URANIUM.get(), 1, 1), toCHI(POMitems.REFINED_REDSTONE.get(), 8, 1));
 
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_URANIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 330), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 9000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
+
+
         //chemical combining
         ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 1), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag(), 1));
         ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));
@@ -1303,7 +1318,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 100), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 200), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 100), toF(Fluids.WATER, 100));
         ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 10), toF(POMfluids.AIR_SOURCE.get(), 20), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 10), toF(Fluids.WATER, 10));
 
-        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 1000), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 1000), toF(Fluids.WATER, 1000), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 500), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 200), toF(POMfluids.RED_OIL_SOURCE.get(), 500));
+        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 10), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 5),4, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10));
+        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 5), toF(Fluids.WATER, 10), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 5), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 2), toF(POMfluids.RED_OIL_SOURCE.get(), 10));
 
 
         //ez crafting

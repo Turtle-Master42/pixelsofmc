@@ -34,7 +34,6 @@ public class ChemicalMixerRecipeCategory implements IRecipeCategory<ChemicalMixe
     private final IDrawable normalIcon;
     private final IDrawable warmIcon;
     private final IDrawable hotIcon;
-    private final FluidTankRenderer renderer;
 
     public ChemicalMixerRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 102, 68);
@@ -44,7 +43,6 @@ public class ChemicalMixerRecipeCategory implements IRecipeCategory<ChemicalMixe
         this.normalIcon = helper.drawableBuilder(TEXTURE, 20, 118, 10 ,10).build();
         this.warmIcon = helper.drawableBuilder(TEXTURE, 30, 118, 10 ,10).build();
         this.hotIcon = helper.drawableBuilder(TEXTURE, 40, 118, 10 ,10).build();
-        this.renderer = new FluidTankRenderer(16000, true, 27, 14);
     }
 
     @Override
@@ -79,13 +77,6 @@ public class ChemicalMixerRecipeCategory implements IRecipeCategory<ChemicalMixe
 
     @Override
     public void draw(ChemicalMixerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        renderer.render(guiGraphics, 9, 9, recipe.getInputFluid(0));
-        renderer.render(guiGraphics, 9, 27, recipe.getInputFluid(1));
-        renderer.render(guiGraphics, 9, 45, recipe.getInputFluid(2));
-        renderer.render(guiGraphics, 66, 9, recipe.getResultFluid(0));
-        renderer.render(guiGraphics, 66, 27, recipe.getResultFluid(1));
-        renderer.render(guiGraphics, 66, 45, recipe.getResultFluid(2));
-
         switch (recipe.getTemperatureState()) {
             case 0 -> freezeIcon.draw(guiGraphics, 46, 47);
             case 1 -> coldIcon.draw(guiGraphics, 46, 47);
@@ -96,37 +87,27 @@ public class ChemicalMixerRecipeCategory implements IRecipeCategory<ChemicalMixe
     }
 
     @Override
-    public void getTooltip(ITooltipBuilder tooltip, ChemicalMixerRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (mouseX >= 9 && mouseX <= 9 + 27 && mouseY >= 9 && mouseY <= 9 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getInputFluid(0), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
-        }
-        if (mouseX >= 9 && mouseX <= 9 + 27 && mouseY >= 27 && mouseY <= 27 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getInputFluid(1), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
-        }
-        if (mouseX >= 9 && mouseX <= 9 + 27 && mouseY >= 45 && mouseY <= 45 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getInputFluid(2), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
-        }
-
-        if (mouseX >= 66 && mouseX <= 66 + 27 && mouseY >= 9 && mouseY <= 9 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(0), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
-        }
-        if (mouseX >= 66 && mouseX <= 66 + 27 && mouseY >= 27 && mouseY <= 27 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(1), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
-        }
-        if (mouseX >= 66 && mouseX <= 66 + 27 && mouseY >= 45 && mouseY <= 45 + 14) {
-            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(2), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
-        }
-    }
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalMixerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getInputFluid(0).getFluid(), recipe.getInputFluid(0).getAmount());
-        builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getInputFluid(1).getFluid(), recipe.getInputFluid(1).getAmount());
-        builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getInputFluid(2).getFluid(), recipe.getInputFluid(2).getAmount());
+        builder.addInputSlot(9, 9)
+                .addFluidStack(recipe.getInputFluid(0).getFluid(), recipe.getInputFluid(0).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
+        builder.addInputSlot(9, 27)
+                .addFluidStack(recipe.getInputFluid(1).getFluid(), recipe.getInputFluid(1).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
+        builder.addInputSlot(9, 45)
+                .addFluidStack(recipe.getInputFluid(2).getFluid(), recipe.getInputFluid(2).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
+
         //outputs
-        builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid(0).getFluid(), recipe.getResultFluid(0).getAmount());
-        builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid(1).getFluid(), recipe.getResultFluid(1).getAmount());
-        builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid(2).getFluid(), recipe.getResultFluid(2).getAmount());
+        builder.addOutputSlot(66, 9)
+                .addFluidStack(recipe.getResultFluid(0).getFluid(), recipe.getResultFluid(0).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
+        builder.addOutputSlot(66, 27)
+                .addFluidStack(recipe.getResultFluid(1).getFluid(), recipe.getResultFluid(1).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
+        builder.addOutputSlot(66, 45)
+                .addFluidStack(recipe.getResultFluid(2).getFluid(), recipe.getResultFluid(2).getAmount())
+                .setFluidRenderer(16000, false, 27, 14);
     }
 }

@@ -88,6 +88,10 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.ENRICHED_URANIUM_FUEL_CELL);
         simpleItem(POMitems.PLUTONIUM_FUEL_CELL);
         simpleItem(POMitems.ENRICHED_PLUTONIUM_FUEL_CELL);
+        simpleItem(POMitems.DEPLETED_URANIUM_FUEL_CELL);
+        simpleItem(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL);
+        simpleItem(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL);
+        simpleItem(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL);
         simpleItem(POMitems.INFINITE_POWER_CELL);
         simpleItem(POMitems.COPPER_HEAT_SINK);
 
@@ -149,6 +153,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.AMMONIA_GAS_BUCKET);
         simpleItem(POMitems.NITRIC_ACID_BUCKET);
         simpleItem(POMitems.PUREX_SOLUTION_BUCKET);
+        simpleItem(POMitems.NUCLEAR_WASTE_BUCKET);
         simpleItem(POMitems.NUCLEAR_WASTE_SOLUTION_BUCKET);
         simpleItem(POMitems.URANIUM_SOLUTION_BUCKET);
         simpleItem(POMitems.PLUTONIUM_SOLUTION_BUCKET);

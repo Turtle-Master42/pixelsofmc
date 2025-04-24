@@ -18,11 +18,13 @@ public class FuelCellItem extends Item {
 
     private final int energyPerTick;
     private final int color;
+    private final Item remainder;
 
-    public FuelCellItem(Properties pProperties, int energyPerTick, int color) { // 80_000 ticks active (1.11 hour)
+    public FuelCellItem(Properties pProperties, Item remainder, int energyPerTick, int color) { // 80_000 ticks active (1.11 hour)
         super(pProperties);
         this.energyPerTick = energyPerTick;
         this.color = color;
+        this.remainder = remainder;
     }
 
     public int getBarWidth(@NotNull ItemStack stack) {
@@ -51,6 +53,17 @@ public class FuelCellItem extends Item {
 
     public int getMaxTime() {
         return 80000;
+    }
+
+    public Item getRemainder() {
+        return remainder;
+    }
+
+    public static ItemStack getRemainderStack(ItemStack stack) {
+        if (stack.getItem() instanceof FuelCellItem fuelCell) {
+            return new ItemStack(fuelCell.getRemainder(), stack.getCount() - 1, stack.getTag());
+        }
+        return ItemStack.EMPTY;
     }
 
     public boolean isDepleted(ItemStack stack) {

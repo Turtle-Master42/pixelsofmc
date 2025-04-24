@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "fluid_input": {
+    "Amount": 500,
+    "FluidName": "pixelsofmc:nitric_acid_fluid"
+  },
+  "fluid_output": {
+    "Amount": 9000,
+    "FluidName": "pixelsofmc:nuclear_waste_fluid"
+  },
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:depleted_enriched_plutonium_fuel_cell"
+    }
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:empty_fuel_cell"
+      }
+    }
+  ]
+}

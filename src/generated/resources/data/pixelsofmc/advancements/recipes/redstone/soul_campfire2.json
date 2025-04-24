@@ -6,8 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire"
+              "pixelsofmc:soul_coal"
             ]
           }
         ]
@@ -16,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:moving_parts"
+        "recipe": "pixelsofmc:soul_campfire2"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:moving_parts"
+      "pixelsofmc:soul_campfire2"
     ]
   },
   "sends_telemetry_event": false

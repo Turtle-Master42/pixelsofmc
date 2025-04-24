@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "tag": "forge:sand"
+    },
+    "B": {
+      "item": "pixelsofmc:red_oil_bucket"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "item": "minecraft:tnt"
+  },
+  "show_notification": true
+}

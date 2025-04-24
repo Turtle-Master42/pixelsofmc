@@ -2,8 +2,10 @@ package net.turtlemaster42.pixelsofmc.intergration;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
@@ -32,12 +34,10 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final FluidTankRenderer renderer;
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 106, 69);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_COMBINER.get()));
-        this.renderer = new FluidTankRenderer(16000, true, 25, 11);
     }
 
     @Override
@@ -71,36 +71,25 @@ public class ChemicalCombinerRecipeCategory implements IRecipeCategory<ChemicalC
     }
 
     @Override
-    public void draw(ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        renderer.render(guiGraphics, 72, 9, recipe.getFluidInput());
-        renderer.render(guiGraphics, 72, 24, recipe.getResultFluid());
-    }
-
-    @Override
-    public void getTooltip(ITooltipBuilder tooltip, ChemicalCombinerRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (mouseX >= 72 && mouseX <= 97 && mouseY >= 9 && mouseY <= 20) {
-            tooltip.addAll(renderer.getTooltip(recipe.getFluidInput(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.input")));
-        }
-        if (mouseX >= 72 && mouseX <= 97 && mouseY >= 24 && mouseY <= 35) {
-            tooltip.addAll(renderer.getTooltip(recipe.getResultFluid(), TooltipFlag.Default.NORMAL, Component.translatable("tooltip.pixelsofmc.fluid.output")));
-        }
-    }
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalCombinerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
             int x = 7 + (2 * p);
             int y = 7 + (20 * p);
-            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(Ingredient.of(recipe.getInput(p)));
+            builder.addInputSlot(x, y).addIngredients(Ingredient.of(recipe.getInput(p)));
         }
-        builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount());
-        //outputs
-        if (recipe.getOutput().isEmpty()) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(Ingredient.of(POMitems.PLACE_HOLDER.get()));
-        } else {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 83, 46).addIngredients(recipe.getOutput().asIngredient());
-        }
-        builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount());
+        if (!recipe.getFluidInput().isEmpty())
+            builder.addInputSlot(72, 9)
+                    .addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount())
+                    .setFluidRenderer(16000, false, 25, 11);
+
+        if (!recipe.getOutput().isEmpty())
+            builder.addOutputSlot(83, 46).addIngredients(recipe.getOutput().asIngredient());
+
+        if (!recipe.getResultFluid().isEmpty())
+            builder.addOutputSlot(72, 24)
+                    .addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount())
+                    .setFluidRenderer(16000, false, 25, 11);
+
     }
 }

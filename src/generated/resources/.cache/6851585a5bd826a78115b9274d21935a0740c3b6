@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-24T17:27:35.010124	Item Models: pixelsofmc
+// 1.20.1	2025-04-24T21:08:25.766137	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 344b89106926412f4ff103647d89e853f7640ac4 assets/pixelsofmc/models/item/actinium_atom_512.json
 722eec654adf80554cd006c1e37ddfd79f6a9540 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -106,6 +106,10 @@ ef4416169c0d4ee7436ac0c3c80d68f4fde148e4 assets/pixelsofmc/models/item/curium_at
 f6b5f89b5745ce098e7779c222b6a2f842f18963 assets/pixelsofmc/models/item/curium_ingot.json
 c021adf753feeb4691994467ea6c351e77fccff5 assets/pixelsofmc/models/item/debugium_ingot.json
 dc7b8a9d627c53134cdbb1d930ed9d72a13d93b4 assets/pixelsofmc/models/item/dense_carbon_cube.json
+2c1267bb20e68de7d3f9a6f2ad3b850594c7bdd7 assets/pixelsofmc/models/item/depleted_enriched_plutonium_fuel_cell.json
+a708cb27878aa0ba7c51abe9c1d593fab64a4c8e assets/pixelsofmc/models/item/depleted_enriched_uranium_fuel_cell.json
+7c5e9d75b4baff527c83466d1402444843172d00 assets/pixelsofmc/models/item/depleted_plutonium_fuel_cell.json
+db6f0abb91b0012ad5f64182e7a24e684e0251f8 assets/pixelsofmc/models/item/depleted_uranium_fuel_cell.json
 a649a18c7775bdc445c8fbb8dd71bdc1cef96906 assets/pixelsofmc/models/item/deuterium_atom_512.json
 ad5e4f3a2bbf953dcab69365bcbb3a4520c4733c assets/pixelsofmc/models/item/deuterium_atom_64.json
 525db9e502ee2e29730f0d7b63c61caf1adb3323 assets/pixelsofmc/models/item/diamond_lens.json
@@ -273,6 +277,7 @@ a1b4b3c577c616a406f858da4be8e569651258a0 assets/pixelsofmc/models/item/nitrogen_
 69af4f48e92b7d517bc2391d2d045946f19c88db assets/pixelsofmc/models/item/nitrogen_canister.json
 dab6ae1b1d3c7aebaa762cd9375c2c8d83658677 assets/pixelsofmc/models/item/nitrogen_gas_bucket.json
 ba6fa448ae8913a2c1553587e7231b42e3a29bd4 assets/pixelsofmc/models/item/nuclear_reactor.json
+9f499fdcc6c0d84fec380b0cd14d04ba2b711a47 assets/pixelsofmc/models/item/nuclear_waste_bucket.json
 57cc21591133f1410dcebfef8488ac27e2c0f1ba assets/pixelsofmc/models/item/nuclear_waste_solution_bucket.json
 03ac720c8c8771b9c2589b384b5a2cb1a8491edc assets/pixelsofmc/models/item/obsidian_dust.json
 015350d52b5c539453d2ec778c219e9df2e2fe13 assets/pixelsofmc/models/item/obsidian_plating.json

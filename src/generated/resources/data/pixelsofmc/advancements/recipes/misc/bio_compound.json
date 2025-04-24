@@ -7,10 +7,10 @@
           {
             "items": [
               "minecraft:kelp",
-              "minecraft:sugar_cane",
-              "minecraft:warped_roots",
               "minecraft:warped_fungus",
-              "minecraft:honeycomb"
+              "minecraft:warped_roots",
+              "minecraft:honeycomb",
+              "minecraft:sugar_cane"
             ]
           },
           {

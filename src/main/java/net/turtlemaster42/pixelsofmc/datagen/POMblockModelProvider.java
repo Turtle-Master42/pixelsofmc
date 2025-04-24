@@ -104,6 +104,7 @@ public class POMblockModelProvider extends BlockStateProvider {
         liquidBlock(POMblocks.NITRIC_ACID_BLOCK);
         liquidBlock(POMblocks.PUREX_SOLUTION_BLOCK);
         liquidBlock(POMblocks.NUCLEAR_WASTE_SOLUTION_BLOCK);
+        liquidBlock(POMblocks.NUCLEAR_WASTE_BLOCK);
         liquidBlock(POMblocks.URANIUM_SOLUTION_BLOCK);
         liquidBlock(POMblocks.PLUTONIUM_SOLUTION_BLOCK);
         liquidBlock(POMblocks.RED_OIL_BLOCK);

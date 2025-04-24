@@ -172,10 +172,15 @@ public class POMitems {
 	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64_000_000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512_000_000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 500, new Color(0, 160, 0).getRGB())); //total 8_000_000 FE
-	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 2000, new Color(0, 255, 0).getRGB())); //total 32_000_000 FE
-	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 8000, new Color(0, 200, 175).getRGB())); //total 128_000_000 FE
-	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 32000, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
+
+	public static final RegistryObject<Item> DEPLETED_URANIUM_FUEL_CELL = ITEMS.register("depleted_uranium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_URANIUM_FUEL_CELL.get(), 500, new Color(0, 160, 0).getRGB())); //total 8_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("depleted_enriched_uranium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 2000, new Color(0, 255, 0).getRGB())); //total 32_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_plutonium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_PLUTONIUM_FUEL_CELL.get(), 8000, new Color(0, 200, 175).getRGB())); //total 128_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 32000, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FISSION_PLATING = ITEMS.register("fission_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_LINING = ITEMS.register("fusion_lining", () -> new Item(new Item.Properties()));
@@ -207,6 +212,7 @@ public class POMitems {
 	public static final RegistryObject<Item> NITRIC_ACID_BUCKET = BUCKETS.register("nitric_acid_bucket", () -> new BucketItem(POMfluids.NITRIC_ACID_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> PUREX_SOLUTION_BUCKET = BUCKETS.register("purex_solution_bucket", () -> new BucketItem(POMfluids.PUREX_SOLUTION_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> RED_OIL_BUCKET = BUCKETS.register("red_oil_bucket", () -> new BucketItem(POMfluids.RED_OIL_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> NUCLEAR_WASTE_BUCKET = BUCKETS.register("nuclear_waste_bucket", () -> new BucketItem(POMfluids.NUCLEAR_WASTE_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> NUCLEAR_WASTE_SOLUTION_BUCKET = BUCKETS.register("nuclear_waste_solution_bucket", () -> new BucketItem(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> URANIUM_SOLUTION_BUCKET = BUCKETS.register("uranium_solution_bucket", () -> new BucketItem(POMfluids.URANIUM_SOLUTION_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> PLUTONIUM_SOLUTION_BUCKET = BUCKETS.register("plutonium_solution_bucket", () -> new BucketItem(POMfluids.PLUTONIUM_SOLUTION_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));

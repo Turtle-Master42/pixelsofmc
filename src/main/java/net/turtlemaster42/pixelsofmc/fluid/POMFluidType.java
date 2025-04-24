@@ -40,6 +40,11 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
+    public static final RegistryObject<FluidType> NUCLEAR_WASTE_FLUID_TYPE = registerFluid("nuclear_waste_fluid", 102, 104, 74,
+            FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
+                    .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+
     public static final RegistryObject<FluidType> NUCLEAR_WASTE_SOLUTION_FLUID_TYPE = registerFluid("nuclear_waste_solution_fluid", 116, 132, 67,
             FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));

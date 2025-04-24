@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-24T17:27:35.009339	Block States: pixelsofmc
+// 1.20.1	2025-04-24T21:08:25.765414	Block States: pixelsofmc
 8893accbed659f6d8412368a2e85e94731cfddd5 assets/pixelsofmc/blockstates/acanthite.json
 4323f34037314bda61f448bbe51eeb9483a99d1b assets/pixelsofmc/blockstates/acanthite_ore.json
 c1baaa085233a29262f5fd190def1c3ce08f4350 assets/pixelsofmc/blockstates/advanced_casing_1.json
@@ -28,6 +28,7 @@ d5bd0fb496ca9cc6c17b62c1092388b783012303 assets/pixelsofmc/blockstates/netherite
 6e01d6ceb157e88ad55a2770cde06e089ff480cb assets/pixelsofmc/blockstates/nitric_acid.json
 de0eceefb9ccc77d46905c7626dc67a9735e470c assets/pixelsofmc/blockstates/nitrogen.json
 aac0620760754902ec9629d3618edcc0d8360b25 assets/pixelsofmc/blockstates/nitrogen_gas.json
+0122a75ca362fe4a065d24ccea92a17bbe6c01cf assets/pixelsofmc/blockstates/nuclear_waste.json
 c7ce587d3642e0705ae9bda0fce84414a4dcffc7 assets/pixelsofmc/blockstates/nuclear_waste_solution.json
 79f1e3a927cb04c5f3e805aba14b5de189fb2765 assets/pixelsofmc/blockstates/oxygen.json
 1f97a2fab84248d52b23b79c972d548893c5d1d9 assets/pixelsofmc/blockstates/oxygen_gas.json
@@ -109,6 +110,7 @@ bd76a8bfe60bcdb80a85e3d22ba01a03966e9bd7 assets/pixelsofmc/models/block/netherit
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/nitric_acid_fluid.json
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/nitrogen_fluid.json
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/nitrogen_gas.json
+5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/nuclear_waste_fluid.json
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/nuclear_waste_solution_fluid.json
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/oxygen_fluid.json
 5b766e0f61b66c7c6e57476273d2725d32055dd6 assets/pixelsofmc/models/block/oxygen_gas.json

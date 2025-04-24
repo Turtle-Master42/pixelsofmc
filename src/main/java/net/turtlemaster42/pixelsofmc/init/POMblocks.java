@@ -66,6 +66,8 @@ public class POMblocks {
             () -> new AcidLiquidBlock(POMfluids.NITRIC_ACID_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> PUREX_SOLUTION_BLOCK = POMblocks.BLOCKS.register("purex_solution",
             () -> new LiquidBlock(POMfluids.PUREX_SOLUTION_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+    public static final RegistryObject<LiquidBlock> NUCLEAR_WASTE_BLOCK = POMblocks.BLOCKS.register("nuclear_waste",
+            () -> new LiquidBlock(POMfluids.NUCLEAR_WASTE_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> NUCLEAR_WASTE_SOLUTION_BLOCK = POMblocks.BLOCKS.register("nuclear_waste_solution",
             () -> new LiquidBlock(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> URANIUM_SOLUTION_BLOCK = POMblocks.BLOCKS.register("uranium_solution",

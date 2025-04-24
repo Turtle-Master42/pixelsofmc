@@ -1,0 +1,20 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 10,
+      "FluidName": "pixelsofmc:nuclear_waste_fluid"
+    },
+    {
+      "Amount": 10,
+      "FluidName": "pixelsofmc:purex_solution_fluid"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 10,
+      "FluidName": "pixelsofmc:nuclear_waste_solution_fluid"
+    }
+  ],
+  "temperature_state": 4
+}
