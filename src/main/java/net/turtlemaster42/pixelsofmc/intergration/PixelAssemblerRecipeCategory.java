@@ -23,13 +23,9 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PixelAssemblerRecipeCategory implements IRecipeCategory<PixelAssemblerRecipe> {
+public class PixelAssemblerRecipeCategory extends BaseCategory<PixelAssemblerRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "pixel_assembling");
-    public final static ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_assembler_gui.png");
-
-    private final IDrawable background;
-    private final IDrawable icon;
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_assembler_gui.png");
 
     public PixelAssemblerRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 25, 25, 120, 57);
@@ -47,26 +43,7 @@ public class PixelAssemblerRecipeCategory implements IRecipeCategory<PixelAssemb
     }
 
     @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
-    }
-
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PixelAssemblerRecipe recipe, @Nonnull IFocusGroup focusGroup) {
-        //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 128-25, 38-25).addIngredients(Ingredient.of(recipe.getBaseOutput()));
-
         //inputs
         List<CountedIngredient> recipeInputs = recipe.getInputs();
         int color1 = recipe.getColor(0).getRGB();
@@ -95,10 +72,14 @@ public class PixelAssemblerRecipeCategory implements IRecipeCategory<PixelAssemb
             }
         }
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 4, 13).addIngredients(Ingredient.of(input.get(0)));
+        addInputSlot(builder, 4, 13, input.get(0));
         if (input.size() > 1)
-            builder.addSlot(RecipeIngredientRole.INPUT, 22, 4).addIngredients(Ingredient.of(input.get(1)));
+            addInputSlot(builder, 22, 4, input.get(1));
         if (input.size() > 2)
-            builder.addSlot(RecipeIngredientRole.INPUT, 22, 22).addIngredients(Ingredient.of(input.get(2)));
+            addInputSlot(builder, 22, 22, input.get(2));
+
+        //output
+        addOutputSlot(builder, 103, 13, recipe.getBaseOutput());
+
     }
 }

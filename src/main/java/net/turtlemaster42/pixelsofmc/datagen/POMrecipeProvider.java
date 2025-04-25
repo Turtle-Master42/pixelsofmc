@@ -1294,7 +1294,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
         ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 9000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
 
-
         //chemical combining
         ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 1), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag(), 1));
         ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));

@@ -20,21 +20,15 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
+public class GrinderRecipeCategory extends BaseCategory<GrinderRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "grinding");
     public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/grinder.png");
-    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
 
-    private final IDrawable background;
-    private final IDrawable chanceOverlay;
-    private final IDrawable smallChanceOverlay;
     private final IDrawable slot;
-    private final IDrawable icon;
 
     public GrinderRecipeCategory(IGuiHelper helper) {
+        super(helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 98, 84);
-        this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
-        this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.GRINDER.get()));
     }
@@ -50,29 +44,9 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
-    }
-
-    @Override
-    public @Nullable IDrawable getBackground() {
-        return background;
-    }
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull GrinderRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-            builder.addSlot(RecipeIngredientRole.INPUT, 7, 34).addIngredients(recipe.getInput());
+        addInputSlot(builder, 7, 34, recipe.getInput());
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
             IDrawable overlay = chanceOverlay;
@@ -83,7 +57,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
             if (recipe.getOutputChance(p) < 0.5)
                 overlay = smallChanceOverlay;
             if(p > 3)
-                display=display+"\n§cThis item may not appear if the 4 official slots are full";
+                display = display + "\n§cThis item may not appear if the 4 official slots are full";
 
             if (recipe.getOutputChance(p) < 1)
                 builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)))
@@ -91,7 +65,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
             else if (p > 3)
                 builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p))).setBackground(slot, 0, 0);
             else
-                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)));
+                addOutputSlot(builder, x, y, recipe.getResultItems(p));
         }
     }
 }

@@ -127,7 +127,7 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
 
     public Ingredient asOverflowIngredient() {
         if (chance > 1f) {
-            return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count* Mth.floor(chance)));
+            return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count * Mth.floor(chance)));
         }
         return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
     }

@@ -61,8 +61,10 @@ public class FluidTankRenderer {
     }
 
     public void render(GuiGraphics guiGraphics, int x, int y, FluidStack fluidStack) {
-        PoseStack poseStack = guiGraphics.pose();
+        render(guiGraphics.pose(), x, y, fluidStack);
+    }
 
+    public void render(PoseStack poseStack, int x, int y, FluidStack fluidStack) {
         RenderSystem.enableBlend();
         poseStack.pushPose();
         {
@@ -178,6 +180,10 @@ public class FluidTankRenderer {
             bufferBuilder.vertex(matrix, xCoord, yCoord + maskTop, zLevel).uv(uMin, vMin).endVertex(); //start (0, 0)
         }
         tessellator.end();
+    }
+
+    public List<Component> getTooltip(FluidStack fluidStack) {
+        return getTooltip(fluidStack, TooltipFlag.NORMAL, Component.empty());
     }
 
     public List<Component> getTooltip(FluidStack fluidStack, TooltipFlag flag, Component extra) {

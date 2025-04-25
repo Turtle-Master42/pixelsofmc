@@ -21,13 +21,9 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class PixelSplitterRecipeCategory implements IRecipeCategory<PixelSplitterRecipe> {
+public class PixelSplitterRecipeCategory extends BaseCategory<PixelSplitterRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "pixel_splitting");
-    public final static ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
-
-    private final IDrawable background;
-    private final IDrawable icon;
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
 
     public PixelSplitterRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 184, 84);
@@ -45,46 +41,30 @@ public class PixelSplitterRecipeCategory implements IRecipeCategory<PixelSplitte
     }
 
     @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
-    }
-
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PixelSplitterRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addSlot(RecipeIngredientRole.INPUT, 35, 41).addIngredients(recipe.getInput().ingredient());
+        addInputSlot(builder, 35, 41, recipe.getInput().ingredient());
 
-        //grinding ball input
-        builder.addSlot(RecipeIngredientRole.INPUT, 80, 18).addIngredients(Ingredient.of(POMtags.Items.CIRCLE_SAW));
+        //grinding circle input
+        addInputSlot(builder, 80, 18, Ingredient.of(POMtags.Items.CIRCLE_SAW));
+
         //output
-
         int color1 = recipe.getColor(0).getRGB();
         int color2 = recipe.getColor(1).getRGB();
         int color3 = recipe.getColor(2).getRGB();
 
         ItemStack pixel = recipe.getResultItems(0);
         PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 32).addIngredients(Ingredient.of(pixel));
+        addOutputSlot(builder, 116, 32, pixel);
         if (recipe.getOutputs().size() > 1) {
             pixel = recipe.getResultItems(1);
             PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 116, 50).addIngredients(Ingredient.of(pixel));
+            addOutputSlot(builder, 116, 50, pixel);
         }
         if (recipe.getOutputs().size() > 2) {
             pixel = recipe.getResultItems(2);
             PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 134, 41).addIngredients(Ingredient.of(pixel));
+            addOutputSlot(builder, 134, 41, pixel);
         }
     }
 }

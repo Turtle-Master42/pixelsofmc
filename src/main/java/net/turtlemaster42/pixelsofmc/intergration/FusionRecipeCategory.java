@@ -25,13 +25,9 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
+public class FusionRecipeCategory extends BaseCategory<FusionRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "fusing");
-    public final static ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/fusing.png");
-
-    private final IDrawable background;
-    private final IDrawable icon;
+    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/fusing.png");
 
     public FusionRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 158, 66);
@@ -46,26 +42,6 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     @Override
     public @NotNull Component getTitle() {
         return Component.translatable("block.pixelsofmc.sds_controller");
-    }
-
-    @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
-    }
-
-    @Override
-    public @Nullable IDrawable getBackground() {
-        return background;
     }
 
     @Override
@@ -95,6 +71,6 @@ public class FusionRecipeCategory implements IRecipeCategory<FusionRecipe> {
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull FusionRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //output
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 25).addIngredients(Ingredient.of(recipe.getBaseOutput()));
+        addOutputSlot(builder, 82, 25, recipe.getBaseOutput());
     }
 }

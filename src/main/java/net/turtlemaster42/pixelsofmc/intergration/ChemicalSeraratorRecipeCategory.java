@@ -25,14 +25,12 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<ChemicalSeparatorRecipe> {
+public class ChemicalSeraratorRecipeCategory extends BaseCategory<ChemicalSeparatorRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_separating");
     public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/chemical_seperator.png");
 
-    private final IDrawable background;
-    private final IDrawable icon;
-
     public ChemicalSeraratorRecipeCategory(IGuiHelper helper) {
+        super(helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 107, 86);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()));
     }
@@ -48,41 +46,16 @@ public class ChemicalSeraratorRecipeCategory implements IRecipeCategory<Chemical
     }
 
     @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
-    }
-
-    @Override
-    public @Nullable IDrawable getBackground() {
-        return background;
-    }
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalSeparatorRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        builder.addInputSlot(7, 45).addIngredients(Ingredient.of(recipe.getInput().asItemStack()));
-        builder.addInputSlot(9, 9)
-                .addFluidStack(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount())
-                .setFluidRenderer(16000, false, 25, 11);
+        addInputSlot(builder, 7, 45, recipe.getInput().asItemStack());
+        addFluidInput(builder, 9, 9, recipe.getFluidInput(), 16000, 25, 11);
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {
             int x = 84 - (2 * p);
             int y = 27 + (18 * p);
-            builder.addOutputSlot(x, y).addIngredients(Ingredient.of(recipe.getResultItems(p)));
+            addOutputSlot(builder, x, y, recipe.getOutputs().get(p));
         }
-        builder.addOutputSlot(9, 24)
-                .addFluidStack(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount())
-                .setFluidRenderer(16000, false, 25, 11);
-
+        addFluidOutput(builder, 9, 24, recipe.getResultFluid(), 16000, 25, 11);
     }
 }
