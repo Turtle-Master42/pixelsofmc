@@ -106,54 +106,47 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
-            ResourceLocation id = this.id;
             String ingredient1 = "";
             String ingredient2 = "";
             String ingredient3 = "";
             String output = this.result.asItem().toString();
-
-            if (!this.ingredients.get(0).ingredient().isEmpty()) {
+            if (!this.ingredients.isEmpty() && !this.ingredients.get(0).ingredient().isEmpty()) {
                 ingredient1 = this.ingredients.get(0).asItem() + "_";
                 String jsonString = this.ingredients.get(0).ingredient().toJson().toString();
-
                 if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString
-                            .replace("{\"tag\":\"", "")
-                            .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient1 = "tag-" + jsonName +"_";
+                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
+                    if (jsonName.contains("/")) {
+                        String[] splitJsonName = jsonName.split("/", 2);
+                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+                    }
+                    ingredient1 = jsonName +"_";
                 }
             }
             if (this.ingredients.size() > 1 && !this.ingredients.get(1).ingredient().isEmpty()) {
                 ingredient2 = this.ingredients.get(1).asItem()+"_";
                 String jsonString = this.ingredients.get(1).ingredient().toJson().toString();
-
                 if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString
-                            .replace("{\"tag\":\"", "")
-                            .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient2 = "tag-" + jsonName +"_";
+                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
+                    if (jsonName.contains("/")) {
+                        String[] splitJsonName = jsonName.split("/", 2);
+                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+                    }
+                    ingredient2 = jsonName +"_";
                 }
             }
             if (this.ingredients.size() > 2 &&!this.ingredients.get(2).ingredient().isEmpty()) {
                 ingredient3 = this.ingredients.get(2).asItem()+"_";
                 String jsonString = this.ingredients.get(2).ingredient().toJson().toString();
-
                 if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString
-                            .replace("{\"tag\":\"", "")
-                            .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient3 = "tag-" + jsonName +"_";
+                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
+                    if (jsonName.contains("/")) {
+                        String[] splitJsonName = jsonName.split("/", 2);
+                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+                    }
+                    ingredient1 = jsonName +"_";
                 }
             }
-
-            return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output);
+            return new ResourceLocation(PixelsOfMc.MOD_ID, "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output);
         }
 
         @Override

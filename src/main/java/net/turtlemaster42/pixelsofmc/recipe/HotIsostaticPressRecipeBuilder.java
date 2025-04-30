@@ -97,22 +97,17 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
-            ResourceLocation id = this.id;
             String name = this.result.asItem().toString();
             String jsonString = this.result.ingredient().toJson().toString();
-
             if (jsonString.contains("{\"tag\":")) {
-                String jsonName = jsonString
-                        .replace("{\"tag\":\"", "")
-                        .replace("\"}", "")
-                        .replace(":", "-")
-                        .replace("/", "-");
-                name = "tag-"+jsonName;
+                String jsonName = jsonString.split(":")[2].replace("\"}", "");
+                if (jsonName.contains("/")) {
+                    String[] splitJsonName = jsonName.split("/", 2);
+                    jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+                }
+                name = jsonName;
             }
-
-
-            return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "pressing/to_" + name);
+            return new ResourceLocation(PixelsOfMc.MOD_ID, "pressing/to_" + name);
         }
 
         @Override

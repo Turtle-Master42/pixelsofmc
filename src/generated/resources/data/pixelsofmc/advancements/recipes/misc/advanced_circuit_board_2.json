@@ -6,9 +6,9 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:fire_proof_plastic",
               "pixelsofmc:improved_micro_chip",
-              "pixelsofmc:silver_wire"
+              "pixelsofmc:silver_wire",
+              "pixelsofmc:fire_proof_plastic"
             ]
           }
         ]
