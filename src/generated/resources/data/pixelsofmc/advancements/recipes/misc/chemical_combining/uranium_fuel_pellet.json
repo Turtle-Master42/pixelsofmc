@@ -1,37 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
-          {
-            "items": [
-              "pixelsofmc:fire_proof_plastic",
-              "pixelsofmc:improved_micro_chip",
-              "pixelsofmc:silver_wire"
-            ]
-          }
+          null
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:advanced_circuit_board_2"
+        "recipe": "pixelsofmc:uranium_fuel_pellet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:advanced_circuit_board_2"
+      "pixelsofmc:uranium_fuel_pellet"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

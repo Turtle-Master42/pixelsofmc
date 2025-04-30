@@ -1064,180 +1064,180 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //grinding
-        Grinder(toI(Items.FLINT), fConsumer, toCHI(POMitems.QUARTZ_DUST.get(), 1, 0.7f), toCHI(Element.CALCIUM.dustTag(), 1, 0.3f));
-        Grinder(toI(Items.NETHERITE_SCRAP), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 1, 1f));
-        Grinder(toI(POMitems.TITANIUM_GOLD_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_GOLD_DUST.get(), 1, 1f));
-        Grinder(toI(Items.NETHERITE_INGOT), fConsumer, toCHI(POMitems.NETHERITE_DUST.get(), 1, 1f));
-        Grinder(toI(POMitems.TITANIUM_DIBORIDE_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, 1f));
-        Grinder(toI(Items.ANCIENT_DEBRIS), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 1, 1f), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 1, 0.75f), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 1, 0.25f));
+        Grinder(toI(Items.FLINT), fConsumer, toCHI(POMitems.QUARTZ_DUST.get(), 0.7f), toCHI(Element.CALCIUM.dustTag(), 0.3f));
+        Grinder(toI(Items.NETHERITE_SCRAP), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS));
+        Grinder(toI(POMitems.TITANIUM_GOLD_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_GOLD_DUST.get()));
+        Grinder(toI(Items.NETHERITE_INGOT), fConsumer, toCHI(POMitems.NETHERITE_DUST.get()));
+        Grinder(toI(POMitems.TITANIUM_DIBORIDE_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_DIBORIDE_DUST.get()));
+        Grinder(toI(Items.ANCIENT_DEBRIS), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 0.75f), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 0.25f));
 
-        Grinder(toI(Items.STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(Element.IRON.dustTag(), 1, 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.COBBLESTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(Element.IRON.dustTag(), 1, 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.GRAVEL), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.1f), toCHI(Element.IRON.dustTag(), 1, 0.02f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 1, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f), toCHI(Element.IRON.dustTag(), 1, 0.02f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(Element.IRON.dustTag(), 1, 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.RED_SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 1, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f), toCHI(Element.IRON.dustTag(), 1, 0.05f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.RED_SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.3f), toCHI(Element.IRON.dustTag(), 1, 0.08f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(Element.IRON.dustTag(), 1, 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f), toCHI(Element.LITHIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.COBBLED_DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.8f), toCHI(Element.IRON.dustTag(), 1, 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.01f), toCHI(Element.LITHIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.GRANITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 3, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.2f), toCHI(Element.IRON.dustTag(), 1, 0.05f), toCHI(Element.TUNGSTEN.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.DIORITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f), toCHI(Element.IRON.dustTag(), 1, 0.05f), toCHI(Element.CALCIUM.dustTag(), 1, 0.02f), toCHI(Element.MAGNESIUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.ANDESITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f), toCHI(Element.ALUMINIUM.dustTag(), 1, 0.15f), toCHI(Element.IRON.dustTag(), 1, 0.05f));
-        Grinder(toI(Items.CALCITE), fConsumer, toCHI(Element.CALCIUM.dustTag(), 1, 1f), toCHI(Element.CALCIUM.dustTag(), 1, 0.6f), toCHI(Element.CARBON.dustTag(), 1, 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 1, 0.04f));
-        Grinder(toI(Items.TUFF), fConsumer, toCHI(Element.SULFUR.dustTag(), 1, 0.1f), toCHI(Element.CARBON.dustTag(), 1, 0.1f), toCHI(Element.IRON.dustTag(), 1, 0.05f), toCHI(Element.LEAD.dustTag(), 1, 0.02f));
-        Grinder(toI(Items.DRIPSTONE_BLOCK), fConsumer, toCHI(Element.CALCIUM.dustTag(), 1, 1f), toCHI(Element.CALCIUM.dustTag(), 1, 0.6f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f), toCHI(Element.COPPER.dustTag(), 1, 0.05f));
-        Grinder(toI(Items.POINTED_DRIPSTONE), fConsumer, toCHI(Element.CALCIUM.dustTag(), 1, 0.4f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.08f), toCHI(Element.COPPER.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.NETHERRACK), fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 2, 1f), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 0.1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.3f), toCHI(Element.SULFUR.dustTag(), 1, 0.05f), toCHI(Element.GOLD.dustTag(), 1, 0.05f), toCHI(Element.COBALT.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.MAGMA_BLOCK), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 0.1f), toCHI(Element.IRON.dustTag(), 1, 0.05f), toCHI(Element.GOLD.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.BLACKSTONE), fConsumer, toCHI(Element.BORON.dustTag(), 1, 0.4f), toCHI(Element.IRON.dustTag(), 1, 0.4f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.1f), toCHI(Element.NICKEL.dustTag(), 1, 0.05f), toCHI(Element.COBALT.dustTag(), 1, 0.05f), toCHI(Element.PLATINUM.dustTag(), 1, 0.01f));
-        Grinder(toI(Items.BASALT), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(Element.IRON.dustTag(), 1, 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 1, 0.05f));
-        Grinder(toI(ItemTags.SOUL_FIRE_BASE_BLOCKS), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 1, 1f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.4f));
-        Grinder(toI(Items.OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 2, 1f), toCHI(POMitems.OBSIDIAN_DUST.get(), 1, 0.8f));
-        Grinder(toI(Items.CRYING_OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 1, 1f), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(), 1, 0.7f), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(), 1, 0.2f));
-        Grinder(toI(Items.END_STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2, 1f), toCHI(Element.POTASSIUM.dustTag(), 1, 0.1f), toCHI(Element.TITANIUM.dustTag(), 1, 0.01f), toCHI(POMitems.ACANTHITE_DUST.get(), 1, 0.01f));
+        Grinder(toI(Items.STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ,0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(),0.01f));
+        Grinder(toI(Items.COBBLESTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.GRAVEL), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.1f), toCHI(Element.IRON.dustTag(),0.02f), toCHI(Element.ALUMINIUM.dustTag(),0.01f));
+        Grinder(toI(Items.SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.02f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.RED_SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.RED_SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(POMtags.Items.DUST_QUARTZ,  0.3f), toCHI(Element.IRON.dustTag(),  0.08f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f), toCHI(Element.LITHIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.COBBLED_DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f), toCHI(Element.LITHIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.GRANITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 3), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.TUNGSTEN.dustTag(), 0.01f));
+        Grinder(toI(Items.DIORITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.CALCIUM.dustTag(), 0.02f), toCHI(Element.MAGNESIUM.dustTag(), 0.01f));
+        Grinder(toI(Items.ANDESITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.ALUMINIUM.dustTag(), 0.15f), toCHI(Element.IRON.dustTag(), 0.05f));
+        Grinder(toI(Items.CALCITE), fConsumer, toCHI(Element.CALCIUM.dustTag()), toCHI(Element.CALCIUM.dustTag(), 0.6f), toCHI(Element.CARBON.dustTag(), 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 0.04f));
+        Grinder(toI(Items.TUFF), fConsumer, toCHI(Element.SULFUR.dustTag(), 0.1f), toCHI(Element.CARBON.dustTag(), 0.1f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.LEAD.dustTag(), 0.02f));
+        Grinder(toI(Items.DRIPSTONE_BLOCK), fConsumer, toCHI(Element.CALCIUM.dustTag()), toCHI(Element.CALCIUM.dustTag(),0.6f), toCHI(POMtags.Items.DUST_QUARTZ,0.4f), toCHI(Element.COPPER.dustTag(),0.05f));
+        Grinder(toI(Items.POINTED_DRIPSTONE), fConsumer, toCHI(Element.CALCIUM.dustTag(), 0.4f), toCHI(POMtags.Items.DUST_QUARTZ,0.08f), toCHI(Element.COPPER.dustTag(), 0.01f));
+        Grinder(toI(Items.NETHERRACK), fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 2), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(),0.1f), toCHI(POMtags.Items.DUST_QUARTZ, 0.3f), toCHI(Element.SULFUR.dustTag(), 0.05f), toCHI(Element.GOLD.dustTag(), 0.05f), toCHI(Element.COBALT.dustTag(), 0.01f));
+        Grinder(toI(Items.MAGMA_BLOCK), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 0.1f), toCHI(Element.IRON.dustTag(),0.05f), toCHI(Element.GOLD.dustTag(), 0.01f));
+        Grinder(toI(Items.BLACKSTONE), fConsumer, toCHI(Element.BORON.dustTag(), 0.4f), toCHI(Element.IRON.dustTag(), 0.4f), toCHI(POMtags.Items.DUST_QUARTZ, 0.1f), toCHI(Element.NICKEL.dustTag(),0.05f), toCHI(Element.COBALT.dustTag(),0.05f), toCHI(Element.PLATINUM.dustTag(),0.01f));
+        Grinder(toI(Items.BASALT), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(Element.IRON.dustTag(), 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 0.05f));
+        Grinder(toI(ItemTags.SOUL_FIRE_BASE_BLOCKS), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f));
+        Grinder(toI(Items.OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 2), toCHI(POMitems.OBSIDIAN_DUST.get(), 0.8f));
+        Grinder(toI(Items.CRYING_OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get()), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(),0.7f), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(),0.2f));
+        Grinder(toI(Items.END_STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(Element.POTASSIUM.dustTag(), 0.1f), toCHI(Element.TITANIUM.dustTag(), 0.01f), toCHI(POMitems.ACANTHITE_DUST.get(),0.01f));
 
-        Grinder(toI(Tags.Items.RAW_MATERIALS_IRON), fConsumer, toCHI(Element.IRON.dust(), 1, 1f), toCHI(Element.IRON.dust(), 1, 0.5f));
-        Grinder(toI(Tags.Items.RAW_MATERIALS_COPPER), fConsumer, toCHI(Element.COPPER.dust(), 1, 1f), toCHI(Element.COPPER.dust(), 1, 0.5f), toCHI(Element.SULFUR.dust(), 1, 0.05f), toCHI(Element.CARBON.dust(), 1, 0.05f));
-        Grinder(toI(Tags.Items.RAW_MATERIALS_GOLD), fConsumer, toCHI(Element.GOLD.dust(), 1, 1f), toCHI(Element.GOLD.dust(), 1, 0.5f));
-        Grinder(toI(POMitems.RAW_TITANIUM.get()), fConsumer, toCHI(Element.TITANIUM.dust(), 1, 1f), toCHI(Element.TITANIUM.dust(), 1, 0.5f), toCHI(Element.IRON.dust(), 1, 0.05f));
+        Grinder(toI(Tags.Items.RAW_MATERIALS_IRON), fConsumer, toCHI(Element.IRON.dust()), toCHI(Element.IRON.dust(), 0.5f));
+        Grinder(toI(Tags.Items.RAW_MATERIALS_COPPER), fConsumer, toCHI(Element.COPPER.dust()), toCHI(Element.COPPER.dust(), 0.5f), toCHI(Element.SULFUR.dust(), 0.05f), toCHI(Element.CARBON.dust(), 0.05f));
+        Grinder(toI(Tags.Items.RAW_MATERIALS_GOLD), fConsumer, toCHI(Element.GOLD.dust()), toCHI(Element.GOLD.dust(), 0.5f));
+        Grinder(toI(POMitems.RAW_TITANIUM.get()), fConsumer, toCHI(Element.TITANIUM.dust()), toCHI(Element.TITANIUM.dust(), 0.5f), toCHI(Element.IRON.dust(), 0.05f));
 
-        Grinder(toI(POMblocks.ACANTHITE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 12, 1f), toCHI(POMitems.ACANTHITE_DUST.get(), 6, 0.5f), toCHI(Element.SILVER.dustTag(), 1, 0.02f));
-        Grinder(toI(POMblocks.ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 10, 1f), toCHI(POMitems.ACANTHITE_DUST.get(), 4, 0.5f), toCHI(Element.SILVER.dustTag(), 1, 0.01f));
-        Grinder(toI(POMblocks.LESSER_ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5, 1f), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
-        Grinder(toI(POMblocks.ACANTHITE_SPIKE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5, 1f), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
+        Grinder(toI(POMblocks.ACANTHITE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 12), toCHI(POMitems.ACANTHITE_DUST.get(), 6, 0.5f), toCHI(Element.SILVER.dustTag(), 0.02f));
+        Grinder(toI(POMblocks.ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 10), toCHI(POMitems.ACANTHITE_DUST.get(), 4, 0.5f), toCHI(Element.SILVER.dustTag(), 0.01f));
+        Grinder(toI(POMblocks.LESSER_ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
+        Grinder(toI(POMblocks.ACANTHITE_SPIKE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
 
-        Grinder(toI(Tags.Items.ORES_IRON), fConsumer, toCHI(Element.IRON.dust(), 4, 1f), toCHI(Element.IRON.dust(), 1, 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.2f));
-        Grinder(toI(Tags.Items.ORES_COPPER), fConsumer, toCHI(Element.COPPER.dust(), 20, 1f), toCHI(Element.COPPER.dust(), 5, 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.2f), toCHI(Element.SULFUR.dust(), 1, 0.55f), toCHI(Element.CARBON.dust(), 1, 0.55f));
-        Grinder(toI(Tags.Items.ORES_GOLD), fConsumer, toCHI(Element.GOLD.dust(), 4, 1f), toCHI(Element.GOLD.dust(), 1, 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.2f));
-        Grinder(toI(POMtags.Items.ORES_TITANIUM), fConsumer, toCHI(Element.TITANIUM.dust(), 4, 1f), toCHI(Element.TITANIUM.dust(), 1, 0.5f), toCHI(Element.IRON.dust(), 1, 0.2f), toCHI(POMtags.Items.DUST_QUARTZ, 1, 0.2f));
+        Grinder(toI(Tags.Items.ORES_IRON), fConsumer, toCHI(Element.IRON.dust(), 4), toCHI(Element.IRON.dust(), 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
+        Grinder(toI(Tags.Items.ORES_COPPER), fConsumer, toCHI(Element.COPPER.dust(), 20), toCHI(Element.COPPER.dust(), 5, 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f), toCHI(Element.SULFUR.dust(), 0.55f), toCHI(Element.CARBON.dust(), 0.55f));
+        Grinder(toI(Tags.Items.ORES_GOLD), fConsumer, toCHI(Element.GOLD.dust(), 4), toCHI(Element.GOLD.dust(), 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
+        Grinder(toI(POMtags.Items.ORES_TITANIUM), fConsumer, toCHI(Element.TITANIUM.dust(), 4), toCHI(Element.TITANIUM.dust(), 0.5f), toCHI(Element.IRON.dust(), 0.2f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
 
-        Grinder(toI(POMitems.ALUMINIUM_SCRAP.get()), fConsumer, toCHI(Element.ALUMINIUM.dust(), 1, 1f));
+        Grinder(toI(POMitems.ALUMINIUM_SCRAP.get()), fConsumer, toCHI(Element.ALUMINIUM.dust()));
 
-        Grinder(toI(ItemTags.WOOL), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
-        Grinder(toI(ItemTags.WOOL_CARPETS), fConsumer, toCHI(Items.STRING, 2, 1), toCHI(Items.STRING, 1, 0.33f));
-        Grinder(toI(Items.COBWEB), fConsumer, toCHI(Items.STRING, 2, 1f), toCHI(Items.STRING, 1, 0.33f), toCHI(Items.STRING, 1, 0.33f));
-        Grinder(toI(Items.GLOWSTONE), fConsumer, toCHI(Items.GLOWSTONE_DUST, 4, 1f));
+        Grinder(toI(ItemTags.WOOL), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f));
+        Grinder(toI(ItemTags.WOOL_CARPETS), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f));
+        Grinder(toI(Items.COBWEB), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f), toCHI(Items.STRING, 0.33f));
+        Grinder(toI(Items.GLOWSTONE), fConsumer, toCHI(Items.GLOWSTONE_DUST, 4));
 
 
         //MILLING
-        BallMill(toCI(Items.AMETHYST_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.AMETHYST_BLOCK, 1));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 4, 3.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.AMETHYST_CLUSTER, 1));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 2, 1.6f), POMtags.Items.BALL_3, fConsumer, toCI(Items.LARGE_AMETHYST_BUD, 1));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 1, 0.8f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MEDIUM_AMETHYST_BUD, 1));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 1, 0.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMALL_AMETHYST_BUD, 1));
+        BallMill(toCI(Items.AMETHYST_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.AMETHYST_BLOCK));
+        BallMill(toCHI(Items.AMETHYST_SHARD, 4, 3.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.AMETHYST_CLUSTER));
+        BallMill(toCHI(Items.AMETHYST_SHARD, 2, 1.6f), POMtags.Items.BALL_3, fConsumer, toCI(Items.LARGE_AMETHYST_BUD));
+        BallMill(toCHI(Items.AMETHYST_SHARD, 0.8f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MEDIUM_AMETHYST_BUD));
+        BallMill(toCHI(Items.AMETHYST_SHARD, 0.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMALL_AMETHYST_BUD));
 
-        BallMill(toCHI(Items.DISC_FRAGMENT_5, 3, 2.3f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MUSIC_DISC_5, 1));
+        BallMill(toCHI(Items.DISC_FRAGMENT_5, 3, 2.3f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MUSIC_DISC_5));
 
-        BallMill(toCI(Items.GRAVEL, 1), POMtags.Items.BALL_4, fConsumer, toCI(Items.COBBLESTONE, 1));
-        BallMill(toCI(Items.SAND, 1), POMtags.Items.BALL_4, fConsumer, toCI(Items.GRAVEL, 1));
+        BallMill(toCI(Items.GRAVEL), POMtags.Items.BALL_4, fConsumer, toCI(Items.COBBLESTONE));
+        BallMill(toCI(Items.SAND), POMtags.Items.BALL_4, fConsumer, toCI(Items.GRAVEL));
 
-        BallMill(toCHI(Items.MELON_SLICE, 1, 8.5f), POMtags.Items.BALL_1, fConsumer, toCI(Items.MELON, 1));
-        BallMill(toCHI(Items.MELON_SEEDS, 1, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MELON_SLICE, 1));
-        BallMill(toCI(Items.PUMPKIN_SEEDS, 6), POMtags.Items.BALL_3, fConsumer, toCI(Items.PUMPKIN, 1));
-        BallMill(toCI(Items.HONEYCOMB, 1), POMtags.Items.BALL_1, fConsumer, toCI(Items.HONEYCOMB_BLOCK, 1));
+        BallMill(toCHI(Items.MELON_SLICE, 8.5f), POMtags.Items.BALL_1, fConsumer, toCI(Items.MELON));
+        BallMill(toCHI(Items.MELON_SEEDS, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MELON_SLICE));
+        BallMill(toCI(Items.PUMPKIN_SEEDS, 6), POMtags.Items.BALL_3, fConsumer, toCI(Items.PUMPKIN));
+        BallMill(toCI(Items.HONEYCOMB), POMtags.Items.BALL_1, fConsumer, toCI(Items.HONEYCOMB_BLOCK));
 
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE, 1));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE, 1));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_SANDSTONE, 1));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_SANDSTONE, 1));
-        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_STAIRS, 1));
-        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_STAIRS, 1));
-        BallMill(toCI(Items.SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_STANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_WALL, 1));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE, 1));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE, 1));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_RED_SANDSTONE, 1));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE, 1));
-        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_STAIRS, 1));
-        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_STAIRS, 1));
-        BallMill(toCI(Items.RED_SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.RED_SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.RED_SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE_SLAB, 1));
-        BallMill(toCI(Items.RED_SAND, 1), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_WALL, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_STAIRS, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 1), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_SLAB, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 1), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_WALL, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 7), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICKS, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_STAIRS, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_SLAB, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 6), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_STAIRS, 1));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_SLAB, 1));
-        BallMill(toCHI(Items.PRISMARINE_CRYSTALS, 1, 4.33f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SEA_LANTERN, 1));
-        BallMill(toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 2, 1f), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1));
-        BallMill(toCHI(Items.BRICK, 1, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.FLOWER_POT, 1));
-        BallMill(toCHI(Items.GLOWSTONE_DUST, 4, 1f), POMtags.Items.BALL_3, fConsumer, toCI(Items.GLOWSTONE, 1));
+        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE));
+        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE));
+        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_SANDSTONE));
+        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_SANDSTONE));
+        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_STAIRS));
+        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_STAIRS));
+        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_SLAB));
+        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_SLAB));
+        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_STANDSTONE_SLAB));
+        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_WALL));
+        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE));
+        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE));
+        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_RED_SANDSTONE));
+        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE));
+        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_STAIRS));
+        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_STAIRS));
+        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_SLAB));
+        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_SLAB));
+        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE_SLAB));
+        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_WALL));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_STAIRS));
+        BallMill(toCI(Items.PRISMARINE_SHARD), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_SLAB));
+        BallMill(toCI(Items.PRISMARINE_SHARD), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_WALL));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 7), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICKS));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_STAIRS));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_SLAB));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 6), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_STAIRS));
+        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_SLAB));
+        BallMill(toCHI(Items.PRISMARINE_CRYSTALS, 4.33f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SEA_LANTERN));
+        BallMill(toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 2), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get()));
+        BallMill(toCHI(Items.BRICK, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.FLOWER_POT));
+        BallMill(toCHI(Items.GLOWSTONE_DUST, 4), POMtags.Items.BALL_3, fConsumer, toCI(Items.GLOWSTONE));
 
         //dust mixing
-        BallMill(toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 3), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), toCI(POMitems.TITANIUM_OXIDE_DUST.get(), 1));
-        BallMill(toCI(POMitems.NETHERITE_DUST.get(), 1), POMtags.Items.BALL_4, fConsumer, toCI(Element.GOLD.dustTag(), 2), toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 2));
-        BallMill(toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 2), POMtags.Items.BALL_4, fConsumer, toCI(Element.BORON.dustTag(), 2), toCI(Element.TITANIUM.dustTag(), 1));
-        BallMill(toCI(POMitems.TITANIUM_GOLD_DUST.get(), 4), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag(), 3), toCI(Element.GOLD.dustTag(), 1));
-        BallMill(toCI(POMitems.SUPERCONDUCTIVE_DUST.get(), 1), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag(), 1), toCI(Element.NIOBIUM.dustTag(), 1));
-        BallMill(toCI(POMitems.RED_SILVER_DUST.get(), 2), POMtags.Items.BALL_3, fConsumer, toCI(Element.SILVER.dustTag(), 1), toCI(Items.REDSTONE, 1));
+        BallMill(toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 3), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get()), toCI(POMitems.TITANIUM_DIBORIDE_DUST.get()), toCI(POMitems.TITANIUM_OXIDE_DUST.get()));
+        BallMill(toCI(POMitems.NETHERITE_DUST.get()), POMtags.Items.BALL_4, fConsumer, toCI(Element.GOLD.dustTag(), 2), toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 2));
+        BallMill(toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 2), POMtags.Items.BALL_4, fConsumer, toCI(Element.BORON.dustTag(), 2), toCI(Element.TITANIUM.dustTag()));
+        BallMill(toCI(POMitems.TITANIUM_GOLD_DUST.get(), 4), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag(), 3), toCI(Element.GOLD.dustTag()));
+        BallMill(toCI(POMitems.SUPERCONDUCTIVE_DUST.get()), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag()), toCI(Element.NIOBIUM.dustTag()));
+        BallMill(toCI(POMitems.RED_SILVER_DUST.get(), 2), POMtags.Items.BALL_3, fConsumer, toCI(Element.SILVER.dustTag()), toCI(Items.REDSTONE));
 
         //flowers
-        BallMill(toCI(Items.YELLOW_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.DANDELION, 1));
-        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.POPPY, 1));
-        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BLUE_ORCHID, 1));
-        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ALLIUM, 1));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.AZURE_BLUET, 1));
-        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_TULIP, 1));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ORANGE_TULIP, 1));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_TULIP, 1));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_TULIP, 1));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.OXEYE_DAISY, 1));
-        BallMill(toCI(Items.BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.CORNFLOWER, 1));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILY_OF_THE_VALLEY, 1));
-        BallMill(toCI(Items.BLACK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WITHER_ROSE, 1));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.SPORE_BLOSSOM, 1));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_PETALS, 1));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.TORCHFLOWER, 1));
+        BallMill(toCI(Items.YELLOW_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.DANDELION));
+        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.POPPY));
+        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BLUE_ORCHID));
+        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ALLIUM));
+        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.AZURE_BLUET));
+        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_TULIP));
+        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ORANGE_TULIP));
+        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_TULIP));
+        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_TULIP));
+        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.OXEYE_DAISY));
+        BallMill(toCI(Items.BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.CORNFLOWER));
+        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILY_OF_THE_VALLEY));
+        BallMill(toCI(Items.BLACK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WITHER_ROSE));
+        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.SPORE_BLOSSOM));
+        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_PETALS));
+        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.TORCHFLOWER));
 
-        BallMill(toCI(Items.YELLOW_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.SUNFLOWER, 1));
-        BallMill(toCI(Items.PINK_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PEONY, 1));
-        BallMill(toCI(Items.RED_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.ROSE_BUSH, 1));
-        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILAC, 1));
-        BallMill(toCI(Items.CYAN_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PITCHER_PLANT, 1));
+        BallMill(toCI(Items.YELLOW_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.SUNFLOWER));
+        BallMill(toCI(Items.PINK_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PEONY));
+        BallMill(toCI(Items.RED_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.ROSE_BUSH));
+        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILAC));
+        BallMill(toCI(Items.CYAN_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PITCHER_PLANT));
 
 
         //crushing
-        BallMill(toCHI(Items.SUGAR, 1, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SUGAR_CANE, 1));
-        BallMill(toCHI(Items.BLAZE_POWDER, 1, 4.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BLAZE_ROD, 1));
-        BallMill(toCHI(Items.BONE_MEAL, 2, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BONE, 1));
-        BallMill(toI(Items.COBBLESTONE), POMtags.Items.BALL_3, fConsumer, toCI(Items.STONE, 1));
-        BallMill(toI(Items.COBBLED_DEEPSLATE), POMtags.Items.BALL_3, fConsumer, toCI(Items.DEEPSLATE, 1));
-        BallMill(toI(POMitems.COAL_DUST.get()), POMtags.Items.BALL_3, fConsumer, toCI(ItemTags.COALS, 1));
+        BallMill(toCHI(Items.SUGAR, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SUGAR_CANE));
+        BallMill(toCHI(Items.BLAZE_POWDER, 4.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BLAZE_ROD));
+        BallMill(toCHI(Items.BONE_MEAL, 2, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BONE));
+        BallMill(toI(Items.COBBLESTONE), POMtags.Items.BALL_3, fConsumer, toCI(Items.STONE));
+        BallMill(toI(Items.COBBLED_DEEPSLATE), POMtags.Items.BALL_3, fConsumer, toCI(Items.DEEPSLATE));
+        BallMill(toI(POMitems.COAL_DUST.get()), POMtags.Items.BALL_3, fConsumer, toCI(ItemTags.COALS));
 
         //dye source
-        BallMill(toCI(Items.BLUE_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.LAPIS_LAZULI, 1));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BONE_MEAL, 1));
-        BallMill(toCI(Items.BLACK_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.INK_SAC, 1));
-        BallMill(toCI(Items.BROWN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.COCOA_BEANS, 1));
-        BallMill(toCI(Items.RED_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.BEETROOT, 1));
+        BallMill(toCI(Items.BLUE_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.LAPIS_LAZULI));
+        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BONE_MEAL));
+        BallMill(toCI(Items.BLACK_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.INK_SAC));
+        BallMill(toCI(Items.BROWN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.COCOA_BEANS));
+        BallMill(toCI(Items.RED_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.BEETROOT));
 
         //dye mixing
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 2),  toCI(Items.BLACK_DYE, 1));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 1),  toCI(Items.GRAY_DYE, 1));
-        BallMill(toCI(Items.GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 1),  toCI(Items.BLACK_DYE, 1));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.YELLOW_DYE, 1), toCI(Items.RED_DYE, 1));
-        BallMill(toCI(Items.LIME_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 1), toCI(Items.GREEN_DYE, 1));
-        BallMill(toCI(Items.CYAN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.GREEN_DYE, 1), toCI(Items.BLUE_DYE, 1));
-        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 1), toCI(Items.BLUE_DYE, 1));
-        BallMill(toCI(Items.PURPLE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE, 1), toCI(Items.BLUE_DYE, 1));
-        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE, 2), toCI(Items.BLUE_DYE, 1), toCI(Items.WHITE_DYE, 1));
-        BallMill(toCI(Items.MAGENTA_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE, 1), toCI(Items.BLUE_DYE, 1), toCI(Items.PINK_DYE, 1));
-        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PURPLE_DYE, 1),  toCI(Items.PINK_DYE, 1));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE, 1),  toCI(Items.WHITE_DYE, 1));
+        BallMill(toCI(Items.LIGHT_GRAY_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 2),  toCI(Items.BLACK_DYE));
+        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE),  toCI(Items.GRAY_DYE));
+        BallMill(toCI(Items.GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE),  toCI(Items.BLACK_DYE));
+        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.YELLOW_DYE), toCI(Items.RED_DYE));
+        BallMill(toCI(Items.LIME_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE), toCI(Items.GREEN_DYE));
+        BallMill(toCI(Items.CYAN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.GREEN_DYE), toCI(Items.BLUE_DYE));
+        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE), toCI(Items.BLUE_DYE));
+        BallMill(toCI(Items.PURPLE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE));
+        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE), toCI(Items.WHITE_DYE));
+        BallMill(toCI(Items.MAGENTA_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE), toCI(Items.PINK_DYE));
+        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PURPLE_DYE),  toCI(Items.PINK_DYE));
+        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE),  toCI(Items.WHITE_DYE));
 
 
         //pixel splitter
-        PixelSplittingAndAssembling(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
+        PixelSplittingAndAssembling(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
         PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_NUGGET.get(), List.of(toCI(POMitems.PIXEL.get(), 9)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
-        PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
+        PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
 
         //pixel assembler
 //        PixelAssembling(POMitems.VOID_EYE.get(), List.of(toCI(POMitems.DRAGON_EYE.get(), 9)), "", fConsumer);
@@ -1282,27 +1282,30 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         //chemical separating
 
-        ChemicalSeperator(fConsumer, toCI(POMitems.ACANTHITE_DUST.get(), 2), toF(Fluids.WATER, 200), toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 50), toCHI(Element.SILVER.dustTag(), 1, 1), toCHI(Element.SILVER.dustTag(), 1, 0.5f));
-        ChemicalSeperator(fConsumer, toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1), FluidStack.EMPTY, FluidStack.EMPTY, toCHI(Element.TITANIUM.dustTag(), 1, 1), toCHI(Element.BORON.dustTag(), 2, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.ACANTHITE_DUST.get(), 2), toF(Fluids.WATER, 200), toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 50), toCHI(Element.SILVER.dustTag()), toCHI(Element.SILVER.dustTag(),0.5f));
+        ChemicalSeperator(fConsumer, toCI(POMitems.TITANIUM_DIBORIDE_DUST.get()), FluidStack.EMPTY, FluidStack.EMPTY, toCHI(Element.TITANIUM.dustTag()), toCHI(Element.BORON.dustTag(), 2));
 
-        ChemicalSeperator(fConsumer, toCI(Element.TITANIUM.dustTag(), 1), toF(Fluids.WATER, 150), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100), toCHI(POMitems.TITANIUM_OXIDE_DUST.get(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get(), 1), FluidStack.EMPTY, toF(POMfluids.MERCURY_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(Items.REDSTONE, 8), toF(Fluids.WATER, 500), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toCHI(POMitems.YELLOWCAKE_URANIUM.get(), 1, 1), toCHI(POMitems.REFINED_REDSTONE.get(), 8, 1));
+        ChemicalSeperator(fConsumer, toCI(Element.TITANIUM.dustTag()), toF(Fluids.WATER, 150), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100), toCHI(POMitems.TITANIUM_OXIDE_DUST.get()));
+        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get()), FluidStack.EMPTY, toF(POMfluids.MERCURY_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag()));
+        ChemicalSeperator(fConsumer, toCI(Items.REDSTONE, 8), toF(Fluids.WATER, 500), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toCHI(POMitems.YELLOWCAKE_URANIUM.get()), toCHI(POMitems.REFINED_REDSTONE.get(), 8));
 
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_URANIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 330), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 1), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 9000), toCHI(POMitems.EMPTY_FUEL_CELL.get(), 1, 1));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_URANIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 2000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
+        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 6000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
 
         //chemical combining
-        ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 1, 1), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag(), 1));
-        ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get(), 1, 1), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get(), 1));
-        ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get(), 1, 1), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD, 1));
+        ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get()), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag()));
+        ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get()), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get()));
+        ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get()), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD));
 
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_FUNGUS, 1), toCI(POMitems.COAL_DUST.get(), 1));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_WART_BLOCK, 2), toCI(POMitems.COAL_DUST.get(), 1));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_ROOTS, 2), toCI(POMitems.COAL_DUST.get(), 1));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.NETHER_SPROUTS, 4), toCI(POMitems.COAL_DUST.get(), 1));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_FUNGUS), toCI(POMitems.COAL_DUST.get()));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_WART_BLOCK, 2), toCI(POMitems.COAL_DUST.get()));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_ROOTS, 2), toCI(POMitems.COAL_DUST.get()));
+        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.NETHER_SPROUTS, 4), toCI(POMitems.COAL_DUST.get()));
+
+        ChemicalCombining(fConsumer, toCHI(POMitems.URANIUM_FUEL_PELLET.get()), toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 125), FluidStack.EMPTY);
+
 
         //chemical mixing
         ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 1000), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500), 2, toF(Fluids.WATER, 1000));
@@ -1318,7 +1321,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 10), toF(POMfluids.AIR_SOURCE.get(), 20), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 10), toF(Fluids.WATER, 10));
 
         ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 10), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 5),4, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10));
-        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 5), toF(Fluids.WATER, 10), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 5), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 2), toF(POMfluids.RED_OIL_SOURCE.get(), 10));
+        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 9), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 5), toF(Fluids.WATER, 10), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 3), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 1), toF(POMfluids.RED_OIL_SOURCE.get(), 5));
 
 
         //ez crafting
@@ -1452,22 +1455,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             if (e.equals(Element.DEBUGIUM)) continue;
             SimpleAtomCompacting(e.atom64(), e.atom512(), fConsumer);
             Fusing(e, fConsumer);
-            autoPixelSplittingAndAssembling(e.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc." + e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
+            autoPixelSplittingAndAssembling(e.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "element.pixelsofmc." + e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
 
             if (e.isMetal() && e.shouldAddDust()) {
-                Pressing(toCI(e.dustTag(), 1), toI(POMitems.INGOT_CAST.get()), toCI(e.itemTag(), 1), e.getInfo().getMeltingPoint(), Math.min(e.getInfo().getEvaporatingPoint(), 5000), fConsumer);
+                Pressing(toCI(e.dustTag()), toI(POMitems.INGOT_CAST.get()), toCI(e.itemTag()), e.getInfo().getMeltingPoint(), Math.min(e.getInfo().getEvaporatingPoint(), 5000), fConsumer);
                 SimpleSmeltingRecipe(e.dustTag(), e.item(), 1f, 200, fConsumer, toItemP(e.dustTag()), "_from_dust");
             }
             if (e.shouldAddDust()) {
-                Grinder(toI(e.itemTag()), fConsumer, toCHI(e.dustTag(), 1, 1));
+                Grinder(toI(e.itemTag()), fConsumer, toCHI(e.dustTag()));
             }
             if (e.shouldAddNugget()) {
-                autoPixelSplittingAndAssembling(e.nugget(),  List.of(toCI(POMitems.PIXEL_PILE.get(), 1), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
+                autoPixelSplittingAndAssembling(e.nugget(),  List.of(toCI(POMitems.PIXEL_PILE.get()), toCI(POMitems.PIXEL.get())), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
                 if (!e.isVanilla())
                     SimpleCompactingRecipe(toI(e.nugget()), e.item(), fConsumer);
             }
             if (e.shouldAddBlock()) {
-                autoPixelSplittingAndAssembling(e.blockItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get(), 1)), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
+                autoPixelSplittingAndAssembling(e.blockItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get())), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
                 if (!e.isVanilla())
                     SimpleCompactingRecipe(toI(e.item()), e.block(), fConsumer);
             }
@@ -1636,19 +1639,19 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
-        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, r, g, b)
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, r, g, b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
 
     private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, Consumer<FinishedRecipe> consumer) {
-        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, new int[]{0, 0, 0}, new int[]{0, 0, 0}, new int[]{0, 0, 0})
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, new int[]{0, 0, 0}, new int[]{0, 0, 0}, new int[]{0, 0, 0})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
 
     private void autoPixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
-        new PixelAssemblerRecipeBuilder(inputs, toCI(output, 1), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
+        new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
@@ -1764,6 +1767,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         return Ingredient.of(input);
     }
     //toCountIngredient
+    private CountedIngredient toCI(ItemLike input) {
+        return CountedIngredient.of(1, input);
+    }
+    private CountedIngredient toCI(TagKey<Item> input) {
+        return CountedIngredient.of(1, input);
+    }
     private CountedIngredient toCI(ItemLike input, int count) {
         return CountedIngredient.of(count, input);
     }
@@ -1771,6 +1780,24 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         return CountedIngredient.of(count, input);
     }
     //toChanceIngredient
+    private ChanceIngredient toCHI(ItemLike input) {
+        return ChanceIngredient.of(1, 1f, input);
+    }
+    private ChanceIngredient toCHI(TagKey<Item> input) {
+        return ChanceIngredient.of(1, 1f, input);
+    }
+    private ChanceIngredient toCHI(ItemLike input, int count) {
+        return ChanceIngredient.of(count, 1f, input);
+    }
+    private ChanceIngredient toCHI(TagKey<Item> input, int count) {
+        return ChanceIngredient.of(count, 1f, input);
+    }
+    private ChanceIngredient toCHI(ItemLike input, float chance) {
+        return ChanceIngredient.of(1, chance, input);
+    }
+    private ChanceIngredient toCHI(TagKey<Item> input, float chance) {
+        return ChanceIngredient.of(1, chance, input);
+    }
     private ChanceIngredient toCHI(ItemLike input, int count, float chance) {
         return ChanceIngredient.of(count, chance, input);
     }

@@ -117,7 +117,7 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
             String ingredient3 = "";
             String output = this.result.asItem().toString();
 
-            if (!this.ingredients.get(0).ingredient().isEmpty()) {
+            if (!this.ingredients.isEmpty() && !this.ingredients.get(0).ingredient().isEmpty()) {
                 ingredient1 = this.ingredients.get(0).asItem() + "_";
                 String jsonString = this.ingredients.get(0).ingredient().toJson().toString();
 
@@ -125,9 +125,9 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
                     String jsonName = jsonString
                             .replace("{\"tag\":\"", "")
                             .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient1 = "tag-" + jsonName +"_";
+                            .replace(":", "_")
+                            .replace("/", "_");
+                    ingredient1 = jsonName +"_";
                 }
             }
             if (this.ingredients.size() > 1 && !this.ingredients.get(1).ingredient().isEmpty()) {
@@ -138,9 +138,9 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
                     String jsonName = jsonString
                             .replace("{\"tag\":\"", "")
                             .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient2 = "tag-" + jsonName +"_";
+                            .replace(":", "_")
+                            .replace("/", "_");
+                    ingredient2 = jsonName +"_";
                 }
             }
             if (this.ingredients.size() > 2 &&!this.ingredients.get(2).ingredient().isEmpty()) {
@@ -151,9 +151,9 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
                     String jsonName = jsonString
                             .replace("{\"tag\":\"", "")
                             .replace("\"}", "")
-                            .replace(":", "-")
-                            .replace("/", "-");
-                    ingredient3 = "tag-" + jsonName +"_";
+                            .replace(":", "_")
+                            .replace("/", "_");
+                    ingredient3 = jsonName +"_";
                 }
             }
 

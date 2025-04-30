@@ -2,7 +2,7 @@
   "type": "pixelsofmc:chemical_mixing",
   "fluid_inputs": [
     {
-      "Amount": 10,
+      "Amount": 9,
       "FluidName": "pixelsofmc:nuclear_waste_solution_fluid"
     },
     {
@@ -16,15 +16,15 @@
   ],
   "fluid_outputs": [
     {
-      "Amount": 5,
+      "Amount": 3,
       "FluidName": "pixelsofmc:uranium_solution_fluid"
     },
     {
-      "Amount": 2,
+      "Amount": 1,
       "FluidName": "pixelsofmc:plutonium_solution_fluid"
     },
     {
-      "Amount": 10,
+      "Amount": 5,
       "FluidName": "pixelsofmc:red_oil_fluid"
     }
   ],

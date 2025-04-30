@@ -5,7 +5,7 @@
     "FluidName": "pixelsofmc:nitric_acid_fluid"
   },
   "fluid_output": {
-    "Amount": 3000,
+    "Amount": 2000,
     "FluidName": "pixelsofmc:nuclear_waste_fluid"
   },
   "input": {
