@@ -54,7 +54,6 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
             fuelCellTile.cycleLocking();
             BlockPos mainPos = fuelCellTile.getMainPos();
             if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
-                PixelsOfMc.LOGGER.info("add items");
                 Direction mainDirection = pLevel.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
                 if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) { //TODO: Needs to be made more pretty
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());

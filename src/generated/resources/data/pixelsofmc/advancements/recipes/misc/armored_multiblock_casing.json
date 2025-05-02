@@ -1,14 +1,17 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
             "items": [
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire"
+              "pixelsofmc:multiblock_casing"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:fusion_plating"
             ]
           }
         ]
@@ -17,20 +20,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:armored_multiblock_casing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:armored_multiblock_casing"
     ]
   },
   "sends_telemetry_event": false

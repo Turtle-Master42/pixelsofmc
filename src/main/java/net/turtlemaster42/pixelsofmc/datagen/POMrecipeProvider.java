@@ -1013,6 +1013,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get())))
                 .save(fConsumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MULTIBLOCK_CASING.get(), 4)
                 .define('A', Element.TITANIUM.itemTag())
                 .define('B', POMitems.TITANIUM_PLATING.get())
@@ -1021,15 +1022,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BCB")
                 .pattern("ABA")
                 .unlockedBy("has_items", inventoryTrigger(toItemP(POMitems.TITANIUM_PLATING.get().asItem())))
-                .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MULTIBLOCK_CASING.get(), 4)
-                .define('A', POMitems.TITANIUM_DIBORIDE_INGOT.get())
-                .define('B', POMitems.TITANIUM_DIBORIDE_PLATING.get())
-                .define('C', POMblocks.SIMPLE_CASING_2.get())
-                .pattern("ABA")
-                .pattern("BCB")
-                .pattern("ABA")
-                .unlockedBy("has_items", inventoryTrigger(toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get().asItem())))
                 .save(fConsumer);
 
 
@@ -1305,6 +1297,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.NETHER_SPROUTS, 4), toCI(POMitems.COAL_DUST.get()));
 
         ChemicalCombining(fConsumer, toCHI(POMitems.URANIUM_FUEL_PELLET.get()), toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 125), FluidStack.EMPTY);
+        ChemicalCombining(fConsumer, toCHI(POMitems.PLUTONIUM_FUEL_PELLET.get()), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 125), FluidStack.EMPTY);
 
 
         //chemical mixing
@@ -1347,7 +1340,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFullCrossRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMitems.TITANIUM_PLATING.get(), POMitems.TITANIUM_CIRCLE_SAW.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMitems.TITANIUM_GOLD_PLATING.get(), POMitems.TITANIUM_GOLD_CIRCLE_SAW.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get(), fConsumer);
-        SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), POMitems.SILVER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_ITEM_PORT.get(), fConsumer);
+
+        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), POMitems.COPPER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ENERGY_PORT.get(), fConsumer);
+        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), Items.HOPPER, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ITEM_PORT.get(), fConsumer);
+        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), Items.BUCKET, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.FLUID_PORT.get(), fConsumer);
+
+        SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), POMitems.SILVER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_ENERGY_PORT.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), Items.HOPPER, POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_ITEM_PORT.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), Items.BUCKET, POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_FLUID_PORT.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), POMitems.RED_SILVER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_PLASMA_PORT.get(), fConsumer);
@@ -1360,6 +1358,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCrossRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMitems.TITANIUM_GOLD_BALL.get(), fConsumer);
         SimpleCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), fConsumer);
         SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.FISSION_CASING.get(), fConsumer);
+        SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.ENERGY_PORT.get(), POMblocks.FISSION_ENERGY_PORT.get(), fConsumer);
+        SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.FLUID_PORT.get(), POMblocks.FISSION_FLUID_PORT.get(), fConsumer);
+        SimpleCrossRecipe(POMitems.FUSION_PLATING.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.ARMORED_MULTIBLOCK_CASING.get(), fConsumer);
 
         //compacting
         SimpleMetalCompactingRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMblocks.TITANIUM_GOLD_BLOCK.get(), fConsumer);

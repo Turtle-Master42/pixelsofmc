@@ -189,7 +189,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
         for (int i = 0; i < 4; i++) {
             if (stackHandler.getStackInSlot(i).getItem() instanceof FuelCellItem fuelCell) {
-                heating += fuelCell.getEnergyPerTick(stackHandler.getStackInSlot(i));
+                heating += fuelCell.getEnergyPerTick();
             }
         }
 

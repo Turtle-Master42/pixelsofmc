@@ -6,17 +6,12 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:advanced_circuit_board_2"
+              "pixelsofmc:fluid_port"
             ]
           },
           {
             "items": [
-              "pixelsofmc:fusion_plating"
-            ]
-          },
-          {
-            "items": [
-              "minecraft:hopper"
+              "pixelsofmc:lead_plating"
             ]
           }
         ]
@@ -25,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:fusion_item_port2"
+        "recipe": "pixelsofmc:fission_fluid_port"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -38,7 +33,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:fusion_item_port2"
+      "pixelsofmc:fission_fluid_port"
     ]
   },
   "sends_telemetry_event": false

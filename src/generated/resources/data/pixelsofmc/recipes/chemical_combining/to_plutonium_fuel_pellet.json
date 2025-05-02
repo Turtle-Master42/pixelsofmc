@@ -1,0 +1,19 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 125,
+    "FluidName": "pixelsofmc:plutonium_solution_fluid"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:plutonium_fuel_pellet"
+    }
+  }
+}

@@ -1,14 +1,22 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
             "items": [
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire"
+              "pixelsofmc:advanced_circuit_board_1"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_plating"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:bucket"
             ]
           }
         ]
@@ -17,20 +25,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:fluid_port"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:fluid_port"
     ]
   },
   "sends_telemetry_event": false

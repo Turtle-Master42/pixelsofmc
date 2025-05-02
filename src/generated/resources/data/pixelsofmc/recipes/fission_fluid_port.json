@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:fusion_plating"
+      "item": "pixelsofmc:lead_plating"
     },
     "B": {
-      "item": "pixelsofmc:multiblock_casing"
+      "item": "pixelsofmc:fluid_port"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     " A "
   ],
   "result": {
-    "item": "pixelsofmc:armored_multiblock_casing"
+    "item": "pixelsofmc:fission_fluid_port"
   },
   "show_notification": true
 }

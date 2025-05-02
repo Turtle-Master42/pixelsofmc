@@ -26,6 +26,7 @@ import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
@@ -260,10 +261,29 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, NuclearReactorTile pBlockEntity) {
+        handleFuelCell(0);
+        handleFuelCell(1);
+        handleFuelCell(2);
+        handleFuelCell(3);
+
         if (getSwitch(1)) {
             FluidStack drained = fluidTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
             duoFluidTank.fill(new FluidStack(POMfluids.STEAM_SOURCE.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
             setChanged(pLevel, pPos, pState);
+        }
+    }
+
+    public void handleFuelCell(int slot) {
+        ItemStack slotStack = itemHandler.getStackInSlot(slot);
+        if (slotStack.getItem() instanceof FuelCellItem fuelCellItem) {
+            if (!fuelCellItem.hasRemainderStack())
+                return;
+
+            if (fuelCellItem.isDepleted(slotStack)) {
+                itemHandler.setStackInSlot(slot, FuelCellItem.getRemainderStack(slotStack));
+            } else {
+                fuelCellItem.deplete(slotStack);
+            }
         }
     }
 
@@ -297,15 +317,15 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     }
 
     public float getEfficiencyBonus() {
-        return this.efficiency_bonus;
+        return efficiency_bonus;
     }
 
-    public void handleFuelCellHolder(ItemStackHandler itemHandler, int slot, boolean isLocked) {
+    public void handleFuelCellHolder(ItemStackHandler cellItemHandler, int slot, boolean isLocked) {
         if (isLocked) {
-            this.itemHandler.setStackInSlot(slot, itemHandler.getStackInSlot(0));
+            itemHandler.setStackInSlot(slot, cellItemHandler.getStackInSlot(0));
         } else {
-//            setSwitch(false, 3 + slot); TODO: needs to be send to the client
-            this.itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
+            cellItemHandler.setStackInSlot(0, itemHandler.getStackInSlot(slot));
+            itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
         }
     }
 

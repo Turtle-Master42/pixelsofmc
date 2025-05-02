@@ -1,12 +1,22 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
             "items": [
-              "pixelsofmc:titanium_diboride_plating"
+              "pixelsofmc:advanced_circuit_board_1"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:titanium_plating"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:hopper"
             ]
           }
         ]
@@ -15,20 +25,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:armored_multiblock_casing"
+        "recipe": "pixelsofmc:item_port"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:armored_multiblock_casing"
+      "pixelsofmc:item_port"
     ]
   },
   "sends_telemetry_event": false

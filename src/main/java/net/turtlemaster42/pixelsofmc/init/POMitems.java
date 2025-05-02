@@ -173,13 +173,13 @@ public class POMitems {
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512_000_000, 16733525, ChatFormatting.RED));
 	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
 
-	public static final RegistryObject<Item> DEPLETED_URANIUM_FUEL_CELL = ITEMS.register("depleted_uranium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEPLETED_URANIUM_FUEL_CELL = ITEMS.register("depleted_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 20));
 	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_URANIUM_FUEL_CELL.get(), 500, new Color(0, 160, 0).getRGB())); //total 8_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("depleted_enriched_uranium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("depleted_enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 80));
 	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 2000, new Color(0, 255, 0).getRGB())); //total 32_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_plutonium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEPLETED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 320));
 	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_PLUTONIUM_FUEL_CELL.get(), 8000, new Color(0, 200, 175).getRGB())); //total 128_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 1280));
 	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 32000, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FISSION_PLATING = ITEMS.register("fission_plating", () -> new Item(new Item.Properties()));
