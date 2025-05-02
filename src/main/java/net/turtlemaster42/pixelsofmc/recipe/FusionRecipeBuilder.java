@@ -20,13 +20,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-public class FusionRecipeBuilder implements RecipeBuilder {
+public class FusionRecipeBuilder extends POMRecipeBuilder {
     private final Element element;
     private final ItemStack output;
     private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public FusionRecipeBuilder(Element element, int protonCount, int neutronCount, boolean x512) {
         this.protonCount = protonCount;
@@ -41,50 +40,25 @@ public class FusionRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return output.getItem();
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.element, this.protonCount, this.neutronCount, this.x512,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/fusing/"
-                + pRecipeId.getPath())));
-
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.element, this.protonCount, this.neutronCount, this.x512, this.advancement);
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final int protonCount;
         private final int neutronCount;
         private final Element element;
         private final boolean x512;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, boolean x512, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, boolean x512, Advancement.Builder pAdvancement) {
+            super(FusionRecipe.Serializer.INSTANCE, "fusing", pId, pAdvancement);
             this.protonCount = protonCount;
             this.neutronCount = neutronCount;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
             this.element = element;
             this.x512 =x512;
         }
@@ -95,35 +69,6 @@ public class FusionRecipeBuilder implements RecipeBuilder {
             pJson.addProperty("x512", x512);
             pJson.addProperty("proton", protonCount);
             pJson.addProperty("neutron", neutronCount);
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            ResourceLocation id = this.id;
-            String name;
-            if (x512) {
-                name = element.atom512().asItem().toString();
-            } else {
-                name = element.atom64().asItem().toString();
-            }
-
-            return new ResourceLocation(PixelsOfMc.MOD_ID,
-                    "fusing/"+name);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return FusionRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

@@ -24,12 +24,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
+public class ChemicalCombinerRecipeBuilder extends POMRecipeBuilder {
     private final List<CountedIngredient> ingredients;
     private final FluidStack inputFluid;
     private final ChanceIngredient output;
     private final FluidStack outputFluid;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public ChemicalCombinerRecipeBuilder(ChanceIngredient result, FluidStack inputFluid, FluidStack outputFluid, List<CountedIngredient> ingredients) {
         this.ingredients = ingredients;
@@ -39,62 +38,27 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return output.asItem();
     }
 
-    public ChanceIngredient getFullResult() {
-        return output;
-    }
-    public FluidStack getInputFluid() {
-        return inputFluid;
-    }
-    public FluidStack getOutputFluid() {
-        return outputFluid;
-    }
-
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.ingredients, this.inputFluid, this.outputFluid, this.output,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/chemical_combining/" + pRecipeId.getPath())));
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.ingredients, this.inputFluid, this.outputFluid, this.output, this.advancement);
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final List<CountedIngredient> ingredients;
-
         private final FluidStack inputFluid;
         private final ChanceIngredient result;
-
         private final FluidStack resultFluid;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, List<CountedIngredient> pIngredients, FluidStack pInFluid, FluidStack pOutFluid, ChanceIngredient pResult, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, List<CountedIngredient> pIngredients, FluidStack pInFluid, FluidStack pOutFluid, ChanceIngredient pResult, Advancement.Builder pAdvancement) {
+            super(ChemicalCombinerRecipe.Serializer.INSTANCE, "chemical_combining", pId, pAdvancement);
             this.result = pResult;
             this.resultFluid = pOutFluid;
             this.ingredients = pIngredients;
             this.inputFluid = pInFluid;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
@@ -107,68 +71,6 @@ public class ChemicalCombinerRecipeBuilder implements RecipeBuilder {
             }
             pJson.add("inputs", jsonarray);
             pJson.add("fluid_input", FluidJSONUtil.toJson(inputFluid));
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            ResourceLocation id = this.id;
-            String ingredient1 = "";
-            String ingredient2 = "";
-            String ingredient3 = "";
-            String output = this.result.asItem().toString();
-
-            if (!this.ingredients.isEmpty() && !this.ingredients.get(0).ingredient().isEmpty()) {
-                ingredient1 = this.ingredients.get(0).asItem() + "_";
-                String jsonString = this.ingredients.get(0).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient1 = jsonName +"_";
-                }
-            }
-            if (this.ingredients.size() > 1 && !this.ingredients.get(1).ingredient().isEmpty()) {
-                ingredient2 = this.ingredients.get(1).asItem()+"_";
-                String jsonString = this.ingredients.get(1).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient2 = jsonName +"_";
-                }
-            }
-            if (this.ingredients.size() > 2 &&!this.ingredients.get(2).ingredient().isEmpty()) {
-                ingredient3 = this.ingredients.get(2).asItem()+"_";
-                String jsonString = this.ingredients.get(2).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient1 = jsonName +"_";
-                }
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_combining/"+ingredient1+ingredient2+ingredient3+"to_"+output);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return ChemicalCombinerRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

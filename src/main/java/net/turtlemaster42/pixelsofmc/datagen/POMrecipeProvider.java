@@ -3,29 +3,20 @@ package net.turtlemaster42.pixelsofmc.datagen;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.NbtPredicate;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagFile;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PotionItem;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -1239,7 +1230,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Pressing(POMitems.BIO_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.RUBBER_BALL.get(), 1, 0, 80, fConsumer);
         Pressing(POMitems.FIRE_PROOF_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.FIRE_PROOF_RUBBER_BALL.get(), 1, 0, 120, fConsumer);
         Pressing(POMitems.REPELLING_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.REPELLING_RUBBER_BALL.get(), 1, 0, 80, fConsumer);
-        Pressing(Element.TITANIUM.item(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_BALL.get(), 1, 1941, 3560, fConsumer);
+        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_BALL.get(), 1, 1941, 3560, fConsumer);
         Pressing(Items.NETHERITE_INGOT, 1, POMitems.BALL_CAST.get(), POMitems.NETHERITE_BALL.get(), 1, 2500, 4000, fConsumer);
         Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), 1, 3000, 5000, fConsumer);
 
@@ -1247,29 +1238,61 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), 1, 3000, 5000, fConsumer);
         Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 1, 2300, 3500, fConsumer);
         Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_GOLD_PLATING.get(), 1, 2300, 3500, fConsumer);
-        Pressing(Element.TITANIUM.item(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1, 1941, 3560, fConsumer);
+        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1, 1941, 3560, fConsumer);
         Pressing(Items.NETHERITE_INGOT, 1, POMitems.PLATE_CAST.get(), POMitems.NETHERITE_PLATING.get(), 1, 2500, 4000, fConsumer);
         Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 1, 2200, 3400, fConsumer);
         Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 1, 2500, 5000, fConsumer);
         Pressing(POMitems.ANCIENT_DEBRIS_DUST.get(), 1, POMitems.PLATE_CAST.get(), Items.NETHERITE_SCRAP, 1, 2300, 5000, fConsumer);
 
-        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(Tags.Items.INGOTS), toI(POMitems.INGOT_CAST.get()), 1, 2500, 5000, fConsumer);
-        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(POMtags.Items.MILLING_BALL), toI(POMitems.BALL_CAST.get()), 1, 2500, 5000, fConsumer);
-        Pressing(toI(POMitems.CRYING_OBSIDIAN_DUST.get()), 4, toI(POMitems.TITANIUM_PLATING.get()), toI(POMitems.PLATE_CAST.get()), 1, 2500, 5000, fConsumer);
+        HotIsostaticPressRecipeBuilder.build(POMitems.INGOT_CAST.get()).mold(Tags.Items.INGOTS)
+                .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 4).heat(2500, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.BALL_CAST.get()).mold(POMtags.Items.MILLING_BALL)
+                .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 4).heat(2500, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.PLATE_CAST.get()).mold(POMitems.TITANIUM_PLATING.get())
+                .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 4).heat(2500, 5000)
+                .finish(fConsumer, this);
 
-        Pressing(toI(Items.DIAMOND), 4, toI(POMitems.BALL_CAST.get()), toI(POMitems.VIOLET_DIAMOND.get()), 1, 3500, 5000, fConsumer);
-        Pressing(toI(POMitems.YELLOWCAKE_URANIUM.get()), 9, toI(POMitems.BALL_CAST.get()), toI(POMitems.URANIUM_FUEL_PELLET.get()), 1, 3500, 5000, fConsumer);
 
-        Pressing(toI(POMitems.NETHERITE_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(Items.NETHERITE_INGOT), 1, 2500, 4000, fConsumer);
-        Pressing(toI(POMitems.SUPERCONDUCTIVE_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.SUPERCONDUCTIVE_INGOT.get()), 1, 2300, 3500, fConsumer);
-        Pressing(toI(POMitems.RED_SILVER_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.RED_SILVER_INGOT.get()), 1, 1500, 2500, fConsumer);
-        Pressing(toI(POMitems.ROYAL_TUNGSTEN_DUST.get()), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.ROYAL_TUNGSTEN_INGOT.get()), 1, 2600, 2700, fConsumer);
-        Pressing(toI(POMitems.PYROLYTIC_CARBON.get()), 4, toI(POMitems.PLATE_CAST.get()), toI(POMitems.PYROLYTIC_CARBON_SHEET.get()), 1, 4000, 5000, fConsumer);
-        Pressing(toI(Element.LEAD.dustTag()), 1, toI(POMitems.PLATE_CAST.get()), toI(POMitems.LEAD_PLATING.get()), 1, 700, 2000, fConsumer);
-        Pressing(toI(Element.TUNGSTEN.dustTag()), 1, toI(POMitems.PLATE_CAST.get()), toI(POMitems.TUNGSTEN_PLATING.get()), 1, 3700, 5000, fConsumer);
+        HotIsostaticPressRecipeBuilder.build(POMitems.VIOLET_DIAMOND.get()).ballMold()
+                .input(Items.DIAMOND, 4).heat(3500, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get()).ballMold()
+                .input(POMitems.YELLOWCAKE_URANIUM.get(), 9).heat(3500, 5000)
+                .finish(fConsumer, this);
 
-        Pressing(toI(Items.SPONGE), 1, toI(POMitems.INGOT_CAST.get()), toI(POMitems.CLEANING_SPONGE.get()), 1, 200, 400, fConsumer);
-        Pressing(toI(Items.QUARTZ), 1, toI(POMitems.PLATE_CAST.get()), toI(POMitems.SILICON_SHEET.get()), 1, 600, 1000, fConsumer);
+        HotIsostaticPressRecipeBuilder.build(Items.NETHERITE_INGOT).ingotMold()
+                .input(POMitems.NETHERITE_DUST.get()).heat(2500, 4000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.SUPERCONDUCTIVE_INGOT.get()).ingotMold()
+                .input(POMitems.SUPERCONDUCTIVE_DUST.get()).heat(2300, 3500)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.RED_SILVER_INGOT.get()).ingotMold()
+                .input(POMitems.RED_SILVER_DUST.get()).heat(1500, 2500)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_INGOT.get()).ingotMold()
+                .input(POMitems.ROYAL_TUNGSTEN_DUST.get()).heat(2600, 2700)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.PYROLYTIC_CARBON_SHEET.get()).plateMold()
+                .input(POMitems.PYROLYTIC_CARBON.get(), 4).heat(4000, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.LEAD_PLATING.get()).plateMold()
+                .input(Element.LEAD.dustTag()).heat(700, 2000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TUNGSTEN_PLATING.get()).plateMold()
+                .input(Element.TUNGSTEN.dustTag()).heat(3700, 5000)
+                .finish(fConsumer, this);
+
+        HotIsostaticPressRecipeBuilder.build(POMitems.CLEANING_SPONGE.get()).ingotMold()
+                .input(Items.SPONGE).heat(200, 400)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.SILICON_SHEET.get()).plateMold()
+                .input(Items.QUARTZ).heat(600, 1000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.SILICON_SHEET.get()).plateMold()
+                .input(Element.SILICON.dustTag()).heat(600, 1000)
+                .finish(fConsumer, this);
 //        Pressing(toI(Element.SILICON.dustTag()), 1, toI(POMitems.PLATE_CAST.get()), toI(POMitems.SILICON_SHEET.get()), 1, 600, 1000, fConsumer, "_from_dust");
 
         //chemical separating
@@ -1459,7 +1482,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             autoPixelSplittingAndAssembling(e.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "element.pixelsofmc." + e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
 
             if (e.isMetal() && e.shouldAddDust()) {
-                Pressing(toCI(e.dustTag()), toI(POMitems.INGOT_CAST.get()), toCI(e.itemTag()), e.getInfo().getMeltingPoint(), Math.min(e.getInfo().getEvaporatingPoint(), 5000), fConsumer);
+                HotIsostaticPressRecipeBuilder.build(e.itemTag())
+                        .input(e.dustTag()).mold(POMitems.INGOT_CAST.get())
+                        .heat(e.getInfo().getMeltingPoint(), e.getInfo().getEvaporatingPoint())
+                        .finish(fConsumer, this);
                 SimpleSmeltingRecipe(e.dustTag(), e.item(), 1f, 200, fConsumer, toItemP(e.dustTag()), "_from_dust");
             }
             if (e.shouldAddDust()) {
@@ -1625,7 +1651,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         }
         new BallMillRecipeBuilder(Arrays.stream(inputs).toList(), output, Ingredient.of(ball))
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("milling/" + output.asName()));
     }
 
     private void PixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
@@ -1641,12 +1667,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, r, g, b)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
-    }
-
-    private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, Consumer<FinishedRecipe> consumer) {
-        new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, new int[]{0, 0, 0}, new int[]{0, 0, 0}, new int[]{0, 0, 0})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer);
     }
@@ -1667,31 +1687,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
-    private void Pressing(ItemLike ingredient, int inCount, ItemLike mold, ItemLike output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
-        Pressing(ingredient, inCount, mold, output, outCount, heat, maxHeat, consumer, "");
-    }
-    private void Pressing(ItemLike ingredient, int inCount, ItemLike mold, ItemLike output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer, String extra) {
-        new HotIsostaticPressRecipeBuilder(CountedIngredient.of(inCount, ingredient), CountedIngredient.of(1, mold), CountedIngredient.of(outCount, output), heat, maxHeat)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL(output.asItem() + extra));
-    }
-    private void Pressing(Ingredient ingredient, int inCount, Ingredient mold, Ingredient output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
-        Pressing(ingredient, inCount, mold, output, outCount, heat, maxHeat, consumer, "");
-    }
-    private void Pressing(Ingredient ingredient, int inCount, Ingredient mold, Ingredient output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer, String extra) {
-        new HotIsostaticPressRecipeBuilder(CountedIngredient.of(inCount, ingredient), CountedIngredient.of(1, mold), CountedIngredient.of(outCount, output), heat, maxHeat)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL(output.getItems()[0].getItem() + extra));
-    }
-
-    private void Pressing(CountedIngredient ingredient, Ingredient mold, CountedIngredient output, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
-        Pressing(ingredient, mold, output, heat, maxHeat, consumer, "");
-    }
-
-    private void Pressing(CountedIngredient ingredient, Ingredient mold, CountedIngredient output, int heat, int maxHeat, Consumer<FinishedRecipe> consumer, String extra) {
-        new HotIsostaticPressRecipeBuilder(ingredient, CountedIngredient.of(1, mold), output, heat, maxHeat)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL(output.asItem() + extra));
+    private void Pressing(Item ingredient, int inCount, Item mold, Item output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
+        HotIsostaticPressRecipeBuilder.build(output, outCount)
+                .mold(mold).input(ingredient, inCount)
+                .heat(heat, maxHeat)
+                .finish(consumer, this);
     }
 
     private void Grinder(Ingredient input, Consumer<FinishedRecipe> consumer, ChanceIngredient... output) {
@@ -1699,7 +1699,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Collections.addAll(outputList, output);
         new GrinderRecipeBuilder(input, outputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("grinding/" + CountedIngredient.of(input).asName()));
     }
 
     private void ChemicalSeperator(Consumer<FinishedRecipe> consumer, CountedIngredient input, FluidStack inputFluid, FluidStack outputFluid, ChanceIngredient... output) {
@@ -1707,7 +1707,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Collections.addAll(outputList, output);
         new ChemicalSeparatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("chemical_separating/" + (input.isEmpty() ? outputFluid.getFluid().getFluidType().toString().split(":")[1] : input.asName())));
     }
 
     private void ChemicalCombining(Consumer<FinishedRecipe> consumer, ChanceIngredient output, FluidStack inputFluid, FluidStack outputFluid, CountedIngredient... inputs) {
@@ -1715,7 +1715,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         Collections.addAll(inputList, inputs);
         new ChemicalCombinerRecipeBuilder(output, inputFluid, outputFluid, inputList)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("chemical_combining/" + (output.isEmpty() ? outputFluid.getFluid().getFluidType().toString().split(":")[1] : output.asName())));
     }
 
     private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, int temperatureState, FluidStack... outputs) {
@@ -1738,9 +1738,16 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void ChemicalMixing(Consumer<FinishedRecipe> consumer, int temperatureState, List<FluidStack> inputs, FluidStack... outputs) {
         List<FluidStack> outputList = new java.util.ArrayList<>();
-        Collections.addAll(outputList, outputs);
+        StringBuilder name = new StringBuilder();
+        for (FluidStack output : outputs) {
+            outputList.add(output);
+            name.append("_");
+            name.append(output.getFluid().getFluidType().toString().split(":")[1]);
+        }
+        name.deleteCharAt(0);
         new ChemicalMixerRecipeBuilder(inputs, outputList, temperatureState)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY)).save(consumer);
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer, toRL("chemical_mixing/" + name.toString()));
     }
 
 
@@ -1756,7 +1763,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private void Fusing(Element element, boolean x512, int proton, int neutron, Consumer<FinishedRecipe> consumer) {
         new FusionRecipeBuilder(element, proton, neutron, x512)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("fusing/" + (x512 ? element.atom512().asItem().toString() : element.atom64().asItem().toString())));
     }
 
 
@@ -1802,9 +1809,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private ChanceIngredient toCHI(ItemLike input, int count, float chance) {
         return ChanceIngredient.of(count, chance, input);
     }
-    private ChanceIngredient toCHI(TagKey<Item> input, int count, float chance) {
-        return ChanceIngredient.of(count, chance, input);
-    }
 
     private FluidStack toF(Fluid fluid, int amount) {return new FluidStack(fluid, amount);}
     private int[] toAInt(int ...num) {
@@ -1835,12 +1839,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     //Immersive Engineering
-    private ResourceLocation toRL(String string) {
+    public ResourceLocation toRL(String string) {
         if(PATH_COUNT.containsKey(string))
         {
             int count = PATH_COUNT.get(string)+1;
             PATH_COUNT.put(string, count);
-            return new ResourceLocation(PixelsOfMc.MOD_ID, string+count);
+            return new ResourceLocation(PixelsOfMc.MOD_ID, string+"_"+count);
         }
         PATH_COUNT.put(string, 1);
         return new ResourceLocation(PixelsOfMc.MOD_ID, string);

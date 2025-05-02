@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -24,17 +25,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class BallMillRecipeBuilder implements RecipeBuilder {
+public class BallMillRecipeBuilder extends POMRecipeBuilder {
     private final ChanceIngredient output;
     private final List<CountedIngredient> ingredients;
     private final Ingredient ball;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
-
-    public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ItemLike result, int outputCount, Ingredient ball) {
-        this.ingredients = ingredients;
-        this.output = ChanceIngredient.of(outputCount, 1f, result);
-        this.ball = ball;
-    }
 
     public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ChanceIngredient output, Ingredient ball) {
         this.ingredients = ingredients;
@@ -43,125 +37,42 @@ public class BallMillRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return output.asItem();
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.output, this.ball, this.ingredients,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/milling/"
-                + pRecipeId.getPath())));
-
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id,
+                this.output, this.ball, this.ingredients,
+                this.advancement
+        );
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final ChanceIngredient result;
         private final List<CountedIngredient> ingredients;
         private final Ingredient ball;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, ChanceIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, ChanceIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement) {
+            super(BallMillRecipe.Serializer.INSTANCE, "milling", pId, pAdvancement);
             this.result = pResult;
             this.ball = pBall;
             this.ingredients = ingredients;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
         public void serializeRecipeData(@NotNull JsonObject pJson) {
-            JsonArray jsonarray = new JsonArray();
+            JsonArray inputArray = new JsonArray();
             for (CountedIngredient ingredient : ingredients) {
-                jsonarray.add(ingredient.toJson());
+                inputArray.add(ingredient.toJson());
             }
-            pJson.add("inputs", jsonarray);
+            pJson.add("inputs", inputArray);
 
-
-            JsonArray jsonarray2 = new JsonArray();
-            jsonarray2.add(ball.toJson());
-            pJson.add("ball", jsonarray2);
+            JsonArray ballArray = new JsonArray();
+            ballArray.add(ball.toJson());
+            pJson.add("ball", ballArray);
             pJson.add("output", result.toJson());
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            String ingredient1 = "";
-            String ingredient2 = "";
-            String ingredient3 = "";
-            String output = this.result.asItem().toString();
-            if (!this.ingredients.isEmpty() && !this.ingredients.get(0).ingredient().isEmpty()) {
-                ingredient1 = this.ingredients.get(0).asItem() + "_";
-                String jsonString = this.ingredients.get(0).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient1 = jsonName +"_";
-                }
-            }
-            if (this.ingredients.size() > 1 && !this.ingredients.get(1).ingredient().isEmpty()) {
-                ingredient2 = this.ingredients.get(1).asItem()+"_";
-                String jsonString = this.ingredients.get(1).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient2 = jsonName +"_";
-                }
-            }
-            if (this.ingredients.size() > 2 &&!this.ingredients.get(2).ingredient().isEmpty()) {
-                ingredient3 = this.ingredients.get(2).asItem()+"_";
-                String jsonString = this.ingredients.get(2).ingredient().toJson().toString();
-                if (jsonString.contains("{\"tag\":")) {
-                    String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                    if (jsonName.contains("/")) {
-                        String[] splitJsonName = jsonName.split("/", 2);
-                        jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                    }
-                    ingredient1 = jsonName +"_";
-                }
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "milling/"+ingredient1+ingredient2+ingredient3+"to_"+output);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return BallMillRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

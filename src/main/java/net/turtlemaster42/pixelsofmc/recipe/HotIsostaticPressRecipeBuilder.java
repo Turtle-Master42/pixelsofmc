@@ -5,13 +5,16 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -19,31 +22,88 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
+public class HotIsostaticPressRecipeBuilder extends POMRecipeBuilder {
     private final CountedIngredient output;
-    private final int heat;
-    private final int maxHeat;
-    private final CountedIngredient ingredient;
-    private final CountedIngredient mold;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
+    private int heat;
+    private int maxHeat;
+    private CountedIngredient ingredient;
+    private CountedIngredient mold;
 
-    public HotIsostaticPressRecipeBuilder(CountedIngredient ingredient, CountedIngredient mold, CountedIngredient result, int heat, int maxHeat) {
-        this.ingredient = ingredient;
-        this.mold = mold;
-        this.output = result;
-        this.heat = heat;
-        this.maxHeat = maxHeat;
+    public HotIsostaticPressRecipeBuilder(CountedIngredient output) {
+        this.ingredient = CountedIngredient.EMPTY;
+        this.output = output;
+        this.mold = CountedIngredient.EMPTY;
+        this.heat = 0;
+        this.maxHeat = 5000;
     }
 
-    @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
+    public static HotIsostaticPressRecipeBuilder build(Item item) {
+        return build(item, 1);
+    }
+
+    public static HotIsostaticPressRecipeBuilder build(TagKey<Item> tag) {
+        return build(tag, 1);
+    }
+
+    public static HotIsostaticPressRecipeBuilder build(Item item, int count) {
+        return new HotIsostaticPressRecipeBuilder(CountedIngredient.of(count, item));
+    }
+
+    public static HotIsostaticPressRecipeBuilder build(TagKey<Item> tag, int count) {
+        return new HotIsostaticPressRecipeBuilder(CountedIngredient.of(count, tag));
+    }
+
+    public HotIsostaticPressRecipeBuilder heat(int min, int max) {
+        this.heat = Math.max(min, 0);
+        this.maxHeat = Math.min(max, 5000);
         return this;
     }
 
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
+    public HotIsostaticPressRecipeBuilder ballMold() {
+        return mold(POMitems.BALL_CAST.get());
+    }
+
+    public HotIsostaticPressRecipeBuilder plateMold() {
+        return mold(POMitems.PLATE_CAST.get());
+    }
+
+    public HotIsostaticPressRecipeBuilder ingotMold() {
+        return mold(POMitems.INGOT_CAST.get());
+    }
+
+    public HotIsostaticPressRecipeBuilder mold(Item item) {
+        this.mold = CountedIngredient.of(item);
         return this;
+    }
+
+    public HotIsostaticPressRecipeBuilder mold(TagKey<Item> tag) {
+        this.mold = CountedIngredient.of(tag);
+        return this;
+    }
+
+    public HotIsostaticPressRecipeBuilder input(Item item) {
+        this.ingredient = CountedIngredient.of(item);
+        return this;
+    }
+
+    public HotIsostaticPressRecipeBuilder input(TagKey<Item> tag) {
+        this.ingredient = CountedIngredient.of(tag);
+        return this;
+    }
+
+    public HotIsostaticPressRecipeBuilder input(Item item, int count) {
+        this.ingredient = CountedIngredient.of(count, item);
+        return this;
+    }
+
+    public HotIsostaticPressRecipeBuilder input(TagKey<Item> tag, int count) {
+        this.ingredient = CountedIngredient.of(count, tag);
+        return this;
+    }
+
+    public void finish(Consumer<FinishedRecipe> consumer, POMrecipeProvider provider) {
+        this.unlockedBy("", ANY_CRITERION)
+                .save(consumer, provider.toRL("pressing/" + output.asName()));
     }
 
     @Override
@@ -52,77 +112,36 @@ public class HotIsostaticPressRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.output, this.ingredient, this.mold, this.heat,
-                this.maxHeat, this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/pressing/"
-                + pRecipeId.getPath())));
-
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.output, this.ingredient, this.mold, this.heat,
+                this.maxHeat, this.advancement
+        );
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final CountedIngredient result;
         private final int heat;
         private final int maxHeat;
         private final CountedIngredient ingredient;
         private final CountedIngredient mold;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, CountedIngredient pResult, CountedIngredient ingredient, CountedIngredient mold, int heat, int maxHeat, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, CountedIngredient pResult, CountedIngredient ingredient, CountedIngredient mold, int heat, int maxHeat,
+                      Advancement.Builder pAdvancement) {
+            super(HotIsostaticPressRecipe.Serializer.INSTANCE, "pressing", pId, pAdvancement);
             this.result = pResult;
             this.ingredient = ingredient;
             this.mold = mold;
             this.heat = heat;
             this.maxHeat = maxHeat;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
-        public void serializeRecipeData(JsonObject pJson) {
+        public void serializeRecipeData(@NotNull JsonObject pJson) {
             pJson.add("input", ingredient.toJson());
             pJson.add("mold", mold.toJson());
             pJson.add("output", result.toJson());
             pJson.addProperty("heat", heat);
             pJson.addProperty("max_heat", maxHeat);
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            String name = this.result.asItem().toString();
-            String jsonString = this.result.ingredient().toJson().toString();
-            if (jsonString.contains("{\"tag\":")) {
-                String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                if (jsonName.contains("/")) {
-                    String[] splitJsonName = jsonName.split("/", 2);
-                    jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                }
-                name = jsonName;
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "pressing/to_" + name);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return HotIsostaticPressRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

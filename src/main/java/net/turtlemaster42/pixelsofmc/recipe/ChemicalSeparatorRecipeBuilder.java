@@ -25,12 +25,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
+public class ChemicalSeparatorRecipeBuilder extends POMRecipeBuilder {
     private final CountedIngredient ingredient;
     private final FluidStack inputFluid;
     private final List<ChanceIngredient> outputs;
     private final FluidStack outputFluid;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public ChemicalSeparatorRecipeBuilder(CountedIngredient ingredients, FluidStack inputFluid, FluidStack outputFluid, List<ChanceIngredient> result) {
         this.ingredient = ingredients;
@@ -40,62 +39,28 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return ItemStack.EMPTY.getItem();
     }
 
-    public List<ChanceIngredient> getResults() {
-        return outputs;
-    }
-    public FluidStack getInputFluid() {
-        return inputFluid;
-    }
-    public FluidStack getOutputFluid() {
-        return outputFluid;
-    }
-
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.ingredient, this.inputFluid, this.outputFluid, this.outputs,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/chemical_separating/" + pRecipeId.getPath())));
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.ingredient, this.inputFluid, this.outputFluid, this.outputs,
+                this.advancement);
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final CountedIngredient ingredient;
-
         private final FluidStack inputFluid;
         private final List<ChanceIngredient> results;
-
         private final FluidStack resultFluid;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, CountedIngredient pIngredient, FluidStack pInFluid, FluidStack pOutFluid, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, CountedIngredient pIngredient, FluidStack pInFluid, FluidStack pOutFluid, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement) {
+            super(ChemicalSeparatorRecipe.Serializer.INSTANCE, "chemical_separating", pId, pAdvancement);
             this.results = pResults;
             this.resultFluid = pOutFluid;
             this.ingredient = pIngredient;
             this.inputFluid = pInFluid;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
@@ -108,36 +73,6 @@ public class ChemicalSeparatorRecipeBuilder implements RecipeBuilder {
             }
             pJson.add("outputs", jsonarray);
             pJson.add("fluid_output", FluidJSONUtil.toJson(resultFluid));
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            String name = this.ingredient.getItems()[0].getItem().toString();
-            String jsonString = this.ingredient.ingredient().toJson().toString();
-            if (jsonString.contains("{\"tag\":")) {
-                String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                if (jsonName.contains("/")) {
-                    String[] splitJsonName = jsonName.split("/", 2);
-                    jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                }
-                name = jsonName;
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_separating/" + name);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return ChemicalSeparatorRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

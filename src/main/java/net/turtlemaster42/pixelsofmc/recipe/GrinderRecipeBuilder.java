@@ -23,10 +23,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GrinderRecipeBuilder implements RecipeBuilder {
+public class GrinderRecipeBuilder extends POMRecipeBuilder {
     private final Ingredient ingredient;
     private final List<ChanceIngredient> outputs;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public GrinderRecipeBuilder(Ingredient ingredients, List<ChanceIngredient> result) {
         this.ingredient = ingredients;
@@ -34,50 +33,23 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return ItemStack.EMPTY.getItem();
     }
 
-    public List<ChanceIngredient> getResults() {
-        return outputs;
-    }
-
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.ingredient, this.outputs,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/grinding/" + pRecipeId.getPath())));
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.ingredient, this.outputs, this.advancement);
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMResult {
         private final Ingredient ingredient;
         private final List<ChanceIngredient> results;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, Ingredient pIngredient, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, Ingredient pIngredient, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement) {
+            super(GrinderRecipe.Serializer.INSTANCE, "grinding", pId, pAdvancement);
             this.results = pResults;
             this.ingredient = pIngredient;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
@@ -88,36 +60,6 @@ public class GrinderRecipeBuilder implements RecipeBuilder {
                 jsonarray.add(result.toJson());
             }
             pJson.add("outputs", jsonarray);
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            String name = this.ingredient.getItems()[0].getItem().toString();
-            String jsonString = this.ingredient.toJson().toString();
-            if (jsonString.contains("{\"tag\":")) {
-                String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                if (jsonName.contains("/")) {
-                    String[] splitJsonName = jsonName.split("/", 2);
-                    jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                }
-                name = jsonName;
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "grinding/" + name);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return GrinderRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

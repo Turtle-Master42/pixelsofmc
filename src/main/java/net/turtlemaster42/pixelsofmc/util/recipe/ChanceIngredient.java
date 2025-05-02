@@ -65,8 +65,6 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
         return new ChanceIngredient(ingredient, count, 0);
     }
 
-
-
     public static ChanceIngredient of(int count, float chance, ItemLike... items) {
         return of(count, chance, Arrays.stream(items).map(ItemStack::new));
     }
@@ -86,8 +84,6 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
     public static ChanceIngredient of(int count, float chance, Ingredient ingredient) {
         return new ChanceIngredient(ingredient, count, chance);
     }
-
-
 
     public static ChanceIngredient of(float chance, Ingredient ingredient) {
         return new ChanceIngredient(ingredient, ingredient.getItems()[0].getCount(), chance);
@@ -117,12 +113,16 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
         return new ItemStack(asItem(), count);
     }
 
-    public boolean isEmpty() {
-        return ingredient.isEmpty();
-    }
-
     public Ingredient asIngredient() {
         return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
+    }
+
+    public CountedIngredient asCountedIngredient() {
+        return CountedIngredient.of(count, ingredient);
+    }
+
+    public boolean isEmpty() {
+        return ingredient.isEmpty();
     }
 
     public Ingredient asOverflowIngredient() {
@@ -130,6 +130,25 @@ public record ChanceIngredient(Ingredient ingredient, int count, float chance) i
             return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count * Mth.floor(chance)));
         }
         return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
+    }
+
+    public String asName() {
+        if (this.isEmpty()) {
+            return "air";
+        }
+        JsonObject pJson = this.toJson().get("ingredient").getAsJsonObject();
+
+        String name = asItem().toString();
+        String jsonString = pJson.toString();
+        if (jsonString.contains("{\"tag\":")) {
+            String jsonName = jsonString.split(":")[2].replace("\"}", "");
+            if (jsonName.contains("/")) {
+                String[] splitJsonName = jsonName.split("/", 2);
+                jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+            }
+            name = jsonName;
+        }
+        return name;
     }
 
     @Override

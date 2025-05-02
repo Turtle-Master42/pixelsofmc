@@ -3,12 +3,8 @@ package net.turtlemaster42.pixelsofmc.util.recipe;
 //credits EnderIO
 
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.TagParser;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
@@ -102,8 +98,31 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
         return new ItemStack(ingredient.getItems()[0].getItem(), count);
     }
 
+    public Ingredient asIngredient() {
+        return Ingredient.of(new ItemStack(ingredient.getItems()[0].getItem(), count));
+    }
+
     public boolean isEmpty() {
         return ingredient.isEmpty();
+    }
+
+    public String asName() {
+        if (this.isEmpty()) {
+            return "air";
+        }
+        JsonObject pJson = this.toJson().get("ingredient").getAsJsonObject();
+
+        String name = asItem().toString();
+        String jsonString = pJson.toString();
+        if (jsonString.contains("{\"tag\":")) {
+            String jsonName = jsonString.split(":")[2].replace("\"}", "");
+            if (jsonName.contains("/")) {
+                String[] splitJsonName = jsonName.split("/", 2);
+                jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
+            }
+            name = jsonName;
+        }
+        return name;
     }
 
     @Override
