@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:protactinium_ingot"
+        "recipe": "pixelsofmc:assembling/protactinium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:protactinium_ingot"
+      "pixelsofmc:assembling/protactinium_ingot"
     ]
   },
   "sends_telemetry_event": true

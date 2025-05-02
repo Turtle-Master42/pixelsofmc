@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:americium_ingot"
+        "recipe": "pixelsofmc:assembling/americium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:americium_ingot"
+      "pixelsofmc:assembling/americium_ingot"
     ]
   },
   "sends_telemetry_event": true

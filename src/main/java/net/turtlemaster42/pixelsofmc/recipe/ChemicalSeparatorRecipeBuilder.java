@@ -3,27 +3,18 @@ package net.turtlemaster42.pixelsofmc.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ChemicalSeparatorRecipeBuilder extends POMRecipeBuilder {
     private final CountedIngredient ingredient;
@@ -49,14 +40,14 @@ public class ChemicalSeparatorRecipeBuilder extends POMRecipeBuilder {
                 this.advancement);
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final CountedIngredient ingredient;
         private final FluidStack inputFluid;
         private final List<ChanceIngredient> results;
         private final FluidStack resultFluid;
 
         public Result(ResourceLocation pId, CountedIngredient pIngredient, FluidStack pInFluid, FluidStack pOutFluid, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement) {
-            super(ChemicalSeparatorRecipe.Serializer.INSTANCE, "chemical_separating", pId, pAdvancement);
+            super(ChemicalSeparatorRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.results = pResults;
             this.resultFluid = pOutFluid;
             this.ingredient = pIngredient;

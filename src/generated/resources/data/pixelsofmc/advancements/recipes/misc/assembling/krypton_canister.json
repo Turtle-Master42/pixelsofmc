@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:krypton_canister"
+        "recipe": "pixelsofmc:assembling/krypton_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:krypton_canister"
+      "pixelsofmc:assembling/krypton_canister"
     ]
   },
   "sends_telemetry_event": true

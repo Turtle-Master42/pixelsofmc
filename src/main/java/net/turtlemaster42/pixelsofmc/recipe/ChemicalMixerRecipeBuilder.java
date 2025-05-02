@@ -3,25 +3,16 @@ package net.turtlemaster42.pixelsofmc.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ChemicalMixerRecipeBuilder extends POMRecipeBuilder {
     private final List<FluidStack> inputFluids;
@@ -45,13 +36,13 @@ public class ChemicalMixerRecipeBuilder extends POMRecipeBuilder {
                 this.advancement);
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final List<FluidStack> inputFluids;
         private final List<FluidStack> resultFluids;
         private final int temperatureState;
 
         public Result(ResourceLocation pId, List<FluidStack> pInFluid, List<FluidStack> pOutFluid, int temperatureState, Advancement.Builder pAdvancement) {
-            super(ChemicalMixerRecipe.Serializer.INSTANCE, "chemical_mixing", pId, pAdvancement);
+            super(ChemicalMixerRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.resultFluids = pOutFluid;
             this.inputFluids = pInFluid;
             this.temperatureState = temperatureState;

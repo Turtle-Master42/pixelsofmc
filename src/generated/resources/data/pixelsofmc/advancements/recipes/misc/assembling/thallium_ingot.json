@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:thallium_ingot"
+        "recipe": "pixelsofmc:assembling/thallium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:thallium_ingot"
+      "pixelsofmc:assembling/thallium_ingot"
     ]
   },
   "sends_telemetry_event": true

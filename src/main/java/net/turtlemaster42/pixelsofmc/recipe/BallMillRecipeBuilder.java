@@ -3,27 +3,16 @@ package net.turtlemaster42.pixelsofmc.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.ItemLike;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class BallMillRecipeBuilder extends POMRecipeBuilder {
     private final ChanceIngredient output;
@@ -49,13 +38,13 @@ public class BallMillRecipeBuilder extends POMRecipeBuilder {
         );
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final ChanceIngredient result;
         private final List<CountedIngredient> ingredients;
         private final Ingredient ball;
 
         public Result(ResourceLocation pId, ChanceIngredient pResult, Ingredient pBall, List<CountedIngredient> ingredients, Advancement.Builder pAdvancement) {
-            super(BallMillRecipe.Serializer.INSTANCE, "milling", pId, pAdvancement);
+            super(BallMillRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.result = pResult;
             this.ball = pBall;
             this.ingredients = ingredients;

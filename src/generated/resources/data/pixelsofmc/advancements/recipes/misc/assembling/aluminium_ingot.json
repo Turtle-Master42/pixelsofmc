@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:aluminium_ingot"
+        "recipe": "pixelsofmc:assembling/aluminium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:aluminium_ingot"
+      "pixelsofmc:assembling/aluminium_ingot"
     ]
   },
   "sends_telemetry_event": true

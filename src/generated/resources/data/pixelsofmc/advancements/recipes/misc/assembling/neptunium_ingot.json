@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:neptunium_ingot"
+        "recipe": "pixelsofmc:assembling/neptunium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:neptunium_ingot"
+      "pixelsofmc:assembling/neptunium_ingot"
     ]
   },
   "sends_telemetry_event": true

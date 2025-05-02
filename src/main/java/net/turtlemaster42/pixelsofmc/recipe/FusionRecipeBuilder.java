@@ -2,23 +2,13 @@ package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
 
 public class FusionRecipeBuilder extends POMRecipeBuilder {
     private final Element element;
@@ -49,14 +39,14 @@ public class FusionRecipeBuilder extends POMRecipeBuilder {
         return new Result(id, this.element, this.protonCount, this.neutronCount, this.x512, this.advancement);
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final int protonCount;
         private final int neutronCount;
         private final Element element;
         private final boolean x512;
 
         public Result(ResourceLocation pId, Element element, int protonCount, int neutronCount, boolean x512, Advancement.Builder pAdvancement) {
-            super(FusionRecipe.Serializer.INSTANCE, "fusing", pId, pAdvancement);
+            super(FusionRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.protonCount = protonCount;
             this.neutronCount = neutronCount;
             this.element = element;

@@ -3,25 +3,16 @@ package net.turtlemaster42.pixelsofmc.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class GrinderRecipeBuilder extends POMRecipeBuilder {
     private final Ingredient ingredient;
@@ -42,12 +33,12 @@ public class GrinderRecipeBuilder extends POMRecipeBuilder {
         return new Result(id, this.ingredient, this.outputs, this.advancement);
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final Ingredient ingredient;
         private final List<ChanceIngredient> results;
 
         public Result(ResourceLocation pId, Ingredient pIngredient, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement) {
-            super(GrinderRecipe.Serializer.INSTANCE, "grinding", pId, pAdvancement);
+            super(GrinderRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.results = pResults;
             this.ingredient = pIngredient;
         }

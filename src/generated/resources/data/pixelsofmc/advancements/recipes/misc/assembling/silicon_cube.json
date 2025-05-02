@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:silicon_cube"
+        "recipe": "pixelsofmc:assembling/silicon_cube"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:silicon_cube"
+      "pixelsofmc:assembling/silicon_cube"
     ]
   },
   "sends_telemetry_event": true

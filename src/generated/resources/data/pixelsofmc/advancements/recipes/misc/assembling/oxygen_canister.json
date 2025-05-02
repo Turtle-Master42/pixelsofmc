@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:oxygen_canister"
+        "recipe": "pixelsofmc:assembling/oxygen_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:oxygen_canister"
+      "pixelsofmc:assembling/oxygen_canister"
     ]
   },
   "sends_telemetry_event": true

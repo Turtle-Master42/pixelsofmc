@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:francium_ingot"
+        "recipe": "pixelsofmc:assembling/francium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:francium_ingot"
+      "pixelsofmc:assembling/francium_ingot"
     ]
   },
   "sends_telemetry_event": true

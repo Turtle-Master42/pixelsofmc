@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:potassium_ingot"
+        "recipe": "pixelsofmc:assembling/potassium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:potassium_ingot"
+      "pixelsofmc:assembling/potassium_ingot"
     ]
   },
   "sends_telemetry_event": true

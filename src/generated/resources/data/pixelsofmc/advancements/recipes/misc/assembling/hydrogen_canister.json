@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:hydrogen_canister"
+        "recipe": "pixelsofmc:assembling/hydrogen_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:hydrogen_canister"
+      "pixelsofmc:assembling/hydrogen_canister"
     ]
   },
   "sends_telemetry_event": true

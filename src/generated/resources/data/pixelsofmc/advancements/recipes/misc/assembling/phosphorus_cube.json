@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:phosphorus_cube"
+        "recipe": "pixelsofmc:assembling/phosphorus_cube"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:phosphorus_cube"
+      "pixelsofmc:assembling/phosphorus_cube"
     ]
   },
   "sends_telemetry_event": true

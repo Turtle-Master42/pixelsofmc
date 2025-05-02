@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:boron_cube"
+        "recipe": "pixelsofmc:assembling/boron_cube"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:boron_cube"
+      "pixelsofmc:assembling/boron_cube"
     ]
   },
   "sends_telemetry_event": true

@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:bromine_canister"
+        "recipe": "pixelsofmc:assembling/bromine_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:bromine_canister"
+      "pixelsofmc:assembling/bromine_canister"
     ]
   },
   "sends_telemetry_event": true

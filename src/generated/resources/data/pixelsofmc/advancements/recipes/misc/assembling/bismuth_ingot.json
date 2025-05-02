@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:bismuth_ingot"
+        "recipe": "pixelsofmc:assembling/bismuth_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:bismuth_ingot"
+      "pixelsofmc:assembling/bismuth_ingot"
     ]
   },
   "sends_telemetry_event": true

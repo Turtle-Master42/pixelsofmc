@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:astatine_cube"
+        "recipe": "pixelsofmc:assembling/astatine_cube"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:astatine_cube"
+      "pixelsofmc:assembling/astatine_cube"
     ]
   },
   "sends_telemetry_event": true

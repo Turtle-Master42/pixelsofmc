@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:nitrogen_canister"
+        "recipe": "pixelsofmc:assembling/nitrogen_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:nitrogen_canister"
+      "pixelsofmc:assembling/nitrogen_canister"
     ]
   },
   "sends_telemetry_event": true

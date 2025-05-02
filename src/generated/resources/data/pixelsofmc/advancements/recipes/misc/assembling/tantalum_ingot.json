@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:tantalum_ingot"
+        "recipe": "pixelsofmc:assembling/tantalum_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:tantalum_ingot"
+      "pixelsofmc:assembling/tantalum_ingot"
     ]
   },
   "sends_telemetry_event": true

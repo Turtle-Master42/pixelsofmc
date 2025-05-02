@@ -1227,22 +1227,22 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 //        autoPixelAssembling(Items.AMETHYST_SHARD, List.of(toCI(POMitems.PIXEL.get(), 9), toCI(Items.LAPIS_LAZULI, 9)), "element.pixelsofmc.helium", Element.HELIUM.hexToRGB(0), Element.HELIUM.hexToRGB(1), Element.HELIUM.hexToRGB(2),  fConsumer);
 
         //pressing
-        Pressing(POMitems.BIO_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.RUBBER_BALL.get(), 1, 0, 80, fConsumer);
-        Pressing(POMitems.FIRE_PROOF_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.FIRE_PROOF_RUBBER_BALL.get(), 1, 0, 120, fConsumer);
-        Pressing(POMitems.REPELLING_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.REPELLING_RUBBER_BALL.get(), 1, 0, 80, fConsumer);
-        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_BALL.get(), 1, 1941, 3560, fConsumer);
-        Pressing(Items.NETHERITE_INGOT, 1, POMitems.BALL_CAST.get(), POMitems.NETHERITE_BALL.get(), 1, 2500, 4000, fConsumer);
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), 1, 3000, 5000, fConsumer);
+        Pressing(POMitems.BIO_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.RUBBER_BALL.get(), 0, 80, fConsumer);
+        Pressing(POMitems.FIRE_PROOF_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.FIRE_PROOF_RUBBER_BALL.get(), 0, 120, fConsumer);
+        Pressing(POMitems.REPELLING_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.REPELLING_RUBBER_BALL.get(), 0, 80, fConsumer);
+        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_BALL.get(), 1941, 3560, fConsumer);
+        Pressing(Items.NETHERITE_INGOT, 1, POMitems.BALL_CAST.get(), POMitems.NETHERITE_BALL.get(), 2500, 4000, fConsumer);
+        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), 3000, 5000, fConsumer);
 
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), 1, 3000, 5000, fConsumer);
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), 1, 3000, 5000, fConsumer);
-        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 1, 2300, 3500, fConsumer);
-        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_GOLD_PLATING.get(), 1, 2300, 3500, fConsumer);
-        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1, 1941, 3560, fConsumer);
-        Pressing(Items.NETHERITE_INGOT, 1, POMitems.PLATE_CAST.get(), POMitems.NETHERITE_PLATING.get(), 1, 2500, 4000, fConsumer);
-        Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 1, 2200, 3400, fConsumer);
-        Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 1, 2500, 5000, fConsumer);
-        Pressing(POMitems.ANCIENT_DEBRIS_DUST.get(), 1, POMitems.PLATE_CAST.get(), Items.NETHERITE_SCRAP, 1, 2300, 5000, fConsumer);
+        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), 3000, 5000, fConsumer);
+        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), 3000, 5000, fConsumer);
+        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 2300, 3500, fConsumer);
+        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_GOLD_PLATING.get(), 2300, 3500, fConsumer);
+        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1941, 3560, fConsumer);
+        Pressing(Items.NETHERITE_INGOT, 1, POMitems.PLATE_CAST.get(), POMitems.NETHERITE_PLATING.get(), 2500, 4000, fConsumer);
+        Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 2200, 3400, fConsumer);
+        Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 2500, 5000, fConsumer);
+        Pressing(POMitems.ANCIENT_DEBRIS_DUST.get(), 1, POMitems.PLATE_CAST.get(), Items.NETHERITE_SCRAP, 2300, 5000, fConsumer);
 
         HotIsostaticPressRecipeBuilder.build(POMitems.INGOT_CAST.get()).mold(Tags.Items.INGOTS)
                 .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 4).heat(2500, 5000)
@@ -1425,7 +1425,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFurnaceRecipe(POMitems.REPELLING_COMPOUND.get(), POMitems.REPELLING_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.REPELLING_COMPOUND.get()), "");
 
         //Smithing
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, POMitems.HAMMER.get())
+        SmithingTransformRecipeBuilder.smithing(toI(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), toI(Items.STICK), toI(Items.NETHERITE_INGOT), RecipeCategory.TOOLS, POMitems.HAMMER.get())
                 .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
                 .save(fConsumer, toRL(getItemName(POMitems.HAMMER.get()) + "_smithing"));
 
@@ -1531,10 +1531,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra+"_from_blasting"));
     }
-
-//    private static void SmithingRecipe(Item pIngredientItem, Item pResultItem, RecipeCategory pCategory, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
-//        SmithingTransformRecipeBuilder.smithing(Ingredient.of(pIngredientItem), Ingredient.of(Items.NETHERITE_INGOT), pCategory, pResultItem).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT)).save(pFinishedRecipeConsumer, getItemName(pResultItem) + "_smithing");
-//    }
 
     private void SimpleCompactingRecipe(ItemLike input, ItemLike output, Consumer<FinishedRecipe> consumer) {
         SimpleCompactingRecipe(Ingredient.of(input),output,consumer);
@@ -1657,24 +1653,24 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private void PixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("splitting/" + CountedIngredient.of(ingredient).asName()));
     }
     private void autoPixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("splitting/" + CountedIngredient.of(ingredient).asName()));
     }
 
     private void PixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, r, g, b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("assembling/" + CountedIngredient.of(output).asName()));
     }
 
     private void autoPixelAssembling(ItemLike output, List<CountedIngredient> inputs, String structure, int[] color1, int[] color2, int[] color3, Consumer<FinishedRecipe> consumer) {
         new PixelAssemblerRecipeBuilder(inputs, toCI(output), structure, new int[]{color1[0], color2[0], color3[0]},new int[]{color1[1], color2[1], color3[1]},new int[]{color1[2], color2[2], color3[2]})
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer);
+                .save(consumer, toRL("assembling/" + CountedIngredient.of(output).asName()));
     }
 
     private void PixelSplittingAndAssembling(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
@@ -1687,8 +1683,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
-    private void Pressing(Item ingredient, int inCount, Item mold, Item output, int outCount, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
-        HotIsostaticPressRecipeBuilder.build(output, outCount)
+    private void Pressing(Item ingredient, int inCount, Item mold, Item output, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
+        HotIsostaticPressRecipeBuilder.build(output)
                 .mold(mold).input(ingredient, inCount)
                 .heat(heat, maxHeat)
                 .finish(consumer, this);
@@ -1747,7 +1743,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         name.deleteCharAt(0);
         new ChemicalMixerRecipeBuilder(inputs, outputList, temperatureState)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("chemical_mixing/" + name.toString()));
+                .save(consumer, toRL("chemical_mixing/" + name));
     }
 
 

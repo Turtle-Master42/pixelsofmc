@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:indium_ingot"
+        "recipe": "pixelsofmc:assembling/indium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:indium_ingot"
+      "pixelsofmc:assembling/indium_ingot"
     ]
   },
   "sends_telemetry_event": true

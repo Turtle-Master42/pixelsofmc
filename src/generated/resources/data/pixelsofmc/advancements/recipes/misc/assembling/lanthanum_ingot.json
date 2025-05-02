@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:lanthanum_ingot"
+        "recipe": "pixelsofmc:assembling/lanthanum_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:lanthanum_ingot"
+      "pixelsofmc:assembling/lanthanum_ingot"
     ]
   },
   "sends_telemetry_event": true

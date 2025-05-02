@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:silver_block"
+        "recipe": "pixelsofmc:assembling/silver_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:silver_block"
+      "pixelsofmc:assembling/silver_block"
     ]
   },
   "sends_telemetry_event": true

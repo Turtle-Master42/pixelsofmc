@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:titanium_block"
+        "recipe": "pixelsofmc:assembling/titanium_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:titanium_block"
+      "pixelsofmc:assembling/titanium_block"
     ]
   },
   "sends_telemetry_event": true

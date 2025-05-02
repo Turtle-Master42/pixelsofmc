@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:neodymium_ingot"
+        "recipe": "pixelsofmc:assembling/neodymium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:neodymium_ingot"
+      "pixelsofmc:assembling/neodymium_ingot"
     ]
   },
   "sends_telemetry_event": true

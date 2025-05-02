@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:dysprosium_ingot"
+        "recipe": "pixelsofmc:assembling/dysprosium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:dysprosium_ingot"
+      "pixelsofmc:assembling/dysprosium_ingot"
     ]
   },
   "sends_telemetry_event": true

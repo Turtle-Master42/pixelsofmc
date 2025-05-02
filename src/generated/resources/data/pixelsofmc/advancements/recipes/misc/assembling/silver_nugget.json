@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:silver_nugget"
+        "recipe": "pixelsofmc:assembling/silver_nugget"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:silver_nugget"
+      "pixelsofmc:assembling/silver_nugget"
     ]
   },
   "sends_telemetry_event": true

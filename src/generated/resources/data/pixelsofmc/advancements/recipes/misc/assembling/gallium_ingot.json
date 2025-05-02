@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:gallium_ingot"
+        "recipe": "pixelsofmc:assembling/gallium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:gallium_ingot"
+      "pixelsofmc:assembling/gallium_ingot"
     ]
   },
   "sends_telemetry_event": true

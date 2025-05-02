@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:holmium_ingot"
+        "recipe": "pixelsofmc:assembling/holmium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:holmium_ingot"
+      "pixelsofmc:assembling/holmium_ingot"
     ]
   },
   "sends_telemetry_event": true

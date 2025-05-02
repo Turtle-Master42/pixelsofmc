@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:xenon_canister"
+        "recipe": "pixelsofmc:assembling/xenon_canister"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:xenon_canister"
+      "pixelsofmc:assembling/xenon_canister"
     ]
   },
   "sends_telemetry_event": true

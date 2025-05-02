@@ -2,23 +2,15 @@ package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.*;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -118,7 +110,7 @@ public class HotIsostaticPressRecipeBuilder extends POMRecipeBuilder {
         );
     }
 
-    public static class Result extends POMResult {
+    public static class Result extends POMRecipeResult {
         private final CountedIngredient result;
         private final int heat;
         private final int maxHeat;
@@ -127,7 +119,7 @@ public class HotIsostaticPressRecipeBuilder extends POMRecipeBuilder {
 
         public Result(ResourceLocation pId, CountedIngredient pResult, CountedIngredient ingredient, CountedIngredient mold, int heat, int maxHeat,
                       Advancement.Builder pAdvancement) {
-            super(HotIsostaticPressRecipe.Serializer.INSTANCE, "pressing", pId, pAdvancement);
+            super(HotIsostaticPressRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.result = pResult;
             this.ingredient = ingredient;
             this.mold = mold;

@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:tungsten_block"
+        "recipe": "pixelsofmc:assembling/tungsten_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:tungsten_block"
+      "pixelsofmc:assembling/tungsten_block"
     ]
   },
   "sends_telemetry_event": true

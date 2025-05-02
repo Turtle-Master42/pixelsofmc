@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:palladium_ingot"
+        "recipe": "pixelsofmc:assembling/palladium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:palladium_ingot"
+      "pixelsofmc:assembling/palladium_ingot"
     ]
   },
   "sends_telemetry_event": true

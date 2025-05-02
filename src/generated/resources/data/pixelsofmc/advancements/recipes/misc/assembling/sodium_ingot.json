@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:sodium_ingot"
+        "recipe": "pixelsofmc:assembling/sodium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:sodium_ingot"
+      "pixelsofmc:assembling/sodium_ingot"
     ]
   },
   "sends_telemetry_event": true

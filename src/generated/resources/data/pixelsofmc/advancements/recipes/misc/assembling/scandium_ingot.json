@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:scandium_ingot"
+        "recipe": "pixelsofmc:assembling/scandium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:scandium_ingot"
+      "pixelsofmc:assembling/scandium_ingot"
     ]
   },
   "sends_telemetry_event": true

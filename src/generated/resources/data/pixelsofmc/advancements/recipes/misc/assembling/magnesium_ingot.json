@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:magnesium_ingot"
+        "recipe": "pixelsofmc:assembling/magnesium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:magnesium_ingot"
+      "pixelsofmc:assembling/magnesium_ingot"
     ]
   },
   "sends_telemetry_event": true

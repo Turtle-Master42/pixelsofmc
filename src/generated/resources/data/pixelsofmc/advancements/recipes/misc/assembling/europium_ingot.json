@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:europium_ingot"
+        "recipe": "pixelsofmc:assembling/europium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:europium_ingot"
+      "pixelsofmc:assembling/europium_ingot"
     ]
   },
   "sends_telemetry_event": true

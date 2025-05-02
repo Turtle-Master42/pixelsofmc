@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:erbium_ingot"
+        "recipe": "pixelsofmc:assembling/erbium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:erbium_ingot"
+      "pixelsofmc:assembling/erbium_ingot"
     ]
   },
   "sends_telemetry_event": true

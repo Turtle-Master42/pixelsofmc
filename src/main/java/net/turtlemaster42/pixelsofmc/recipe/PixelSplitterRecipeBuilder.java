@@ -22,14 +22,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class PixelSplitterRecipeBuilder implements RecipeBuilder {
+public class PixelSplitterRecipeBuilder extends POMRecipeBuilder {
     private final List<CountedIngredient> outputs;
     private final CountedIngredient ingredient;
     private final int[] R;
     private final int[] G;
     private final int[] B;
     private final String structure;
-    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public PixelSplitterRecipeBuilder(CountedIngredient ingredient, List<CountedIngredient> result, String structure, int[] r, int[] g, int[] b) {
         this.ingredient = ingredient;
@@ -41,60 +40,31 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public @NotNull RecipeBuilder unlockedBy(@NotNull String pCriterionName, @NotNull CriterionTriggerInstance pCriterionTrigger) {
-        this.advancement.addCriterion(pCriterionName, pCriterionTrigger);
-        return this;
-    }
-
-    @Override
-    public @NotNull RecipeBuilder group(@Nullable String pGroupName) {
-        return this;
-    }
-
-    @Override
     public @NotNull Item getResult() {
         return ItemStack.EMPTY.getItem();
     }
 
-    public List<CountedIngredient> getResults() {
-        return outputs;
-    }
-
     @Override
-    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, @NotNull ResourceLocation pRecipeId) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
-                .addCriterion("has_the_recipe",
-                        RecipeUnlockedTrigger.unlocked(pRecipeId))
-                .rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
-
-        pFinishedRecipeConsumer.accept(new Result(pRecipeId, this.outputs, this.structure, this.R, this.G, this.B, this.ingredient,
-                this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/misc/splitting/"
-                + pRecipeId.getPath())));
-
+    protected FinishedRecipe save(@NotNull ResourceLocation id) {
+        return new Result(id, this.outputs, this.structure, this.R, this.G, this.B, this.ingredient, this.advancement);
     }
 
-    public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
+    public static class Result extends POMRecipeResult {
         private final List<CountedIngredient> results;
         private final int[] R;
         private final int[] G;
         private final int[] B;
         private final String structure;
         private final CountedIngredient ingredient;
-        private final Advancement.Builder advancement;
-        private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, List<CountedIngredient> pResult, String structure, int[] r, int[] g, int[] b, CountedIngredient ingredient, Advancement.Builder pAdvancement,
-                      ResourceLocation pAdvancementId) {
-            this.id = pId;
+        public Result(ResourceLocation pId, List<CountedIngredient> pResult, String structure, int[] r, int[] g, int[] b, CountedIngredient ingredient, Advancement.Builder pAdvancement) {
+            super(PixelSplitterRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.results = pResult;
             this.R = r;
             this.G = g;
             this.B = b;
             this.structure =structure;
             this.ingredient = ingredient;
-            this.advancement = pAdvancement;
-            this.advancementId = pAdvancementId;
         }
 
         @Override
@@ -116,37 +86,6 @@ public class PixelSplitterRecipeBuilder implements RecipeBuilder {
                 jsonArray2.add(jsonObject);
             }
             pJson.add("colors", jsonArray2);
-        }
-
-        @Override
-        public @NotNull ResourceLocation getId() {
-            ResourceLocation id = this.id;
-            String name = this.ingredient.getItems()[0].getItem().toString();
-            String jsonString = this.ingredient.toJson().toString();
-            if (jsonString.contains("{\"tag\":")) {
-                String jsonName = jsonString.split(":")[2].replace("\"}", "");
-                if (jsonName.contains("/")) {
-                    String[] splitJsonName = jsonName.split("/", 2);
-                    jsonName = splitJsonName[1].replace("/", "_") + "_" + splitJsonName[0];
-                }
-                name = jsonName;
-            }
-            return new ResourceLocation(PixelsOfMc.MOD_ID, "splitting/"+name);
-        }
-
-        @Override
-        public @NotNull RecipeSerializer<?> getType() {
-            return PixelSplitterRecipe.Serializer.INSTANCE;
-        }
-
-        @javax.annotation.Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancement.serializeToJson();
-        }
-
-        @javax.annotation.Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
         }
     }
 }

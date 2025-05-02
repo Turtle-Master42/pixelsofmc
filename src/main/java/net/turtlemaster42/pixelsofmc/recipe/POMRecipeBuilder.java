@@ -38,8 +38,8 @@ public class POMRecipeBuilder implements RecipeBuilder {
         return null;
     }
 
-    public static ResourceLocation advancementID(@NotNull ResourceLocation id, String name) {
-        return new ResourceLocation(id.getNamespace(), "recipes/misc/"+name+"/" + id.getPath());
+    public static ResourceLocation advancementID(@NotNull ResourceLocation id) {
+        return new ResourceLocation(id.getNamespace(), "recipes/misc/" + id.getPath());
     }
 
     protected FinishedRecipe save(@NotNull ResourceLocation id) {
@@ -54,17 +54,17 @@ public class POMRecipeBuilder implements RecipeBuilder {
         consumer.accept(save(id));
     }
 
-    public static class POMResult implements FinishedRecipe {
+    public static class POMRecipeResult implements FinishedRecipe {
         private final ResourceLocation id;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
         private final RecipeSerializer<?> serializer;
 
-        POMResult(RecipeSerializer<?> serializer, String name, ResourceLocation id, Advancement.Builder advancement) {
+        POMRecipeResult(RecipeSerializer<?> recipeSerializer, ResourceLocation id, Advancement.Builder advancement) {
             this.id = id;
             this.advancement = advancement;
-            this.advancementId = advancementID(id, name);
-            this.serializer = serializer;
+            this.advancementId = advancementID(id);
+            this.serializer = recipeSerializer;
         }
 
         @Override

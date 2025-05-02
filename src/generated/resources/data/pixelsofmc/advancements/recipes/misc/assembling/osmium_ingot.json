@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:osmium_ingot"
+        "recipe": "pixelsofmc:assembling/osmium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:osmium_ingot"
+      "pixelsofmc:assembling/osmium_ingot"
     ]
   },
   "sends_telemetry_event": true

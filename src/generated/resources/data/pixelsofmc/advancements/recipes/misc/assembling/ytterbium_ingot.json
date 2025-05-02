@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:ytterbium_ingot"
+        "recipe": "pixelsofmc:assembling/ytterbium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:ytterbium_ingot"
+      "pixelsofmc:assembling/ytterbium_ingot"
     ]
   },
   "sends_telemetry_event": true
