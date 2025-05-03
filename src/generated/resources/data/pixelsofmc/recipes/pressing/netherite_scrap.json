@@ -1,13 +1,13 @@
 {
   "type": "pixelsofmc:pressing",
-  "heat": 2300,
+  "heat": 2400,
   "input": {
     "count": 1,
     "ingredient": {
       "item": "pixelsofmc:ancient_debris_dust"
     }
   },
-  "max_heat": 5000,
+  "max_heat": 4000,
   "mold": {
     "count": 1,
     "ingredient": {

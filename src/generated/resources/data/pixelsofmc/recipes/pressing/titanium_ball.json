@@ -4,7 +4,7 @@
   "input": {
     "count": 1,
     "ingredient": {
-      "item": "pixelsofmc:titanium_ingot"
+      "item": "pixelsofmc:titanium_dust"
     }
   },
   "max_heat": 3560,

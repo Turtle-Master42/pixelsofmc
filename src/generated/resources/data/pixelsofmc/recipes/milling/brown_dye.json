@@ -15,7 +15,7 @@
   ],
   "output": {
     "chance": 1.0,
-    "count": 2,
+    "count": 3,
     "ingredient": {
       "item": "minecraft:brown_dye"
     }

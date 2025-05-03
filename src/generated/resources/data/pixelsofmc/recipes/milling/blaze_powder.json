@@ -14,7 +14,7 @@
     }
   ],
   "output": {
-    "chance": 4.2,
+    "chance": 4.5,
     "count": 1,
     "ingredient": {
       "item": "minecraft:blaze_powder"

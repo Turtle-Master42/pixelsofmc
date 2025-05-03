@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -7,22 +7,56 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ChemicalMixerRecipeBuilder extends POMRecipeBuilder {
     private final List<FluidStack> inputFluids;
     private final List<FluidStack> outputFluids;
     private final int temperatureState;
 
-    public ChemicalMixerRecipeBuilder(List<FluidStack> inputFluids, List<FluidStack> outputFluids, int temperatureState) {
-        this.inputFluids = inputFluids;
-        this.outputFluids = outputFluids;
+    public ChemicalMixerRecipeBuilder(int temperatureState) {
+        this.inputFluids = new ArrayList<>();
+        this.outputFluids = new ArrayList<>();
         this.temperatureState = temperatureState;
+    }
+
+    public static ChemicalMixerRecipeBuilder build(int temperatureState) {
+        return new ChemicalMixerRecipeBuilder(temperatureState);
+    }
+
+    public ChemicalMixerRecipeBuilder input(Fluid fluid, int amount) {
+        inputFluids.add(new FluidStack(fluid, amount));
+        return this;
+    }
+
+    public ChemicalMixerRecipeBuilder output(Fluid fluid, int amount) {
+        outputFluids.add(new FluidStack(fluid, amount));
+        return this;
+    }
+
+    public void finish(Consumer<FinishedRecipe> consumer, POMrecipeProvider provider) {
+        if (inputFluids.size() > 3) {
+            throw new IndexOutOfBoundsException("Chemical Mixer recipe can't have more than 3 inputs, there where " + inputFluids.size() + " proved");
+        }
+        if (outputFluids.size() > 3) {
+            throw new IndexOutOfBoundsException("Chemical Mixer recipe can't have more than 3 inputs, there where " + outputFluids.size() + " proved");
+        }
+        StringBuilder name = new StringBuilder();
+        for (FluidStack output : outputFluids) {
+            name.append("_");
+            name.append(output.getFluid().getFluidType().toString().split(":")[1]);
+        }
+        name.deleteCharAt(0);
+        this.unlockedBy("", ANY_CRITERION).save(consumer, provider.toRL("chemical_mixing/" + name));
     }
 
     @Override
@@ -49,7 +83,7 @@ public class ChemicalMixerRecipeBuilder extends POMRecipeBuilder {
         }
 
         @Override
-        public void serializeRecipeData(JsonObject pJson) {
+        public void serializeRecipeData(@NotNull JsonObject pJson) {
             JsonArray inputJson = new JsonArray();
             for (FluidStack fluidStack : inputFluids) {
                 inputJson.add(FluidJSONUtil.toJson(fluidStack));

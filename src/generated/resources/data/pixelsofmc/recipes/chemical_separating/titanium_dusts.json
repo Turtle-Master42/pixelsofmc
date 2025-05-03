@@ -16,7 +16,7 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:titanium_oxide_dust"

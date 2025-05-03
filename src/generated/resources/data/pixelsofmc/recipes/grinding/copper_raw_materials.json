@@ -19,6 +19,13 @@
       }
     },
     {
+      "chance": 0.1,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:quartz_dust"
+      }
+    },
+    {
       "chance": 0.05,
       "count": 1,
       "ingredient": {
@@ -29,7 +36,7 @@
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:carbon_dust"
+        "item": "pixelsofmc:coal_dust"
       }
     }
   ]

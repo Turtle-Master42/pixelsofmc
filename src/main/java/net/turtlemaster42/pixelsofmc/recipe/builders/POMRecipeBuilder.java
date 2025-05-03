@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;

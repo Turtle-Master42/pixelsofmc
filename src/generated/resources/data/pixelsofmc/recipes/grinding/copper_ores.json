@@ -19,24 +19,17 @@
       }
     },
     {
-      "chance": 0.2,
-      "count": 1,
-      "ingredient": {
-        "tag": "forge:dusts/quartz"
-      }
-    },
-    {
-      "chance": 0.55,
+      "chance": 0.15,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:sulfur_dust"
       }
     },
     {
-      "chance": 0.55,
+      "chance": 0.15,
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:carbon_dust"
+        "item": "pixelsofmc:coal_dust"
       }
     }
   ]

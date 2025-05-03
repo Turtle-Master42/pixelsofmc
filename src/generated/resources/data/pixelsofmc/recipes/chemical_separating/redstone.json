@@ -16,14 +16,14 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:yellowcake_uranium"
       }
     },
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 8,
       "ingredient": {
         "item": "pixelsofmc:refined_redstone"

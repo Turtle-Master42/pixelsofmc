@@ -12,17 +12,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.turtlemaster42.pixelsofmc.recipe.*;
+import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Element;
-import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -89,6 +86,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(Items.SOUL_SAND), toItemP(Items.BLAZE_POWDER), toItemP(POMitems.COAL_DUST.get())))
                 .save(fConsumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.WHITE_DYE, 2)
+                .requires(POMitems.TITANIUM_OXIDE_DUST.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.TITANIUM_OXIDE_DUST.get())))
+                .save(fConsumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.MANA_AMALGAMATION.get())
                 .requires(Items.ENDER_PEARL)
@@ -134,7 +136,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC")
                 .pattern("CCC")
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(Element.CARBON.item().asItem())))
+                        toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CARBONARO_CLUMP.get())
                 .define('C', POMitems.DENSE_CARBON_CUBE.get())
@@ -142,7 +144,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC")
                 .pattern("CCC")
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(Element.CARBON.item().asItem())))
+                        toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.BLACK_DIAMOND.get())
                 .define('C', POMitems.CARBONARO_CLUMP.get())
@@ -150,7 +152,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC")
                 .pattern("CCC")
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(Element.CARBON.item().asItem())))
+                        toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.DIAMOND)
                 .define('C', POMitems.BLACK_DIAMOND.get())
@@ -1047,175 +1049,586 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //grinding
-        Grinder(toI(Items.FLINT), fConsumer, toCHI(POMitems.QUARTZ_DUST.get(), 0.7f), toCHI(Element.CALCIUM.dustTag(), 0.3f));
-        Grinder(toI(Items.NETHERITE_SCRAP), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS));
-        Grinder(toI(POMitems.TITANIUM_GOLD_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_GOLD_DUST.get()));
-        Grinder(toI(Items.NETHERITE_INGOT), fConsumer, toCHI(POMitems.NETHERITE_DUST.get()));
-        Grinder(toI(POMitems.TITANIUM_DIBORIDE_INGOT.get()), fConsumer, toCHI(POMitems.TITANIUM_DIBORIDE_DUST.get()));
-        Grinder(toI(Items.ANCIENT_DEBRIS), fConsumer, toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 0.75f), toCHI(POMtags.Items.DUST_ANCIENT_DEBRIS, 0.25f));
+        GrinderRecipeBuilder.build(Items.NETHERITE_SCRAP)
+                .output(POMitems.ANCIENT_DEBRIS_DUST.get())
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMitems.TITANIUM_GOLD_INGOT.get())
+                .output(POMitems.TITANIUM_GOLD_DUST.get())
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.NETHERITE_INGOT)
+                .output(POMitems.NETHERITE_DUST.get())
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .output(POMitems.TITANIUM_DIBORIDE_DUST.get())
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.ANCIENT_DEBRIS)
+                .output(POMitems.ANCIENT_DEBRIS_DUST.get())
+                .output(POMitems.ANCIENT_DEBRIS_DUST.get(), .75f)
+                .output(POMitems.ANCIENT_DEBRIS_DUST.get(), .25f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(Items.STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ,0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(),0.01f));
-        Grinder(toI(Items.COBBLESTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.GRAVEL), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.1f), toCHI(Element.IRON.dustTag(),0.02f), toCHI(Element.ALUMINIUM.dustTag(),0.01f));
-        Grinder(toI(Items.SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.02f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.03f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.RED_SAND), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.RED_SANDSTONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(POMtags.Items.DUST_QUARTZ,  0.3f), toCHI(Element.IRON.dustTag(),  0.08f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f), toCHI(Element.LITHIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.COBBLED_DEEPSLATE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.8f), toCHI(Element.IRON.dustTag(), 0.04f), toCHI(Element.ALUMINIUM.dustTag(), 0.01f), toCHI(Element.LITHIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.GRANITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 3), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.TUNGSTEN.dustTag(), 0.01f));
-        Grinder(toI(Items.DIORITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.CALCIUM.dustTag(), 0.02f), toCHI(Element.MAGNESIUM.dustTag(), 0.01f));
-        Grinder(toI(Items.ANDESITE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f), toCHI(Element.ALUMINIUM.dustTag(), 0.15f), toCHI(Element.IRON.dustTag(), 0.05f));
-        Grinder(toI(Items.CALCITE), fConsumer, toCHI(Element.CALCIUM.dustTag()), toCHI(Element.CALCIUM.dustTag(), 0.6f), toCHI(Element.CARBON.dustTag(), 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 0.04f));
-        Grinder(toI(Items.TUFF), fConsumer, toCHI(Element.SULFUR.dustTag(), 0.1f), toCHI(Element.CARBON.dustTag(), 0.1f), toCHI(Element.IRON.dustTag(), 0.05f), toCHI(Element.LEAD.dustTag(), 0.02f));
-        Grinder(toI(Items.DRIPSTONE_BLOCK), fConsumer, toCHI(Element.CALCIUM.dustTag()), toCHI(Element.CALCIUM.dustTag(),0.6f), toCHI(POMtags.Items.DUST_QUARTZ,0.4f), toCHI(Element.COPPER.dustTag(),0.05f));
-        Grinder(toI(Items.POINTED_DRIPSTONE), fConsumer, toCHI(Element.CALCIUM.dustTag(), 0.4f), toCHI(POMtags.Items.DUST_QUARTZ,0.08f), toCHI(Element.COPPER.dustTag(), 0.01f));
-        Grinder(toI(Items.NETHERRACK), fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 2), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(),0.1f), toCHI(POMtags.Items.DUST_QUARTZ, 0.3f), toCHI(Element.SULFUR.dustTag(), 0.05f), toCHI(Element.GOLD.dustTag(), 0.05f), toCHI(Element.COBALT.dustTag(), 0.01f));
-        Grinder(toI(Items.MAGMA_BLOCK), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(POMitems.MERCURY_SULFIDE_DUST.get(), 0.1f), toCHI(Element.IRON.dustTag(),0.05f), toCHI(Element.GOLD.dustTag(), 0.01f));
-        Grinder(toI(Items.BLACKSTONE), fConsumer, toCHI(Element.BORON.dustTag(), 0.4f), toCHI(Element.IRON.dustTag(), 0.4f), toCHI(POMtags.Items.DUST_QUARTZ, 0.1f), toCHI(Element.NICKEL.dustTag(),0.05f), toCHI(Element.COBALT.dustTag(),0.05f), toCHI(Element.PLATINUM.dustTag(),0.01f));
-        Grinder(toI(Items.BASALT), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(Element.IRON.dustTag(), 0.1f), toCHI(Element.MAGNESIUM.dustTag(), 0.05f));
-        Grinder(toI(ItemTags.SOUL_FIRE_BASE_BLOCKS), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ), toCHI(POMtags.Items.DUST_QUARTZ, 0.4f));
-        Grinder(toI(Items.OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get(), 2), toCHI(POMitems.OBSIDIAN_DUST.get(), 0.8f));
-        Grinder(toI(Items.CRYING_OBSIDIAN), fConsumer, toCHI(POMitems.OBSIDIAN_DUST.get()), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(),0.7f), toCHI(POMitems.CRYING_OBSIDIAN_DUST.get(),0.2f));
-        Grinder(toI(Items.END_STONE), fConsumer, toCHI(POMtags.Items.DUST_QUARTZ, 2), toCHI(Element.POTASSIUM.dustTag(), 0.1f), toCHI(Element.TITANIUM.dustTag(), 0.01f), toCHI(POMitems.ACANTHITE_DUST.get(),0.01f));
+        GrinderRecipeBuilder.build(Items.FLINT)
+                .output(POMitems.QUARTZ_DUST.get(), 0.7f)
+                .output(Element.CALCIUM.dust(),0.25f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.STONE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.COBBLESTONE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.GRAVEL)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.2f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.SAND)
+                .output(POMitems.QUARTZ_DUST.get())
+                .output(POMitems.QUARTZ_DUST.get(), 0.2f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.SANDSTONE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.RED_SAND)
+                .output(POMitems.QUARTZ_DUST.get())
+                .output(POMitems.QUARTZ_DUST.get(), 0.2f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.GOLD.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.RED_SANDSTONE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.GOLD.dust(),0.01f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(Tags.Items.RAW_MATERIALS_IRON), fConsumer, toCHI(Element.IRON.dust()), toCHI(Element.IRON.dust(), 0.5f));
-        Grinder(toI(Tags.Items.RAW_MATERIALS_COPPER), fConsumer, toCHI(Element.COPPER.dust()), toCHI(Element.COPPER.dust(), 0.5f), toCHI(Element.SULFUR.dust(), 0.05f), toCHI(Element.CARBON.dust(), 0.05f));
-        Grinder(toI(Tags.Items.RAW_MATERIALS_GOLD), fConsumer, toCHI(Element.GOLD.dust()), toCHI(Element.GOLD.dust(), 0.5f));
-        Grinder(toI(POMitems.RAW_TITANIUM.get()), fConsumer, toCHI(Element.TITANIUM.dust()), toCHI(Element.TITANIUM.dust(), 0.5f), toCHI(Element.IRON.dust(), 0.05f));
+        GrinderRecipeBuilder.build(Items.DEEPSLATE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.LITHIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.COBBLED_DEEPSLATE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.8f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.LITHIUM.dust(),0.01f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(POMblocks.ACANTHITE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 12), toCHI(POMitems.ACANTHITE_DUST.get(), 6, 0.5f), toCHI(Element.SILVER.dustTag(), 0.02f));
-        Grinder(toI(POMblocks.ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 10), toCHI(POMitems.ACANTHITE_DUST.get(), 4, 0.5f), toCHI(Element.SILVER.dustTag(), 0.01f));
-        Grinder(toI(POMblocks.LESSER_ACANTHITE_ORE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
-        Grinder(toI(POMblocks.ACANTHITE_SPIKE.get()), fConsumer, toCHI(POMitems.ACANTHITE_DUST.get(), 5), toCHI(POMitems.ACANTHITE_DUST.get(), 2, 0.5f));
+        GrinderRecipeBuilder.build(Items.GRANITE)
+                .output(POMitems.QUARTZ_DUST.get(), 3)
+                .output(POMitems.QUARTZ_DUST.get(), 0.2f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.TUNGSTEN.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.DIORITE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.4f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.CALCIUM.dust(),0.02f)
+                .output(Element.MAGNESIUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.ANDESITE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.QUARTZ_DUST.get(), 0.4f)
+                .output(Element.ALUMINIUM.dust(),0.15f)
+                .output(Element.IRON.dust(),0.05f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(Tags.Items.ORES_IRON), fConsumer, toCHI(Element.IRON.dust(), 4), toCHI(Element.IRON.dust(), 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
-        Grinder(toI(Tags.Items.ORES_COPPER), fConsumer, toCHI(Element.COPPER.dust(), 20), toCHI(Element.COPPER.dust(), 5, 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f), toCHI(Element.SULFUR.dust(), 0.55f), toCHI(Element.CARBON.dust(), 0.55f));
-        Grinder(toI(Tags.Items.ORES_GOLD), fConsumer, toCHI(Element.GOLD.dust(), 4), toCHI(Element.GOLD.dust(), 0.5f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
-        Grinder(toI(POMtags.Items.ORES_TITANIUM), fConsumer, toCHI(Element.TITANIUM.dust(), 4), toCHI(Element.TITANIUM.dust(), 0.5f), toCHI(Element.IRON.dust(), 0.2f), toCHI(POMtags.Items.DUST_QUARTZ, 0.2f));
+        GrinderRecipeBuilder.build(Items.CALCITE)
+                .output(Element.CALCIUM.dust())
+                .output(Element.CALCIUM.dust(),0.6f)
+                .output(Element.CARBON.dust(),0.1f)
+                .output(Element.MAGNESIUM.dust(),0.04f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.TUFF)
+                .output(Element.SULFUR.dust(),0.1f)
+                .output(Element.CARBON.dust(),0.1f)
+                .output(Element.IRON.dust(),0.05f)
+                .output(Element.LEAD.dust(),0.02f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.DRIPSTONE_BLOCK)
+                .output(Element.CALCIUM.dust(),0.6f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.4f)
+                .output(Element.COPPER.dust(),0.05f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.POINTED_DRIPSTONE)
+                .output(Element.CALCIUM.dust(),0.4f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.08f)
+                .output(Element.COPPER.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.NETHERRACK)
+                .output(POMitems.MERCURY_SULFIDE_DUST.get(), 2)
+                .output(POMitems.MERCURY_SULFIDE_DUST.get(),0.1f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.4f)
+                .output(Element.SULFUR.dust(),0.05f)
+                .output(Element.GOLD.dust(),0.05f)
+                .output(Element.COBALT.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.MAGMA_BLOCK)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(POMitems.MERCURY_SULFIDE_DUST.get(), 0.1f)
+                .output(Element.IRON.dust(), 0.05f)
+                .output(Element.GOLD.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.BLACKSTONE)
+                .output(Element.BORON.dust(), 0.4f)
+                .output(Element.IRON.dust(), 0.4f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
+                .output(Element.NICKEL.dust(),0.05f)
+                .output(Element.COBALT.dust(),0.05f)
+                .output(Element.PLATINUM.dust(),0.01f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.BASALT)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(Element.IRON.dust(), 0.1f)
+                .output(Element.MAGNESIUM.dust(), 0.05f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(ItemTags.SOUL_FIRE_BASE_BLOCKS)
+                .output(POMitems.QUARTZ_DUST.get())
+                .output(POMitems.QUARTZ_DUST.get(),0.4f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.OBSIDIAN)
+                .output(POMitems.OBSIDIAN_DUST.get(), 2)
+                .output(POMitems.OBSIDIAN_DUST.get(),0.8f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.CRYING_OBSIDIAN)
+                .output(POMitems.OBSIDIAN_DUST.get())
+                .output(POMitems.CRYING_OBSIDIAN_DUST.get(),0.7f)
+                .output(POMitems.CRYING_OBSIDIAN_DUST.get(),0.2f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.END_STONE)
+                .output(POMitems.QUARTZ_DUST.get(), 2)
+                .output(Element.POTASSIUM.dust(), 0.1f)
+                .output(Element.TITANIUM.dust(), 0.01f)
+                .output(POMitems.ACANTHITE_DUST.get(),0.01f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(POMitems.ALUMINIUM_SCRAP.get()), fConsumer, toCHI(Element.ALUMINIUM.dust()));
+        GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_IRON)
+                .output(Element.IRON.dust())
+                .output(Element.IRON.dust(), 0.5f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_COPPER)
+                .output(Element.COPPER.dust())
+                .output(Element.COPPER.dust(), 0.5f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
+                .output(Element.SULFUR.dust(), 0.05f)
+                .output(POMitems.COAL_DUST.get(), 0.05f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_GOLD)
+                .output(Element.GOLD.dust())
+                .output(Element.GOLD.dust(), 0.5f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMitems.RAW_TITANIUM.get())
+                .output(Element.TITANIUM.dust())
+                .output(Element.TITANIUM.dust(), 0.5f)
+                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
+                .output(Element.IRON.dust(), 0.05f)
+                .finish(fConsumer, this);
 
-        Grinder(toI(ItemTags.WOOL), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f));
-        Grinder(toI(ItemTags.WOOL_CARPETS), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f));
-        Grinder(toI(Items.COBWEB), fConsumer, toCHI(Items.STRING, 2), toCHI(Items.STRING, 0.33f), toCHI(Items.STRING, 0.33f));
-        Grinder(toI(Items.GLOWSTONE), fConsumer, toCHI(Items.GLOWSTONE_DUST, 4));
+        GrinderRecipeBuilder.build(POMblocks.ACANTHITE.get().asItem())
+                .output(POMitems.ACANTHITE_DUST.get(), 12)
+                .output(POMitems.ACANTHITE_DUST.get(), 6, 0.5f)
+                .output(Element.SILVER.dust(), 0.02f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMblocks.ACANTHITE_ORE.get().asItem())
+                .output(POMitems.ACANTHITE_DUST.get(), 10)
+                .output(POMitems.ACANTHITE_DUST.get(), 4, 0.5f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMblocks.LESSER_ACANTHITE_ORE.get().asItem())
+                .output(POMitems.ACANTHITE_DUST.get(), 5)
+                .output(POMitems.ACANTHITE_DUST.get(), 2, 0.5f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMblocks.ACANTHITE_SPIKE.get().asItem())
+                .output(POMitems.ACANTHITE_DUST.get(), 5)
+                .output(POMitems.ACANTHITE_DUST.get(), 2, 0.5f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Tags.Items.ORES_IRON)
+                .output(Element.IRON.dust(), 4)
+                .output(Element.IRON.dust(), 0.5f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Tags.Items.ORES_COPPER)
+                .output(Element.COPPER.dust(), 20)
+                .output(Element.COPPER.dust(), 5, 0.5f)
+                .output(Element.SULFUR.dust(), 0.15f)
+                .output(POMitems.COAL_DUST.get(), 0.15f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Tags.Items.ORES_GOLD)
+                .output(Element.GOLD.dust(), 4)
+                .output(Element.GOLD.dust(), 0.5f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMtags.Items.ORES_TITANIUM)
+                .output(Element.TITANIUM.dust(), 4)
+                .output(Element.TITANIUM.dust(), 0.5f)
+                .output(Element.IRON.dust(), 0.2f)
+                .finish(fConsumer, this);
 
+        GrinderRecipeBuilder.build(ItemTags.WOOL)
+                .output(Items.STRING, 2)
+                .output(Items.STRING, 0.33f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(ItemTags.WOOL_CARPETS)
+                .output(Items.STRING, 2)
+                .output(Items.STRING, 0.33f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.COBWEB)
+                .output(Items.STRING, 2)
+                .output(Items.STRING, 0.33f)
+                .output(Items.STRING, 0.33f)
+                .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(Items.GLOWSTONE)
+                .output(Items.GLOWSTONE_DUST, 4)
+                .finish(fConsumer, this);
 
         //MILLING
-        BallMill(toCI(Items.AMETHYST_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.AMETHYST_BLOCK));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 4, 3.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.AMETHYST_CLUSTER));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 2, 1.6f), POMtags.Items.BALL_3, fConsumer, toCI(Items.LARGE_AMETHYST_BUD));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 0.8f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MEDIUM_AMETHYST_BUD));
-        BallMill(toCHI(Items.AMETHYST_SHARD, 0.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMALL_AMETHYST_BUD));
+        BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, 4).ball(POMtags.Items.BALL_4)
+                .input(Items.AMETHYST_BLOCK)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, 4, 3.2f).ball(POMtags.Items.BALL_3)
+                .input(Items.AMETHYST_CLUSTER)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, 2, 1.6f).ball(POMtags.Items.BALL_3)
+                .input(Items.LARGE_AMETHYST_BUD)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, .8f).ball(POMtags.Items.BALL_3)
+                .input(Items.MEDIUM_AMETHYST_BUD)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, .2f).ball(POMtags.Items.BALL_3)
+                .input(Items.SMALL_AMETHYST_BUD)
+                .finish(fConsumer, this);
 
-        BallMill(toCHI(Items.DISC_FRAGMENT_5, 3, 2.3f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MUSIC_DISC_5));
+        BallMillRecipeBuilder.build(Items.DISC_FRAGMENT_5, 3, 2.3f).ball(POMtags.Items.BALL_3)
+                .input(Items.MUSIC_DISC_5)
+                .finish(fConsumer, this);
 
-        BallMill(toCI(Items.GRAVEL), POMtags.Items.BALL_4, fConsumer, toCI(Items.COBBLESTONE));
-        BallMill(toCI(Items.SAND), POMtags.Items.BALL_4, fConsumer, toCI(Items.GRAVEL));
+        BallMillRecipeBuilder.build(Items.GRAVEL).ball(POMtags.Items.BALL_5)
+                .input(Items.COBBLESTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND).ball(POMtags.Items.BALL_5)
+                .input(Items.GRAVEL)
+                .finish(fConsumer, this);
 
-        BallMill(toCHI(Items.MELON_SLICE, 8.5f), POMtags.Items.BALL_1, fConsumer, toCI(Items.MELON));
-        BallMill(toCHI(Items.MELON_SEEDS, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.MELON_SLICE));
-        BallMill(toCI(Items.PUMPKIN_SEEDS, 6), POMtags.Items.BALL_3, fConsumer, toCI(Items.PUMPKIN));
-        BallMill(toCI(Items.HONEYCOMB), POMtags.Items.BALL_1, fConsumer, toCI(Items.HONEYCOMB_BLOCK));
+        BallMillRecipeBuilder.build(Items.MELON_SLICE, 8.5f).ball(POMtags.Items.BALL_1)
+                .input(Items.MELON)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MELON_SEEDS, 1.5f).ball(POMtags.Items.BALL_3)
+                .input(Items.MELON_SLICE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PUMPKIN_SEEDS, 6).ball(POMtags.Items.BALL_3)
+                .input(Items.PUMPKIN)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PUMPKIN_SEEDS, 1).ball(POMtags.Items.BALL_3)
+                .input(Items.CARVED_PUMPKIN)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.HONEYCOMB).ball(POMtags.Items.BALL_1)
+                .input(Items.HONEYCOMB_BLOCK)
+                .finish(fConsumer, this);
 
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_SANDSTONE));
-        BallMill(toCI(Items.SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_SANDSTONE));
-        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_STAIRS));
-        BallMill(toCI(Items.SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_STAIRS));
-        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_SLAB));
-        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_SANDSTONE_SLAB));
-        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_STANDSTONE_SLAB));
-        BallMill(toCI(Items.SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SANDSTONE_WALL));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CHISELED_RED_SANDSTONE));
-        BallMill(toCI(Items.RED_SAND, 3), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE));
-        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_STAIRS));
-        BallMill(toCI(Items.RED_SAND, 2), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_STAIRS));
-        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_SLAB));
-        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.SMOOTH_RED_SANDSTONE_SLAB));
-        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.CUT_RED_SANDSTONE_SLAB));
-        BallMill(toCI(Items.RED_SAND), POMtags.Items.BALL_3, fConsumer, toCI(Items.RED_SANDSTONE_WALL));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_STAIRS));
-        BallMill(toCI(Items.PRISMARINE_SHARD), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_SLAB));
-        BallMill(toCI(Items.PRISMARINE_SHARD), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_WALL));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 7), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICKS));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_STAIRS));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 3), POMtags.Items.BALL_4, fConsumer, toCI(Items.PRISMARINE_BRICK_SLAB));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 6), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 4), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_STAIRS));
-        BallMill(toCI(Items.PRISMARINE_SHARD, 2), POMtags.Items.BALL_4, fConsumer, toCI(Items.DARK_PRISMARINE_SLAB));
-        BallMill(toCHI(Items.PRISMARINE_CRYSTALS, 4.33f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SEA_LANTERN));
-        BallMill(toCHI(POMitems.ROYAL_TUNGSTEN_DUST.get(), 2), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get()));
-        BallMill(toCHI(Items.BRICK, 1.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.FLOWER_POT));
-        BallMill(toCHI(Items.GLOWSTONE_DUST, 4), POMtags.Items.BALL_3, fConsumer, toCI(Items.GLOWSTONE));
+        BallMillRecipeBuilder.build(Items.SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.CHISELED_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.CUT_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND, 2).ball(POMtags.Items.BALL_3)
+                .input(Items.SANDSTONE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND, 2).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_SANDSTONE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.SANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_SANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.CUT_STANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.SANDSTONE_WALL)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.RED_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_RED_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.CHISELED_RED_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 3).ball(POMtags.Items.BALL_3)
+                .input(Items.CUT_RED_SANDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 2).ball(POMtags.Items.BALL_3)
+                .input(Items.RED_SANDSTONE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND, 2).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_RED_SANDSTONE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.RED_SANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.SMOOTH_RED_SANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.CUT_RED_SANDSTONE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_SAND).ball(POMtags.Items.BALL_3)
+                .input(Items.RED_SANDSTONE_WALL)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD, 3).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD, 2).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_WALL)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,7).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_BRICKS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,4).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_BRICK_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,3).ball(POMtags.Items.BALL_4)
+                .input(Items.PRISMARINE_BRICK_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,6).ball(POMtags.Items.BALL_4)
+                .input(Items.DARK_PRISMARINE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,4).ball(POMtags.Items.BALL_4)
+                .input(Items.DARK_PRISMARINE_STAIRS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_SHARD,2).ball(POMtags.Items.BALL_4)
+                .input(Items.DARK_PRISMARINE_SLAB)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PRISMARINE_CRYSTALS,4.33f).ball(POMtags.Items.BALL_3)
+                .input(Items.SEA_LANTERN)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BRICK,1.5f).ball(POMtags.Items.BALL_3)
+                .input(Items.FLOWER_POT)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.GLOWSTONE_DUST,4).ball(POMtags.Items.BALL_3)
+                .input(Items.GLOWSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_DUST.get(),2).ball(POMtags.Items.BALL_4)
+                .input(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get())
+                .finish(fConsumer, this);
 
-        //dust mixing
-        BallMill(toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 3), POMtags.Items.BALL_5, fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get()), toCI(POMitems.TITANIUM_DIBORIDE_DUST.get()), toCI(POMitems.TITANIUM_OXIDE_DUST.get()));
-        BallMill(toCI(POMitems.NETHERITE_DUST.get()), POMtags.Items.BALL_4, fConsumer, toCI(Element.GOLD.dustTag(), 2), toCI(POMitems.ANCIENT_DEBRIS_DUST.get(), 2));
-        BallMill(toCI(POMitems.TITANIUM_DIBORIDE_DUST.get(), 2), POMtags.Items.BALL_4, fConsumer, toCI(Element.BORON.dustTag(), 2), toCI(Element.TITANIUM.dustTag()));
-        BallMill(toCI(POMitems.TITANIUM_GOLD_DUST.get(), 4), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag(), 3), toCI(Element.GOLD.dustTag()));
-        BallMill(toCI(POMitems.SUPERCONDUCTIVE_DUST.get()), POMtags.Items.BALL_4, fConsumer, toCI(Element.TITANIUM.dustTag()), toCI(Element.NIOBIUM.dustTag()));
-        BallMill(toCI(POMitems.RED_SILVER_DUST.get(), 2), POMtags.Items.BALL_3, fConsumer, toCI(Element.SILVER.dustTag()), toCI(Items.REDSTONE));
+        // --DUST MIXING--
+        BallMillRecipeBuilder.build(POMitems.ANCIENT_DEBRIS_DUST.get(),3).ball(POMtags.Items.BALL_5)
+                .input(POMitems.MERCURY_SULFIDE_DUST.get())
+                .input(POMitems.TITANIUM_DIBORIDE_DUST.get())
+                .input(POMitems.TITANIUM_OXIDE_DUST.get())
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.NETHERITE_DUST.get(),2).ball(POMtags.Items.BALL_4)
+                .input(Element.GOLD.dustTag(), 2)
+                .input(POMitems.ANCIENT_DEBRIS_DUST.get(), 2)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_DUST.get(),2).ball(POMtags.Items.BALL_4)
+                .input(Element.TITANIUM.dustTag())
+                .input(Element.BORON.dustTag(), 2)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.TITANIUM_GOLD_DUST.get(),4).ball(POMtags.Items.BALL_4)
+                .input(Element.TITANIUM.dustTag(), 3)
+                .input(Element.GOLD.dustTag())
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.SUPERCONDUCTIVE_DUST.get(), 2).ball(POMtags.Items.BALL_4)
+                .input(Element.TITANIUM.dustTag())
+                .input(Element.NIOBIUM.dustTag())
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.RED_SILVER_DUST.get(),2).ball(POMtags.Items.BALL_3)
+                .input(Element.SILVER.dustTag())
+                .input(Items.REDSTONE)
+                .finish(fConsumer, this);
 
         //flowers
-        BallMill(toCI(Items.YELLOW_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.DANDELION));
-        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.POPPY));
-        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BLUE_ORCHID));
-        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ALLIUM));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.AZURE_BLUET));
-        BallMill(toCI(Items.RED_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_TULIP));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.ORANGE_TULIP));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_TULIP));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_TULIP));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.OXEYE_DAISY));
-        BallMill(toCI(Items.BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.CORNFLOWER));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILY_OF_THE_VALLEY));
-        BallMill(toCI(Items.BLACK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WITHER_ROSE));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.SPORE_BLOSSOM));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PINK_PETALS));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.TORCHFLOWER));
+        BallMillRecipeBuilder.build(Items.YELLOW_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.DANDELION)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.POPPY)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIGHT_BLUE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_ORCHID)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MAGENTA_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.ALLIUM)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIGHT_GRAY_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.AZURE_BLUET)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.RED_TULIP)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.ORANGE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.ORANGE_TULIP)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.WHITE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_TULIP)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PINK_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.PINK_TULIP)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIGHT_GRAY_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.OXEYE_DAISY)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BLUE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.CORNFLOWER)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.WHITE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.LILY_OF_THE_VALLEY)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BLACK_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.WITHER_ROSE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PINK_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.SPORE_BLOSSOM)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PINK_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.PINK_PETALS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.ORANGE_DYE,2).ball(POMtags.Items.BALL_2)
+                .input(Items.TORCHFLOWER)
+                .finish(fConsumer, this);
 
-        BallMill(toCI(Items.YELLOW_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.SUNFLOWER));
-        BallMill(toCI(Items.PINK_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PEONY));
-        BallMill(toCI(Items.RED_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.ROSE_BUSH));
-        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.LILAC));
-        BallMill(toCI(Items.CYAN_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.PITCHER_PLANT));
-
+        BallMillRecipeBuilder.build(Items.YELLOW_DYE,4).ball(POMtags.Items.BALL_2)
+                .input(Items.SUNFLOWER)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MAGENTA_DYE,4).ball(POMtags.Items.BALL_2)
+                .input(Items.LILAC)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PINK_DYE,4).ball(POMtags.Items.BALL_2)
+                .input(Items.PEONY)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RED_DYE,4).ball(POMtags.Items.BALL_2)
+                .input(Items.ROSE_BUSH)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.CYAN_DYE,4).ball(POMtags.Items.BALL_2)
+                .input(Items.PITCHER_PLANT)
+                .finish(fConsumer, this);
 
         //crushing
-        BallMill(toCHI(Items.SUGAR, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.SUGAR_CANE));
-        BallMill(toCHI(Items.BLAZE_POWDER, 4.2f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BLAZE_ROD));
-        BallMill(toCHI(Items.BONE_MEAL, 2, 2.5f), POMtags.Items.BALL_3, fConsumer, toCI(Items.BONE));
-        BallMill(toI(Items.COBBLESTONE), POMtags.Items.BALL_3, fConsumer, toCI(Items.STONE));
-        BallMill(toI(Items.COBBLED_DEEPSLATE), POMtags.Items.BALL_3, fConsumer, toCI(Items.DEEPSLATE));
-        BallMill(toI(POMitems.COAL_DUST.get()), POMtags.Items.BALL_3, fConsumer, toCI(ItemTags.COALS));
+        BallMillRecipeBuilder.build(Items.SUGAR,2.5f).ball(POMtags.Items.BALL_3)
+                .input(Items.SUGAR_CANE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BLAZE_POWDER,4.5f).ball(POMtags.Items.BALL_3)
+                .input(Items.BLAZE_ROD)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BONE_MEAL, 2, 2.5f).ball(POMtags.Items.BALL_3)
+                .input(Items.BONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.COBBLESTONE).ball(POMtags.Items.BALL_3)
+                .input(Items.STONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.COBBLED_DEEPSLATE).ball(POMtags.Items.BALL_3)
+                .input(Items.DEEPSLATE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.COAL_DUST.get()).ball(POMtags.Items.BALL_3)
+                .input(ItemTags.COALS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.WHITE_DYE, 4).ball(POMtags.Items.BALL_4)
+                .input(POMitems.TITANIUM_OXIDE_DUST.get())
+                .finish(fConsumer, this);
+
 
         //dye source
-        BallMill(toCI(Items.BLUE_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.LAPIS_LAZULI));
-        BallMill(toCI(Items.WHITE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.BONE_MEAL));
-        BallMill(toCI(Items.BLACK_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.INK_SAC));
-        BallMill(toCI(Items.BROWN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.COCOA_BEANS));
-        BallMill(toCI(Items.RED_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.BEETROOT));
+        BallMillRecipeBuilder.build(Items.RED_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.BEETROOT)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BLACK_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.INK_SAC)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BROWN_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.COCOA_BEANS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.WHITE_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.BONE_MEAL)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.BLUE_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.LAPIS_LAZULI)
+                .finish(fConsumer, this);
+
 
         //dye mixing
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE, 2),  toCI(Items.BLACK_DYE));
-        BallMill(toCI(Items.LIGHT_GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE),  toCI(Items.GRAY_DYE));
-        BallMill(toCI(Items.GRAY_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE),  toCI(Items.BLACK_DYE));
-        BallMill(toCI(Items.ORANGE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.YELLOW_DYE), toCI(Items.RED_DYE));
-        BallMill(toCI(Items.LIME_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE), toCI(Items.GREEN_DYE));
-        BallMill(toCI(Items.CYAN_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.GREEN_DYE), toCI(Items.BLUE_DYE));
-        BallMill(toCI(Items.LIGHT_BLUE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.WHITE_DYE), toCI(Items.BLUE_DYE));
-        BallMill(toCI(Items.PURPLE_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE));
-        BallMill(toCI(Items.MAGENTA_DYE, 4), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE), toCI(Items.WHITE_DYE));
-        BallMill(toCI(Items.MAGENTA_DYE, 3), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE), toCI(Items.BLUE_DYE), toCI(Items.PINK_DYE));
-        BallMill(toCI(Items.MAGENTA_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.PURPLE_DYE),  toCI(Items.PINK_DYE));
-        BallMill(toCI(Items.PINK_DYE, 2), POMtags.Items.BALL_2, fConsumer, toCI(Items.RED_DYE),  toCI(Items.WHITE_DYE));
-
+        BallMillRecipeBuilder.build(Items.LIGHT_GRAY_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_DYE, 2)
+                .input(Items.BLACK_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIGHT_GRAY_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_DYE)
+                .input(Items.GRAY_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.GRAY_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_DYE)
+                .input(Items.BLACK_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.ORANGE_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.YELLOW_DYE)
+                .input(Items.RED_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIME_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_DYE)
+                .input(Items.GREEN_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.CYAN_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_DYE)
+                .input(Items.GREEN_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LIGHT_BLUE_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_DYE)
+                .input(Items.WHITE_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PURPLE_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_DYE)
+                .input(Items.RED_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MAGENTA_DYE, 4).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_DYE)
+                .input(Items.RED_DYE)
+                .input(Items.WHITE_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MAGENTA_DYE, 3).ball(POMtags.Items.BALL_2)
+                .input(Items.BLUE_DYE)
+                .input(Items.RED_DYE)
+                .input(Items.PINK_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.MAGENTA_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.PURPLE_DYE)
+                .input(Items.PINK_DYE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.PINK_DYE, 2).ball(POMtags.Items.BALL_2)
+                .input(Items.WHITE_DYE)
+                .input(Items.RED_DYE)
+                .finish(fConsumer, this);
 
         //pixel splitter
         PixelSplittingAndAssembling(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
@@ -1226,23 +1639,53 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 //        PixelAssembling(POMitems.VOID_EYE.get(), List.of(toCI(POMitems.DRAGON_EYE.get(), 9)), "", fConsumer);
 //        autoPixelAssembling(Items.AMETHYST_SHARD, List.of(toCI(POMitems.PIXEL.get(), 9), toCI(Items.LAPIS_LAZULI, 9)), "element.pixelsofmc.helium", Element.HELIUM.hexToRGB(0), Element.HELIUM.hexToRGB(1), Element.HELIUM.hexToRGB(2),  fConsumer);
 
-        //pressing
-        Pressing(POMitems.BIO_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.RUBBER_BALL.get(), 0, 80, fConsumer);
-        Pressing(POMitems.FIRE_PROOF_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.FIRE_PROOF_RUBBER_BALL.get(), 0, 120, fConsumer);
-        Pressing(POMitems.REPELLING_COMPOUND.get(), 4, POMitems.BALL_CAST.get(), POMitems.REPELLING_RUBBER_BALL.get(), 0, 80, fConsumer);
-        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_BALL.get(), 1941, 3560, fConsumer);
-        Pressing(Items.NETHERITE_INGOT, 1, POMitems.BALL_CAST.get(), POMitems.NETHERITE_BALL.get(), 2500, 4000, fConsumer);
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.BALL_CAST.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), 3000, 5000, fConsumer);
+        // --PRESSING--
+        HotIsostaticPressRecipeBuilder.build(POMitems.RUBBER_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(POMitems.BIO_COMPOUND.get(), 4).heat(0, 80)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.FIRE_PROOF_RUBBER_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(POMitems.FIRE_PROOF_COMPOUND.get(), 4).heat(0, 120)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.REPELLING_RUBBER_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(POMitems.REPELLING_COMPOUND.get(), 4).heat(0, 80)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(Element.TITANIUM.dust()).heat(1941, 3560)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.NETHERITE_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(Items.NETHERITE_INGOT).heat(2500, 4000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_BALL.get()).mold(POMitems.BALL_CAST.get())
+                .input(POMitems.TITANIUM_DIBORIDE_DUST.get()).heat(3000, 5000)
+                .finish(fConsumer, this);
 
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), 3000, 5000, fConsumer);
-        Pressing(POMitems.TITANIUM_DIBORIDE_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), 3000, 5000, fConsumer);
-        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.INGOT_CAST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 2300, 3500, fConsumer);
-        Pressing(POMitems.TITANIUM_GOLD_DUST.get(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_GOLD_PLATING.get(), 2300, 3500, fConsumer);
-        Pressing(Element.TITANIUM.item().asItem(), 1, POMitems.PLATE_CAST.get(), POMitems.TITANIUM_PLATING.get(), 1941, 3560, fConsumer);
-        Pressing(Items.NETHERITE_INGOT, 1, POMitems.PLATE_CAST.get(), POMitems.NETHERITE_PLATING.get(), 2500, 4000, fConsumer);
-        Pressing(POMitems.OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.OBSIDIAN_PLATING.get(), 2200, 3400, fConsumer);
-        Pressing(POMitems.CRYING_OBSIDIAN_DUST.get(), 2, POMitems.PLATE_CAST.get(), POMitems.CRYING_OBSIDIAN_PLATING.get(), 2500, 5000, fConsumer);
-        Pressing(POMitems.ANCIENT_DEBRIS_DUST.get(), 1, POMitems.PLATE_CAST.get(), Items.NETHERITE_SCRAP, 2300, 5000, fConsumer);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_INGOT.get()).mold(POMitems.INGOT_CAST.get())
+                .input(POMitems.TITANIUM_DIBORIDE_DUST.get()).heat(3000, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(POMitems.TITANIUM_DIBORIDE_DUST.get()).heat(3000, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_GOLD_INGOT.get()).mold(POMitems.INGOT_CAST.get())
+                .input(POMitems.TITANIUM_GOLD_DUST.get()).heat(2300, 3500)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_GOLD_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(POMitems.TITANIUM_GOLD_DUST.get()).heat(2300, 3500)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.TITANIUM_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(Element.TITANIUM.dust()).heat(1941, 3560)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.NETHERITE_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(Items.NETHERITE_INGOT).heat(2400, 4000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.OBSIDIAN_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(POMitems.OBSIDIAN_DUST.get(), 2).heat(2200, 3400)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.CRYING_OBSIDIAN_PLATING.get()).mold(POMitems.PLATE_CAST.get())
+                .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 2).heat(2500, 5000)
+                .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(Items.NETHERITE_SCRAP).mold(POMitems.PLATE_CAST.get())
+                .input(POMitems.ANCIENT_DEBRIS_DUST.get()).heat(2400, 4000)
+                .finish(fConsumer, this);
 
         HotIsostaticPressRecipeBuilder.build(POMitems.INGOT_CAST.get()).mold(Tags.Items.INGOTS)
                 .input(POMitems.CRYING_OBSIDIAN_DUST.get(), 4).heat(2500, 5000)
@@ -1293,52 +1736,155 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         HotIsostaticPressRecipeBuilder.build(POMitems.SILICON_SHEET.get()).plateMold()
                 .input(Element.SILICON.dustTag()).heat(600, 1000)
                 .finish(fConsumer, this);
-//        Pressing(toI(Element.SILICON.dustTag()), 1, toI(POMitems.PLATE_CAST.get()), toI(POMitems.SILICON_SHEET.get()), 1, 600, 1000, fConsumer, "_from_dust");
 
-        //chemical separating
+        // --CHEMICAL COMBINING--
+        ChemicalSeparatorRecipeBuilder.build(POMitems.ACANTHITE_DUST.get(), 2, Fluids.WATER, 200)
+                .output(POMfluids.SULFURIC_ACID_SOURCE.get(), 50)
+                .output(Element.SILVER.dust())
+                .output(Element.SILVER.dust(),0.5f)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.TITANIUM_DIBORIDE_DUST.get())
+                .output(Element.TITANIUM.dust())
+                .output(Element.BORON.dust(), 2)
+                .finish(fConsumer, this);
 
-        ChemicalSeperator(fConsumer, toCI(POMitems.ACANTHITE_DUST.get(), 2), toF(Fluids.WATER, 200), toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 50), toCHI(Element.SILVER.dustTag()), toCHI(Element.SILVER.dustTag(),0.5f));
-        ChemicalSeperator(fConsumer, toCI(POMitems.TITANIUM_DIBORIDE_DUST.get()), FluidStack.EMPTY, FluidStack.EMPTY, toCHI(Element.TITANIUM.dustTag()), toCHI(Element.BORON.dustTag(), 2));
+        ChemicalSeparatorRecipeBuilder.build(Element.TITANIUM.dustTag(), Fluids.WATER, 150)
+                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
+                .output(POMitems.TITANIUM_OXIDE_DUST.get())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())
+                .output(POMfluids.MERCURY_SOURCE.get(), 100)
+                .output(Element.SULFUR.dust())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Items.REDSTONE, 8, Fluids.WATER, 500)
+                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500)
+                .output(POMitems.YELLOWCAKE_URANIUM.get())
+                .output(POMitems.REFINED_REDSTONE.get(), 8)
+                .finish(fConsumer, this);
 
-        ChemicalSeperator(fConsumer, toCI(Element.TITANIUM.dustTag()), toF(Fluids.WATER, 150), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100), toCHI(POMitems.TITANIUM_OXIDE_DUST.get()));
-        ChemicalSeperator(fConsumer, toCI(POMitems.MERCURY_SULFIDE_DUST.get()), FluidStack.EMPTY, toF(POMfluids.MERCURY_SOURCE.get(), 100), toCHI(Element.SULFUR.dustTag()));
-        ChemicalSeperator(fConsumer, toCI(Items.REDSTONE, 8), toF(Fluids.WATER, 500), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500), toCHI(POMitems.YELLOWCAKE_URANIUM.get()), toCHI(POMitems.REFINED_REDSTONE.get(), 8));
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000)
+                .output(POMitems.EMPTY_FUEL_CELL.get())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000)
+                .output(POMitems.EMPTY_FUEL_CELL.get())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 2000)
+                .output(POMitems.EMPTY_FUEL_CELL.get())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 6000)
+                .output(POMitems.EMPTY_FUEL_CELL.get())
+                .finish(fConsumer, this);
 
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_URANIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 2000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
-        ChemicalSeperator(fConsumer, toCI(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get()), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 500), toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 6000), toCHI(POMitems.EMPTY_FUEL_CELL.get()));
+        // --CHEMICAL COMBINING--
+        ChemicalCombinerRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())
+                .input(POMfluids.MERCURY_SOURCE.get(), 100)
+                .input(Element.SULFUR.dustTag())
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.PYROLYTIC_CARBON.get())
+                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250)
+                .input(POMtags.Items.DUST_COAL)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get())
+                .input(Element.TUNGSTEN.dustTag(), 2)
+                .input(POMitems.REFINED_REDSTONE.get(), 2)
+                .input(Items.AMETHYST_SHARD)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
+                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+                .input(Items.BONE_MEAL, 2)
+                .input(Items.WARPED_FUNGUS)
+                .input(POMtags.Items.DUST_COAL)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
+                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+                .input(Items.BONE_MEAL, 2)
+                .input(Items.WARPED_WART_BLOCK, 2)
+                .input(POMtags.Items.DUST_COAL)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
+                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+                .input(Items.BONE_MEAL, 2)
+                .input(Items.WARPED_ROOTS, 2)
+                .input(POMtags.Items.DUST_COAL)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
+                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+                .input(Items.BONE_MEAL, 2)
+                .input(Items.NETHER_SPROUTS, 4)
+                .input(POMtags.Items.DUST_COAL)
+                .finish(fConsumer, this);
 
-        //chemical combining
-        ChemicalCombining(fConsumer, toCHI(POMitems.MERCURY_SULFIDE_DUST.get()), toF(POMfluids.MERCURY_SOURCE.get(), 100), FluidStack.EMPTY, toCI(Element.SULFUR.dustTag()));
-        ChemicalCombining(fConsumer, toCHI(POMitems.PYROLYTIC_CARBON.get()), toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250), FluidStack.EMPTY, toCI(POMitems.COAL_DUST.get()));
-        ChemicalCombining(fConsumer, toCHI(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get()), FluidStack.EMPTY, FluidStack.EMPTY, toCI(Element.TUNGSTEN.dustTag(), 2), toCI(POMitems.REFINED_REDSTONE.get(), 2), toCI(Items.AMETHYST_SHARD));
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_PELLET.get())
+                .input(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 125)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get())
+                .input(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 125)
+                .finish(fConsumer, this);
 
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_FUNGUS), toCI(POMitems.COAL_DUST.get()));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_WART_BLOCK, 2), toCI(POMitems.COAL_DUST.get()));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.WARPED_ROOTS, 2), toCI(POMitems.COAL_DUST.get()));
-        ChemicalCombining(fConsumer, ChanceIngredient.EMPTY, toF(POMfluids.SULFURIC_ACID_SOURCE.get(), 100), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200), toCI(Items.BONE_MEAL, 2), toCI(Items.NETHER_SPROUTS, 4), toCI(POMitems.COAL_DUST.get()));
+        // --CHEMICAL MIXING--
+        ChemicalMixerRecipeBuilder.build(2)
+                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
+                .input(POMfluids.OXYGEN_GAS_SOURCE.get(), 50)
+                .output(Fluids.WATER, 100)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(4)
+                .input(Fluids.WATER, 100)
+                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
+                .output(POMfluids.OXYGEN_GAS_SOURCE.get(), 50)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(0)
+                .input(POMfluids.STEAM_SOURCE.get(), 100)
+                .output(Fluids.WATER, 100)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(0)
+                .input(POMfluids.BLAZING_STEAM_SOURCE.get(), 20)
+                .output(POMfluids.STEAM_SOURCE.get(), 20)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(0)
+                .input(POMfluids.AIR_SOURCE.get(), 10)
+                .output(POMfluids.NITROGEN_GAS_SOURCE.get(), 8)
+                .output(POMfluids.OXYGEN_GAS_SOURCE.get(), 2)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(3)
+                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 300)
+                .input(POMfluids.NITROGEN_GAS_SOURCE.get(), 100)
+                .output(POMfluids.AMMONIA_GAS_SOURCE.get(), 200)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(3)
+                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 150)
+                .input(POMfluids.AIR_SOURCE.get(), 100)
+                .output(POMfluids.AMMONIA_GAS_SOURCE.get(), 100)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(2)
+                .input(POMfluids.AMMONIA_GAS_SOURCE.get(), 100)
+                .input(POMfluids.OXYGEN_GAS_SOURCE.get(), 200)
+                .output(POMfluids.NITRIC_ACID_SOURCE.get(), 100)
+                .output(Fluids.WATER, 100)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(2)
+                .input(POMfluids.AMMONIA_GAS_SOURCE.get(), 10)
+                .input(POMfluids.AIR_SOURCE.get(), 25)
+                .output(POMfluids.NITRIC_ACID_SOURCE.get(), 10)
+                .output(Fluids.WATER, 10)
+                .finish(fConsumer, this);
 
-        ChemicalCombining(fConsumer, toCHI(POMitems.URANIUM_FUEL_PELLET.get()), toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 125), FluidStack.EMPTY);
-        ChemicalCombining(fConsumer, toCHI(POMitems.PLUTONIUM_FUEL_PELLET.get()), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 125), FluidStack.EMPTY);
-
-
-        //chemical mixing
-        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 1000), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500), 2, toF(Fluids.WATER, 1000));
-        ChemicalMixing(fConsumer, toF(Fluids.WATER, 1000), 4, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 1000), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 500));
-
-        ChemicalMixing(fConsumer, toF(POMfluids.STEAM_SOURCE.get(), 100), 0, toF(Fluids.WATER, 100));
-        ChemicalMixing(fConsumer, toF(POMfluids.BLAZING_STEAM_SOURCE.get(), 20), 0, toF(POMfluids.STEAM_SOURCE.get(), 20));
-        ChemicalMixing(fConsumer, toF(POMfluids.AIR_SOURCE.get(), 10), 0, toF(POMfluids.NITROGEN_GAS_SOURCE.get(), 8), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 2));
-
-        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 300), toF(POMfluids.NITROGEN_GAS_SOURCE.get(), 100), 3, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 200));
-        ChemicalMixing(fConsumer, toF(POMfluids.HYDROGEN_GAS_SOURCE.get(), 150), toF(POMfluids.AIR_SOURCE.get(), 100), 3, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 100));
-        ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 100), toF(POMfluids.OXYGEN_GAS_SOURCE.get(), 200), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 100), toF(Fluids.WATER, 100));
-        ChemicalMixing(fConsumer, toF(POMfluids.AMMONIA_GAS_SOURCE.get(), 10), toF(POMfluids.AIR_SOURCE.get(), 20), 2, toF(POMfluids.NITRIC_ACID_SOURCE.get(), 10), toF(Fluids.WATER, 10));
-
-        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 10), toF(POMfluids.PUREX_SOLUTION_SOURCE.get(), 5),4, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10));
-        ChemicalMixing(fConsumer, toF(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 9), toF(POMfluids.NITRIC_ACID_SOURCE.get(), 5), toF(Fluids.WATER, 10), 5, toF(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 3), toF(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 1), toF(POMfluids.RED_OIL_SOURCE.get(), 5));
-
+        ChemicalMixerRecipeBuilder.build(4)
+                .input(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 10)
+                .input(POMfluids.PUREX_SOLUTION_SOURCE.get(), 5)
+                .output(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(5)
+                .input(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 9)
+                .input(POMfluids.NITRIC_ACID_SOURCE.get(), 5)
+                .input(Fluids.WATER, 10)
+                .output(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 3)
+                .output(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 3)
+                .output(POMfluids.RED_OIL_SOURCE.get(), 5)
+                .finish(fConsumer, this);
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
@@ -1410,15 +1956,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //Furnace
-        SimpleSmeltingRecipe(POMitems.RAW_TITANIUM.get(), Element.TITANIUM.item(), 0.5f, 200, fConsumer, toItemP(POMitems.RAW_TITANIUM.get()), "");
-        SimpleSmeltingRecipe(POMblocks.ENDSTONE_TITANIUM_ORE.get(), Element.TITANIUM.item(), 0.5f, 200 , fConsumer, toItemP(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem()), "_from_ore");
-        SimpleSmeltingRecipe(POMitems.RUSTED_PLATING.get(), Items.NETHERITE_SCRAP, 0.5f, 200, fConsumer, toItemP(POMitems.RUSTED_PLATING.get()), "");
-        SimpleSmeltingRecipe(POMitems.ANCIENT_DEBRIS_DUST.get(), Items.NETHERITE_SCRAP, 0.5f, 200, fConsumer, toItemP(Items.NETHERITE_SCRAP), "");
-        SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, 200 , fConsumer, toItemP(Element.ALUMINIUM.dustTag()), "");
+        SimpleSmeltingRecipe(POMitems.RAW_TITANIUM.get(), Element.TITANIUM.item(), 0.5f, fConsumer, toItemP(POMitems.RAW_TITANIUM.get()), "");
+        SimpleSmeltingRecipe(POMblocks.ENDSTONE_TITANIUM_ORE.get(), Element.TITANIUM.item(), 0.5f, fConsumer, toItemP(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem()), "_from_ore");
+        SimpleSmeltingRecipe(POMitems.RUSTED_PLATING.get(), Items.NETHERITE_SCRAP, 0.5f, fConsumer, toItemP(POMitems.RUSTED_PLATING.get()), "");
+        SimpleSmeltingRecipe(POMitems.ANCIENT_DEBRIS_DUST.get(), Items.NETHERITE_SCRAP, 0.5f, fConsumer, toItemP(Items.NETHERITE_SCRAP), "");
+        SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, fConsumer, toItemP(Element.ALUMINIUM.dustTag()), "");
 
-        SimpleSmeltingRecipe(POMitems.TITANIUM_GOLD_DUST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.TITANIUM_GOLD_DUST.get()), "");
-        SimpleSmeltingRecipe(POMitems.RED_SILVER_DUST.get(), POMitems.RED_SILVER_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.RED_SILVER_DUST.get()), "");
-        SimpleSmeltingRecipe(POMitems.SUPERCONDUCTIVE_DUST.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), 0.5f, 200 , fConsumer, toItemP(POMitems.SUPERCONDUCTIVE_DUST.get()), "");
+        SimpleSmeltingRecipe(POMitems.TITANIUM_GOLD_DUST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 0.5f, fConsumer, toItemP(POMitems.TITANIUM_GOLD_DUST.get()), "");
+        SimpleSmeltingRecipe(POMitems.RED_SILVER_DUST.get(), POMitems.RED_SILVER_INGOT.get(), 0.5f, fConsumer, toItemP(POMitems.RED_SILVER_DUST.get()), "");
+        SimpleSmeltingRecipe(POMitems.SUPERCONDUCTIVE_DUST.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), 0.5f, fConsumer, toItemP(POMitems.SUPERCONDUCTIVE_DUST.get()), "");
 
         SimpleFurnaceRecipe(POMitems.BIO_COMPOUND.get(), POMitems.BIO_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.BIO_COMPOUND.get()),  "");
         SimpleFurnaceRecipe(POMitems.FIRE_PROOF_COMPOUND.get(), POMitems.FIRE_PROOF_PLASTIC.get(), 0.1f, 200 , fConsumer, toItemP(POMitems.FIRE_PROOF_COMPOUND.get()), "");
@@ -1486,10 +2032,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         .input(e.dustTag()).mold(POMitems.INGOT_CAST.get())
                         .heat(e.getInfo().getMeltingPoint(), e.getInfo().getEvaporatingPoint())
                         .finish(fConsumer, this);
-                SimpleSmeltingRecipe(e.dustTag(), e.item(), 1f, 200, fConsumer, toItemP(e.dustTag()), "_from_dust");
+                SimpleSmeltingRecipe(e.dustTag(), e.item(), 1f, fConsumer, toItemP(e.dustTag()), "_from_dust");
             }
             if (e.shouldAddDust()) {
-                Grinder(toI(e.itemTag()), fConsumer, toCHI(e.dustTag()));
+                GrinderRecipeBuilder.build(e.itemTag())
+                        .output(e.dust())
+                        .finish(fConsumer, this);
             }
             if (e.shouldAddNugget()) {
                 autoPixelSplittingAndAssembling(e.nugget(),  List.of(toCI(POMitems.PIXEL_PILE.get()), toCI(POMitems.PIXEL.get())), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
@@ -1517,17 +2065,17 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     //Immersive Engineering
-    private void SimpleSmeltingRecipe(TagKey<Item> input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
-        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
+    private void SimpleSmeltingRecipe(TagKey<Item> input, ItemLike output, float xp, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, consumer, trigger, extra);
     }
-    private void SimpleSmeltingRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
-        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, smeltingTime, consumer, trigger, extra);
+    private void SimpleSmeltingRecipe(ItemLike input, ItemLike output, float xp, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleSmeltingRecipe(Ingredient.of(input), output, xp, consumer, trigger, extra);
     }
-    private void SimpleSmeltingRecipe(Ingredient input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
-        SimpleCookingRecipeBuilder.smelting(input, RecipeCategory.MISC, output, xp, smeltingTime)
+    private void SimpleSmeltingRecipe(Ingredient input, ItemLike output, float xp, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
+        SimpleCookingRecipeBuilder.smelting(input, RecipeCategory.MISC, output, xp, 200)
                 .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra));
-        SimpleCookingRecipeBuilder.blasting(input, RecipeCategory.MISC, output, xp, smeltingTime/2)
+        SimpleCookingRecipeBuilder.blasting(input, RecipeCategory.MISC, output, xp, 100)
                 .unlockedBy("", inventoryTrigger(trigger))
                 .save(consumer, toRL("smelting/"+output.asItem()+extra+"_from_blasting"));
     }
@@ -1633,23 +2181,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(consumer, toRL("compacting/atoms/"+atomx512.asItem()+"_to_"+atomx64.asItem()));
     }
 
-    private void BallMill(Ingredient output, TagKey<Item> ball, Consumer<FinishedRecipe> consumer, CountedIngredient... inputs) {
-        BallMill(new ChanceIngredient(output, 1, 1f), ball, consumer, inputs);
-    }
-
-    private void BallMill(CountedIngredient output, TagKey<Item> ball, Consumer<FinishedRecipe> consumer, CountedIngredient... inputs) {
-        BallMill(new ChanceIngredient(output.ingredient(), output.count(), 1f), ball, consumer, inputs);
-    }
-
-    private void BallMill(ChanceIngredient output, TagKey<Item> ball, Consumer<FinishedRecipe> consumer, CountedIngredient... inputs) {
-        if (inputs.length > 3) {
-            throw new IndexOutOfBoundsException("Ball Mill recipe can't have more than 3 inputs, there where " + inputs.length + " proved");
-        }
-        new BallMillRecipeBuilder(Arrays.stream(inputs).toList(), output, Ingredient.of(ball))
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("milling/" + output.asName()));
-    }
-
     private void PixelSplitting(ItemLike ingredient, List<CountedIngredient> output, String structure, int[] r, int[] g, int[] b, Consumer<FinishedRecipe> consumer) {
         new PixelSplitterRecipeBuilder(CountedIngredient.of(ingredient), output, structure, r,g,b)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
@@ -1683,70 +2214,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
-    private void Pressing(Item ingredient, int inCount, Item mold, Item output, int heat, int maxHeat, Consumer<FinishedRecipe> consumer) {
-        HotIsostaticPressRecipeBuilder.build(output)
-                .mold(mold).input(ingredient, inCount)
-                .heat(heat, maxHeat)
-                .finish(consumer, this);
-    }
-
-    private void Grinder(Ingredient input, Consumer<FinishedRecipe> consumer, ChanceIngredient... output) {
-        List<ChanceIngredient> outputList = new java.util.ArrayList<>();
-        Collections.addAll(outputList, output);
-        new GrinderRecipeBuilder(input, outputList)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("grinding/" + CountedIngredient.of(input).asName()));
-    }
-
-    private void ChemicalSeperator(Consumer<FinishedRecipe> consumer, CountedIngredient input, FluidStack inputFluid, FluidStack outputFluid, ChanceIngredient... output) {
-        List<ChanceIngredient> outputList = new java.util.ArrayList<>();
-        Collections.addAll(outputList, output);
-        new ChemicalSeparatorRecipeBuilder(input, inputFluid, outputFluid, outputList)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("chemical_separating/" + (input.isEmpty() ? outputFluid.getFluid().getFluidType().toString().split(":")[1] : input.asName())));
-    }
-
-    private void ChemicalCombining(Consumer<FinishedRecipe> consumer, ChanceIngredient output, FluidStack inputFluid, FluidStack outputFluid, CountedIngredient... inputs) {
-        List<CountedIngredient> inputList = new java.util.ArrayList<>();
-        Collections.addAll(inputList, inputs);
-        new ChemicalCombinerRecipeBuilder(output, inputFluid, outputFluid, inputList)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("chemical_combining/" + (output.isEmpty() ? outputFluid.getFluid().getFluidType().toString().split(":")[1] : output.asName())));
-    }
-
-    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, int temperatureState, FluidStack... outputs) {
-        List<FluidStack> inputList = new java.util.ArrayList<>();
-        Collections.addAll(inputList, input1);
-        ChemicalMixing(consumer, temperatureState, inputList, outputs);
-    }
-
-    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, FluidStack input2, int temperatureState, FluidStack... outputs) {
-        List<FluidStack> inputList = new java.util.ArrayList<>();
-        Collections.addAll(inputList, input1, input2);
-        ChemicalMixing(consumer, temperatureState, inputList, outputs);
-    }
-
-    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, FluidStack input1, FluidStack input2, FluidStack input3, int temperatureState, FluidStack... outputs) {
-        List<FluidStack> inputList = new java.util.ArrayList<>();
-        Collections.addAll(inputList, input1, input2, input3);
-        ChemicalMixing(consumer, temperatureState, inputList, outputs);
-    }
-
-    private void ChemicalMixing(Consumer<FinishedRecipe> consumer, int temperatureState, List<FluidStack> inputs, FluidStack... outputs) {
-        List<FluidStack> outputList = new java.util.ArrayList<>();
-        StringBuilder name = new StringBuilder();
-        for (FluidStack output : outputs) {
-            outputList.add(output);
-            name.append("_");
-            name.append(output.getFluid().getFluidType().toString().split(":")[1]);
-        }
-        name.deleteCharAt(0);
-        new ChemicalMixerRecipeBuilder(inputs, outputList, temperatureState)
-                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(consumer, toRL("chemical_mixing/" + name));
-    }
-
-
     private void Fusing(Element element, Consumer<FinishedRecipe> consumer) {
         if (element.equals(Element.HYDROGEN)) {
             Fusing(element, false, element.getElement(), 0, consumer);
@@ -1774,39 +2241,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
     private CountedIngredient toCI(ItemLike input) {
         return CountedIngredient.of(1, input);
     }
-    private CountedIngredient toCI(TagKey<Item> input) {
-        return CountedIngredient.of(1, input);
-    }
     private CountedIngredient toCI(ItemLike input, int count) {
         return CountedIngredient.of(count, input);
     }
-    private CountedIngredient toCI(TagKey<Item> input, int count) {
-        return CountedIngredient.of(count, input);
-    }
-    //toChanceIngredient
-    private ChanceIngredient toCHI(ItemLike input) {
-        return ChanceIngredient.of(1, 1f, input);
-    }
-    private ChanceIngredient toCHI(TagKey<Item> input) {
-        return ChanceIngredient.of(1, 1f, input);
-    }
-    private ChanceIngredient toCHI(ItemLike input, int count) {
-        return ChanceIngredient.of(count, 1f, input);
-    }
-    private ChanceIngredient toCHI(TagKey<Item> input, int count) {
-        return ChanceIngredient.of(count, 1f, input);
-    }
-    private ChanceIngredient toCHI(ItemLike input, float chance) {
-        return ChanceIngredient.of(1, chance, input);
-    }
-    private ChanceIngredient toCHI(TagKey<Item> input, float chance) {
-        return ChanceIngredient.of(1, chance, input);
-    }
-    private ChanceIngredient toCHI(ItemLike input, int count, float chance) {
-        return ChanceIngredient.of(count, chance, input);
-    }
 
-    private FluidStack toF(Fluid fluid, int amount) {return new FluidStack(fluid, amount);}
+
     private int[] toAInt(int ...num) {
         return num;
     }

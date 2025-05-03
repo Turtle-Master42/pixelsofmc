@@ -8,28 +8,28 @@
       "chance": 0.1,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/sulfur"
+        "item": "pixelsofmc:sulfur_dust"
       }
     },
     {
       "chance": 0.1,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/carbon"
+        "item": "pixelsofmc:carbon_dust"
       }
     },
     {
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/iron"
+        "item": "pixelsofmc:iron_dust"
       }
     },
     {
       "chance": 0.02,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/lead"
+        "item": "pixelsofmc:lead_dust"
       }
     }
   ]

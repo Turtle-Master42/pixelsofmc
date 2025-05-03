@@ -194,7 +194,7 @@ public enum Element {
     }
     public boolean isFireResistant() {return this.info.isFireProof();}
 
-    public ItemLike item() {
+    public Item item() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_INGOT;
         } else if (this.equals(Element.GOLD)) {
@@ -204,11 +204,11 @@ public enum Element {
         }
         return POMitems.Metals.ELEMENTS.get(this).get();
     }
-    public ItemLike atom64() {return POMitems.Metals.ATOMX64.get(this).get();}
-    public ItemLike atom512() {return POMitems.Metals.ATOMX512.get(this).get();}
+    public Item atom64() {return POMitems.Metals.ATOMX64.get(this).get();}
+    public Item atom512() {return POMitems.Metals.ATOMX512.get(this).get();}
     public Block block() {return POMblocks.Metals.BLOCKS.get(this).get();}
 
-    public ItemLike blockItem() {
+    public Item blockItem() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_BLOCK;
         } else if (this.equals(Element.GOLD)) {
@@ -220,7 +220,7 @@ public enum Element {
         return Items.AIR;
     }
 
-    public ItemLike nugget() {
+    public Item nugget() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_INGOT;
         } else if (this.equals(Element.GOLD)) {
@@ -229,7 +229,7 @@ public enum Element {
             return POMitems.Metals.NUGGETS.get(this).get();
         return Items.AIR;
     }
-    public ItemLike dust() {
+    public Item dust() {
         if (this.shouldAddDust())
             return POMitems.Metals.DUSTS.get(this).get();
         return Items.AIR;

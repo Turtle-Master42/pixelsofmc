@@ -8,21 +8,21 @@
       "chance": 0.4,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/calcium"
+        "item": "pixelsofmc:calcium_dust"
       }
     },
     {
       "chance": 0.08,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
       "chance": 0.01,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/copper"
+        "item": "pixelsofmc:copper_dust"
       }
     }
   ]

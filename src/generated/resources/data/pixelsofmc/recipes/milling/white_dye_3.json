@@ -2,20 +2,20 @@
   "type": "pixelsofmc:ball_milling",
   "ball": [
     {
-      "tag": "pixelsofmc:ball_2"
+      "tag": "pixelsofmc:ball_4"
     }
   ],
   "inputs": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:bone_meal"
+        "item": "pixelsofmc:titanium_oxide_dust"
       }
     }
   ],
   "output": {
     "chance": 1.0,
-    "count": 2,
+    "count": 4,
     "ingredient": {
       "item": "minecraft:white_dye"
     }

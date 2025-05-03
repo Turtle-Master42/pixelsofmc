@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -58,7 +58,7 @@ public class PixelAssemblerRecipeBuilder extends POMRecipeBuilder {
         }
 
         @Override
-        public void serializeRecipeData(JsonObject pJson) {
+        public void serializeRecipeData(@NotNull JsonObject pJson) {
             pJson.add("output", result.toJson());
             JsonArray jsonArray1 = new JsonArray();
             for (CountedIngredient result : ingredients) {

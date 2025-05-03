@@ -8,35 +8,28 @@
       "chance": 1.0,
       "count": 2,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
       "chance": 0.8,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
-      "chance": 0.3,
+      "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
-      }
-    },
-    {
-      "chance": 0.08,
-      "count": 1,
-      "ingredient": {
-        "tag": "forge:dusts/iron"
+        "item": "pixelsofmc:iron_dust"
       }
     },
     {
       "chance": 0.01,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/aluminium"
+        "item": "pixelsofmc:gold_dust"
       }
     }
   ]

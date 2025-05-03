@@ -22,7 +22,7 @@
       "chance": 0.02,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/silver"
+        "item": "pixelsofmc:silver_dust"
       }
     }
   ]

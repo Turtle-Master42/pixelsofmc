@@ -19,31 +19,31 @@
       }
     },
     {
-      "chance": 0.3,
+      "chance": 0.4,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/sulfur"
+        "item": "pixelsofmc:sulfur_dust"
       }
     },
     {
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/gold"
+        "item": "pixelsofmc:gold_dust"
       }
     },
     {
       "chance": 0.01,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/cobalt"
+        "item": "pixelsofmc:cobalt_dust"
       }
     }
   ]

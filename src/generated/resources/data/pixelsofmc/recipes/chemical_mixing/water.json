@@ -2,17 +2,17 @@
   "type": "pixelsofmc:chemical_mixing",
   "fluid_inputs": [
     {
-      "Amount": 1000,
+      "Amount": 100,
       "FluidName": "pixelsofmc:hydrogen_gas"
     },
     {
-      "Amount": 500,
+      "Amount": 50,
       "FluidName": "pixelsofmc:oxygen_gas"
     }
   ],
   "fluid_outputs": [
     {
-      "Amount": 1000,
+      "Amount": 100,
       "FluidName": "minecraft:water"
     }
   ],

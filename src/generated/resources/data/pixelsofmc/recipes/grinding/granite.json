@@ -8,28 +8,28 @@
       "chance": 1.0,
       "count": 3,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
       "chance": 0.2,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/quartz"
+        "item": "pixelsofmc:quartz_dust"
       }
     },
     {
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/iron"
+        "item": "pixelsofmc:iron_dust"
       }
     },
     {
       "chance": 0.01,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/tungsten"
+        "item": "pixelsofmc:tungsten_dust"
       }
     }
   ]

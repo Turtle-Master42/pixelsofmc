@@ -16,10 +16,10 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/sulfur"
+        "item": "pixelsofmc:sulfur_dust"
       }
     }
   ]

@@ -8,21 +8,21 @@
       "chance": 1.0,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/ancient_debris"
+        "item": "pixelsofmc:ancient_debris_dust"
       }
     },
     {
       "chance": 0.75,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/ancient_debris"
+        "item": "pixelsofmc:ancient_debris_dust"
       }
     },
     {
       "chance": 0.25,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/ancient_debris"
+        "item": "pixelsofmc:ancient_debris_dust"
       }
     }
   ]

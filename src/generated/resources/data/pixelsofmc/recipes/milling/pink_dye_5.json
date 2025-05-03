@@ -9,13 +9,13 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:red_dye"
+        "item": "minecraft:white_dye"
       }
     },
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:white_dye"
+        "item": "minecraft:red_dye"
       }
     }
   ],

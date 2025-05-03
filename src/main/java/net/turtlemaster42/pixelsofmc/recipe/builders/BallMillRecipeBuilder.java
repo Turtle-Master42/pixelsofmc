@@ -1,28 +1,78 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class BallMillRecipeBuilder extends POMRecipeBuilder {
     private final ChanceIngredient output;
     private final List<CountedIngredient> ingredients;
-    private final Ingredient ball;
+    private Ingredient ball;
 
-    public BallMillRecipeBuilder(List<CountedIngredient> ingredients, ChanceIngredient output, Ingredient ball) {
-        this.ingredients = ingredients;
+    public BallMillRecipeBuilder(ChanceIngredient output) {
         this.output = output;
-        this.ball = ball;
+        this.ingredients = new ArrayList<>();
+    }
+
+    public static BallMillRecipeBuilder build(Item item) {
+        return build(item, 1, 1f);
+    }
+    public static BallMillRecipeBuilder build(Item item, int count) {
+        return build(item, count, 1f);
+    }
+    public static BallMillRecipeBuilder build(Item item, float chance) {
+        return build(item, 1, chance);
+    }
+    public static BallMillRecipeBuilder build(Item item, int count, float chance) {
+        return new BallMillRecipeBuilder(ChanceIngredient.of(count, chance, item));
+    }
+
+    public BallMillRecipeBuilder ball(Item item) {
+        this.ball = Ingredient.of(item);
+        return this;
+    }
+    public BallMillRecipeBuilder ball(TagKey<Item> tag) {
+        this.ball = Ingredient.of(tag);
+        return this;
+    }
+
+    public BallMillRecipeBuilder input(Item item) {
+        this.ingredients.add(CountedIngredient.of(item));
+        return this;
+    }
+    public BallMillRecipeBuilder input(TagKey<Item> tag) {
+        this.ingredients.add(CountedIngredient.of(tag));
+        return this;
+    }
+    public BallMillRecipeBuilder input(Item item, int count) {
+        this.ingredients.add(CountedIngredient.of(count, item));
+        return this;
+    }
+    public BallMillRecipeBuilder input(TagKey<Item> tag, int count) {
+        this.ingredients.add(CountedIngredient.of(count, tag));
+        return this;
+    }
+
+    public void finish(Consumer<FinishedRecipe> consumer, POMrecipeProvider provider) {
+        if (ingredients.size() > 3) {
+            throw new IndexOutOfBoundsException("Ball Mill recipe can't have more than 3 inputs, there where " + ingredients.size() + " proved");
+        }
+        this.unlockedBy("", ANY_CRITERION).save(consumer, provider.toRL("milling/" + output.asName()));
     }
 
     @Override

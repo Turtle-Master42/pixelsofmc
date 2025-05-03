@@ -7,15 +7,15 @@
   ],
   "inputs": [
     {
-      "count": 2,
-      "ingredient": {
-        "tag": "forge:dusts/boron"
-      }
-    },
-    {
       "count": 1,
       "ingredient": {
         "tag": "forge:dusts/titanium"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/boron"
       }
     }
   ],

@@ -16,17 +16,17 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/silver"
+        "item": "pixelsofmc:silver_dust"
       }
     },
     {
       "chance": 0.5,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/silver"
+        "item": "pixelsofmc:silver_dust"
       }
     }
   ]

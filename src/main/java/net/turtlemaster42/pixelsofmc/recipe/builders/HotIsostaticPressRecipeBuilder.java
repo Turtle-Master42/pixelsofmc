@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
@@ -94,8 +94,7 @@ public class HotIsostaticPressRecipeBuilder extends POMRecipeBuilder {
     }
 
     public void finish(Consumer<FinishedRecipe> consumer, POMrecipeProvider provider) {
-        this.unlockedBy("", ANY_CRITERION)
-                .save(consumer, provider.toRL("pressing/" + output.asName()));
+        this.unlockedBy("", ANY_CRITERION).save(consumer, provider.toRL("pressing/" + output.asName()));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.recipe;
+package net.turtlemaster42.pixelsofmc.recipe.builders;
 
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
@@ -54,7 +54,7 @@ public class FusionRecipeBuilder extends POMRecipeBuilder {
         }
 
         @Override
-        public void serializeRecipeData(JsonObject pJson) {
+        public void serializeRecipeData(@NotNull JsonObject pJson) {
             element.toJson(pJson);
             pJson.addProperty("x512", x512);
             pJson.addProperty("proton", protonCount);

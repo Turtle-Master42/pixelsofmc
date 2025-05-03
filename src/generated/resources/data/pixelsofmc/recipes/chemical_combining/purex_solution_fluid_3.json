@@ -24,7 +24,7 @@
     {
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:coal_dust"
+        "tag": "forge:dusts/coal"
       }
     }
   ],

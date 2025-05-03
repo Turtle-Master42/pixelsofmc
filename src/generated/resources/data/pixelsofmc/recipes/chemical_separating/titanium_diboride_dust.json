@@ -16,17 +16,17 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 1,
       "ingredient": {
-        "tag": "forge:dusts/titanium"
+        "item": "pixelsofmc:titanium_dust"
       }
     },
     {
-      "chance": 1.0,
+      "chance": 0.0,
       "count": 2,
       "ingredient": {
-        "tag": "forge:dusts/boron"
+        "item": "pixelsofmc:boron_dust"
       }
     }
   ]
