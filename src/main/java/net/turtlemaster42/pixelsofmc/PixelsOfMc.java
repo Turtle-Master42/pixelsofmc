@@ -17,8 +17,10 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -27,6 +29,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -142,6 +145,28 @@ public class PixelsOfMc {
 						fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.BASALT.defaultBlockState()
 				));
 
+		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(
+                        (level, currentPos, relativePos, currentState) -> level.getFluidState(relativePos).getFluidType() == POMFluidType.RED_OIL_FLUID_TYPE.get(),
+						(level, currentPos, relativePos, currentState) -> {
+							level.setBlockAndUpdate(currentPos, ForgeEventFactory.fireFluidPlaceBlockEvent(level, relativePos, relativePos, Blocks.AIR.defaultBlockState()));
+							level.levelEvent(1501, currentPos, 0);
+							if (!level.isClientSide)
+								level.explode(null, relativePos.getX(), relativePos.getY(), relativePos.getZ(), 1.5f, Level.ExplosionInteraction.TNT);
+						})
+		);
+
+		FluidInteractionRegistry.addInteraction(POMFluidType.RED_OIL_FLUID_TYPE.get(),
+				new FluidInteractionRegistry.InteractionInformation(
+						(level, currentPos, relativePos, currentState) -> level.getBlockState(relativePos).getBlock() instanceof BaseFireBlock,
+						(level, currentPos, relativePos, currentState) -> {
+							level.setBlockAndUpdate(currentPos, ForgeEventFactory.fireFluidPlaceBlockEvent(level, currentPos, currentPos, Blocks.AIR.defaultBlockState()));
+							level.levelEvent(1501, currentPos, 0);
+							if (!level.isClientSide)
+								level.explode(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), 1.5f, Level.ExplosionInteraction.TNT);
+						})
+		);
+
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -211,7 +236,7 @@ public class PixelsOfMc {
 
 
 	public void setupBlockBehavior() {
-		//Credits The Undergarden
+		//Credits: The Undergarden
 		DispenseItemBehavior bucketBehavior = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 			public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
@@ -310,10 +335,15 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.LIQUID_OXYGEN_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_CHLORINE_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_BROMINE_BUCKET.get(), bucketBehavior);
-
 		DispenserBlock.registerBehavior(POMitems.MERCURY_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.SULFURIC_ACID_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.NITRIC_ACID_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.RED_OIL_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.NUCLEAR_WASTE_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.NUCLEAR_WASTE_SOLUTION_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.PUREX_SOLUTION_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.URANIUM_SOLUTION_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.PLUTONIUM_SOLUTION_BUCKET.get(), bucketBehavior);
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);

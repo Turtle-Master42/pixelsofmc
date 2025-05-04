@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -31,6 +32,7 @@ import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
@@ -46,6 +48,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private final int maxReceive = 512_000;
     private static final int energyConsumption = 100;
     private float efficiency_bonus = 1f;
+    private int internalHeat = 0;
 
     public boolean[] switches = new boolean[]{false, false, false, false};
 
@@ -133,8 +136,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyDuoFluidHandler = LazyOptional.empty();
 
-
-
     public NuclearReactorTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.NUCLEAR_REACTOR.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
@@ -142,6 +143,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
                 return switch (index) {
                     case 0 -> NuclearReactorTile.this.maxReceive;
                     case 1 -> NuclearReactorTile.this.energyStorage.getEnergyStored();
+                    case 2 -> NuclearReactorTile.this.internalHeat;
                     default -> 0;
                 };
             }
@@ -150,13 +152,9 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
             }
 
             public int getCount() {
-                return 2;
+                return 3;
             }
         };
-    }
-    @Override
-    protected boolean isSlotValidOutput(int slot) {
-        return true;
     }
 
     @Override
@@ -220,6 +218,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("Inventory", itemHandler.serializeNBT());
         tag.putInt("Energy", energyStorage.getEnergyStored());
+        tag.putInt("internalHeat", internalHeat);
         tag = fluidTank.writeToNBT(tag);
         CompoundTag fluidTag = new CompoundTag();
         fluidTag = duoFluidTank.writeToNBT(fluidTag);
@@ -239,6 +238,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         energyStorage.setEnergy(nbt.getInt("Energy"));
+        internalHeat = nbt.getInt("internalHeat");
         fluidTank.readFromNBT(nbt);
         duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
         efficiency_bonus = nbt.getFloat("efficiencyBonus");
@@ -253,29 +253,37 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, NuclearReactorTile e) {
-        e.tick(level, blockPos, blockState, e);
+        e.tick(level, blockPos, blockState);
     }
 
     public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, NuclearReactorTile e) {
-        e.tick(level, blockPos, blockState, e);
+        e.tick(level, blockPos, blockState);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, NuclearReactorTile pBlockEntity) {
-        handleFuelCell(0);
-        handleFuelCell(1);
-        handleFuelCell(2);
-        handleFuelCell(3);
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+        if (getSwitch(3)) {
+            handleFuelCell(0);
+            handleFuelCell(1);
+            handleFuelCell(2);
+            handleFuelCell(3);
+        }
 
         if (getSwitch(1)) {
-            FluidStack drained = fluidTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+            int maxDrain = internalHeat / Constants.FE_waterToSteam;
+            FluidStack drained = fluidTank.drain(maxDrain, IFluidHandler.FluidAction.EXECUTE);
             duoFluidTank.fill(new FluidStack(POMfluids.STEAM_SOURCE.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+            internalHeat -= drained.getAmount() * Constants.FE_waterToSteam;
             setChanged(pLevel, pPos, pState);
+        }
+        if (getSwitch(2)) {
+            fluidTank.fill(new FluidStack(Fluids.WATER, 20_000), IFluidHandler.FluidAction.EXECUTE);
         }
     }
 
     public void handleFuelCell(int slot) {
         ItemStack slotStack = itemHandler.getStackInSlot(slot);
         if (slotStack.getItem() instanceof FuelCellItem fuelCellItem) {
+            internalHeat += (int) (fuelCellItem.getEnergyPerTick() * efficiency_bonus);
             if (!fuelCellItem.hasRemainderStack())
                 return;
 
@@ -299,16 +307,16 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private void calculateEfficiencyBonus() {
         efficiency_bonus = 1f;
         if (!itemHandler.getStackInSlot(0).isEmpty() && !itemHandler.getStackInSlot(1).isEmpty()) {
-            efficiency_bonus += 0.5f;
+            efficiency_bonus += 0.125f;
         }
         if (!itemHandler.getStackInSlot(0).isEmpty() && !itemHandler.getStackInSlot(2).isEmpty()) {
-            efficiency_bonus += 0.5f;
+            efficiency_bonus += 0.125f;
         }
         if (!itemHandler.getStackInSlot(2).isEmpty() && !itemHandler.getStackInSlot(3).isEmpty()) {
-            efficiency_bonus += 0.5f;
+            efficiency_bonus += 0.125f;
         }
         if (!itemHandler.getStackInSlot(1).isEmpty() && !itemHandler.getStackInSlot(3).isEmpty()) {
-            efficiency_bonus += 0.5f;
+            efficiency_bonus += 0.125f;
         }
     }
 
@@ -330,8 +338,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     }
 
     //---ENERGY---//
-
-
     private void errorEnergyReset() {
         if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
             PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());

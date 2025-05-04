@@ -51,6 +51,10 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         super.init();
         assignAreas();
         assignButtons();
+        fuelCellUp = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
+        fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
+        fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
+        fuelCellLeft = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
     }
 
     @Override
@@ -75,7 +79,11 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
 
         if (mouseX >= x + 80 && mouseY >= y + 35 && mouseX < x + 95 && mouseY < y + 50) {
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(efficiencyBonusTooltip(menu.getEfficiencyBonus()), energyPerTickTooltip(menu.blockEntity.getItemStackHandler(), menu.getEfficiencyBonus())), Optional.empty(), mouseX - x, mouseY - y);
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(
+                    efficiencyBonusTooltip(menu.getEfficiencyBonus()),
+                    energyPerTickTooltip(menu.blockEntity.getItemStackHandler(), menu.getEfficiencyBonus()),
+                    Component.literal(String.valueOf(menu.data.get(2)))
+            ), Optional.empty(), mouseX - x, mouseY - y);
         }
     }
 
@@ -163,8 +171,8 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             bigSwitch.cycleOn();
             menu.setSwitch(bigSwitch.isOn(), 3);
             fuelCellUp = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
-            fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
-            fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
+            fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
+            fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
             fuelCellLeft = !menu.blockEntity.getItemStackHandler().getStackInSlot(3).isEmpty();
         });
         this.bigSwitch.setOn(menu.getSwitch(3));
@@ -172,7 +180,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     }
 
     private Component efficiencyBonusTooltip(float bonus) {
-        int efficiencyBonus = (int) ((bonus - 1f) * 100);
+        int efficiencyBonus = (int) ((bonus - 1f) * 400);
         if (efficiencyBonus == 50)
             return Component.literal("§6+" + efficiencyBonus + "%");
         else if (efficiencyBonus == 100) {
@@ -186,27 +194,11 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
     private Component energyPerTickTooltip(ItemStackHandler stackHandler, float bonus) {
         long heating = 0;
-
         for (int i = 0; i < 4; i++) {
             if (stackHandler.getStackInSlot(i).getItem() instanceof FuelCellItem fuelCell) {
                 heating += fuelCell.getEnergyPerTick();
             }
         }
-
-        //TODO: make this nicer
-        int total = 0;
-        if (fuelCellUp)
-            total += 1;
-        if (fuelCellDown)
-            total += 1;
-        if (fuelCellRight)
-            total += 1;
-        if (fuelCellLeft)
-            total += 1;
-
-        if (total > 0)
-            heating = heating + Math.round(((double) heating / ((double) total)) * (bonus - 1));
-
-        return Component.literal(heating + " FE/t").withStyle(ChatFormatting.GOLD);
+        return Component.literal(((long) (heating * bonus)) + " FE/t").withStyle(ChatFormatting.GOLD);
     }
 }

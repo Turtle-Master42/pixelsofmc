@@ -27,7 +27,7 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     private final int TE_INVENTORY_SLOT_COUNT;  // must be the number of slots you have!
 
-    protected final ContainerData data;
+    public final ContainerData data;
     protected final Level level;
 
     protected AbstractMachineMenu(int slotCount, Inventory inv, ContainerData data, @Nullable MenuType<?> pMenuType, int pContainerId) {

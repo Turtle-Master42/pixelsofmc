@@ -21,6 +21,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+import net.turtlemaster42.pixelsofmc.init.POMparticles;
+import net.turtlemaster42.pixelsofmc.particle.ColoredBlockParticle;
+import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -43,11 +46,11 @@ public class SpongeItem extends Item {
 
         if (!pLevel.isClientSide()) {
             if (pUsedHand.equals(InteractionHand.OFF_HAND) && arm != HumanoidArm.LEFT) {
-                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
+                ((ServerLevel) pLevel).sendParticles(new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
             } else if (arm == HumanoidArm.LEFT && !pUsedHand.equals(InteractionHand.OFF_HAND)) {
-                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
+                ((ServerLevel) pLevel).sendParticles(new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot +40))), 8, 0, 0, 0, 0f);
             } else {
-                ((ServerLevel) pLevel).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (-0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (-0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot - 40))), 8, 0, 0, 0, 0f);
+                ((ServerLevel) pLevel).sendParticles(new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), getFluid(stack).getRawFluid().defaultFluidState().createLegacyBlock()), pPlayer.getX() + (-0.4f * Math.cos(Mth.DEG_TO_RAD * (pPlayer.yBodyRot))), pPlayer.getY() + 0.8f, pPlayer.getZ() + (-0.4f * Math.sin(Mth.DEG_TO_RAD * (pPlayer.yBodyRot - 40))), 8, 0, 0, 0, 0f);
             }
         }
 

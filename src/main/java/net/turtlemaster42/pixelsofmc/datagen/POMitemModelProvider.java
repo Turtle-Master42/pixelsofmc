@@ -79,7 +79,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.DIAMOND_LENS);
         simpleItem(POMitems.VIOLET_DIAMOND_LENS);
         simpleItem(POMitems.RED_DIAMOND_LENS);
-        simpleItem(POMitems.FISSION_PLATING);
         simpleItem(POMitems.FUSION_LINING);
         simpleItem(POMitems.FUSION_PLATING);
         simpleItem(POMitems.EMPTY_FUEL_CELL);

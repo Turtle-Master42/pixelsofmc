@@ -232,13 +232,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(toItemP(Element.LEAD.itemTag())))
                 .save(fConsumer);
 
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.FISSION_PLATING.get(), 2)
-//                .requires(POMitems.TITANIUM_PLATING.get())
-//                .requires(POMitems.LEAD_PLATING.get(), 2)
-//                .requires(POMitems.PYROLYTIC_CARBON_SHEET.get(), 1)
-//                .unlockedBy("has_items",
-//                        inventoryTrigger(toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get()), toItemP(POMitems.LEAD_PLATING.get())))
-//                .save(fConsumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.FUSION_LINING.get())
                 .requires(POMitems.TUNGSTEN_PLATING.get())
                 .requires(POMitems.PYROLYTIC_CARBON_SHEET.get())
@@ -1048,7 +1041,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
 
-        //grinding
+        // --GRINDING--
         GrinderRecipeBuilder.build(Items.NETHERITE_SCRAP)
                 .output(POMitems.ANCIENT_DEBRIS_DUST.get())
                 .finish(fConsumer, this);
@@ -1296,7 +1289,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(Items.GLOWSTONE_DUST, 4)
                 .finish(fConsumer, this);
 
-        //MILLING
+        // --MILLING--
         BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, 4).ball(POMtags.Items.BALL_4)
                 .input(Items.AMETHYST_BLOCK)
                 .finish(fConsumer, this);
@@ -1630,7 +1623,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(Items.RED_DYE)
                 .finish(fConsumer, this);
 
-        //pixel splitter
+        // --PIXEL SPLITTER--
         PixelSplittingAndAssembling(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem(), List.of(toCI(POMitems.PIXEL_PILE.get(), 64), toCI(POMitems.PIXEL_PILE.get(), 27), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
         PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_NUGGET.get(), List.of(toCI(POMitems.PIXEL.get(), 9)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
         PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
@@ -1639,7 +1632,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 //        PixelAssembling(POMitems.VOID_EYE.get(), List.of(toCI(POMitems.DRAGON_EYE.get(), 9)), "", fConsumer);
 //        autoPixelAssembling(Items.AMETHYST_SHARD, List.of(toCI(POMitems.PIXEL.get(), 9), toCI(Items.LAPIS_LAZULI, 9)), "element.pixelsofmc.helium", Element.HELIUM.hexToRGB(0), Element.HELIUM.hexToRGB(1), Element.HELIUM.hexToRGB(2),  fConsumer);
 
-        // --PRESSING--
+        // --PIXEL ASSEMBLER--
         HotIsostaticPressRecipeBuilder.build(POMitems.RUBBER_BALL.get()).mold(POMitems.BALL_CAST.get())
                 .input(POMitems.BIO_COMPOUND.get(), 4).heat(0, 80)
                 .finish(fConsumer, this);

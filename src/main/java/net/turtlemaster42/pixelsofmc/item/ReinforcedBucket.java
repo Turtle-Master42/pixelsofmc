@@ -76,6 +76,9 @@ public class ReinforcedBucket extends Item {
         stack.getTag().put("Fluid", fluidTag);
     }
 
+    public int getColor(ItemStack stack) {
+        return getBarColor(stack);
+    }
 
 
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {

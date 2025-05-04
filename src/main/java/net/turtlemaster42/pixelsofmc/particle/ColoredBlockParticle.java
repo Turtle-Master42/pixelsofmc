@@ -43,7 +43,7 @@ public class ColoredBlockParticle extends TextureSheetParticle {
             this.gCol *= (float)(j >> 8 & 255) / 255.0F;
             this.bCol *= (float)(j & 255) / 255.0F;
             if (liquid.getFluid().getSource().getFluidType().isLighterThanAir()) {
-                this.gravity = -0.4f;
+                this.gravity = -0.35f;
             }
 
         } else if (!pState.is(Blocks.GRASS_BLOCK)) {

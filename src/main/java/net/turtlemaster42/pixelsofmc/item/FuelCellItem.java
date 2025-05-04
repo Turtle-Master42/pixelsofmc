@@ -93,14 +93,14 @@ public class FuelCellItem extends Item {
         return getTime(stack) <= getMaxTime() && getTime(stack) > 0;
     }
 
-    //TODO: remove once completed
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        if (!level.isClientSide()) {
-            setTime(player.getItemInHand(usedHand), getTime(player.getItemInHand(usedHand)) + 800);
-        }
-        return super.use(level, player, usedHand);
-    }
+//    //TODO: remove once completed
+//    @Override
+//    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+//        if (!level.isClientSide()) {
+//            setTime(player.getItemInHand(usedHand), getTime(player.getItemInHand(usedHand)) + 800);
+//        }
+//        return super.use(level, player, usedHand);
+//    }
 
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {

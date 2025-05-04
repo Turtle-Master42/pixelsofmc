@@ -31,10 +31,12 @@ public class ExplosiveLiquidBlock extends LiquidBlock {
     @Override
     public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
         super.onBlockExploded(state, level, pos, explosion);
-        if (state.getValue(LiquidBlock.LEVEL) == 0) {
-            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), radius, Level.ExplosionInteraction.TNT);
-        } else {
-            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), radius/2, Level.ExplosionInteraction.TNT);
+        if (!level.isClientSide) {
+            if (state.getValue(LiquidBlock.LEVEL) == 0) {
+                level.explode(null, pos.getX(), pos.getY(), pos.getZ(), radius, Level.ExplosionInteraction.TNT);
+            } else {
+                level.explode(null, pos.getX(), pos.getY(), pos.getZ(), radius / 2, Level.ExplosionInteraction.TNT);
+            }
         }
     }
 }

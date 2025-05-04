@@ -182,7 +182,6 @@ public class POMitems {
 	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 1280));
 	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 32000, new Color(0, 255, 225).getRGB())); //total 512_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> FISSION_PLATING = ITEMS.register("fission_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_LINING = ITEMS.register("fusion_lining", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_PLATING = ITEMS.register("fusion_plating", () -> new Item(new Item.Properties()));
 

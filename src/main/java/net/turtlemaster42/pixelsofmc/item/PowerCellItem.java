@@ -54,14 +54,14 @@ public class PowerCellItem extends Item  {
     //TODO: remove ones completed
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        if (!level.isClientSide()) {
-            PixelEnergyStorage energy = (PixelEnergyStorage) player.getItemInHand(usedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-            if (player.isCrouching()) {
-                energy.receiveEnergy(maxPower / 100 * 5, false);
-            } else {
-                energy.receiveEnergy(100000, false);
-            }
-        }
+//        if (!level.isClientSide()) {
+//            PixelEnergyStorage energy = (PixelEnergyStorage) player.getItemInHand(usedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+//            if (player.isCrouching()) {
+//                energy.receiveEnergy(maxPower / 100 * 5, false);
+//            } else {
+//                energy.receiveEnergy(100000, false);
+//            }
+//        }
         return super.use(level, player, usedHand);
     }
 

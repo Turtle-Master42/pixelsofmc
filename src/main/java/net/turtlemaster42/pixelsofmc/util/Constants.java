@@ -12,9 +12,12 @@ public class Constants {
     public static final float normalHeatingPerJoule = 166.6666667f; // in air or other 1 K = 166.6666667 J
     public static final float J_FE_Constant = 0.4f; // 1 J = 0.4 FE
 
-    public static final int FE_waterToSteam = 10_000; // 10_000 FE needed to heat Water (290 K) to Steam (440 K)
-    public static final int FE_waterToBlazingSteam = 50_000; // 50_000 FE needed to heat Water (290 K) to Blazing Steam (1040 K)
-    public static final int FE_SteamToBlazingSteam = 40_000; // 40_000 FE needed to heat Steam (440 K) to Blazing Steam (1040 K)
+    public static final int FE_waterToSteam = 10; // 10_000 FE needed to heat Water (290 K) to Steam (440 K)
+    public static final int FE_waterToBlazingSteam = 50; // 50_000 FE needed to heat Water (290 K) to Blazing Steam (1040 K)
+    public static final int FE_SteamToBlazingSteam = 40; // 40_000 FE needed to heat Steam (440 K) to Blazing Steam (1040 K)
+    public static final int FE_waterBucketToSteam = 10_000; // 10_000 FE needed to heat Water (290 K) to Steam (440 K)
+    public static final int FE_waterBucketToBlazingSteam = 50_000; // 50_000 FE needed to heat Water (290 K) to Blazing Steam (1040 K)
+    public static final int FE_SteamBucketToBlazingSteam = 40_000; // 40_000 FE needed to heat Steam (440 K) to Blazing Steam (1040 K)
 
     public static final float plasmaTemperatureToNormal = 16.66666667f; // increasing 1 K in air costs 16.667 K of plasma
 

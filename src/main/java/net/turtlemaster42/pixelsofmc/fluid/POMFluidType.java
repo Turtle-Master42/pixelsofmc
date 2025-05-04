@@ -18,13 +18,17 @@ public class POMFluidType {
     public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
     public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
 
+    public static final ResourceLocation HEAVY_LIQUID_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_still");
+    public static final ResourceLocation HEAVY_LIQUID_FLOWING_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_flow");
+    public static final ResourceLocation HEAVY_LIQUID_OVERLAY_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_overlay");
+
     public static final ResourceLocation GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/gas_still");
     public static final ResourceLocation THIN_GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/thin_gas_still");
 
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, PixelsOfMc.MOD_ID);
 
-    public static final RegistryObject<FluidType> MERCURY_FLUID_TYPE = registerFluid("mercury_fluid", 0, 21, 89,
+    public static final RegistryObject<FluidType> MERCURY_FLUID_TYPE = registerHeavyFluid("mercury_fluid", 0, 21, 89,
             FluidType.Properties.create().lightLevel(15).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
 
@@ -36,7 +40,7 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(1).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> PUREX_SOLUTION_FLUID_TYPE = registerFluid("purex_solution_fluid", 92, 170, 75,
+    public static final RegistryObject<FluidType> PUREX_SOLUTION_FLUID_TYPE = registerHeavyFluid("purex_solution_fluid", 92, 170, 75,
             FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
@@ -45,7 +49,7 @@ public class POMFluidType {
                     .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
 
-    public static final RegistryObject<FluidType> NUCLEAR_WASTE_SOLUTION_FLUID_TYPE = registerFluid("nuclear_waste_solution_fluid", 116, 132, 67,
+    public static final RegistryObject<FluidType> NUCLEAR_WASTE_SOLUTION_FLUID_TYPE = registerHeavyFluid("nuclear_waste_solution_fluid", 116, 132, 67,
             FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
@@ -57,7 +61,7 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(8).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> RED_OIL_FLUID_TYPE = registerFluid("red_oil_fluid", 145, 13, 20,
+    public static final RegistryObject<FluidType> RED_OIL_FLUID_TYPE = registerHeavyFluid("red_oil_fluid", 145, 13, 20,
             FluidType.Properties.create().lightLevel(12).temperature(300).density(15).viscosity(5).canDrown(true).canPushEntity(true)
                     .motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
@@ -124,6 +128,11 @@ public class POMFluidType {
 
     private static RegistryObject<FluidType> registerFluid(String name, int R, int G, int B, FluidType.Properties properties) {
         return FLUID_TYPES.register(name, () -> new BaseFluidType(WATER_STILL_RL, WATER_FLOWING_RL, WATER_OVERLAY_RL,
+                new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
+    }
+
+    private static RegistryObject<FluidType> registerHeavyFluid(String name, int R, int G, int B, FluidType.Properties properties) {
+        return FLUID_TYPES.register(name, () -> new BaseFluidType(HEAVY_LIQUID_STILL_RL, HEAVY_LIQUID_FLOWING_RL, HEAVY_LIQUID_OVERLAY_RL,
                 new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
     }
 
