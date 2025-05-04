@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncMainPosToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncMainPosToClient;
 import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
 import org.jetbrains.annotations.NotNull;
 

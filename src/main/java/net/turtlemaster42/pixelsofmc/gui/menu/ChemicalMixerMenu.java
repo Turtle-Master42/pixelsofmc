@@ -17,8 +17,8 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStacksizeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncSwitchToServer;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncTemperatureSwitchToServer;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncTemperatureSwitchToServer;
 import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
@@ -67,7 +67,7 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
     public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
 
     public void setSwitch(boolean on, int currentSwitch) {
-        this.blockEntity.setSwitch(on, currentSwitch);
+        this.blockEntity.setSwitch(currentSwitch, on);
         sendToServer(new PacketSyncSwitchToServer(blockEntity.getBlockPos(), on, currentSwitch));
     }
 

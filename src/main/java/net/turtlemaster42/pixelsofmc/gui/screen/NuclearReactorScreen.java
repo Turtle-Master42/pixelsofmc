@@ -9,11 +9,13 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IUpdatableWidgets;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.SpriteCycleButton;
@@ -25,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> {
+public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> implements IUpdatableWidgets {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/nuclear_reactor_gui.png");
 
@@ -148,28 +150,30 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         int y = (height - imageHeight) / 2;
         this.switch1 = new SwitchButton(x + 127, y + 6, Component.literal("§6???"), (pButton) -> {
             switch1.cycleOn();
-            menu.setSwitch(switch1.isOn(), 0);
+            menu.setSwitch(0, switch1.isOn());
         });
         this.switch1.setOn(menu.getSwitch(0));
         this.addRenderableWidget(this.switch1);
 
         this.switch2 = new SwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
             switch2.cycleOn();
-            menu.setSwitch(switch2.isOn(), 1);
+            menu.setSwitch(1, switch2.isOn());
         });
         this.switch2.setOn(menu.getSwitch(1));
         this.addRenderableWidget(this.switch2);
 
         this.switch3 = new SwitchButton(x + 145, y + 6, Component.literal("§d???"), (pButton) -> {
             switch3.cycleOn();
-            menu.setSwitch(switch3.isOn(), 2);
+            menu.setSwitch(2, switch3.isOn());
         });
         this.switch3.setOn(menu.getSwitch(2));
         this.addRenderableWidget(this.switch3);
 
         this.bigSwitch = new BigSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
-            bigSwitch.cycleOn();
-            menu.setSwitch(bigSwitch.isOn(), 3);
+            if (menu.data.get(2) < 20_000_000) {
+                bigSwitch.cycleOn();
+                menu.setSwitch(3, bigSwitch.isOn());
+            }
             fuelCellUp = !menu.blockEntity.getItemStackHandler().getStackInSlot(0).isEmpty();
             fuelCellDown = !menu.blockEntity.getItemStackHandler().getStackInSlot(2).isEmpty();
             fuelCellRight = !menu.blockEntity.getItemStackHandler().getStackInSlot(1).isEmpty();
@@ -200,5 +204,17 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             }
         }
         return Component.literal(((long) (heating * bonus)) + " FE/t").withStyle(ChatFormatting.GOLD);
+    }
+
+    public void forceUpdateWidgets() {
+        this.switch1.setOn(menu.getSwitch(0));
+        this.switch2.setOn(menu.getSwitch(1));
+        this.switch3.setOn(menu.getSwitch(2));
+        this.bigSwitch.setOn(menu.getSwitch(3));
+    }
+
+    @Override
+    public BlockEntity getBlockEntity() {
+        return menu.blockEntity;
     }
 }

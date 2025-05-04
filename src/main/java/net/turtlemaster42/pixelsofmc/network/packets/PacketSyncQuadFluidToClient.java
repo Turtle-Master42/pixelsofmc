@@ -1,25 +1,25 @@
-package net.turtlemaster42.pixelsofmc.network;
+package net.turtlemaster42.pixelsofmc.network.packets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
-import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IQuadFluidMenu;
+import net.turtlemaster42.pixelsofmc.util.block.IQuadFluidHandlingTile;
 
 import java.util.function.Supplier;
 
-public class PacketSyncDuoFluidToClient {
+public class PacketSyncQuadFluidToClient {
     private final FluidStack fluid;
     private final BlockPos pos;
 
-    public PacketSyncDuoFluidToClient(FluidStack fluid, BlockPos pos) {
+    public PacketSyncQuadFluidToClient(FluidStack fluid, BlockPos pos) {
         this.fluid = fluid;
         this.pos = pos;
     }
 
-    public PacketSyncDuoFluidToClient(FriendlyByteBuf buf) {
+    public PacketSyncQuadFluidToClient(FriendlyByteBuf buf) {
         this.fluid = buf.readFluidStack();
         this.pos = buf.readBlockPos();
     }
@@ -33,12 +33,12 @@ public class PacketSyncDuoFluidToClient {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE CLIENT YES
-            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IDuoFluidHandlingTile fluidHandlingTile) {
-                fluidHandlingTile.setDuoFluid(this.fluid);
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IQuadFluidHandlingTile fluidHandlingTile) {
+                fluidHandlingTile.setQuadFluid(this.fluid);
 
-                if(Minecraft.getInstance().player.containerMenu instanceof IDuoFluidMenu menu &&
+                if(Minecraft.getInstance().player.containerMenu instanceof IQuadFluidMenu menu &&
                         menu.getBlockEntity().getBlockPos().equals(pos)) {
-                    menu.setDuoFluid(fluid);
+                    menu.setQuadFluid(fluid);
                 }
             }
         });

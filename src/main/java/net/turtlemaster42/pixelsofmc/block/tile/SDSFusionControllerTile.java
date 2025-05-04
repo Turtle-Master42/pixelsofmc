@@ -29,6 +29,10 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.network.*;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncInfiniteEnergyToClient;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
@@ -486,8 +490,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         return switches[currentSwitch];
     }
 
-    public void setSwitch(boolean state, int currentSwitch) {
-        this.switches[currentSwitch] = state;
+    public void setSwitch(int currentSwitch, boolean on) {
+        this.switches[currentSwitch] = on;
         setChanged();
     }
 

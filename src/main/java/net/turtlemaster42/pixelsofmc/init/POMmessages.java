@@ -2,12 +2,12 @@ package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.network.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.turtlemaster42.pixelsofmc.network.packets.*;
 
 public class POMmessages {
     private static SimpleChannel INSTANCE;
@@ -17,18 +17,15 @@ public class POMmessages {
     }
 
     public static void register() {
-
         SimpleChannel net = NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(PixelsOfMc.MOD_ID, "messages"))
                 .networkProtocolVersion(() -> "1.0")
                 .clientAcceptedVersions(s -> true)
                 .serverAcceptedVersions(s -> true)
                 .simpleChannel();
-
         INSTANCE = net;
 
-        //CLIENT
-
+        // --CLIENT--
         net.messageBuilder(PacketSyncEnergyToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketSyncEnergyToClient::new)
                 .encoder(PacketSyncEnergyToClient::toBytes)
@@ -89,9 +86,14 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncMainPosToClient::handle)
                 .add();
 
+        net.messageBuilder(PacketSyncSwitchToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncSwitchToClient::new)
+                .encoder(PacketSyncSwitchToClient::toBytes)
+                .consumerMainThread(PacketSyncSwitchToClient::handle)
+                .add();
 
-        //SERVER
 
+        // --SERVER--
         net.messageBuilder(PacketSyncSlotMaxToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketSyncSlotMaxToServer::new)
                 .encoder(PacketSyncSlotMaxToServer::toBytes)

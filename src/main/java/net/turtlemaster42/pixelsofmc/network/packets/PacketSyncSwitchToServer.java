@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.network;
+package net.turtlemaster42.pixelsofmc.network.packets;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,7 +40,7 @@ public class PacketSyncSwitchToServer {
             ServerLevel level = (ServerLevel) player.level();
 
             if (level.getBlockEntity(pos) instanceof IButtonTile tile) {
-                tile.setSwitch(on, currentSwitch);
+                tile.setSwitch(currentSwitch, on);
             }
         });
         return true;

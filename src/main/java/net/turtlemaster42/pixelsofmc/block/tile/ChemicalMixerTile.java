@@ -27,6 +27,7 @@ import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.*;
+import net.turtlemaster42.pixelsofmc.network.packets.*;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.*;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
@@ -692,8 +693,8 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         return switches[currentSwitch];
     }
 
-    public void setSwitch(boolean state, int currentSwitch) {
-        this.switches[currentSwitch] = state;
+    public void setSwitch(int currentSwitch, boolean on) {
+        this.switches[currentSwitch] = on;
         setChanged();
     }
 

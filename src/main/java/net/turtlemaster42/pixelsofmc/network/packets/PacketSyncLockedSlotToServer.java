@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.network;
+package net.turtlemaster42.pixelsofmc.network.packets;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -8,23 +8,27 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PacketSyncSlotMaxToServer {
-    private final int max;
+public class PacketSyncLockedSlotToServer {
+    private final boolean locked;
+    private final int slot;
     private final BlockPos pos;
 
-    public PacketSyncSlotMaxToServer(BlockPos pos, int max) {
-        this.max = max;
+    public PacketSyncLockedSlotToServer(BlockPos pos, boolean locked, int slot) {
+        this.locked = locked;
         this.pos = pos;
+        this.slot = slot;
     }
 
-    public PacketSyncSlotMaxToServer(FriendlyByteBuf buf) {
-        this.max = buf.readInt();
+    public PacketSyncLockedSlotToServer(FriendlyByteBuf buf) {
+        this.locked = buf.readBoolean();
         this.pos = buf.readBlockPos();
+        this.slot = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeInt(max);
+        buf.writeBoolean(locked);
         buf.writeBlockPos(pos);
+        buf.writeInt(slot);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -35,7 +39,7 @@ public class PacketSyncSlotMaxToServer {
             ServerLevel level = (ServerLevel) player.level();
 
 //            if (level.getBlockEntity(pos) instanceof SDSFusionControllerTile tile) {
-//                tile.setSlotLimit(max);
+//                tile.setSlotLock(locked, slot);
 //            }
         });
         return true;

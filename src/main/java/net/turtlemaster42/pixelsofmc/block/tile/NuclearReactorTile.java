@@ -2,9 +2,9 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -28,10 +28,11 @@ import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncDuoFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToClient;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
@@ -49,6 +50,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private static final int energyConsumption = 100;
     private float efficiency_bonus = 1f;
     private int internalHeat = 0;
+    private final int internalHeatCapacity = 20_000_000;
 
     public boolean[] switches = new boolean[]{false, false, false, false};
 
@@ -266,6 +268,9 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
             handleFuelCell(1);
             handleFuelCell(2);
             handleFuelCell(3);
+            if (internalHeat >= internalHeatCapacity) {
+                setSwitch(3, false);
+            }
         }
 
         if (getSwitch(1)) {
@@ -298,10 +303,13 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     //---OTHER---//
 
     @Override
-    public void setSwitch(boolean on, int currentSwitch) {
+    public void setSwitch(int currentSwitch, boolean on) {
         this.switches[currentSwitch] = on;
         setChanged();
         calculateEfficiencyBonus();
+        if (!this.level.isClientSide) {
+            POMmessages.sendToClients(new PacketSyncSwitchToClient(this.worldPosition, on, currentSwitch));
+        }
     }
 
     private void calculateEfficiencyBonus() {

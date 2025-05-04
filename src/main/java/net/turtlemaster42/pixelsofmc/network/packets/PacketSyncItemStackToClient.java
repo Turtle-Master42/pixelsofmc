@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.network;
+package net.turtlemaster42.pixelsofmc.network.packets;
 
 
 import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;

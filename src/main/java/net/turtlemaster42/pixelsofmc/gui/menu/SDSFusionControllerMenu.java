@@ -18,7 +18,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncSwitchToServer;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
 
@@ -97,7 +97,7 @@ public class SDSFusionControllerMenu extends AbstractMachineMenu implements IEne
     }
 
     public void setSwitch(boolean on, int currentSwitch) {
-        this.blockEntity.setSwitch(on, currentSwitch);
+        this.blockEntity.setSwitch(currentSwitch, on);
         sendToServer(new PacketSyncSwitchToServer(blockEntity.getBlockPos(), on, currentSwitch));
     }
 

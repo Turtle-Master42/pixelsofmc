@@ -11,18 +11,19 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IButtonMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModDisplaySlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenuType;
-import net.turtlemaster42.pixelsofmc.network.PacketSyncSwitchToServer;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
 import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
 
-public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMenu, IDuoFluidMenu, IInfiniteEnergyMenu {
+public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMenu, IDuoFluidMenu, IInfiniteEnergyMenu, IButtonMenu {
     public final NuclearReactorTile blockEntity;
     private FluidStack fluid;
     private FluidStack duoFluid;
@@ -54,8 +55,8 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
         return (int) (progressArrowSize / 100f * energyPercent);
     }
 
-    public void setSwitch(boolean on, int currentSwitch) {
-        this.blockEntity.setSwitch(on, currentSwitch);
+    public void setSwitch(int currentSwitch, boolean on) {
+        this.blockEntity.setSwitch(currentSwitch, on);
         sendToServer(new PacketSyncSwitchToServer(blockEntity.getBlockPos(), on, currentSwitch));
     }
 

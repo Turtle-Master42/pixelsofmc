@@ -1,5 +1,5 @@
 // --- MEKANISM ---
-package net.turtlemaster42.pixelsofmc.network;
+package net.turtlemaster42.pixelsofmc.network.packets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
