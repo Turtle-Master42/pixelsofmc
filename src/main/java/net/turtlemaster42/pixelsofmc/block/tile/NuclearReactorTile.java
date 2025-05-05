@@ -23,6 +23,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
+import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
@@ -309,6 +311,9 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         calculateEfficiencyBonus();
         if (!this.level.isClientSide) {
             POMmessages.sendToClients(new PacketSyncSwitchToClient(this.worldPosition, on, currentSwitch));
+            if (currentSwitch == 3) {
+                level.setBlock(worldPosition, level.getBlockState(worldPosition).setValue(NuclearReactorBlock.ACTIVE, on? 3 : 2), 2);
+            }
         }
     }
 

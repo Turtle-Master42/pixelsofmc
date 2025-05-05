@@ -135,7 +135,7 @@ public class ReinforcedBucket extends Item {
         return InteractionResultHolder.fail(itemStack);
     }
 
-    public boolean emptyContents(@Nullable Player pPlayer, Level pLevel, BlockPos pPos, @Nullable BlockHitResult pResult, @Nullable ItemStack pItemStack) {
+    public boolean emptyContents(@Nullable Player pPlayer, Level pLevel, BlockPos pPos, @Nullable BlockHitResult pResult, @NotNull ItemStack pItemStack) {
         Fluid fluid = getFluid(pItemStack).getFluid();
         if (!(fluid instanceof FlowingFluid)) {
             return false;

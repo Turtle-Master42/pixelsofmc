@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -13,16 +14,17 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
@@ -33,6 +35,8 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -46,6 +50,7 @@ import net.turtlemaster42.pixelsofmc.events.EventListener;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
+import net.turtlemaster42.pixelsofmc.item.ReinforcedBucket;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.BallMillRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
@@ -55,6 +60,8 @@ import org.slf4j.Logger;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import static net.minecraft.world.level.block.LiquidBlock.LEVEL;
 
 @Mod(PixelsOfMc.MOD_ID)
 public class PixelsOfMc {
@@ -330,6 +337,44 @@ public class PixelsOfMc {
 			}
 		};
 
+		DispenseItemBehavior reinforcedBucket = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
+			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
+				if (stack.getItem() instanceof ReinforcedBucket bucket) {
+					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+					BlockState state = source.getLevel().getBlockState(relativePos);
+//					BlockEntity entity = source.getLevel().getBlockEntity(relativePos);
+					Level level = source.getLevel();
+
+					IFluidHandlerItem bucketCapability = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
+					FluidStack fluid = bucketCapability.getFluidInTank(0);
+					if (fluid.isEmpty() || fluid.getAmount() <= 3000) {
+						if (state.getBlock() instanceof LiquidBlock liquidBlock) {
+							if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
+								level.setBlock(relativePos, Blocks.AIR.defaultBlockState(), 11);
+
+								if (liquidBlock.getFluid().canConvertToSource(liquidBlock.getFluidState(state), level, relativePos)) {
+									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+								}
+								bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+//								liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
+								return stack;
+							}
+						}
+					}
+					if (!fluid.isEmpty()) {
+						if (bucket.emptyContents(null, level, relativePos, null, stack)) {
+							bucketCapability.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+							return stack;
+						}
+					}
+				}
+				return this.defaultBehavior.dispense(source, stack);
+			}
+		};
+
 		DispenserBlock.registerBehavior(POMitems.LIQUID_HYDROGEN_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_NITROGEN_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_OXYGEN_BUCKET.get(), bucketBehavior);
@@ -348,6 +393,7 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);
 		DispenserBlock.registerBehavior(POMitems.SUPERCHARGED_POWER_CELL.get(), energyCell3);
+		DispenserBlock.registerBehavior(POMitems.REINFORCED_BUCKET.get(), reinforcedBucket);
 	}
 
 	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

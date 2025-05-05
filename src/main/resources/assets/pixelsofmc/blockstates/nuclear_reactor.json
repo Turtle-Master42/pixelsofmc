@@ -1,30 +1,86 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
       "x": -90,
       "y": 180
     },
-    "facing=east": {
+    "facing=east,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
       "x": -90,
       "y": 270
     },
-    "facing=south": {
+    "facing=south,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
       "x": -90
     },
-    "facing=west": {
+    "facing=west,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
       "x": -90,
       "y": 90
     },
-    "facing=up": {
+    "facing=up,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
       "y": 180
     },
-    "facing=down": {
+    "facing=down,state=1": {
       "model": "pixelsofmc:block/nuclear_reactor",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "x": -90,
+      "y": 180
+    },
+    "facing=east,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "x": -90,
+      "y": 270
+    },
+    "facing=south,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "x": -90
+    },
+    "facing=west,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "x": -90,
+      "y": 90
+    },
+    "facing=up,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "y": 180
+    },
+    "facing=down,state=2": {
+      "model": "pixelsofmc:block/nuclear_reactor_constructed",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
+      "x": -90,
+      "y": 180
+    },
+    "facing=east,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
+      "x": -90,
+      "y": 270
+    },
+    "facing=south,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
+      "x": -90
+    },
+    "facing=west,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
+      "x": -90,
+      "y": 90
+    },
+    "facing=up,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
+      "y": 180
+    },
+    "facing=down,state=3": {
+      "model": "pixelsofmc:block/nuclear_reactor_active",
       "x": 180,
       "y": 180
     }
