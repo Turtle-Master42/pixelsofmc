@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.network;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelFluidItemHandlerSimple extends FluidHandlerItemStack {
@@ -13,18 +14,12 @@ public class PixelFluidItemHandlerSimple extends FluidHandlerItemStack {
 
     @Override
     public int fill(@NotNull FluidStack resource, FluidAction action) {
-        if (resource.getAmount() >= 1000)
-            return super.fill(new FluidStack(resource.getFluid(), 1000), action);
-        else
-            return 0;
+        return super.fill(new FluidStack(resource.getFluid(), (int) Math.floor(resource.getAmount()/1000d) * 1000), action);
     }
 
     @NotNull
     @Override
     public FluidStack drain(int maxDrain, FluidAction action) {
-        if (maxDrain >= 1000)
-            return super.drain(1000, action);
-        else
-            return FluidStack.EMPTY;
+        return super.drain((int) Math.floor(maxDrain/1000d) * 1000, action);
     }
 }

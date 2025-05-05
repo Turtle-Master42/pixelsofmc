@@ -84,53 +84,49 @@ public class ReinforcedBucket extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         BlockHitResult blockHitResult = getPlayerPOVHitResult(pLevel, pPlayer, getFluid(itemStack).getAmount() >= capacity ? ClipContext.Fluid.NONE : ClipContext.Fluid.SOURCE_ONLY);
-        if (blockHitResult.getType() == HitResult.Type.MISS) {
+        if (blockHitResult.getType() != HitResult.Type.BLOCK) {
             return InteractionResultHolder.pass(itemStack);
-        } else if (blockHitResult.getType() != HitResult.Type.BLOCK) {
+        }
+        BlockPos blockpos = blockHitResult.getBlockPos();
+        Direction direction = blockHitResult.getDirection();
+        BlockPos relativePos = blockpos.relative(direction);
+        if (!pLevel.mayInteract(pPlayer, blockpos) || !pPlayer.mayUseItemAt(relativePos, direction, itemStack)) {
             return InteractionResultHolder.pass(itemStack);
-        } else {
-            BlockPos blockpos = blockHitResult.getBlockPos();
-            Direction direction = blockHitResult.getDirection();
-            BlockPos blockpos1 = blockpos.relative(direction);
-            if (pLevel.mayInteract(pPlayer, blockpos) && pPlayer.mayUseItemAt(blockpos1, direction, itemStack)) {
-                IFluidHandlerItem fluidItem = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
-                FluidStack fluid = fluidItem.getFluidInTank(0);
-                if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
-                    BlockState blockstate1 = pLevel.getBlockState(blockpos);
-                    if (blockstate1.getBlock() instanceof LiquidBlock liquidBlock) {
-                        if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && blockstate1.getValue(LEVEL) == 0) {
-                            pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
-                            fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+        }
 
-                            pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                            liquidBlock.getPickupSound(blockstate1).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
-                            pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
+        IFluidHandlerItem fluidItem = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
+        FluidStack fluid = fluidItem.getFluidInTank(0);
+        BlockState state = pLevel.getBlockState(blockpos);
+        if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
 
-                            if (!pLevel.isClientSide) {
-                                CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemStack);
-                            }
-                            return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
-                        }
-                        return InteractionResultHolder.fail(itemStack);
+            if (state.getBlock() instanceof LiquidBlock liquidBlock) {
+                if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
+                    pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
+                    fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
+
+                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                    liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
+                    pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
+
+                    if (!pLevel.isClientSide) {
+                        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemStack);
                     }
+                    return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
                 }
-                if (!fluid.isEmpty() && !pPlayer.isCrouching()) {
-                    BlockState blockstate = pLevel.getBlockState(blockpos);
-                    BlockPos blockpos2 = canBlockContainFluid(pLevel, blockpos, blockstate, fluid.getFluid()) ? blockpos : blockpos1;
-                    if (this.emptyContents(pPlayer, pLevel, blockpos2, blockHitResult, itemStack)) {
-                        if (pPlayer instanceof ServerPlayer) {
-                            CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) pPlayer, blockpos2, itemStack);
-                        }
-                        fluidItem.drain(1000, IFluidHandler.FluidAction.EXECUTE);
-                        pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                        return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
-                    } else {
-                        return InteractionResultHolder.fail(itemStack);
-                    }
-                }
-            } else {
                 return InteractionResultHolder.fail(itemStack);
             }
+        }
+        if (!fluid.isEmpty() && !pPlayer.isCrouching()) {
+            BlockPos placePos = canBlockContainFluid(pLevel, blockpos, state, fluid.getFluid()) ? blockpos : relativePos;
+            if (this.emptyContents(pPlayer, pLevel, placePos, blockHitResult, itemStack)) {
+                if (pPlayer instanceof ServerPlayer serverPlayer) {
+                    CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayer, placePos, itemStack);
+                }
+                fluidItem.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+            }
+            return InteractionResultHolder.fail(itemStack);
         }
         return InteractionResultHolder.fail(itemStack);
     }
@@ -206,9 +202,6 @@ public class ReinforcedBucket extends Item {
     private boolean canBlockContainFluid(Level worldIn, BlockPos posIn, BlockState blockstate, Fluid fluid) {
         return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, fluid);
     }
-    
-
-
 
     public int getBarWidth(ItemStack pStack) {
         IFluidHandlerItem fluid = pStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);

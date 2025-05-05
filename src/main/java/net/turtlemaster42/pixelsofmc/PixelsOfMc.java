@@ -9,15 +9,18 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -57,6 +60,7 @@ import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -243,15 +247,25 @@ public class PixelsOfMc {
 
 
 	public void setupBlockBehavior() {
-		//Credits: The Undergarden
+		PixelsOfMc.LOGGER.info("Setting up Dispenser Behavior");
 		DispenseItemBehavior bucketBehavior = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 			public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
 				BucketItem bucketitem = (BucketItem) stack.getItem();
-				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+				BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 				Level world = source.getLevel();
-				if (bucketitem.emptyContents(null, world, blockpos, null)) {
-					bucketitem.checkExtraContent(null, world, stack, blockpos);
+				BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
+				if (tile != null) {
+					IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
+					if (fluidHandlerFrom != null) {
+						if (fluidHandlerFrom.getTankCapacity(0) - fluidHandlerFrom.getFluidInTank(0).getAmount() >= 1000) {
+							fluidHandlerFrom.fill(new FluidStack(bucketitem.getFluid(), 1000), IFluidHandler.FluidAction.EXECUTE);
+							return new ItemStack(Items.BUCKET);
+						}
+					}
+					return stack;
+				} else if (bucketitem.emptyContents(null, world, relativePos, null)) {
+					bucketitem.checkExtraContent(null, world, stack, relativePos);
 					return new ItemStack(Items.BUCKET);
 				} else {
 					return this.defaultBehavior.dispense(source, stack);
@@ -312,6 +326,7 @@ public class PixelsOfMc {
 		};
 
 		DispenseItemBehavior energyCell3 = new DefaultDispenseItemBehavior() {
+
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 				BlockState state = source.getLevel().getBlockState(blockpos);
@@ -339,11 +354,11 @@ public class PixelsOfMc {
 
 		DispenseItemBehavior reinforcedBucket = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
-			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
+			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
 				if (stack.getItem() instanceof ReinforcedBucket bucket) {
 					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					BlockState state = source.getLevel().getBlockState(relativePos);
-//					BlockEntity entity = source.getLevel().getBlockEntity(relativePos);
+					BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
 					Level level = source.getLevel();
 
 					IFluidHandlerItem bucketCapability = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
@@ -354,17 +369,26 @@ public class PixelsOfMc {
 								level.setBlock(relativePos, Blocks.AIR.defaultBlockState(), 11);
 
 								if (liquidBlock.getFluid().canConvertToSource(liquidBlock.getFluidState(state), level, relativePos)) {
-									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
-									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
-									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
+									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 4000), IFluidHandler.FluidAction.EXECUTE);
+								} else {
+									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
 								}
-								bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), fluid.getAmount() + 1000), IFluidHandler.FluidAction.EXECUTE);
 //								liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
 								return stack;
 							}
 						}
 					}
 					if (!fluid.isEmpty()) {
+						if (tile != null) {
+							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
+							if (fluidHandlerFrom != null) {
+								if (fluidHandlerFrom.getTankCapacity(0) - fluidHandlerFrom.getFluidInTank(0).getAmount() >= 1000) { //TODO: check if this doesn't lose liquid if their is not enough space
+									fluidHandlerFrom.fill(bucketCapability.drain(4000, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+								}
+							}
+							return stack;
+						}
+
 						if (bucket.emptyContents(null, level, relativePos, null, stack)) {
 							bucketCapability.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 							return stack;

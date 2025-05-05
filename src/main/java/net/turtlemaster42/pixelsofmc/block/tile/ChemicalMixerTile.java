@@ -501,10 +501,9 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     private void transferFluidToItem(ChemicalMixerTile pBlockEntity, FluidTank tank, int slot) {
         pBlockEntity.itemHandler.getStackInSlot(slot).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
             int fillAmount = Math.min(handler.fill(tank.getFluid(), IFluidHandler.FluidAction.SIMULATE), 1000);
-
             FluidStack stack = new FluidStack(tank.getFluid(), fillAmount);
             if(handler.isFluidValid(0, stack)) {
-                stack = new FluidStack(tank.getFluid(), Math.min(handler.fill(tank.getFluid(), IFluidHandler.FluidAction.EXECUTE), 1000));
+                stack = new FluidStack(tank.getFluid(), Math.min(handler.fill(stack, IFluidHandler.FluidAction.EXECUTE), 1000));
                 drainTankWithFluid(pBlockEntity, tank, stack, handler.getContainer(), slot);
             }
         });

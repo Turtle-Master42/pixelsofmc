@@ -337,7 +337,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
 
             FluidStack stack = new FluidStack(tank.getFluid(), fillAmount);
             if(handler.isFluidValid(0, stack)) {
-                stack = new FluidStack(tank.getFluid(), Math.min(handler.fill(tank.getFluid(), IFluidHandler.FluidAction.EXECUTE), 1000));
+                stack = new FluidStack(tank.getFluid(), Math.min(handler.fill(stack, IFluidHandler.FluidAction.EXECUTE), 1000));
                 drainTankWithFluid(pBlockEntity, tank, stack, handler.getContainer(), slot);
             }
         });
