@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 13,
+  "neutron": 104,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:aluminium_26_atom_512"
+    }
+  },
+  "proton": 104,
+  "x512": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 12,
+  "neutron": 104,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:magnesium_25_atom_512"
+    }
+  },
+  "proton": 96,
+  "x512": true
+}

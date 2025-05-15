@@ -2,6 +2,12 @@
   "type": "pixelsofmc:fusing",
   "element": 1,
   "neutron": 0,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:hydrogen_atom_64"
+    }
+  },
   "proton": 1,
   "x512": false
 }

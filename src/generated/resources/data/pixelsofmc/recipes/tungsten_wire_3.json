@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:tungsten_plating"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:tungsten_wire"
+  }
+}

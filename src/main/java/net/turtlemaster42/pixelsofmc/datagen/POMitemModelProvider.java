@@ -158,7 +158,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.PLUTONIUM_SOLUTION_BUCKET);
         simpleItem(POMitems.RED_OIL_BUCKET);
 
-        simpleItem(POMitems.MOVING_PARTS);
         simpleItem(POMitems.ADVANCED_LASER);
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW);
         simpleItem(POMitems.TITANIUM_GOLD_CIRCLE_SAW);
@@ -229,6 +228,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         complexBlock(POMblocks.PIXEL_SPLITTER);
         complexBlock(POMblocks.GRINDER);
+        complexBlock(POMblocks.CHEMICAL_MIXER);
         complexBlock(POMblocks.SDS_CONTROLLER);
 
         complexBlock(POMblocks.FUSION_CASING);
@@ -270,12 +270,6 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder simpleItem(POMitems.ItemRegObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/" + item.getId().getPath()));
-    }
-
     private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
@@ -288,38 +282,46 @@ public class POMitemModelProvider extends ItemModelProvider {
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder elementItem(POMitems.ItemRegObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/elements/" + item.getId().getPath()));
-    }
-
     private ItemModelBuilder elementItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/elements/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder dustItem(POMitems.ItemRegObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/dusts/" + item.getId().getPath()));
-    }
     private ItemModelBuilder dustItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/dusts/" + item.getId().getPath()));
-    }
-    private ItemModelBuilder atomItem(POMitems.ItemRegObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/atoms/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder atomItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(PixelsOfMc.MOD_ID,"item/atoms/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder atom64Item(Element element) {
+        return withExistingParent(POMitems.Elements.ATOMX64.get(element).getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + element.elementName()+"_atom"))
+                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/atom_64"));
+    }
+
+    private ItemModelBuilder atom512Item(Element element) {
+        return withExistingParent(POMitems.Elements.ATOMX512.get(element).getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + element.elementName()+"_atom"))
+                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/atom_512"));
+    }
+
+    private ItemModelBuilder isotope64Item(String path, RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + path))
+                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/isotope_64"));
+    }
+
+    private ItemModelBuilder isotope512Item(String path, RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + path))
+                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/isotope_512"));
     }
 
     private ItemModelBuilder simpleBlock(RegistryObject<Block> block) {
@@ -333,18 +335,22 @@ public class POMitemModelProvider extends ItemModelProvider {
 
     private void createElementModels(Element element) {
         if (!element.isVanilla())
-            elementItem(POMitems.Metals.ELEMENTS.get(element));
+            elementItem(POMitems.Elements.ELEMENTS.get(element));
     }
     private void createDustModels(Element element) {
         if (element.shouldAddDust())
-            dustItem(POMitems.Metals.DUSTS.get(element));
+            dustItem(POMitems.Elements.DUSTS.get(element));
     }
     private void createNuggetModels(Element element) {
         if (element.shouldAddNugget())
-            simpleItem(POMitems.Metals.NUGGETS.get(element));
+            simpleItem(POMitems.Elements.NUGGETS.get(element));
     }
     private void createAtomModels(Element element) {
-        atomItem(POMitems.Metals.ATOMX64.get(element));
-        atomItem(POMitems.Metals.ATOMX512.get(element));
+        atom64Item(element);
+        atom512Item(element);
+        for (int i = 0; i < element.getIsotopes().getNeutrons().length; i++) {
+            isotope64Item(element.elementName()+"_atom", POMitems.Elements.ISOTOPEX64.get(element+"_"+(element.getIsotopes().getNeutrons()[i] + element.getElement())));
+            isotope512Item(element.elementName()+"_atom", POMitems.Elements.ISOTOPEX512.get(element+"_"+(element.getIsotopes().getNeutrons()[i] + element.getElement())));
+        }
     }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 41,
+  "neutron": 408,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:niobium_92_atom_512"
+    }
+  },
+  "proton": 328,
+  "x512": true
+}

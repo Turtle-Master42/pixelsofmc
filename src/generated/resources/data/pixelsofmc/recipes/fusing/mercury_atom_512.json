@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 80,
-  "neutron": 640,
+  "neutron": 968,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:mercury_atom_512"
+    }
+  },
   "proton": 640,
   "x512": true
 }

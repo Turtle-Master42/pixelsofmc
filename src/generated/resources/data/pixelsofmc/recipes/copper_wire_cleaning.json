@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:redstone_layered_copper_wire"
+    },
+    {
+      "item": "pixelsofmc:cleaning_cloth"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:copper_wire"
+  }
+}

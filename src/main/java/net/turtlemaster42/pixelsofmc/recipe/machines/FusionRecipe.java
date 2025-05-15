@@ -22,22 +22,18 @@ import java.util.List;
 public class FusionRecipe extends BaseRecipe {
     private final ResourceLocation id;
     private final Element element;
-    private final ItemStack output;
+    private final CountedIngredient output;
     private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
     private int extraNeutrons;
-    public FusionRecipe(ResourceLocation id, Element element, int protonCount, int neutronCount, boolean x512) {
+    public FusionRecipe(ResourceLocation id, CountedIngredient output, Element element, int protonCount, int neutronCount, boolean x512) {
         this.id = id;
         this.element = element;
         this.protonCount = protonCount;
         this.neutronCount = neutronCount;
         this.x512 = x512;
-        if (x512) {
-            this.output = new ItemStack(element.atom512());
-        } else {
-            this.output = new ItemStack(element.atom64());
-        }
+        this.output = output;
     }
 
     @Override
@@ -65,51 +61,37 @@ public class FusionRecipe extends BaseRecipe {
         return false;
     }
 
-
-    public int getOutputCount() {
-        return output.getCount();
-    }
-
     @Override
     public @NotNull ItemStack assemble(@NotNull SimpleContainer simpleContainer, RegistryAccess registryAccess) {
-        return output;
+        return output.asItemStack();
     }
 
     @Override
     public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
-        return output.copy();
+        return output.asItemStack().copy();
     }
 
     public ItemStack getResultItems(int index) {
-        return List.of(output, new ItemStack(Element.HYDROGEN.atom64(), extraNeutrons)).get(index);
+        return List.of(output.asItemStack(), new ItemStack(Element.HYDROGEN.atom64(), extraNeutrons)).get(index);
     }
 
     public List<CountedIngredient> getOutputs() {
         if (extraNeutrons > 0) {
-            return List.of(CountedIngredient.of(output), CountedIngredient.of(extraNeutrons, Element.HYDROGEN.atom64()));
+            return List.of(output, CountedIngredient.of(extraNeutrons, Element.HYDROGEN.atom64()));
         }
-        return List.of(CountedIngredient.of(output));
+        return List.of(output);
     }
 
     @Override
     public ItemStack getBaseOutput() {
-        return output;
-    }
-
-    public int getOutputsCount(int index) {
-        return getOutputs().get(index).count();
+        return output.asItemStack();
     }
 
     public int getProtonCount() {return protonCount;}
     public int getNeutronCount() {return neutronCount;}
-    public ItemStack getInput(int input) {
-        return ItemStack.EMPTY;
-    }
-
     public Element getElement() {
         return element;
     }
-
     public boolean x512() {
         return x512;
     }
@@ -146,22 +128,24 @@ public class FusionRecipe extends BaseRecipe {
 
         public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
+            CountedIngredient output = CountedIngredient.fromJson(json.getAsJsonObject("output"));
             Element element = Element.fromJson(json);
             boolean x512 = json.get("x512").getAsBoolean();
             int proton = json.get("proton").getAsInt();
             int neutron = json.get("neutron").getAsInt();
 
-            return new FusionRecipe(id, element, proton, neutron, x512);
+            return new FusionRecipe(id, output, element, proton, neutron, x512);
         }
 
         public FusionRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
+                CountedIngredient output = CountedIngredient.fromNetwork(buf);
                 Element element = Element.fromNetwork(buf);
                 boolean x512 = buf.readBoolean();
                 int proton = buf.readInt();
                 int neutron = buf.readInt();
 
-                return new FusionRecipe(id, element, proton, neutron, x512);
+                return new FusionRecipe(id, output, element, proton, neutron, x512);
             } catch (Exception ex) {
                 PixelsOfMc.LOGGER.error("Error reading fusing recipe from packet.", ex);
                 throw ex;
@@ -170,6 +154,7 @@ public class FusionRecipe extends BaseRecipe {
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull FusionRecipe recipe) {
             try {
+                recipe.output.toNetwork(buf);
                 recipe.element.toNetwork(buf);
                 buf.writeBoolean(recipe.x512);
                 buf.writeInt(recipe.protonCount);

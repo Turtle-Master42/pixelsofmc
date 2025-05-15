@@ -28,7 +28,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
 
         for(Element m : Element.values()) {
             if (m.shouldAddBlock())
-                this.dropSelf(POMblocks.Metals.BLOCKS.get(m).get());
+                this.dropSelf(POMblocks.Elements.BLOCKS.get(m).get());
         }
 
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());

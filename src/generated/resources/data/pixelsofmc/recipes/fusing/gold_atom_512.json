@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 79,
-  "neutron": 632,
+  "neutron": 944,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gold_atom_512"
+    }
+  },
   "proton": 632,
   "x512": true
 }

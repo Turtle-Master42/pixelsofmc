@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 71,
-  "neutron": 71,
+  "neutron": 104,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lutetium_atom_64"
+    }
+  },
   "proton": 71,
   "x512": false
 }

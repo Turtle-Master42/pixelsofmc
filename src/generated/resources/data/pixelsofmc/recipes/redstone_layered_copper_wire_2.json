@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/copper"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:redstone_layered_copper_wire"
+  }
+}

@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
@@ -27,7 +26,7 @@ public class POMblockModelProvider extends BlockStateProvider {
 
         for (Element m : Element.values()) {
             if (m.shouldAddBlock())
-                blockWithItem(POMblocks.Metals.BLOCKS.get(m));
+                blockWithItem(POMblocks.Elements.BLOCKS.get(m));
         }
 
         blockWithItem(POMblocks.ENDSTONE_TITANIUM_ORE);
@@ -137,7 +136,6 @@ public class POMblockModelProvider extends BlockStateProvider {
 
     private void liquidBlock(RegistryObject<? extends LiquidBlock> blockRegistryObject) {
         String name = blockRegistryObject.get().getFluid().getSource().getFluidType().toString().split(":")[1];
-        PixelsOfMc.LOGGER.info(name);
         simpleBlock(blockRegistryObject.get(), models().withExistingParent(name, "block/water"));
     }
 

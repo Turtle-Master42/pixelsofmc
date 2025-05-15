@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 53,
-  "neutron": 53,
+  "neutron": 74,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iodine_atom_64"
+    }
+  },
   "proton": 53,
   "x512": false
 }

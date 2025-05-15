@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 52,
-  "neutron": 52,
+  "neutron": 76,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tellurium_atom_64"
+    }
+  },
   "proton": 52,
   "x512": false
 }

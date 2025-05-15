@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:red_silver_ingot"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:red_silver_wire"
+  }
+}

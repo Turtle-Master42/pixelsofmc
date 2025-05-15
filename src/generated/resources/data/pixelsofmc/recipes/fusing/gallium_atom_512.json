@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 31,
-  "neutron": 248,
+  "neutron": 304,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gallium_atom_512"
+    }
+  },
   "proton": 248,
   "x512": true
 }

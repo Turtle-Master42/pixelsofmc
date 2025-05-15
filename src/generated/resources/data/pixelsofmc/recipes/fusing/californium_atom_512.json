@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 98,
-  "neutron": 784,
+  "neutron": 1224,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:californium_atom_512"
+    }
+  },
   "proton": 784,
   "x512": true
 }

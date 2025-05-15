@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:royal_tungsten_ingot"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:royal_tungsten_wire"
+  }
+}

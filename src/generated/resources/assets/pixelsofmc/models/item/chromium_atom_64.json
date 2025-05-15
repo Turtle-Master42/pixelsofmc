@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/atoms/chromium_atom_64"
+    "layer0": "pixelsofmc:item/atom/chromium_atom",
+    "layer1": "pixelsofmc:item/atom/atom_64"
   }
 }

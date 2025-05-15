@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 25,
-  "neutron": 200,
+  "neutron": 240,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:manganese_atom_512"
+    }
+  },
   "proton": 200,
   "x512": true
 }

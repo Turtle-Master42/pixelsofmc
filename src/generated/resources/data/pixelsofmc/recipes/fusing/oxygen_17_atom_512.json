@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 8,
+  "neutron": 72,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:oxygen_17_atom_512"
+    }
+  },
+  "proton": 64,
+  "x512": true
+}

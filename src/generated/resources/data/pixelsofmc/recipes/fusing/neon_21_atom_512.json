@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 10,
+  "neutron": 88,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neon_21_atom_512"
+    }
+  },
+  "proton": 80,
+  "x512": true
+}

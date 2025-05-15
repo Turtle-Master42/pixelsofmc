@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 96,
-  "neutron": 96,
+  "neutron": 151,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:curium_atom_64"
+    }
+  },
   "proton": 96,
   "x512": false
 }

@@ -377,18 +377,25 @@ public class PixelsOfMc {
 								return stack;
 							}
 						}
+
+						if (tile != null) {
+							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
+							if (fluidHandlerFrom != null) {
+								int maxFill = bucketCapability.fill(fluidHandlerFrom.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
+								bucketCapability.fill(fluidHandlerFrom.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+							}
+							return stack;
+						}
 					}
 					if (!fluid.isEmpty()) {
 						if (tile != null) {
 							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
 							if (fluidHandlerFrom != null) {
-								if (fluidHandlerFrom.getTankCapacity(0) - fluidHandlerFrom.getFluidInTank(0).getAmount() >= 1000) { //TODO: check if this doesn't lose liquid if their is not enough space
-									fluidHandlerFrom.fill(bucketCapability.drain(4000, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
-								}
+								int maxFill = fluidHandlerFrom.fill(bucketCapability.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
+								fluidHandlerFrom.fill(bucketCapability.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
 							}
 							return stack;
 						}
-
 						if (bucket.emptyContents(null, level, relativePos, null, stack)) {
 							bucketCapability.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 							return stack;

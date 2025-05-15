@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 23,
+  "neutron": 216,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:vanadium_50_atom_512"
+    }
+  },
+  "proton": 184,
+  "x512": true
+}

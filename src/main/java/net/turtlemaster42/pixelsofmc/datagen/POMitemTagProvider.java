@@ -28,7 +28,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         for(Element element : Element.values()) {
             if (element.equals(Element.DEBUGIUM)) continue;
-            POMtags.MetalTags tags = POMtags.getTagsFor(element);
+            POMtags.ElementTags tags = POMtags.getTagsFor(element);
 
             tag(POMtags.Items.ATOM).add(element.atom64().asItem());
             tag(POMtags.Items.ATOM).add(element.atom512().asItem());
@@ -50,6 +50,30 @@ public class POMitemTagProvider extends ItemTagsProvider {
             if(element.getElement() >= 42 && element.getElement() <= 94) {
                 tag(POMtags.Items.MNS).add(element.atom64().asItem());
                 tag(POMtags.Items.MNS).add(element.atom512().asItem());
+            }
+
+            for (int i = 0; i < element.getIsotopes().getNeutrons().length; i++) {
+                tag(POMtags.Items.ATOM).add(element.isotope64(i).asItem());
+                tag(POMtags.Items.ATOM).add(element.isotope512(i).asItem());
+                tag(POMtags.Items.ATOM64).add(element.isotope64(i).asItem());
+                tag(POMtags.Items.ATOM512).add(element.isotope512(i).asItem());
+
+                if (element.getElement() >= 3 && element.getElement() <= 7) {
+                    tag(POMtags.Items.SDS).add(element.isotope64(i).asItem());
+                    tag(POMtags.Items.SDS).add(element.isotope512(i).asItem());
+                }
+                if (element.getElement() >= 38 && element.getElement() <= 41) {
+                    tag(POMtags.Items.SDS).add(element.isotope64(i).asItem());
+                    tag(POMtags.Items.SDS).add(element.isotope512(i).asItem());
+                }
+                if (element.getElement() >= 8 && element.getElement() <= 37) {
+                    tag(POMtags.Items.MDS).add(element.isotope64(i).asItem());
+                    tag(POMtags.Items.MDS).add(element.isotope512(i).asItem());
+                }
+                if (element.getElement() >= 42 && element.getElement() <= 94) {
+                    tag(POMtags.Items.MNS).add(element.isotope64(i).asItem());
+                    tag(POMtags.Items.MNS).add(element.isotope512(i).asItem());
+                }
             }
 
             if(element.shouldAddDust()) {

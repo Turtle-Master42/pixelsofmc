@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 11,
-  "neutron": 11,
+  "neutron": 12,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:sodium_atom_64"
+    }
+  },
   "proton": 11,
   "x512": false
 }

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 55,
-  "neutron": 55,
+  "neutron": 78,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:caesium_atom_64"
+    }
+  },
   "proton": 55,
   "x512": false
 }

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 39,
-  "neutron": 39,
+  "neutron": 50,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:yttrium_atom_64"
+    }
+  },
   "proton": 39,
   "x512": false
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/silver"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "pixelsofmc:wirecutter"
+    },
+    {
+      "item": "pixelsofmc:hammer"
+    }
+  ],
+  "result": {
+    "item": "pixelsofmc:silver_wire"
+  }
+}

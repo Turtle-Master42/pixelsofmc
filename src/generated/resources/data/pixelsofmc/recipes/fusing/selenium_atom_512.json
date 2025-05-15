@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 34,
-  "neutron": 272,
+  "neutron": 360,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:selenium_atom_512"
+    }
+  },
   "proton": 272,
   "x512": true
 }

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 49,
-  "neutron": 49,
+  "neutron": 66,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:indium_atom_64"
+    }
+  },
   "proton": 49,
   "x512": false
 }

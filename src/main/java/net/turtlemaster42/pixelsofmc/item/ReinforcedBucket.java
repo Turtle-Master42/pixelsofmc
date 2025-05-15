@@ -90,6 +90,7 @@ public class ReinforcedBucket extends Item {
         BlockPos blockpos = blockHitResult.getBlockPos();
         Direction direction = blockHitResult.getDirection();
         BlockPos relativePos = blockpos.relative(direction);
+
         if (!pLevel.mayInteract(pPlayer, blockpos) || !pPlayer.mayUseItemAt(relativePos, direction, itemStack)) {
             return InteractionResultHolder.pass(itemStack);
         }
@@ -97,8 +98,8 @@ public class ReinforcedBucket extends Item {
         IFluidHandlerItem fluidItem = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
         FluidStack fluid = fluidItem.getFluidInTank(0);
         BlockState state = pLevel.getBlockState(blockpos);
-        if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
 
+        if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
             if (state.getBlock() instanceof LiquidBlock liquidBlock) {
                 if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
                     pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
@@ -116,6 +117,7 @@ public class ReinforcedBucket extends Item {
                 return InteractionResultHolder.fail(itemStack);
             }
         }
+
         if (!fluid.isEmpty() && !pPlayer.isCrouching()) {
             BlockPos placePos = canBlockContainFluid(pLevel, blockpos, state, fluid.getFluid()) ? blockpos : relativePos;
             if (this.emptyContents(pPlayer, pLevel, placePos, blockHitResult, itemStack)) {

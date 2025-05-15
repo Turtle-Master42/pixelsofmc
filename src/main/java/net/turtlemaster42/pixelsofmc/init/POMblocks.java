@@ -331,7 +331,7 @@ public class POMblocks {
                     .noOcclusion()), "tooltip.pixelsofmc.block.bh_controller.shift", "", "tooltip.pixelsofmc.block.bh_controller.alt");
 
 
-    public static final class Metals {
+    public static final class Elements {
         public static final Map<Element, BlockRegObject<BaseBlock>> BLOCKS = new EnumMap<>(Element.class);
             private static void init() {
                 for (Element m : Element.values()) {
@@ -450,7 +450,7 @@ public class POMblocks {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
-        Metals.init();
+        Elements.init();
     }
 
     //Immersive Engineering

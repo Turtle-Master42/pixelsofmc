@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 77,
-  "neutron": 77,
+  "neutron": 115,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iridium_atom_64"
+    }
+  },
   "proton": 77,
   "x512": false
 }

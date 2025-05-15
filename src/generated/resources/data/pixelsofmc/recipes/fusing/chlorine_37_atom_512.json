@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 17,
+  "neutron": 160,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:chlorine_37_atom_512"
+    }
+  },
+  "proton": 136,
+  "x512": true
+}

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 51,
-  "neutron": 51,
+  "neutron": 71,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:antimony_atom_64"
+    }
+  },
   "proton": 51,
   "x512": false
 }

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 75,
-  "neutron": 600,
+  "neutron": 888,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:rhenium_atom_512"
+    }
+  },
   "proton": 600,
   "x512": true
 }

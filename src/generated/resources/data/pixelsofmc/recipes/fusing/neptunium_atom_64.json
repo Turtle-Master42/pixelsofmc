@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 93,
-  "neutron": 93,
+  "neutron": 144,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neptunium_atom_64"
+    }
+  },
   "proton": 93,
   "x512": false
 }

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 85,
-  "neutron": 85,
+  "neutron": 125,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:astatine_atom_64"
+    }
+  },
   "proton": 85,
   "x512": false
 }

@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 4,
+  "neutron": 6,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:beryllium_10_atom_64"
+    }
+  },
+  "proton": 4,
+  "x512": false
+}

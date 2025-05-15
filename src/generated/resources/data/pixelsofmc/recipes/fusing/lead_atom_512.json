@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 82,
-  "neutron": 656,
+  "neutron": 1000,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lead_atom_512"
+    }
+  },
   "proton": 656,
   "x512": true
 }

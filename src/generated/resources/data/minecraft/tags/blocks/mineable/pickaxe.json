@@ -77,6 +77,7 @@
     "pixelsofmc:machine_item_block",
     "pixelsofmc:titanium_block",
     "pixelsofmc:silver_block",
-    "pixelsofmc:tungsten_block"
+    "pixelsofmc:tungsten_block",
+    "pixelsofmc:lead_block"
   ]
 }

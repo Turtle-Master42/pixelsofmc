@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 99,
-  "neutron": 99,
+  "neutron": 153,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:einsteinium_atom_64"
+    }
+  },
   "proton": 99,
   "x512": false
 }

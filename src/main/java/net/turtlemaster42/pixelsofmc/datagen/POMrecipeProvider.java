@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import com.github.alexthe666.citadel.repack.jcodec.common.DictionaryCompressor;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.NbtPredicate;
@@ -19,6 +20,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
+import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -91,6 +93,85 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_OXIDE_DUST.get())))
                 .save(fConsumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.COPPER_WIRE.get())
+                .requires(POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
+                .requires(POMitems.CLEANING_CLOTH.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.CLEANING_CLOTH.get(), POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())))
+                .save(fConsumer, toRL("copper_wire_cleaning"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.COPPER_WIRE.get())
+                .requires(Tags.Items.INGOTS_COPPER)
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("copper_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.COPPER_WIRE.get())
+                .requires(POMitems.COPPER_SHEET.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.COPPER_SHEET.get())))
+                .save(fConsumer, toRL("copper_wire_3"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SILVER_WIRE.get())
+                .requires(POMtags.getTagsFor(Element.SILVER).metal)
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("silver_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.TUNGSTEN_WIRE.get())
+                .requires(POMtags.getTagsFor(Element.TUNGSTEN).metal)
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("tungsten_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.TUNGSTEN_WIRE.get())
+                .requires(POMitems.TUNGSTEN_PLATING.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("tungsten_wire_3"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
+                .requires(Tags.Items.INGOTS_COPPER)
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .requires(Items.REDSTONE, 4)
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("redstone_layered_copper_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
+                .requires(POMitems.COPPER_SHEET.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(Items.REDSTONE, 4)
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.COPPER_SHEET.get())))
+                .save(fConsumer, toRL("redstone_layered_copper_wire_3"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.RED_SILVER_WIRE.get())
+                .requires(POMitems.RED_SILVER_INGOT.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("red_silver_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.ROYAL_TUNGSTEN_WIRE.get())
+                .requires(POMitems.ROYAL_TUNGSTEN_INGOT.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .requires(POMitems.HAMMER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                .save(fConsumer, toRL("royal_tungsten_wire_2"));
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.MANA_AMALGAMATION.get())
                 .requires(Items.ENDER_PEARL)
@@ -434,18 +515,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.DRAGON_EYE.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.MOVING_PARTS.get())
-                .define('A', POMitems.BIO_PLASTIC.get())
-                .define('B', Tags.Items.DUSTS_REDSTONE)
-                .define('C', POMitems.COPPER_WIRE.get())
-                .define('D', Items.DRIED_KELP)
-                .define('E', Tags.Items.INGOTS_IRON)
-                .pattern("ACA")
-                .pattern("ADA")
-                .pattern("BEB")
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.BIO_PLASTIC.get(), POMitems.COPPER_WIRE.get())))
-                .save(fConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.TITANIUM_UPGRADE_TEMPLATE.get(), 1)
@@ -559,7 +628,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.GRINDER.get())
-                .define('A', POMitems.MOVING_PARTS.get())
+                .define('A', POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', Element.TITANIUM.block())
                 .define('D', Items.NETHERITE_INGOT)
@@ -571,7 +640,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.BALL_MILL.get())
-                .define('A', POMitems.MOVING_PARTS.get())
+                .define('A', POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', Element.TITANIUM.block())
                 .define('D', Element.TITANIUM.itemTag())
@@ -2043,6 +2112,73 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                     SimpleCompactingRecipe(toI(e.item()), e.block(), fConsumer);
             }
         }
+
+        //TEST
+        List<String> map_values = new ArrayList<>();
+        Map<String, Double> massMap = new HashMap<>();
+        Map<String, Float> bitMassMap = new HashMap<>();
+        Map<String, Integer> protonMap = new HashMap<>();
+        Map<String, Integer> neutronMap = new HashMap<>();
+
+        for(Element element_mapping : Element.values()) {
+            String name = String.valueOf(element_mapping);
+
+            map_values.add(name);
+            massMap.put(name, element_mapping.getMass());
+            bitMassMap.put(name, element_mapping.getBitMass());
+            protonMap.put(name, element_mapping.getElement());
+            neutronMap.put(name, element_mapping.getNeutrons());
+
+            Element.Isotopes isotopes = element_mapping.getIsotopes();
+            for (int i = 0; i < isotopes.getNeutrons().length; i++) {
+
+                name = element_mapping + "_" + (element_mapping.getElement() + isotopes.getNeutrons()[i]);
+
+                map_values.add(name);
+                massMap.put(name, isotopes.getMass(isotopes.getNeutrons()[i]));
+                bitMassMap.put(name, isotopes.getBitMass(isotopes.getNeutrons()[i]));
+                protonMap.put(name, element_mapping.getElement());
+                neutronMap.put(name, isotopes.getNeutrons()[i]);
+            }
+        }
+
+        double true_most_efficient = -1_000_000_000;
+        String[] true_best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
+
+        for (String output : map_values) {
+            String[] best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
+            double most_efficient = -1_000_000_000;
+            for (String e1 : map_values) {
+                for (String e2 : map_values) {
+                    if (protonMap.get(e1) + protonMap.get(e2) != protonMap.get(output)) continue;
+                    if (neutronMap.get(e1) + neutronMap.get(e2) != neutronMap.get(output)) {continue;}
+
+                    double deltaMass = massMap.get(e1) + massMap.get(e2) - massMap.get(output);
+                    double released_energy = deltaMass * Constants.cSquared * Constants.fusionEnergyReleaseConstant * 64;
+                    double temperature = released_energy / Constants.plasmaHeatingPerJoule;
+
+                    if (temperature > most_efficient) {
+                        most_efficient = temperature;
+                        best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
+                    }
+                    if (temperature > true_most_efficient) {
+                        true_most_efficient = temperature;
+                        true_best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
+                    }
+
+                    double energy = (protonMap.get(e1) * protonMap.get(e2)) / (5.636*Math.pow(10, 12)*(Math.pow(bitMassMap.get(e1), 0.333) + Math.pow(bitMassMap.get(e2), 0.333)));
+                    // calculate the temperature
+                    double temp = (Math.PI * Math.abs(energy)) / (4 * 1.3806 * Math.pow(10, -23)) / Constants.fusionTemperatureDivider;
+
+                    // element 1 over element 2
+                    PixelsOfMc.LOGGER.info("{} - > {} + {} = {} ({})", output, e1, e2, temperature, temp);
+                }
+            }
+            PixelsOfMc.LOGGER.info("{} -> {} ({} + {})", output, most_efficient, best_match[0], best_match[1]);
+        }
+
+        PixelsOfMc.LOGGER.info("{} ({} + {})", true_most_efficient, true_best_match[0], true_best_match[1]);
+
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
@@ -2207,19 +2343,65 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
+    private double true_most_efficient = -1_000_000_000;
+    private Element[] true_best_match = {Element.DEBUGIUM, Element.DEBUGIUM};
+
     private void Fusing(Element element, Consumer<FinishedRecipe> consumer) {
-        if (element.equals(Element.HYDROGEN)) {
-            Fusing(element, false, element.getElement(), 0, consumer);
-            Fusing(element, true, element.getElement() * 8, 0, consumer);
-        } else {
-            Fusing(element, false, element.getElement(), element.getElement(), consumer);
-            Fusing(element, true, element.getElement() * 8, element.getElement() * 8, consumer);
+        Fusing(element, false, consumer);
+        Fusing(element, true, consumer);
+        for (int i = 0; i < element.getIsotopes().getBitMasses().length; i++) {
+            Fusing(element.isotope64(i), element, false, element.getIsotopes().getNeutrons()[i], consumer);
+            Fusing(element.isotope512(i), element, true, element.getIsotopes().getNeutrons()[i], consumer);
         }
+
+        //efficiency test
+//        String[] best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
+//        double most_efficient = -1_000_000_000;
+        // iterate element 1
+//        for(Element e1 : Element.values()) {
+//
+//            // iterate element 2
+//            for (Element e2 : Element.values()) {
+//                if (e1.getElement() + e2.getElement() != element.getElement()) continue;
+//                if (e1.getNeutrons() + e2.getNeutrons() != element.getNeutrons()) {
+//                    continue;
+//                };
+//
+//                double deltaMass = e1.getMass() + e2.getMass() - element.getMass();
+//                double released_energy = deltaMass * Constants.cSquared * Constants.fusionEnergyReleaseConstant * 64;
+//                double temperature = released_energy / Constants.plasmaHeatingPerJoule;
+//
+//                if (temperature > most_efficient) {
+//                    most_efficient = temperature;
+//                    best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
+//                }
+//                if (temperature > true_most_efficient) {
+//                    true_most_efficient = temperature;
+//                    true_best_match = new Element[]{e1, e2};
+//                }
+//
+//                double energy = (e1.getElement() * e2.getElement()) / (5.636*Math.pow(10, 12)*(Math.pow(e1.getBitMass(), 0.333) + Math.pow(e2.getBitMass(), 0.333)));
+//                // calculate the temperature
+//                double temp = (Math.PI * Math.abs(energy)) / (4 * 1.3806 * Math.pow(10, -23)) / Constants.fusionTemperatureDivider;
+//
+//
+//                // element 1 over element 2
+//                PixelsOfMc.LOGGER.info("{} + {} = {} ({}), ({})", e1, e2, released_energy, temperature, temp);
+//            }
+//
+//        }
+//        PixelsOfMc.LOGGER.info("{} -> {} ({} + {})", element, most_efficient, best_match[0], best_match[1]);
+
     }
-    private void Fusing(Element element, boolean x512, int proton, int neutron, Consumer<FinishedRecipe> consumer) {
-        new FusionRecipeBuilder(element, proton, neutron, x512)
+    private void Fusing(Element element, boolean x512, Consumer<FinishedRecipe> consumer) {
+        new FusionRecipeBuilder(element, x512)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer, toRL("fusing/" + (x512 ? element.atom512().asItem().toString() : element.atom64().asItem().toString())));
+    }
+    private void Fusing(Item output, Element element, boolean x512, int neutron, Consumer<FinishedRecipe> consumer) {
+        new FusionRecipeBuilder(element, CountedIngredient.of(output), neutron, x512)
+                .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
+                .save(consumer, toRL("fusing/" + output.asItem()));
     }
 
 

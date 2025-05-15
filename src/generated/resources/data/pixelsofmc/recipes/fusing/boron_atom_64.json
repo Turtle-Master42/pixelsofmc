@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 5,
-  "neutron": 5,
+  "neutron": 6,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:boron_atom_64"
+    }
+  },
   "proton": 5,
   "x512": false
 }

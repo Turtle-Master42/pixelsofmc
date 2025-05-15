@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 16,
+  "neutron": 17,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:sulfur_33_atom_64"
+    }
+  },
+  "proton": 16,
+  "x512": false
+}

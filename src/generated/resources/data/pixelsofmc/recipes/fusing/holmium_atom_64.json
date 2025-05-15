@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 67,
-  "neutron": 67,
+  "neutron": 98,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:holmium_atom_64"
+    }
+  },
   "proton": 67,
   "x512": false
 }

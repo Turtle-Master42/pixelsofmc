@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 64,
-  "neutron": 64,
+  "neutron": 93,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:gadolinium_atom_64"
+    }
+  },
   "proton": 64,
   "x512": false
 }

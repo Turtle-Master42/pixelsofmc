@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 60,
-  "neutron": 60,
+  "neutron": 84,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:neodymium_atom_64"
+    }
+  },
   "proton": 60,
   "x512": false
 }

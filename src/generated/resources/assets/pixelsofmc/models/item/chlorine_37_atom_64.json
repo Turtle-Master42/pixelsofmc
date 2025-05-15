@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/atom/chlorine_atom",
+    "layer1": "pixelsofmc:item/atom/isotope_64"
+  }
+}

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 62,
-  "neutron": 496,
+  "neutron": 704,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:samarium_atom_512"
+    }
+  },
   "proton": 496,
   "x512": true
 }

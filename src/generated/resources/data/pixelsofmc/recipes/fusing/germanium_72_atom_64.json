@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 32,
+  "neutron": 40,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:germanium_72_atom_64"
+    }
+  },
+  "proton": 32,
+  "x512": false
+}

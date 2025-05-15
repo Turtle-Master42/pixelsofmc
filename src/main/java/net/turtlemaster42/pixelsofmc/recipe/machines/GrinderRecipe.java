@@ -47,7 +47,9 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
     public ItemStack getResultItems(int index) {
-        return outputs.get(index).getItems()[0];
+        if (!outputs.isEmpty() && outputs.get(index).getItems().length > 0)
+            return outputs.get(index).getItems()[0];
+        return ItemStack.EMPTY;
     }
 
     @Override

@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 73,
-  "neutron": 73,
+  "neutron": 108,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tantalum_atom_64"
+    }
+  },
   "proton": 73,
   "x512": false
 }

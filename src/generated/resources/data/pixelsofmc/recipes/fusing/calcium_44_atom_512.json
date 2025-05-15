@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 20,
+  "neutron": 192,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:calcium_44_atom_512"
+    }
+  },
+  "proton": 160,
+  "x512": true
+}

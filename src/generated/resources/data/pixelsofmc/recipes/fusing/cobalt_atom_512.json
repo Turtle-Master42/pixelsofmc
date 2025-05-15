@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 27,
-  "neutron": 216,
+  "neutron": 256,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cobalt_atom_512"
+    }
+  },
   "proton": 216,
   "x512": true
 }

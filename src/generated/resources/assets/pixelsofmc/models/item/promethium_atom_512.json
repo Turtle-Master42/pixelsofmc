@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/atoms/promethium_atom_512"
+    "layer0": "pixelsofmc:item/atom/promethium_atom",
+    "layer1": "pixelsofmc:item/atom/atom_512"
   }
 }

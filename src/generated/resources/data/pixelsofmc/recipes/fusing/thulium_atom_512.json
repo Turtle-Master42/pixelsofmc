@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 69,
-  "neutron": 552,
+  "neutron": 800,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thulium_atom_512"
+    }
+  },
   "proton": 552,
   "x512": true
 }

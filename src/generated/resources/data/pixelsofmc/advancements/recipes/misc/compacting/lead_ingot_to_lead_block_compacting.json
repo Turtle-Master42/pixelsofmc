@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:lead_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pixelsofmc:compacting/lead_ingot_to_lead_block_compacting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pixelsofmc:compacting/lead_ingot_to_lead_block_compacting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 25,
+  "neutron": 28,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:manganese_53_atom_64"
+    }
+  },
+  "proton": 25,
+  "x512": false
+}

@@ -1,0 +1,47 @@
+{
+  "type": "pixelsofmc:pixel_assembling",
+  "colors": [
+    {
+      "B": 133,
+      "G": 107,
+      "R": 111
+    },
+    {
+      "B": 93,
+      "G": 70,
+      "R": 73
+    },
+    {
+      "B": 51,
+      "G": 39,
+      "R": 41
+    }
+  ],
+  "inputs": [
+    {
+      "count": 64,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 27,
+      "ingredient": {
+        "item": "pixelsofmc:pixel_pile"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:pixel"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lead_block"
+    }
+  },
+  "structure": "element.pixelsofmc.lead"
+}

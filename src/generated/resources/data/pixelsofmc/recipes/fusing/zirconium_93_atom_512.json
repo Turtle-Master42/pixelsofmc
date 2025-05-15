@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 40,
+  "neutron": 424,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:zirconium_93_atom_512"
+    }
+  },
+  "proton": 320,
+  "x512": true
+}

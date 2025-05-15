@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 56,
-  "neutron": 56,
+  "neutron": 81,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:barium_atom_64"
+    }
+  },
   "proton": 56,
   "x512": false
 }

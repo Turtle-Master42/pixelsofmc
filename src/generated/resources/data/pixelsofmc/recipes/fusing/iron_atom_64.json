@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 26,
-  "neutron": 26,
+  "neutron": 30,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:iron_atom_64"
+    }
+  },
   "proton": 26,
   "x512": false
 }

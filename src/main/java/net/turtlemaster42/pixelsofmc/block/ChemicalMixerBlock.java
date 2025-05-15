@@ -38,7 +38,16 @@ public class ChemicalMixerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
     private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 32, 16) //base
+            box(0, 0, 0, 16, 12, 16), //base
+            box(0, 12, 2, 16, 31, 12), //tanks
+            box(2, 31, 4, 14, 32, 10), //cap
+            box(4, 12, 12, 12, 15, 14), //screen 1
+            box(4, 12, 14, 12, 14, 15), //screen 2
+            box(4, 12, 15, 12, 13, 16), //screen 3
+            box(2, 12, 0, 14, 14, 2), //back bar 1
+            box(2, 17, 0, 14, 21, 2), //back bar 2
+            box(2, 24, 0, 14, 28, 2), //back bar 3
+            box(5, 14, 0, 11, 29, 2) //back spine
     );
 
     public ChemicalMixerBlock(Properties properties) {

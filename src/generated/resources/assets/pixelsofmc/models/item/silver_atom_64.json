@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/atoms/silver_atom_64"
+    "layer0": "pixelsofmc:item/atom/silver_atom",
+    "layer1": "pixelsofmc:item/atom/atom_64"
   }
 }

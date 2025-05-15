@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:moving_parts"
+      "item": "pixelsofmc:redstone_layered_copper_wire"
     },
     "B": {
       "tag": "forge:dusts/redstone"

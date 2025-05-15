@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 65,
-  "neutron": 65,
+  "neutron": 94,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:terbium_atom_64"
+    }
+  },
   "proton": 65,
   "x512": false
 }

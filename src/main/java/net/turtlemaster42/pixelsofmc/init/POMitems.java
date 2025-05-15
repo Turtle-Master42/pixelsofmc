@@ -17,6 +17,7 @@ import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -165,7 +166,7 @@ public class POMitems {
 	public static final RegistryObject<Item> PERFECTED_CIRCUIT_BOARD_2 = ITEMS.register("perfected_circuit_board_2", () -> new Item(new Item.Properties()));
 
 	//machine parts
-	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
+//	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8_000_000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
@@ -232,9 +233,11 @@ public class POMitems {
 	public static final RegistryObject<Item> AMMONIA_GAS_BUCKET = BUCKETS.register("ammonia_gas_bucket", () -> new GasBucketItem(POMfluids.AMMONIA_GAS_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
 
-	public static final class Metals {
+	public static final class Elements {
 		public static final Map<Element, RegistryObject<Item>> ATOMX512 = new EnumMap<>(Element.class);
 		public static final Map<Element, RegistryObject<Item>> ATOMX64 = new EnumMap<>(Element.class);
+		public static final Map<String, RegistryObject<Item>> ISOTOPEX512 = new HashMap<>();
+		public static final Map<String, RegistryObject<Item>> ISOTOPEX64 = new HashMap<>();
 		public static final Map<Element, RegistryObject<Item>> ELEMENTS = new EnumMap<>(Element.class);
 		public static final Map<Element, RegistryObject<Item>> NUGGETS = new EnumMap<>(Element.class);
 		public static final Map<Element, RegistryObject<Item>> DUSTS = new EnumMap<>(Element.class);
@@ -263,9 +266,16 @@ public class POMitems {
 				if (m.shouldAddDust()) dust = registerDust(elementName+"_dust", () -> new ElementItem(m, finalProperties));
 				atomx64 = registerAtom(elementName+"_atom_64", () -> new AtomItem(m, finalProperties));
 				atomx512 = registerAtom(elementName+"_atom_512", () -> new AtomItem(m, finalProperties));
-
 				ATOMX64.put(m, atomx64.regObject);
 				ATOMX512.put(m, atomx512.regObject);
+				for (int i = 0; i < m.getIsotopes().getNeutrons().length; i++) {
+					int extraNeutrons = m.getIsotopes().getNeutrons()[i] - m.getNeutrons();
+					ItemRegObject<Item> isotopex64 = registerAtom(elementName+"_"+(m.getIsotopes().getNeutrons()[i] + m.getElement())+"_atom_64", () -> new AtomItem(m, extraNeutrons, finalProperties));
+					ItemRegObject<Item> isotopex512 = registerAtom(elementName+"_"+(m.getIsotopes().getNeutrons()[i] + m.getElement())+"_atom_512", () -> new AtomItem(m, extraNeutrons, finalProperties));
+					ISOTOPEX64.put(m + "_" + (m.getIsotopes().getNeutrons()[i] + m.getElement()), isotopex64.regObject);
+					ISOTOPEX512.put(m + "_" + (m.getIsotopes().getNeutrons()[i] + m.getElement()), isotopex512.regObject);
+				}
+
 				if (dust != null)
 					DUSTS.put(m, dust.regObject);
 				if (nugget != null)
@@ -300,7 +310,7 @@ public class POMitems {
 		BUCKETS.register(bus);
 		ELEMENTS.register(bus);
 		ATOMS.register(bus);
-		Metals.init();
+		Elements.init();
 	}
 
 

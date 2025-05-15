@@ -1,7 +1,13 @@
 {
   "type": "pixelsofmc:fusing",
   "element": 84,
-  "neutron": 84,
+  "neutron": 125,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:polonium_atom_64"
+    }
+  },
   "proton": 84,
   "x512": false
 }

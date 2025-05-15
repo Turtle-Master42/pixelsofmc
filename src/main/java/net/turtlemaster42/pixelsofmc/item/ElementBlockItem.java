@@ -27,7 +27,7 @@ public class ElementBlockItem extends BlockItem {
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
         if (Screen.hasShiftDown()) {
 
-            int dangerAmount = e.getInfo().getDangerAmount();
+            int dangerAmount = e.getInfo().getDangerCount();
 
             if (Screen.hasControlDown()) {
                 tooltipComponents.add(Component.translatable("tooltip.pixelsofmc.state"));

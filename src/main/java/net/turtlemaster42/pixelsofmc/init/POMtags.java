@@ -20,7 +20,7 @@ public class POMtags {
         Items.init();
         Blocks.init();
     }
-    private static final Map<Element, MetalTags> elements = new EnumMap<>(Element.class);
+    private static final Map<Element, ElementTags> elements = new EnumMap<>(Element.class);
 
     public static class Items {
         private static void init() {}
@@ -75,15 +75,15 @@ public class POMtags {
     static
     {
         for(Element m : Element.values())
-            elements.put(m, new MetalTags(m));
+            elements.put(m, new ElementTags(m));
     }
-    public static class MetalTags {
+    public static class ElementTags {
         public final TagKey<Item> metal;
         public final TagKey<Item> dust;
         public final TagKey<Item> nugget;
         public final TagKey<Item> other;
 
-        private MetalTags(Element m)
+        private ElementTags(Element m)
         {
             String name = m.elementName();
             metal = createItemWrapper(getIngot(name));
@@ -93,7 +93,7 @@ public class POMtags {
         }
     }
 
-    public static MetalTags getTagsFor(Element element)
+    public static ElementTags getTagsFor(Element element)
     {
         return elements.get(element);
     }
