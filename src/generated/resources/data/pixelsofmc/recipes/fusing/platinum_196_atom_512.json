@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 78,
+  "neutron": 944,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:platinum_196_atom_512"
+    }
+  },
+  "proton": 624,
+  "x512": true
+}

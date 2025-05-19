@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +40,7 @@ public class POMRecipeBuilder implements RecipeBuilder {
     }
 
     public static ResourceLocation advancementID(@NotNull ResourceLocation id) {
-        return new ResourceLocation(id.getNamespace(), "recipes/misc/" + id.getPath());
+        return Util.resourceLocation(id.getNamespace(), "recipes/misc/" + id.getPath());
     }
 
     protected FinishedRecipe save(@NotNull ResourceLocation id) {
@@ -48,7 +49,7 @@ public class POMRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(@NotNull Consumer<FinishedRecipe> consumer, @NotNull ResourceLocation id) {
-        this.advancement.parent(new ResourceLocation("recipes/root"))
+        this.advancement.parent(Util.resourceLocation("minecraft", "recipes/root"))
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
                 .rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
         consumer.accept(save(id));
@@ -73,7 +74,7 @@ public class POMRecipeBuilder implements RecipeBuilder {
 
         @Override
         public @NotNull ResourceLocation getId() {
-            return new ResourceLocation(PixelsOfMc.MOD_ID, id.getPath());
+            return Util.resourceLocation(id.getPath());
         }
 
         @Override

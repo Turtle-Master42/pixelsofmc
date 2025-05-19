@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 35,
+  "neutron": 46,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:bromine_81_atom_64"
+    }
+  },
+  "proton": 35,
+  "x512": false
+}

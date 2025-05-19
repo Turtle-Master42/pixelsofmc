@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 68,
+  "neutron": 100,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:erbium_168_atom_64"
+    }
+  },
+  "proton": 68,
+  "x512": false
+}

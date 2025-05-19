@@ -1,8 +1,10 @@
 package net.turtlemaster42.pixelsofmc.util;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 
 import java.util.List;
 
@@ -96,5 +98,13 @@ public class Util {
             fancyNumber.insert(0, "-");
 
         return fancyNumber.deleteCharAt(fancyNumber.length() - 1).toString();
+    }
+
+    public static ResourceLocation resourceLocation(String path) {
+        return new ResourceLocation(PixelsOfMc.MOD_ID, path);
+    }
+
+    public static ResourceLocation resourceLocation(String name, String path) {
+        return new ResourceLocation(name, path);
     }
 }

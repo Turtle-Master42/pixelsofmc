@@ -12,6 +12,7 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 
 public class POMitemModelProvider extends ItemModelProvider {
@@ -29,10 +30,6 @@ public class POMitemModelProvider extends ItemModelProvider {
             createNuggetModels(m);
             createAtomModels(m);
         }
-        atomItem(POMitems.DEUTERIUM_ATOM_64);
-        atomItem(POMitems.TRITIUM_ATOM_64);
-        atomItem(POMitems.DEUTERIUM_ATOM_512);
-        atomItem(POMitems.TRITIUM_ATOM_512);
 
         simpleItem(POMitems.BOOK_1);
         simpleItem(POMitems.CLEANING_SPONGE);
@@ -262,74 +259,80 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.TUNGSTEN_PLATING_STAIRS);
         complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB);
         complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS);
+        complexBlock(POMblocks.MULTIBLOCK_CASING_STAIRS);
+        complexBlock(POMblocks.MULTIBLOCK_CASING_SLAB);
+        complexBlock(POMblocks.FISSION_CASING_STAIRS);
+        complexBlock(POMblocks.FISSION_CASING_SLAB);
+        complexBlock(POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS);
+        complexBlock(POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/generated")).texture("layer0",
+                Util.resourceLocation("item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"block/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/generated")).texture("layer0",
+                Util.resourceLocation("block/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/handheld")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/handheld")).texture("layer0",
+                Util.resourceLocation("item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder elementItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/elements/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/generated")).texture("layer0",
+                Util.resourceLocation("item/elements/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder dustItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/dusts/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/generated")).texture("layer0",
+                Util.resourceLocation("item/dusts/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder atomItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(PixelsOfMc.MOD_ID,"item/atoms/" + item.getId().getPath()));
+                Util.resourceLocation("minecraft", "item/generated")).texture("layer0",
+                Util.resourceLocation("item/atoms/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder atom64Item(Element element) {
-        return withExistingParent(POMitems.Elements.ATOMX64.get(element).getId().getPath(), new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + element.elementName()+"_atom"))
-                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/atom_64"));
+        return withExistingParent(POMitems.Elements.ATOMX64.get(element).getId().getPath(), Util.resourceLocation("minecraft", "item/generated"))
+                .texture("layer0", Util.resourceLocation("item/atom/" + element.elementName()+"_atom"))
+                .texture("layer1", Util.resourceLocation("item/atom/atom_64"));
     }
 
     private ItemModelBuilder atom512Item(Element element) {
-        return withExistingParent(POMitems.Elements.ATOMX512.get(element).getId().getPath(), new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + element.elementName()+"_atom"))
-                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/atom_512"));
+        return withExistingParent(POMitems.Elements.ATOMX512.get(element).getId().getPath(), Util.resourceLocation("minecraft", "item/generated"))
+                .texture("layer0", Util.resourceLocation("item/atom/" + element.elementName()+"_atom"))
+                .texture("layer1", Util.resourceLocation("item/atom/atom_512"));
     }
 
     private ItemModelBuilder isotope64Item(String path, RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + path))
-                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/isotope_64"));
+        return withExistingParent(item.getId().getPath(), Util.resourceLocation("minecraft", "item/generated"))
+                .texture("layer0", Util.resourceLocation("item/atom/" + path))
+                .texture("layer1", Util.resourceLocation("item/atom/isotope_64"));
     }
 
     private ItemModelBuilder isotope512Item(String path, RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
-                .texture("layer0", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/" + path))
-                .texture("layer1", new ResourceLocation(PixelsOfMc.MOD_ID,"item/atom/isotope_512"));
+        return withExistingParent(item.getId().getPath(), Util.resourceLocation("minecraft", "item/generated"))
+                .texture("layer0", Util.resourceLocation("item/atom/" + path))
+                .texture("layer1", Util.resourceLocation("item/atom/isotope_512"));
     }
 
     private ItemModelBuilder simpleBlock(RegistryObject<Block> block) {
         return cubeAll(block.getId().getPath(),
-                new ResourceLocation(PixelsOfMc.MOD_ID, "block/" + block.getId().getPath()));
+                Util.resourceLocation("block/" + block.getId().getPath()));
     }
     private ItemModelBuilder complexBlock(RegistryObject<?> block) {
-        return withExistingParent(block.getId().getPath(), new ResourceLocation(PixelsOfMc.MOD_ID,
+        return withExistingParent(block.getId().getPath(), Util.resourceLocation(
                 "block/" + block.getId().getPath()));
     }
 
@@ -348,6 +351,15 @@ public class POMitemModelProvider extends ItemModelProvider {
     private void createAtomModels(Element element) {
         atom64Item(element);
         atom512Item(element);
+
+        if (element.equals(Element.HYDROGEN)) {
+            isotope64Item("deuterium_atom", POMitems.Elements.ISOTOPEX64.get("HYDROGEN_2"));
+            isotope512Item("deuterium_atom", POMitems.Elements.ISOTOPEX512.get("HYDROGEN_2"));
+            isotope64Item("tritium_atom", POMitems.Elements.ISOTOPEX64.get("HYDROGEN_3"));
+            isotope512Item("tritium_atom", POMitems.Elements.ISOTOPEX512.get("HYDROGEN_3"));
+            return;
+        }
+
         for (int i = 0; i < element.getIsotopes().getNeutrons().length; i++) {
             isotope64Item(element.elementName()+"_atom", POMitems.Elements.ISOTOPEX64.get(element+"_"+(element.getIsotopes().getNeutrons()[i] + element.getElement())));
             isotope512Item(element.elementName()+"_atom", POMitems.Elements.ISOTOPEX512.get(element+"_"+(element.getIsotopes().getNeutrons()[i] + element.getElement())));

@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import org.jetbrains.annotations.NotNull;
@@ -104,8 +105,7 @@ public class ChemicalMixerRecipe implements Recipe<FluidContainer> {
 
     public static class Serializer implements RecipeSerializer<ChemicalMixerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_mixing");
+        public static final ResourceLocation ID = Util.resourceLocation("chemical_mixing");
 
         public @NotNull ChemicalMixerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output

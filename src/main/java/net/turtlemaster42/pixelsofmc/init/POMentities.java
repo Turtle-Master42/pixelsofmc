@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 public class POMentities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
@@ -18,7 +19,7 @@ public class POMentities {
             ENTITY_TYPES.register("river_shell",
                     () -> EntityType.Builder.of(RiverShellEntity::new, MobCategory.CREATURE)
                             .sized(0.6f, 0.5f)
-                            .build(new ResourceLocation(PixelsOfMc.MOD_ID, "test").toString()));
+                            .build(Util.resourceLocation("test").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

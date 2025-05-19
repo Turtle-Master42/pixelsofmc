@@ -9,12 +9,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.turtlemaster42.pixelsofmc.block.HotIsostaticPressBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.ModelHotIsostaticPress;
 import org.jetbrains.annotations.NotNull;
 
 public class HotIsostaticPressRenderer<T extends HotIsostaticPressTile> implements BlockEntityRenderer<T> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("pixelsofmc:textures/block/hot_isostatic_press.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/block/hot_isostatic_press.png");
     private static final ModelHotIsostaticPress MODEL = new ModelHotIsostaticPress();
 
     public HotIsostaticPressRenderer(BlockEntityRendererProvider.Context context) {

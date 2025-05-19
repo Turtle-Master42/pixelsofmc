@@ -19,9 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionControllerMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/sds_controller_gui.png");
-
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/sds_controller_gui.png");
     private InfiniteEnergyArea infiniteEnergyArea;
     private NameArea nameArea;
     private FluidArea fluidArea1;

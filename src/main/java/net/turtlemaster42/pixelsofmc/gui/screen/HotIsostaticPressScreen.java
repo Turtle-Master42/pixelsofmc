@@ -16,12 +16,13 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPressMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/hot_isostatic_press_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/hot_isostatic_press_gui.png");
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;

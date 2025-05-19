@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 public class SpriteCycleButton extends AbstractButton {
     private int state = 0;
@@ -39,7 +40,7 @@ public class SpriteCycleButton extends AbstractButton {
     public SpriteCycleButton(int pX, int pY, int pWidth, int pHeight, int cycles, OnPress onPress, Component pMessage) {
         super(pX, pY, pWidth, pHeight, pMessage);
         this.maxState = cycles;
-        this.TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
+        this.TEXTURE = Util.resourceLocation("textures/gui/widgets/widgets.png");
         this.onPress = onPress;
     }
 

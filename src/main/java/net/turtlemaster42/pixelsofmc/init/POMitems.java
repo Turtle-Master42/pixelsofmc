@@ -288,18 +288,12 @@ public class POMitems {
 		}
 	}
 
-
-
 	public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new Test(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> PLACE_HOLDER = ITEMS.register("place_holder", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> DEBUGIUM_INGOT = ITEMS.register("debugium_ingot", () -> new Debugium(Element.DEBUGIUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> PIXEL = ITEMS.register("pixel", () -> new PixelItem(new Item.Properties(), 4096));
 	public static final RegistryObject<Item> PIXEL_PILE = ITEMS.register("pixel_pile", () -> new PixelItem(new Item.Properties(), 32768));
 	public static final RegistryObject<Item> INFINITE_POWER_CELL = ITEMS.register("infinite_power_cell", () -> new InfinitePowerCellItem(new Item.Properties().rarity(Rarity.EPIC), new InfiniteNumber().fromString("1000000000000000000000000000000000000"), new Color(255, 170, 0).getRGB(), ChatFormatting.GOLD));
-	public static final RegistryObject<Item> DEUTERIUM_ATOM_64 = ATOMS.register("deuterium_atom_64", () -> new AtomItem(Element.HYDROGEN, 1));
-	public static final RegistryObject<Item> TRITIUM_ATOM_64 = ATOMS.register("tritium_atom_64", () -> new AtomItem(Element.HYDROGEN, 2));
-	public static final RegistryObject<Item> DEUTERIUM_ATOM_512 = ATOMS.register("deuterium_atom_512", () -> new AtomItem(Element.HYDROGEN, 1));
-	public static final RegistryObject<Item> TRITIUM_ATOM_512 = ATOMS.register("tritium_atom_512", () -> new AtomItem(Element.HYDROGEN, 2));
 
 	public static void register(IEventBus bus) {
 		BLOCK_ITEMS.register(bus);

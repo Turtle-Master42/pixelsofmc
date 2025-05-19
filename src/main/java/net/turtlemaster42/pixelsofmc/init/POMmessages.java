@@ -8,6 +8,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.turtlemaster42.pixelsofmc.network.packets.*;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 public class POMmessages {
     private static SimpleChannel INSTANCE;
@@ -18,7 +19,7 @@ public class POMmessages {
 
     public static void register() {
         SimpleChannel net = NetworkRegistry.ChannelBuilder
-                .named(new ResourceLocation(PixelsOfMc.MOD_ID, "messages"))
+                .named(Util.resourceLocation("messages"))
                 .networkProtocolVersion(() -> "1.0")
                 .clientAcceptedVersions(s -> true)
                 .serverAcceptedVersions(s -> true)

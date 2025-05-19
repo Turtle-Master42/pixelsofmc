@@ -16,6 +16,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelAssemblerRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PixelAssemblerRecipeCategory extends BaseCategory<PixelAssemblerRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "pixel_assembling");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_assembler_gui.png");
+    public final static ResourceLocation UID = Util.resourceLocation( "pixel_assembling");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/pixel_assembler_gui.png");
 
     public PixelAssemblerRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 25, 25, 120, 57);

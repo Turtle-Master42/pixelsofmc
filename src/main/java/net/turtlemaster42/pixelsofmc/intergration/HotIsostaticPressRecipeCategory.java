@@ -19,14 +19,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
 public class HotIsostaticPressRecipeCategory extends BaseCategory<HotIsostaticPressRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "pressing");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/hot_isostatic_press.png");
+    public final static ResourceLocation UID = Util.resourceLocation("pressing");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/hot_isostatic_press.png");
 
     private final IDrawable flame_small;
     private final IDrawable flame;

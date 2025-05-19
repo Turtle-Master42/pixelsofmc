@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 69,
+  "neutron": 102,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:thulium_171_atom_64"
+    }
+  },
+  "proton": 69,
+  "x512": false
+}

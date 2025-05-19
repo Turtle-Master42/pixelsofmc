@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 57,
+  "neutron": 648,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lanthanum_138_atom_512"
+    }
+  },
+  "proton": 456,
+  "x512": true
+}

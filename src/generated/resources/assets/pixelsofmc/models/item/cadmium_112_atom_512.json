@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pixelsofmc:item/atom/cadmium_atom",
+    "layer1": "pixelsofmc:item/atom/isotope_512"
+  }
+}

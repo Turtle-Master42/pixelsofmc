@@ -1,6 +1,10 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
@@ -13,6 +17,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 import java.util.function.Function;
 
@@ -55,26 +60,34 @@ public class POMblockModelProvider extends BlockStateProvider {
         multiBlockWithItem(POMblocks.FISSION_CASING);
 
         blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.TITANIUM_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"));
-        stairsBlock((StairBlock) POMblocks.TITANIUM_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_plating_block"));
+        slabBlock((SlabBlock) POMblocks.TITANIUM_PLATING_SLAB.get(), Util.resourceLocation("block/titanium_plating_block"), Util.resourceLocation("block/titanium_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_PLATING_STAIRS.get(), Util.resourceLocation("block/titanium_plating_block"));
         blockWithItem(POMblocks.NETHERITE_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.NETHERITE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
-        stairsBlock((StairBlock) POMblocks.NETHERITE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/netherite_plating_block"));
+        slabBlock((SlabBlock) POMblocks.NETHERITE_PLATING_SLAB.get(), Util.resourceLocation("block/netherite_plating_block"), Util.resourceLocation("block/netherite_plating_block"));
+        stairsBlock((StairBlock) POMblocks.NETHERITE_PLATING_STAIRS.get(), Util.resourceLocation("block/netherite_plating_block"));
         blockWithItem(POMblocks.TITANIUM_GOLD_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.TITANIUM_GOLD_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"));
-        stairsBlock((StairBlock) POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_gold_plating_block"));
+        slabBlock((SlabBlock) POMblocks.TITANIUM_GOLD_PLATING_SLAB.get(), Util.resourceLocation("block/titanium_gold_plating_block"), Util.resourceLocation("block/titanium_gold_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get(), Util.resourceLocation("block/titanium_gold_plating_block"));
         blockWithItem(POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
-        stairsBlock((StairBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/titanium_diboride_plating_block"));
+        slabBlock((SlabBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(), Util.resourceLocation("block/titanium_diboride_plating_block"), Util.resourceLocation("block/titanium_diboride_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(), Util.resourceLocation("block/titanium_diboride_plating_block"));
         blockWithItem(POMblocks.LEAD_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.LEAD_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"));
-        stairsBlock((StairBlock) POMblocks.LEAD_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/lead_plating_block"));
+        slabBlock((SlabBlock) POMblocks.LEAD_PLATING_SLAB.get(), Util.resourceLocation("block/lead_plating_block"), Util.resourceLocation("block/lead_plating_block"));
+        stairsBlock((StairBlock) POMblocks.LEAD_PLATING_STAIRS.get(), Util.resourceLocation("block/lead_plating_block"));
         blockWithItem(POMblocks.TUNGSTEN_PLATING_BLOCK);
-        slabBlock((SlabBlock) POMblocks.TUNGSTEN_PLATING_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"));
-        stairsBlock((StairBlock) POMblocks.TUNGSTEN_PLATING_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/tungsten_plating_block"));
+        slabBlock((SlabBlock) POMblocks.TUNGSTEN_PLATING_SLAB.get(), Util.resourceLocation("block/tungsten_plating_block"), Util.resourceLocation("block/tungsten_plating_block"));
+        stairsBlock((StairBlock) POMblocks.TUNGSTEN_PLATING_STAIRS.get(), Util.resourceLocation("block/tungsten_plating_block"));
         blockWithItem(POMblocks.PYROLYTIC_CARBON_SHEET_BLOCK);
-        slabBlock((SlabBlock) POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"));
-        stairsBlock((StairBlock) POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "block/pyrolytic_carbon_sheet_block"));
+        slabBlock((SlabBlock) POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"));
+        stairsBlock((StairBlock) POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"));
+
+        slabBlock((SlabBlock) POMblocks.MULTIBLOCK_CASING_SLAB.get(), "multiblock_casing");
+        stairsBlock((StairBlock) POMblocks.MULTIBLOCK_CASING_STAIRS.get(), "multiblock_casing");
+        slabBlock((SlabBlock) POMblocks.FISSION_CASING_SLAB.get(), "fission_casing");
+        stairsBlock((StairBlock) POMblocks.FISSION_CASING_STAIRS.get(), "fission_casing");
+        slabBlock((SlabBlock) POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get(), "armored_multiblock_casing");
+        stairsBlock((StairBlock) POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get(), "armored_multiblock_casing");
+
 
 
         logBlock(POMblocks.COPPER_SPOOL.get());
@@ -139,17 +152,58 @@ public class POMblockModelProvider extends BlockStateProvider {
         simpleBlock(blockRegistryObject.get(), models().withExistingParent(name, "block/water"));
     }
 
-//    private void blockSlabStairSetWithItem(RegistryObject<Block> block, RegistryObject<Block> stair, RegistryObject<Block> slab, String location) {
-//        blockWithItem(block);
-//        slabBlock((SlabBlock) slab.get(), new ResourceLocation(PixelsOfMc.MOD_ID, location), new ResourceLocation(PixelsOfMc.MOD_ID, location));
-//        stairsBlock((StairBlock) stair.get(), new ResourceLocation(PixelsOfMc.MOD_ID, location));
-//        simpleBlockItem(stair.get(), );
-//    }
+    private void stairsBlock(StairBlock stairBlock, String base) {
+        String name = ForgeRegistries.BLOCKS.getKey(stairBlock).toString();
+        ModelFile stairs = models().withExistingParent(name, Util.resourceLocation("block/stairs"))
+                .texture("corner", Util.resourceLocation("block/" + base + "_corner"))
+                .texture("half", Util.resourceLocation("block/" + base + "_half"))
+                .texture("bottom", Util.resourceLocation("block/" + base));
+        ModelFile stairsInner = models().withExistingParent(name +"_inner", Util.resourceLocation("block/inner_stairs"))
+                .texture("corner", Util.resourceLocation("block/" + base + "_corner"))
+                .texture("bottom", Util.resourceLocation("block/" + base))
+                .texture("quarter", Util.resourceLocation("block/" + base + "_quarter"));
+        ModelFile stairsOuter = models().withExistingParent(name + "_outer", Util.resourceLocation("block/outer_stairs"))
+                .texture("corner", Util.resourceLocation("block/" + base + "_corner"))
+                .texture("half", Util.resourceLocation("block/" + base + "_half"))
+                .texture("bottom", Util.resourceLocation("block/" + base))
+                .texture("quarter", Util.resourceLocation("block/" + base + "_quarter"));
+        getVariantBuilder(stairBlock)
+                .forAllStatesExcept(state -> {
+                    Direction facing = state.getValue(StairBlock.FACING);
+                    Half half = state.getValue(StairBlock.HALF);
+                    StairsShape shape = state.getValue(StairBlock.SHAPE);
+                    int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
+                    if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
+                        yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
+                    }
+                    if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+                        yRot += 90; // Top stairs are rotated 90 degrees clockwise
+                    }
+                    yRot %= 360;
+                    return ConfiguredModel.builder()
+                            .modelFile(shape == StairsShape.STRAIGHT ? stairs : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInner : stairsOuter)
+                            .rotationX(half == Half.BOTTOM ? 0 : 180)
+                            .rotationY(yRot)
+                            .build();
+                }, StairBlock.WATERLOGGED);
+    }
+
+    private void slabBlock(SlabBlock slabBlock, String base) {
+        models().cubeColumn(base + "_slab_double",
+                Util.resourceLocation("block/" + base + "_half"),
+                Util.resourceLocation("block/" + base));
+        slabBlock(slabBlock,
+                Util.resourceLocation("block/" + base + "_slab_double"),
+                Util.resourceLocation("block/" + base + "_half"),
+                Util.resourceLocation("block/" + base),
+                Util.resourceLocation("block/" + base)
+        );
+    }
 
     private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + block.getAge(state),
-                new ResourceLocation(PixelsOfMc.MOD_ID, "block/" + textureName + block.getAge(state))));
+                Util.resourceLocation("block/" + textureName + block.getAge(state))));
 
         return models;
     }

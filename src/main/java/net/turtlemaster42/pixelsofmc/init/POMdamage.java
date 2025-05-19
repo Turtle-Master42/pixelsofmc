@@ -10,6 +10,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 import javax.annotation.Nullable;
 
@@ -53,14 +54,14 @@ public class POMdamage {
 
 
     private DamageSource source(String path) {
-        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PixelsOfMc.MOD_ID, path))));
+        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, Util.resourceLocation(path))));
     }
 
     private DamageSource source(String path, @Nullable Entity pEntity) {
-        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PixelsOfMc.MOD_ID, path))), pEntity);
+        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, Util.resourceLocation(path))), pEntity);
     }
 
     private DamageSource source(String path, @Nullable Entity pCausingEntity, @Nullable Entity pDirectEntity) {
-        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(PixelsOfMc.MOD_ID, path))), pCausingEntity, pDirectEntity);
+        return new DamageSource(this.damageTypes.getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, Util.resourceLocation(path))), pCausingEntity, pDirectEntity);
     }
 }

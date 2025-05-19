@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "pixelsofmc:block/fission_casing",
+    "side": "pixelsofmc:block/fission_casing_half"
+  }
+}

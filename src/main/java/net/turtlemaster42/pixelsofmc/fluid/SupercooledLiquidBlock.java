@@ -23,8 +23,8 @@ public class SupercooledLiquidBlock extends LiquidBlock {
 
     @Override
     public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, RandomSource pRandom) {
-        if (pRandom.nextDouble() < 0.1d)
-           pLevel.addParticle(ParticleTypes.SNOWFLAKE, pPos.getX() + pRandom.nextDouble(), pPos.getY() + pRandom.nextDouble(), pPos.getZ() + pRandom.nextDouble(), 0f, 0f, 0f);
+        if (pRandom.nextDouble() < 0.4d)
+           pLevel.addParticle(ParticleTypes.SNOWFLAKE, pPos.getX() + pRandom.nextDouble(), pPos.getY() +0.25f + (1f / (pState.getValue(LiquidBlock.LEVEL) + 1f)), pPos.getZ() + pRandom.nextDouble(), 0f, 0f, 0f);
     }
 
     @Override
@@ -34,19 +34,5 @@ public class SupercooledLiquidBlock extends LiquidBlock {
         pEntity.setIsInPowderSnow(true);
         if (pEntity.isFullyFrozen())
             pEntity.hurt(POMdamage.super_cooled(pLevel), 4);
-    }
-
-    @Deprecated // FORGE: Use FluidInteractionRegistry#canInteract instead
-    private boolean shouldSpreadLiquid(Level pLevel, BlockPos pPos, BlockState pState) {
-
-            for(Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
-                BlockPos blockpos = pPos.relative(direction.getOpposite());
-                if (pLevel.getFluidState(blockpos).is(FluidTags.WATER)) {
-                    Block block = pLevel.getFluidState(blockpos).isSource() ? Blocks.PACKED_ICE : Blocks.ICE;
-                    pLevel.setBlockAndUpdate(blockpos, block.defaultBlockState());
-                    return false;
-                }
-            }
-        return true;
     }
 }

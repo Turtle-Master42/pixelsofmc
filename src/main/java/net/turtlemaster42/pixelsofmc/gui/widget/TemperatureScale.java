@@ -11,9 +11,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 public class TemperatureScale extends AbstractButton {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/widgets.png");
     private int state;
     private OnPress onPress;
 

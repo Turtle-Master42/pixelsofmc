@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 88,
+  "neutron": 1120,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:radium_228_atom_512"
+    }
+  },
+  "proton": 704,
+  "x512": true
+}

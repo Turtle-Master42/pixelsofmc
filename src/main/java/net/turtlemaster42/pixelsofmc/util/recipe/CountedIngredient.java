@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -88,7 +89,7 @@ public record CountedIngredient(Ingredient ingredient, int count) implements Pre
     public TagKey<Item> asTag() {
         JsonObject pJson = this.toJson().get("ingredient").getAsJsonObject();
         if (pJson.has("tag")) {
-            ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(pJson, "tag"));
+            ResourceLocation resourcelocation = Util.resourceLocation(GsonHelper.getAsString(pJson, "tag"));
             return TagKey.create(Registries.ITEM, resourcelocation);
         }
         return null;

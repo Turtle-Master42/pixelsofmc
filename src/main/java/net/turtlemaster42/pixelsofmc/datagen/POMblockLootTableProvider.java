@@ -114,6 +114,13 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get());
         this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get());
 
+        this.dropSelf(POMblocks.MULTIBLOCK_CASING_STAIRS.get());
+        this.dropSelf(POMblocks.MULTIBLOCK_CASING_SLAB.get());
+        this.dropSelf(POMblocks.FISSION_CASING_STAIRS.get());
+        this.dropSelf(POMblocks.FISSION_CASING_SLAB.get());
+        this.dropSelf(POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get());
+        this.dropSelf(POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get());
+
         this.dropOther(POMblocks.MERCURY_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.SULFURIC_ACID_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.HYDROGEN_BLOCK.get(), Items.AIR);

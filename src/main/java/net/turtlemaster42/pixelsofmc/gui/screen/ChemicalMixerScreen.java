@@ -16,11 +16,11 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.SpriteCycleButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.TemperatureScale;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_mixer_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/chemical_mixer_gui.png");
     private EnergyArea energyArea;
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;

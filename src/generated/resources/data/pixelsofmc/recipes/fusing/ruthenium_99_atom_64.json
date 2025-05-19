@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 44,
+  "neutron": 55,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ruthenium_99_atom_64"
+    }
+  },
+  "proton": 44,
+  "x512": false
+}

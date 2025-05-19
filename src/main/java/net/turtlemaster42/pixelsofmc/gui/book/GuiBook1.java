@@ -9,14 +9,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiBook1 extends GuiBasicBook {
 
-    private static final ResourceLocation BOOK_PAGE_TEXTURE = new ResourceLocation("citadel:textures/gui/book/book_pages.png");
-    private static final ResourceLocation BOOK_BINDING_TEXTURE = new ResourceLocation("citadel:textures/gui/book/book_binding.png");
-    private static final ResourceLocation BOOK_WIDGET_TEXTURE = new ResourceLocation("citadel:textures/gui/book/widgets.png");
-    private static final ResourceLocation BOOK_BUTTONS_TEXTURE = new ResourceLocation("citadel:textures/gui/book/link_buttons.png");
+    private static final ResourceLocation BOOK_PAGE_TEXTURE = Util.resourceLocation("citadel", "textures/gui/book/book_pages.png");
+    private static final ResourceLocation BOOK_BINDING_TEXTURE = Util.resourceLocation("citadel", "textures/gui/book/book_binding.png");
+    private static final ResourceLocation BOOK_WIDGET_TEXTURE = Util.resourceLocation("citadel", "textures/gui/book/widgets.png");
+    private static final ResourceLocation BOOK_BUTTONS_TEXTURE = Util.resourceLocation("citadel", "textures/gui/book/link_buttons.png");
 
     public GuiBook1(ItemStack bookStack) {
         super(bookStack, Component.translatable("book.pixelsofmc_guide_book_1.title"));
@@ -33,7 +34,7 @@ public class GuiBook1 extends GuiBasicBook {
 
     @Override
     public ResourceLocation getRootPage() {
-        return new ResourceLocation("pixelsofmc:book/book_1/root.json");
+        return Util.resourceLocation("book/book_1/root.json");
     }
 
     @Override

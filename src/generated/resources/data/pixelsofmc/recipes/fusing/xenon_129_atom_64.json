@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 54,
+  "neutron": 75,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:xenon_129_atom_64"
+    }
+  },
+  "proton": 54,
+  "x512": false
+}

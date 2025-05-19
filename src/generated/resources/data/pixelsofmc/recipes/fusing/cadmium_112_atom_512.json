@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 48,
+  "neutron": 512,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:cadmium_112_atom_512"
+    }
+  },
+  "proton": 384,
+  "x512": true
+}

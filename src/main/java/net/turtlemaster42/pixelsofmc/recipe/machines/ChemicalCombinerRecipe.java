@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
@@ -110,8 +111,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<ChemicalCombinerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"chemical_combining");
+        public static final ResourceLocation ID = Util.resourceLocation("chemical_combining");
 
         public @NotNull ChemicalCombinerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output

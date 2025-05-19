@@ -9,21 +9,22 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.joml.Vector3f;
 
 import java.awt.*;
 
 public class POMFluidType {
-    public static final ResourceLocation WATER_STILL_RL = new ResourceLocation("block/water_still");
-    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
-    public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
+    public static final ResourceLocation WATER_STILL_RL = Util.resourceLocation("minecraft", "block/water_still");
+    public static final ResourceLocation WATER_FLOWING_RL = Util.resourceLocation("minecraft","block/water_flow");
+    public static final ResourceLocation WATER_OVERLAY_RL = Util.resourceLocation("minecraft","block/water_overlay");
 
-    public static final ResourceLocation HEAVY_LIQUID_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_still");
-    public static final ResourceLocation HEAVY_LIQUID_FLOWING_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_flow");
-    public static final ResourceLocation HEAVY_LIQUID_OVERLAY_RL = new ResourceLocation(PixelsOfMc.MOD_ID,"block/heavy_liquid_overlay");
+    public static final ResourceLocation HEAVY_LIQUID_STILL_RL = Util.resourceLocation("block/heavy_liquid_still");
+    public static final ResourceLocation HEAVY_LIQUID_FLOWING_RL = Util.resourceLocation("block/heavy_liquid_flow");
+    public static final ResourceLocation HEAVY_LIQUID_OVERLAY_RL = Util.resourceLocation("block/heavy_liquid_overlay");
 
-    public static final ResourceLocation GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/gas_still");
-    public static final ResourceLocation THIN_GAS_STILL_RL = new ResourceLocation(PixelsOfMc.MOD_ID, "block/thin_gas_still");
+    public static final ResourceLocation GAS_STILL_RL = Util.resourceLocation("block/gas_still");
+    public static final ResourceLocation THIN_GAS_STILL_RL = Util.resourceLocation("block/thin_gas_still");
 
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, PixelsOfMc.MOD_ID);

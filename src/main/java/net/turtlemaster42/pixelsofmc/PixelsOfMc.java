@@ -54,6 +54,7 @@ import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.item.ReinforcedBucket;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.BallMillRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
@@ -72,7 +73,7 @@ public class PixelsOfMc {
     public static final String MOD_ID = "pixelsofmc";
 	public static final Logger LOGGER = LogUtils.getLogger();
 	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
+	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(Util.resourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static int messageID = 0;
@@ -211,19 +212,19 @@ public class PixelsOfMc {
 
 		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);
 
-		ItemProperties.register(POMitems.POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+		ItemProperties.register(POMitems.POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
 			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 			return energy.getEnergyStored() <= 0 ? 1 : 0;
 		});
-		ItemProperties.register(POMitems.OVERCHARGED_POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+		ItemProperties.register(POMitems.OVERCHARGED_POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
 			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 			return energy.getEnergyStored() <= 0 ? 1 : 0;
 		});
-		ItemProperties.register(POMitems.SUPERCHARGED_POWER_CELL.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "empty"), (stack, world, entity, seed) -> {
+		ItemProperties.register(POMitems.SUPERCHARGED_POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
 			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 			return energy.getEnergyStored() <= 0 ? 1 : 0;
 		});
-		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), new ResourceLocation(PixelsOfMc.MOD_ID, "bucket_state"), (stack, world, entity, seed) -> {
+		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
 			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
 			if (fluid.isEmpty())
 				return 0;

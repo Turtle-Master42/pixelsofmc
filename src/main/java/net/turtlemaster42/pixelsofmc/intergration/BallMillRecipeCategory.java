@@ -12,13 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
 public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "ball_milling");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/ball_mill.png");
+    public final static ResourceLocation UID = Util.resourceLocation("ball_milling");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/ball_mill.png");
 
     public BallMillRecipeCategory(IGuiHelper helper) {
         super(helper);

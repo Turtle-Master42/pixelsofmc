@@ -13,6 +13,7 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +27,6 @@ public class FusionRecipe extends BaseRecipe {
     private final boolean x512;
     private final int protonCount;
     private final int neutronCount;
-    private int extraNeutrons;
     public FusionRecipe(ResourceLocation id, CountedIngredient output, Element element, int protonCount, int neutronCount, boolean x512) {
         this.id = id;
         this.element = element;
@@ -54,11 +54,7 @@ public class FusionRecipe extends BaseRecipe {
                 neutronCount += item.getNeutronCount() * multiplier;
             }
         }
-        if (this.protonCount == protonCount && this.neutronCount <= neutronCount && filledSlotCount > 1) {
-            extraNeutrons = neutronCount - this.neutronCount;
-            return true;
-        }
-        return false;
+        return this.protonCount == protonCount && this.neutronCount == neutronCount && filledSlotCount > 1;
     }
 
     @Override
@@ -72,13 +68,10 @@ public class FusionRecipe extends BaseRecipe {
     }
 
     public ItemStack getResultItems(int index) {
-        return List.of(output.asItemStack(), new ItemStack(Element.HYDROGEN.atom64(), extraNeutrons)).get(index);
+        return List.of(output.asItemStack()).get(index);
     }
 
     public List<CountedIngredient> getOutputs() {
-        if (extraNeutrons > 0) {
-            return List.of(output, CountedIngredient.of(extraNeutrons, Element.HYDROGEN.atom64()));
-        }
         return List.of(output);
     }
 
@@ -123,8 +116,7 @@ public class FusionRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<FusionRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"fusing");
+        public static final ResourceLocation ID = Util.resourceLocation("fusing");
 
         public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output

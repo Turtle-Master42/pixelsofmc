@@ -12,11 +12,11 @@ import net.turtlemaster42.pixelsofmc.gui.menu.BallMillMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 public class BallMillScreen extends AbstractPOMscreen<BallMillMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/ball_mill_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/ball_mill_gui.png");
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;

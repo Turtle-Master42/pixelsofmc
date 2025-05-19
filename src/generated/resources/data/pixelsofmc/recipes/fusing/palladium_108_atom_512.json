@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 46,
+  "neutron": 496,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:palladium_108_atom_512"
+    }
+  },
+  "proton": 368,
+  "x512": true
+}

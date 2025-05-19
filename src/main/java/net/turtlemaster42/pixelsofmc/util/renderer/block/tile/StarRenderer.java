@@ -10,18 +10,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.block.StarBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.StarModel;
 import org.jetbrains.annotations.NotNull;
 
 public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> {
-    private static final ResourceLocation SMALL = new ResourceLocation("pixelsofmc:textures/block/small_star.png");
-    private static final ResourceLocation BIG = new ResourceLocation("pixelsofmc:textures/block/big_star.png");
-    private static final ResourceLocation NEUTRON = new ResourceLocation("pixelsofmc:textures/block/neutron_star.png");
-    private static final ResourceLocation HOLE = new ResourceLocation("pixelsofmc:textures/block/black_hole.png");
+    private static final ResourceLocation SMALL = Util.resourceLocation("textures/block/small_star.png");
+    private static final ResourceLocation BIG = Util.resourceLocation("textures/block/big_star.png");
+    private static final ResourceLocation NEUTRON = Util.resourceLocation("textures/block/neutron_star.png");
+    private static final ResourceLocation HOLE = Util.resourceLocation("textures/block/black_hole.png");
     private static final StarModel MODEL = new StarModel();
 
-    public StarRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
+    public StarRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override

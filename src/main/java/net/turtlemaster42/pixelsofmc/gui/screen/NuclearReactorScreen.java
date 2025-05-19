@@ -22,14 +22,14 @@ import net.turtlemaster42.pixelsofmc.gui.widget.SpriteCycleButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
 import net.turtlemaster42.pixelsofmc.gui.widget.TemperatureScale;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
 
 public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> implements IUpdatableWidgets {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/nuclear_reactor_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/nuclear_reactor_gui.png");
 
     private EnergyArea energyArea;
     private NameArea nameArea;

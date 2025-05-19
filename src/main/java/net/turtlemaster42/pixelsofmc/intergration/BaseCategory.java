@@ -15,11 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.Nullable;
 
 public class BaseCategory<T> implements IRecipeCategory<T> {
-    public final static ResourceLocation CHANCE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
+    public final static ResourceLocation CHANCE = Util.resourceLocation("textures/gui/widgets/widgets.png");
 
     protected final IDrawable chanceOverlay;
     protected final IDrawable smallChanceOverlay;

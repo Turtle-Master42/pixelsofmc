@@ -20,14 +20,15 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
 public class FusionRecipeCategory extends BaseCategory<FusionRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "fusing");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/fusing.png");
+    public final static ResourceLocation UID = Util.resourceLocation("fusing");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/fusing.png");
 
     public FusionRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 158, 66);

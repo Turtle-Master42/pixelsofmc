@@ -10,11 +10,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelSplitterMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterScreen extends AbstractPOMscreen<PixelSplitterMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/pixel_splitter_gui.png");
     private EnergyArea energyArea;
     private ProgressArea progressArea;
     private NameArea nameArea;

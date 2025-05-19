@@ -17,13 +17,14 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelSplitterRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
 public class PixelSplitterRecipeCategory extends BaseCategory<PixelSplitterRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "pixel_splitting");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/pixel_splitter_gui.png");
+    public final static ResourceLocation UID = Util.resourceLocation( "pixel_splitting");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation( "textures/gui/pixel_splitter_gui.png");
 
     public PixelSplitterRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 184, 84);

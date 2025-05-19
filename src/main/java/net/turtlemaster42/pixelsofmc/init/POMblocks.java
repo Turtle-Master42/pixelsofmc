@@ -250,22 +250,36 @@ public class POMblocks {
             () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(8f)));
     public static final RegistryObject<AbstractMultiBlock> MULTIBLOCK_CASING = registerBlock("multiblock_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<Block> MULTIBLOCK_CASING_STAIRS = registerBlock("multiblock_casing_stairs",
+            () -> new StairBlock(() -> SIMPLE_CASING_1.get().defaultBlockState(), BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<Block> MULTIBLOCK_CASING_SLAB = registerBlock("multiblock_casing_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<EnergyPortBlock> ENERGY_PORT = registerBlock("energy_port",
             () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<ItemPortBlock> ITEM_PORT = registerBlock("item_port",
             () -> new ItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FluidPortBlock> FLUID_PORT = registerBlock("fluid_port",
             () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<Block> FISSION_CASING_STAIRS = registerBlock("fission_casing_stairs",
+            () -> new StairBlock(() -> SIMPLE_CASING_1.get().defaultBlockState(), BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<Block> FISSION_CASING_SLAB = registerBlock("fission_casing_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FuelCellHolderBlock> FUEL_CELL_HOLDER = registerBlock("fuel_cell_holder",
             () -> new FuelCellHolderBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FissionEnergyPortBlock> FISSION_ENERGY_PORT = registerBlock("fission_energy_port",
             () -> new FissionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FissionFluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
             () -> new FissionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+
     public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
+    public static final RegistryObject<Block> ARMORED_MULTIBLOCK_CASING_STAIRS = registerBlock("armored_multiblock_casing_stairs",
+            () -> new StairBlock(() -> SIMPLE_CASING_2.get().defaultBlockState(), BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
+    public static final RegistryObject<Block> ARMORED_MULTIBLOCK_CASING_SLAB = registerBlock("armored_multiblock_casing_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",
             () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> SUPERCONDUCTIVE_FUSION_CASING = registerBlock("superconductive_fusion_casing",
@@ -282,6 +296,8 @@ public class POMblocks {
             () -> new FusionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionPlasmaPortBlock> FUSION_PLASMA_PORT = registerBlock("fusion_plasma_port",
             () -> new FusionPlasmaPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
+
+
 
     public static final RegistryObject<Block> STAR = registerBlock("star",
             () -> new StarBlock(BlockBehaviour.Properties.of().strength(20.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_ORANGE)

@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -103,8 +104,7 @@ public class BallMillRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<BallMillRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"ball_milling");
+        public static final ResourceLocation ID = Util.resourceLocation("ball_milling");
 
         public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output

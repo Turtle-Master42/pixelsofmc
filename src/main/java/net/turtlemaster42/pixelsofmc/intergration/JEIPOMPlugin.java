@@ -16,6 +16,7 @@ import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.Objects;
 public class JEIPOMPlugin implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(PixelsOfMc.MOD_ID, "jei_plugin");
+        return Util.resourceLocation("jei_plugin");
     }
 
     @Override
@@ -36,7 +37,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCategories(new FusionRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new PixelSplitterRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new PixelAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new ChemicalSeraratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ChemicalSeparatorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalCombinerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalMixerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
@@ -52,7 +53,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(POMblocks.BH_CONTROLLER.get()), new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_SPLITTER.get()), new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.PIXEL_ASSEMBLER.get()), new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class));
-        registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()), new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()), new RecipeType<>(ChemicalSeparatorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_COMBINER.get()), new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(POMblocks.CHEMICAL_MIXER.get()), new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class));
     }
@@ -77,7 +78,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(FusionRecipeCategory.UID, FusionRecipe.class), fusing);
         registration.addRecipes(new RecipeType<>(PixelSplitterRecipeCategory.UID, PixelSplitterRecipe.class), splitting);
         registration.addRecipes(new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class), assembling);
-        registration.addRecipes(new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class), separating);
+        registration.addRecipes(new RecipeType<>(ChemicalSeparatorRecipeCategory.UID, ChemicalSeparatorRecipe.class), separating);
         registration.addRecipes(new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class), combining);
         registration.addRecipes(new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class), mixing);
     }
@@ -100,7 +101,7 @@ public class JEIPOMPlugin implements IModPlugin {
                 new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class));
         registration.addRecipeClickArea(ChemicalSeparatorScreen.class, 3, -16,
                 Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.chemical_separator").getString()), 15,
-                new RecipeType<>(ChemicalSeraratorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
+                new RecipeType<>(ChemicalSeparatorRecipeCategory.UID, ChemicalSeparatorRecipe.class));
         registration.addRecipeClickArea(PixelAssemblerScreen.class, 3, -16,
                 Minecraft.getInstance().font.width(Component.translatable("block.pixelsofmc.pixel_assembler").getString()), 15,
                 new RecipeType<>(PixelAssemblerRecipeCategory.UID, PixelAssemblerRecipe.class));

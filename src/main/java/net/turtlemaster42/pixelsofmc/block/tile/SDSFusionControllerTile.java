@@ -44,6 +44,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Optional;
 
 public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IDuoFluidHandlingTile, IInfiniteEnergyHandlingTile, IButtonTile {
@@ -64,10 +65,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     private float heatEnergyEfficiency = 1.5f;
     public int inputSlotLimit = 64;
     public boolean[] switches = new boolean[]{false, false, false};
-
-
-
-
 
     public final InfinitePixelEnergyStorage energyStorage = createEnergyStorage();
 
@@ -344,9 +341,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
         Optional<FusionRecipe> match = level.getRecipeManager()
                 .getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
-        return match.isPresent()
-                && canInsertIntoOutputSlot(entity, match.get())
-                && canFuse(entity, match.get());
+
+        return match.isPresent() && canFuse(entity) && canInsertIntoOutputSlot(entity, match.get().getOutputs());
 //                && isFusible(match.get().getResultItem());
     }
 
@@ -355,11 +351,11 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
 
-    private static void craftItem(SDSFusionControllerTile entity) {
-        Level level = entity.level;
-        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+    private static void craftItem(SDSFusionControllerTile tile) {
+        Level level = tile.level;
+        SimpleContainer inventory = new SimpleContainer(tile.itemHandler.getSlots());
+        for (int i = 0; i < tile.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, tile.itemHandler.getStackInSlot(i));
         }
 
         Optional<FusionRecipe> match = level.getRecipeManager()
@@ -368,7 +364,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         if(match.isPresent()) {
             FusionRecipe recipe = match.get();
 
-            if (entity.itemHandler.getStackInSlot(0).getItem() instanceof AtomItem atom1 && entity.itemHandler.getStackInSlot(1).getItem() instanceof AtomItem atom2) {
+            if (tile.itemHandler.getStackInSlot(0).getItem() instanceof AtomItem atom1 && tile.itemHandler.getStackInSlot(1).getItem() instanceof AtomItem atom2) {
                 double outputMass = 0;
                 for (CountedIngredient output: recipe.getOutputs()) {
                     if (output.asItem() instanceof AtomItem atom)
@@ -387,14 +383,14 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 PixelsOfMc.LOGGER.info("Energy FE: {}", released_energy * Constants.J_FE_Constant);
                 PixelsOfMc.LOGGER.info("Temperature K: {}", (long) temperature);
 
-                entity.fusionPower += (long) temperature;
+                tile.fusionPower += (long) temperature;
 
-                entity.removeInput(0);
-                entity.removeInput(1);
-                entity.addMultiOutput(recipe.getOutputs(), 2, 4);
+                tile.removeInput(0);
+                tile.removeInput(1);
+                tile.addMultiOutput(recipe.getOutputs(), 2, 4);
             }
-            entity.resetProgress();
-            entity.errorEnergyReset();
+            tile.resetProgress();
+            tile.errorEnergyReset();
         }
     }
 
@@ -404,9 +400,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
     }
 
-    private static boolean canInsertIntoOutputSlot(SDSFusionControllerTile entity, FusionRecipe match) {
-        boolean[] matched = new boolean[match.getOutputs().size()];
-        boolean[] matchNeeded = new boolean[match.getOutputs().size()];
+    private static boolean canInsertIntoOutputSlot(SDSFusionControllerTile entity, List<CountedIngredient> outputs) {
+        boolean[] matched = new boolean[outputs.size()];
+        boolean[] matchNeeded = new boolean[outputs.size()];
         ItemStack[] newStackInSlot = new ItemStack[entity.itemHandlerSize()];
         ItemStack newStack;
 
@@ -415,9 +411,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             newStackInSlot[i] = ItemStack.EMPTY;
 
         // Iterate over the inputs -q-
-        for (int q = 0; q < match.getOutputs().size(); q++) {
+        for (int q = 0; q < outputs.size(); q++) {
             matchNeeded[q] = true;
-            newStack = match.getResultItems(q);
+            newStack = outputs.get(q).asItemStack();
             // Iterate over the slots -p-
             for (int p = 2; p < 5; p++) {
                 if (matched[q])
@@ -436,14 +432,14 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             }
         }
 
-        for (int i = 0; i < match.getOutputs().size(); i++) {
+        for (int i = 0; i < outputs.size(); i++) {
             if (matched[i]!=matchNeeded[i])
                 return false;
         }
         return true;
     }
 
-    private boolean canFuse(SDSFusionControllerTile entity, FusionRecipe match) {
+    private boolean canFuse(SDSFusionControllerTile entity) {
         if ((entity.itemHandler.getStackInSlot(0).getItem() instanceof AtomItem atom1) && (entity.itemHandler.getStackInSlot(1).getItem() instanceof AtomItem atom2)) {
             // 1,446*10^-25 = 4π * 8.854 * 10^-12 * 1.3 * 10 ^-15
 //            double energy = (atom1.getProtonCount() * atom2.getProtonCount() * Math.pow(1.602*Math.pow(10, -19), 2)) / (1.446 * Math.pow(10, -25) * (Math.pow(atom1.getElementalMass(), 0.333) + Math.pow(atom2.getElementalMass(), 0.333)));

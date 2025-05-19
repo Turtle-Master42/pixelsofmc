@@ -7,10 +7,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.util.Util;
 
 public class NameArea extends InfoArea {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/widgets/widgets.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/widgets.png");
     private final Component name;
 
     public NameArea(Component name, int x,  int y) {

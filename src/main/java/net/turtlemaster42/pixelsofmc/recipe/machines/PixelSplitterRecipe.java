@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -111,8 +112,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<PixelSplitterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"pixel_splitting");
+        public static final ResourceLocation ID = Util.resourceLocation("pixel_splitting");
 
         public @NotNull PixelSplitterRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //outputs

@@ -183,18 +183,5 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(POMtags.Items.NUGGET_NETHERITE).add(POMitems.NETHERITE_NUGGET.get());
 
-
-        // atoms
-        tag(POMtags.Items.ATOM)
-                .add(POMitems.DEUTERIUM_ATOM_64.get())
-                .add(POMitems.TRITIUM_ATOM_64.get())
-                .add(POMitems.DEUTERIUM_ATOM_512.get())
-                .add(POMitems.TRITIUM_ATOM_512.get());
-        tag(POMtags.Items.ATOM64)
-                .add(POMitems.DEUTERIUM_ATOM_64.get())
-                .add(POMitems.TRITIUM_ATOM_64.get());
-        tag(POMtags.Items.ATOM512)
-                .add(POMitems.DEUTERIUM_ATOM_512.get())
-                .add(POMitems.TRITIUM_ATOM_512.get());
     }
 }

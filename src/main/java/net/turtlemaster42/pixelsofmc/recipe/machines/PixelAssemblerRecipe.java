@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -168,8 +169,7 @@ public class PixelAssemblerRecipe extends BaseRecipe {
 
     public static class Serializer implements RecipeSerializer<PixelAssemblerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID =
-                new ResourceLocation(PixelsOfMc.MOD_ID,"pixel_assembling");
+        public static final ResourceLocation ID = Util.resourceLocation("pixel_assembling");
 
         public @NotNull PixelAssemblerRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //outputs

@@ -1,0 +1,8 @@
+{
+  "parent": "pixelsofmc:block/inner_stairs",
+  "textures": {
+    "bottom": "pixelsofmc:block/multiblock_casing",
+    "corner": "pixelsofmc:block/multiblock_casing_corner",
+    "quarter": "pixelsofmc:block/multiblock_casing_quarter"
+  }
+}

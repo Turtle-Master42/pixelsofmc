@@ -10,11 +10,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.GrinderMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 public class GrinderScreen extends AbstractPOMscreen<GrinderMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/grinder_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/grinder_gui.png");
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;

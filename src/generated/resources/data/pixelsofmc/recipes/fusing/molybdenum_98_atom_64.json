@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 42,
+  "neutron": 56,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:molybdenum_98_atom_64"
+    }
+  },
+  "proton": 42,
+  "x512": false
+}

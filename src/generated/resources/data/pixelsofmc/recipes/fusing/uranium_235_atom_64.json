@@ -1,0 +1,13 @@
+{
+  "type": "pixelsofmc:fusing",
+  "element": 92,
+  "neutron": 143,
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:uranium_235_atom_64"
+    }
+  },
+  "proton": 92,
+  "x512": false
+}

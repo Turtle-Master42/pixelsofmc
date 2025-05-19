@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "pixelsofmc:block/armored_multiblock_casing",
+    "side": "pixelsofmc:block/armored_multiblock_casing_half",
+    "top": "pixelsofmc:block/armored_multiblock_casing"
+  }
+}

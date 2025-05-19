@@ -15,14 +15,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
 public class GrinderRecipeCategory extends BaseCategory<GrinderRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "grinding");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/grinder.png");
+    public final static ResourceLocation UID = Util.resourceLocation("grinding");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/grinder.png");
 
     private final IDrawable slot;
 

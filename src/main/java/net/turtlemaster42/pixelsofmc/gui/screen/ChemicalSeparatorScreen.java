@@ -10,11 +10,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparatorMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/chemical_seperator_gui.png");
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/chemical_seperator_gui.png");
     private EnergyArea energyArea;
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;

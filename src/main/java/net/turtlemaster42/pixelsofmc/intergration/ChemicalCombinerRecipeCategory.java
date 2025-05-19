@@ -11,13 +11,14 @@ import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
 public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombinerRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(PixelsOfMc.MOD_ID, "chemical_combining");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(PixelsOfMc.MOD_ID, "textures/gui/jei/chemical_combiner.png");
+    public final static ResourceLocation UID = Util.resourceLocation("chemical_combining");
+    public final static ResourceLocation TEXTURE = Util.resourceLocation( "textures/gui/jei/chemical_combiner.png");
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 106, 69);

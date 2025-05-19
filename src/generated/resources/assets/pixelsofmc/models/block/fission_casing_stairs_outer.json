@@ -1,0 +1,9 @@
+{
+  "parent": "pixelsofmc:block/outer_stairs",
+  "textures": {
+    "bottom": "pixelsofmc:block/fission_casing",
+    "corner": "pixelsofmc:block/fission_casing_corner",
+    "half": "pixelsofmc:block/fission_casing_half",
+    "quarter": "pixelsofmc:block/fission_casing_quarter"
+  }
+}
