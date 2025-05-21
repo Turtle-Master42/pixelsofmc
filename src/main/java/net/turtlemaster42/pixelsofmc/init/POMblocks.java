@@ -77,8 +77,6 @@ public class POMblocks {
     public static final RegistryObject<LiquidBlock> RED_OIL_BLOCK = POMblocks.BLOCKS.register("red_oil",
             () -> new ExplosiveLiquidBlock(POMfluids.RED_OIL_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
 
-
-
     //gas
     public static final RegistryObject<LiquidBlock> STEAM_BLOCK = POMblocks.BLOCKS.register("steam",
             () -> new LiquidBlock(POMfluids.STEAM_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
@@ -97,11 +95,10 @@ public class POMblocks {
     public static final RegistryObject<LiquidBlock> AMMONIA_GAS_BLOCK = POMblocks.BLOCKS.register("ammonia_gas",
             () -> new LiquidBlock(POMfluids.AMMONIA_GAS_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_MAGENTA).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
 
-
     //machine block
-    public static final RegistryObject<Block> MACHINE_BLOCK = BLOCKS.register("machine_block", DummyMachineBlock::new);
-    public static final RegistryObject<Block> MACHINE_ENERGY_BLOCK = BLOCKS.register("machine_energy_block", DummyMachineEnergyBlock::new);
-    public static final RegistryObject<Block> MACHINE_ITEM_BLOCK = BLOCKS.register("machine_item_block", DummyMachineItemBlock::new);
+    public static final RegistryObject<Block> EXTENDER_BLOCK = BLOCKS.register("extender_block", DummyMachineBlock::new);
+    public static final RegistryObject<Block> EXTENDER_ENERGY_BLOCK = BLOCKS.register("extender_energy_block", DummyMachineEnergyBlock::new);
+    public static final RegistryObject<Block> EXTENDER_ITEM_BLOCK = BLOCKS.register("extender_item_block", DummyMachineItemBlock::new);
 
 
 
@@ -248,11 +245,11 @@ public class POMblocks {
 
     public static final RegistryObject<AbstractFusionCasing> REINFORCED_GLASS = registerBlock("reinforced_glass",
             () -> new ReinforcedGlass(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).noOcclusion().sound(SoundType.GLASS).destroyTime(8f)));
-    public static final RegistryObject<AbstractMultiBlock> MULTIBLOCK_CASING = registerBlock("multiblock_casing",
+    public static final RegistryObject<AbstractMultiBlock> MACHINE_CASING = registerBlock("machine_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-    public static final RegistryObject<Block> MULTIBLOCK_CASING_STAIRS = registerBlock("multiblock_casing_stairs",
+    public static final RegistryObject<Block> MACHINE_CASING_STAIRS = registerBlock("machine_casing_stairs",
             () -> new StairBlock(() -> SIMPLE_CASING_1.get().defaultBlockState(), BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-    public static final RegistryObject<Block> MULTIBLOCK_CASING_SLAB = registerBlock("multiblock_casing_slab",
+    public static final RegistryObject<Block> MACHINE_CASING_SLAB = registerBlock("machine_casing_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<EnergyPortBlock> ENERGY_PORT = registerBlock("energy_port",
             () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
@@ -260,6 +257,9 @@ public class POMblocks {
             () -> new ItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FluidPortBlock> FLUID_PORT = registerBlock("fluid_port",
             () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<AbstractPillarCasing> MACHINE_COIL = registerBlock("machine_coil",
+            () -> new AbstractPillarCasing(BlockBehaviour.Properties.copy(POMblocks.MACHINE_CASING.get())));
+
 
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
@@ -274,11 +274,11 @@ public class POMblocks {
     public static final RegistryObject<FissionFluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
             () -> new FissionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
 
-    public static final RegistryObject<AbstractMultiBlock> ARMORED_MULTIBLOCK_CASING = registerBlock("armored_multiblock_casing",
+    public static final RegistryObject<AbstractMultiBlock> ARMORED_MACHINE_CASING = registerBlock("armored_machine_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
-    public static final RegistryObject<Block> ARMORED_MULTIBLOCK_CASING_STAIRS = registerBlock("armored_multiblock_casing_stairs",
+    public static final RegistryObject<Block> ARMORED_MACHINE_CASING_STAIRS = registerBlock("armored_machine_casing_stairs",
             () -> new StairBlock(() -> SIMPLE_CASING_2.get().defaultBlockState(), BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
-    public static final RegistryObject<Block> ARMORED_MULTIBLOCK_CASING_SLAB = registerBlock("armored_multiblock_casing_slab",
+    public static final RegistryObject<Block> ARMORED_MACHINE_CASING_SLAB = registerBlock("armored_machine_casing_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CASING = registerBlock("fusion_casing",
             () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
@@ -296,7 +296,6 @@ public class POMblocks {
             () -> new FusionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionPlasmaPortBlock> FUSION_PLASMA_PORT = registerBlock("fusion_plasma_port",
             () -> new FusionPlasmaPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
-
 
 
     public static final RegistryObject<Block> STAR = registerBlock("star",

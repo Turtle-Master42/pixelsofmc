@@ -53,7 +53,7 @@ public class DummyMachineItemBlock extends AbstractDummyMachineBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (!pLevel.isClientSide())
-            return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_ITEM_BLOCK.get(), DummyMachineItemBlockTile::serverTick);
+            return createTickerHelper(pBlockEntityType, POMtiles.EXTENDER_ITEM_BLOCK.get(), DummyMachineItemBlockTile::serverTick);
         return null;
     }
 }

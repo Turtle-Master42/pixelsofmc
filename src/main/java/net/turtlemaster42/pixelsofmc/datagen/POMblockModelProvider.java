@@ -9,7 +9,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiBlock;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -55,8 +54,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.STRENGTHENED_CASING);
         blockWithItem(POMblocks.REINFORCED_CASING);
 
-        multiBlockWithItem(POMblocks.MULTIBLOCK_CASING);
-        multiBlockWithItem(POMblocks.ARMORED_MULTIBLOCK_CASING);
+        multiBlockWithItem(POMblocks.MACHINE_CASING);
+        multiBlockWithItem(POMblocks.ARMORED_MACHINE_CASING);
         multiBlockWithItem(POMblocks.FISSION_CASING);
 
         blockWithItem(POMblocks.TITANIUM_PLATING_BLOCK);
@@ -81,12 +80,12 @@ public class POMblockModelProvider extends BlockStateProvider {
         slabBlock((SlabBlock) POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"));
         stairsBlock((StairBlock) POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get(), Util.resourceLocation("block/pyrolytic_carbon_sheet_block"));
 
-        slabBlock((SlabBlock) POMblocks.MULTIBLOCK_CASING_SLAB.get(), "multiblock_casing");
-        stairsBlock((StairBlock) POMblocks.MULTIBLOCK_CASING_STAIRS.get(), "multiblock_casing");
+        slabBlock((SlabBlock) POMblocks.MACHINE_CASING_SLAB.get(), "machine_casing");
+        stairsBlock((StairBlock) POMblocks.MACHINE_CASING_STAIRS.get(), "machine_casing");
         slabBlock((SlabBlock) POMblocks.FISSION_CASING_SLAB.get(), "fission_casing");
         stairsBlock((StairBlock) POMblocks.FISSION_CASING_STAIRS.get(), "fission_casing");
-        slabBlock((SlabBlock) POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get(), "armored_multiblock_casing");
-        stairsBlock((StairBlock) POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get(), "armored_multiblock_casing");
+        slabBlock((SlabBlock) POMblocks.ARMORED_MACHINE_CASING_SLAB.get(), "armored_machine_casing");
+        stairsBlock((StairBlock) POMblocks.ARMORED_MACHINE_CASING_STAIRS.get(), "armored_machine_casing");
 
 
 

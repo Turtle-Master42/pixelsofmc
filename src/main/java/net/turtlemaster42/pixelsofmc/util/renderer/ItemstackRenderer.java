@@ -24,7 +24,7 @@ public class ItemstackRenderer extends BlockEntityWithoutLevelRenderer {
 
     public static int ticksExisted = 0;
     private static final RiverShellModel RIVER_SHELL_MODEL = new RiverShellModel();
-    private static final ResourceLocation RIVER_SHELL_TEXTURE = Util.resourceLocation("pixelsofmc:textures/entity/river_shell.png");
+    private static final ResourceLocation RIVER_SHELL_TEXTURE = Util.resourceLocation("textures/entity/river_shell.png");
 
     private final Map<String, Entity> renderedEntites = new HashMap<>();
     private final List<EntityType> blockedRenderEntities = new ArrayList<>();

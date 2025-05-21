@@ -1,44 +1,45 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Block;
-import net.turtlemaster42.pixelsofmc.block.FluidPortBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.*;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineEnergyBlockTile;
+import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.*;
 
 public class POMtiles {
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, PixelsOfMc.MOD_ID);
 
-	public static final RegistryObject<BlockEntityType<DummyMachineBlockTile>> MACHINE_BLOCK =
-			TILES.register("machine_block", () -> BlockEntityType.Builder.of(DummyMachineBlockTile::new, POMblocks.MACHINE_BLOCK.get()).build(null));
-	public static final RegistryObject<BlockEntityType<DummyMachineEnergyBlockTile>> MACHINE_ENERGY_BLOCK =
-			TILES.register("machine_energy_block", () -> BlockEntityType.Builder.of(DummyMachineEnergyBlockTile::new, POMblocks.MACHINE_ENERGY_BLOCK.get()).build(null));
-	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> MACHINE_ITEM_BLOCK =
-			TILES.register("machine_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.MACHINE_ITEM_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineBlockTile>> EXTENDER_BLOCK =
+			TILES.register("extender_block", () -> BlockEntityType.Builder.of(DummyMachineBlockTile::new, POMblocks.EXTENDER_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineEnergyBlockTile>> EXTENDER_ENERGY_BLOCK =
+			TILES.register("extender_energy_block", () -> BlockEntityType.Builder.of(DummyMachineEnergyBlockTile::new, POMblocks.EXTENDER_ENERGY_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> EXTENDER_ITEM_BLOCK =
+			TILES.register("extender_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.EXTENDER_ITEM_BLOCK.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<MultiBlockTile>> MULTIBLOCK =
-			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.ARMORED_MULTIBLOCK_CASING.get(), POMblocks.FISSION_CASING.get()).build(null));
+			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get(), POMblocks.MACHINE_CASING.get(), POMblocks.ARMORED_MACHINE_CASING.get(), POMblocks.FISSION_CASING.get(), POMblocks.MACHINE_COIL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<EnergyPortTile>> ENERGY_PORT =
-			TILES.register("energy_port", () -> BlockEntityType.Builder.of(EnergyPortTile::new, POMblocks.ENERGY_PORT.get()).build(null));
+			TILES.register("energy_port", () -> BlockEntityType.Builder.of(EnergyPortTile::new, POMblocks.ENERGY_PORT.get(), POMblocks.FISSION_ENERGY_PORT.get(), POMblocks.FUSION_ENERGY_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ItemPortTile>> ITEM_PORT =
-			TILES.register("item_port", () -> BlockEntityType.Builder.of(ItemPortTile::new, POMblocks.ITEM_PORT.get()).build(null));
+			TILES.register("item_port", () -> BlockEntityType.Builder.of(ItemPortTile::new, POMblocks.ITEM_PORT.get(), POMblocks.FUSION_ITEM_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FluidPortTile>> FLUID_PORT =
-			TILES.register("fluid_port", () -> BlockEntityType.Builder.of(FluidPortTile::new, POMblocks.FLUID_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FissionEnergyPortTile>> FISSION_ENERGY_PORT =
-			TILES.register("fission_energy_port", () -> BlockEntityType.Builder.of(FissionEnergyPortTile::new, POMblocks.FISSION_ENERGY_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FissionFluidPortTile>> FISSION_FLUID_PORT =
-			TILES.register("fission_fluid_port", () -> BlockEntityType.Builder.of(FissionFluidPortTile::new, POMblocks.FISSION_FLUID_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
-			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =
-			TILES.register("fusion_item_port", () -> BlockEntityType.Builder.of(FusionItemPortTile::new, POMblocks.FUSION_ITEM_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FusionFluidPortTile>> FUSION_FLUID_PORT =
-			TILES.register("fusion_fluid_port", () -> BlockEntityType.Builder.of(FusionFluidPortTile::new, POMblocks.FUSION_FLUID_PORT.get()).build(null));
+			TILES.register("fluid_port", () -> BlockEntityType.Builder.of(FluidPortTile::new, POMblocks.FLUID_PORT.get(), POMblocks.FISSION_FLUID_PORT.get(), POMblocks.FUSION_FLUID_PORT.get()).build(null));
+//	public static final RegistryObject<BlockEntityType<FissionEnergyPortTile>> FISSION_ENERGY_PORT =
+//			TILES.register("fission_energy_port", () -> BlockEntityType.Builder.of(FissionEnergyPortTile::new, POMblocks.FISSION_ENERGY_PORT.get()).build(null));
+//	public static final RegistryObject<BlockEntityType<FissionFluidPortTile>> FISSION_FLUID_PORT =
+//			TILES.register("fission_fluid_port", () -> BlockEntityType.Builder.of(FissionFluidPortTile::new, POMblocks.FISSION_FLUID_PORT.get()).build(null));
+//	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
+//			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
+//	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =
+//			TILES.register("fusion_item_port", () -> BlockEntityType.Builder.of(FusionItemPortTile::new, POMblocks.FUSION_ITEM_PORT.get()).build(null));
+//	public static final RegistryObject<BlockEntityType<FusionFluidPortTile>> FUSION_FLUID_PORT =
+//			TILES.register("fusion_fluid_port", () -> BlockEntityType.Builder.of(FusionFluidPortTile::new, POMblocks.FUSION_FLUID_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FusionPlasmaPortTile>> FUSION_PLASMA_PORT =
 			TILES.register("fusion_plasma_port", () -> BlockEntityType.Builder.of(FusionPlasmaPortTile::new, POMblocks.FUSION_PLASMA_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FuelCellHolderTile>> FUEL_CELL_HOLDER =

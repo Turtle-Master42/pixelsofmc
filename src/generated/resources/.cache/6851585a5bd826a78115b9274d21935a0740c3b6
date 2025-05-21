@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-18T18:35:58.947526	Item Models: pixelsofmc
+// 1.20.1	2025-05-21T11:16:57.55192	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -26,8 +26,8 @@ c2b9e4d28551949c3875e30d972e850a43f83a63 assets/pixelsofmc/models/item/argon_38_
 eb795480e8990190aef9d8bb95930418aa0ceba1 assets/pixelsofmc/models/item/argon_atom_512.json
 09c440e88b14eb5d3eaad20b5fc5a61c9ec1795b assets/pixelsofmc/models/item/argon_atom_64.json
 d6a8fc8b7c394370f816b370238fbcb7c506605e assets/pixelsofmc/models/item/argon_canister.json
-24f07a6ce2628bea25a91da1a498addb7c099ef2 assets/pixelsofmc/models/item/armored_multiblock_casing_slab.json
-2cfcda4d442dd2f5e4dba7957fac0f2446bb12e3 assets/pixelsofmc/models/item/armored_multiblock_casing_stairs.json
+154429af35b583464e4906632504133e53c74989 assets/pixelsofmc/models/item/armored_machine_casing_slab.json
+9bc2c227f5659558cb831b0a002a128a645ebe55 assets/pixelsofmc/models/item/armored_machine_casing_stairs.json
 b8dab23416d4845f5cc2fac4dfd9a2565008cd11 assets/pixelsofmc/models/item/arsenic_atom_512.json
 3785b995ce5dffb57e8d33d929e46b2c558cf28a assets/pixelsofmc/models/item/arsenic_atom_64.json
 4b59edf152c18c1eba7f8cb7270c7cab532cbd94 assets/pixelsofmc/models/item/arsenic_ingot.json
@@ -288,6 +288,9 @@ dd95c7c0c72e68b45b90b3608cf6ff6c33fbc01f assets/pixelsofmc/models/item/lutetium_
 04f44979909cdd36e75709560b1973e6f9eed4b1 assets/pixelsofmc/models/item/lutetium_atom_512.json
 451053ce40219ec0ffcf5ce400045f518b86e8dd assets/pixelsofmc/models/item/lutetium_atom_64.json
 1ad300394f1569e7d0b325125a9242b122e52fa6 assets/pixelsofmc/models/item/lutetium_ingot.json
+38c696309f6b5e0106df3c5021b7fe6a4d1cfeb3 assets/pixelsofmc/models/item/machine_casing_slab.json
+be3b9ee5d4f51b0957f88c0dd38ef6021259a387 assets/pixelsofmc/models/item/machine_casing_stairs.json
+e7c0e799535631765eeabb1b010be4a11a8c66b0 assets/pixelsofmc/models/item/machine_coil.json
 9756f82fbbce9adc41e693f3b31a5ca1a9f960f4 assets/pixelsofmc/models/item/magnesium_25_atom_512.json
 2c8f3ca1962e87ceb24d1e826d7444c4f7c5115e assets/pixelsofmc/models/item/magnesium_25_atom_64.json
 9756f82fbbce9adc41e693f3b31a5ca1a9f960f4 assets/pixelsofmc/models/item/magnesium_26_atom_512.json
@@ -315,8 +318,6 @@ a9b7045ced402572a149b2e6d9ab92270f25e727 assets/pixelsofmc/models/item/molybdenu
 31a28da23839d04bfd307ba9ad754c56fe8e8e75 assets/pixelsofmc/models/item/molybdenum_atom_64.json
 f0d96a50691b4bb5e050eb3325d9b81103aeeaae assets/pixelsofmc/models/item/molybdenum_dust.json
 3990cf1e39fe7b3c42989467f40319a0bdb2f94e assets/pixelsofmc/models/item/molybdenum_ingot.json
-c5dcbf5487ddc71981eefdfa0c1d671289f5ba60 assets/pixelsofmc/models/item/multiblock_casing_slab.json
-fc51c2ec32e282a7be60e763c533ea1d0f40a8f6 assets/pixelsofmc/models/item/multiblock_casing_stairs.json
 8426d5d95411bd4dbde95621c3638b243c9c9f9a assets/pixelsofmc/models/item/neodymium_atom_512.json
 0b3b1289baf8cbc6fcbe717f523f8a6b09a95856 assets/pixelsofmc/models/item/neodymium_atom_64.json
 42577afe6064022c8cb6649b63593a668c19d530 assets/pixelsofmc/models/item/neodymium_ingot.json

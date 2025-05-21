@@ -1,9 +1,0 @@
-{
-  "parent": "pixelsofmc:block/outer_stairs",
-  "textures": {
-    "bottom": "pixelsofmc:block/armored_multiblock_casing",
-    "corner": "pixelsofmc:block/armored_multiblock_casing_corner",
-    "half": "pixelsofmc:block/armored_multiblock_casing_half",
-    "quarter": "pixelsofmc:block/armored_multiblock_casing_quarter"
-  }
-}

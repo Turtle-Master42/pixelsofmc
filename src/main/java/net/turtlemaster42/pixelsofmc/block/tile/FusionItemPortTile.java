@@ -7,7 +7,7 @@ import net.turtlemaster42.pixelsofmc.init.POMtiles;
 public class FusionItemPortTile extends AbstractItemPortTile {
 
     public FusionItemPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FUSION_ITEM_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.ITEM_PORT.get(), pWorldPosition, pBlockState);
     }
 
 }

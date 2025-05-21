@@ -82,8 +82,8 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.CHEMICAL_MIXER.get(),
 
                 POMblocks.REINFORCED_GLASS.get(),
-                POMblocks.MULTIBLOCK_CASING.get(),
-                POMblocks.ARMORED_MULTIBLOCK_CASING.get(),
+                POMblocks.MACHINE_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING.get(),
                 POMblocks.FISSION_CASING.get(),
                 POMblocks.FUEL_CELL_HOLDER.get(),
                 POMblocks.FUSION_CASING.get(),
@@ -99,23 +99,30 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FLUID_PORT.get(),
                 POMblocks.ITEM_PORT.get(),
                 POMblocks.ENERGY_PORT.get(),
+                POMblocks.MACHINE_CASING_STAIRS.get(),
+                POMblocks.MACHINE_CASING_SLAB.get(),
+                POMblocks.FISSION_CASING_STAIRS.get(),
+                POMblocks.FISSION_CASING_SLAB.get(),
+                POMblocks.ARMORED_MACHINE_CASING_STAIRS.get(),
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get(),
+                POMblocks.MACHINE_COIL.get(),
 
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_BLOCK.get(),
                 POMblocks.TITANIUM_GOLD_BLOCK.get(),
                 POMblocks.VIOLET_DIAMOND_BLOCK.get(),
 
-                POMblocks.MACHINE_BLOCK.get(),
-                POMblocks.MACHINE_ENERGY_BLOCK.get(),
-                POMblocks.MACHINE_ITEM_BLOCK.get()
+                POMblocks.EXTENDER_BLOCK.get(),
+                POMblocks.EXTENDER_ENERGY_BLOCK.get(),
+                POMblocks.EXTENDER_ITEM_BLOCK.get()
             );
 
 
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
-                POMblocks.MACHINE_BLOCK.get(),
-                POMblocks.MACHINE_ENERGY_BLOCK.get(),
-                POMblocks.MACHINE_ITEM_BLOCK.get(),
+                POMblocks.EXTENDER_BLOCK.get(),
+                POMblocks.EXTENDER_ENERGY_BLOCK.get(),
+                POMblocks.EXTENDER_ITEM_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(),
@@ -155,13 +162,13 @@ public class POMblockTagProvider extends BlockTagsProvider {
         );
 
         this.tag(POMtags.Blocks.MACHINE_BLOCKS).add(
-                POMblocks.MACHINE_BLOCK.get(),
-                POMblocks.MACHINE_ITEM_BLOCK.get(),
-                POMblocks.MACHINE_ENERGY_BLOCK.get()
+                POMblocks.EXTENDER_BLOCK.get(),
+                POMblocks.EXTENDER_ITEM_BLOCK.get(),
+                POMblocks.EXTENDER_ENERGY_BLOCK.get()
         );
 
         this.tag(POMtags.Blocks.MULTIBLOCK_CASINGS).add(
-                POMblocks.MULTIBLOCK_CASING.get(),
+                POMblocks.MACHINE_CASING.get(),
                 POMblocks.ITEM_PORT.get(),
                 POMblocks.ENERGY_PORT.get(),
                 POMblocks.FLUID_PORT.get(),
@@ -175,7 +182,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FUSION_CASING.get(),
                 POMblocks.FUSION_CORNER.get(),
                 POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(),
-                POMblocks.ARMORED_MULTIBLOCK_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING.get(),
                 POMblocks.REINFORCED_GLASS.get()
         );
 
@@ -186,7 +193,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FISSION_CASING.get(),
                 POMblocks.FISSION_FLUID_PORT.get(),
                 POMblocks.FISSION_ENERGY_PORT.get(),
-                POMblocks.ARMORED_MULTIBLOCK_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING.get(),
                 POMblocks.REINFORCED_GLASS.get()
         );
 
@@ -199,7 +206,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FUSION_CORNER.get(),
                 POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(),
                 POMblocks.REINFORCED_GLASS.get(),
-                POMblocks.ARMORED_MULTIBLOCK_CASING.get()
+                POMblocks.ARMORED_MACHINE_CASING.get()
         );
 
         //auto gen

@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
-import com.github.alexthe666.citadel.repack.jcodec.common.DictionaryCompressor;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.NbtPredicate;
@@ -1026,6 +1025,30 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get())))
                 .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING_STAIRS.get(), 4)
+                .define('A', POMblocks.MACHINE_CASING.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.MACHINE_CASING.get().asItem())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.FISSION_CASING_STAIRS.get(), 4)
+                .define('A', POMblocks.FISSION_CASING.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.FISSION_CASING.get().asItem())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MACHINE_CASING_STAIRS.get(), 4)
+                .define('A', POMblocks.ARMORED_MACHINE_CASING.get())
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.ARMORED_MACHINE_CASING.get().asItem())))
+                .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_SLAB.get(), 6)
                 .define('A', POMblocks.TITANIUM_PLATING_BLOCK.get())
@@ -1069,8 +1092,26 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get())))
                 .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING_SLAB.get(), 6)
+                .define('A', POMblocks.MACHINE_CASING.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.MACHINE_CASING.get().asItem())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.FISSION_CASING_SLAB.get(), 6)
+                .define('A', POMblocks.FISSION_CASING.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.FISSION_CASING.get().asItem())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MACHINE_CASING_SLAB.get(), 6)
+                .define('A', POMblocks.ARMORED_MACHINE_CASING.get())
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMblocks.ARMORED_MACHINE_CASING.get().asItem())))
+                .save(fConsumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MULTIBLOCK_CASING.get(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING.get(), 4)
                 .define('A', Element.TITANIUM.itemTag())
                 .define('B', POMitems.TITANIUM_PLATING.get())
                 .define('C', POMblocks.SIMPLE_CASING_1.get())
@@ -1952,7 +1993,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.VIOLET_DIAMOND.get(), POMitems.VIOLET_DIAMOND_LENS.get(), fConsumer);
-//        SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.RED_DIAMOND.get(), POMitems.RED_DIAMOND_LENS.get(), fConsumer);
         SimpleSurroundRecipe(Element.COPPER.nugget(), Items.STICK, POMitems.COPPER_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.SILVER.nugget(), Items.STICK, POMitems.SILVER_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.TUNGSTEN.nugget(), Items.STICK, POMitems.TUNGSTEN_WIRE.get(), fConsumer);
@@ -1961,10 +2001,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(POMitems.SUPERCONDUCTIVE_NUGGET.get(), Items.STICK, POMitems.SUPERCONDUCTIVE_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.TITANIUM.item(), Items.NETHERITE_INGOT, POMblocks.SIMPLE_CASING_1.get(), fConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMblocks.SIMPLE_CASING_1.get(), POMblocks.SIMPLE_CASING_2.get(), fConsumer);
+        SimpleSurroundRecipe(Element.TITANIUM.item(), POMblocks.COPPER_SPOOL.get(), POMblocks.MACHINE_COIL.get(), fConsumer);
+
 
         SimpleFullCrossRecipe(Items.OBSIDIAN, POMitems.OBSIDIAN_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.STRENGTHENED_CASING.get(), fConsumer);
-//        SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRENGTHENED_CASING.get(), POMblocks.REINFORCED_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), POMitems.MANA_SPHERE.get(), POMitems.CRUDE_POWER_CORE.get(), POMitems.POWER_ORB.get(), fConsumer, "_crude");
         SimpleFullCrossRecipe(toI(Element.TITANIUM.itemTag()), toI(Items.REDSTONE), toI(Items.REDSTONE_BLOCK), POMitems.REDSTONE_CORE.get(), fConsumer, "");
@@ -1989,10 +2030,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCrossRecipe(Element.TITANIUM.nugget(), Element.TITANIUM.item(), POMitems.TITANIUM_BALL.get(), fConsumer);
         SimpleCrossRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMitems.TITANIUM_GOLD_BALL.get(), fConsumer);
         SimpleCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_BALL.get(), fConsumer);
-        SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.FISSION_CASING.get(), fConsumer);
+        SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.MACHINE_CASING.get(), POMblocks.FISSION_CASING.get(), fConsumer);
         SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.ENERGY_PORT.get(), POMblocks.FISSION_ENERGY_PORT.get(), fConsumer);
         SimpleCrossRecipe(POMitems.LEAD_PLATING.get(), POMblocks.FLUID_PORT.get(), POMblocks.FISSION_FLUID_PORT.get(), fConsumer);
-        SimpleCrossRecipe(POMitems.FUSION_PLATING.get(), POMblocks.MULTIBLOCK_CASING.get(), POMblocks.ARMORED_MULTIBLOCK_CASING.get(), fConsumer);
+        SimpleCrossRecipe(POMitems.FUSION_PLATING.get(), POMblocks.MACHINE_CASING.get(), POMblocks.ARMORED_MACHINE_CASING.get(), fConsumer);
 
         //compacting
         SimpleMetalCompactingRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMblocks.TITANIUM_GOLD_BLOCK.get(), fConsumer);
@@ -2083,24 +2124,24 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer, toRL(getItemName(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get()))+"_cutting");
 
-        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.MULTIBLOCK_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.MULTIBLOCK_CASING_STAIRS.get())
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.MACHINE_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING_STAIRS.get())
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer, toRL(getItemName(POMblocks.MULTIBLOCK_CASING_STAIRS.get()))+"_cutting");
-        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.MULTIBLOCK_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.MULTIBLOCK_CASING_SLAB.get(), 2)
+                .save(fConsumer, toRL(getItemName(POMblocks.MACHINE_CASING_STAIRS.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.MACHINE_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING_SLAB.get(), 2)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer, toRL(getItemName(POMblocks.MULTIBLOCK_CASING_SLAB.get()))+"_cutting");
+                .save(fConsumer, toRL(getItemName(POMblocks.MACHINE_CASING_SLAB.get()))+"_cutting");
         SingleItemRecipeBuilder.stonecutting(toI(POMblocks.FISSION_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.FISSION_CASING_STAIRS.get())
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer, toRL(getItemName(POMblocks.FISSION_CASING_STAIRS.get()))+"_cutting");
         SingleItemRecipeBuilder.stonecutting(toI(POMblocks.FISSION_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.FISSION_CASING_SLAB.get(), 2)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(fConsumer, toRL(getItemName(POMblocks.FISSION_CASING_SLAB.get()))+"_cutting");
-        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.ARMORED_MULTIBLOCK_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get())
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.ARMORED_MACHINE_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MACHINE_CASING_STAIRS.get())
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer, toRL(getItemName(POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get()))+"_cutting");
-        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.ARMORED_MULTIBLOCK_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get(), 2)
+                .save(fConsumer, toRL(getItemName(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()))+"_cutting");
+        SingleItemRecipeBuilder.stonecutting(toI(POMblocks.ARMORED_MACHINE_CASING.get()), RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MACHINE_CASING_SLAB.get(), 2)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
-                .save(fConsumer, toRL(getItemName(POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get()))+"_cutting");
+                .save(fConsumer, toRL(getItemName(POMblocks.ARMORED_MACHINE_CASING_SLAB.get()))+"_cutting");
 
         //auto
         for(Element e : Element.values()) {
@@ -2132,94 +2173,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                     SimpleCompactingRecipe(toI(e.item()), e.block(), fConsumer);
             }
         }
-
-        //TEST
-        List<String> map_values = new ArrayList<>();
-        Map<String, Double> massMap = new HashMap<>();
-        Map<String, Float> bitMassMap = new HashMap<>();
-        Map<String, Integer> protonMap = new HashMap<>();
-        Map<String, Integer> neutronMap = new HashMap<>();
-
-        for(Element element_mapping : Element.values()) {
-            String name = String.valueOf(element_mapping);
-
-            map_values.add(name);
-            massMap.put(name, element_mapping.getMass());
-            bitMassMap.put(name, element_mapping.getBitMass());
-            protonMap.put(name, element_mapping.getElement());
-            neutronMap.put(name, element_mapping.getNeutrons());
-
-            Element.Isotopes isotopes = element_mapping.getIsotopes();
-            for (int i = 0; i < isotopes.getNeutrons().length; i++) {
-
-                name = element_mapping + "_" + (element_mapping.getElement() + isotopes.getNeutrons()[i]);
-
-                map_values.add(name);
-                massMap.put(name, isotopes.getMass(isotopes.getNeutrons()[i]));
-                bitMassMap.put(name, isotopes.getBitMass(isotopes.getNeutrons()[i]));
-                protonMap.put(name, element_mapping.getElement());
-                neutronMap.put(name, isotopes.getNeutrons()[i]);
-            }
-        }
-
-        double true_most_efficient = -1_000_000_000;
-        String[] true_best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
-        int valid_options = 0;
-
-        for (String output : map_values) {
-            String[] best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
-            double most_efficient = -1_000_000_000;
-            List<Double> temperatures = new ArrayList<>();
-
-            for (String e1 : map_values) {
-                for (String e2 : map_values) {
-                    if (protonMap.get(e1) + protonMap.get(e2) != protonMap.get(output)) {
-                        continue;
-                    }
-                    if (neutronMap.get(e1) + neutronMap.get(e2) != neutronMap.get(output)) {
-//                        if (Math.abs(neutronMap.get(e1) + neutronMap.get(e2) - neutronMap.get(output)) < 8)
-//                            PixelsOfMc.LOGGER.info(" --> {} != {} ({} + {})", neutronMap.get(output), neutronMap.get(e1) + neutronMap.get(e2), e1, e2);
-                        continue;
-                    }
-
-                    double deltaMass = massMap.get(e1) + massMap.get(e2) - massMap.get(output);
-                    double released_energy = deltaMass * Constants.cSquared * Constants.fusionEnergyReleaseConstant * 64;
-                    double temperature = released_energy / Constants.plasmaHeatingPerJoule;
-
-                    if (temperature > most_efficient) {
-                        most_efficient = temperature;
-                        best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
-                    }
-                    if (temperature > true_most_efficient) {
-                        true_most_efficient = temperature;
-                        true_best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
-                    }
-
-                    double energy = (protonMap.get(e1) * protonMap.get(e2)) / (5.636*Math.pow(10, 12)*(Math.pow(bitMassMap.get(e1), 0.333) + Math.pow(bitMassMap.get(e2), 0.333)));
-                    // calculate the temperature
-                    double temp = (Math.PI * Math.abs(energy)) / (4 * 1.3806 * Math.pow(10, -23)) / Constants.fusionTemperatureDivider;
-
-                    if (temperatures.contains(temp))
-                        continue;
-
-                    // element 1 over element 2
-                    temperatures.add(temp);
-                    valid_options++;
-                    PixelsOfMc.LOGGER.info("{} - > {} + {} = {} ({})", output, e1, e2, temperature, temp);
-                }
-            }
-            temperatures.clear();
-            if (best_match[0].equals(String.valueOf(Element.DEBUGIUM)) || best_match[1].equals(String.valueOf(Element.DEBUGIUM)) ) {
-                PixelsOfMc.LOGGER.info("{} not creatable", output);
-            } else {
-                PixelsOfMc.LOGGER.info("{} -> {} ({} + {})", output, most_efficient, best_match[0], best_match[1]);
-            }
-        }
-
-        PixelsOfMc.LOGGER.info("{} ({} + {})", true_most_efficient, true_best_match[0], true_best_match[1]);
-        PixelsOfMc.LOGGER.info("total option: {}", map_values.size() * map_values.size());
-        PixelsOfMc.LOGGER.info("valid option: {}", valid_options);
-
+        calculatePossibleFusions();
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {
@@ -2384,9 +2338,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         autoPixelAssembling(ingredient, output, structure, color1, color2, color3, consumer);
     }
 
-    private double true_most_efficient = -1_000_000_000;
-    private Element[] true_best_match = {Element.DEBUGIUM, Element.DEBUGIUM};
-
     private void Fusing(Element element, Consumer<FinishedRecipe> consumer) {
         Fusing(element, false, consumer);
         Fusing(element, true, consumer);
@@ -2399,13 +2350,99 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         new FusionRecipeBuilder(element, x512)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer, toRL("fusing/" + (x512 ? element.atom512().asItem().toString() : element.atom64().asItem().toString())));
-            }
+    }
     private void Fusing(Item output, Element element, boolean x512, int neutron, Consumer<FinishedRecipe> consumer) {
         new FusionRecipeBuilder(element, CountedIngredient.of(output), neutron, x512)
                 .unlockedBy("", inventoryTrigger(ItemPredicate.ANY))
                 .save(consumer, toRL("fusing/" + output.asItem()));
-            }
+    }
 
+    private void calculatePossibleFusions() {
+        List<String> map_values = new ArrayList<>();
+        Map<String, Double> massMap = new HashMap<>();
+        Map<String, Float> bitMassMap = new HashMap<>();
+        Map<String, Integer> protonMap = new HashMap<>();
+        Map<String, Integer> neutronMap = new HashMap<>();
+
+        for(Element element_mapping : Element.values()) {
+            String name = String.valueOf(element_mapping);
+
+            map_values.add(name);
+            massMap.put(name, element_mapping.getMass());
+            bitMassMap.put(name, element_mapping.getBitMass());
+            protonMap.put(name, element_mapping.getElement());
+            neutronMap.put(name, element_mapping.getNeutrons());
+
+            Element.Isotopes isotopes = element_mapping.getIsotopes();
+            for (int i = 0; i < isotopes.getNeutrons().length; i++) {
+                name = element_mapping + "_" + (element_mapping.getElement() + isotopes.getNeutrons()[i]);
+
+                map_values.add(name);
+                massMap.put(name, isotopes.getMass(isotopes.getNeutrons()[i]));
+                bitMassMap.put(name, isotopes.getBitMass(isotopes.getNeutrons()[i]));
+                protonMap.put(name, element_mapping.getElement());
+                neutronMap.put(name, isotopes.getNeutrons()[i]);
+            }
+        }
+
+        double true_most_efficient = -1_000_000_000;
+        String[] true_best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
+        int valid_options = 0;
+
+        for (String output : map_values) {
+            String[] best_match = {String.valueOf(Element.DEBUGIUM), String.valueOf(Element.DEBUGIUM)};
+            double most_efficient = -1_000_000_000;
+            List<Double> temperatures = new ArrayList<>();
+
+            for (String e1 : map_values) {
+                for (String e2 : map_values) {
+                    if (protonMap.get(e1) + protonMap.get(e2) != protonMap.get(output)) {
+                        continue;
+                    }
+                    if (neutronMap.get(e1) + neutronMap.get(e2) != neutronMap.get(output)) {
+//                        if (Math.abs(neutronMap.get(e1) + neutronMap.get(e2) - neutronMap.get(output)) < 8)
+//                            PixelsOfMc.LOGGER.info(" --> {} != {} ({} + {})", neutronMap.get(output), neutronMap.get(e1) + neutronMap.get(e2), e1, e2);
+                        continue;
+                    }
+
+                    double deltaMass = massMap.get(e1) + massMap.get(e2) - massMap.get(output);
+                    double released_energy = deltaMass * Constants.cSquared * Constants.fusionEnergyReleaseConstant * 64;
+                    double temperature = released_energy / Constants.plasmaHeatingPerJoule;
+
+                    if (temperature > most_efficient) {
+                        most_efficient = temperature;
+                        best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
+                    }
+                    if (temperature > true_most_efficient) {
+                        true_most_efficient = temperature;
+                        true_best_match = new String[]{String.valueOf(e1), String.valueOf(e2)};
+                    }
+
+                    double energy = (protonMap.get(e1) * protonMap.get(e2)) / (5.636*Math.pow(10, 12)*(Math.pow(bitMassMap.get(e1), 0.333) + Math.pow(bitMassMap.get(e2), 0.333)));
+                    // calculate the temperature
+                    double temp = (Math.PI * Math.abs(energy)) / (4 * 1.3806 * Math.pow(10, -23)) / Constants.fusionTemperatureDivider;
+
+                    if (temperatures.contains(temp))
+                        continue;
+
+                    // element 1 over element 2
+                    temperatures.add(temp);
+                    valid_options++;
+                    PixelsOfMc.LOGGER.info("{} - > {} + {} = {} ({})", output, e1, e2, temperature, temp);
+                }
+            }
+            temperatures.clear();
+            if (best_match[0].equals(String.valueOf(Element.DEBUGIUM)) || best_match[1].equals(String.valueOf(Element.DEBUGIUM)) ) {
+                PixelsOfMc.LOGGER.info("{} not creatable", output);
+            } else {
+                PixelsOfMc.LOGGER.info("{} -> {} ({} + {})", output, most_efficient, best_match[0], best_match[1]);
+            }
+        }
+
+        PixelsOfMc.LOGGER.info("{} ({} + {})", true_most_efficient, true_best_match[0], true_best_match[1]);
+        PixelsOfMc.LOGGER.info("total option: {}", map_values.size() * map_values.size());
+        PixelsOfMc.LOGGER.info("valid option: {}", valid_options);
+    }
 
     //toIngredient
     private Ingredient toI(ItemLike input) {

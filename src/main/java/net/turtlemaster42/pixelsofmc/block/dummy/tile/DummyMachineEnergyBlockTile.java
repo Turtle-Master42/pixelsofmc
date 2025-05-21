@@ -65,7 +65,7 @@ public class DummyMachineEnergyBlockTile extends AbstractDummyMachineBlockTile {
         private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
         public DummyMachineEnergyBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
-            super(POMtiles.MACHINE_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
+            super(POMtiles.EXTENDER_ENERGY_BLOCK.get(), pWorldPosition, pBlockState);
             this.data = new ContainerData() {
 
                 @Override

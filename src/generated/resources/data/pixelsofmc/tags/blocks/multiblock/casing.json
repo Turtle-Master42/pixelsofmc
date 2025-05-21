@@ -1,6 +1,6 @@
 {
   "values": [
-    "pixelsofmc:multiblock_casing",
+    "pixelsofmc:machine_casing",
     "pixelsofmc:item_port",
     "pixelsofmc:energy_port",
     "pixelsofmc:fluid_port",
@@ -14,7 +14,7 @@
     "pixelsofmc:fusion_casing",
     "pixelsofmc:fusion_corner",
     "pixelsofmc:superconductive_fusion_casing",
-    "pixelsofmc:armored_multiblock_casing",
+    "pixelsofmc:armored_machine_casing",
     "pixelsofmc:reinforced_glass"
   ]
 }

@@ -4,7 +4,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.turtlemaster42.pixelsofmc.block.AbstractPillarFusionCasing;
-import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class MultiBlockStructures {
@@ -13,8 +12,8 @@ public class MultiBlockStructures {
     private static final GhostBlockState AIR = new GhostBlockState(Blocks.AIR);
     private static final GhostBlockState WATER = new GhostBlockState(Blocks.WATER);
     private static final GhostBlockState OTHER = new GhostBlockState(POMblocks.REINFORCED_CASING.get());
-    private static final GhostBlockState CASING = new GhostBlockState(POMblocks.MULTIBLOCK_CASING.get());
-    private static final GhostBlockState ARMORED_CASING = new GhostBlockState(POMblocks.ARMORED_MULTIBLOCK_CASING.get());
+    private static final GhostBlockState CASING = new GhostBlockState(POMblocks.MACHINE_CASING.get());
+    private static final GhostBlockState ARMORED_CASING = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING.get());
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
@@ -26,7 +25,6 @@ public class MultiBlockStructures {
     private static final GhostBlockState FUSION_CASING_FORWARD = new GhostBlockState(POMblocks.FUSION_CASING.get()).addProperty(BlockStateProperties.AXIS, Direction.Axis.Z);
     private static final GhostBlockState FUSION_CASING_SIDE = new GhostBlockState(POMblocks.FUSION_CASING.get()).addProperty(BlockStateProperties.AXIS, Direction.Axis.X);
 
-    private static final GhostBlockState SUPERCONDUCTIVE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
     private static final GhostBlockState SUPERCONDUCTIVE_UP = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
     private static final GhostBlockState SUPERCONDUCTIVE_FORWARD = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
     private static final GhostBlockState SUPERCONDUCTIVE_SIDE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);

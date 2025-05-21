@@ -1,7 +1,7 @@
 {
   "values": [
-    "pixelsofmc:machine_block",
-    "pixelsofmc:machine_item_block",
-    "pixelsofmc:machine_energy_block"
+    "pixelsofmc:extender_block",
+    "pixelsofmc:extender_item_block",
+    "pixelsofmc:extender_energy_block"
   ]
 }

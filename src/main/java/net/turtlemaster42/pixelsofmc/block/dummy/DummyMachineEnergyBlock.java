@@ -52,7 +52,7 @@ public class DummyMachineEnergyBlock extends AbstractDummyMachineBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (!pLevel.isClientSide())
-            return createTickerHelper(pBlockEntityType, POMtiles.MACHINE_ENERGY_BLOCK.get(), DummyMachineEnergyBlockTile::serverTick);
+            return createTickerHelper(pBlockEntityType, POMtiles.EXTENDER_ENERGY_BLOCK.get(), DummyMachineEnergyBlockTile::serverTick);
         return null;
     }
 }

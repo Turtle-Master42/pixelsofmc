@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "pixelsofmc:block/machine_casing",
+    "side": "pixelsofmc:block/machine_casing_half",
+    "top": "pixelsofmc:block/machine_casing"
+  }
+}

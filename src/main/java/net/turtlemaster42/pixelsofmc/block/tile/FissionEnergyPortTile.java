@@ -9,7 +9,7 @@ public class FissionEnergyPortTile extends AbstractEnergyPortTile implements IEn
 
 
     public FissionEnergyPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FISSION_ENERGY_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.ENERGY_PORT.get(), pWorldPosition, pBlockState);
     }
 
 }

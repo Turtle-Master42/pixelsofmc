@@ -79,7 +79,7 @@ public class DummyMachineItemBlockTile extends AbstractDummyMachineBlockTile {
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     public DummyMachineItemBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.MACHINE_ITEM_BLOCK.get(), pWorldPosition, pBlockState);
+        super(POMtiles.EXTENDER_ITEM_BLOCK.get(), pWorldPosition, pBlockState);
     }
 
     @Nonnull

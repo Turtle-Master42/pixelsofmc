@@ -72,8 +72,8 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(POMblocks.REINFORCED_GLASS.get());
 
-        this.dropSelf(POMblocks.MULTIBLOCK_CASING.get());
-        this.dropSelf(POMblocks.ARMORED_MULTIBLOCK_CASING.get());
+        this.dropSelf(POMblocks.MACHINE_CASING.get());
+        this.dropSelf(POMblocks.ARMORED_MACHINE_CASING.get());
         this.dropSelf(POMblocks.FISSION_CASING.get());
         this.dropSelf(POMblocks.FUEL_CELL_HOLDER.get());
         this.dropSelf(POMblocks.NUCLEAR_REACTOR.get());
@@ -82,6 +82,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.ENERGY_PORT.get());
         this.dropSelf(POMblocks.FLUID_PORT.get());
         this.dropSelf(POMblocks.ITEM_PORT.get());
+        this.dropSelf(POMblocks.MACHINE_COIL.get());
 
         this.dropSelf(POMblocks.FUSION_CASING.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
@@ -114,12 +115,12 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get());
         this.dropSelf(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS.get());
 
-        this.dropSelf(POMblocks.MULTIBLOCK_CASING_STAIRS.get());
-        this.dropSelf(POMblocks.MULTIBLOCK_CASING_SLAB.get());
+        this.dropSelf(POMblocks.MACHINE_CASING_STAIRS.get());
+        this.dropSelf(POMblocks.MACHINE_CASING_SLAB.get());
         this.dropSelf(POMblocks.FISSION_CASING_STAIRS.get());
         this.dropSelf(POMblocks.FISSION_CASING_SLAB.get());
-        this.dropSelf(POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS.get());
-        this.dropSelf(POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB.get());
+        this.dropSelf(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get());
+        this.dropSelf(POMblocks.ARMORED_MACHINE_CASING_SLAB.get());
 
         this.dropOther(POMblocks.MERCURY_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.SULFURIC_ACID_BLOCK.get(), Items.AIR);
@@ -144,9 +145,9 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(POMblocks.PLUTONIUM_SOLUTION_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.RED_OIL_BLOCK.get(), Items.AIR);
 
-        this.dropOther(POMblocks.MACHINE_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.MACHINE_ENERGY_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.MACHINE_ITEM_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.EXTENDER_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.EXTENDER_ENERGY_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.EXTENDER_ITEM_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.STAR.get(), Items.AIR);
 
         this.add(POMblocks.ACANTHITE_SPIKE.get(), (block) ->

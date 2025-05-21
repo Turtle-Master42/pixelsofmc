@@ -9,7 +9,7 @@ import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
 public class FissionFluidPortTile extends AbstractFluidPortTile implements IFluidHandlingTile, IDuoFluidHandlingTile {
 
     public FissionFluidPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FISSION_FLUID_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.FLUID_PORT.get(), pWorldPosition, pBlockState);
     }
 
 }

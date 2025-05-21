@@ -18,7 +18,7 @@ public class FusionPlasmaPortTile extends AbstractMultiBlockTile {
 //    protected final ContainerData data;
 
     public FusionPlasmaPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FUSION_ENERGY_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.ENERGY_PORT.get(), pWorldPosition, pBlockState);
 //        this.data = new ContainerData() {
 //
 //            @Override

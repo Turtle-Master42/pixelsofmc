@@ -9,7 +9,7 @@ import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
 public class FusionFluidPortTile extends AbstractFluidPortTile implements IFluidHandlingTile, IDuoFluidHandlingTile {
 
     public FusionFluidPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FUSION_FLUID_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.FLUID_PORT.get(), pWorldPosition, pBlockState);
     }
 
 }

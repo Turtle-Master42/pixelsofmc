@@ -6,7 +6,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -259,12 +258,13 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.TUNGSTEN_PLATING_STAIRS);
         complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_SLAB);
         complexBlock(POMblocks.PYROLYTIC_CARBON_SHEET_STAIRS);
-        complexBlock(POMblocks.MULTIBLOCK_CASING_STAIRS);
-        complexBlock(POMblocks.MULTIBLOCK_CASING_SLAB);
+        complexBlock(POMblocks.MACHINE_CASING_STAIRS);
+        complexBlock(POMblocks.MACHINE_CASING_SLAB);
         complexBlock(POMblocks.FISSION_CASING_STAIRS);
         complexBlock(POMblocks.FISSION_CASING_SLAB);
-        complexBlock(POMblocks.ARMORED_MULTIBLOCK_CASING_STAIRS);
-        complexBlock(POMblocks.ARMORED_MULTIBLOCK_CASING_SLAB);
+        complexBlock(POMblocks.ARMORED_MACHINE_CASING_STAIRS);
+        complexBlock(POMblocks.ARMORED_MACHINE_CASING_SLAB);
+        complexBlock(POMblocks.MACHINE_COIL);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

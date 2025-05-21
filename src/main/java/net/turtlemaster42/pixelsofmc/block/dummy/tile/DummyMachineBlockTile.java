@@ -9,7 +9,7 @@ public class DummyMachineBlockTile extends AbstractDummyMachineBlockTile {
 	protected final ContainerData data;
 
 	public DummyMachineBlockTile(BlockPos pWorldPosition, BlockState pBlockState) {
-		super(POMtiles.MACHINE_BLOCK.get(), pWorldPosition, pBlockState);
+		super(POMtiles.EXTENDER_BLOCK.get(), pWorldPosition, pBlockState);
 		this.data = new ContainerData() {
 			@Override
 			public int get(int pIndex) {

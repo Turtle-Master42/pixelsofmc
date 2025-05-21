@@ -8,7 +8,7 @@ import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
 public class FusionEnergyPortTile extends AbstractEnergyPortTile implements IEnergyHandlingTile {
 
     public FusionEnergyPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.FUSION_ENERGY_PORT.get(), pWorldPosition, pBlockState);
+        super(POMtiles.ENERGY_PORT.get(), pWorldPosition, pBlockState);
     }
 
 }

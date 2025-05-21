@@ -108,7 +108,7 @@ public class SDSFusionControllerBlock extends AbstractFusionControllerBlock {
     public void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(pState, pLevel, pPos, oldState, moving);
         if (!pLevel.isClientSide()) {
-            BlockState MACHINE_BLOCK = POMblocks.MACHINE_BLOCK.get().defaultBlockState();
+            BlockState MACHINE_BLOCK = POMblocks.EXTENDER_BLOCK.get().defaultBlockState();
 
             //this should always be the same, the only difference should be the name of the DirectionProperty (in this case FACING. This does need to be a DirectionProperty!!!)
             Direction direction = pState.getValue(FACING);

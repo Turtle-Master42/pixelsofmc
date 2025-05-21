@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.turtlemaster42.pixelsofmc.block.tile.EnergyPortTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FissionEnergyPortTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FusionEnergyPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -20,15 +21,15 @@ public class FissionEnergyPortBlock extends AbstractPort {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new FissionEnergyPortTile(pPos, pState);
+        return new EnergyPortTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (pState.getValue(PUSHING)) {
-            return createTickerHelper(pBlockEntityType, POMtiles.FISSION_ENERGY_PORT.get(),
-                    pLevel.isClientSide ? FissionEnergyPortTile::clientTick : FissionEnergyPortTile::serverTick);
+            return createTickerHelper(pBlockEntityType, POMtiles.ENERGY_PORT.get(),
+                    pLevel.isClientSide ? EnergyPortTile::clientTick : EnergyPortTile::serverTick);
         }
         return null;
     }

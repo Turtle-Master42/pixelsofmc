@@ -15,6 +15,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
+import net.turtlemaster42.pixelsofmc.block.tile.FluidPortTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FusionFluidPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
@@ -61,15 +62,15 @@ public class FusionFluidPortBlock extends AbstractPort {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new FusionFluidPortTile(pPos, pState);
+        return new FluidPortTile(pPos, pState);
     }
 
     @javax.annotation.Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (pState.getValue(AbstractPort.PUSHING)) {
-            return createTickerHelper(pBlockEntityType, POMtiles.FUSION_FLUID_PORT.get(),
-                    pLevel.isClientSide ? FusionFluidPortTile::clientTick : FusionFluidPortTile::serverTick);
+            return createTickerHelper(pBlockEntityType, POMtiles.FLUID_PORT.get(),
+                    pLevel.isClientSide ? FluidPortTile::clientTick : FluidPortTile::serverTick);
         }
         return null;
     }
