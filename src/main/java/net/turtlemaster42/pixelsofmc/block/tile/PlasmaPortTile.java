@@ -13,11 +13,11 @@ import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
-public class FusionPlasmaPortTile extends AbstractMultiBlockTile {
+public class PlasmaPortTile extends AbstractMultiBlockTile {
 
 //    protected final ContainerData data;
 
-    public FusionPlasmaPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
+    public PlasmaPortTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.ENERGY_PORT.get(), pWorldPosition, pBlockState);
 //        this.data = new ContainerData() {
 //
@@ -56,18 +56,18 @@ public class FusionPlasmaPortTile extends AbstractMultiBlockTile {
 //        energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FusionPlasmaPortTile e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, PlasmaPortTile e) {
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, FusionPlasmaPortTile e) {
-        if (blockState.getValue(FusionPlasmaPortBlock.PUSHING)) {
-            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionPlasmaPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
-            BlockState facingState = level.getBlockState(facingPos);
-            if (((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR)))) {
-                Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
-                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionPlasmaPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
-                level.addParticle(POMparticles.ELECTRIC_SPARK.get(), posVec.x + (Math.random() - 0.5) / 2, posVec.y + (Math.random() - 0.5) / 2, posVec.z + (Math.random() - 0.5) / 2, 0, 0, 0);
-            }
-        }
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, PlasmaPortTile e) {
+//        if (blockState.getValue(FusionPlasmaPortBlock.PUSHING)) {
+//            BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(FusionPlasmaPortBlock.PUSH_DIRECTION), 0, 0, 1, blockPos);
+//            BlockState facingState = level.getBlockState(facingPos);
+//            if (((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR)))) {
+//                Vector3f centerVec = new Vector3f(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f);
+//                Vector3f posVec = rotatedVecPos(blockState.getValue(FusionPlasmaPortBlock.PUSH_DIRECTION), centerVec, 0, 0, 0.6f);
+//                level.addParticle(POMparticles.ELECTRIC_SPARK.get(), posVec.x + (Math.random() - 0.5) / 2, posVec.y + (Math.random() - 0.5) / 2, posVec.z + (Math.random() - 0.5) / 2, 0, 0, 0);
+//            }
+//        }
     }
 }

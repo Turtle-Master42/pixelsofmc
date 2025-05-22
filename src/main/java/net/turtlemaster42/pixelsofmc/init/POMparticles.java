@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
+import net.turtlemaster42.pixelsofmc.particle.options.FluidBubbleParticleOptions;
 
 import java.util.function.Function;
 
@@ -17,6 +18,8 @@ public class POMparticles {
 
     public static final RegistryObject<SimpleParticleType> ELECTRIC_SPARK = PARTICLE_TYPES.register("electric_spark", () -> new SimpleParticleType(true));
     public static final RegistryObject<ParticleType<ColoredBlockParticleOptions>> COLORED_BLOCK = register("colored_block", false, ColoredBlockParticleOptions.DESERIALIZER, ColoredBlockParticleOptions::codec);
+    public static final RegistryObject<ParticleType<FluidBubbleParticleOptions>> FLUID_BUBBLE_POP = register("fluid_bubble_pop", false, FluidBubbleParticleOptions.DESERIALIZER, FluidBubbleParticleOptions::codec);
+    public static final RegistryObject<ParticleType<FluidBubbleParticleOptions>> FLUID_BUBBLE = register("fluid_bubble", false, FluidBubbleParticleOptions.DESERIALIZER, FluidBubbleParticleOptions::codec);
 
 
     public static void register(IEventBus eventBus) {

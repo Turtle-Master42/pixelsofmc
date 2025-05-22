@@ -30,18 +30,8 @@ public class POMtiles {
 			TILES.register("item_port", () -> BlockEntityType.Builder.of(ItemPortTile::new, POMblocks.ITEM_PORT.get(), POMblocks.FUSION_ITEM_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FluidPortTile>> FLUID_PORT =
 			TILES.register("fluid_port", () -> BlockEntityType.Builder.of(FluidPortTile::new, POMblocks.FLUID_PORT.get(), POMblocks.FISSION_FLUID_PORT.get(), POMblocks.FUSION_FLUID_PORT.get()).build(null));
-//	public static final RegistryObject<BlockEntityType<FissionEnergyPortTile>> FISSION_ENERGY_PORT =
-//			TILES.register("fission_energy_port", () -> BlockEntityType.Builder.of(FissionEnergyPortTile::new, POMblocks.FISSION_ENERGY_PORT.get()).build(null));
-//	public static final RegistryObject<BlockEntityType<FissionFluidPortTile>> FISSION_FLUID_PORT =
-//			TILES.register("fission_fluid_port", () -> BlockEntityType.Builder.of(FissionFluidPortTile::new, POMblocks.FISSION_FLUID_PORT.get()).build(null));
-//	public static final RegistryObject<BlockEntityType<FusionEnergyPortTile>> FUSION_ENERGY_PORT =
-//			TILES.register("fusion_energy_port", () -> BlockEntityType.Builder.of(FusionEnergyPortTile::new, POMblocks.FUSION_ENERGY_PORT.get()).build(null));
-//	public static final RegistryObject<BlockEntityType<FusionItemPortTile>> FUSION_ITEM_PORT =
-//			TILES.register("fusion_item_port", () -> BlockEntityType.Builder.of(FusionItemPortTile::new, POMblocks.FUSION_ITEM_PORT.get()).build(null));
-//	public static final RegistryObject<BlockEntityType<FusionFluidPortTile>> FUSION_FLUID_PORT =
-//			TILES.register("fusion_fluid_port", () -> BlockEntityType.Builder.of(FusionFluidPortTile::new, POMblocks.FUSION_FLUID_PORT.get()).build(null));
-	public static final RegistryObject<BlockEntityType<FusionPlasmaPortTile>> FUSION_PLASMA_PORT =
-			TILES.register("fusion_plasma_port", () -> BlockEntityType.Builder.of(FusionPlasmaPortTile::new, POMblocks.FUSION_PLASMA_PORT.get()).build(null));
+	public static final RegistryObject<BlockEntityType<PlasmaPortTile>> PLASMA_PORT =
+			TILES.register("plasma_port", () -> BlockEntityType.Builder.of(PlasmaPortTile::new, POMblocks.FUSION_PLASMA_PORT.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FuelCellHolderTile>> FUEL_CELL_HOLDER =
 			TILES.register("fuel_cell_holder", () -> BlockEntityType.Builder.of(FuelCellHolderTile::new, POMblocks.FUEL_CELL_HOLDER.get()).build(null));
 
@@ -65,14 +55,11 @@ public class POMtiles {
 			TILES.register("chemical_separator", () -> BlockEntityType.Builder.of(ChemicalSeparatorTile::new, POMblocks.CHEMICAL_SEPARATOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ChemicalCombinerTile>> CHEMICAL_COMBINER =
 			TILES.register("chemical_combiner", () -> BlockEntityType.Builder.of(ChemicalCombinerTile::new, POMblocks.CHEMICAL_COMBINER.get()).build(null));
-
 	public static final RegistryObject<BlockEntityType<ChemicalMixerTile>> CHEMICAL_MIXER =
 			TILES.register("chemical_mixer", () -> BlockEntityType.Builder.of(ChemicalMixerTile::new, POMblocks.CHEMICAL_MIXER.get()).build(null));
 
-
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
 			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.NUCLEAR_REACTOR.get()).build(null));
-
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
 			TILES.register("sds_controller", () -> BlockEntityType.Builder.of(SDSFusionControllerTile::new, POMblocks.SDS_CONTROLLER.get(), POMblocks.MDS_CONTROLLER.get(), POMblocks.MNS_CONTROLLER.get(), POMblocks.BH_CONTROLLER.get()).build(null));
 

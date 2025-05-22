@@ -8,7 +8,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.versions.forge.ForgeVersion;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Util;
 
@@ -46,15 +45,15 @@ public class POMtags {
         public static final TagKey<Item> ENERGY_UPGRADE = ItemTags.create(Util.resourceLocation("energy_upgrade"));
         public static final TagKey<Item> HEAT_UPGRADE = ItemTags.create(Util.resourceLocation("heat_upgrade"));
         public static final TagKey<Item> SOUL_FUELS = ItemTags.create(Util.resourceLocation("soul_fuels"));
-        public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "nuggets/netherite"));
+        public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(forgeLoc("nuggets/netherite"));
 
         // forge items
-        public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "dusts/netherite"));
-        public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "dusts/ancient_debris"));
-        public static final TagKey<Item> DUST_COAL = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "dusts/coal"));
-        public static final TagKey<Item> DUST_QUARTZ = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "dusts/quartz"));
+        public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(forgeLoc("dusts/netherite"));
+        public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(forgeLoc("dusts/ancient_debris"));
+        public static final TagKey<Item> DUST_COAL = ItemTags.create(forgeLoc("dusts/coal"));
+        public static final TagKey<Item> DUST_QUARTZ = ItemTags.create(forgeLoc("dusts/quartz"));
 
-        public static final TagKey<Item> ORES_TITANIUM = ItemTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "ores/titanium"));
+        public static final TagKey<Item> ORES_TITANIUM = ItemTags.create(forgeLoc("ores/titanium"));
 
     }
 
@@ -62,17 +61,16 @@ public class POMtags {
         private static void init() {}
 
         // blocks
-        public static final TagKey<Block> MACHINE_BLOCKS = BlockTags.create(Util.resourceLocation("machine_block"));
-        public static final TagKey<Block> MULTIBLOCK_CASINGS = BlockTags.create(Util.resourceLocation("multiblock/casing"));
-        public static final TagKey<Block> FISSION_CASINGS = BlockTags.create(Util.resourceLocation("multiblock/fission"));
-        public static final TagKey<Block> FUSION_CASINGS = BlockTags.create(Util.resourceLocation("multiblock/fusion"));
+        public static final TagKey<Block> EXTENDER_BLOCK = BlockTags.create(Util.resourceLocation("extender_block"));
+        public static final TagKey<Block> MACHINE_CASINGS = BlockTags.create(Util.resourceLocation("casing/machine"));
+        public static final TagKey<Block> FISSION_CASINGS = BlockTags.create(Util.resourceLocation("casing/fission"));
+        public static final TagKey<Block> FUSION_CASINGS = BlockTags.create(Util.resourceLocation("casing/fusion"));
 
         // forge blocks
-        public static final TagKey<Block> ORES_TITANIUM = BlockTags.create(Util.resourceLocation(ForgeVersion.MOD_ID, "ores/titanium"));
+        public static final TagKey<Block> ORES_TITANIUM = BlockTags.create(forgeLoc("ores/titanium"));
 
     }
-    //Immersive Engineering
-
+    //CREDIT Immersive Engineering
     static
     {
         for(Element m : Element.values())

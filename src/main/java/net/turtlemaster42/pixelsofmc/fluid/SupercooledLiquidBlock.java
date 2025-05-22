@@ -23,8 +23,12 @@ public class SupercooledLiquidBlock extends LiquidBlock {
 
     @Override
     public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, RandomSource pRandom) {
-        if (pRandom.nextDouble() < 0.4d)
-           pLevel.addParticle(ParticleTypes.SNOWFLAKE, pPos.getX() + pRandom.nextDouble(), pPos.getY() +0.25f + (1f / (pState.getValue(LiquidBlock.LEVEL) + 1f)), pPos.getZ() + pRandom.nextDouble(), 0f, 0f, 0f);
+        if (pRandom.nextDouble() < 0.4d && pLevel.getBlockState(pPos.above()).is(Blocks.AIR))
+           pLevel.addParticle(ParticleTypes.SNOWFLAKE,
+                   pPos.getX() + pRandom.nextDouble(),
+                   pPos.getY() + ((8 - pState.getValue(LiquidBlock.LEVEL)) * 0.125f),
+                   pPos.getZ() + pRandom.nextDouble(),
+                   0f, 0f, 0f);
     }
 
     @Override

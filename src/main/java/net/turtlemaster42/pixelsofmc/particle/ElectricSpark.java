@@ -28,12 +28,8 @@ public class ElectricSpark extends RisingParticle {
     public void tick() {
         super.tick();
         this.setSpriteFromAge(this.sprites);
-//        fadeOut();
     }
 
-    private void fadeOut() {
-        this.alpha = (-(1/(float)lifetime) * age + 1);
-    }
 
     @Override
     public ParticleRenderType getRenderType() {

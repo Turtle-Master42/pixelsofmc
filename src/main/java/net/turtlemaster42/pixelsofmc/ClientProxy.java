@@ -11,6 +11,8 @@ import net.turtlemaster42.pixelsofmc.gui.book.GuiBook1;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.particle.ColoredBlockParticle;
 import net.turtlemaster42.pixelsofmc.particle.ElectricSpark;
+import net.turtlemaster42.pixelsofmc.particle.FluidBubbleParticle;
+import net.turtlemaster42.pixelsofmc.particle.FluidBubblePopParticle;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PixelsOfMc.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -27,6 +29,12 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void RegisterParticleProvider(RegisterParticleProvidersEvent event) {
         PixelsOfMc.LOGGER.info("RegisterParticleProvider");
+
+        // RegisterParticleProvidersEvent does not seem to allow the registration of a color able particle with a set
+        // texture that doesn't need to be specified and is instead grabbed from the /particles/ folder in the texturepack.
+        Minecraft.getInstance().particleEngine.register(POMparticles.FLUID_BUBBLE_POP.get(), FluidBubblePopParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(POMparticles.FLUID_BUBBLE.get(), FluidBubbleParticle.Provider::new);
+
         event.registerSpriteSet(POMparticles.ELECTRIC_SPARK.get(), ElectricSpark.Provider::new);
         event.registerSpecial(POMparticles.COLORED_BLOCK.get(), new ColoredBlockParticle.Provider());
     }

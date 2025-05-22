@@ -115,7 +115,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ENERGY_BLOCK.get(),
                 POMblocks.EXTENDER_ITEM_BLOCK.get()
-            );
+        );
 
 
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(
@@ -131,7 +131,13 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.TUNGSTEN_PLATING_SLAB.get(),
                 POMblocks.NETHERITE_PLATING_BLOCK.get(),
                 POMblocks.NETHERITE_PLATING_STAIRS.get(),
-                POMblocks.NETHERITE_PLATING_SLAB.get()
+                POMblocks.NETHERITE_PLATING_SLAB.get(),
+                POMblocks.MACHINE_CASING_STAIRS.get(),
+                POMblocks.MACHINE_CASING_SLAB.get(),
+                POMblocks.FISSION_CASING_STAIRS.get(),
+                POMblocks.FISSION_CASING_SLAB.get(),
+                POMblocks.ARMORED_MACHINE_CASING_STAIRS.get(),
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get()
         );
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
@@ -161,13 +167,13 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.ENDSTONE_TITANIUM_ORE.get()
         );
 
-        this.tag(POMtags.Blocks.MACHINE_BLOCKS).add(
+        this.tag(POMtags.Blocks.EXTENDER_BLOCK).add(
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ITEM_BLOCK.get(),
                 POMblocks.EXTENDER_ENERGY_BLOCK.get()
         );
 
-        this.tag(POMtags.Blocks.MULTIBLOCK_CASINGS).add(
+        this.tag(POMtags.Blocks.MACHINE_CASINGS).add(
                 POMblocks.MACHINE_CASING.get(),
                 POMblocks.ITEM_PORT.get(),
                 POMblocks.ENERGY_PORT.get(),
@@ -183,6 +189,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FUSION_CORNER.get(),
                 POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(),
                 POMblocks.ARMORED_MACHINE_CASING.get(),
+                POMblocks.MACHINE_COIL.get(),
                 POMblocks.REINFORCED_GLASS.get()
         );
 

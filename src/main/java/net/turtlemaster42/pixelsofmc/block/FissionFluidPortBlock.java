@@ -15,7 +15,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
-import net.turtlemaster42.pixelsofmc.block.tile.FissionFluidPortTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FluidPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
