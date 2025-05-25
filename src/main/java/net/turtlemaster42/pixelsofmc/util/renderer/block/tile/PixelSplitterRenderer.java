@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.util.renderer.block.tile;
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -15,13 +14,13 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.PixelSplitterBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterRenderer implements BlockEntityRenderer<PixelSplitterTile> {
     public PixelSplitterRenderer(BlockEntityRendererProvider.Context context) {
-
     }
 
     @Override

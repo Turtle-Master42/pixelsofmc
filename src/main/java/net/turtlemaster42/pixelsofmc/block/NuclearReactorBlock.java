@@ -89,7 +89,6 @@ public class NuclearReactorBlock extends AbstractMultiControllerBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-//        if (pState.getValue(ACTIVE).equals(1)) return null;
         return createTickerHelper(pBlockEntityType, POMtiles.NUCLEAR_REACTOR.get(),
                 pLevel.isClientSide ? NuclearReactorTile::clientTick : NuclearReactorTile::serverTick);
     }

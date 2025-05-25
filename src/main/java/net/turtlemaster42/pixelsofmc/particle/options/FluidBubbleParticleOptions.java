@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class FluidBubbleParticleOptions implements ParticleOptions {
     public static final DynamicCommandExceptionType ERROR_UNKNOWN_FLUID =
-            new DynamicCommandExceptionType((fluid) -> Component.translatable("argument.block.id.invalid", fluid));
+            new DynamicCommandExceptionType((fluid) -> Component.translatable("argument.fluid.id.invalid", fluid));
 
     public static final Deserializer<FluidBubbleParticleOptions> DESERIALIZER = new Deserializer<FluidBubbleParticleOptions>() {
         public FluidBubbleParticleOptions fromCommand(@NotNull ParticleType<FluidBubbleParticleOptions> pParticleType, StringReader stringReader) throws CommandSyntaxException {

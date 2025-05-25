@@ -1043,6 +1043,12 @@
   "tooltip.pixelsofmc.power_cell.supercharged": "§c810000 §7FE Stored",
   "tooltip.pixelsofmc.fuel_cell": "%s Depleted",
 
+  "tooltip.pixelsofmc.button.liquid_cooling": "§bToggle Liquid Cooling",
+  "tooltip.pixelsofmc.button.emergency_shutdown": "§6Emergency Shutdown",
+  "tooltip.pixelsofmc.button.auto_rebooting": "§dAutomatic Rebooting",
+  "tooltip.pixelsofmc.button.lock_unlock": "§dLock/Unlock",
+
+
   "tooltip.pixelsofmc.jei.pixel": "Structure Formula",
 
   "tooltip.pixelsofmc.entity.health": "%s ❤",
@@ -1070,5 +1076,7 @@
   "death.attack.acid.item": "%1$s dissolved in acid whiles fighting %2$s using %3$s",
   "death.attack.acid.player": "%1$s dissolved in acid whiles fighting %2$s",
 
-  "message.pixelsofmc.block.multiblock.invalid": "§cThe structure doesn't seem to be correct"
+  "message.pixelsofmc.block.multiblock.invalid": "§cThe structure doesn't seem to be correct",
+
+  "argument.fluid.id.invalid": "Unknown fluid type '%s'"
 }

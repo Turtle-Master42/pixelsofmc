@@ -84,7 +84,9 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(
                     efficiencyBonusTooltip(menu.getEfficiencyBonus()),
                     energyPerTickTooltip(menu.blockEntity.getItemStackHandler(), menu.getEfficiencyBonus()),
-                    Component.literal(String.valueOf(menu.data.get(2)))
+
+                    heatTooltip(),
+                    Component.literal(String.valueOf(menu.data.get(2))) //TODO:remove once done
             ), Optional.empty(), mouseX - x, mouseY - y);
         }
     }
@@ -148,29 +150,29 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
     private void assignButtons() {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.switch1 = new SwitchButton(x + 127, y + 6, Component.literal("§6???"), (pButton) -> {
+        this.switch1 = new SwitchButton(x + 127, y + 6, Component.translatable("tooltip.pixelsofmc.button.liquid_cooling"), (pButton) -> {
             switch1.cycleOn();
             menu.setSwitch(0, switch1.isOn());
         });
         this.switch1.setOn(menu.getSwitch(0));
         this.addRenderableWidget(this.switch1);
 
-        this.switch2 = new SwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
+        this.switch2 = new SwitchButton(x + 136, y + 6, Component.translatable("tooltip.pixelsofmc.button.emergency_shutdown"), (pButton) -> {
             switch2.cycleOn();
             menu.setSwitch(1, switch2.isOn());
         });
         this.switch2.setOn(menu.getSwitch(1));
         this.addRenderableWidget(this.switch2);
 
-        this.switch3 = new SwitchButton(x + 145, y + 6, Component.literal("§d???"), (pButton) -> {
+        this.switch3 = new SwitchButton(x + 145, y + 6, Component.translatable("tooltip.pixelsofmc.button.auto_rebooting"), (pButton) -> {
             switch3.cycleOn();
             menu.setSwitch(2, switch3.isOn());
         });
         this.switch3.setOn(menu.getSwitch(2));
         this.addRenderableWidget(this.switch3);
 
-        this.bigSwitch = new BigSwitchButton(x + 42, y + 30, Component.literal("§dLock/Unlock"), (pButton) -> {
-            if (menu.data.get(2) < 20_000_000) {
+        this.bigSwitch = new BigSwitchButton(x + 42, y + 30, Component.translatable("tooltip.pixelsofmc.button.lock_unlock"), (pButton) -> {
+            if (menu.data.get(2) < 10_000_000 || bigSwitch.isOn()) {
                 bigSwitch.cycleOn();
                 menu.setSwitch(3, bigSwitch.isOn());
             }
@@ -194,6 +196,28 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             return Component.literal("§a+" + efficiencyBonus + "%");
         }
         return Component.literal("§c§l+" + efficiencyBonus + "%");
+    }
+
+    private Component heatTooltip() {
+        int heat = menu.data.get(2);
+
+        if (heat < 10)
+            return Component.literal("§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 10_000)
+            return Component.literal("§4\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 100_000)
+            return Component.literal("§c\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 500_000)
+            return Component.literal("§c\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 1_000_000)
+            return Component.literal("§6\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 5_000_000)
+            return Component.literal("§6\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 10_000_000)
+            return Component.literal("§6\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25\uD83D\uDD25");
+        else if (heat < 20_000_000)
+            return Component.literal("§6\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25§8\uD83D\uDD25");
+        return Component.literal("§e\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
     }
 
     private Component energyPerTickTooltip(ItemStackHandler stackHandler, float bonus) {

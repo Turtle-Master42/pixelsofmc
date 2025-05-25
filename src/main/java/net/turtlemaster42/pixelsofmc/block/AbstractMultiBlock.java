@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
+public class AbstractMultiBlock extends BaseEntityBlock {
     public AbstractMultiBlock(Properties pProperties) {
         super(pProperties);
     }
@@ -34,7 +33,7 @@ public class AbstractMultiBlock extends BaseEntityBlock implements EntityBlock {
         return PushReaction.BLOCK;
     }
 
-    @javax.annotation.Nullable
+    @Nullable
     public static BlockPos getMainBlockPos(BlockGetter world, BlockPos thisPos) {
         AbstractMultiBlockTile te = BigMachineBlockUtil.getTileEntity(AbstractMultiBlockTile.class, world, thisPos);
         if (te != null && !thisPos.equals(te.getMainPos())) {

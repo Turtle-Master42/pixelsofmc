@@ -55,9 +55,7 @@ import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.item.ReinforcedBucket;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.BallMillRenderer;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.PixelSplitterRenderer;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.StarRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -244,6 +242,10 @@ public class PixelsOfMc {
 		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.STAR.get(), StarRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.BALL_MILL.get(), BallMillRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.FUEL_CELL_HOLDER.get(), FuelCellHolderRenderer::new);
+		event.registerBlockEntityRenderer(POMtiles.NUCLEAR_REACTOR.get(), NuclearReactorRenderer::new);
+
+
 	}
 
 

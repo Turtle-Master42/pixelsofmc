@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.network.packets;
 
 
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

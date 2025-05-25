@@ -52,9 +52,10 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private static final int energyConsumption = 100;
     private float efficiency_bonus = 1f;
     private int internalHeat = 0;
-    private final int internalHeatCapacity = 20_000_000;
+    private final int internalHeatCapacity = 10_000_000;
+    private int rebootCooldown = 0;
 
-    public boolean[] switches = new boolean[]{false, false, false, false};
+    public boolean[] switches = new boolean[]{false, false, true, false};
 
 
 
@@ -234,6 +235,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         tag.putBoolean("redSwitch2", switches[1]);
         tag.putBoolean("redSwitch3", switches[2]);
         tag.putBoolean("bigRedSwitch", switches[3]);
+        tag.putInt("rebootCooldown", rebootCooldown);
         super.saveAdditional(tag);
     }
 
@@ -250,6 +252,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         switches[1] = nbt.getBoolean("redSwitch2");
         switches[2] = nbt.getBoolean("redSwitch3");
         switches[3] = nbt.getBoolean("bigRedSwitch");
+        rebootCooldown = nbt.getInt("rebootCooldown");
     }
 
 
@@ -265,23 +268,37 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (getSwitch(3)) {
-            handleFuelCell(0);
-            handleFuelCell(1);
-            handleFuelCell(2);
-            handleFuelCell(3);
-            if (internalHeat >= internalHeatCapacity) {
-                setSwitch(3, false);
+        //cooldown and reboot
+        if (rebootCooldown > 0) {
+            rebootCooldown--;
+            if (rebootCooldown == 0 && getSwitch(2)) {
+                setSwitch(3, true);
             }
         }
 
-        if (getSwitch(1)) {
+        //cooling
+        if (getSwitch(0)) {
             int maxDrain = internalHeat / Constants.FE_waterToSteam;
             FluidStack drained = fluidTank.drain(maxDrain, IFluidHandler.FluidAction.EXECUTE);
             duoFluidTank.fill(new FluidStack(POMfluids.STEAM_SOURCE.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
             internalHeat -= drained.getAmount() * Constants.FE_waterToSteam;
             setChanged(pLevel, pPos, pState);
         }
+
+        //active
+        if (getSwitch(3)) {
+            handleFuelCell(0);
+            handleFuelCell(1);
+            handleFuelCell(2);
+            handleFuelCell(3);
+            if (internalHeat >= internalHeatCapacity && getSwitch(1)) {
+                setSwitch(3, false);
+                if (getSwitch(2))
+                    rebootCooldown = 200; // 10s
+            }
+        }
+
+        //debug water fill TODO: remove
         if (getSwitch(2)) {
             fluidTank.fill(new FluidStack(Fluids.WATER, 20_000), IFluidHandler.FluidAction.EXECUTE);
         }
