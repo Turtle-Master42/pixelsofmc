@@ -6,7 +6,7 @@
   },
   "fluid_output": {
     "Amount": 100,
-    "FluidName": "pixelsofmc:mercury_fluid"
+    "FluidName": "pixelsofmc:mercury"
   },
   "input": {
     "count": 1,

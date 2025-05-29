@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "pixelsofmc:block/sulfuric_acid_fluid"
+      "model": "pixelsofmc:block/sulfuric_acid"
     }
   }
 }

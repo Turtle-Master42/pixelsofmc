@@ -2,11 +2,11 @@
   "type": "pixelsofmc:chemical_separating",
   "fluid_input": {
     "Amount": 500,
-    "FluidName": "pixelsofmc:nitric_acid_fluid"
+    "FluidName": "pixelsofmc:nitric_acid"
   },
   "fluid_output": {
     "Amount": 3000,
-    "FluidName": "pixelsofmc:nuclear_waste_fluid"
+    "FluidName": "pixelsofmc:nuclear_waste"
   },
   "input": {
     "count": 1,

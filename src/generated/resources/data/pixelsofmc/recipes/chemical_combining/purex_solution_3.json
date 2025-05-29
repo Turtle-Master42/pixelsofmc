@@ -2,11 +2,11 @@
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
     "Amount": 100,
-    "FluidName": "pixelsofmc:sulfuric_acid_fluid"
+    "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
     "Amount": 200,
-    "FluidName": "pixelsofmc:purex_solution_fluid"
+    "FluidName": "pixelsofmc:purex_solution"
   },
   "inputs": [
     {
@@ -18,7 +18,7 @@
     {
       "count": 2,
       "ingredient": {
-        "item": "minecraft:warped_wart_block"
+        "item": "minecraft:warped_roots"
       }
     },
     {

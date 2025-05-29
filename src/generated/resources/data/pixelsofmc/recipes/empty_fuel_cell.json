@@ -11,7 +11,7 @@
   },
   "pattern": [
     "ABA",
-    "AAA",
+    "A A",
     "ABA"
   ],
   "result": {

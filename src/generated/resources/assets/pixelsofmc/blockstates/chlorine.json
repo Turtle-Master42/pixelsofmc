@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "pixelsofmc:block/chlorine_fluid"
+      "model": "pixelsofmc:block/chlorine"
     }
   }
 }

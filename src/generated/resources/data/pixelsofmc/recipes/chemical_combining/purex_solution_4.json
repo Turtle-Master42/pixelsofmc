@@ -2,11 +2,11 @@
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
     "Amount": 100,
-    "FluidName": "pixelsofmc:sulfuric_acid_fluid"
+    "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
     "Amount": 200,
-    "FluidName": "pixelsofmc:purex_solution_fluid"
+    "FluidName": "pixelsofmc:purex_solution"
   },
   "inputs": [
     {
@@ -16,9 +16,9 @@
       }
     },
     {
-      "count": 1,
+      "count": 4,
       "ingredient": {
-        "item": "minecraft:warped_fungus"
+        "item": "minecraft:nether_sprouts"
       }
     },
     {

@@ -383,7 +383,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', POMblocks.REINFORCED_GLASS.get())
                 .define('B', POMitems.TITANIUM_DIBORIDE_PLATING.get())
                 .pattern("ABA")
-                .pattern("AAA")
+                .pattern("A A")
                 .pattern("ABA")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
@@ -850,11 +850,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_GOLD))
                 .save(fConsumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.REINFORCED_GLASS.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.REINFORCED_GLASS.get(), 4)
                 .define('A', POMitems.TITANIUM_DIBORIDE_INGOT.get())
                 .define('B', Items.TINTED_GLASS)
                 .pattern("ABA")
-                .pattern("B B")
+                .pattern("BBB")
                 .pattern("ABA")
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
                 .save(fConsumer);

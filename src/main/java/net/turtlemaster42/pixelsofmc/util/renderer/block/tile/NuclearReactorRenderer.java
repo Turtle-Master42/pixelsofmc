@@ -27,7 +27,7 @@ public class NuclearReactorRenderer<T extends NuclearReactorTile> implements Blo
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.5F, 0.5F);
-        int seed = (pBlockEntity.getBlockPos().getX()*1_000_000) + (pBlockEntity.getBlockPos().getY()*1_000) + pBlockEntity.getBlockPos().getZ();
+        int seed = pBlockEntity.getBlockPos().getX() + pBlockEntity.getBlockPos().getY() + pBlockEntity.getBlockPos().getZ();
         //renderToBuffer(PoseStack, VertexConsumer, light, colorOverlay?, red, green, blue, ?)
         if (pBlockEntity.getBlockState().getValue(NuclearReactorBlock.ACTIVE) == 3) {
             if (pBlockEntity.getItemStackHandler().getStackInSlot(0).getItem() instanceof FuelCellItem fuelCell1) {

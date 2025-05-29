@@ -3,11 +3,11 @@
   "fluid_inputs": [
     {
       "Amount": 9,
-      "FluidName": "pixelsofmc:nuclear_waste_solution_fluid"
+      "FluidName": "pixelsofmc:nuclear_waste_solution"
     },
     {
       "Amount": 5,
-      "FluidName": "pixelsofmc:nitric_acid_fluid"
+      "FluidName": "pixelsofmc:nitric_acid"
     },
     {
       "Amount": 10,
@@ -17,15 +17,15 @@
   "fluid_outputs": [
     {
       "Amount": 3,
-      "FluidName": "pixelsofmc:uranium_solution_fluid"
+      "FluidName": "pixelsofmc:uranium_solution"
     },
     {
       "Amount": 3,
-      "FluidName": "pixelsofmc:plutonium_solution_fluid"
+      "FluidName": "pixelsofmc:plutonium_solution"
     },
     {
       "Amount": 5,
-      "FluidName": "pixelsofmc:red_oil_fluid"
+      "FluidName": "pixelsofmc:red_oil"
     }
   ],
   "temperature_state": 5

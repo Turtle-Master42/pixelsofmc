@@ -6,7 +6,7 @@
   },
   "fluid_output": {
     "Amount": 50,
-    "FluidName": "pixelsofmc:sulfuric_acid_fluid"
+    "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "input": {
     "count": 2,

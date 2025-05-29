@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:chemical_mixing/nitric_acid_fluid_water_2"
+        "recipe": "pixelsofmc:chemical_mixing/nitric_acid_water"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:chemical_mixing/nitric_acid_fluid_water_2"
+      "pixelsofmc:chemical_mixing/nitric_acid_water"
     ]
   },
   "sends_telemetry_event": true

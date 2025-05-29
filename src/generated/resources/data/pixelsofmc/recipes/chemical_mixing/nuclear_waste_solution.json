@@ -3,17 +3,17 @@
   "fluid_inputs": [
     {
       "Amount": 10,
-      "FluidName": "pixelsofmc:nuclear_waste_fluid"
+      "FluidName": "pixelsofmc:nuclear_waste"
     },
     {
       "Amount": 5,
-      "FluidName": "pixelsofmc:purex_solution_fluid"
+      "FluidName": "pixelsofmc:purex_solution"
     }
   ],
   "fluid_outputs": [
     {
       "Amount": 10,
-      "FluidName": "pixelsofmc:nuclear_waste_solution_fluid"
+      "FluidName": "pixelsofmc:nuclear_waste_solution"
     }
   ],
   "temperature_state": 4

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "pixelsofmc:block/red_oil_fluid"
+      "model": "pixelsofmc:block/red_oil"
     }
   }
 }

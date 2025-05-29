@@ -11,11 +11,11 @@
   },
   "pattern": [
     "ABA",
-    "B B",
+    "BBB",
     "ABA"
   ],
   "result": {
-    "count": 2,
+    "count": 4,
     "item": "pixelsofmc:reinforced_glass"
   },
   "show_notification": true

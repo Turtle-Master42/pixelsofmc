@@ -53,7 +53,7 @@ public class GrinderRecipeCategory extends BaseCategory<GrinderRecipe> {
             IDrawable overlay = chanceOverlay;
             String display = "§6"+Math.round(recipe.getOutputChance(p)*100)+"%";
             int x = 75 + 18*(p/4);
-            int y = 7 * ((p-4*(p/4))*2+1)-6;
+            int y = 7 + (18*p) - (72*(p/4));
 
             if (recipe.getOutputChance(p) < 0.5)
                 overlay = smallChanceOverlay;
