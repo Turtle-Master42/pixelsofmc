@@ -39,12 +39,13 @@ import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> implements IDuoFluidHandlingTile, IEnergyHandlingTile, IButtonTile {
+public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, IEnergyHandlingTile, IButtonTile {
 
     protected final ContainerData data;
     private final int capacity = 8_192_000;
@@ -389,5 +390,24 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
     public FluidTank getDuoFluidTank() {
         return duoFluidTank;
+    }
+
+    @Override
+    public FluidTank[] getFluidTanks() {
+        return new FluidTank[]{fluidTank, duoFluidTank};
+    }
+
+    @Override
+    public FluidTank getFluidTank(String name) {
+        return switch (name) {
+            case "coolant_input" -> fluidTank;
+            case "coolant_output" -> duoFluidTank;
+            default -> null;
+        };
+    }
+
+    @Override
+    public String[] getFluidTankNames() {
+        return new String[]{"coolant_input", "coolant_output"};
     }
 }

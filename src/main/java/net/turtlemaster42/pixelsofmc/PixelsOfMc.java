@@ -207,6 +207,8 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.CHEMICAL_MIXER_MENU.get(), ChemicalMixerScreen::new);
 		MenuScreens.register(POMmenuType.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerScreen::new);
+		MenuScreens.register(POMmenuType.INDUSTRIAL_COOLER_MENU.get(), IndustrialCoolerScreen::new);
+
 
 		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);
 
@@ -244,8 +246,6 @@ public class PixelsOfMc {
 		event.registerBlockEntityRenderer(POMtiles.BALL_MILL.get(), BallMillRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.FUEL_CELL_HOLDER.get(), FuelCellHolderRenderer::new);
 		event.registerBlockEntityRenderer(POMtiles.NUCLEAR_REACTOR.get(), NuclearReactorRenderer::new);
-
-
 	}
 
 

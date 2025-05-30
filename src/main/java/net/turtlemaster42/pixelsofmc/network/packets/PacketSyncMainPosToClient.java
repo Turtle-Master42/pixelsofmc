@@ -5,6 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
 
 import java.util.function.Supplier;
@@ -36,6 +38,8 @@ public class PacketSyncMainPosToClient {
             if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof IDummyMachineTile dummyMachineTile) {
                 //set the mainPos on the client
                 dummyMachineTile.setClientMainPos(mainPos);
+            } else if (Minecraft.getInstance().level.getBlockEntity(pos) instanceof AbstractMultiBlockTile multiBlockTile) {
+                multiBlockTile.setClientMainPos(mainPos);
             }
         });
         return true;

@@ -93,6 +93,12 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncSwitchToClient::handle)
                 .add();
 
+        net.messageBuilder(PacketSyncCurrentTankToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncCurrentTankToClient::new)
+                .encoder(PacketSyncCurrentTankToClient::toBytes)
+                .consumerMainThread(PacketSyncCurrentTankToClient::handle)
+                .add();
+
 
         // --SERVER--
         net.messageBuilder(PacketSyncSlotMaxToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)

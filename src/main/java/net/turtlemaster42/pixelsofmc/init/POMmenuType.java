@@ -14,6 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, PixelsOfMc.MOD_ID);
+
+    //machines
     public static final RegistryObject<MenuType<PixelSplitterMenu>> PIXEL_SPLITTER_MENU =
             registerMenuType(PixelSplitterMenu::new, "pixel_splitter_menu");
     public static final RegistryObject<MenuType<PixelAssemblerMenu>> PIXEL_ASSEMBLER_MENU =
@@ -31,10 +33,13 @@ public class POMmenuType {
     public static final RegistryObject<MenuType<ChemicalMixerMenu>> CHEMICAL_MIXER_MENU =
             registerMenuType(ChemicalMixerMenu::new, "chemical_mixer_menu");
 
+    //multiblock
+    public static final RegistryObject<MenuType<IndustrialCoolerMenu>> INDUSTRIAL_COOLER_MENU =
+            registerMenuType(IndustrialCoolerMenu::new, "industrial_cooler_menu");
 
+    //reactor
     public static final RegistryObject<MenuType<NuclearReactorMenu>> NUCLEAR_REACTOR_MENU =
             registerMenuType(NuclearReactorMenu::new, "nuclear_reactor_menu");
-
     public static final RegistryObject<MenuType<SDSFusionControllerMenu>> SDS_CONTROLLER_MENU =
             registerMenuType(SDSFusionControllerMenu::new, "sds_controller_menu");
 

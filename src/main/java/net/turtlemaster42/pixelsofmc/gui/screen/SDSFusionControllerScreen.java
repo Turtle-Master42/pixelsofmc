@@ -129,9 +129,9 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
 
         infiniteEnergyArea = new InfiniteEnergyArea(x + 9, y + 22,
                 menu.blockEntity.getEnergyStorage(), 10, 44);
-        fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
+        fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_input"),
                 new Rect2i(x + 169, y + 6, 15, 67));
-        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
+        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_output"),
                 new Rect2i(x + 188, y + 6, 15, 67));
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
     }
@@ -140,21 +140,21 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
     private void assignButtons() {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        this.switch1 = new SwitchButton(x + 127, y + 6, Component.literal("§6Toggle Generate Plasma"), (pButton) -> {
+        this.switch1 = new SwitchButton(x + 127, y + 6, Component.translatable("tooltip.pixelsofmc.button.generate_plasma"), (pButton) -> {
             switch1.cycleOn();
             menu.setSwitch(switch1.isOn(), 0);
         });
         this.switch1.setOn(menu.getSwitch(0));
         this.addRenderableWidget(this.switch1);
 
-        this.switch2 = new SwitchButton(x + 136, y + 6, Component.literal("§bToggle Liquid Cooling"), (pButton) -> {
+        this.switch2 = new SwitchButton(x + 136, y + 6, Component.translatable("tooltip.pixelsofmc.button.liquid_cooling"), (pButton) -> {
             switch2.cycleOn();
             menu.setSwitch(switch2.isOn(), 1);
         });
         this.switch2.setOn(menu.getSwitch(1));
         this.addRenderableWidget(this.switch2);
 
-        this.switch3 = new SwitchButton(x + 145, y + 6, Component.literal("§dToggle Overcharging"), (pButton) -> {
+        this.switch3 = new SwitchButton(x + 145, y + 6, Component.translatable("tooltip.pixelsofmc.button.overcharge"), (pButton) -> {
             switch3.cycleOn();
             menu.setSwitch(switch3.isOn(), 2);
         });

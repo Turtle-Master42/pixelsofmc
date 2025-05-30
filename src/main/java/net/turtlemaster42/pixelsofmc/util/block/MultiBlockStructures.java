@@ -14,6 +14,19 @@ public class MultiBlockStructures {
     private static final GhostBlockState OTHER = new GhostBlockState(POMblocks.REINFORCED_CASING.get());
     private static final GhostBlockState CASING = new GhostBlockState(POMblocks.MACHINE_CASING.get());
     private static final GhostBlockState ARMORED_CASING = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING.get());
+    private static final GhostBlockState HEAT_SINK = new GhostBlockState(POMblocks.HEAT_SINK.get());
+
+    //decoration
+    private static final GhostBlockState FUSION_DECOR = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get());
+
+    //ports
+    private static final GhostBlockState FLUID_PORT_NORTH = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.NORTH);
+    private static final GhostBlockState FLUID_PORT_EAST = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.EAST);
+    private static final GhostBlockState FLUID_PORT_SOUTH = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.SOUTH);
+    private static final GhostBlockState FLUID_PORT_WEST = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.WEST);
+    private static final GhostBlockState FLUID_PORT_UP = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.UP);
+    private static final GhostBlockState FLUID_PORT_DOWN = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.DOWN);
+
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
@@ -79,11 +92,11 @@ public class MultiBlockStructures {
     //SDS
     public static final GhostBlockState[][][] SDS_STRUCTURE = {
             {
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER}
+                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER}
             },
             {
                     {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP},
@@ -107,11 +120,11 @@ public class MultiBlockStructures {
                     {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP}
             },
             {
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER}
+                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
+                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER}
             }
     };
     //MDS
@@ -302,6 +315,31 @@ public class MultiBlockStructures {
                     {null, null, FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING, null, null},
                     {null, null, null, FUSION_CASING, FUSION_CASING, FUSION_CASING, null, null, null},
                     {null, null, null, null, null, null, null, null, null},
+            }
+    };
+
+    //INDUSTRIAL COOLER
+    public static final GhostBlockState[][][] INDUSTRIAL_COOLER = {
+            {
+                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR}
+            },
+            {
+                    {ARMORED_CASING, FLUID_PORT_UP, ARMORED_CASING},
+                    {GLASS, HEAT_SINK, GLASS},
+                    {GLASS, HEAT_SINK, GLASS},
+                    {GLASS, HEAT_SINK, GLASS},
+                    {ARMORED_CASING, FLUID_PORT_DOWN, ARMORED_CASING}
+            },
+            {
+                    {FUSION_DECOR, null, FUSION_DECOR},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {HEAT_SINK, GLASS, HEAT_SINK},
+                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR}
             }
     };
     

@@ -39,6 +39,7 @@ import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IInfiniteEnergyHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +48,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IDuoFluidHandlingTile, IInfiniteEnergyHandlingTile, IButtonTile {
+public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, IInfiniteEnergyHandlingTile, IButtonTile {
 
     protected final ContainerData data;
     private int progress = 0;
@@ -548,5 +549,24 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     public FluidTank getDuoFluidTank() {
         return duoFluidTank;
+    }
+
+    @Override
+    public FluidTank[] getFluidTanks() {
+        return new FluidTank[]{fluidTank, duoFluidTank};
+    }
+
+    @Override
+    public FluidTank getFluidTank(String name) {
+        return switch (name) {
+            case "coolant_input" -> fluidTank;
+            case "coolant_output" -> duoFluidTank;
+            default -> null;
+        };
+    }
+
+    @Override
+    public String[] getFluidTankNames() {
+        return new String[]{"coolant_input", "coolant_output"};
     }
 }

@@ -139,9 +139,9 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
 
         energyArea = new EnergyArea(x + 9, y + 22,
                 menu.blockEntity.getEnergyStorage(), 10, 44);
-        fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
+        fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_input"),
                 new Rect2i(x + 169, y + 6, 15, 67));
-        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
+        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_output"),
                 new Rect2i(x + 188, y + 6, 15, 67));
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
     }

@@ -269,10 +269,10 @@ public class POMblocks {
             () -> new SlabBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<FuelCellHolderBlock> FUEL_CELL_HOLDER = registerBlock("fuel_cell_holder",
             () -> new FuelCellHolderBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-    public static final RegistryObject<FissionEnergyPortBlock> FISSION_ENERGY_PORT = registerBlock("fission_energy_port",
-            () -> new FissionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
-    public static final RegistryObject<FissionFluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
-            () -> new FissionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<EnergyPortBlock> FISSION_ENERGY_PORT = registerBlock("fission_energy_port",
+            () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<FluidPortBlock> FISSION_FLUID_PORT = registerBlock("fission_fluid_port",
+            () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
 
     public static final RegistryObject<AbstractMultiBlock> ARMORED_MACHINE_CASING = registerBlock("armored_machine_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
@@ -288,12 +288,12 @@ public class POMblocks {
             () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> HEAT_SINK = registerBlock("heat_sink",
             () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
-    public static final RegistryObject<FusionEnergyPortBlock> FUSION_ENERGY_PORT = registerBlock("fusion_energy_port",
-            () -> new FusionEnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
-    public static final RegistryObject<FusionItemPortBlock> FUSION_ITEM_PORT = registerBlock("fusion_item_port",
-            () -> new FusionItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
-    public static final RegistryObject<FusionFluidPortBlock> FUSION_FLUID_PORT = registerBlock("fusion_fluid_port",
-            () -> new FusionFluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
+    public static final RegistryObject<EnergyPortBlock> FUSION_ENERGY_PORT = registerBlock("fusion_energy_port",
+            () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
+    public static final RegistryObject<ItemPortBlock> FUSION_ITEM_PORT = registerBlock("fusion_item_port",
+            () -> new ItemPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
+    public static final RegistryObject<FluidPortBlock> FUSION_FLUID_PORT = registerBlock("fusion_fluid_port",
+            () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<FusionPlasmaPortBlock> FUSION_PLASMA_PORT = registerBlock("fusion_plasma_port",
             () -> new FusionPlasmaPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
 
@@ -330,6 +330,10 @@ public class POMblocks {
 
     public static final RegistryObject<Block> NUCLEAR_REACTOR = registerBlock("nuclear_reactor",
             () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+
+    public static final RegistryObject<Block> INDUSTRIAL_COOLER = registerBlock("industrial_cooler",
+            () -> new IndustrialCoolerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+
 
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",

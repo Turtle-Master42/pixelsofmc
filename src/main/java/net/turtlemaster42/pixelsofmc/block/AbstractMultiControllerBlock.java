@@ -132,9 +132,13 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                         correctBlocks++;
                     }
 
-                    if (block instanceof AbstractMultiBlock) {
-                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile)
-                            multiBlockTile.setMainPos(controllerPos);
+                    if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.getBlock() instanceof AbstractMultiBlock && (blockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING_SLAB.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING.get()))) {
+                        correctBlocks++;
+                    }
+
+                    if (block instanceof AbstractMultiBlock && level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile) {
+                        multiBlockTile.setMainPos(controllerPos);
+                        multiBlockTile.onValidation();
                     }
                 }
 
@@ -168,6 +172,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
 
                     if (level.getBlockState(rotatedOffsetPos).getBlock() instanceof AbstractMultiBlock) {
                         if (level.getBlockEntity(rotatedOffsetPos) instanceof AbstractMultiBlockTile multiBlockTile) {
+                            multiBlockTile.onInvalidation();
                             multiBlockTile.setMainPos(rotatedOffsetPos);
                             totalBlocks++;
                         }
@@ -193,6 +198,22 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
             }
         }
         PixelsOfMc.LOGGER.info("placed {} blocks", totalBlocks);
+    }
+
+    public void forceRemoveMultiBlock(Level level, BlockPos controllerPos) {
+        if (level.isClientSide()) return;
+        Direction direction = getControllerDirection(level.getBlockState(controllerPos));
+        int totalBlocks = 0;
+        for (int y = 0; y < getHeight(); y++) {
+            for (int z = 0; z < getLength(); z++) {
+                for (int x = 0; x < getWidth(); x++) {
+                    if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
+                    totalBlocks++;
+                    level.removeBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), false);
+                }
+            }
+        }
+        PixelsOfMc.LOGGER.info("removed {} blocks", totalBlocks);
     }
 
     public BlockPos rotatedOffsetBlock(Direction direction, int x, int y, int z, BlockPos startPos) {

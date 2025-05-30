@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -106,5 +107,46 @@ public class Util {
 
     public static ResourceLocation resourceLocation(String name, String path) {
         return new ResourceLocation(name, path);
+    }
+
+    public static int formatCodeColor(String code) {
+        return switch (code) {
+            case "0" -> 0x000000;
+            case "1" -> 0x0000AA;
+            case "2" -> 0x00AA00;
+            case "3" -> 0x00AAAA;
+            case "4" -> 0xAA0000;
+            case "5" -> 0xAA00AA;
+            case "6" -> 0xFFAA00;
+            case "7" -> 0xAAAAAA;
+            case "8" -> 0x555555;
+            case "9" -> 0x5555FF;
+            case "a" -> 0x55FF55;
+            case "b" -> 0x55FFFF;
+            case "c" -> 0xFF5555;
+            case "d" -> 0xFF55FF;
+            case "e" -> 0xFFFF55;
+            default -> 0xFFFFFF;
+        };
+    }
+    public static Vector3f formatCodeVecColor(String code) {
+        return switch (code) {
+            case "0" -> new Vector3f(0, 0, 0);
+            case "1" -> new Vector3f(0, 0, 170/255f);
+            case "2" -> new Vector3f(0, 170/255f, 0);
+            case "3" -> new Vector3f(0, 170/255f, 170/255f);
+            case "4" -> new Vector3f(170/255f, 0, 0);
+            case "5" -> new Vector3f(170/255f, 0, 170);
+            case "6" -> new Vector3f(1, 170/255f, 0);
+            case "7" -> new Vector3f(170/255f, 170/255f, 170/255f);
+            case "8" -> new Vector3f(85/255f, 85/255f, 85/255f);
+            case "9" -> new Vector3f(85/255f, 85/255f, 1);
+            case "a" -> new Vector3f(85/255f, 1, 85/255f);
+            case "b" -> new Vector3f(85/255f, 1, 1);
+            case "c" -> new Vector3f(1, 85/255f, 85/255f);
+            case "d" -> new Vector3f(1, 85/255f, 1);
+            case "e" -> new Vector3f(1, 1, 85/255f);
+            default -> new Vector3f(1, 1, 1);
+        };
     }
 }

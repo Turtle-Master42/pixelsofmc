@@ -783,6 +783,7 @@
   "block.pixelsofmc.chemical_combiner": "Chemical Combiner",
   "block.pixelsofmc.chemical_mixer": "Chemical Mixer",
   "block.pixelsofmc.star": "Fusion Star",
+  "block.pixelsofmc.industrial_cooler": "Industrial Cooler",
 
   "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
   "block.pixelsofmc.sds_controller": "S.D.S Fusion Reactor Controller",
@@ -1004,6 +1005,8 @@
 
   "tooltip.pixelsofmc.fluid.input": "§bFluid input",
   "tooltip.pixelsofmc.fluid.output": "§6Fluid output",
+  "tooltip.pixelsofmc.fluid.coolant_input": "§9Coolant fluid input",
+  "tooltip.pixelsofmc.fluid.coolant_output": "§cCoolant fluid output",
   "tooltip.pixelsofmc.fluid.amount.with.capacity": "%s / %s mb",
   "tooltip.pixelsofmc.fluid.amount": "%s mb",
 
@@ -1047,7 +1050,8 @@
   "tooltip.pixelsofmc.button.emergency_shutdown": "§6Emergency Shutdown",
   "tooltip.pixelsofmc.button.auto_rebooting": "§dAutomatic Rebooting",
   "tooltip.pixelsofmc.button.lock_unlock": "§dLock/Unlock",
-
+  "tooltip.pixelsofmc.button.generate_plasma": "§6Toggle Generate Plasma",
+  "tooltip.pixelsofmc.button.overcharge": "§dToggle Overcharging",
 
   "tooltip.pixelsofmc.jei.pixel": "Structure Formula",
 
@@ -1077,6 +1081,21 @@
   "death.attack.acid.player": "%1$s dissolved in acid whiles fighting %2$s",
 
   "message.pixelsofmc.block.multiblock.invalid": "§cThe structure doesn't seem to be correct",
+
+  "message.pixelsofmc.block.port.force_output": "§5Force Output",
+  "message.pixelsofmc.block.port.0": "§dInput Only",
+  "message.pixelsofmc.block.port.1": "§dOutput Only",
+  "message.pixelsofmc.block.port.2": "§dInput and Output",
+  "message.pixelsofmc.block.fluid_port.null": "",
+  "message.pixelsofmc.block.fluid_port.null.color": "f",
+  "message.pixelsofmc.block.fluid_port.input": "§bInput",
+  "message.pixelsofmc.block.fluid_port.input.color": "b",
+  "message.pixelsofmc.block.fluid_port.output": "§6Output",
+  "message.pixelsofmc.block.fluid_port.output.color": "6",
+  "message.pixelsofmc.block.fluid_port.coolant_input": "§9Coolant Input",
+  "message.pixelsofmc.block.fluid_port.coolant_input.color": "9",
+  "message.pixelsofmc.block.fluid_port.coolant_output": "§cCoolant Output",
+  "message.pixelsofmc.block.fluid_port.coolant_output.color": "c",
 
   "argument.fluid.id.invalid": "Unknown fluid type '%s'",
 

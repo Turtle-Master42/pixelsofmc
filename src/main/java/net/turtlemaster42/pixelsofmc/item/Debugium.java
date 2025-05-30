@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.item;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -32,6 +33,23 @@ public class Debugium extends ElementItem {
             }
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
+        Level level = player.level();
+        if (level.isClientSide() || !player.isCrouching()) {return super.onBlockStartBreak(itemstack, pos, player);}
+
+        if (level.getBlockState(pos).getBlock() instanceof AbstractMultiControllerBlock multiController) {
+            multiController.forceRemoveMultiBlock(level, pos);
+        } else if (level.getBlockState(pos).getBlock() instanceof AbstractDummyMachineBlock) {
+            if (level.getBlockEntity(pos) instanceof AbstractDummyMachineBlockTile dummyTile) {
+                if (level.getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
+                    multiController.forceRemoveMultiBlock(level, dummyTile.getMainPos());
+                }
+            }
+        }
+        return super.onBlockStartBreak(itemstack, pos, player);
     }
 
     @Override

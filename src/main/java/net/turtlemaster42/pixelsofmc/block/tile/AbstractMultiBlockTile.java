@@ -28,6 +28,12 @@ public class AbstractMultiBlockTile extends BlockEntity {
         }
     }
 
+    public void setClientMainPos(BlockPos pos) {
+        if (level != null && level.isClientSide) {
+            this.mainPos = pos;
+        }
+    }
+
     public BlockPos getMainPos() {
         return mainPos;
     }
@@ -47,6 +53,10 @@ public class AbstractMultiBlockTile extends BlockEntity {
         super.load(nbt);
         mainPos = NbtUtils.readBlockPos(nbt.getCompound("mainPos"));
     }
+
+    public void onInvalidation() {}
+
+    public void onValidation() {}
 
     public static Vector3f rotatedVecPos(Direction direction, Vector3f pos, float Xoffset, float Yoffset, float Zoffset) {
         float X = pos.x;

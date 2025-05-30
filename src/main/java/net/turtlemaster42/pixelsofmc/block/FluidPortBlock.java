@@ -1,6 +1,8 @@
 package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,13 +16,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.FluidPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
+
+import static net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile.rotatedVecPos;
 
 public class FluidPortBlock extends AbstractPort {
     public FluidPortBlock(Properties pProperties) {
@@ -30,24 +37,93 @@ public class FluidPortBlock extends AbstractPort {
 
     public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         ItemStack handItem = pPlayer.getItemInHand(pHand);
+
+        if (pHand.equals(InteractionHand.MAIN_HAND) && handItem.isEmpty()) {
+            if (pLevel.getBlockEntity(pPos) instanceof FluidPortTile portTile) {
+                if (!portTile.isMainPosValid() && !portTile.getCurrentTank().equals("null")) {
+                    portTile.setCurrentTank("null");
+                }
+
+                if (pPlayer.isCrouching()) {
+                    if (pLevel.isClientSide()) {
+                        pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.fluid_port." + portTile.getCurrentTank()), true);
+                        Vector3f colorVec = Util.formatCodeVecColor(Component.translatable("message.pixelsofmc.block.fluid_port." + portTile.getCurrentTank() + ".color").getString());
+                        Vector3f centerVec = new Vector3f(pPos.getX() + 0.5f, pPos.getY() + 0.5f, pPos.getZ() + 0.5f);
+                        Vector3f posVec1 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, 0.1f, 0.525f);
+                        Vector3f posVec2 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, -0.1f, 0.525f);
+                        Vector3f posVec3 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, 0.1f, 0.525f);
+                        Vector3f posVec4 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, -0.1f, 0.525f);
+                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec1.x, posVec1.y, posVec1.z, 0, 0, 0);
+                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec2.x, posVec2.y, posVec2.z, 0, 0, 0);
+                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec3.x, posVec3.y, posVec3.z, 0, 0, 0);
+                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec4.x, posVec4.y, posVec4.z, 0, 0, 0);
+                    }
+                    return InteractionResult.SUCCESS;
+                }
+
+                BlockEntity mainTile = pLevel.getBlockEntity(portTile.getMainPos());
+                if (mainTile instanceof IMultiFluidHandlingTile portLogicTile) {
+                    String[] tankNames = portLogicTile.getFluidTankNames();
+                    for (int i = 0; i < tankNames.length; i++) {
+                        if (tankNames[i].equals(portTile.getCurrentTank()) || portTile.getCurrentTank().equals("null")) {
+                            int index = i + 1;
+                            if (index == tankNames.length) {
+                                index = 0;
+                            }
+                            portTile.setCurrentTank(tankNames[index]);
+                            portTile.fluidTank.setFluid(portLogicTile.getFluidTank(tankNames[index]).getFluidInTank(0));
+                            if (pLevel.isClientSide()) {
+                                pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.fluid_port." + tankNames[index]), true);
+                                Vector3f colorVec = Util.formatCodeVecColor(Component.translatable("message.pixelsofmc.block.fluid_port." + tankNames[index] + ".color").getString());
+                                Vector3f centerVec = new Vector3f(pPos.getX() + 0.5f, pPos.getY() + 0.5f, pPos.getZ() + 0.5f);
+                                Vector3f posVec1 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, 0.1f, 0.525f);
+                                Vector3f posVec2 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, -0.1f, 0.525f);
+                                Vector3f posVec3 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, 0.1f, 0.525f);
+                                Vector3f posVec4 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, -0.1f, 0.525f);
+                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec1.x, posVec1.y, posVec1.z, 0, 0, 0);
+                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec2.x, posVec2.y, posVec2.z, 0, 0, 0);
+                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec3.x, posVec3.y, posVec3.z, 0, 0, 0);
+                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec4.x, posVec4.y, posVec4.z, 0, 0, 0);
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                }
+
+            }
+        }
+
         if (handItem.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()) {
-            handItem.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
-                if (pLevel.getBlockEntity(pPos) instanceof AbstractMultiBlockTile tile) {
-                    BlockEntity mainEntity = pLevel.getBlockEntity(tile.getMainPos());
-                    if (mainEntity instanceof IFluidHandlingTile fluidHandler && mainEntity instanceof IDuoFluidHandlingTile duoFluidHandler) {
-                        if (!pState.getValue(MODE).equals(1) && handler.fill(duoFluidHandler.getDuoFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) { //handler.getFluidInTank(0).isEmpty() &&
-                            int fluidAmount = handler.fill(duoFluidHandler.getDuoFluid(), IFluidHandler.FluidAction.EXECUTE);
-                            duoFluidHandler.getDuoFluidTank().drain(fluidAmount, IFluidHandler.FluidAction.EXECUTE);
-                            pPlayer.setItemInHand(pHand, handler.getContainer());
-                        } else if (!pState.getValue(MODE).equals(2)) {
+            handItem.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(fluidItem -> {
+                if (pLevel.getBlockEntity(pPos) instanceof FluidPortTile tile) {
+                    BlockEntity mainTile = pLevel.getBlockEntity(tile.getMainPos());
+
+                    if (mainTile instanceof IMultiFluidHandlingTile portLogicTile) { // MULTIPLE TANKS
+                        FluidTank fluidTank = portLogicTile.getFluidTank(tile.getCurrentTank());
+                        if (fluidTank == null) {return;}
+                        if (!pState.getValue(MODE).equals(1) && fluidItem.fill(fluidTank.getFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) { //not insert only && item excepts fluid
+                            fluidTank.drain(fluidItem.fill(fluidTank.getFluid(), IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                            pPlayer.setItemInHand(pHand, fluidItem.getContainer());
+                        } else if (!pState.getValue(MODE).equals(2)) { // not extract only
+                            int drainAmount = fluidTank.getSpace();
+                            FluidStack fluidStack = fluidItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
+                            if (fluidTank.isFluidValid(fluidStack) && (fluidTank.getFluid().isFluidEqual(fluidStack) || fluidTank.getFluid().isEmpty())) {
+                                fluidStack = fluidItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+                                fluidTank.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+                                pPlayer.setItemInHand(pHand, fluidItem.getContainer());
+                            }
+                        }
+                    } else if (mainTile instanceof IFluidHandlingTile fluidHandler) { // ONE TANK
+                        if (!pState.getValue(MODE).equals(1) && fluidItem.fill(fluidHandler.getFluid(), IFluidHandler.FluidAction.SIMULATE) > 0) { //not insert only && item excepts fluid
+                            fluidHandler.getFluidTank().drain(fluidItem.fill(fluidHandler.getFluid(), IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                            pPlayer.setItemInHand(pHand, fluidItem.getContainer());
+                        } else if (!pState.getValue(MODE).equals(2)) { // not extract only
                             int drainAmount = fluidHandler.getFluidTank().getSpace();
-                            FluidStack fluidStack = handler.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-                            if (fluidHandler.getFluidTank().isFluidValid(fluidStack)) {
-                                if (fluidHandler.getFluid().isFluidEqual(fluidStack) || fluidHandler.getFluid().isEmpty()) {
-                                    fluidStack = handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
-                                    fluidHandler.getFluidTank().fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
-                                    pPlayer.setItemInHand(pHand, handler.getContainer());
-                                }
+                            FluidStack fluidStack = fluidItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
+                            if (fluidHandler.getFluidTank().isFluidValid(fluidStack) && (fluidHandler.getFluid().isFluidEqual(fluidStack) || fluidHandler.getFluid().isEmpty())) {
+                                fluidStack = fluidItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+                                fluidHandler.getFluidTank().fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+                                pPlayer.setItemInHand(pHand, fluidItem.getContainer());
                             }
                         }
                     }

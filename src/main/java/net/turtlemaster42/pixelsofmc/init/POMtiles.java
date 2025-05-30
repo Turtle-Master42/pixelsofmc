@@ -40,7 +40,7 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<StarTile>> STAR =
 			TILES.register("star", () -> BlockEntityType.Builder.of(StarTile::new, POMblocks.STAR.get()).build(null));
 
-
+	//machines
 	public static final RegistryObject<BlockEntityType<PixelSplitterTile>> PIXEL_SPLITTER =
 			TILES.register("pixel_splitter", () -> BlockEntityType.Builder.of(PixelSplitterTile::new, POMblocks.PIXEL_SPLITTER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<PixelAssemblerTile>> PIXEL_ASSEMBLER =
@@ -58,6 +58,11 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<ChemicalMixerTile>> CHEMICAL_MIXER =
 			TILES.register("chemical_mixer", () -> BlockEntityType.Builder.of(ChemicalMixerTile::new, POMblocks.CHEMICAL_MIXER.get()).build(null));
 
+	//multiblocks
+	public static final RegistryObject<BlockEntityType<IndustrialCoolerTile>> INDUSTRIAL_COOLER =
+			TILES.register("industrial_cooler", () -> BlockEntityType.Builder.of(IndustrialCoolerTile::new, POMblocks.INDUSTRIAL_COOLER.get()).build(null));
+
+	//reactors
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
 			TILES.register("nuclear_reactor", () -> BlockEntityType.Builder.of(NuclearReactorTile::new, POMblocks.NUCLEAR_REACTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SDSFusionControllerTile>> SDS_CONTROLLER =
