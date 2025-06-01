@@ -48,7 +48,7 @@ public class AbstractPort extends AbstractMultiBlock {
         if (mainHand == POMitems.SCREWDRIVER.get() || offHand == POMitems.SCREWDRIVER.get()) {
             pLevel.setBlock(pPos, pState.cycle(MODE).setValue(PUSHING, false), 3);
             pLevel.playLocalSound(pPos, SoundEvents.NETHERITE_BLOCK_FALL, SoundSource.BLOCKS, 0.6f, 0.7f, false);
-            pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.port." + pState.getValue(MODE)), true);
+            pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + "." + pState.getValue(MODE)), true);
             return InteractionResult.SUCCESS;
         }
         if (mainHand == POMitems.HAMMER.get() || offHand == POMitems.HAMMER.get()) {
@@ -56,13 +56,13 @@ public class AbstractPort extends AbstractMultiBlock {
             if (pState.getValue(PUSH_DIRECTION).equals(hitDirection)) {
                 pLevel.setBlock(pPos, pState.cycle(PUSHING).setValue(MODE, 2), 3);
                 if (!pState.getValue(PUSHING))
-                    pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.port.force_output"), true);
+                    pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".force_output"), true);
                 else
-                    pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.port.1"), true);
+                    pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".1"), true);
 
             } else {
                 pLevel.setBlock(pPos, pState.setValue(PUSH_DIRECTION, hitDirection).setValue(PUSHING, true).setValue(MODE, 2), 3);
-                pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.port.force_output"), true);
+                pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".force_output"), true);
             }
             pLevel.playLocalSound(pPos, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.6f, 0.7f, false);
             return InteractionResult.SUCCESS;

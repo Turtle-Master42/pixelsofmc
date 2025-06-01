@@ -35,6 +35,7 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
         this.TE_INVENTORY_SLOT_COUNT = slotCount;
         this.level = inv.player.level();
         this.data = data;
+        checkContainerSize(inv, slotCount);
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
         addDataSlots(data);

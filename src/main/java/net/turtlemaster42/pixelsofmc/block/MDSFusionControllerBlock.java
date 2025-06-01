@@ -98,7 +98,7 @@ public class MDSFusionControllerBlock extends AbstractFusionControllerBlock {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
                                           @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
-//        if (!pLevel.isClientSide()) {
+//        if (!pLevel.isClientSide() && pState.getValue(ACTIVE) != 1) {
 //            BlockEntity entity = pLevel.getBlockEntity(pPos);
 //            if(entity instanceof SDSFusionControllerTile) {
 //                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (SDSFusionControllerTile)entity, pPos);

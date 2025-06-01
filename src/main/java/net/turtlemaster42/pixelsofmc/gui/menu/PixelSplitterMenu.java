@@ -24,7 +24,6 @@ public class PixelSplitterMenu extends AbstractMachineMenu implements IEnergyMen
 
     public PixelSplitterMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(7, inv, data, POMmenuType.PIXEL_SPLITTER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
         blockEntity = ((PixelSplitterTile) entity);
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));

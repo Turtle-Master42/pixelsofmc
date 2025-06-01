@@ -27,7 +27,6 @@ public class BallMillMenu extends AbstractMachineMenu implements IEnergyMenu {
 
     public BallMillMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(7, inv, data, POMmenuType.BALL_MILL_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
         blockEntity = ((BallMillTile) entity);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {

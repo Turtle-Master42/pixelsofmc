@@ -29,7 +29,6 @@ public class PixelAssemblerMenu extends AbstractMachineMenu implements IEnergyMe
 
     public PixelAssemblerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(7, inv, data, POMmenuType.PIXEL_ASSEMBLER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
         blockEntity = ((PixelAssemblerTile) entity);
         this.fluid = blockEntity.getFluid();
 

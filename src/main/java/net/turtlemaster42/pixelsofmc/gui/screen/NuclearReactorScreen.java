@@ -84,9 +84,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             guiGraphics.renderTooltip(Minecraft.getInstance().font, List.of(
                     efficiencyBonusTooltip(menu.getEfficiencyBonus()),
                     energyPerTickTooltip(menu.blockEntity.getItemStackHandler(), menu.getEfficiencyBonus()),
-
-                    heatTooltip(),
-                    Component.literal(String.valueOf(menu.data.get(2))) //TODO:remove once done
+                    heatTooltip()
             ), Optional.empty(), mouseX - x, mouseY - y);
         }
     }

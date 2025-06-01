@@ -27,7 +27,6 @@ public class GrinderMenu extends AbstractMachineMenu implements IEnergyMenu {
 
     public GrinderMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(7, inv, data, POMmenuType.GRINDER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
         blockEntity = ((GrinderTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
 

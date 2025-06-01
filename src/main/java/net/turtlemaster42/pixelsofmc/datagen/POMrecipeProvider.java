@@ -18,6 +18,8 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -1989,6 +1991,26 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 3)
                 .output(POMfluids.RED_OIL_SOURCE.get(), 5)
                 .finish(fConsumer, this);
+
+        //cooling and heating
+        FluidHeatingRecipeBuilder.build(10)
+                .input(Fluids.WATER, 1)
+                .output(POMfluids.STEAM_SOURCE.get(), 1)
+                .finish(fConsumer, this);
+        FluidCoolingRecipeBuilder.build(10)
+                .output(Fluids.WATER, 1)
+                .input(POMfluids.STEAM_SOURCE.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(40)
+                .input(POMfluids.STEAM_SOURCE.get(), 1)
+                .output(POMfluids.BLAZING_STEAM_SOURCE.get(), 1)
+                .finish(fConsumer, this);
+        FluidCoolingRecipeBuilder.build(40)
+                .output(POMfluids.STEAM_SOURCE.get(), 1)
+                .input(POMfluids.BLAZING_STEAM_SOURCE.get(), 1)
+                .finish(fConsumer, this);
+
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);

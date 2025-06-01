@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fluid_cooling",
+  "energy": 40,
+  "fluid_input": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:blazing_steam"
+  },
+  "fluid_output": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:steam"
+  }
+}

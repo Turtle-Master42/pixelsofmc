@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fluid_cooling",
+  "energy": 10,
+  "fluid_input": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:steam"
+  },
+  "fluid_output": {
+    "Amount": 1,
+    "FluidName": "minecraft:water"
+  }
+}

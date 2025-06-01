@@ -4,10 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,30 +19,33 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.IndustrialCoolerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialCoolerMenu;
-import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.*;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncQuadFluidToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncTriFluidToClient;
+import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.*;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 import java.util.Optional;
 
 public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, ITriFluidHandlingTile, IQuadFluidHandlingTile, IButtonTile {
 
     protected final ContainerData data;
     private final boolean[] switches = {false};
+    public int isCrafting = 0;
 
     //TODO: make input only insert and output only extract
-    private final FluidTank fluidTank = new FluidTank(128000) { // hot stuff
+    private final FluidTank fluidTank = new FluidTank(64000) { // hot stuff
         @Override
         protected void onContentsChanged() {
             setChanged();
@@ -55,7 +60,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         }
     };
 
-    private final FluidTank duoFluidTank = new FluidTank(128000) { //coolant
+    private final FluidTank duoFluidTank = new FluidTank(64000) { //coolant
         @Override
         protected void onContentsChanged() {
             setChanged();
@@ -70,7 +75,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         }
     };
 
-    private final FluidTank triFluidTank = new FluidTank(64000) { // heated coolant
+    private final FluidTank triFluidTank = new FluidTank(32000) { // heated coolant
         @Override
         protected void onContentsChanged() {
             setChanged();
@@ -85,7 +90,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         }
     };
 
-    private final FluidTank quadFluidTank = new FluidTank(64000) { // cooled stuff
+    private final FluidTank quadFluidTank = new FluidTank(32000) { // cooled stuff
         @Override
         protected void onContentsChanged() {
             setChanged();
@@ -103,31 +108,24 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
     public void setFluid(FluidStack stack) {
         this.fluidTank.setFluid(stack);
     }
-
     public FluidStack getFluid() {
         return this.fluidTank.getFluid();
     }
-
     public void setDuoFluid(FluidStack stack) {
         this.duoFluidTank.setFluid(stack);
     }
-
     public FluidStack getDuoFluid() {
         return this.duoFluidTank.getFluid();
     }
-
     public void setTriFluid(FluidStack stack) {
         this.triFluidTank.setFluid(stack);
     }
-
     public FluidStack getTriFluid() {
         return this.triFluidTank.getFluid();
     }
-
     public void setQuadFluid(FluidStack stack) {
         this.quadFluidTank.setFluid(stack);
     }
-
     public FluidStack getQuadFluid() {
         return this.quadFluidTank.getFluid();
     }
@@ -141,18 +139,20 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         super(POMtiles.INDUSTRIAL_COOLER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             @Override
-            public int get(int pIndex) {return 0;}
+            public int get(int pIndex) {return isCrafting;}
 
             @Override
             public void set(int pIndex, int pValue) {}
 
             @Override
-            public int getCount() {return 0;}
+            public int getCount() {return 1;}
         };
     }
 
     @Override
-    protected int itemHandlerSize() {return 0;}
+    protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
+        return slot == 0 && stack.is(POMtags.Items.HEAT_UPGRADE);
+    }
 
     @Override
     public @NotNull Component getDisplayName() {
@@ -268,7 +268,6 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
 
 
     //---RECIPE---//
-
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, IndustrialCoolerTile e) {
         e.tick(level, blockPos, blockState, e);
     }
@@ -278,130 +277,114 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, IndustrialCoolerTile pBlockEntity) {
-//        if(hasRecipe(pBlockEntity)) {
-//            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(6).getCount();
-//            pBlockEntity.progress++;
-//            //pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
-//
-//            if (pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
-//                craftItem(pBlockEntity);
-//            }
-//        } else {
+        if(hasRecipe(pBlockEntity) && getSwitch(0)) {
+            if (!pLevel.isClientSide())
+                isCrafting = 1;
+            craft(pBlockEntity);
+        } else {
+            if (!pLevel.isClientSide())
+                isCrafting = 0;
             setChanged(pLevel, pPos, pState);
-//        }
+        }
     }
 
 
     private static boolean hasRecipe(IndustrialCoolerTile entity) {
         Level level = entity.level;
-        FluidContainer fluidInventory = new FluidContainer(3);
-        FluidTank[] fluidTanks = {entity.fluidTank, entity.duoFluidTank, entity.triFluidTank};
-        for (int i = 0; i < 3; i++) {
-            fluidInventory.setFluid(i, fluidTanks[i].getFluid());
-        }
+        if (level == null) {return false;}
+        FluidContainer fluidInventory = new FluidContainer(1);
 
-        Optional<ChemicalMixerRecipe> match = level.getRecipeManager().getRecipeFor(ChemicalMixerRecipe.Type.INSTANCE, fluidInventory, level);
+        fluidInventory.setFluid(0, entity.duoFluidTank.getFluid());
+        Optional<FluidHeatingRecipe> coolant_match = level.getRecipeManager().getRecipeFor(FluidHeatingRecipe.Type.INSTANCE, fluidInventory, level);
 
-        return match.isPresent()
-                && canExtractInputFluid(entity, match.get().getInputFluid(0))
-                && canExtractInputFluid(entity, match.get().getInputFluid(1))
-                && canInsertOutputFluid(entity, match.get().getResultFluid(0))
-                && canInsertOutputFluid(entity, match.get().getResultFluid(1));
+        fluidInventory.setFluid(0, entity.fluidTank.getFluid());
+        Optional<FluidCoolingRecipe> heat_match = level.getRecipeManager().getRecipeFor(FluidCoolingRecipe.Type.INSTANCE, fluidInventory, level);
+
+        return heat_match.isPresent() && coolant_match.isPresent()
+                && canExtractInputFluid(coolant_match.get().getFluidInput(), entity.duoFluidTank)
+                && canInsertOutputFluid(coolant_match.get().getResultFluid(), entity.triFluidTank)
+                && canExtractInputFluid(heat_match.get().getFluidInput(), entity.fluidTank)
+                && canInsertOutputFluid(heat_match.get().getResultFluid(), entity.quadFluidTank);
     }
 
-    private static boolean canInsertOutputFluid(IndustrialCoolerTile entity, FluidStack resultFluid) {
-        FluidTank[] outputTanks = {entity.triFluidTank, entity.quadFluidTank};
-        for (FluidTank tank : outputTanks) {
-            if (resultFluid.equals(tank.getFluid()) && resultFluid.getAmount() <= tank.getSpace() || tank.isEmpty() || resultFluid.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
+    private static boolean canInsertOutputFluid(FluidStack resultFluid, FluidTank tank) {
+        return resultFluid.equals(tank.getFluid()) && resultFluid.getAmount() <= (tank.getSpace()/10) || tank.isEmpty() || resultFluid.isEmpty();
     }
 
-    private static boolean canExtractInputFluid(IndustrialCoolerTile entity, FluidStack fluidInput) {
-        FluidTank[] inputTanks = {entity.fluidTank, entity.duoFluidTank};
-        for (FluidTank tank : inputTanks) {
-            if (fluidInput.equals(tank.getFluid()) && fluidInput.getAmount() <= tank.getFluidAmount() || fluidInput.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
+    private static boolean canExtractInputFluid(FluidStack fluidInput, FluidTank tank) {
+        return fluidInput.equals(tank.getFluid()) && fluidInput.getAmount() <= (tank.getFluidAmount()/10) || fluidInput.isEmpty();
     }
 
-    private void addFluidOutput(List<FluidStack> fluidStacks) {
-        FluidTank[] outputTanks = {triFluidTank, quadFluidTank};
-        // iterates over the fluidStacks
-        for (FluidStack fluidOutput : fluidStacks) {
-            if (fluidOutput.getRawFluid().isSame(POMfluids.AIR_SOURCE.get())) { //can't output air
-                continue;
-            }
-            // iterates over the tanks
-            for (FluidTank tank : outputTanks) {
-                if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
-                    break;
-                }
-                if (fluidOutput.equals(tank.getFluid()) || tank.isEmpty()) {
-                    int fillAmount =  tank.fill(fluidOutput, IFluidHandler.FluidAction.EXECUTE);
-                    // not everything was inserted
-                    if (fillAmount < fluidOutput.getAmount()) {
-                        fluidOutput.setAmount(fluidOutput.getAmount() - fillAmount);
-                    } else { // everything was inserted
-                        break;
-                    }
-                }
-            }
+    private void addFluidOutput(FluidStack fluidOutput, FluidTank tank) {
+        if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
+            return;
+        }
+        if (fluidOutput.equals(tank.getFluid()) || tank.isEmpty()) {
+            tank.fill(fluidOutput, IFluidHandler.FluidAction.EXECUTE);
         }
     }
 
-    private void removeFluidInput(List<FluidStack> fluidStacks) {
-        FluidTank[] inputTanks = {fluidTank, duoFluidTank};
-        // iterates over the fluidStacks
-        for (FluidStack fluidInput : fluidStacks) {
-            // iterates over the tanks
-            for (FluidTank tank : inputTanks) {
-                if (fluidInput.isEmpty() || fluidInput.getAmount() <= 0) {
-                    break;
-                }
-                if (fluidInput.equals(tank.getFluid())) {
-                    FluidStack drainedStack = tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
-                    // not everything was drained
-                    if (drainedStack.getAmount() < fluidInput.getAmount()) {
-                        PixelsOfMc.LOGGER.info("not everything was drained: {} < {}, {} left", drainedStack.getAmount(), fluidInput.getAmount(), fluidInput.getAmount() - drainedStack.getAmount());
-                        fluidInput.setAmount(fluidInput.getAmount() - drainedStack.getAmount());
-                    } else { // everything was inserted
-                        PixelsOfMc.LOGGER.info("everything was inserted, {} == {}", drainedStack.getAmount(), fluidInput.getAmount());
-                        break;
-                    }
-                }
-            }
+    private void removeFluidInput(FluidStack fluidInput, FluidTank tank) {
+        if (fluidInput.isEmpty() || fluidInput.getAmount() <= 0) {
+            return;
+        }
+        if (fluidInput.equals(tank.getFluid())) {
+            tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
         }
     }
 
-    private static void craftItem(IndustrialCoolerTile entity) {
+    private static void craft(IndustrialCoolerTile entity) {
         Level level = entity.level;
-        FluidContainer fluidInventory = new FluidContainer(3);
-        FluidTank[] fluidTanks = {entity.fluidTank, entity.duoFluidTank, entity.triFluidTank};
-        for (int i = 0; i < 3; i++) {
-            fluidInventory.setFluid(i, fluidTanks[i].getFluid());
-        }
+        FluidContainer fluidInventory = new FluidContainer(1);
 
-        Optional<ChemicalMixerRecipe> match = level.getRecipeManager().getRecipeFor(ChemicalMixerRecipe.Type.INSTANCE, fluidInventory, level);
+        fluidInventory.setFluid(0, entity.fluidTank.getFluid());
+        Optional<FluidCoolingRecipe> heat_match = level.getRecipeManager().getRecipeFor(FluidCoolingRecipe.Type.INSTANCE, fluidInventory, level);
 
-        if(match.isPresent()) {
-            entity.addFluidOutput(match.get().getResultFluids());
-            entity.removeFluidInput(match.get().getFluidInputs());
+        fluidInventory.setFluid(0, entity.duoFluidTank.getFluid());
+        Optional<FluidHeatingRecipe> coolant_match = level.getRecipeManager().getRecipeFor(FluidHeatingRecipe.Type.INSTANCE, fluidInventory, level);
+
+        if(coolant_match.isPresent() && heat_match.isPresent()) {
+
+            int heatEnergy = heat_match.get().getReleasedEnergy();
+            int coolEnergy = coolant_match.get().getRequiredEnergy();
+
+            float factor = 1f/((float)coolEnergy/(float)heatEnergy);
+
+            int maxHeat = Math.min(entity.fluidTank.getFluid().getAmount(), entity.quadFluidTank.getSpace()) * heatEnergy;
+            int maxCool = Math.min(entity.duoFluidTank.getFluid().getAmount(), entity.triFluidTank.getSpace()) * coolEnergy;
+
+            int heatTotal = Mth.floor((float)maxCool / (float)heatEnergy);
+            int coolTotal = Mth.floor((float)maxHeat / (float)coolEnergy);
+
+            int total = Math.min(Math.min(heatTotal, coolTotal), 250 * (entity.itemHandler.getStackInSlot(0).getCount() + 2));
+
+            float heatAmount = total;
+            float coolAmount = (int) (total * factor);
+
+            for (int i = 0; i < 25; i++) {
+                if (coolAmount - Mth.floor(coolAmount) != 0 && coolAmount - Mth.floor(coolAmount) > 0.0001) {
+                    heatAmount -= 1;
+                    coolAmount -= factor;
+                } else {
+                    break;
+                }
+            }
+            if ((int)heatAmount == 0 || (int)coolAmount == 0) {return;}
+
+            //heating
+            entity.addFluidOutput(new FluidStack(heat_match.get().getResultFluid().getFluid(), (int)heatAmount), entity.quadFluidTank);
+            entity.removeFluidInput(new FluidStack(heat_match.get().getFluidInput().getFluid(), (int)heatAmount), entity.fluidTank);
+            //coolant
+            entity.addFluidOutput(new FluidStack(coolant_match.get().getResultFluid().getFluid(), (int)coolAmount), entity.triFluidTank);
+            entity.removeFluidInput(new FluidStack(coolant_match.get().getFluidInput().getFluid(), (int)coolAmount), entity.duoFluidTank);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());
         }
     }
 
     public FluidTank getFluidTank() { return fluidTank; }
-
     public FluidTank getDuoFluidTank() { return duoFluidTank; }
-
     public FluidTank getTriFluidTank() { return triFluidTank; }
-
     public FluidTank getQuadFluidTank() { return quadFluidTank; }
 
     public boolean getSwitch(int currentSwitch) {

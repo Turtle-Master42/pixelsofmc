@@ -7,10 +7,11 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialCoolerMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
-import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
+import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +22,7 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
     private FluidArea fluidArea3;
     private FluidArea fluidArea4;
     private NameArea nameArea;
-    private SwitchButton switch1;
+    private BigSwitchButton switch1;
 
     public IndustrialCoolerScreen(IndustrialCoolerMenu guiMenu, Inventory inventory, Component title) {
         super(guiMenu, inventory, title);
@@ -54,8 +55,12 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight - 16);
 
+        if (menu.isCrafting()) {
+            PixelsOfMc.LOGGER.info("CRAFTING");
+            guiGraphics.blit(TEXTURE, x + 59, y + 14, 0, 150, 54, 40);
+        }
         fluidArea1.draw(guiGraphics);
         fluidArea2.draw(guiGraphics);
         fluidArea3.draw(guiGraphics);
@@ -76,9 +81,9 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
 
         fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
                 new Rect2i(x + 37, y + 6, 15, 53));
-        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
+        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_input"),
                 new Rect2i(x + 75, y + 6, 15, 53));
-        fluidArea3 = new FluidArea(menu.blockEntity.getTriFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
+        fluidArea3 = new FluidArea(menu.blockEntity.getTriFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_output"),
                 new Rect2i(x + 119, y + 12, 27, 15));
         fluidArea4 = new FluidArea(menu.blockEntity.getQuadFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
                 new Rect2i(x + 119, y + 41, 27, 15));
@@ -87,14 +92,14 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
     }
 
     private void assignButtons() {
-//        int x = (width - imageWidth) / 2;
-//        int y = (height - imageHeight) / 2;
-//        this.switch1 = new SwitchButton(x + 45, y + 64, SwitchButton.Color.WHITE, Component.literal("Allow Airflow"), (pButton) -> {
-//            switch1.cycleOn();
-//            menu.setSwitch(switch1.isOn(), 0);
-//        });
-//        this.switch1.setOn(menu.getSwitch(0));
-//        this.addRenderableWidget(this.switch1);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        this.switch1 = new BigSwitchButton(x + 17, y + 19, BigSwitchButton.Color.RED, Component.translatable("tooltip.pixelsofmc.button.on_off"), (pButton) -> {
+            switch1.cycleOn();
+            menu.setSwitch(switch1.isOn(), 0);
+        });
+        this.switch1.setOn(menu.getSwitch(0));
+        this.addRenderableWidget(this.switch1);
     }
 }
 

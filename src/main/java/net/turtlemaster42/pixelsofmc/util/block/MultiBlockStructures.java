@@ -20,13 +20,7 @@ public class MultiBlockStructures {
     private static final GhostBlockState FUSION_DECOR = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get());
 
     //ports
-    private static final GhostBlockState FLUID_PORT_NORTH = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.NORTH);
-    private static final GhostBlockState FLUID_PORT_EAST = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.EAST);
-    private static final GhostBlockState FLUID_PORT_SOUTH = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.SOUTH);
-    private static final GhostBlockState FLUID_PORT_WEST = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.WEST);
-    private static final GhostBlockState FLUID_PORT_UP = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.UP);
-    private static final GhostBlockState FLUID_PORT_DOWN = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get()).addProperty(BlockStateProperties.FACING, Direction.DOWN);
-
+    private static final GhostBlockState FLUID_PORT = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get());
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
@@ -328,11 +322,11 @@ public class MultiBlockStructures {
                     {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR}
             },
             {
-                    {ARMORED_CASING, FLUID_PORT_UP, ARMORED_CASING},
+                    {ARMORED_CASING, FLUID_PORT, ARMORED_CASING},
                     {GLASS, HEAT_SINK, GLASS},
                     {GLASS, HEAT_SINK, GLASS},
                     {GLASS, HEAT_SINK, GLASS},
-                    {ARMORED_CASING, FLUID_PORT_DOWN, ARMORED_CASING}
+                    {ARMORED_CASING, FLUID_PORT, ARMORED_CASING}
             },
             {
                     {FUSION_DECOR, null, FUSION_DECOR},

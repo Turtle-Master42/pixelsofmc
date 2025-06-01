@@ -39,7 +39,6 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
 
     public ChemicalMixerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(8, inv, data, POMmenuType.CHEMICAL_MIXER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 8);
         blockEntity = ((ChemicalMixerTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();

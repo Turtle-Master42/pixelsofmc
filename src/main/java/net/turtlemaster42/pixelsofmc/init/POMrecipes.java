@@ -6,6 +6,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
@@ -13,6 +15,7 @@ import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 public class POMrecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PixelsOfMc.MOD_ID);
 
+	//machine
 	public static final RegistryObject<RecipeSerializer<PixelSplitterRecipe>> PIXEL_SPLITTER_SERIALIZER =
 			SERIALIZERS.register("pixel_splitting", () -> PixelSplitterRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<PixelAssemblerRecipe>> PIXEL_ASSEMBLER_SERIALIZER =
@@ -31,6 +34,13 @@ public class POMrecipes {
 			SERIALIZERS.register("chemical_mixing", () -> ChemicalMixerRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
+
+	//general
+	public static final RegistryObject<RecipeSerializer<FluidHeatingRecipe>> FLUID_HEATING_SERIALIZER =
+			SERIALIZERS.register("fluid_heating", () -> FluidHeatingRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<FluidCoolingRecipe>> FLUID_COOLING_SERIALIZER =
+			SERIALIZERS.register("fluid_cooling", () -> FluidCoolingRecipe.Serializer.INSTANCE);
+
 
 	public static void register(IEventBus bus) {
 		SERIALIZERS.register(bus);

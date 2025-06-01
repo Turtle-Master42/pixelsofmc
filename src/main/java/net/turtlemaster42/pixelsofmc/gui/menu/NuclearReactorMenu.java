@@ -34,7 +34,6 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
 
     public NuclearReactorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(4, inv, data, POMmenuType.NUCLEAR_REACTOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 4);
         this.blockEntity = (NuclearReactorTile) entity;
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();

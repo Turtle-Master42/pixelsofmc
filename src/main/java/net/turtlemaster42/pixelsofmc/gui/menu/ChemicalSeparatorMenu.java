@@ -33,7 +33,6 @@ public class ChemicalSeparatorMenu extends AbstractMachineMenu implements IEnerg
 
     public ChemicalSeparatorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(9, inv, data, POMmenuType.CHEMICAL_SEPARATOR_MENU.get(), pContainerId);
-        checkContainerSize(inv, 9);
         blockEntity = ((ChemicalSeparatorTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();

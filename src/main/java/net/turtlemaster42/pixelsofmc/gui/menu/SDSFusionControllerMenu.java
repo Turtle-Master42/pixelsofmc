@@ -35,7 +35,6 @@ public class SDSFusionControllerMenu extends AbstractMachineMenu implements IEne
 
     public SDSFusionControllerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(5, inv, data, POMmenuType.SDS_CONTROLLER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 5);
         blockEntity = ((SDSFusionControllerTile) entity);
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();

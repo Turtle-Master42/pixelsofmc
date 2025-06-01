@@ -69,7 +69,7 @@ public class NuclearReactorBlock extends AbstractMultiControllerBlock {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
                                           @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
+        if (!pLevel.isClientSide() && pState.getValue(ACTIVE) != 1) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof NuclearReactorTile) {
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), (NuclearReactorTile)entity, pPos);

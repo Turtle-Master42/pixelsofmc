@@ -26,7 +26,6 @@ public class HotIsostaticPressMenu extends AbstractMachineMenu implements IEnerg
 
     public HotIsostaticPressMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(7, inv, data, POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), pContainerId);
-        checkContainerSize(inv, 7);
         blockEntity = ((HotIsostaticPressTile) entity);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
