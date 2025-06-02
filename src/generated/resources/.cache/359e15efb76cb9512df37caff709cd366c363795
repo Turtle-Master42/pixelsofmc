@@ -1,11 +1,14 @@
-// 1.20.1	2025-05-21T21:19:46.626451	Tags for minecraft:block mod id pixelsofmc
+// 1.20.1	2025-06-01T18:23:01.557494	Tags for minecraft:block mod id pixelsofmc
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/blocks/glass.json
 15e868fc173ac4cb048c77e062805c2ed658a516 data/forge/tags/blocks/ores/titanium.json
 7d0029e7c81491fa9e36c4cee5a5deab4fcc1d0e data/minecraft/tags/blocks/mineable/pickaxe.json
 d66b6da03a158bf60bb3dbb06185bab002dfcd12 data/minecraft/tags/blocks/needs_diamond_tool.json
 3995107084bbf55c743b89ed2cbd7bb32a5c817a data/minecraft/tags/blocks/needs_iron_tool.json
 cbfe24b4fa489dde23937d26d6250fd9d74e2878 data/minecraft/tags/blocks/needs_stone_tool.json
+4c614eafe36fc81ba51d76c585caaa85befee9ce data/pixelsofmc/tags/blocks/casing/decor.json
 d8c21e44bc2b0d7537329e2b338a1891d436d1df data/pixelsofmc/tags/blocks/casing/fission.json
+d77a5877d8ee129ef64cfbfaf2dbc495c9981729 data/pixelsofmc/tags/blocks/casing/fission_decor.json
 c9a1ee387df093c7105ef6946314d92e04a1b076 data/pixelsofmc/tags/blocks/casing/fusion.json
+75933b05c7ae14ce4653117fb08b39bd0781c81f data/pixelsofmc/tags/blocks/casing/fusion_decor.json
 a2e6b92cb1334873a2e6e473c7728b5173cee3eb data/pixelsofmc/tags/blocks/casing/machine.json
 c830d8d63c342ab15649b5822b4c2fee35d9070f data/pixelsofmc/tags/blocks/extender_block.json

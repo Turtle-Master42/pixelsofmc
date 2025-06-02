@@ -17,10 +17,12 @@ public class MultiBlockStructures {
     private static final GhostBlockState HEAT_SINK = new GhostBlockState(POMblocks.HEAT_SINK.get());
 
     //decoration
+    private static final GhostBlockState DECOR = new GhostBlockState(POMblocks.MACHINE_CASING_STAIRS.get());
+    private static final GhostBlockState FISSION_DECOR = new GhostBlockState(POMblocks.FISSION_CASING_STAIRS.get());
     private static final GhostBlockState FUSION_DECOR = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get());
 
     //ports
-    private static final GhostBlockState FLUID_PORT = new GhostBlockState(POMblocks.FUSION_FLUID_PORT.get());
+    private static final GhostBlockState FLUID_PORT = new GhostBlockState(POMblocks.FLUID_PORT.get());
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
@@ -315,25 +317,25 @@ public class MultiBlockStructures {
     //INDUSTRIAL COOLER
     public static final GhostBlockState[][][] INDUSTRIAL_COOLER = {
             {
-                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR},
+                    {DECOR, CASING, DECOR},
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {HEAT_SINK, GLASS, HEAT_SINK},
-                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR}
+                    {DECOR, CASING, DECOR}
             },
             {
-                    {ARMORED_CASING, FLUID_PORT, ARMORED_CASING},
+                    {CASING, FLUID_PORT, CASING},
                     {GLASS, HEAT_SINK, GLASS},
                     {GLASS, HEAT_SINK, GLASS},
                     {GLASS, HEAT_SINK, GLASS},
-                    {ARMORED_CASING, FLUID_PORT, ARMORED_CASING}
+                    {CASING, FLUID_PORT, CASING}
             },
             {
-                    {FUSION_DECOR, null, FUSION_DECOR},
+                    {DECOR, null, DECOR},
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {HEAT_SINK, GLASS, HEAT_SINK},
-                    {FUSION_DECOR, ARMORED_CASING, FUSION_DECOR}
+                    {DECOR, CASING, DECOR}
             }
     };
     

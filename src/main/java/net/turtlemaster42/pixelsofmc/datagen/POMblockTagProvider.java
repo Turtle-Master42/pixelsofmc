@@ -216,6 +216,33 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.ARMORED_MACHINE_CASING.get()
         );
 
+        this.tag(POMtags.Blocks.CASINGS_DECOR).add(
+                POMblocks.MACHINE_CASING.get(),
+                POMblocks.MACHINE_CASING_SLAB.get(),
+                POMblocks.MACHINE_CASING_STAIRS.get(),
+                POMblocks.FISSION_CASING.get(),
+                POMblocks.FISSION_CASING_SLAB.get(),
+                POMblocks.FISSION_CASING_STAIRS.get(),
+                POMblocks.ARMORED_MACHINE_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get(),
+                POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()
+        );
+
+        this.tag(POMtags.Blocks.FISSION_DECOR).add(
+                POMblocks.FISSION_CASING.get(),
+                POMblocks.FISSION_CASING_SLAB.get(),
+                POMblocks.FISSION_CASING_STAIRS.get(),
+                POMblocks.ARMORED_MACHINE_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get(),
+                POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()
+        );
+
+        this.tag(POMtags.Blocks.FUSION_DECOR).add(
+                POMblocks.ARMORED_MACHINE_CASING.get(),
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get(),
+                POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()
+        );
+
         //auto gen
         for(Element element : Element.values()) {
             if (element.shouldAddBlock()) {

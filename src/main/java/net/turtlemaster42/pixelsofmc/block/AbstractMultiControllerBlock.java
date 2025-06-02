@@ -16,6 +16,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.IMultiControllerBlock;
@@ -120,25 +121,34 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                     BlockState blockState = level.getBlockState(blockPos);
                     Block block = blockState.getBlock();
 
+                    //BLOCK MAP
                     if (blocks.containsKey(block)) {
                         blocks.replace(block, blocks.get(block) + 1);
                     } else {
                         blocks.put(block, 1);
                     }
 
-                    if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.getBlock() instanceof AbstractMultiBlock && blockState.is(glassReplaceable)) {
+                    //GLASS
+                    if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.is(glassReplaceable)) {
                         correctBlocks++;
                     } else if (multiBlockState.presentIn(blockState)) {
                         correctBlocks++;
                     }
-
-                    if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.getBlock() instanceof AbstractMultiBlock && (blockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING_SLAB.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING.get()))) {
+                    //DECOR
+                    else if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FUSION_DECOR)) {
+                        correctBlocks++;
+                    } else if (multiBlockState.is(POMblocks.FISSION_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FISSION_DECOR)) {
+                        correctBlocks++;
+                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.CASINGS_DECOR)) {
                         correctBlocks++;
                     }
 
-                    if (block instanceof AbstractMultiBlock && level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile) {
-                        multiBlockTile.setMainPos(controllerPos);
-                        multiBlockTile.onValidation();
+                    // TILE VALIDATION
+                    if (block instanceof AbstractMultiBlock) {
+                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile) {
+                            multiBlockTile.setMainPos(controllerPos);
+                            multiBlockTile.onValidation();
+                        }
                     }
                 }
 

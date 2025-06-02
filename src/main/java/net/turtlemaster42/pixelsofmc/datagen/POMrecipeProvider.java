@@ -2025,7 +2025,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMblocks.SIMPLE_CASING_1.get(), POMblocks.SIMPLE_CASING_2.get(), fConsumer);
         SimpleSurroundRecipe(Element.TITANIUM.item(), POMblocks.COPPER_SPOOL.get(), POMblocks.MACHINE_COIL.get(), fConsumer);
 
-
         SimpleFullCrossRecipe(Items.OBSIDIAN, POMitems.OBSIDIAN_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.STRENGTHENED_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.BIO_COMPOUND.get(), Items.REDSTONE, Items.NETHER_STAR, POMitems.POWER_ORB.get(), fConsumer);

@@ -65,6 +65,9 @@ public class POMtags {
         public static final TagKey<Block> MACHINE_CASINGS = BlockTags.create(Util.resourceLocation("casing/machine"));
         public static final TagKey<Block> FISSION_CASINGS = BlockTags.create(Util.resourceLocation("casing/fission"));
         public static final TagKey<Block> FUSION_CASINGS = BlockTags.create(Util.resourceLocation("casing/fusion"));
+        public static final TagKey<Block> CASINGS_DECOR = BlockTags.create(Util.resourceLocation("casing/decor"));
+        public static final TagKey<Block> FISSION_DECOR = BlockTags.create(Util.resourceLocation("casing/fission_decor"));
+        public static final TagKey<Block> FUSION_DECOR = BlockTags.create(Util.resourceLocation("casing/fusion_decor"));
 
         // forge blocks
         public static final TagKey<Block> ORES_TITANIUM = BlockTags.create(forgeLoc("ores/titanium"));

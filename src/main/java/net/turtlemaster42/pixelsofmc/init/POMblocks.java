@@ -259,7 +259,8 @@ public class POMblocks {
             () -> new FluidPortBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
     public static final RegistryObject<AbstractPillarCasing> MACHINE_COIL = registerBlock("machine_coil",
             () -> new AbstractPillarCasing(BlockBehaviour.Properties.copy(POMblocks.MACHINE_CASING.get())));
-
+    public static final RegistryObject<AbstractMultiBlock> HEAT_SINK = registerBlock("heat_sink",
+            () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
 
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
@@ -285,8 +286,6 @@ public class POMblocks {
     public static final RegistryObject<AbstractFusionCasing> SUPERCONDUCTIVE_FUSION_CASING = registerBlock("superconductive_fusion_casing",
             () -> new AbstractPillarFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<AbstractFusionCasing> FUSION_CORNER = registerBlock("fusion_corner",
-            () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
-    public static final RegistryObject<AbstractFusionCasing> HEAT_SINK = registerBlock("heat_sink",
             () -> new AbstractFusionCasing(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
     public static final RegistryObject<EnergyPortBlock> FUSION_ENERGY_PORT = registerBlock("fusion_energy_port",
             () -> new EnergyPortBlock(BlockBehaviour.Properties.copy(POMblocks.TITANIUM_DIBORIDE_BLOCK.get()).destroyTime(12f)));
