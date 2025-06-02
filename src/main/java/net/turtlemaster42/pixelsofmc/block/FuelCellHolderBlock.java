@@ -2,6 +2,10 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +19,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
@@ -45,6 +50,8 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
     @Override
     public void neighborChanged(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
         if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {
+//            if (pState.getValue(CELL_TYPE) == 1)
+//                ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, ParticleTypes.SMOKE, UniformInt.of(5, 8), pState.getValue(FACING), () -> Vec3.ZERO, 0.55D);
             return;
         }
         pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);

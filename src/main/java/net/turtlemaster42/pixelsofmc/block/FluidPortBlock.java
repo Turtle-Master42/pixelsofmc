@@ -3,6 +3,9 @@ package net.turtlemaster42.pixelsofmc.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -48,15 +52,7 @@ public class FluidPortBlock extends AbstractPort {
                     if (pLevel.isClientSide()) {
                         pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.fluid_port." + portTile.getCurrentTank()), true);
                         Vector3f colorVec = Util.formatCodeVecColor(Component.translatable("message.pixelsofmc.block.fluid_port." + portTile.getCurrentTank() + ".color").getString());
-                        Vector3f centerVec = new Vector3f(pPos.getX() + 0.5f, pPos.getY() + 0.5f, pPos.getZ() + 0.5f);
-                        Vector3f posVec1 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, 0.1f, 0.525f);
-                        Vector3f posVec2 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, -0.1f, 0.525f);
-                        Vector3f posVec3 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, 0.1f, 0.525f);
-                        Vector3f posVec4 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, -0.1f, 0.525f);
-                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec1.x, posVec1.y, posVec1.z, 0, 0, 0);
-                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec2.x, posVec2.y, posVec2.z, 0, 0, 0);
-                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec3.x, posVec3.y, posVec3.z, 0, 0, 0);
-                        pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec4.x, posVec4.y, posVec4.z, 0, 0, 0);
+                        ParticleUtils.spawnParticlesOnBlockFace(pLevel, pHit.getBlockPos(), new DustParticleOptions(colorVec, 0.75f), UniformInt.of(9, 12), pHit.getDirection(), () -> Vec3.ZERO, 0.55D);
                     }
                     return InteractionResult.SUCCESS;
                 }
@@ -75,15 +71,7 @@ public class FluidPortBlock extends AbstractPort {
                             if (pLevel.isClientSide()) {
                                 pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block.fluid_port." + tankNames[index]), true);
                                 Vector3f colorVec = Util.formatCodeVecColor(Component.translatable("message.pixelsofmc.block.fluid_port." + tankNames[index] + ".color").getString());
-                                Vector3f centerVec = new Vector3f(pPos.getX() + 0.5f, pPos.getY() + 0.5f, pPos.getZ() + 0.5f);
-                                Vector3f posVec1 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, 0.1f, 0.525f);
-                                Vector3f posVec2 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, 0.1f, -0.1f, 0.525f);
-                                Vector3f posVec3 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, 0.1f, 0.525f);
-                                Vector3f posVec4 = rotatedVecPos(pState.getValue(AbstractPort.PUSH_DIRECTION), centerVec, -0.1f, -0.1f, 0.525f);
-                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec1.x, posVec1.y, posVec1.z, 0, 0, 0);
-                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec2.x, posVec2.y, posVec2.z, 0, 0, 0);
-                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec3.x, posVec3.y, posVec3.z, 0, 0, 0);
-                                pLevel.addParticle(new DustParticleOptions(colorVec, 0.75f), posVec4.x, posVec4.y, posVec4.z, 0, 0, 0);
+                                ParticleUtils.spawnParticlesOnBlockFace(pLevel, pHit.getBlockPos(), new DustParticleOptions(colorVec, 0.75f), UniformInt.of(9, 12), pHit.getDirection(), () -> Vec3.ZERO, 0.55D);
                             }
                             return InteractionResult.SUCCESS;
                         }

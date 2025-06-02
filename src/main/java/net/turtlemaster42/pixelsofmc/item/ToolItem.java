@@ -1,14 +1,26 @@
 package net.turtlemaster42.pixelsofmc.item;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
@@ -17,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
+import java.util.Optional;
 
 public class ToolItem extends Item {
     public ToolItem(Properties pProperties) {
@@ -44,14 +57,17 @@ public class ToolItem extends Item {
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        if (pContext.getItemInHand().getItem().equals(POMitems.SCREWDRIVER.get())) {
+        Level level = pContext.getLevel();
+        BlockPos pos = pContext.getClickedPos();
+
+        if (pContext.getItemInHand().is(POMitems.SCREWDRIVER.get())) {
             Map<Block, Integer> blocks;
-            if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
-                blocks = multiControllerBlock.validateMultiBlock(pContext.getLevel(), pContext.getClickedPos());
-            } else if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() instanceof AbstractDummyMachineBlock) {
-                if (pContext.getLevel().getBlockEntity(pContext.getClickedPos()) instanceof AbstractDummyMachineBlockTile dummyTile) {
-                    if (pContext.getLevel().getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
-                        blocks = multiControllerBlock.validateMultiBlock(pContext.getLevel(), dummyTile.getMainPos());
+            if (level.getBlockState(pos).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
+                blocks = multiControllerBlock.validateMultiBlock(level, pos);
+            } else if (level.getBlockState(pos).getBlock() instanceof AbstractDummyMachineBlock) {
+                if (level.getBlockEntity(pos) instanceof AbstractDummyMachineBlockTile dummyTile) {
+                    if (level.getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
+                        blocks = multiControllerBlock.validateMultiBlock(level, dummyTile.getMainPos());
                     } else {
                         return InteractionResult.PASS;
                     }
@@ -61,10 +77,19 @@ public class ToolItem extends Item {
             } else {
                 return InteractionResult.PASS;
             }
-            if (blocks.isEmpty() && pContext.getPlayer() != null && !pContext.getLevel().isClientSide()) {
+            if (blocks.isEmpty() && pContext.getPlayer() != null && !level.isClientSide()) {
                 pContext.getPlayer().sendSystemMessage(Component.translatable("message.pixelsofmc.block.multiblock.invalid"));
             }
             return InteractionResult.SUCCESS;
+        } else if (pContext.getItemInHand().is(POMitems.CLEANING_CLOTH.get())) {
+            BlockState modifiedState = level.getBlockState(pos).getBlock().getToolModifiedState(level.getBlockState(pos), pContext, ToolActions.AXE_WAX_OFF, false);
+            Optional<BlockState> optionalBlockState = Optional.ofNullable(modifiedState);
+
+            if (optionalBlockState.isPresent()) {
+                level.setBlock(pos, optionalBlockState.get(), 11);
+                level.levelEvent(pContext.getPlayer(), 3004, pos, 0); // wax_off particles (LevelRenderer)
+                return InteractionResult.SUCCESS;
+            }
         }
 
         return InteractionResult.PASS;
@@ -76,4 +101,28 @@ public class ToolItem extends Item {
             return toolAction.equals(ToolActions.AXE_WAX_OFF);
         return false;
     }
+
+    //TODO:DON'T WORK
+//    @Override
+//    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
+//        return this.isEdible() ? pLivingEntity.eat(pLevel, pStack) : pStack;
+//    }
+//
+//    @Override
+//    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
+//        if (stack.is(POMitems.CLEANING_CLOTH.get())) {
+//            PixelsOfMc.LOGGER.info("animation");
+//            return UseAnim.BRUSH;
+//        }
+//        return UseAnim.NONE;
+//    }
+//
+//    @Override
+//    public int getUseDuration(ItemStack stack) {
+//        if (stack.is(POMitems.CLEANING_CLOTH.get())) {
+//            PixelsOfMc.LOGGER.info("duration");
+//            return 20;
+//        }
+//        return 0;
+//    }
 }

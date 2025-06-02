@@ -45,8 +45,6 @@ import java.util.function.Supplier;
 public class POMblocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PixelsOfMc.MOD_ID);
 
-
-
     //fluids
     public static final RegistryObject<LiquidBlock> MERCURY_BLOCK = POMblocks.BLOCKS.register("mercury",
             () -> new LiquidBlock(POMfluids.MERCURY_SOURCE.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BLUE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
