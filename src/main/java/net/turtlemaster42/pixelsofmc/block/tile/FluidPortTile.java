@@ -206,9 +206,14 @@ public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandl
             } else {
                 BlockEntity facingTile = level.getBlockEntity(facingPos);
                 if (facingTile != null) {
-                    IFluidHandler fluid = facingTile.getCapability(ForgeCapabilities.FLUID_HANDLER, blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite()).orElse(null);
-                    if (fluid != null) {
-                        fluid.fill(new FluidStack(e.fluidTank.getFluid(), e.fluidTank.drain(Math.min(fluid.getTankCapacity(0) - fluid.getFluidInTank(0).getAmount(), 250), IFluidHandler.FluidAction.EXECUTE).getAmount()), IFluidHandler.FluidAction.EXECUTE);
+                    IFluidHandler fluidHandler = facingTile.getCapability(ForgeCapabilities.FLUID_HANDLER, blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite()).orElse(null);
+                    if (fluidHandler != null) {
+                        int amount =  Math.min(fluidHandler.getTankCapacity(0) - fluidHandler.getFluidInTank(0).getAmount(), 1000);
+                        int fill = fluidHandler.fill(new FluidStack(e.fluidTank.getFluid(),
+                                e.fluidTank.drain(amount < 0 ? 1000 : amount, IFluidHandler.FluidAction.SIMULATE).getAmount()),
+                                IFluidHandler.FluidAction.EXECUTE
+                        );
+                        e.fluidTank.drain(fill, IFluidHandler.FluidAction.EXECUTE);
                     }
                 }
             }

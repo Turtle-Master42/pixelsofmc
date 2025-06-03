@@ -58,7 +58,6 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight - 16);
 
         if (menu.isCrafting()) {
-            PixelsOfMc.LOGGER.info("CRAFTING");
             guiGraphics.blit(TEXTURE, x + 59, y + 14, 0, 150, 54, 40);
         }
         fluidArea1.draw(guiGraphics);
