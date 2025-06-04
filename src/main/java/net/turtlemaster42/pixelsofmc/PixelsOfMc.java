@@ -66,6 +66,7 @@ public class PixelsOfMc {
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 	private static int messageID = 0;
 
+	@SuppressWarnings("marked for removal")
 	public PixelsOfMc() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -169,7 +170,8 @@ public class PixelsOfMc {
 
 	}
 
-    private void clientSetup(final FMLClientSetupEvent event) {
+	@SuppressWarnings("marked for removal")
+	private void clientSetup(final FMLClientSetupEvent event) {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN.get(), RenderType.translucent());

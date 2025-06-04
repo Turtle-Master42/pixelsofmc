@@ -71,6 +71,7 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
     }
 
     @Override
+    @SuppressWarnings("marked for removal")
     public @Nullable IDrawable getBackground() {
         return background;
     }

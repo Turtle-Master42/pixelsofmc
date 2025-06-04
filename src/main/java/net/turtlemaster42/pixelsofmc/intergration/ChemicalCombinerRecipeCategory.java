@@ -25,7 +25,7 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
     }
 
     @Override
-    public @NotNull @NotNull RecipeType<ChemicalCombinerRecipe> getRecipeType() {
+    public @NotNull RecipeType<ChemicalCombinerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalCombinerRecipe.class);
     }
 

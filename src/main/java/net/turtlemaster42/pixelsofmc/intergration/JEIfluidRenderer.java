@@ -39,6 +39,7 @@ public class JEIfluidRenderer implements mezz.jei.api.ingredients.IIngredientRen
     }
 
     @Override
+    @SuppressWarnings("marked for removal")
     public @NotNull List<Component> getTooltip(@NotNull FluidStack ingredient, @NotNull TooltipFlag tooltipFlag) {
         return renderer.getTooltip(ingredient);
     }

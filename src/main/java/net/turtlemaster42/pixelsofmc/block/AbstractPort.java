@@ -28,6 +28,7 @@ public class AbstractPort extends AbstractMultiBlock {
 
     public AbstractPort(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(PUSHING, false));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
@@ -39,6 +40,7 @@ public class AbstractPort extends AbstractMultiBlock {
                 .setValue(PUSH_DIRECTION, pContext.getNearestLookingDirection().equals(Direction.UP) || pContext.getNearestLookingDirection().equals(Direction.DOWN) ? pContext.getNearestLookingDirection().getOpposite() : pContext.getNearestLookingDirection())
                 .setValue(PUSHING, false);
     }
+
 
     @Deprecated
     @Override

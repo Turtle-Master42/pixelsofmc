@@ -39,7 +39,7 @@ public class ChemicalMixerRecipeCategory extends BaseCategory<ChemicalMixerRecip
     }
 
     @Override
-    public @NotNull @NotNull RecipeType<ChemicalMixerRecipe> getRecipeType() {
+    public @NotNull RecipeType<ChemicalMixerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalMixerRecipe.class);
     }
 

@@ -209,6 +209,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FUSION_FLUID_PORT.get(),
                 POMblocks.FUSION_ENERGY_PORT.get(),
                 POMblocks.FUSION_PLASMA_PORT.get(),
+                POMblocks.FUSION_ITEM_PORT.get(),
                 POMblocks.FUSION_CASING.get(),
                 POMblocks.FUSION_CORNER.get(),
                 POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(),

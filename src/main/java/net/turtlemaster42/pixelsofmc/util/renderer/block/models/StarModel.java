@@ -19,6 +19,7 @@ public class StarModel extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox disc;
     private final AdvancedModelBox light_bend_above;
     private final AdvancedModelBox light_bend_below;
+//    private final AdvancedModelBox test;
 
     public StarModel() {
         texWidth = 192;
@@ -69,6 +70,12 @@ public class StarModel extends AdvancedEntityModel<Entity> {
         root.addChild(light_bend_below);
         light_bend_below.setTextureOffset(0, 160).addBox(-24.0F, 0.0F, -24.0F, 48.0F, 0.0F, 48.0F, 0.0F, false);
         light_bend_below.setScale(0, 0, 0);
+//
+//        test = new AdvancedModelBox(this, "test");
+//        test.setRotationPoint(0.0F, 0F, 0F);
+//        root.addChild(test);
+//        test.setTextureOffset(64, 32).addBox(8.0F, 32.0F, 8.0F, -16.0F, -16.0F, -16.0F, 0.0F, false);
+//        test.setScale(0, 0, 0);
 
 
         //box(locX, locY, locZ, sizeX, sizeY, sizeZ, ?, flip?)

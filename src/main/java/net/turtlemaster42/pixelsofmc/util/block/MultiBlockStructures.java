@@ -26,17 +26,12 @@ public class MultiBlockStructures {
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
-    private static final GhostBlockState FUEL_CELL_HOLDER = new GhostBlockState(POMblocks.FUEL_CELL_HOLDER.get()); //.addProperty(FuelCellHolderBlock.FACING, Direction.UP);
+    private static final GhostBlockState FUEL_CELL_HOLDER = new GhostBlockState(POMblocks.FUEL_CELL_HOLDER.get());
 
     //fusion
     private static final GhostBlockState FUSION_CASING = new GhostBlockState(POMblocks.FUSION_CASING.get());
-    private static final GhostBlockState FUSION_CASING_UP = new GhostBlockState(POMblocks.FUSION_CASING.get()).addProperty(BlockStateProperties.AXIS, Direction.Axis.Y);
-    private static final GhostBlockState FUSION_CASING_FORWARD = new GhostBlockState(POMblocks.FUSION_CASING.get()).addProperty(BlockStateProperties.AXIS, Direction.Axis.Z);
-    private static final GhostBlockState FUSION_CASING_SIDE = new GhostBlockState(POMblocks.FUSION_CASING.get()).addProperty(BlockStateProperties.AXIS, Direction.Axis.X);
 
-    private static final GhostBlockState SUPERCONDUCTIVE_UP = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Y);
-    private static final GhostBlockState SUPERCONDUCTIVE_FORWARD = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.Z);
-    private static final GhostBlockState SUPERCONDUCTIVE_SIDE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get()).addProperty(AbstractPillarFusionCasing.AXIS, Direction.Axis.X);
+    private static final GhostBlockState SUPERCONDUCTIVE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
     private static final GhostBlockState FUSION_CORNER = new GhostBlockState(POMblocks.FUSION_CORNER.get());
 
 
@@ -88,117 +83,117 @@ public class MultiBlockStructures {
     //SDS
     public static final GhostBlockState[][][] SDS_STRUCTURE = {
             {
-                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER}
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, FUSION_CASING, FUSION_CORNER}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, null, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CASING_SIDE, GLASS, GLASS, GLASS, FUSION_CASING_SIDE},
-                    {FUSION_CORNER, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CASING_FORWARD, FUSION_CORNER}
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, FUSION_CASING, FUSION_CORNER}
             }
     };
     //MDS
     public static final GhostBlockState[][][] MDS_STRUCTURE = {
             {
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, SUPERCONDUCTIVE_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {SUPERCONDUCTIVE_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, SUPERCONDUCTIVE_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, SUPERCONDUCTIVE, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {SUPERCONDUCTIVE, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, SUPERCONDUCTIVE, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {SUPERCONDUCTIVE_UP, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE_UP},
+                    {SUPERCONDUCTIVE, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, null, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {SUPERCONDUCTIVE_UP, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE_UP}
+                    {SUPERCONDUCTIVE, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, SUPERCONDUCTIVE_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {SUPERCONDUCTIVE_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
-                    {FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CASING_SIDE, SUPERCONDUCTIVE_SIDE, FUSION_CASING_SIDE, FUSION_CASING_SIDE, FUSION_CORNER},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, SUPERCONDUCTIVE, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {SUPERCONDUCTIVE, GLASS, GLASS, GLASS, GLASS, GLASS, SUPERCONDUCTIVE},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
+                    {FUSION_CORNER, FUSION_CASING, FUSION_CASING, SUPERCONDUCTIVE, FUSION_CASING, FUSION_CASING, FUSION_CORNER},
             }
     };
     //MNS
     public static final GhostBlockState[][][] MNS_STRUCTURE = {
             {
-                    {null, null, FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CORNER, null, null},
+                    {null, null, FUSION_CORNER, FUSION_CASING, FUSION_CORNER, null, null},
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER},
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
-                    {null, null, FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CORNER, null, null}
+                    {null, null, FUSION_CORNER, FUSION_CASING, FUSION_CORNER, null, null}
             },
             {
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
@@ -219,13 +214,13 @@ public class MultiBlockStructures {
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER}
             },
             {
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, null, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
                     {GLASS, AIR, AIR, AIR, AIR, AIR, GLASS},
-                    {FUSION_CASING_UP, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_UP}
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING}
             },
             {
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER},
@@ -246,13 +241,13 @@ public class MultiBlockStructures {
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null}
             },
             {
-                    {null, null, FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CORNER, null, null},
+                    {null, null, FUSION_CORNER, FUSION_CASING, FUSION_CORNER, null, null},
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER},
-                    {FUSION_CASING_FORWARD, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING_FORWARD},
+                    {FUSION_CASING, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CASING},
                     {FUSION_CORNER, GLASS, GLASS, GLASS, GLASS, GLASS, FUSION_CORNER},
                     {null, OTHER, GLASS, GLASS, GLASS, OTHER, null},
-                    {null, null, FUSION_CORNER, FUSION_CASING_SIDE, FUSION_CORNER, null, null}
+                    {null, null, FUSION_CORNER, FUSION_CASING, FUSION_CORNER, null, null}
             }
     };
     //BH
