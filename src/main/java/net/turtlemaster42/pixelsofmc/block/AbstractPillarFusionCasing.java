@@ -19,12 +19,6 @@ public class AbstractPillarFusionCasing extends AbstractFusionCasing  {
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.Y));
     }
 
-    /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     * @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#rotate} whenever
-     * possible. Implementing/overriding is fine.
-     */
     @Deprecated
     public @NotNull BlockState rotate(@NotNull BlockState pState, @NotNull Rotation pRot) {
         return rotatePillar(pState, pRot);

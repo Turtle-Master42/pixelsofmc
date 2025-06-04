@@ -47,9 +47,8 @@ public class DummyMachineItemBlockTile extends AbstractDummyMachineBlockTile {
                     if (insertSim == stack)
                         return stack;
                     if (!simulate) {
-                        ItemStack newStack = stack;
-                        newStack.setCount(stack.getCount() - insertSim.getCount());
-                        ItemHandlerFrom.insertItem(slot, newStack, false);//nbt still not working
+                        stack.setCount(stack.getCount() - insertSim.getCount());
+                        ItemHandlerFrom.insertItem(slot, stack, false);//nbt still not working
 
                         itemHandler.setStackInSlot(slot, ItemHandlerFrom.getStackInSlot(slot));
                     }

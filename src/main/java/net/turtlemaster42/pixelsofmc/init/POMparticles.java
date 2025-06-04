@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
 import net.turtlemaster42.pixelsofmc.particle.options.FluidBubbleParticleOptions;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -27,8 +28,8 @@ public class POMparticles {
     }
 
     private static <T extends ParticleOptions> RegistryObject<ParticleType<T>> register(String pKey, boolean pOverrideLimiter, ParticleOptions.Deserializer<T> pDeserializer, final Function<ParticleType<T>, Codec<T>> pCodecFactory) {
-        return PARTICLE_TYPES.register(pKey, () -> new ParticleType<T>(pOverrideLimiter, pDeserializer) {
-            public Codec<T> codec() {
+        return PARTICLE_TYPES.register(pKey, () -> new ParticleType<>(pOverrideLimiter, pDeserializer) {
+            public @NotNull Codec<T> codec() {
                 return pCodecFactory.apply(this);
             }
         });

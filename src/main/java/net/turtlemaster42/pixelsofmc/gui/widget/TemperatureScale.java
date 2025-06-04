@@ -3,20 +3,19 @@ package net.turtlemaster42.pixelsofmc.gui.widget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 public class TemperatureScale extends AbstractButton {
     private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/widgets.png");
     private int state;
-    private OnPress onPress;
+    private final OnPress onPress;
 
 
     public TemperatureScale(int pX, int pY, OnPress onPress, Component pMessage) {
@@ -49,7 +48,7 @@ public class TemperatureScale extends AbstractButton {
         return state;
     }
 
-    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -69,7 +68,7 @@ public class TemperatureScale extends AbstractButton {
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {}
+    protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {}
 
 
     private enum Scale {

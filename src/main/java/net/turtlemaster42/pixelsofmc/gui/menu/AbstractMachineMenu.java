@@ -5,7 +5,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -135,8 +134,8 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
                 }
 
                 Slot slot1 = this.slots.get(i);
-                ItemStack itemstack1 = slot1.getItem();
-                if (itemstack1.isEmpty() && slot1.getMaxStackSize() > 0 && slot1.mayPlace(pStack)) {
+                ItemStack itemStack1 = slot1.getItem();
+                if (itemStack1.isEmpty() && slot1.getMaxStackSize() > 0 && slot1.mayPlace(pStack)) {
                     if (pStack.getCount() > slot1.getMaxStackSize()) {
                         slot1.set(pStack.split(slot1.getMaxStackSize()));
                     } else {

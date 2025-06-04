@@ -22,6 +22,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -36,7 +37,7 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
     }
 
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         Direction direction = pState.getValue(FACING);
         double offset = 3;
         if (pState.getValue(SPIKE_TYPE) != 0) {
@@ -68,18 +69,18 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    public boolean propagatesSkylightDown(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
         return pState.getFluidState().isEmpty();
     }
 
     @Override
-    public boolean isPossibleToRespawnInThis(BlockState pState) {
+    public boolean isPossibleToRespawnInThis(@NotNull BlockState pState) {
         return false;
     }
 
     @Override
     @Deprecated
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
         return pType == PathComputationType.AIR && !this.hasCollision || super.isPathfindable(pState, pLevel, pPos, pType);
     }
 
@@ -89,7 +90,7 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific direction passed in.
      */
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+    public @NotNull BlockState updateShape(BlockState pState, @NotNull Direction pDirection, @NotNull BlockState pNeighborState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pPos, @NotNull BlockPos pNeighborPos) {
         if (pState.getValue(WATERLOGGED)) {
             pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
         }
@@ -139,7 +140,7 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
         return returnState;
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @NotNull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 
@@ -147,7 +148,7 @@ public class AcanthiteSpikeBlock extends Block implements SimpleWaterloggedBlock
         pBuilder.add(WATERLOGGED, FACING, SPIKE_TYPE);
     }
 
-    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
+    public void fallOn(@NotNull Level pLevel, BlockState pState, @NotNull BlockPos pPos, @NotNull Entity pEntity, float pFallDistance) {
         if (pState.getValue(FACING) == Direction.UP && pState.getValue(SPIKE_TYPE) == 0) {
             pEntity.causeFallDamage(pFallDistance + 2.0F, 3.0F, pLevel.damageSources().stalagmite());
         } else {

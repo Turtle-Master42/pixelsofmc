@@ -54,9 +54,6 @@ public class Debugium extends ElementItem {
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
-//        PixelsOfMc.LOGGER.info("Color white: {}", new Color(255, 255, 255).getRGB());
-//        PixelsOfMc.LOGGER.info("Color green: {}", new Color(0, 255, 125).getRGB());
-//        PixelsOfMc.LOGGER.info("Color blue: {}", new Color(0, 255, 255).getRGB());
         return super.use(level, player, usedHand);
     }
 

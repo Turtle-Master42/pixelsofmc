@@ -41,9 +41,7 @@ public class IndustrialCoolerMenu extends AbstractMachineMenu implements IEnergy
         this.triFluid = blockEntity.getTriFluid();
         this.quadFluid = blockEntity.getQuadFluid();
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModHeatUpgradeSlot(handler, 0, 161, 8));
-        });
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> this.addSlot(new ModHeatUpgradeSlot(handler, 0, 161, 8)));
     }
 
     public boolean isCrafting() {return data.get(0) != 0;}

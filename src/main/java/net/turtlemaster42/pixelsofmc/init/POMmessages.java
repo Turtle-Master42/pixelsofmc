@@ -1,8 +1,6 @@
 package net.turtlemaster42.pixelsofmc.init;
 
 import net.minecraft.server.level.ServerPlayer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
@@ -101,18 +99,6 @@ public class POMmessages {
 
 
         // --SERVER--
-        net.messageBuilder(PacketSyncSlotMaxToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PacketSyncSlotMaxToServer::new)
-                .encoder(PacketSyncSlotMaxToServer::toBytes)
-                .consumerMainThread(PacketSyncSlotMaxToServer::handle)
-                .add();
-
-        net.messageBuilder(PacketSyncLockedSlotToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PacketSyncLockedSlotToServer::new)
-                .encoder(PacketSyncLockedSlotToServer::toBytes)
-                .consumerMainThread(PacketSyncLockedSlotToServer::handle)
-                .add();
-
         net.messageBuilder(PacketSyncSwitchToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketSyncSwitchToServer::new)
                 .encoder(PacketSyncSwitchToServer::toBytes)

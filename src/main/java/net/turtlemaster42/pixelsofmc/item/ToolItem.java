@@ -1,26 +1,17 @@
 package net.turtlemaster42.pixelsofmc.item;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
@@ -101,28 +92,4 @@ public class ToolItem extends Item {
             return toolAction.equals(ToolActions.AXE_WAX_OFF);
         return false;
     }
-
-    //TODO:DON'T WORK
-//    @Override
-//    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
-//        return this.isEdible() ? pLivingEntity.eat(pLevel, pStack) : pStack;
-//    }
-//
-//    @Override
-//    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
-//        if (stack.is(POMitems.CLEANING_CLOTH.get())) {
-//            PixelsOfMc.LOGGER.info("animation");
-//            return UseAnim.BRUSH;
-//        }
-//        return UseAnim.NONE;
-//    }
-//
-//    @Override
-//    public int getUseDuration(ItemStack stack) {
-//        if (stack.is(POMitems.CLEANING_CLOTH.get())) {
-//            PixelsOfMc.LOGGER.info("duration");
-//            return 20;
-//        }
-//        return 0;
-//    }
 }

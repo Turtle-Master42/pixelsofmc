@@ -27,7 +27,7 @@ public class ChemicalMixerRecipe implements Recipe<FluidContainer> {
     private final ResourceLocation id;
     private final List<FluidStack> fluidInputs;
     private final List<FluidStack> fluidOutputs;
-    private int temperatureState;
+    private final int temperatureState;
 
     public ChemicalMixerRecipe(ResourceLocation id, List<FluidStack> fluidInputs, List<FluidStack> fluidOutputs, int temperatureState) {
         this.id = id;
@@ -37,13 +37,13 @@ public class ChemicalMixerRecipe implements Recipe<FluidContainer> {
     }
 
     @Override
-    public boolean matches(FluidContainer fluidContainer, Level level) {
+    public boolean matches(@NotNull FluidContainer fluidContainer, Level level) {
         if (level.isClientSide()) {return false;}
         return matchMultiFluidInput(fluidContainer, getFluidInputs());
     }
 
     @Override
-    public @NotNull ItemStack assemble(FluidContainer fluidContainer, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(@NotNull FluidContainer fluidContainer, @NotNull RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 

@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.entity.AI;
+package net.turtlemaster42.pixelsofmc.entity.ai;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;

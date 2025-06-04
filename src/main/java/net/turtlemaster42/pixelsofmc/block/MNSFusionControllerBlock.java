@@ -90,7 +90,7 @@ public class MNSFusionControllerBlock extends AbstractFusionControllerBlock {
 
     @Override
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+    public BlockState getStateForPlacement(@NotNull @NotNull BlockPlaceContext pContext) {
         if (BigMachineBlockUtil.BigMachinePlacement(pContext, 1, 0, 0) &&
                 BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, 0) &&
                 BigMachineBlockUtil.BigMachinePlacement(pContext, 2, 0, -1) &&

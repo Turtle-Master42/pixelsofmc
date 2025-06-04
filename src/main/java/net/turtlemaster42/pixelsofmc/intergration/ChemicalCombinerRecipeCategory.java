@@ -8,7 +8,6 @@ import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -26,7 +25,7 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
     }
 
     @Override
-    public RecipeType<ChemicalCombinerRecipe> getRecipeType() {
+    public @NotNull @NotNull RecipeType<ChemicalCombinerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalCombinerRecipe.class);
     }
 

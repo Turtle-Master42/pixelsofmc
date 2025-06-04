@@ -45,22 +45,22 @@ public class RiverShellEntityItem extends Item {
             return InteractionResult.SUCCESS;
         } else {
             ItemStack itemstack = pContext.getItemInHand();
-            BlockPos blockpos = pContext.getClickedPos();
+            BlockPos clickedPos = pContext.getClickedPos();
             Direction direction = pContext.getClickedFace();
-            BlockState blockstate = level.getBlockState(blockpos);
+            BlockState blockstate = level.getBlockState(clickedPos);
 
-            BlockPos blockpos1;
-            if (blockstate.getCollisionShape(level, blockpos).isEmpty()) {
-                blockpos1 = blockpos;
+            BlockPos blockPos;
+            if (blockstate.getCollisionShape(level, clickedPos).isEmpty()) {
+                blockPos = clickedPos;
             } else {
-                blockpos1 = blockpos.relative(direction);
+                blockPos = clickedPos.relative(direction);
             }
 
-            RiverShellEntity riverShell = POMentities.RIVER_SHELL.get().spawn((ServerLevel)level, itemstack, pContext.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+            RiverShellEntity riverShell = POMentities.RIVER_SHELL.get().spawn((ServerLevel)level, itemstack, pContext.getPlayer(), blockPos, MobSpawnType.SPAWN_EGG, true, !Objects.equals(clickedPos, blockPos) && direction == Direction.UP);
             if (riverShell != null) {
                 RiverShellEntity.loadEntityDataFromStack(itemstack, riverShell);
                 Objects.requireNonNull(pContext.getPlayer()).getInventory().removeItem(itemstack);
-                level.gameEvent(pContext.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
+                level.gameEvent(pContext.getPlayer(), GameEvent.ENTITY_PLACE, clickedPos);
             }
 
             return InteractionResult.CONSUME;

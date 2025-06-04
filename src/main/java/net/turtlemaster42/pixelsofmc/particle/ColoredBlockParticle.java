@@ -17,6 +17,7 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
 import net.turtlemaster42.pixelsofmc.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 public class ColoredBlockParticle extends TextureSheetParticle {
     private final BlockPos pos;
@@ -58,7 +59,7 @@ public class ColoredBlockParticle extends TextureSheetParticle {
         this.vo = this.random.nextFloat() * 3.0F;
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.TERRAIN_SHEET;
     }
 
@@ -86,7 +87,7 @@ public class ColoredBlockParticle extends TextureSheetParticle {
 
     @OnlyIn(Dist.CLIENT)
     public static class Provider implements ParticleProvider<ColoredBlockParticleOptions> {
-        public Particle createParticle(ColoredBlockParticleOptions pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+        public Particle createParticle(ColoredBlockParticleOptions pType, @NotNull ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
             BlockState blockState = pType.getState();
             return !blockState.isAir() && !blockState.is(Blocks.MOVING_PISTON) ? (new ColoredBlockParticle(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed, blockState)).updateSprite(blockState, pType.getPos()) : null;
         }

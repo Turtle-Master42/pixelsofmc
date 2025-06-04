@@ -1,6 +1,7 @@
 package net.turtlemaster42.pixelsofmc.datagen;
 
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.NbtPredicate;
 import net.minecraft.data.PackOutput;
@@ -16,8 +17,10 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.init.*;
-import net.minecraft.advancements.critereon.ItemPredicate;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMfluids;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -2461,8 +2464,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         continue;
                     }
                     if (neutronMap.get(e1) + neutronMap.get(e2) != neutronMap.get(output)) {
-//                        if (Math.abs(neutronMap.get(e1) + neutronMap.get(e2) - neutronMap.get(output)) < 8)
-//                            PixelsOfMc.LOGGER.info(" --> {} != {} ({} + {})", neutronMap.get(output), neutronMap.get(e1) + neutronMap.get(e2), e1, e2);
                         continue;
                     }
 

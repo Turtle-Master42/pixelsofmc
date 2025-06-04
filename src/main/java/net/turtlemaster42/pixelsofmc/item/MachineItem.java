@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyItemProvider;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class MachineItem extends BlockItem {
         return Math.round((float)energy.getEnergyStored() * 13.0F / (float)energy.getMaxEnergyStored());
     }
 
-    public int getBarColor(ItemStack pStack) {
+    public int getBarColor(@NotNull ItemStack pStack) {
         return new Color(0, 205 ,255).getRGB();
     }
 

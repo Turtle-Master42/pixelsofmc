@@ -44,7 +44,7 @@ public class DummyMachineBlock extends AbstractDummyMachineBlock {
 	}
 
 	@Override
-	public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+	public void animateTick(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
 		if (pLevel.isClientSide()) {
 			ItemStack itemstack = Minecraft.getInstance().player.getMainHandItem();
 			if (itemstack.is(POMitems.DEBUGIUM_INGOT.get())) {

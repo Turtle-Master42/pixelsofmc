@@ -11,7 +11,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -40,23 +39,13 @@ public class ChemicalMixerRecipeCategory extends BaseCategory<ChemicalMixerRecip
     }
 
     @Override
-    public RecipeType<ChemicalMixerRecipe> getRecipeType() {
+    public @NotNull @NotNull RecipeType<ChemicalMixerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalMixerRecipe.class);
     }
 
     @Override
     public @NotNull Component getTitle() {
         return Component.translatable("block.pixelsofmc.chemical_mixer");
-    }
-
-    @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
     }
 
     @Override
@@ -70,7 +59,7 @@ public class ChemicalMixerRecipeCategory extends BaseCategory<ChemicalMixerRecip
     }
 
     @Override
-    public void draw(ChemicalMixerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(ChemicalMixerRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics guiGraphics, double mouseX, double mouseY) {
         switch (recipe.getTemperatureState()) {
             case 0 -> freezeIcon.draw(guiGraphics, 46, 47);
             case 1 -> coldIcon.draw(guiGraphics, 46, 47);

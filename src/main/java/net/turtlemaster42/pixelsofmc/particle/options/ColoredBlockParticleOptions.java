@@ -10,15 +10,16 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class ColoredBlockParticleOptions implements ParticleOptions {
-    public static final ParticleOptions.Deserializer<ColoredBlockParticleOptions> DESERIALIZER = new ParticleOptions.Deserializer<ColoredBlockParticleOptions>() {
-        public ColoredBlockParticleOptions fromCommand(ParticleType<ColoredBlockParticleOptions> pParticleType, StringReader stringReader) throws CommandSyntaxException {
+    public static final ParticleOptions.Deserializer<ColoredBlockParticleOptions> DESERIALIZER = new ParticleOptions.Deserializer<>() {
+        public @NotNull ColoredBlockParticleOptions fromCommand(@NotNull ParticleType<ColoredBlockParticleOptions> pParticleType, StringReader stringReader) throws CommandSyntaxException {
             stringReader.expect(' ');
             return new ColoredBlockParticleOptions(pParticleType, BlockStateParser.parseForBlock(BuiltInRegistries.BLOCK.asLookup(), stringReader, false).blockState());
         }
 
-        public ColoredBlockParticleOptions fromNetwork(ParticleType<ColoredBlockParticleOptions> pParticleType, FriendlyByteBuf buff) {
+        public @NotNull ColoredBlockParticleOptions fromNetwork(@NotNull ParticleType<ColoredBlockParticleOptions> pParticleType, FriendlyByteBuf buff) {
             return new ColoredBlockParticleOptions(pParticleType, buff.readById(Block.BLOCK_STATE_REGISTRY));
         }
     };
@@ -38,11 +39,11 @@ public class ColoredBlockParticleOptions implements ParticleOptions {
         pBuffer.writeId(Block.BLOCK_STATE_REGISTRY, this.state);
     }
 
-    public String writeToString() {
+    public @NotNull String writeToString() {
         return BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()) + " " + BlockStateParser.serialize(this.state);
     }
 
-    public ParticleType<ColoredBlockParticleOptions> getType() {
+    public @NotNull ParticleType<ColoredBlockParticleOptions> getType() {
         return this.type;
     }
 

@@ -69,10 +69,9 @@ public class InfinitePixelEnergyStorage extends PixelEnergyStorage {
         return infiniteEnergy;
     }
 
-    public InfiniteNumber setInfiniteEnergy(InfiniteNumber energy) {
+    public void setInfiniteEnergy(InfiniteNumber energy) {
         this.infiniteEnergy = energy.copy();
         updateEnergy();
-        return infiniteEnergy;
     }
 
     public void addEnergy(int energy) {

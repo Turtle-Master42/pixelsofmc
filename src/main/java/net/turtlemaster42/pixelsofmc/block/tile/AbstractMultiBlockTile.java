@@ -58,22 +58,22 @@ public class AbstractMultiBlockTile extends BlockEntity {
 
     public void onValidation() {}
 
-    public static Vector3f rotatedVecPos(Direction direction, Vector3f pos, float Xoffset, float Yoffset, float Zoffset) {
+    public static Vector3f rotatedVecPos(Direction direction, Vector3f pos, float xOffset, float yOffset, float zOffset) {
         float X = pos.x;
         float Y = pos.y;
         float Z = pos.z;
         if (direction == Direction.NORTH) {
-            return new Vector3f(X + Xoffset, Y + Yoffset, Z + Zoffset);
+            return new Vector3f(X + xOffset, Y + yOffset, Z + zOffset);
         } else if (direction == Direction.EAST) {
-            return new Vector3f(X - Zoffset, Y + Yoffset, Z + Xoffset);
+            return new Vector3f(X - zOffset, Y + yOffset, Z + xOffset);
         } else if (direction == Direction.SOUTH) {
-            return new Vector3f(X - Xoffset, Y + Yoffset, Z - Zoffset);
+            return new Vector3f(X - xOffset, Y + yOffset, Z - zOffset);
         } else if (direction == Direction.WEST) {
-            return new Vector3f(X + Zoffset, Y + Yoffset, Z - Xoffset);
+            return new Vector3f(X + zOffset, Y + yOffset, Z - xOffset);
         } else if (direction == Direction.UP) {
-            return new Vector3f(X + Xoffset, Y + Zoffset, Z - Yoffset);
+            return new Vector3f(X + xOffset, Y + zOffset, Z - yOffset);
         } else if (direction == Direction.DOWN) {
-            return new Vector3f(X + Xoffset, Y - Zoffset, Z + Yoffset);
+            return new Vector3f(X + xOffset, Y - zOffset, Z + yOffset);
         } else {
             PixelsOfMc.LOGGER.error("fail while trying to chance position");
             return pos;

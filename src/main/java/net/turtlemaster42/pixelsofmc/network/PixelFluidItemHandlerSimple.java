@@ -3,7 +3,6 @@ package net.turtlemaster42.pixelsofmc.network;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelFluidItemHandlerSimple extends FluidHandlerItemStack {

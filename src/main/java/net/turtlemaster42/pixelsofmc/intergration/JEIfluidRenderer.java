@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.intergration;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class JEIfluidRenderer implements mezz.jei.api.ingredients.IIngredientRenderer<FluidStack> {
 
-    private FluidTankRenderer renderer;
+    private final FluidTankRenderer renderer;
 
     public JEIfluidRenderer(long capacity, boolean showCapacity, int width, int height) {
         this.renderer = new FluidTankRenderer(capacity, showCapacity, width, height);
@@ -35,12 +34,12 @@ public class JEIfluidRenderer implements mezz.jei.api.ingredients.IIngredientRen
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, FluidStack ingredient) {
+    public void render(@NotNull GuiGraphics guiGraphics, @NotNull FluidStack ingredient) {
 
     }
 
     @Override
-    public List<Component> getTooltip(FluidStack ingredient, TooltipFlag tooltipFlag) {
+    public @NotNull List<Component> getTooltip(@NotNull FluidStack ingredient, @NotNull TooltipFlag tooltipFlag) {
         return renderer.getTooltip(ingredient);
     }
 }

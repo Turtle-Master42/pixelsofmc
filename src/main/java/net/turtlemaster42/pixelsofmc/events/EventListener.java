@@ -19,7 +19,7 @@ import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.renderer.ItemstackRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.ItemStackRenderer;
 
 public class EventListener {
 
@@ -65,7 +65,7 @@ public class EventListener {
         LocalPlayer player = mc.player;
         ClientLevel level = mc.level;
         if (event.phase == TickEvent.Phase.START) {
-            ItemstackRenderer.incrementTick();
+            ItemStackRenderer.incrementTick();
         }
 
         if (mc.options.keyAttack.isDown() && !player.getAbilities().instabuild) {

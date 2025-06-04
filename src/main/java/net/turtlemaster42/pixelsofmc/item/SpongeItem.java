@@ -2,8 +2,6 @@ package net.turtlemaster42.pixelsofmc.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +20,6 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
-import net.turtlemaster42.pixelsofmc.particle.ColoredBlockParticle;
 import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
 import org.jetbrains.annotations.NotNull;
 

@@ -26,8 +26,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.turtlemaster42.pixelsofmc.entity.AI.ShellLookAtPlayerGoal;
-import net.turtlemaster42.pixelsofmc.entity.AI.ShellRandomLookAroundGoal;
+import net.turtlemaster42.pixelsofmc.entity.ai.ShellLookAtPlayerGoal;
+import net.turtlemaster42.pixelsofmc.entity.ai.ShellRandomLookAroundGoal;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -114,11 +114,6 @@ public class RiverShellEntity extends Animal {
         return this.level().getDayTime() < 12000;
     }
 
-    @Override
-    protected float nextStep() {
-        return super.nextStep();
-    }
-
     public void updateAnimations() {
         if (retractAnimationTime > 60) {
             retractAnimationTime = -1;
@@ -136,7 +131,7 @@ public class RiverShellEntity extends Animal {
 
 
     @Override
-    public @NotNull InteractionResult interactAt(Player pPlayer, Vec3 pVec, InteractionHand pHand) {
+    public @NotNull InteractionResult interactAt(Player pPlayer, @NotNull Vec3 pVec, @NotNull InteractionHand pHand) {
 
         if (pPlayer.isCrouching() && pPlayer.getMainHandItem().isEmpty()) {
             if (!this.dead) {
@@ -287,19 +282,19 @@ public class RiverShellEntity extends Animal {
         }
 
         private BlockPos findWater() {
-            BlockPos blockpos = null;
+            BlockPos blockPos = null;
             final RandomSource random = this.riverShell.getRandom();
             int range = 10;
             for(int i = 0; i < 14; i++){
-                BlockPos blockpos1 = this.riverShell.blockPosition().offset(random.nextInt(range) - range/2, 3, random.nextInt(range) - range/2);
-                while(this.riverShell.level().isEmptyBlock(blockpos1) && blockpos1.getY() > Math.max(blockpos1.getY() - 5, -64)) {
-                    blockpos1 = blockpos1.below();
+                BlockPos blockPos1 = this.riverShell.blockPosition().offset(random.nextInt(range) - range/2, 3, random.nextInt(range) - range/2);
+                while(this.riverShell.level().isEmptyBlock(blockPos1) && blockPos1.getY() > Math.max(blockPos1.getY() - 5, -64)) {
+                    blockPos1 = blockPos1.below();
                 }
-                if(this.riverShell.level().getFluidState(blockpos1).is(FluidTags.WATER)){
-                    blockpos = blockpos1;
+                if(this.riverShell.level().getFluidState(blockPos1).is(FluidTags.WATER)){
+                    blockPos = blockPos1;
                 }
             }
-            return blockpos;
+            return blockPos;
         }
     }
 

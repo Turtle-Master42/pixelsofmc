@@ -288,7 +288,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, ChemicalSeparatorTile pBlockEntity) {
         transferFluidToItem(pBlockEntity, fluidTank, 7);
         transferFluidToItem(pBlockEntity, duoFluidTank, 8);
-        if (hasFluidItemInScourceSlot(pBlockEntity)) {
+        if (hasFluidItemInSourceSlot(pBlockEntity)) {
             transferFluidToTank(pBlockEntity);
         }
         if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
@@ -344,7 +344,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         pBlockEntity.itemHandler.insertItem(slot, item, false);
     }
 
-    private boolean hasFluidItemInScourceSlot(ChemicalSeparatorTile pBlockEntity) {
+    private boolean hasFluidItemInSourceSlot(ChemicalSeparatorTile pBlockEntity) {
         return pBlockEntity.itemHandler.getStackInSlot(6).getCount() > 0;
     }
 

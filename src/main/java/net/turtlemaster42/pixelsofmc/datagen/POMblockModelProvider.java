@@ -174,20 +174,24 @@ public class POMblockModelProvider extends BlockStateProvider {
                     Direction facing = state.getValue(StairBlock.FACING);
                     Half half = state.getValue(StairBlock.HALF);
                     StairsShape shape = state.getValue(StairBlock.SHAPE);
-                    int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
-                    if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
-                        yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
-                    }
-                    if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
-                        yRot += 90; // Top stairs are rotated 90 degrees clockwise
-                    }
-                    yRot %= 360;
                     return ConfiguredModel.builder()
                             .modelFile(shape == StairsShape.STRAIGHT ? stairs : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInner : stairsOuter)
                             .rotationX(half == Half.BOTTOM ? 0 : 180)
-                            .rotationY(yRot)
+                            .rotationY(getYRot(facing, shape, half))
                             .build();
                 }, StairBlock.WATERLOGGED);
+    }
+
+    private static int getYRot(Direction facing, StairsShape shape, Half half) {
+        int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
+        if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
+            yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
+        }
+        if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+            yRot += 90; // Top stairs are rotated 90 degrees clockwise
+        }
+        yRot %= 360;
+        return yRot;
     }
 
     private void slabBlock(SlabBlock slabBlock, String base) {

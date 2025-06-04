@@ -3,14 +3,12 @@ package net.turtlemaster42.pixelsofmc.gui.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.GuiTooltips;
@@ -26,7 +24,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;
-    private Boolean pressed = false;
 
     public HotIsostaticPressScreen(HotIsostaticPressMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

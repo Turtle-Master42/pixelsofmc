@@ -9,7 +9,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
-import net.turtlemaster42.pixelsofmc.util.renderer.ItemstackRenderer;
+import net.turtlemaster42.pixelsofmc.util.renderer.ItemStackRenderer;
 import net.turtlemaster42.pixelsofmc.util.renderer.POMAdvancedModelBox;
 
 public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
@@ -198,7 +198,7 @@ public class RiverShellModel extends AdvancedEntityModel<RiverShellEntity> {
         float partialTick = Minecraft.getInstance().getFrameTime();
         float tick = Minecraft.getInstance().player == null ? 0 : partialTick + Minecraft.getInstance().player.tickCount;
         if(Minecraft.getInstance().isPaused()){
-            tick = ItemstackRenderer.ticksExisted;
+            tick = ItemStackRenderer.ticksExisted;
         }
         shell.rotateAngleX = (float)Math.toRadians(-90);
         head_pivot.setPOMPos(0, 2.2f, 4.5f);

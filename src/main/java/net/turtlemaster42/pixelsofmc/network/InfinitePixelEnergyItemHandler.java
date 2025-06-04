@@ -9,7 +9,7 @@ import java.util.Objects;
 public class InfinitePixelEnergyItemHandler extends InfinitePixelEnergyStorage {
 
     @NotNull
-    protected ItemStack stack;
+    protected final ItemStack stack;
 
 
     public InfinitePixelEnergyItemHandler(@NotNull ItemStack stack, InfiniteNumber capacity, int maxTransfer) {

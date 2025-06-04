@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.PixelSplitterBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import org.jetbrains.annotations.NotNull;

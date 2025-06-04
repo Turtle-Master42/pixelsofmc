@@ -31,7 +31,7 @@ public class ClientProxy extends CommonProxy {
         PixelsOfMc.LOGGER.info("RegisterParticleProvider");
 
         // RegisterParticleProvidersEvent does not seem to allow the registration of a color able particle with a set
-        // texture that doesn't need to be specified and is instead grabbed from the /particles/ folder in the texturepack.
+        // texture that doesn't need to be specified and is instead grabbed from the /particles/ folder in the texture-pack.
         Minecraft.getInstance().particleEngine.register(POMparticles.FLUID_BUBBLE_POP.get(), FluidBubblePopParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(POMparticles.FLUID_BUBBLE.get(), FluidBubbleParticle.Provider::new);
 

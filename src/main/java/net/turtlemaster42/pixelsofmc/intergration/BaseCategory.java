@@ -14,9 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BaseCategory<T> implements IRecipeCategory<T> {
@@ -52,12 +52,12 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
     }
 
     @Override
-    public RecipeType<T> getRecipeType() {
+    public @NotNull RecipeType<T> getRecipeType() {
         return null;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return null;
     }
 
@@ -76,7 +76,7 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup focuses) {
+    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull T recipe, @NotNull IFocusGroup focuses) {
     }
 
     public void addInputSlot(IRecipeLayoutBuilder builder, int x, int y, ItemStack stack) {

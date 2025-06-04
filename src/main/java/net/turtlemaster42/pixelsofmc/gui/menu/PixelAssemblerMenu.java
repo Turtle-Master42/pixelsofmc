@@ -12,7 +12,7 @@ import net.turtlemaster42.pixelsofmc.block.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStacksizeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -39,7 +39,7 @@ public class PixelAssemblerMenu extends AbstractMachineMenu implements IEnergyMe
             this.addSlot(new SlotItemHandler(handler, 0, 29, 38));
             this.addSlot(new SlotItemHandler(handler, 1, 47, 29));
             this.addSlot(new SlotItemHandler(handler, 2, 47, 47));
-            this.addSlot(new ModMaxStacksizeSlot(handler, 4, 146, 62, 1));
+            this.addSlot(new ModMaxStackSizeSlot(handler, 4, 146, 62, 1));
         });
     }
 

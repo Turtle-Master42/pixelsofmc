@@ -10,16 +10,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 public class SpriteCycleButton extends AbstractButton {
     private int state = 0;
-    private int maxState;
-    private ResourceLocation TEXTURE;
+    private final int maxState;
+    private final ResourceLocation TEXTURE;
     private int u = 0;
     private int v = 0;
-    private OnPress onPress;
+    private final OnPress onPress;
 
     public SpriteCycleButton(int pX, int pY, int pWidth, int pHeight, int cycles, ResourceLocation texture, int u, int v, OnPress onPress, Component pMessage) {
         super(pX, pY, pWidth, pHeight, pMessage);
@@ -77,7 +77,7 @@ public class SpriteCycleButton extends AbstractButton {
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {}
+    protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {}
 
     @OnlyIn(Dist.CLIENT)
     public interface OnPress {

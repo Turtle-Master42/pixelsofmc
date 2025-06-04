@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class IsotopeItem extends ElementItem {
-    Element e;
+    private final Element e;
     private final int neutrons;
 
     public IsotopeItem(Element e, int addedNeutrons, Properties properties) {

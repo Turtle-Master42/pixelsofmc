@@ -443,15 +443,6 @@ public enum Element {
         return Items.AIR;
     }
     public ItemStack pixel() {
-//        int dangerAmount = this.info.getDangerAmount();
-//        String[] extra = new String[dangerAmount+1];
-//        extra[0] = "tooltip.pixelsofmc.danger";
-//        if (dangerAmount != 0)
-//            for (int i = 1; i < dangerAmount; i++) {
-//                extra[i] = "tooltip.pixelsofmc.danger."+this.info.getDangerName(i);
-//            }
-//        else extra[1] = "tooltip.pixelsofmc.danger.none";
-
         return PixelItem.createForPixel(POMitems.PIXEL.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
                 new Color(this.hexToRGB(1)[0], this.hexToRGB(1)[1], this.hexToRGB(1)[2]).getRGB(),
@@ -459,15 +450,6 @@ public enum Element {
                 "element.pixelsofmc."+this.elementName());
     }
     public ItemStack pixelPile() {
-//        int dangerAmount = this.info.getDangerAmount();
-//        String[] extra = new String[dangerAmount+1];
-//        extra[0] = "tooltip.pixelsofmc.danger";
-//        if (dangerAmount != 0)
-//            for (int i = 1; i < dangerAmount; i++) {
-//                extra[i] = "tooltip.pixelsofmc.danger."+this.info.getDangerName(i);
-//            }
-//        else extra[1] = "tooltip.pixelsofmc.danger.none";
-
         return PixelItem.createForPixel(POMitems.PIXEL_PILE.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
                 new Color(this.hexToRGB(1)[0], this.hexToRGB(1)[1], this.hexToRGB(1)[2]).getRGB(),
@@ -561,7 +543,7 @@ public enum Element {
         private final int meltingPoint;
         private final int evaporatingPoint;
         private final String[] color;
-        Danger[] danger;
+        final Danger[] danger;
 
 
         Info(int meltingPoint, int evaporatingPoint, String color1, String color2, String color3, Danger... danger) {

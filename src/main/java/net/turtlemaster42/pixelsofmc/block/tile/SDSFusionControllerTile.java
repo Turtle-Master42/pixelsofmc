@@ -63,7 +63,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     private int cantCraftElement = 0;
     private int heatSinkAmount = 0;
 
-    private float heatEnergyEfficiency = 1.5f;
+    private final float heatEnergyEfficiency = 1.5f;
     public int inputSlotLimit = 64;
     public boolean[] switches = new boolean[]{false, false, false};
 

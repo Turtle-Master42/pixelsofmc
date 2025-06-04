@@ -3,15 +3,10 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.turtlemaster42.pixelsofmc.block.FusionPlasmaPortBlock;
-import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Vector3f;
 
 public class PlasmaPortTile extends AbstractMultiBlockTile {
 

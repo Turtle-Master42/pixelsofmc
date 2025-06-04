@@ -23,27 +23,27 @@ import java.util.concurrent.CompletableFuture;
 
 public class BigMachineBlockUtil {
 
-    public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos pPos) {
-        setMachineBlock(pLevel, direction, Xoffset, Yoffset, Zoffset, pState, pPos, 2);
+    public static void setMachineBlock(Level pLevel, Direction direction, int xOffset, int yOffset, int zOffset, BlockState pState, BlockPos pPos) {
+        setMachineBlock(pLevel, direction, xOffset, yOffset, zOffset, pState, pPos, 2);
     }
-    public static void setMachineBlock(Level pLevel, Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockState pState, BlockPos mainPos, int flags) {
+    public static void setMachineBlock(Level pLevel, Direction direction, int xOffset, int yOffset, int zOffset, BlockState pState, BlockPos mainPos, int flags) {
         int X = mainPos.getX();
         int Y = mainPos.getY();
         int Z = mainPos.getZ();
         if (direction == Direction.NORTH) {
-            BlockPos newPos = new BlockPos(X + Xoffset,Y + Yoffset,Z + Zoffset);
+            BlockPos newPos = new BlockPos(X + xOffset,Y + yOffset,Z + zOffset);
             pLevel.setBlock(newPos, pState, flags);
             setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.EAST) {
-            BlockPos newPos = new BlockPos(X - Zoffset,Y + Yoffset,Z + Xoffset);
+            BlockPos newPos = new BlockPos(X - zOffset,Y + yOffset,Z + xOffset);
             pLevel.setBlock(newPos, pState, flags);
             setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.SOUTH) {
-            BlockPos newPos = new BlockPos(X - Xoffset,Y + Yoffset,Z - Zoffset);
+            BlockPos newPos = new BlockPos(X - xOffset,Y + yOffset,Z - zOffset);
             pLevel.setBlock(newPos, pState, flags);
             setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else if (direction == Direction.WEST) {
-            BlockPos newPos = new BlockPos(X + Zoffset,Y + Yoffset,Z - Xoffset);
+            BlockPos newPos = new BlockPos(X + zOffset,Y + yOffset,Z - xOffset);
             pLevel.setBlock(newPos, pState, flags);
             setMainPos(getTileEntity(AbstractDummyMachineBlockTile.class, pLevel, newPos, true), mainPos);
         } else {
@@ -52,33 +52,26 @@ public class BigMachineBlockUtil {
     }
 
     //use offset numbers based on the default (NORTH) direction
-    public static BlockPos rotateBlockPosOnDirection(Direction direction, int Xoffset, int Yoffset, int Zoffset, BlockPos mainPos) {
+    public static BlockPos rotateBlockPosOnDirection(Direction direction, int xOffset, int yOffset, int zOffset, BlockPos mainPos) {
         int X = mainPos.getX();
         int Y = mainPos.getY();
         int Z = mainPos.getZ();
-        if (direction == Direction.NORTH) {
-            return new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
-        } else if (direction == Direction.EAST) {
-            return new BlockPos(X - Zoffset, Y + Yoffset, Z + Xoffset);
-        } else if (direction == Direction.SOUTH) {
-            return new BlockPos(X - Xoffset, Y + Yoffset, Z - Zoffset);
-        } else if (direction == Direction.WEST) {
-            return new BlockPos(X + Zoffset, Y + Yoffset, Z - Xoffset);
-        } else if (direction == Direction.UP) {
-            return new BlockPos(X + Xoffset, Y - Zoffset, Z + Yoffset);
-        } else if (direction == Direction.DOWN) {
-            return new BlockPos(X + Xoffset, Y + Zoffset, Z - Yoffset);
-        } else {
-            PixelsOfMc.LOGGER.error("fail while trying to chance position");
-            return new BlockPos(X + Xoffset, Y + Yoffset, Z + Zoffset);
-        }
+
+        return switch (direction) {
+            case NORTH -> new BlockPos(X + xOffset, Y + yOffset, Z + zOffset);
+            case EAST -> new BlockPos(X - zOffset, Y + yOffset, Z + xOffset);
+            case SOUTH -> new BlockPos(X - xOffset, Y + yOffset, Z - zOffset);
+            case WEST -> new BlockPos(X + zOffset, Y + yOffset, Z - xOffset);
+            case UP -> new BlockPos(X + xOffset, Y - zOffset, Z + yOffset);
+            case DOWN -> new BlockPos(X + xOffset, Y + zOffset, Z - yOffset);
+        };
     }
 
 
-    public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int Xoffset, int Yoffset, int Zoffset) {
+    public static Boolean BigMachinePlacement(BlockPlaceContext pContext, int xOffset, int yOffset, int zOffset) {
         Level level = pContext.getLevel();
         BlockPos blockpos = pContext.getClickedPos();
-        return level.getBlockState(BigMachineBlockUtil.rotateBlockPosOnDirection(pContext.getHorizontalDirection(), Xoffset*-1, Yoffset, Zoffset*-1, blockpos)).canBeReplaced(pContext);
+        return level.getBlockState(BigMachineBlockUtil.rotateBlockPosOnDirection(pContext.getHorizontalDirection(), xOffset*-1, yOffset, zOffset*-1, blockpos)).canBeReplaced(pContext);
     }
 
 

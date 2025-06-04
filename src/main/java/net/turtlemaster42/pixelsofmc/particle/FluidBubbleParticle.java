@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.particle.options.FluidBubbleParticleOptions;
+import org.jetbrains.annotations.NotNull;
 
 public class FluidBubbleParticle extends TextureSheetParticle {
     private final Fluid fluid;
@@ -46,7 +47,7 @@ public class FluidBubbleParticle extends TextureSheetParticle {
         }
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -59,7 +60,7 @@ public class FluidBubbleParticle extends TextureSheetParticle {
             this.sprites = pSprites;
         }
 
-        public Particle createParticle(FluidBubbleParticleOptions pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
+        public Particle createParticle(FluidBubbleParticleOptions pType, @NotNull ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
             return new FluidBubbleParticle(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed, sprites, pType.getFluid());
         }
     }

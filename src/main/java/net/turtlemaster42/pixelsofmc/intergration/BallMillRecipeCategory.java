@@ -9,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -28,7 +27,7 @@ public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
     }
 
     @Override
-    public RecipeType<BallMillRecipe> getRecipeType() {
+    public @NotNull RecipeType<BallMillRecipe> getRecipeType() {
         return new RecipeType<>(UID, BallMillRecipe.class);
     }
 

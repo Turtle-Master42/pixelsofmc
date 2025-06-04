@@ -4,6 +4,7 @@ import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
 import net.minecraft.network.chat.Component;
+import org.jetbrains.annotations.NotNull;
 
 public class JEItooltip implements IRecipeSlotRichTooltipCallback {
     final String add;
@@ -14,7 +15,7 @@ public class JEItooltip implements IRecipeSlotRichTooltipCallback {
     public JEItooltip(String display) {this.add = String.valueOf(display);}
 
     @Override
-    public void onRichTooltip(IRecipeSlotView iRecipeSlotView, ITooltipBuilder iTooltipBuilder) {
+    public void onRichTooltip(@NotNull IRecipeSlotView iRecipeSlotView, ITooltipBuilder iTooltipBuilder) {
         iTooltipBuilder.add(Component.literal(add));
     }
 }

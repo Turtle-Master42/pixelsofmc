@@ -50,10 +50,10 @@ public class GuiTooltips {
         String letter2 = "";
         int multi = 1;
 
-        if (maxEnergy >= 1000000) {
+        if (maxEnergy >= 1_000_000) {
             letter1="K";
             letter2="M";
-        } else if (maxEnergy >= 1000000000) {
+        } else if (maxEnergy >= 1_000_000_000) {
             letter1="M";
             letter2="G";
             multi=1000;

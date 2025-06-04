@@ -39,7 +39,7 @@ public class HotIsostaticPressRenderer<T extends HotIsostaticPressTile> implemen
         pPoseStack.mulPose(dir.getOpposite().getRotation());
         pPoseStack.pushPose();
         pPoseStack.translate(0, -0.01F, 0.0F);
-        MODEL.renderIndecator(pBlockEntity, pPartialTick);
+        MODEL.renderIndicator(pBlockEntity, pPartialTick);
         MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), pPackedLight, pPackedOverlay, 1, 1F, 1, 1);
         pPoseStack.popPose();
         pPoseStack.popPose();

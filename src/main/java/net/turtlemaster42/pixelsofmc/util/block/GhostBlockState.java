@@ -99,6 +99,7 @@ public class GhostBlockState {
     }
 
     //TODO might want to see if there is a way to do this without an unchecked cast
+    @SuppressWarnings("unchecked")
     public static <T extends Comparable<T>> Property<T> getProperty(Property<?> property) {
         return (Property<T>) property;
     }

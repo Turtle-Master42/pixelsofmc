@@ -74,7 +74,7 @@ public class PixelCompactingRecipe extends CustomRecipe {
         return "";
     }
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, @NotNull RegistryAccess registryAccess) {
         ItemStack out = POMitems.PIXEL_PILE.get().getDefaultInstance();
 
         PixelItem.setColor(out, inColor[0], 0);

@@ -42,7 +42,7 @@ public class AbstractPort extends AbstractMultiBlock {
 
     @Deprecated
     @Override
-    public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         Item mainHand = pPlayer.getMainHandItem().getItem();
         Item offHand = pPlayer.getOffhandItem().getItem();
         if (mainHand == POMitems.SCREWDRIVER.get() || offHand == POMitems.SCREWDRIVER.get()) {

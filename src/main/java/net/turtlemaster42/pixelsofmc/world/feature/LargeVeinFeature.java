@@ -60,9 +60,7 @@ public class LargeVeinFeature extends Feature<LargeVeinConfiguration> {
             int dMin = blockY - config.vein_block_settings.minY;
             int l = Math.min(dMax, dMin);
             double edgeRoundOff = Mth.clampedMap(l, 0, config.edge_roundoff_begin, -config.max_edge_roundoff, 0);
-            if (VEIN_TOGGLE + edgeRoundOff < config.veininess_threshold || randomsource.nextFloat() > config.vein_solidness || VEIN_RIDGED >= 0) {
-                continue;
-            } else {
+            if (VEIN_TOGGLE + edgeRoundOff >= config.veininess_threshold && randomsource.nextFloat() <= config.vein_solidness && VEIN_RIDGED < 0) {
                 double richness = Mth.clampedMap(VEIN_TOGGLE, config.veininess_threshold, config.max_richness_threshold, config.min_richness, config.max_richness);
                 if (randomsource.nextFloat() < richness) {
                     blockstate = randomsource.nextFloat() < config.raw_ore_block_chance ? config.vein_block_settings.raw_ore_block.getState(randomsource, blockPosInFeature) : config.vein_block_settings.ore.getState(randomsource, blockPosInFeature);

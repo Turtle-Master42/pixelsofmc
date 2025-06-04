@@ -46,12 +46,12 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
         return output.getItems()[0].getCount();
     }
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, @NotNull RegistryAccess registryAccess) {
         return output.getItems()[0];
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
         return output.getItems()[0];
     }
     public int getHeat() {return heat;}

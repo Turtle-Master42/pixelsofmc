@@ -6,6 +6,6 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 public class ItemRenderProperties implements IClientItemExtensions {
 
     public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-        return new ItemstackRenderer();
+        return new ItemStackRenderer();
     }
 }

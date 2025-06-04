@@ -279,6 +279,7 @@ public class PixelsOfMc {
 			}
 		};
 
+		//TODO:make dynamic
 		DispenseItemBehavior energyCell = new DefaultDispenseItemBehavior() {
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
@@ -304,7 +305,7 @@ public class PixelsOfMc {
 				return stack;
 			}
 		};
-
+		//TODO:make dynamic
 		DispenseItemBehavior energyCell2 = new DefaultDispenseItemBehavior() {
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
@@ -330,7 +331,7 @@ public class PixelsOfMc {
 				return stack;
 			}
 		};
-
+		//TODO:make dynamic
 		DispenseItemBehavior energyCell3 = new DefaultDispenseItemBehavior() {
 
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {

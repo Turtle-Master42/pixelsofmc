@@ -12,7 +12,7 @@ public class ModDisplaySlot extends SlotItemHandler {
     }
 
     @Override
-    public boolean allowModification(Player pPlayer) {
+    public boolean allowModification(@NotNull Player pPlayer) {
         return false;
     }
 

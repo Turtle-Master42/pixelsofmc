@@ -58,7 +58,7 @@ public class POMtiles {
 	public static final RegistryObject<BlockEntityType<ChemicalMixerTile>> CHEMICAL_MIXER =
 			TILES.register("chemical_mixer", () -> BlockEntityType.Builder.of(ChemicalMixerTile::new, POMblocks.CHEMICAL_MIXER.get()).build(null));
 
-	//multiblocks
+	//multi-blocks
 	public static final RegistryObject<BlockEntityType<IndustrialCoolerTile>> INDUSTRIAL_COOLER =
 			TILES.register("industrial_cooler", () -> BlockEntityType.Builder.of(IndustrialCoolerTile::new, POMblocks.INDUSTRIAL_COOLER.get()).build(null));
 
@@ -70,9 +70,9 @@ public class POMtiles {
 
 
 
-	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block,
+	private static RegistryObject<BlockEntityType<?>> register(String registryName, RegistryObject<Block> block,
 			BlockEntityType.BlockEntitySupplier<?> supplier) {
-		return TILES.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
+		return TILES.register(registryName, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
 	public static void register(IEventBus bus) {
 		TILES.register(bus);

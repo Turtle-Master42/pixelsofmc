@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.fluid;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
@@ -11,13 +10,10 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.particle.options.FluidBubbleParticleOptions;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 
 public class AcidLiquidBlock extends LiquidBlock {
     public AcidLiquidBlock(FlowingFluid pFluid, Properties pProperties) {

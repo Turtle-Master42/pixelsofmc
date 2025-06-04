@@ -41,7 +41,7 @@ public class InfinitePowerCellItem extends Item {
     }
 
     @Override
-    public boolean isBarVisible(ItemStack itemStack) {
+    public boolean isBarVisible(@NotNull ItemStack itemStack) {
         return true;
     }
 
@@ -53,7 +53,7 @@ public class InfinitePowerCellItem extends Item {
 
     //TODO: remove ones completed
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
         if (!level.isClientSide()) {
             InfinitePixelEnergyStorage energy = (InfinitePixelEnergyStorage) player.getItemInHand(usedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
             if (player.isCrouching()) {

@@ -2,20 +2,20 @@ package net.turtlemaster42.pixelsofmc.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.minecraft.client.gui.components.Button;
 import net.turtlemaster42.pixelsofmc.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 public class SwitchButton extends Button {
     private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/buttons.png");
     private boolean on;
-    private SwitchButton.Color color;
+    private final SwitchButton.Color color;
 
 
     public SwitchButton(int pX, int pY, SwitchButton.Color color, net.minecraft.client.gui.components.Button.OnPress pOnPress) {
@@ -52,7 +52,7 @@ public class SwitchButton extends Button {
         this.on = !this.on;
     }
 
-    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);

@@ -1,21 +1,13 @@
 package net.turtlemaster42.pixelsofmc.util.renderer.block.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
-import net.turtlemaster42.pixelsofmc.block.StarBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
-import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
-import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.models.StarModel;
 import org.jetbrains.annotations.NotNull;
 
 public class NuclearReactorRenderer<T extends NuclearReactorTile> implements BlockEntityRenderer<T> {

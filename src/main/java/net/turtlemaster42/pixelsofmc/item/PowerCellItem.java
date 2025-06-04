@@ -13,7 +13,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyItemProvider;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,17 +50,8 @@ public class PowerCellItem extends Item  {
         return energy.getEnergyStored() < energy.getMaxEnergyStored() && energy.getEnergyStored() > 0;
     }
 
-    //TODO: remove ones completed
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-//        if (!level.isClientSide()) {
-//            PixelEnergyStorage energy = (PixelEnergyStorage) player.getItemInHand(usedHand).getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-//            if (player.isCrouching()) {
-//                energy.receiveEnergy(maxPower / 100 * 5, false);
-//            } else {
-//                energy.receiveEnergy(100000, false);
-//            }
-//        }
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
         return super.use(level, player, usedHand);
     }
 

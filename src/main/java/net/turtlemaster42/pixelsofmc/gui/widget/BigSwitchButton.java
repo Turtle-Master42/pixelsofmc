@@ -9,13 +9,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.util.Util;
+import org.jetbrains.annotations.NotNull;
 
 public class BigSwitchButton extends Button {
     private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/buttons.png");
     private boolean on;
-    private BigSwitchButton.Color color;
+    private final BigSwitchButton.Color color;
 
     public BigSwitchButton(int pX, int pY, BigSwitchButton.Color color, OnPress pOnPress) {
         super(pX, pY, 12, 26, Component.literal(""), pOnPress, DEFAULT_NARRATION);
@@ -51,7 +51,7 @@ public class BigSwitchButton extends Button {
         this.on = !this.on;
     }
 
-    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);

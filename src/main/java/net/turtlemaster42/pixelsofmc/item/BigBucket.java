@@ -80,7 +80,7 @@ public class BigBucket extends Item {
     }
 
 
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         BlockHitResult blockHitResult = getPlayerPOVHitResult(pLevel, pPlayer, getFluid(itemStack).getAmount() >= capacity ? ClipContext.Fluid.NONE : ClipContext.Fluid.SOURCE_ONLY);
         if (blockHitResult.getType() != HitResult.Type.BLOCK) {

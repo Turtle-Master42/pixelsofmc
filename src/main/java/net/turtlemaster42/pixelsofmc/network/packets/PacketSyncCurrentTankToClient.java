@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import net.turtlemaster42.pixelsofmc.block.tile.FluidPortTile;
-import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 
 import java.util.function.Supplier;
 

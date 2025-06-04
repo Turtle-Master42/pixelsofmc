@@ -116,12 +116,12 @@ public class PixelAssemblerRecipe extends BaseRecipe {
 
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, @NotNull RegistryAccess registryAccess) {
         return getResultItem(registryAccess);
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {return output.asItemStack().copy();}
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {return output.asItemStack().copy();}
 
 
     public String getStructure() {return structure;}
@@ -196,7 +196,7 @@ public class PixelAssemblerRecipe extends BaseRecipe {
             return new PixelAssemblerRecipe(id, output, r, g, b, inputs, structure);
         }
 
-        public PixelAssemblerRecipe fromNetwork(@NotNull ResourceLocation id, FriendlyByteBuf buf) {
+        public PixelAssemblerRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             try {
                 //input
                 CountedIngredient output = buf.readList(CountedIngredient::fromNetwork).get(0);
@@ -221,7 +221,7 @@ public class PixelAssemblerRecipe extends BaseRecipe {
             }
         }
 
-        public void toNetwork(@NotNull FriendlyByteBuf buf, PixelAssemblerRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull PixelAssemblerRecipe recipe) {
             try {
                 //input
                 buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));

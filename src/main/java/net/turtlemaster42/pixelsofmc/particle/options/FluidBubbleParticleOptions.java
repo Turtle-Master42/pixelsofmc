@@ -23,13 +23,13 @@ public class FluidBubbleParticleOptions implements ParticleOptions {
     public static final DynamicCommandExceptionType ERROR_UNKNOWN_FLUID =
             new DynamicCommandExceptionType((fluid) -> Component.translatable("argument.fluid.id.invalid", fluid));
 
-    public static final Deserializer<FluidBubbleParticleOptions> DESERIALIZER = new Deserializer<FluidBubbleParticleOptions>() {
-        public FluidBubbleParticleOptions fromCommand(@NotNull ParticleType<FluidBubbleParticleOptions> pParticleType, StringReader stringReader) throws CommandSyntaxException {
+    public static final Deserializer<FluidBubbleParticleOptions> DESERIALIZER = new Deserializer<>() {
+        public @NotNull FluidBubbleParticleOptions fromCommand(@NotNull ParticleType<FluidBubbleParticleOptions> pParticleType, StringReader stringReader) throws CommandSyntaxException {
             stringReader.expect(' ');
             return new FluidBubbleParticleOptions(pParticleType, parseForFluid(BuiltInRegistries.FLUID.asLookup(), stringReader));
         }
 
-        public FluidBubbleParticleOptions fromNetwork(@NotNull ParticleType<FluidBubbleParticleOptions> pParticleType, FriendlyByteBuf buff) {
+        public @NotNull FluidBubbleParticleOptions fromNetwork(@NotNull ParticleType<FluidBubbleParticleOptions> pParticleType, FriendlyByteBuf buff) {
             return new FluidBubbleParticleOptions(pParticleType, Objects.requireNonNull(buff.readById(Fluid.FLUID_STATE_REGISTRY)));
         }
     };
@@ -51,11 +51,11 @@ public class FluidBubbleParticleOptions implements ParticleOptions {
         pBuffer.writeId(Fluid.FLUID_STATE_REGISTRY, this.fluid.defaultFluidState());
     }
 
-    public String writeToString() {
+    public @NotNull String writeToString() {
         return BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()) + " " + this.fluid;
     }
 
-    public ParticleType<FluidBubbleParticleOptions> getType() {
+    public @NotNull ParticleType<FluidBubbleParticleOptions> getType() {
         return this.type;
     }
 

@@ -1,15 +1,10 @@
 package net.turtlemaster42.pixelsofmc.network.packets;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.client.gui.ScreenUtils;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.gui.renderer.IButtonMenu;
-import net.turtlemaster42.pixelsofmc.gui.renderer.IQuinFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IUpdatableWidgets;
-import net.turtlemaster42.pixelsofmc.gui.screen.NuclearReactorScreen;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 
 import java.util.function.Supplier;

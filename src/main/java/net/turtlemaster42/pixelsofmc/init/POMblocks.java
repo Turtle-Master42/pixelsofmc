@@ -16,11 +16,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -356,35 +352,28 @@ public class POMblocks {
 
     public static final class Elements {
         public static final Map<Element, BlockRegObject<BaseBlock>> BLOCKS = new EnumMap<>(Element.class);
-            private static void init() {
-                for (Element m : Element.values()) {
-                    if (m.shouldAddBlock()) {
-                        String elementName = m.elementName();
-                        BlockRegObject<BaseBlock> block;
+        private static void init() {
+            for (Element m : Element.values()) {
+                if (m.shouldAddBlock()) {
+                    String elementName = m.elementName();
+                    BlockRegObject<BaseBlock> block;
 
-                        BlockBehaviour.Properties properties = Block.Properties
-                                .of().mapColor(MapColor.METAL)
-                                .strength(6f, 6.0f)
-                                .sound(SoundType.METAL)
-                                .requiresCorrectToolForDrops();
+                    BlockBehaviour.Properties properties = Block.Properties
+                            .of().mapColor(MapColor.METAL)
+                            .strength(6f, 6.0f)
+                            .sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops();
 
-                        block = register(elementName+"_block", () -> new BaseBlock(properties));
+                    block = register(elementName+"_block", () -> new BaseBlock(properties));
 
-                        PixelsOfMc.LOGGER.info("Registered Metals Blocks");
+                    PixelsOfMc.LOGGER.info("Registered Metals Blocks");
 
-                        BLOCKS.put(m, block);
-                    }
+                    BLOCKS.put(m, block);
                 }
             }
         }
-
-
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientSideHandler {
-        @SubscribeEvent
-        public static void clientSetup(FMLClientSetupEvent event) {
-        }
     }
+
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);

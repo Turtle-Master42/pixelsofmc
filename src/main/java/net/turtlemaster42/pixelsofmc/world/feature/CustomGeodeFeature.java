@@ -67,8 +67,8 @@ public class CustomGeodeFeature extends Feature<GeodeConfiguration> {
             int j1 = geodeconfiguration.outerWallDistance.sample(randomsource);
             int k1 = geodeconfiguration.outerWallDistance.sample(randomsource);
             int l1 = geodeconfiguration.outerWallDistance.sample(randomsource);
-            BlockPos blockpos1 = blockpos.offset(j1, k1, l1);
-            BlockState blockstate = worldgenlevel.getBlockState(blockpos1);
+            BlockPos blockPos1 = blockpos.offset(j1, k1, l1);
+            BlockState blockstate = worldgenlevel.getBlockState(blockPos1);
             if (blockstate.isAir() || blockstate.is(BlockTags.GEODE_INVALID_BLOCKS)) {
                 ++l;
                 if (l > geodeconfiguration.invalidBlocksThreshold) {
@@ -76,7 +76,7 @@ public class CustomGeodeFeature extends Feature<GeodeConfiguration> {
                 }
             }
 
-            list.add(Pair.of(blockpos1, geodeconfiguration.pointOffset.sample(randomsource)));
+            list.add(Pair.of(blockPos1, geodeconfiguration.pointOffset.sample(randomsource)));
         }
 
         if (generateCrack) {
@@ -110,11 +110,11 @@ public class CustomGeodeFeature extends Feature<GeodeConfiguration> {
             double d7 = 0.0D;
 
             for(Pair<BlockPos, Integer> pair : list) {
-                d6 += Mth.invSqrt(blockPosInFeature.distSqr(pair.getFirst()) + (double)pair.getSecond().intValue()) + noiseValue;
+                d6 += Mth.invSqrt(blockPosInFeature.distSqr(pair.getFirst()) + (double) pair.getSecond().intValue()) + noiseValue;
             }
 
-            for(BlockPos blockpos6 : crackPosList) {
-                d7 += Mth.invSqrt(blockPosInFeature.distSqr(blockpos6) + (double)geodecracksettings.crackPointOffset) + noiseValue;
+            for(BlockPos blockPos6 : crackPosList) {
+                d7 += Mth.invSqrt(blockPosInFeature.distSqr(blockPos6) + (double)geodecracksettings.crackPointOffset) + noiseValue;
             }
 
             if (!(d6 < outerLayer)) {
@@ -122,10 +122,10 @@ public class CustomGeodeFeature extends Feature<GeodeConfiguration> {
                     this.safeSetBlock(worldgenlevel, blockPosInFeature, Blocks.AIR.defaultBlockState(), predicate);
 
                     for(Direction direction1 : DIRECTIONS) {
-                        BlockPos blockpos2 = blockPosInFeature.relative(direction1);
-                        FluidState fluidstate = worldgenlevel.getFluidState(blockpos2);
+                        BlockPos blockPos2 = blockPosInFeature.relative(direction1);
+                        FluidState fluidstate = worldgenlevel.getFluidState(blockPos2);
                         if (!fluidstate.isEmpty()) {
-                            worldgenlevel.scheduleTick(blockpos2, fluidstate.getType(), 0);
+                            worldgenlevel.scheduleTick(blockPos2, fluidstate.getType(), 0);
                         }
                     }
                 } else if (d6 >= filling) {

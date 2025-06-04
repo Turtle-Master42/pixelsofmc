@@ -21,7 +21,7 @@ public class HotLiquidBlock extends LiquidBlock {
         pEntity.hurt(pEntity.damageSources().onFire(), 1.0F);
     }
 
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
         return false;
     }
 }

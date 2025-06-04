@@ -26,7 +26,7 @@ public class FuelCellHolderRenderer implements BlockEntityRenderer<FuelCellHolde
     }
 
     @Override
-    public void render(FuelCellHolderTile pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+    public void render(FuelCellHolderTile pBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         if (pBlockEntity.getItemStackHandler().getStackInSlot(0).isEmpty()) {return;}
         pPoseStack.pushPose();
 
