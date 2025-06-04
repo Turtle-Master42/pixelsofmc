@@ -19,6 +19,9 @@ public class Constants {
     public static final int FE_waterBucketToBlazingSteam = 50_000; // 50_000 FE needed to heat Water (290 K) to Blazing Steam (1040 K)
     public static final int FE_SteamBucketToBlazingSteam = 40_000; // 40_000 FE needed to heat Steam (440 K) to Blazing Steam (1040 K)
 
+    // 24 // 24_000 FE needed to heat Mercury (290 K) to Mercury Gas (690 K)
+    // 90 // 90_000 FE needed to heat Liquid Lead (330 K) to Lead Gas (1830 K)
+
     public static final float plasmaTemperatureToNormal = 16.66666667f; // increasing 1 K in air costs 16.667 K of plasma
 
     public static final int FusionPowerToSteam = 2500; // you consume 2500 Fusion power to create one bucket of Steam

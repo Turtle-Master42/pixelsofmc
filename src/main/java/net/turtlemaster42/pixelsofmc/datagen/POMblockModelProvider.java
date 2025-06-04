@@ -98,6 +98,7 @@ public class POMblockModelProvider extends BlockStateProvider {
         logBlock(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
 
         liquidBlock(POMblocks.MERCURY_BLOCK);
+        liquidBlock(POMblocks.LIQUID_LEAD_BLOCK);
         liquidBlock(POMblocks.SULFURIC_ACID_BLOCK);
         liquidBlock(POMblocks.HYDROGEN_BLOCK);
         liquidBlock(POMblocks.NITROGEN_BLOCK);
@@ -110,6 +111,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         liquidBlock(POMblocks.CHLORINE_GAS_BLOCK);
         liquidBlock(POMblocks.BROMINE_GAS_BLOCK);
         liquidBlock(POMblocks.STEAM_BLOCK);
+        liquidBlock(POMblocks.LEAD_GAS_BLOCK);
+        liquidBlock(POMblocks.MERCURY_GAS_BLOCK);
         liquidBlock(POMblocks.BLAZING_STEAM_BLOCK);
         liquidBlock(POMblocks.AMMONIA_GAS_BLOCK);
         liquidBlock(POMblocks.NITRIC_ACID_BLOCK);

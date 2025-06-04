@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fluid_heating",
+  "energy": 14,
+  "fluid_input": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:oxygen"
+  },
+  "fluid_output": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:oxygen_gas"
+  }
+}

@@ -91,6 +91,7 @@
   "item.pixelsofmc.copper_sheet": "Copper Sheet",
   "item.pixelsofmc.silicon_sheet": "Silicon Sheet",
 
+  "item.pixelsofmc.titanium_bucket": "Titanium Bucket",
   "item.pixelsofmc.reinforced_bucket": "Reinforced Bucket",
   "item.pixelsofmc.mercury_bucket": "Mercury Bucket",
   "item.pixelsofmc.sulfuric_acid_bucket": "Sulfuric Acid Bucket",
@@ -106,6 +107,10 @@
   "item.pixelsofmc.liquid_oxygen_bucket": "Liquid Oxygen Bucket",
   "item.pixelsofmc.liquid_chlorine_bucket": "Liquid Chlorine Bucket",
   "item.pixelsofmc.liquid_bromine_bucket": "Liquid Bromine Bucket",
+  "item.pixelsofmc.liquid_lead_bucket": "Liquid Lead Bucket",
+  "item.pixelsofmc.mercury_gas_bucket": "Mercury Gas Bucket",
+  "item.pixelsofmc.lead_gas_bucket": "Lead Gas Bucket",
+
 
   "item.pixelsofmc.hydrogen_gas_bucket": "Hydrogen Bucket",
   "item.pixelsofmc.nitrogen_gas_bucket": "Nitrogen Bucket",
@@ -880,6 +885,7 @@
   "fluid.pixelsofmc.chlorine": "Liquid Chlorine",
   "fluid.pixelsofmc.bromine": "Liquid Bromine",
   "fluid.pixelsofmc.mercury": "Liquid Mercury",
+  "fluid.pixelsofmc.lead": "Liquid Lead",
   "fluid.pixelsofmc.sulfuric_acid": "Sulfuric Acid",
   "fluid.pixelsofmc.nitric_acid": "Nitric Acid",
   "fluid.pixelsofmc.purex_solution": "PUREX Solution",
@@ -896,6 +902,7 @@
   "fluid.pixelsofmc.bromine_gas": "Bromine Gas",
   "fluid.pixelsofmc.steam": "Steam",
   "fluid.pixelsofmc.blazing_steam": "Blazing Steam",
+  "fluid.pixelsofmc.lead_gas": "Lead Gas",
   "fluid.pixelsofmc.air": "Air",
   "fluid.pixelsofmc.ammonia_gas": "Ammonia",
 
@@ -904,7 +911,8 @@
   "fluid_type.pixelsofmc.oxygen": "Liquid Oxygen",
   "fluid_type.pixelsofmc.chlorine": "Liquid Chlorine",
   "fluid_type.pixelsofmc.bromine": "Liquid Bromine",
-  "fluid_type.pixelsofmc.mercury_": "Liquid Mercury",
+  "fluid_type.pixelsofmc.mercury": "Liquid Mercury",
+  "fluid_type.pixelsofmc.lead": "Liquid Lead",
   "fluid_type.pixelsofmc.sulfuric_acid": "Sulfuric Acid",
   "fluid_type.pixelsofmc.nitric_acid": "Nitric Acid",
   "fluid_type.pixelsofmc.purex_solution": "PUREX Solution",
@@ -921,6 +929,8 @@
   "fluid_type.pixelsofmc.bromine_gas": "Bromine Gas",
   "fluid_type.pixelsofmc.steam": "Steam",
   "fluid_type.pixelsofmc.blazing_steam": "Blazing Steam",
+  "fluid_type.pixelsofmc.mercury_gas": "Mercury Gas",
+  "fluid_type.pixelsofmc.lead_gas": "Lead Gas",
   "fluid_type.pixelsofmc.air": "Air",
   "fluid_type.pixelsofmc.ammonia_gas": "Ammonia",
 

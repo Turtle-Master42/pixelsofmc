@@ -311,7 +311,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         }
         if (getSwitch(1)) {
             FluidStack drained = fluidTank.drain(1000 * heatSinkAmount, IFluidHandler.FluidAction.EXECUTE);
-            duoFluidTank.fill(new FluidStack(POMfluids.STEAM_SOURCE.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+            duoFluidTank.fill(new FluidStack(POMfluids.STEAM.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
             addFusionPower(Math.round(drained.getAmount() * -Constants.fusionPowerPerMbSteam)); // 2500 FusionPower per water bucket to Steam bucket
         }
 

@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -9,25 +8,17 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
-import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
@@ -53,13 +44,12 @@ import net.turtlemaster42.pixelsofmc.events.EventListener;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
-import net.turtlemaster42.pixelsofmc.item.ReinforcedBucket;
+import net.turtlemaster42.pixelsofmc.item.BigBucket;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -180,19 +170,19 @@ public class PixelsOfMc {
 	}
 
     private void clientSetup(final FMLClientSetupEvent event) {
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_SOURCE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_FLOWING.get(), RenderType.translucent());
 
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
@@ -223,6 +213,19 @@ public class PixelsOfMc {
 		ItemProperties.register(POMitems.SUPERCHARGED_POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
 			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
 			return energy.getEnergyStored() <= 0 ? 1 : 0;
+		});
+		ItemProperties.register(POMitems.TITANIUM_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
+			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
+			if (fluid.isEmpty())
+				return 0;
+			else if (fluid.getFluid().isSame(Fluids.WATER))
+				return 3;
+			else if (fluid.getFluid().isSame(Fluids.LAVA))
+				return 4;
+			else if (fluid.getFluid().getFluidType().isLighterThanAir())
+				return 2;
+			else
+				return 1;
 		});
 		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
 			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
@@ -354,11 +357,56 @@ public class PixelsOfMc {
 				return stack;
 			}
 		};
+		DispenseItemBehavior titaniumBucket = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
+			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
+				if (stack.getItem() instanceof BigBucket bucket) {
+					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+					BlockState state = source.getLevel().getBlockState(relativePos);
+					BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
+					Level level = source.getLevel();
 
+					IFluidHandlerItem bucketCapability = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
+					FluidStack bucketFluid = bucketCapability.getFluidInTank(0);
+					if (bucketFluid.isEmpty()) {
+						if (state.getBlock() instanceof LiquidBlock liquidBlock && state.getValue(LEVEL) == 0) {
+								level.setBlock(relativePos, Blocks.AIR.defaultBlockState(), 11);
+								bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
+//								liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
+								return stack;
+						}
+
+						if (tile != null) {
+							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
+							if (fluidHandlerFrom != null) {
+								int maxFill = bucketCapability.fill(fluidHandlerFrom.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
+								bucketCapability.fill(fluidHandlerFrom.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+							}
+							return stack;
+						}
+					}
+					if (!bucketFluid.isEmpty()) {
+						if (tile != null) {
+							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
+							if (fluidHandlerFrom != null) {
+								int maxFill = fluidHandlerFrom.fill(bucketCapability.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
+								fluidHandlerFrom.fill(bucketCapability.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+							}
+							return stack;
+						}
+						if (bucket.emptyContents(null, level, relativePos, null, stack)) {
+							bucketCapability.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+							return stack;
+						}
+					}
+				}
+				return this.defaultBehavior.dispense(source, stack);
+			}
+		};
 		DispenseItemBehavior reinforcedBucket = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
-				if (stack.getItem() instanceof ReinforcedBucket bucket) {
+				if (stack.getItem() instanceof BigBucket bucket) {
 					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					BlockState state = source.getLevel().getBlockState(relativePos);
 					BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
@@ -427,7 +475,9 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);
 		DispenserBlock.registerBehavior(POMitems.SUPERCHARGED_POWER_CELL.get(), energyCell3);
+		DispenserBlock.registerBehavior(POMitems.TITANIUM_BUCKET.get(), titaniumBucket);
 		DispenserBlock.registerBehavior(POMitems.REINFORCED_BUCKET.get(), reinforcedBucket);
+
 	}
 
 	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

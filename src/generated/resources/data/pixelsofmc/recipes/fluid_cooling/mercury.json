@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fluid_cooling",
+  "energy": 24,
+  "fluid_input": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:mercury_gas"
+  },
+  "fluid_output": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:mercury"
+  }
+}

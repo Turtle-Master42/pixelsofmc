@@ -279,7 +279,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
         if (getSwitch(0)) {
             int maxDrain = internalHeat / Constants.FE_waterToSteam;
             FluidStack drained = fluidTank.drain(maxDrain, IFluidHandler.FluidAction.EXECUTE);
-            duoFluidTank.fill(new FluidStack(POMfluids.STEAM_SOURCE.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+            duoFluidTank.fill(new FluidStack(POMfluids.STEAM.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
             internalHeat -= drained.getAmount() * Constants.FE_waterToSteam;
             setChanged(pLevel, pPos, pState);
         }

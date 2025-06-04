@@ -36,7 +36,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.network.PixelFluidItemHandlerSimple;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,9 +45,9 @@ import java.util.List;
 
 import static net.minecraft.world.level.block.LiquidBlock.LEVEL;
 
-public class ReinforcedBucket extends Item {
+public class BigBucket extends Item {
     public final int capacity;
-    public ReinforcedBucket(Item.Properties properties, int bucketMax) {
+    public BigBucket(Item.Properties properties, int bucketMax) {
         super(properties.stacksTo(1));
         this.capacity = bucketMax;
     }

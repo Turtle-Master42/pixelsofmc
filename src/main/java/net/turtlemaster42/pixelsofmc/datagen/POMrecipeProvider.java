@@ -18,8 +18,6 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -1845,7 +1843,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         // --CHEMICAL COMBINING--
         ChemicalSeparatorRecipeBuilder.build(POMitems.ACANTHITE_DUST.get(), 2, Fluids.WATER, 200)
-                .output(POMfluids.SULFURIC_ACID_SOURCE.get(), 50)
+                .output(POMfluids.SULFURIC_ACID.get(), 50)
                 .output(Element.SILVER.dust())
                 .output(Element.SILVER.dust(),0.5f)
                 .finish(fConsumer, this);
@@ -1855,43 +1853,43 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .finish(fConsumer, this);
 
         ChemicalSeparatorRecipeBuilder.build(Element.TITANIUM.dustTag(), Fluids.WATER, 150)
-                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
+                .output(POMfluids.HYDROGEN_GAS.get(), 100)
                 .output(POMitems.TITANIUM_OXIDE_DUST.get())
                 .finish(fConsumer, this);
         ChemicalSeparatorRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())
-                .output(POMfluids.MERCURY_SOURCE.get(), 100)
+                .output(POMfluids.MERCURY.get(), 100)
                 .output(Element.SULFUR.dust())
                 .finish(fConsumer, this);
         ChemicalSeparatorRecipeBuilder.build(Items.REDSTONE, 8, Fluids.WATER, 500)
-                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 500)
+                .output(POMfluids.HYDROGEN_GAS.get(), 500)
                 .output(POMitems.YELLOWCAKE_URANIUM.get())
                 .output(POMitems.REFINED_REDSTONE.get(), 8)
                 .finish(fConsumer, this);
 
-        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
-                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 1000)
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE.get(), 1000)
                 .output(POMitems.EMPTY_FUEL_CELL.get())
                 .finish(fConsumer, this);
-        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
-                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 3000)
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE.get(), 3000)
                 .output(POMitems.EMPTY_FUEL_CELL.get())
                 .finish(fConsumer, this);
-        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
-                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 2000)
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE.get(), 2000)
                 .output(POMitems.EMPTY_FUEL_CELL.get())
                 .finish(fConsumer, this);
-        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID_SOURCE.get(), 500)
-                .output(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 6000)
+        ChemicalSeparatorRecipeBuilder.build(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), POMfluids.NITRIC_ACID.get(), 500)
+                .output(POMfluids.NUCLEAR_WASTE.get(), 6000)
                 .output(POMitems.EMPTY_FUEL_CELL.get())
                 .finish(fConsumer, this);
 
         // --CHEMICAL COMBINING--
         ChemicalCombinerRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())
-                .input(POMfluids.MERCURY_SOURCE.get(), 100)
+                .input(POMfluids.MERCURY.get(), 100)
                 .input(Element.SULFUR.dustTag())
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMitems.PYROLYTIC_CARBON.get())
-                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 250)
+                .input(POMfluids.HYDROGEN_GAS.get(), 250)
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_AMALGAMATION.get())
@@ -1899,118 +1897,160 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMitems.REFINED_REDSTONE.get(), 2)
                 .input(Items.AMETHYST_SHARD)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
-                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION.get(), 200)
+                .input(POMfluids.SULFURIC_ACID.get(), 100)
                 .input(Items.BONE_MEAL, 2)
                 .input(Items.WARPED_FUNGUS)
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
-                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION.get(), 200)
+                .input(POMfluids.SULFURIC_ACID.get(), 100)
                 .input(Items.BONE_MEAL, 2)
                 .input(Items.WARPED_WART_BLOCK, 2)
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
-                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION.get(), 200)
+                .input(POMfluids.SULFURIC_ACID.get(), 100)
                 .input(Items.BONE_MEAL, 2)
                 .input(Items.WARPED_ROOTS, 2)
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION_SOURCE.get(), 200)
-                .input(POMfluids.SULFURIC_ACID_SOURCE.get(), 100)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.PUREX_SOLUTION.get(), 200)
+                .input(POMfluids.SULFURIC_ACID.get(), 100)
                 .input(Items.BONE_MEAL, 2)
                 .input(Items.NETHER_SPROUTS, 4)
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
 
         ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_PELLET.get())
-                .input(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 125)
+                .input(POMfluids.PLUTONIUM_SOLUTION.get(), 125)
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get())
-                .input(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 125)
+                .input(POMfluids.URANIUM_SOLUTION.get(), 125)
                 .finish(fConsumer, this);
 
         // --CHEMICAL MIXING--
         ChemicalMixerRecipeBuilder.build(2)
-                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
-                .input(POMfluids.OXYGEN_GAS_SOURCE.get(), 50)
+                .input(POMfluids.HYDROGEN_GAS.get(), 100)
+                .input(POMfluids.OXYGEN_GAS.get(), 50)
                 .output(Fluids.WATER, 100)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(4)
                 .input(Fluids.WATER, 100)
-                .output(POMfluids.HYDROGEN_GAS_SOURCE.get(), 100)
-                .output(POMfluids.OXYGEN_GAS_SOURCE.get(), 50)
+                .output(POMfluids.HYDROGEN_GAS.get(), 100)
+                .output(POMfluids.OXYGEN_GAS.get(), 50)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(0)
-                .input(POMfluids.STEAM_SOURCE.get(), 100)
+                .input(POMfluids.STEAM.get(), 100)
                 .output(Fluids.WATER, 100)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(0)
-                .input(POMfluids.BLAZING_STEAM_SOURCE.get(), 20)
-                .output(POMfluids.STEAM_SOURCE.get(), 20)
+                .input(POMfluids.BLAZING_STEAM.get(), 20)
+                .output(POMfluids.STEAM.get(), 20)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(0)
-                .input(POMfluids.AIR_SOURCE.get(), 10)
-                .output(POMfluids.NITROGEN_GAS_SOURCE.get(), 8)
-                .output(POMfluids.OXYGEN_GAS_SOURCE.get(), 2)
+                .input(POMfluids.AIR.get(), 10)
+                .output(POMfluids.NITROGEN_GAS.get(), 8)
+                .output(POMfluids.OXYGEN_GAS.get(), 2)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(3)
-                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 300)
-                .input(POMfluids.NITROGEN_GAS_SOURCE.get(), 100)
-                .output(POMfluids.AMMONIA_GAS_SOURCE.get(), 200)
+                .input(POMfluids.HYDROGEN_GAS.get(), 300)
+                .input(POMfluids.NITROGEN_GAS.get(), 100)
+                .output(POMfluids.AMMONIA_GAS.get(), 200)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(3)
-                .input(POMfluids.HYDROGEN_GAS_SOURCE.get(), 150)
-                .input(POMfluids.AIR_SOURCE.get(), 100)
-                .output(POMfluids.AMMONIA_GAS_SOURCE.get(), 100)
+                .input(POMfluids.HYDROGEN_GAS.get(), 150)
+                .input(POMfluids.AIR.get(), 100)
+                .output(POMfluids.AMMONIA_GAS.get(), 100)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(2)
-                .input(POMfluids.AMMONIA_GAS_SOURCE.get(), 100)
-                .input(POMfluids.OXYGEN_GAS_SOURCE.get(), 200)
-                .output(POMfluids.NITRIC_ACID_SOURCE.get(), 100)
+                .input(POMfluids.AMMONIA_GAS.get(), 100)
+                .input(POMfluids.OXYGEN_GAS.get(), 200)
+                .output(POMfluids.NITRIC_ACID.get(), 100)
                 .output(Fluids.WATER, 100)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(2)
-                .input(POMfluids.AMMONIA_GAS_SOURCE.get(), 10)
-                .input(POMfluids.AIR_SOURCE.get(), 25)
-                .output(POMfluids.NITRIC_ACID_SOURCE.get(), 10)
+                .input(POMfluids.AMMONIA_GAS.get(), 10)
+                .input(POMfluids.AIR.get(), 25)
+                .output(POMfluids.NITRIC_ACID.get(), 10)
                 .output(Fluids.WATER, 10)
                 .finish(fConsumer, this);
 
         ChemicalMixerRecipeBuilder.build(4)
-                .input(POMfluids.NUCLEAR_WASTE_SOURCE.get(), 10)
-                .input(POMfluids.PUREX_SOLUTION_SOURCE.get(), 5)
-                .output(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 10)
+                .input(POMfluids.NUCLEAR_WASTE.get(), 10)
+                .input(POMfluids.PUREX_SOLUTION.get(), 5)
+                .output(POMfluids.NUCLEAR_WASTE_SOLUTION.get(), 10)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(5)
-                .input(POMfluids.NUCLEAR_WASTE_SOLUTION_SOURCE.get(), 9)
-                .input(POMfluids.NITRIC_ACID_SOURCE.get(), 5)
+                .input(POMfluids.NUCLEAR_WASTE_SOLUTION.get(), 9)
+                .input(POMfluids.NITRIC_ACID.get(), 5)
                 .input(Fluids.WATER, 10)
-                .output(POMfluids.URANIUM_SOLUTION_SOURCE.get(), 3)
-                .output(POMfluids.PLUTONIUM_SOLUTION_SOURCE.get(), 3)
-                .output(POMfluids.RED_OIL_SOURCE.get(), 5)
+                .output(POMfluids.URANIUM_SOLUTION.get(), 3)
+                .output(POMfluids.PLUTONIUM_SOLUTION.get(), 3)
+                .output(POMfluids.RED_OIL.get(), 5)
                 .finish(fConsumer, this);
 
         //cooling and heating
         FluidHeatingRecipeBuilder.build(10)
                 .input(Fluids.WATER, 1)
-                .output(POMfluids.STEAM_SOURCE.get(), 1)
+                .output(POMfluids.STEAM.get(), 1)
                 .finish(fConsumer, this);
         FluidCoolingRecipeBuilder.build(10)
                 .output(Fluids.WATER, 1)
-                .input(POMfluids.STEAM_SOURCE.get(), 1)
+                .input(POMfluids.STEAM.get(), 1)
                 .finish(fConsumer, this);
 
         FluidHeatingRecipeBuilder.build(40)
-                .input(POMfluids.STEAM_SOURCE.get(), 1)
-                .output(POMfluids.BLAZING_STEAM_SOURCE.get(), 1)
+                .input(POMfluids.STEAM.get(), 1)
+                .output(POMfluids.BLAZING_STEAM.get(), 1)
                 .finish(fConsumer, this);
         FluidCoolingRecipeBuilder.build(40)
-                .output(POMfluids.STEAM_SOURCE.get(), 1)
-                .input(POMfluids.BLAZING_STEAM_SOURCE.get(), 1)
+                .output(POMfluids.STEAM.get(), 1)
+                .input(POMfluids.BLAZING_STEAM.get(), 1)
                 .finish(fConsumer, this);
 
+        FluidHeatingRecipeBuilder.build(24)
+                .input(POMfluids.MERCURY.get(), 1)
+                .output(POMfluids.MERCURY_GAS.get(), 1)
+                .finish(fConsumer, this);
+        FluidCoolingRecipeBuilder.build(24)
+                .output(POMfluids.MERCURY.get(), 1)
+                .input(POMfluids.MERCURY_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(90)
+                .input(POMfluids.LEAD.get(), 1)
+                .output(POMfluids.LEAD_GAS.get(), 1)
+                .finish(fConsumer, this);
+        FluidCoolingRecipeBuilder.build(90)
+                .output(POMfluids.LEAD.get(), 1)
+                .input(POMfluids.LEAD_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(17)
+                .input(POMfluids.HYDROGEN.get(), 1)
+                .output(POMfluids.HYDROGEN_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(14)
+                .input(POMfluids.NITROGEN.get(), 1)
+                .output(POMfluids.NITROGEN_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(14)
+                .input(POMfluids.OXYGEN.get(), 1)
+                .output(POMfluids.OXYGEN_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(14)
+                .input(POMfluids.CHLORINE.get(), 1)
+                .output(POMfluids.CHLORINE_GAS.get(), 1)
+                .finish(fConsumer, this);
+
+        FluidHeatingRecipeBuilder.build(14)
+                .input(POMfluids.BROMINE.get(), 1)
+                .output(POMfluids.BROMINE_GAS.get(), 1)
+                .finish(fConsumer, this);
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);

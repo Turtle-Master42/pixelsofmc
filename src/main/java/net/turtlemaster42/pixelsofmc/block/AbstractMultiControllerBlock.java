@@ -134,6 +134,12 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                     } else if (multiBlockState.presentIn(blockState)) {
                         correctBlocks++;
                     }
+                    //CASING
+                    else if (multiBlockState.is(POMblocks.FISSION_CASING.get()) && blockState.is(POMblocks.ARMORED_MACHINE_CASING.get())) {
+                        correctBlocks++;
+                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING.get()) && (blockState.is(POMblocks.FISSION_CASING.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING.get()))) {
+                        correctBlocks++;
+                    }
                     //DECOR
                     else if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FUSION_DECOR)) {
                         correctBlocks++;

@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:fluid_heating",
+  "energy": 90,
+  "fluid_input": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:lead"
+  },
+  "fluid_output": {
+    "Amount": 1,
+    "FluidName": "pixelsofmc:lead_gas"
+  }
+}

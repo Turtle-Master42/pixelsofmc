@@ -456,7 +456,7 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         }
 
         if (switches[0]) { // fill machine input with air
-            FluidStack air = new FluidStack(POMfluids.AIR_SOURCE.get(), 200);
+            FluidStack air = new FluidStack(POMfluids.AIR.get(), 200);
             fluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
             duoFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
             triFluidTank.fill(air, IFluidHandler.FluidAction.EXECUTE);
@@ -574,7 +574,7 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         FluidTank[] outputTanks = {quadFluidTank, quinFluidTank, hexaFluidTank};
         // iterates over the fluidStacks
         for (FluidStack fluidOutput : fluidStacks) {
-            if (fluidOutput.getRawFluid().isSame(POMfluids.AIR_SOURCE.get())) { //can't output air
+            if (fluidOutput.getRawFluid().isSame(POMfluids.AIR.get())) { //can't output air
                 continue;
             }
             // iterates over the tanks

@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "pixelsofmc:item/reinforced_bucket_gas",
-    "layer1": "pixelsofmc:item/reinforced_bucket_gas_overlay"
+    "layer1": "pixelsofmc:item/bucket_gas_overlay"
   }
 }

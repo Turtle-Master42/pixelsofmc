@@ -33,6 +33,11 @@ public class POMFluidType {
             FluidType.Properties.create().lightLevel(15).temperature(300).density(13500).viscosity(5).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
 
+    public static final RegistryObject<FluidType> LEAD_FLUID_TYPE = registerHeavyFluid("lead", 95, 84, 120,
+            FluidType.Properties.create().lightLevel(15).temperature(300).density(10700).viscosity(5).canDrown(true).canPushEntity(true)
+                    .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY_POWDER_SNOW));
+
+
     public static final RegistryObject<FluidType> SULFURIC_ACID_FLUID_TYPE = registerFluid("sulfuric_acid", 161, 178, 48,
             FluidType.Properties.create().lightLevel(1).temperature(300).density(1830).viscosity(5).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
@@ -101,6 +106,11 @@ public class POMFluidType {
     public static final RegistryObject<FluidType> AIR_TYPE = registerThinGas("air", 140, 140, 150,
             FluidType.Properties.create().lightLevel(0).temperature(300).density(0).viscosity(0).canDrown(false).canPushEntity(false));
 
+    public static final RegistryObject<FluidType> MERCURY_GAS_TYPE = registerGas("mercury_gas", 45, 17, 96,
+            FluidType.Properties.create().lightLevel(2).temperature(700).density(-1).viscosity(0).canDrown(true).canPushEntity(false));
+
+    public static final RegistryObject<FluidType> LEAD_GAS_TYPE = registerGas("lead_gas", 105, 86, 122,
+            FluidType.Properties.create().lightLevel(2).temperature(1500).density(-1).viscosity(0).canDrown(true).canPushEntity(false));
 
 
     public static final RegistryObject<FluidType> HYDROGEN_GAS_TYPE = registerGas("hydrogen_gas", 225, 223, 235,
