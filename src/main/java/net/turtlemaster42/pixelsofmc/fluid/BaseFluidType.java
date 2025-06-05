@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
@@ -20,34 +21,28 @@ public class BaseFluidType extends FluidType {
     private final ResourceLocation overlayTexture;
     private final int tintColor;
     private final Vector3f fogColor;
-    public BaseFluidType(final ResourceLocation stillTexture, final ResourceLocation flowingTexture, final ResourceLocation overlayTexture,
-                         final int tintColor, final Vector3f fogColor, final Properties properties) {
+    private final float fogMinDistance;
+    private final float fogMaxDistance;
+
+
+    public BaseFluidType(int tintColor, Vector3f fogColor, Properties properties) {
+        this(Util.resourceLocation("minecraft", "block/water_still"), Util.resourceLocation("minecraft","block/water_flow"),
+                Util.resourceLocation("minecraft","block/water_flow"), tintColor, fogColor,1f, 6f, properties);
+    }
+
+    public BaseFluidType(ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, Properties properties) {
+        this(stillTexture, flowingTexture, overlayTexture, tintColor, fogColor,1f, 6f, properties);
+    }
+
+    public BaseFluidType(ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, float fogMinDistance, float fogMaxDistance, Properties properties) {
         super(properties);
         this.stillTexture = stillTexture;
         this.flowingTexture = flowingTexture;
         this.overlayTexture = overlayTexture;
         this.tintColor = tintColor;
         this.fogColor = fogColor;
-    }
-
-    public ResourceLocation getStillTexture() {
-        return stillTexture;
-    }
-
-    public ResourceLocation getFlowingTexture() {
-        return flowingTexture;
-    }
-
-    public int getTintColor() {
-        return tintColor;
-    }
-
-    public ResourceLocation getOverlayTexture() {
-        return overlayTexture;
-    }
-
-    public Vector3f getFogColor() {
-        return fogColor;
+        this.fogMinDistance = fogMinDistance;
+        this.fogMaxDistance = fogMaxDistance;
     }
 
     @Override
@@ -74,16 +69,14 @@ public class BaseFluidType extends FluidType {
             }
 
             @Override
-            public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level,
-                                                    int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+            public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
                 return fogColor;
             }
 
             @Override
-            public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick,
-                                        float nearDistance, float farDistance, FogShape shape) {
-                RenderSystem.setShaderFogStart(1f);
-                RenderSystem.setShaderFogEnd(6f); // distance when the fog starts
+            public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+                RenderSystem.setShaderFogStart(fogMinDistance);
+                RenderSystem.setShaderFogEnd(fogMaxDistance); // distance when the fog starts
             }
         });
     }

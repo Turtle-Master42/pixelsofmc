@@ -107,22 +107,13 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Tags.Items.INGOTS_COPPER)
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("copper_wire_2"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.COPPER_WIRE.get())
-                .requires(POMitems.COPPER_SHEET.get())
-                .requires(Items.STICK)
-                .requires(POMitems.WIRECUTTER.get())
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.COPPER_SHEET.get())))
-                .save(fConsumer, toRL("copper_wire_3"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SILVER_WIRE.get())
                 .requires(POMtags.getTagsFor(Element.SILVER).metal)
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("silver_wire_2"));
@@ -130,7 +121,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(POMtags.getTagsFor(Element.TUNGSTEN).metal)
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("tungsten_wire_2"));
@@ -145,24 +135,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Tags.Items.INGOTS_COPPER)
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .requires(Items.REDSTONE, 4)
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("redstone_layered_copper_wire_2"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
-                .requires(POMitems.COPPER_SHEET.get())
-                .requires(Items.STICK)
-                .requires(POMitems.WIRECUTTER.get())
-                .requires(Items.REDSTONE, 4)
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.COPPER_SHEET.get())))
-                .save(fConsumer, toRL("redstone_layered_copper_wire_3"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.RED_SILVER_WIRE.get())
                 .requires(POMitems.RED_SILVER_INGOT.get())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("red_silver_wire_2"));
@@ -170,7 +150,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(POMitems.ROYAL_TUNGSTEN_INGOT.get())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
-                .requires(POMitems.HAMMER.get())
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
                 .save(fConsumer, toRL("royal_tungsten_wire_2"));
@@ -245,13 +224,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.BLACK_DIAMOND.get())))
                 .save(fConsumer, toRL(Items.DIAMOND.toString()));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.COPPER_SHEET.get())
-                .define('C', POMtags.getTagsFor(Element.COPPER).nugget)
-                .pattern("CCC")
-                .pattern("CCC")
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(Items.COPPER_INGOT), toItemP(POMtags.getTagsFor(Element.COPPER).nugget)))
-                .save(fConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.SCREWDRIVER.get())
@@ -802,12 +774,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.FIRE_PROOF_PLASTIC.get(), POMitems.IMPROVED_MICRO_CHIP.get(), POMitems.SILVER_WIRE.get())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.COPPER_HEAT_SINK.get())
-                .define('A', POMitems.COPPER_SHEET.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CARBON_HEAT_SINK.get())
+                .define('A', POMitems.PYROLYTIC_CARBON_SHEET.get())
                 .pattern("AAA")
                 .pattern("AAA")
                 .pattern("AAA")
-                .unlockedBy("", inventoryTrigger(toItemP(POMitems.COPPER_SHEET.get())))
+                .unlockedBy("", inventoryTrigger(toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get())))
                 .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.ADVANCED_CASING_1.get())
@@ -862,18 +834,26 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.HEAT_SINK.get())
-                .define('A', POMitems.FUSION_PLATING.get())
-                .define('B', POMitems.COPPER_HEAT_SINK.get())
-                .define('C', POMitems.REDSTONE_CORE.get())
+                .define('A', POMtags.getTagsFor(Element.TITANIUM).metal)
+                .define('B', POMitems.CARBON_HEAT_SINK.get())
+                .define('C', POMtags.getTagsFor(Element.COPPER).metal)
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
-                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.MACHINE_COIL.get())
+                .define('A', POMitems.TITANIUM_PLATING.get())
+                .define('B', POMblocks.COPPER_SPOOL.get())
+                .pattern("A")
+                .pattern("B")
+                .pattern("A")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
                 .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.FUEL_CELL_HOLDER.get())
                 .define('A', POMitems.LEAD_PLATING.get())
-                .define('B', POMitems.COPPER_HEAT_SINK.get())
+                .define('B', POMitems.CARBON_HEAT_SINK.get())
                 .define('C', POMitems.SIMPLE_CIRCUIT_BOARD_2.get())
                 .define('D', POMblocks.FISSION_CASING.get())
                 .pattern("ACA")
@@ -913,14 +893,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ACA")
                 .unlockedBy("has_items", inventoryTrigger(HAS_FUSION_PLATING))
                 .save(fConsumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.CUT_COPPER)
-                .define('C', POMitems.COPPER_SHEET.get())
-                .pattern("CC")
-                .pattern("CC")
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.COPPER_SHEET.get())))
-                .save(fConsumer, toRL(Items.CUT_COPPER.toString()));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.TITANIUM_PLATING_BLOCK.get(), 4)
                 .define('A', POMitems.TITANIUM_PLATING.get())
@@ -2066,7 +2038,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSurroundRecipe(POMitems.SUPERCONDUCTIVE_NUGGET.get(), Items.STICK, POMitems.SUPERCONDUCTIVE_WIRE.get(), fConsumer);
         SimpleSurroundRecipe(Element.TITANIUM.item(), Items.NETHERITE_INGOT, POMblocks.SIMPLE_CASING_1.get(), fConsumer);
         SimpleSurroundRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMblocks.SIMPLE_CASING_1.get(), POMblocks.SIMPLE_CASING_2.get(), fConsumer);
-        SimpleSurroundRecipe(Element.TITANIUM.item(), POMblocks.COPPER_SPOOL.get(), POMblocks.MACHINE_COIL.get(), fConsumer);
 
         SimpleFullCrossRecipe(Items.OBSIDIAN, POMitems.OBSIDIAN_PLATING.get(), Items.NETHERITE_BLOCK, POMblocks.STRONG_CASING.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMblocks.STRONG_CASING.get(), POMblocks.STRENGTHENED_CASING.get(), fConsumer);

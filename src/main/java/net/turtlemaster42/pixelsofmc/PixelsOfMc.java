@@ -218,29 +218,19 @@ public class PixelsOfMc {
 		});
 		ItemProperties.register(POMitems.TITANIUM_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
 			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
-			if (fluid.isEmpty())
-				return 0;
-			else if (fluid.getFluid().isSame(Fluids.WATER))
-				return 3;
-			else if (fluid.getFluid().isSame(Fluids.LAVA))
-				return 4;
-			else if (fluid.getFluid().getFluidType().isLighterThanAir())
-				return 2;
-			else
-				return 1;
+			if (fluid.isEmpty()) return 0;
+			else if (fluid.getFluid().isSame(Fluids.WATER)) return 3;
+			else if (fluid.getFluid().isSame(Fluids.LAVA)) return 4;
+			else if (fluid.getFluid().getFluidType().isLighterThanAir()) return 2;
+			else return 1;
 		});
 		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
 			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
-			if (fluid.isEmpty())
-				return 0;
-			else if (fluid.getFluid().isSame(Fluids.WATER))
-				return 3;
-			else if (fluid.getFluid().isSame(Fluids.LAVA))
-				return 4;
-			else if (fluid.getFluid().getFluidType().isLighterThanAir())
-				return 2;
-			else
-				return 1;
+			if (fluid.isEmpty()) return 0;
+			else if (fluid.getFluid().isSame(Fluids.WATER)) return 3;
+			else if (fluid.getFluid().isSame(Fluids.LAVA)) return 4;
+			else if (fluid.getFluid().getFluidType().isLighterThanAir()) return 2;
+			else return 1;
 		});
     }
 
@@ -335,7 +325,6 @@ public class PixelsOfMc {
 		};
 		//TODO:make dynamic
 		DispenseItemBehavior energyCell3 = new DefaultDispenseItemBehavior() {
-
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 				BlockState state = source.getLevel().getBlockState(blockpos);
@@ -474,13 +463,13 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.PUREX_SOLUTION_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.URANIUM_SOLUTION_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.PLUTONIUM_SOLUTION_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.LIQUID_LEAD_BUCKET.get(), bucketBehavior);
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);
 		DispenserBlock.registerBehavior(POMitems.SUPERCHARGED_POWER_CELL.get(), energyCell3);
 		DispenserBlock.registerBehavior(POMitems.TITANIUM_BUCKET.get(), titaniumBucket);
 		DispenserBlock.registerBehavior(POMitems.REINFORCED_BUCKET.get(), reinforcedBucket);
-
 	}
 
 	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder,

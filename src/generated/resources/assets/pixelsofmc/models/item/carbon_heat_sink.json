@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/copper_sheet"
+    "layer0": "pixelsofmc:item/carbon_heat_sink"
   }
 }

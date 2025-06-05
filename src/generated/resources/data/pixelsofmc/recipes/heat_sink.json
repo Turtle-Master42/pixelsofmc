@@ -3,13 +3,13 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:fusion_plating"
+      "tag": "forge:ingots/titanium"
     },
     "B": {
-      "item": "pixelsofmc:copper_heat_sink"
+      "item": "pixelsofmc:carbon_heat_sink"
     },
     "C": {
-      "item": "pixelsofmc:redstone_core"
+      "tag": "forge:ingots/copper"
     }
   },
   "pattern": [

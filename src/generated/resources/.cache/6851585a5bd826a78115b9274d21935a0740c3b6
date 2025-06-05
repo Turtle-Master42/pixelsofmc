@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-04T10:34:48.72516	Item Models: pixelsofmc
+// 1.20.1	2025-06-05T20:17:16.609541	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -91,6 +91,7 @@ fabbeba94c67153befc57523daa1f4ea5e047efe assets/pixelsofmc/models/item/carbon_at
 4e2b900a82831ba9f3395ade4a058bb91ba6f422 assets/pixelsofmc/models/item/carbon_atom_64.json
 7e910c96ff7cb514fba443fc57714e40f70e0bcc assets/pixelsofmc/models/item/carbon_cube.json
 58f3ac0535965c714caf24bf68d56e2e6ae48fbe assets/pixelsofmc/models/item/carbon_dust.json
+afa8bf96010c9ecdb288d3b48a76556cd596ea06 assets/pixelsofmc/models/item/carbon_heat_sink.json
 196c148349e937a697c640394f8b0af66f255b48 assets/pixelsofmc/models/item/carbonado_clump.json
 053d75d4aa4b7ded93c3f2aad1d001acbdbcf2de assets/pixelsofmc/models/item/cerium_142_atom_512.json
 c93f00027fd6fbc848379788c0f26bd041cfef46 assets/pixelsofmc/models/item/cerium_142_atom_64.json
@@ -123,9 +124,7 @@ f11270ab4e706c3dc0105dfebd478abeccfd4154 assets/pixelsofmc/models/item/copper_65
 6295937083b0c8fee4c2b5ee88495c6708605543 assets/pixelsofmc/models/item/copper_atom_512.json
 86d19498a4f9ecdb0d6b7a07869f82d8721bd457 assets/pixelsofmc/models/item/copper_atom_64.json
 8c3d4a9c7ba51ef18af8e204909f811ff9b840e1 assets/pixelsofmc/models/item/copper_dust.json
-daa8120420a6ee7f9fd0d12c270ca6235c404fd0 assets/pixelsofmc/models/item/copper_heat_sink.json
 a1730feb22f7d065b62f29fdd4ef0d6ec567a12f assets/pixelsofmc/models/item/copper_nugget.json
-404fecf855b8437fa01693bcc3367c495f4085dd assets/pixelsofmc/models/item/copper_sheet.json
 6afc1752aecdd3ad1dd61a8c69ed14909f34cc0c assets/pixelsofmc/models/item/copper_spool.json
 cdfccd6fc950da68452dc90e793688f95c2beaca assets/pixelsofmc/models/item/copper_wire.json
 38aa27374a9e9568358ebbe8f30be1d9ea121d83 assets/pixelsofmc/models/item/crimson_mana_sphere.json

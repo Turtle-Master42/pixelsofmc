@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
             "items": [
-              "pixelsofmc:copper_sheet"
+              "pixelsofmc:pyrolytic_carbon_sheet"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:cut_copper"
+        "recipe": "pixelsofmc:carbon_heat_sink"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:cut_copper"
+      "pixelsofmc:carbon_heat_sink"
     ]
   },
   "sends_telemetry_event": false

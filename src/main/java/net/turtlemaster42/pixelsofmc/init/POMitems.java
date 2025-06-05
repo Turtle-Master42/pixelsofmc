@@ -111,7 +111,7 @@ public class POMitems {
 	public static final RegistryObject<Item> LEAD_PLATING = ITEMS.register("lead_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TUNGSTEN_PLATING = ITEMS.register("tungsten_plating", () -> new Item(new Item.Properties().fireResistant()));
 	public static final RegistryObject<Item> PYROLYTIC_CARBON_SHEET = ITEMS.register("pyrolytic_carbon_sheet", () -> new FuelItem(8000, new Item.Properties()));
-	public static final RegistryObject<Item> COPPER_SHEET = ITEMS.register("copper_sheet", () -> new Item(new Item.Properties()));
+//	public static final RegistryObject<Item> COPPER_SHEET = ITEMS.register("copper_sheet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SILICON_SHEET = ITEMS.register("silicon_sheet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DENSE_CARBON_CUBE = ITEMS.register("dense_carbon_cube", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBONARO_CLUMP = ITEMS.register("carbonado_clump", () -> new Item(new Item.Properties()));
@@ -155,7 +155,8 @@ public class POMitems {
 	public static final RegistryObject<Item> PLUTONIUM_FUEL_CORE = ITEMS.register("plutonium_fuel_core", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MICRO_CHIP = ITEMS.register("micro_chip", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> IMPROVED_MICRO_CHIP = ITEMS.register("improved_micro_chip", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> COPPER_HEAT_SINK = ITEMS.register("copper_heat_sink", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> CARBON_HEAT_SINK = ITEMS.register("carbon_heat_sink", () -> new Item(new Item.Properties()));
+
 
 	//circuit boards
 	public static final RegistryObject<Item> SIMPLE_CIRCUIT_BOARD_1 = ITEMS.register("simple_circuit_board_1", () -> new Item(new Item.Properties()));
@@ -165,8 +166,6 @@ public class POMitems {
 	public static final RegistryObject<Item> ADVANCED_CIRCUIT_BOARD_2 = ITEMS.register("advanced_circuit_board_2", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PERFECTED_CIRCUIT_BOARD_2 = ITEMS.register("perfected_circuit_board_2", () -> new Item(new Item.Properties()));
 
-	//machine parts
-//	public static final RegistryObject<Item> MOVING_PARTS = ITEMS.register("moving_parts", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8_000_000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));

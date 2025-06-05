@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:titanium_diboride_ingot"
-            ]
+            "tag": "forge:ingots/titanium"
           }
         ]
       },

@@ -88,7 +88,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.DEPLETED_PLUTONIUM_FUEL_CELL);
         simpleItem(POMitems.DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL);
         simpleItem(POMitems.INFINITE_POWER_CELL);
-        simpleItem(POMitems.COPPER_HEAT_SINK);
+        simpleItem(POMitems.CARBON_HEAT_SINK);
 
         simpleItem(POMitems.SIMPLE_CIRCUIT_BOARD_1);
         simpleItem(POMitems.ADVANCED_CIRCUIT_BOARD_1);
@@ -128,7 +128,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.LEAD_PLATING);
         simpleItem(POMitems.TUNGSTEN_PLATING);
         simpleItem(POMitems.PYROLYTIC_CARBON_SHEET);
-        simpleItem(POMitems.COPPER_SHEET);
         simpleItem(POMitems.SILICON_SHEET);
 
         simpleItem(POMitems.MERCURY_BUCKET);

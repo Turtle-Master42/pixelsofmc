@@ -30,8 +30,7 @@ public class ToolItem extends Item {
     //immersive engineering
     @Nonnull
     @Override
-    public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack)
-    {
+    public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
         ItemStack container = stack.copy();
         if(container.hurt(1, RandomSource.create(), null))
             return ItemStack.EMPTY;
@@ -51,6 +50,7 @@ public class ToolItem extends Item {
         Level level = pContext.getLevel();
         BlockPos pos = pContext.getClickedPos();
 
+        // SCREWDRIVER LOGIC
         if (pContext.getItemInHand().is(POMitems.SCREWDRIVER.get())) {
             Map<Block, Integer> blocks;
             if (level.getBlockState(pos).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
@@ -72,10 +72,11 @@ public class ToolItem extends Item {
                 pContext.getPlayer().sendSystemMessage(Component.translatable("message.pixelsofmc.block.multiblock.invalid"));
             }
             return InteractionResult.SUCCESS;
+
+        // CLEANING CLOTH LOGIC
         } else if (pContext.getItemInHand().is(POMitems.CLEANING_CLOTH.get())) {
             BlockState modifiedState = level.getBlockState(pos).getBlock().getToolModifiedState(level.getBlockState(pos), pContext, ToolActions.AXE_WAX_OFF, false);
             Optional<BlockState> optionalBlockState = Optional.ofNullable(modifiedState);
-
             if (optionalBlockState.isPresent()) {
                 level.setBlock(pos, optionalBlockState.get(), 11);
                 level.levelEvent(pContext.getPlayer(), 3004, pos, 0); // wax_off particles (LevelRenderer)

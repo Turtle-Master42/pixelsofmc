@@ -2,16 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "tag": "forge:nuggets/copper"
+    "A": {
+      "item": "pixelsofmc:pyrolytic_carbon_sheet"
     }
   },
   "pattern": [
-    "CCC",
-    "CCC"
+    "AAA",
+    "AAA",
+    "AAA"
   ],
   "result": {
-    "item": "pixelsofmc:copper_sheet"
+    "item": "pixelsofmc:carbon_heat_sink"
   },
   "show_notification": true
 }
