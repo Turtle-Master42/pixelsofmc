@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pixelsofmc:industrial_cooler"
+          "name": "pixelsofmc:industrial_heat_exchanger"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "pixelsofmc:blocks/industrial_cooler"
+  "random_sequence": "pixelsofmc:blocks/industrial_heat_exchanger"
 }

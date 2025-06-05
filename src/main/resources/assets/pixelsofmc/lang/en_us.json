@@ -788,7 +788,7 @@
   "block.pixelsofmc.chemical_combiner": "Chemical Combiner",
   "block.pixelsofmc.chemical_mixer": "Chemical Mixer",
   "block.pixelsofmc.star": "Fusion Star",
-  "block.pixelsofmc.industrial_cooler": "Industrial Cooler",
+  "block.pixelsofmc.industrial_heat_exchanger": "Industrial Heat Exchanger",
 
   "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
   "block.pixelsofmc.sds_controller": "S.D.S Fusion Reactor Controller",
@@ -812,7 +812,6 @@
   "block.pixelsofmc.acanthite_ore": "Acanthite Ore",
   "block.pixelsofmc.lesser_acanthite_ore": "Lesser Acanthite Ore",
   "block.pixelsofmc.acanthite_spike": "Acanthite Spike",
-  "block.pixelsofmc.sand_mineral_deposit": "Sand Mineral Deposit",
 
   "block.pixelsofmc.titanium_plating_block": "Titanium Plating Block",
   "block.pixelsofmc.titanium_plating_slab": "Titanium Plating Slab",

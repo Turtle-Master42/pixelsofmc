@@ -47,7 +47,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.MDS_CONTROLLER.get());
         this.dropSelf(POMblocks.MNS_CONTROLLER.get());
         this.dropSelf(POMblocks.BH_CONTROLLER.get());
-        this.dropSelf(POMblocks.INDUSTRIAL_COOLER.get());
+        this.dropSelf(POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get());
 
         this.dropSelf(POMblocks.SIMPLE_CASING_1.get());
         this.dropSelf(POMblocks.ADVANCED_CASING_1.get());

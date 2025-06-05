@@ -1,9 +1,6 @@
 package net.turtlemaster42.pixelsofmc.util.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.turtlemaster42.pixelsofmc.block.AbstractPillarFusionCasing;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 
 public class MultiBlockStructures {
@@ -310,7 +307,7 @@ public class MultiBlockStructures {
     };
 
     //INDUSTRIAL COOLER
-    public static final GhostBlockState[][][] INDUSTRIAL_COOLER = {
+    public static final GhostBlockState[][][] INDUSTRIAL_HEAT_EXCHANGER = {
             {
                     {DECOR, CASING, DECOR},
                     {HEAT_SINK, GLASS, HEAT_SINK},

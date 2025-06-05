@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.IndustrialCoolerTile;
+import net.turtlemaster42.pixelsofmc.block.tile.IndustrialHeatExchangerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -20,21 +20,21 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
 
-public class IndustrialCoolerMenu extends AbstractMachineMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu, ITriFluidMenu, IQuadFluidMenu {
-    public final IndustrialCoolerTile blockEntity;
+public class IndustrialHeatExchangerMenu extends AbstractMachineMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu, ITriFluidMenu, IQuadFluidMenu {
+    public final IndustrialHeatExchangerTile blockEntity;
     public final ItemStackHandler itemHandler;
     private FluidStack fluid;
     private FluidStack duoFluid;
     private FluidStack triFluid;
     private FluidStack quadFluid;
 
-    public IndustrialCoolerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public IndustrialHeatExchangerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
-    public IndustrialCoolerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(1, inv, data, POMmenuType.INDUSTRIAL_COOLER_MENU.get(), pContainerId);
-        blockEntity = ((IndustrialCoolerTile) entity);
+    public IndustrialHeatExchangerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(1, inv, data, POMmenuType.INDUSTRIAL_HEAT_EXCHANGER_MENU.get(), pContainerId);
+        blockEntity = ((IndustrialHeatExchangerTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();
@@ -93,7 +93,7 @@ public class IndustrialCoolerMenu extends AbstractMachineMenu implements IEnergy
 
     @Override
     public boolean stillValid(@NotNull Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, POMblocks.INDUSTRIAL_COOLER.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get());
     }
 }
 

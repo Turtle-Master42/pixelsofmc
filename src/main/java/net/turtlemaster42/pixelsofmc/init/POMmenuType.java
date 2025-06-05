@@ -34,8 +34,8 @@ public class POMmenuType {
             registerMenuType(ChemicalMixerMenu::new, "chemical_mixer_menu");
 
     //multiblock
-    public static final RegistryObject<MenuType<IndustrialCoolerMenu>> INDUSTRIAL_COOLER_MENU =
-            registerMenuType(IndustrialCoolerMenu::new, "industrial_cooler_menu");
+    public static final RegistryObject<MenuType<IndustrialHeatExchangerMenu>> INDUSTRIAL_HEAT_EXCHANGER_MENU =
+            registerMenuType(IndustrialHeatExchangerMenu::new, "industrial_heat_exchanger_menu");
 
     //reactor
     public static final RegistryObject<MenuType<NuclearReactorMenu>> NUCLEAR_REACTOR_MENU =

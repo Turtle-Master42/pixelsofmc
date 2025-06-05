@@ -59,8 +59,8 @@ public class POMtiles {
 			TILES.register("chemical_mixer", () -> BlockEntityType.Builder.of(ChemicalMixerTile::new, POMblocks.CHEMICAL_MIXER.get()).build(null));
 
 	//multi-blocks
-	public static final RegistryObject<BlockEntityType<IndustrialCoolerTile>> INDUSTRIAL_COOLER =
-			TILES.register("industrial_cooler", () -> BlockEntityType.Builder.of(IndustrialCoolerTile::new, POMblocks.INDUSTRIAL_COOLER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<IndustrialHeatExchangerTile>> INDUSTRIAL_HEAT_EXCHANGER =
+			TILES.register("industrial_heat_exchanger", () -> BlockEntityType.Builder.of(IndustrialHeatExchangerTile::new, POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get()).build(null));
 
 	//reactors
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =

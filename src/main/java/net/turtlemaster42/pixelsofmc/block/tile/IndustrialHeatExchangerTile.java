@@ -19,8 +19,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.block.IndustrialCoolerBlock;
-import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialCoolerMenu;
+import net.turtlemaster42.pixelsofmc.block.IndustrialHeatExchangerBlock;
+import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, ITriFluidHandlingTile, IQuadFluidHandlingTile, IButtonTile {
+public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialHeatExchangerTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, ITriFluidHandlingTile, IQuadFluidHandlingTile, IButtonTile {
 
     protected final ContainerData data;
     private final boolean[] switches = {false};
@@ -135,8 +135,8 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
     private LazyOptional<IFluidHandler> lazyTriFluidHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyQuadFluidHandler = LazyOptional.empty();
 
-    public IndustrialCoolerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.INDUSTRIAL_COOLER.get(), pWorldPosition, pBlockState);
+    public IndustrialHeatExchangerTile(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(POMtiles.INDUSTRIAL_HEAT_EXCHANGER.get(), pWorldPosition, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {return isCrafting;}
@@ -156,7 +156,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
 
     @Override
     public @NotNull Component getDisplayName() {
-        return Component.translatable("block.pixelsofmc.industrial_cooler");
+        return Component.translatable("block.pixelsofmc.industrial_heat_exchanger");
     }
 
     @Nullable
@@ -166,7 +166,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncTriFluidToClient(this.getTriFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncQuadFluidToClient(this.getQuadFluid(), worldPosition));
-        return new IndustrialCoolerMenu(pContainerId, pInventory, this, this.data);
+        return new IndustrialHeatExchangerMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -182,7 +182,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
                 return lazyQuadFluidHandler.cast();
             }
 
-            Direction localDir = this.getBlockState().getValue(IndustrialCoolerBlock.FACING);
+            Direction localDir = this.getBlockState().getValue(IndustrialHeatExchangerBlock.FACING);
 
             return switch (localDir) {
                 case EAST -> {
@@ -268,15 +268,15 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
 
 
     //---RECIPE---//
-    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, IndustrialCoolerTile e) {
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, IndustrialHeatExchangerTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, IndustrialCoolerTile e) {
+    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, IndustrialHeatExchangerTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState, IndustrialCoolerTile pBlockEntity) {
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, IndustrialHeatExchangerTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && getSwitch(0)) {
             if (!pLevel.isClientSide())
                 isCrafting = 1;
@@ -289,7 +289,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
     }
 
 
-    private static boolean hasRecipe(IndustrialCoolerTile entity) {
+    private static boolean hasRecipe(IndustrialHeatExchangerTile entity) {
         Level level = entity.level;
         if (level == null) {return false;}
         FluidContainer fluidInventory = new FluidContainer(1);
@@ -333,7 +333,7 @@ public class IndustrialCoolerTile extends AbstractMachineTile<IndustrialCoolerTi
         }
     }
 
-    private static void craft(IndustrialCoolerTile entity) {
+    private static void craft(IndustrialHeatExchangerTile entity) {
         Level level = entity.level;
         FluidContainer fluidInventory = new FluidContainer(1);
 

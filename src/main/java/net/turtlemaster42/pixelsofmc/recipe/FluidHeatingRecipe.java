@@ -74,7 +74,7 @@ public class FluidHeatingRecipe implements Recipe<FluidContainer> {
     }
 
     public @NotNull ItemStack getToastSymbol() {
-        return new ItemStack(POMblocks.INDUSTRIAL_COOLER.get());
+        return new ItemStack(POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get());
     }
 
     public static class Type implements RecipeType<FluidHeatingRecipe> {

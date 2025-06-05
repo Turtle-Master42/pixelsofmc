@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-05T18:59:20.864153	Loot Tables
+// 1.20.1	2025-06-05T22:13:09.059123	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
@@ -44,7 +44,7 @@ f21c3ca576f727353fecd2d2a892f3b5fa422f63 data/pixelsofmc/loot_tables/blocks/fusi
 7ffe353003562ad32efa9845c87b2a98e1d6a589 data/pixelsofmc/loot_tables/blocks/hot_isostatic_press.json
 31c6b54270b1191cdb79d0d710e617f5c877c1cc data/pixelsofmc/loot_tables/blocks/hydrogen.json
 e356c8cca629b02e3913a296f0321ec8f52d4188 data/pixelsofmc/loot_tables/blocks/hydrogen_gas.json
-df168dd72f916c74738413683578b5fe0655d9a5 data/pixelsofmc/loot_tables/blocks/industrial_cooler.json
+1880ee112d3f0f2a712e048e639b71c768df7b6b data/pixelsofmc/loot_tables/blocks/industrial_heat_exchanger.json
 6a7b7a640e4d2d530293b478109473d5c305a207 data/pixelsofmc/loot_tables/blocks/item_port.json
 7cd3af46dea14045a599424d005b67ed0e2c38bd data/pixelsofmc/loot_tables/blocks/lead_block.json
 7a366abbe43e2a963b9132f170becd717cad4e34 data/pixelsofmc/loot_tables/blocks/lead_gas.json

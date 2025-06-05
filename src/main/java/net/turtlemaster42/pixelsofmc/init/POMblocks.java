@@ -325,13 +325,12 @@ public class POMblocks {
             () -> new PixelAssemblerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "", "", "");
 
+    //multi-block machines
     public static final RegistryObject<Block> NUCLEAR_REACTOR = registerBlock("nuclear_reactor",
             () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
 
-    public static final RegistryObject<Block> INDUSTRIAL_COOLER = registerBlock("industrial_cooler",
-            () -> new IndustrialCoolerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
-
-
+    public static final RegistryObject<Block> INDUSTRIAL_HEAT_EXCHANGER = registerBlock("industrial_heat_exchanger",
+            () -> new IndustrialHeatExchangerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
             () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)

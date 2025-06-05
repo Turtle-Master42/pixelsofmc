@@ -7,15 +7,15 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialCoolerMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
-public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMenu> {
-    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/industrial_cooler.png");
+public class IndustrialHeatExchangerScreen extends AbstractPOMscreen<IndustrialHeatExchangerMenu> {
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/industrial_heat_exchanger.png");
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;
     private FluidArea fluidArea3;
@@ -23,7 +23,7 @@ public class IndustrialCoolerScreen extends AbstractPOMscreen<IndustrialCoolerMe
     private NameArea nameArea;
     private BigSwitchButton switch1;
 
-    public IndustrialCoolerScreen(IndustrialCoolerMenu guiMenu, Inventory inventory, Component title) {
+    public IndustrialHeatExchangerScreen(IndustrialHeatExchangerMenu guiMenu, Inventory inventory, Component title) {
         super(guiMenu, inventory, title);
     }
 

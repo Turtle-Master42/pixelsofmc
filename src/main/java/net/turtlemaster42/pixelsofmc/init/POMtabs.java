@@ -27,7 +27,6 @@ public class POMtabs {
 
 	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
 			"elements_tab",
-			// TODO what am I supposed to do with the row/col args
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
 					.icon(() -> Element.CALIFORNIUM.atom64().asItem().getDefaultInstance())
 					.title(Component.literal("Elements"))
@@ -38,7 +37,6 @@ public class POMtabs {
 
 	private static final RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = REGISTER.register(
 			"main_tab",
-			// TODO what am I supposed to do with the row/col args
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
 					.icon(() -> POMitems.NETHERITE_PLATING.get().getDefaultInstance())
 					.title(Component.literal("Pixels of Minecraft"))

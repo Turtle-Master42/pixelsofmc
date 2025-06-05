@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.block.tile.IndustrialCoolerTile;
+import net.turtlemaster42.pixelsofmc.block.tile.IndustrialHeatExchangerTile;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
@@ -31,12 +31,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class IndustrialCoolerBlock extends AbstractMultiControllerBlock {
+public class IndustrialHeatExchangerBlock extends AbstractMultiControllerBlock {
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
 
-    public IndustrialCoolerBlock(Properties properties) {
+    public IndustrialHeatExchangerBlock(Properties properties) {
         super(POMtags.Blocks.FUSION_CASINGS, properties);
     }
 
@@ -71,8 +71,8 @@ public class IndustrialCoolerBlock extends AbstractMultiControllerBlock {
                                           @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (!pLevel.isClientSide() && pState.getValue(ACTIVE) != 1) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof IndustrialCoolerTile) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (IndustrialCoolerTile)entity, pPos);
+            if(entity instanceof IndustrialHeatExchangerTile) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (IndustrialHeatExchangerTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -83,20 +83,20 @@ public class IndustrialCoolerBlock extends AbstractMultiControllerBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new IndustrialCoolerTile(pPos, pState);
+        return new IndustrialHeatExchangerTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMtiles.INDUSTRIAL_COOLER.get(),
-                pLevel.isClientSide ? IndustrialCoolerTile::clientTick : IndustrialCoolerTile::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.INDUSTRIAL_HEAT_EXCHANGER.get(),
+                pLevel.isClientSide ? IndustrialHeatExchangerTile::clientTick : IndustrialHeatExchangerTile::serverTick);
     }
 
     // --- Multi Block --- //
     @Override
     public GhostBlockState[][][] getMultiblockStructure() {
-        return MultiBlockStructures.INDUSTRIAL_COOLER;
+        return MultiBlockStructures.INDUSTRIAL_HEAT_EXCHANGER;
     }
     @Override
     public int getHeight() {return 3;}
