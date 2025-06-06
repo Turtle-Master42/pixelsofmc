@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BaseFluidRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
@@ -21,14 +22,13 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class FluidHeatingRecipe implements Recipe<FluidContainer> {
-    private final ResourceLocation id;
+public class FluidHeatingRecipe extends BaseFluidRecipe {
     private final FluidStack fluidInput;
     private final FluidStack fluidOutput;
     private final int requiredEnergy;
 
     public FluidHeatingRecipe(ResourceLocation id, FluidStack fluidInput, FluidStack fluidOutput, int requiredEnergy) {
-        this.id = id;
+        super(id);
         this.fluidInput = fluidInput;
         this.fluidOutput = fluidOutput;
         this.requiredEnergy = requiredEnergy;
@@ -40,28 +40,9 @@ public class FluidHeatingRecipe implements Recipe<FluidContainer> {
         return matchFluidInput(fluidContainer, getFluidInput());
     }
 
-    @Override
-    public @NotNull ItemStack assemble(@NotNull FluidContainer fluidContainer, @NotNull RegistryAccess registryAccess) {return ItemStack.EMPTY;}
-
     public FluidStack getResultFluid() {return this.fluidOutput;}
     public FluidStack getFluidInput() {return this.fluidInput;}
     public int getRequiredEnergy() {return requiredEnergy;}
-
-    @Override
-    public boolean canCraftInDimensions(int i, int i1) {return true;}
-
-    @Override
-    public boolean isSpecial() {return true;}
-
-    @Override
-    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
-    }
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
@@ -78,14 +59,12 @@ public class FluidHeatingRecipe implements Recipe<FluidContainer> {
     }
 
     public static class Type implements RecipeType<FluidHeatingRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "fluid_heating";
     }
 
-    public static class Serializer implements RecipeSerializer<FluidHeatingRecipe> {
+    public static class Serializer implements POMRecipeSerializer<FluidHeatingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("fluid_heating");
 
         public @NotNull FluidHeatingRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
@@ -97,64 +76,23 @@ public class FluidHeatingRecipe implements Recipe<FluidContainer> {
         }
 
         public FluidHeatingRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                FluidStack fluidInput = FluidStack.readFromPacket(buf);
-                FluidStack fluidOutput = FluidStack.readFromPacket(buf);
-                int energy = buf.readInt();
-                return new FluidHeatingRecipe(id, fluidInput, fluidOutput, energy);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading fluid_heating recipe from packet.", ex);
-                throw ex;
-            }
+            FluidStack fluidInput = FluidStack.readFromPacket(buf);
+            FluidStack fluidOutput = FluidStack.readFromPacket(buf);
+            int energy = buf.readInt();
+            return new FluidHeatingRecipe(id, fluidInput, fluidOutput, energy);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull FluidHeatingRecipe recipe) {
-            try {
-                recipe.fluidInput.writeToPacket(buf);
-                recipe.fluidOutput.writeToPacket(buf);
-                buf.writeInt(recipe.requiredEnergy);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading fluid_heating recipe from packet.", ex);
-                throw ex;
-            }
+            recipe.fluidInput.writeToPacket(buf);
+            recipe.fluidOutput.writeToPacket(buf);
+            buf.writeInt(recipe.requiredEnergy);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
-
-    }
-
-    public static boolean matchFluidInput(FluidContainer container, FluidStack fluidStack) {
-        if (container.getContainerSize() != 1) {
-            throw new IllegalArgumentException("Fluid Heating recipe can't have more than 1 tank, there where " + container.getContainerSize() + " proved");
-        }
-        FluidStack fluidTank = container.getFluid(0);
-        if (fluidTank.isEmpty())
-            return false;
-
-        Fluid fluid = fluidStack.getFluid();
-        // Checks if the fluid is present in the tank
-        if (!fluidTank.getFluid().equals(fluid)) {
-            return false;
-        }
-        // Checks if there is enough fluid in the tank
-        return fluidStack.getAmount() <= fluidTank.getAmount();
-        // We win, the fluid is present and there is enough
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }
 

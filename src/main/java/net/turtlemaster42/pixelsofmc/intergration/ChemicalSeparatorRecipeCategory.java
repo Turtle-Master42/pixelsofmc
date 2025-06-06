@@ -46,6 +46,6 @@ public class ChemicalSeparatorRecipeCategory extends BaseCategory<ChemicalSepara
             int y = 27 + (18 * p);
             addOutputSlot(builder, x, y, recipe.getOutputs().get(p));
         }
-        addFluidOutput(builder, 9, 24, recipe.getResultFluid(), 16000, 25, 11);
+        addFluidOutput(builder, 48, 9, recipe.getResultFluid(), 16000, 25, 11);
     }
 }

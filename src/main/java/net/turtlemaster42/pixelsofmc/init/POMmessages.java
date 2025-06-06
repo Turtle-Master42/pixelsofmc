@@ -97,6 +97,12 @@ public class POMmessages {
                 .consumerMainThread(PacketSyncCurrentTankToClient::handle)
                 .add();
 
+        net.messageBuilder(PacketSyncFusionPowerToClient.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PacketSyncFusionPowerToClient::new)
+                .encoder(PacketSyncFusionPowerToClient::toBytes)
+                .consumerMainThread(PacketSyncFusionPowerToClient::handle)
+                .add();
+
 
         // --SERVER--
         net.messageBuilder(PacketSyncSwitchToServer.class, id(), NetworkDirection.PLAY_TO_SERVER)

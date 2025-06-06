@@ -1983,6 +1983,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.STEAM.get(), 1)
                 .input(POMfluids.BLAZING_STEAM.get(), 1)
                 .finish(fConsumer, this);
+        FluidSuperHeatingRecipeBuilder.build(50)
+                .output(POMfluids.BLAZING_STEAM.get(), 1)
+                .input(Fluids.WATER, 1)
+                .finish(fConsumer, this);
 
         FluidHeatingRecipeBuilder.build(24)
                 .input(POMfluids.MERCURY.get(), 1)

@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -9,32 +8,30 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class GrinderRecipe extends BaseRecipe {
-    private final ResourceLocation id;
-    private final Ingredient recipeItem;
+public class GrinderRecipe extends BaseItemRecipe {
+    private final Ingredient input;
     private final List<ChanceIngredient> outputs;
 
-    public GrinderRecipe(ResourceLocation id, Ingredient recipeItem,
-                          List<ChanceIngredient> outputs) {
-        this.id = id;
-        this.recipeItem = recipeItem;
+    public GrinderRecipe(ResourceLocation id, Ingredient input, List<ChanceIngredient> outputs) {
+        super(id);
+        this.input = input;
         this.outputs = outputs;
     }
 
     @Override
     public boolean matches(@NotNull SimpleContainer pContainer, Level pLevel) {
         if (pLevel.isClientSide) return false;
-        return recipeItem.test(pContainer.getItem(0));
+        return input.test(pContainer.getItem(0));
     }
 
     @Override
@@ -53,21 +50,13 @@ public class GrinderRecipe extends BaseRecipe {
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
-    }
 
     public Ingredient getInput() {
-        return recipeItem;
+        return input;
     }
 
     public List<ChanceIngredient> getOutputs() {
         return outputs;
-    }
-
-    public int getOutputCount(int index) {
-        return outputs.get(index).count();
     }
 
     public float getOutputChance(int index) {
@@ -81,78 +70,44 @@ public class GrinderRecipe extends BaseRecipe {
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
-        return Type.INSTANCE;
-    }
+    public @NotNull RecipeType<?> getType() {return Type.INSTANCE;}
 
     public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(POMblocks.GRINDER.get());
     }
 
     public static class Type implements RecipeType<GrinderRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "grinding";
     }
 
-    public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+    public static class Serializer implements POMRecipeSerializer<GrinderRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("grinding");
 
         public @NotNull GrinderRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //outputs
-            JsonArray jsonOutputs = json.getAsJsonArray("outputs");
-            List<ChanceIngredient> outputs = new ArrayList<>(jsonOutputs.size());
-            for (int i = 0; i < jsonOutputs.size(); i++) {
-                outputs.add(i, ChanceIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
-            }
+            List<ChanceIngredient> outputs = JsonRecipeUtils.CHIListFromJson(json, "outputs");
             //input
-            Ingredient input = Ingredient.fromJson(json.get("input"));
-
+            Ingredient input = JsonRecipeUtils.IFromJson(json, "intput");
             return new GrinderRecipe(id, input, outputs);
         }
 
         public GrinderRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                Ingredient input = Ingredient.fromNetwork(buf);
-                List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
-
-                return new GrinderRecipe(id, input, outputs);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading grinding recipe from packet.", ex);
-                throw ex;
-            }
+            Ingredient input = Ingredient.fromNetwork(buf);
+            List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
+            return new GrinderRecipe(id, input, outputs);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull GrinderRecipe recipe) {
-            try {
-                recipe.recipeItem.toNetwork(buf);
-                buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
-
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading grinding recipe from packet.", ex);
-                throw ex;
-            }
+            recipe.input.toNetwork(buf);
+            buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
-
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }
 

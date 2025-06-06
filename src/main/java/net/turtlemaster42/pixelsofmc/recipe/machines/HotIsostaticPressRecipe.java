@@ -4,32 +4,31 @@ import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class HotIsostaticPressRecipe extends BaseRecipe {
-    private final ResourceLocation id;
+public class HotIsostaticPressRecipe extends BaseItemRecipe {
     private final Ingredient output;
-    private final CountedIngredient recipeItem;
+    private final CountedIngredient input;
     private final CountedIngredient mold;
     private final int heat;
     private final int maxHeat;
-    public HotIsostaticPressRecipe(ResourceLocation id, Ingredient output, CountedIngredient recipeItem, CountedIngredient mold, int heat, int maxHeat) {
-        this.id = id;
+    public HotIsostaticPressRecipe(ResourceLocation id, Ingredient output, CountedIngredient input, CountedIngredient mold, int heat, int maxHeat) {
+        super(id);
         this.output = output;
-        this.recipeItem = recipeItem;
+        this.input = input;
         this.mold = mold;
         this.heat = heat;
         this.maxHeat = maxHeat;
@@ -38,7 +37,7 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level pLevel) {
         if (pLevel.isClientSide) return false;
-        return recipeItem.test(container.getItem(2))&& mold.test(container.getItem(0));
+        return input.test(container.getItem(2))&& mold.test(container.getItem(0));
     }
 
 
@@ -58,23 +57,15 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     public int getMaxHeat() {return maxHeat;}
 
     public ItemStack getInput() {
-        return recipeItem.getItems()[0];
+        return input.getItems()[0];
     }
     public ItemStack getBaseOutput() {return output.getItems()[0];}
     public ItemStack getMold() {
         return mold.getItems()[0];
     }
 
-    public Ingredient getInputAsI() {
-        return Ingredient.of(recipeItem.asItem());
-    }
     public Ingredient getMoldAsI() {
         return mold.ingredient();
-    }
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
     }
 
     @Override
@@ -92,77 +83,49 @@ public class HotIsostaticPressRecipe extends BaseRecipe {
     }
 
     public static class Type implements RecipeType<HotIsostaticPressRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "pressing";
     }
 
-    public static class Serializer implements RecipeSerializer<HotIsostaticPressRecipe> {
+    public static class Serializer implements POMRecipeSerializer<HotIsostaticPressRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("pressing");
 
         public @NotNull HotIsostaticPressRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
-            CountedIngredient out = CountedIngredient.fromJson(json.getAsJsonObject("output"));
+            CountedIngredient out = JsonRecipeUtils.CIFromJson(json, "output");
             Ingredient output = out.ingredient();
             //input
-            CountedIngredient input = CountedIngredient.fromJson(json.getAsJsonObject("input"));
-            CountedIngredient mold = CountedIngredient.fromJson(json.getAsJsonObject("mold"));
+            CountedIngredient input = JsonRecipeUtils.CIFromJson(json, "input");
+            CountedIngredient mold = JsonRecipeUtils.CIFromJson(json, "mold");
             //heat
-            int heat = GsonHelper.getAsInt(json, "heat");
-            int maxHeat = GsonHelper.getAsInt(json, "max_heat");
+            int heat = JsonRecipeUtils.intFromJson(json, "heat");
+            int maxHeat = JsonRecipeUtils.intFromJson(json, "max_heat");
 
             return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
         }
 
         public HotIsostaticPressRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
-                CountedIngredient mold = buf.readList(CountedIngredient::fromNetwork).get(0);
-                Ingredient output = buf.readList(Ingredient::fromNetwork).get(0);
-                int heat = buf.readInt();
-                int maxHeat = buf.readInt();
+            CountedIngredient input = CountedIngredient.fromNetwork(buf);
+            CountedIngredient mold = CountedIngredient.fromNetwork(buf);
+            Ingredient output = Ingredient.fromNetwork(buf);
+            int heat = buf.readInt();
+            int maxHeat = buf.readInt();
 
-                return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading pressing recipe from packet.", ex);
-                throw ex;
-            }
+            return new HotIsostaticPressRecipe(id, output, input, mold, heat, maxHeat);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull HotIsostaticPressRecipe recipe) {
-            try {
-                buf.writeInt(recipe.getIngredients().size());
-                for (Ingredient ing : recipe.getIngredients()) {
-                    ing.toNetwork(buf);
-                }
-                buf.writeItem(recipe.output.getItems()[0]);
-                buf.writeInt(recipe.getOutputCount());
-                buf.writeInt(recipe.heat);
-                buf.writeInt(recipe.maxHeat);
-
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading pressing recipe from packet.", ex);
-                throw ex;
-            }
+            recipe.input.toNetwork(buf);
+            recipe.mold.toNetwork(buf);
+            recipe.output.toNetwork(buf);
+            buf.writeInt(recipe.heat);
+            buf.writeInt(recipe.maxHeat);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }

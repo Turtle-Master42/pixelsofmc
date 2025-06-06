@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -33,15 +34,21 @@ import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToClient;
+import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidSuperHeatingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.Optional;
 
 public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, IEnergyHandlingTile, IButtonTile {
 
@@ -277,11 +284,24 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
         //cooling
         if (getSwitch(0)) {
-            int maxDrain = internalHeat / Constants.FE_waterToSteam;
-            FluidStack drained = fluidTank.drain(maxDrain, IFluidHandler.FluidAction.EXECUTE);
-            duoFluidTank.fill(new FluidStack(POMfluids.STEAM.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
-            internalHeat -= drained.getAmount() * Constants.FE_waterToSteam;
-            setChanged(pLevel, pPos, pState);
+            FluidContainer fluidInventory = new FluidContainer(1);
+            fluidInventory.setFluid(0, fluidTank.getFluid());
+            Optional<FluidHeatingRecipe> heat_match = level.getRecipeManager().getRecipeFor(FluidHeatingRecipe.Type.INSTANCE, fluidInventory, level);
+            if (heat_match.isPresent()
+                    && canExtractInputFluid(heat_match.get().getFluidInput(), fluidTank)
+                    && canInsertOutputFluid(heat_match.get().getResultFluid(), duoFluidTank)
+                    && internalHeat >= heat_match.get().getRequiredEnergy()){
+
+                int heatEnergy = heat_match.get().getRequiredEnergy();
+                int heatAbsorb = Math.min(fluidTank.getFluid().getAmount(), duoFluidTank.getSpace()) * heatEnergy;
+                int amount = Mth.floor(Math.min(heatAbsorb, internalHeat) / (float)heatEnergy);
+                int total = Math.min(amount, 20_000);
+
+                removeFluidInput(new FluidStack(heat_match.get().getFluidInput().getFluid(), total), fluidTank);
+                addFluidOutput(new FluidStack(heat_match.get().getResultFluid().getFluid(), total), duoFluidTank);
+
+                internalHeat -= (total * heatEnergy);
+            }
         }
 
         //active

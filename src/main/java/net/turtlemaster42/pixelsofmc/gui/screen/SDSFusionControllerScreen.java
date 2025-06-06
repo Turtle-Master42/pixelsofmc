@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.gui.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
@@ -87,7 +88,11 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
 
     private void renderFusionPowerArea(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if(isMouseAboveArea(mouseX, mouseY, x, y, 80, 6, 36, 6)) {
-            guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, List.of(Component.translatable("tooltip.pixelsofmc.gui.info.fusion_power", "§6"+Util.formatNumber(menu.blockEntity.getFusionPower()), "§6"+Util.formatNumber(menu.blockEntity.getMaxFusionPower()))), mouseX - x, mouseY - y);
+            if (Screen.hasShiftDown()) {
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, List.of(Component.translatable("tooltip.pixelsofmc.gui.info.fusion_power", "§6" + Util.formatNumber(menu.blockEntity.getFusionPower()), "§6" + Util.formatNumber(menu.blockEntity.getMaxFusionPower()))), mouseX - x, mouseY - y);
+            } else {
+                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, List.of(Component.translatable("tooltip.pixelsofmc.gui.info.fusion_power", "§6" + Util.combinedCompactMetricNumber(menu.blockEntity.getFusionPower()), "§6" + Util.combinedCompactMetricNumber(menu.blockEntity.getMaxFusionPower()))), mouseX - x, mouseY - y);
+            }
         }
     }
 

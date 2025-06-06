@@ -43,7 +43,7 @@ public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
             addInputSlot(builder, 7, 7 + (22 * p), recipe.getInput(p));
         }
         //grinding ball input
-        addInputSlot(builder, 56, 29, recipe.getBall().get(0));
+        addInputSlot(builder, 56, 29, recipe.getBall());
         //output
         if (recipe.getOutputChance() > 1f) {
             addOutputSlot(builder, 105, 29, recipe.getOutput());

@@ -1,6 +1,5 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -11,29 +10,26 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
-import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ChemicalSeparatorRecipe extends BaseRecipe {
-    private final ResourceLocation id;
-    private final CountedIngredient recipeItem;
+public class ChemicalSeparatorRecipe extends BaseItemRecipe {
+    private final CountedIngredient input;
     private final List<ChanceIngredient> outputs;
     private final FluidStack fluidInput;
     private final FluidStack fluidOutput;
 
-    public ChemicalSeparatorRecipe(ResourceLocation id, CountedIngredient recipeItem, FluidStack fluidInput,
-                                   List<ChanceIngredient> outputs, FluidStack fluidOutput) {
-        this.id = id;
-        this.recipeItem = recipeItem;
+    public ChemicalSeparatorRecipe(ResourceLocation id, CountedIngredient input, FluidStack fluidInput, List<ChanceIngredient> outputs, FluidStack fluidOutput) {
+        super(id);
+        this.input = input;
         this.outputs = outputs;
         this.fluidInput = fluidInput;
         this.fluidOutput = fluidOutput;
@@ -42,7 +38,7 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
     @Override
     public boolean matches(@NotNull SimpleContainer pContainer, Level pLevel) {
         if (pLevel.isClientSide) return false;
-        return recipeItem.test(pContainer.getItem(0));
+        return input.test(pContainer.getItem(0));
     }
 
     @Override
@@ -61,28 +57,15 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
         return outputs.get(index).getItems()[0];
     }
 
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
-    }
-
     public CountedIngredient getInput() {
-        return recipeItem;
+        return input;
     }
     public int getInputCount() {
-        return recipeItem.count();
+        return input.count();
     }
 
     public List<ChanceIngredient> getOutputs() {
         return outputs;
-    }
-
-    public int getOutputsCount(int index) {
-        return outputs.get(index).count();
-    }
-
-    public float OutputChance(int index) {
-        return outputs.get(index).chance();
     }
 
     public FluidStack getFluidInput() {return this.fluidInput;}
@@ -103,76 +86,44 @@ public class ChemicalSeparatorRecipe extends BaseRecipe {
     }
 
     public static class Type implements RecipeType<ChemicalSeparatorRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "chemical_separating";
     }
 
-    public static class Serializer implements RecipeSerializer<ChemicalSeparatorRecipe> {
+    public static class Serializer implements POMRecipeSerializer<ChemicalSeparatorRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("chemical_separating");
 
         public @NotNull ChemicalSeparatorRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //outputs
-            JsonArray jsonOutputs = json.getAsJsonArray("outputs");
-            FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
-            List<ChanceIngredient> outputs = new ArrayList<>(jsonOutputs.size());
-            for (int i = 0; i < jsonOutputs.size(); i++) {
-                outputs.add(i, ChanceIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
-            }
+            FluidStack fluidOutput = JsonRecipeUtils.FFromJson(json, "fluid_output");
+            List<ChanceIngredient> outputs = JsonRecipeUtils.CHIListFromJson(json, "outputs");
             //input
-            JsonObject jsonObject = json.getAsJsonObject("input");
-            CountedIngredient input = CountedIngredient.fromJson(jsonObject.getAsJsonObject());
-            FluidStack fluidInput = FluidJSONUtil.readFluid(json.get("fluid_input").getAsJsonObject());
-
+            CountedIngredient input = JsonRecipeUtils.CIFromJson(json, "input");
+            FluidStack fluidInput = JsonRecipeUtils.FFromJson(json, "fluid_input");
             return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
         }
 
         public ChemicalSeparatorRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                CountedIngredient input = CountedIngredient.fromNetwork(buf);
-                List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
-                FluidStack fluidInput = buf.readFluidStack();
-                FluidStack fluidOutput = buf.readFluidStack();
+            CountedIngredient input = CountedIngredient.fromNetwork(buf);
+            List<ChanceIngredient> outputs = buf.readList(ChanceIngredient::fromNetwork);
+            FluidStack fluidInput = buf.readFluidStack();
+            FluidStack fluidOutput = buf.readFluidStack();
 
-                return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
-                throw ex;
-            }
+            return new ChemicalSeparatorRecipe(id, input, fluidInput, outputs, fluidOutput);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull ChemicalSeparatorRecipe recipe) {
-            try {
-                recipe.recipeItem.toNetwork(buf);
-                buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
-                buf.writeFluidStack(recipe.fluidInput);
-                buf.writeFluidStack(recipe.fluidOutput);
-
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
-                throw ex;
-            }
+            recipe.input.toNetwork(buf);
+            buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
+            buf.writeFluidStack(recipe.fluidInput);
+            buf.writeFluidStack(recipe.fluidOutput);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
-
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }
 

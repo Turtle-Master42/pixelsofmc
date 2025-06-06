@@ -5,19 +5,18 @@ import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -27,20 +26,18 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class PixelAssemblerRecipe extends BaseRecipe {
-    private final ResourceLocation id;
+public class PixelAssemblerRecipe extends BaseItemRecipe {
     private final CountedIngredient output;
     private final String structure;
-    private final List<CountedIngredient> recipeItems;
+    private final List<CountedIngredient> inputs;
     private final int[] R;
     private final int[] G;
     private final int[] B;
 
-    public PixelAssemblerRecipe(ResourceLocation id, CountedIngredient output, int[] R, int[] G, int[] B,
-                                List<CountedIngredient> recipeItems, String structure) {
-        this.id = id;
+    public PixelAssemblerRecipe(ResourceLocation id, CountedIngredient output, int[] R, int[] G, int[] B, List<CountedIngredient> inputs, String structure) {
+        super(id);
         this.output = output;
-        this.recipeItems = recipeItems;
+        this.inputs = inputs;
         this.structure = structure;
         this.R = R;
         this.G = G;
@@ -85,12 +82,12 @@ public class PixelAssemblerRecipe extends BaseRecipe {
         }
 
         // if slotItems and recipeItems are not equal there are ingredients missing or to many
-        if (slotItems.size() != recipeItems.size()) {
+        if (slotItems.size() != inputs.size()) {
             return false;
         }
 
         // Iterates over the needed items
-        for (CountedIngredient recipeItem : recipeItems) {
+        for (CountedIngredient recipeItem : inputs) {
             Item item = recipeItem.asItem();
             // Checks if the item is present in the slots
             if (!slotItems.contains(item)) {
@@ -126,7 +123,7 @@ public class PixelAssemblerRecipe extends BaseRecipe {
 
     public String getStructure() {return structure;}
 
-    public List<CountedIngredient> getInputs() {return recipeItems;}
+    public List<CountedIngredient> getInputs() {return inputs;}
     public ItemStack getBaseOutput() {
         return output.asItemStack();
     }
@@ -140,11 +137,6 @@ public class PixelAssemblerRecipe extends BaseRecipe {
         else if (Objects.equals(rgb, "G")) return G[index];
         else if (Objects.equals(rgb, "B")) return B[index];
         return 0;
-    }
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
     }
 
     @Override
@@ -167,21 +159,16 @@ public class PixelAssemblerRecipe extends BaseRecipe {
         public static final String ID = "pixel_assembling";
     }
 
-    public static class Serializer implements RecipeSerializer<PixelAssemblerRecipe> {
+    public static class Serializer implements POMRecipeSerializer<PixelAssemblerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("pixel_assembling");
 
         public @NotNull PixelAssemblerRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
-            //outputs
-            JsonArray jsonInputs = json.getAsJsonArray("inputs");
-            List<CountedIngredient> inputs = new ArrayList<>(jsonInputs.size());
-            for (int i = 0; i < jsonInputs.size(); i++) {
-                inputs.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
-            }
+            //inputs
+            List<CountedIngredient> inputs = JsonRecipeUtils.CIListFromJson(json, "inputs");
             //structure
-            String structure = GsonHelper.getAsString(json, "structure");
-            //input
-            CountedIngredient output = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"output"));
+            String structure = JsonRecipeUtils.stringFromJson(json, "structure");
+            //output
+            CountedIngredient output = JsonRecipeUtils.CIFromJson(json, "output");
             //colors
             JsonArray Colors = json.getAsJsonArray("colors");
             int[] r = new int[5];
@@ -192,75 +179,48 @@ public class PixelAssemblerRecipe extends BaseRecipe {
                 g[i] = Colors.get(i).getAsJsonObject().get("G").getAsInt();
                 b[i] = Colors.get(i).getAsJsonObject().get("B").getAsInt();
             }
-
             return new PixelAssemblerRecipe(id, output, r, g, b, inputs, structure);
         }
 
         public PixelAssemblerRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                //input
-                CountedIngredient output = buf.readList(CountedIngredient::fromNetwork).get(0);
-                //output
-                List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
-                //colors
-                int[] r = new int[5];
-                int[] g = new int[5];
-                int[] b = new int[5];
-                for (int i = 0; i < 3; i++) {
-                    r[i] = buf.readInt();
-                    g[i] = buf.readInt();
-                    b[i] = buf.readInt();
-                }
-                //structure
-                String structure = buf.readUtf();
-
-                return new PixelAssemblerRecipe(id, output, r, g, b, inputs, structure);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
-                throw ex;
+            //output
+            CountedIngredient output = CountedIngredient.fromNetwork(buf);
+            //input
+            List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
+            //colors
+            int[] r = new int[5];
+            int[] g = new int[5];
+            int[] b = new int[5];
+            for (int i = 0; i < 3; i++) {
+                r[i] = buf.readInt();
+                g[i] = buf.readInt();
+                b[i] = buf.readInt();
             }
+            //structure
+            String structure = buf.readUtf();
+
+            return new PixelAssemblerRecipe(id, output, r, g, b, inputs, structure);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull PixelAssemblerRecipe recipe) {
-            try {
-                //input
-                buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
-                buf.writeInt(recipe.getIngredients().size());
-                for (Ingredient ing : recipe.getIngredients()) {
-                    ing.toNetwork(buf);
-                }
-                //output
-                recipe.output.toNetwork(buf);
-                //colors
-                for (int i=0; i < recipe.R.length; i++) {
-                    buf.writeInt(recipe.getRGB("R", i));
-                    buf.writeInt(recipe.getRGB("G", i));
-                    buf.writeInt(recipe.getRGB("B", i));
-                }
-                //structure
-                buf.writeUtf(recipe.structure);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading alloy smelting recipe from packet.", ex);
-                throw ex;
+            //output
+            recipe.output.toNetwork(buf);
+            //input
+            buf.writeCollection(recipe.inputs, (buffer, ing) -> ing.toNetwork(buffer));
+            //colors
+            for (int i=0; i < recipe.R.length; i++) {
+                buf.writeInt(recipe.getRGB("R", i));
+                buf.writeInt(recipe.getRGB("G", i));
+                buf.writeInt(recipe.getRGB("B", i));
             }
+            //structure
+            buf.writeUtf(recipe.structure);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }

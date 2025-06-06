@@ -1,10 +1,8 @@
 {
   "type": "pixelsofmc:ball_milling",
-  "ball": [
-    {
-      "tag": "pixelsofmc:ball_2"
-    }
-  ],
+  "ball": {
+    "tag": "pixelsofmc:ball_2"
+  },
   "inputs": [
     {
       "count": 2,

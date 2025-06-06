@@ -175,54 +175,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-        if(cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == Direction.UP) {
-                return lazyFluidHandler.cast();
-            } else if (side == Direction.DOWN) {
-                return lazyQuadFluidHandler.cast();
-            }
-
-            Direction localDir = this.getBlockState().getValue(IndustrialHeatExchangerBlock.FACING);
-
-            return switch (localDir) {
-                case EAST -> {
-                    if (side == Direction.EAST) {
-                        yield lazyDuoFluidHandler.cast();
-                    } else if (side == Direction.WEST) {
-                        yield lazyTriFluidHandler.cast();
-                    } else {
-                        yield lazyFluidHandler.cast();
-                    }
-                }
-                case SOUTH -> {
-                    if (side == Direction.SOUTH) {
-                        yield lazyDuoFluidHandler.cast();
-                    } else if (side == Direction.NORTH) {
-                        yield lazyTriFluidHandler.cast();
-                    } else {
-                        yield lazyFluidHandler.cast();
-                    }
-                }
-                case WEST -> {
-                    if (side == Direction.WEST) {
-                        yield lazyDuoFluidHandler.cast();
-                    } else if (side == Direction.EAST) {
-                        yield lazyTriFluidHandler.cast();
-                    } else {
-                        yield lazyFluidHandler.cast();
-                    }
-                }
-                default -> {
-                    if (side == Direction.NORTH) {
-                        yield lazyDuoFluidHandler.cast();
-                    } else if (side == Direction.SOUTH) {
-                        yield lazyTriFluidHandler.cast();
-                    } else {
-                        yield lazyFluidHandler.cast();
-                    }
-                }
-            };
-        }
         return super.getCapability(cap, side);
     }
 
@@ -305,32 +257,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
                 && canInsertOutputFluid(coolant_match.get().getResultFluid(), entity.triFluidTank)
                 && canExtractInputFluid(heat_match.get().getFluidInput(), entity.fluidTank)
                 && canInsertOutputFluid(heat_match.get().getResultFluid(), entity.quadFluidTank);
-    }
-
-    private static boolean canInsertOutputFluid(FluidStack resultFluid, FluidTank tank) {
-        return resultFluid.equals(tank.getFluid()) && resultFluid.getAmount() <= (tank.getSpace()/10) || tank.isEmpty() || resultFluid.isEmpty();
-    }
-
-    private static boolean canExtractInputFluid(FluidStack fluidInput, FluidTank tank) {
-        return fluidInput.equals(tank.getFluid()) && fluidInput.getAmount() <= (tank.getFluidAmount()/10) || fluidInput.isEmpty();
-    }
-
-    private void addFluidOutput(FluidStack fluidOutput, FluidTank tank) {
-        if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
-            return;
-        }
-        if (fluidOutput.equals(tank.getFluid()) || tank.isEmpty()) {
-            tank.fill(fluidOutput, IFluidHandler.FluidAction.EXECUTE);
-        }
-    }
-
-    private void removeFluidInput(FluidStack fluidInput, FluidTank tank) {
-        if (fluidInput.isEmpty() || fluidInput.getAmount() <= 0) {
-            return;
-        }
-        if (fluidInput.equals(tank.getFluid())) {
-            tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
-        }
     }
 
     private static void craft(IndustrialHeatExchangerTile entity) {

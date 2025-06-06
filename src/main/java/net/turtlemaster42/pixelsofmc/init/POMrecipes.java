@@ -6,10 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.recipe.FluidCoolingRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.*;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 
 public class POMrecipes {
@@ -36,6 +33,8 @@ public class POMrecipes {
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
 
 	//general
+	public static final RegistryObject<RecipeSerializer<FluidSuperHeatingRecipe>> FLUID_SUPER_HEATING_SERIALIZER =
+			SERIALIZERS.register("fluid_super_heating", () -> FluidSuperHeatingRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FluidHeatingRecipe>> FLUID_HEATING_SERIALIZER =
 			SERIALIZERS.register("fluid_heating", () -> FluidHeatingRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FluidCoolingRecipe>> FLUID_COOLING_SERIALIZER =

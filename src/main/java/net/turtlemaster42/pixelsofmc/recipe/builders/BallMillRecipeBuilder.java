@@ -106,10 +106,7 @@ public class BallMillRecipeBuilder extends POMRecipeBuilder {
                 inputArray.add(ingredient.toJson());
             }
             pJson.add("inputs", inputArray);
-
-            JsonArray ballArray = new JsonArray();
-            ballArray.add(ball.toJson());
-            pJson.add("ball", ballArray);
+            pJson.add("ball", ball.toJson());
             pJson.add("output", result.toJson());
         }
     }

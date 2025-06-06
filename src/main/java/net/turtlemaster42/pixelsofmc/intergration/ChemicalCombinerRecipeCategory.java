@@ -20,7 +20,7 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
     public final static ResourceLocation TEXTURE = Util.resourceLocation( "textures/gui/jei/chemical_combiner.png");
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 106, 69);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 119, 69);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_COMBINER.get()));
     }
 
@@ -42,10 +42,10 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
             int y = 7 + (20 * p);
             addInputSlot(builder, x, y, recipe.getInput(p));
         }
-        addFluidInput(builder, 72, 9, recipe.getFluidInput(), 16000, 25, 11);
+        addFluidInput(builder, 47, 8, recipe.getFluidInput(), 16000, 25, 11);
 
         //output
         addOutputSlot(builder, 83, 46, recipe.getOutput());
-        addFluidOutput(builder, 72, 24, recipe.getResultFluid(), 16000, 25, 11);
+        addFluidOutput(builder, 86, 8, recipe.getResultFluid(), 16000, 25, 11);
     }
 }

@@ -1,40 +1,35 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
-import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ChemicalCombinerRecipe extends BaseRecipe {
-    private final ResourceLocation id;
-    private final List<CountedIngredient> recipeItems;
+public class ChemicalCombinerRecipe extends BaseItemRecipe {
+    private final List<CountedIngredient> inputs;
     private final ChanceIngredient output;
     private final FluidStack fluidInput;
     private final FluidStack fluidOutput;
 
-    public ChemicalCombinerRecipe(ResourceLocation id, List<CountedIngredient> recipeItems, FluidStack fluidInput,
-                                  ChanceIngredient output, FluidStack fluidOutput) {
-        this.id = id;
-        this.recipeItems = recipeItems;
+    public ChemicalCombinerRecipe(ResourceLocation id, List<CountedIngredient> inputs, FluidStack fluidInput, ChanceIngredient output, FluidStack fluidOutput) {
+        super(id);
+        this.inputs = inputs;
         this.output = output;
         this.fluidInput = fluidInput;
         this.fluidOutput = fluidOutput;
@@ -43,7 +38,7 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
-        return matchMultiInput(container, recipeItems, 0, 2);
+        return matchMultiInput(container, inputs, 0, 2);
     }
 
     @Override
@@ -58,17 +53,12 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
 
     public FluidStack getResultFluid() {return this.fluidOutput;}
 
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
-    }
-
     public List<CountedIngredient> getInputs() {
-        return recipeItems;
+        return inputs;
     }
 
     public ItemStack getInput(int input) {
-        return recipeItems.get(input).getItems()[0];
+        return inputs.get(input).getItems()[0];
     }
 
     public ChanceIngredient getOutput() {
@@ -76,14 +66,6 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     }
     public ItemStack getBaseOutput() {
         return output.asItemStack();
-    }
-
-    public int getOutputCount() {
-        return output.count();
-    }
-
-    public float OutputChance(int index) {
-        return output.chance();
     }
 
     public FluidStack getFluidInput() {return this.fluidInput;}
@@ -104,86 +86,44 @@ public class ChemicalCombinerRecipe extends BaseRecipe {
     }
 
     public static class Type implements RecipeType<ChemicalCombinerRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "chemical_combining";
     }
 
-    public static class Serializer implements RecipeSerializer<ChemicalCombinerRecipe> {
+    public static class Serializer implements POMRecipeSerializer<ChemicalCombinerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("chemical_combining");
 
         public @NotNull ChemicalCombinerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
-            FluidStack fluidOutput = FluidJSONUtil.readFluid(json.get("fluid_output").getAsJsonObject());
-
-            ChanceIngredient output = ChanceIngredient.fromJson(json.getAsJsonObject("output"));
-
+            FluidStack fluidOutput = JsonRecipeUtils.FFromJson(json, "fluid_output");
+            ChanceIngredient output = JsonRecipeUtils.CHIFromJson(json, "output");
             //inputs
-            FluidStack fluidInput = FluidJSONUtil.readFluid(json.get("fluid_input").getAsJsonObject());
-
-            JsonArray jsonInputs = json.getAsJsonArray("inputs");
-            List<CountedIngredient> inputs = new ArrayList<>(jsonInputs.size());
-            for (int i = 0; i < jsonInputs.size(); i++) {
-                inputs.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
-            }
-
+            FluidStack fluidInput = JsonRecipeUtils.FFromJson(json, "fluid_input");
+            List<CountedIngredient> inputs = JsonRecipeUtils.CIListFromJson(json, "inputs");
             return new ChemicalCombinerRecipe(id, inputs, fluidInput, output, fluidOutput);
         }
 
         public ChemicalCombinerRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
+            List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
+            ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
+            FluidStack fluidInput = buf.readFluidStack();
+            FluidStack fluidOutput = buf.readFluidStack();
 
-                ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
-
-                FluidStack fluidInput = buf.readFluidStack();
-                FluidStack fluidOutput = buf.readFluidStack();
-
-                return new ChemicalCombinerRecipe(id, inputs, fluidInput, output, fluidOutput);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
-                throw ex;
-            }
+            return new ChemicalCombinerRecipe(id, inputs, fluidInput, output, fluidOutput);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull ChemicalCombinerRecipe recipe) {
-            try {
-                buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
-                buf.writeInt(recipe.getIngredients().size());
-                for (Ingredient ing : recipe.getIngredients()) {
-                    ing.toNetwork(buf);
-                }
-
-                recipe.output.toNetwork(buf);
-
-                buf.writeFluidStack(recipe.fluidInput);
-                buf.writeFluidStack(recipe.fluidOutput);
-
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading chemical_separating recipe from packet.", ex);
-                throw ex;
-            }
+            buf.writeCollection(recipe.inputs, (buffer, ing) -> ing.toNetwork(buffer));
+            recipe.output.toNetwork(buf);
+            buf.writeFluidStack(recipe.fluidInput);
+            buf.writeFluidStack(recipe.fluidOutput);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
-
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }
 

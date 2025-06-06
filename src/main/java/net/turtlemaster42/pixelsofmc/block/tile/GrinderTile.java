@@ -223,7 +223,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         if(match.isPresent() && !level.isClientSide) {
             List<ChanceIngredient> outputs = match.get().getOutputs();
 
-            entity.removeInput(2, 1);
+            entity.removeInput(0, 1);
             entity.addMultiChanceOutput(outputs, 1, 4);
 
             setChanged(level, entity.worldPosition, entity.getBlockState());

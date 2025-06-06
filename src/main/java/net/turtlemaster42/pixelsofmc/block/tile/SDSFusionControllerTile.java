@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -29,10 +30,9 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.network.*;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncInfiniteEnergyToClient;
+import net.turtlemaster42.pixelsofmc.network.packets.*;
+import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
+import net.turtlemaster42.pixelsofmc.recipe.FluidSuperHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
@@ -41,6 +41,7 @@ import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IInfiniteEnergyHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -310,9 +311,43 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             }
         }
         if (getSwitch(1)) {
-            FluidStack drained = fluidTank.drain(1000 * heatSinkAmount, IFluidHandler.FluidAction.EXECUTE);
-            duoFluidTank.fill(new FluidStack(POMfluids.STEAM.get(), drained.getAmount()), IFluidHandler.FluidAction.EXECUTE);
-            addFusionPower(Math.round(drained.getAmount() * -Constants.fusionPowerPerMbSteam)); // 2500 FusionPower per water bucket to Steam bucket
+
+
+
+            FluidContainer fluidInventory = new FluidContainer(1);
+            fluidInventory.setFluid(0, fluidTank.getFluid());
+            Optional<FluidHeatingRecipe> heat_match = level.getRecipeManager().getRecipeFor(FluidHeatingRecipe.Type.INSTANCE, fluidInventory, level);
+            fluidInventory.setFluid(0, fluidTank.getFluid());
+            Optional<FluidSuperHeatingRecipe> super_heat_match = level.getRecipeManager().getRecipeFor(FluidSuperHeatingRecipe.Type.INSTANCE, fluidInventory, level);
+
+            if (super_heat_match.isPresent()
+                    && canExtractInputFluid(super_heat_match.get().getFluidInput(), fluidTank)
+                    && canInsertOutputFluid(super_heat_match.get().getResultFluid(), duoFluidTank)
+                    && fusionPower >= super_heat_match.get().getRequiredEnergy()) {
+
+                int heatEnergy = super_heat_match.get().getRequiredEnergy();
+                int heatAbsorb = Math.min(fluidTank.getFluid().getAmount(), duoFluidTank.getSpace()) * heatEnergy;
+                int amount = Mth.floor(Math.min(heatAbsorb, fusionPower) / (float)heatEnergy);
+                int total = Math.min(amount, 20_000);
+
+                removeFluidInput(new FluidStack(super_heat_match.get().getFluidInput().getFluid(), total), fluidTank);
+                addFluidOutput(new FluidStack(super_heat_match.get().getResultFluid().getFluid(), total), duoFluidTank);
+                addFusionPower((long) -(total * heatEnergy * Constants.plasmaTemperatureToNormal));
+            }
+            else if (heat_match.isPresent()
+                    && canExtractInputFluid(heat_match.get().getFluidInput(), fluidTank)
+                    && canInsertOutputFluid(heat_match.get().getResultFluid(), duoFluidTank)
+                    && fusionPower >= heat_match.get().getRequiredEnergy()){
+
+                int heatEnergy = heat_match.get().getRequiredEnergy();
+                int heatAbsorb = Math.min(fluidTank.getFluid().getAmount(), duoFluidTank.getSpace()) * heatEnergy;
+                int amount = Mth.floor(Math.min(heatAbsorb, fusionPower) / (float)heatEnergy);
+                int total = Math.min(amount, 20_000);
+
+                removeFluidInput(new FluidStack(heat_match.get().getFluidInput().getFluid(), total), fluidTank);
+                addFluidOutput(new FluidStack(heat_match.get().getResultFluid().getFluid(), total), duoFluidTank);
+                addFusionPower((long) -(total * heatEnergy * Constants.plasmaTemperatureToNormal));
+            }
         }
 
 
@@ -384,7 +419,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
                 PixelsOfMc.LOGGER.info("Energy FE: {}", released_energy * Constants.J_FE_Constant);
                 PixelsOfMc.LOGGER.info("Temperature K: {}", (long) temperature);
 
-                tile.fusionPower += (long) temperature;
+                tile.addFusionPower((long)temperature);
 
                 tile.removeInput(0);
                 tile.removeInput(1);
@@ -507,6 +542,8 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         } else {
             this.fusionPower = Math.max(0, Math.min(maxFusionPower, this.fusionPower + fusionPower));
         }
+        if (!level.isClientSide)
+            POMmessages.sendToClients(new PacketSyncFusionPowerToClient(this.fusionPower, this.worldPosition));
         setChanged();
     }
 

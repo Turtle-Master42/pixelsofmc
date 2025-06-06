@@ -12,44 +12,41 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class PixelSplitterRecipe extends BaseRecipe {
-    private final ResourceLocation id;
+public class PixelSplitterRecipe extends BaseItemRecipe {
     private final List<CountedIngredient> outputs;
     private final String structure;
     private final int[] R;
     private final int[] G;
     private final int[] B;
-    private final CountedIngredient recipeItem;
+    private final CountedIngredient input;
 
-    public PixelSplitterRecipe(ResourceLocation id, List<CountedIngredient> output, int[] R, int[] G, int[] B,
-                               CountedIngredient recipeItem, String structure) {
-        this.id = id;
+    public PixelSplitterRecipe(ResourceLocation id, List<CountedIngredient> output, int[] R, int[] G, int[] B, CountedIngredient input, String structure) {
+        super(id);
         this.outputs = output;
         this.R = R;
         this.G = G;
         this.B = B;
-        this.recipeItem = recipeItem;
+        this.input = input;
         this.structure = structure;
     }
 
     @Override
     public boolean matches(@NotNull SimpleContainer pContainer, Level pLevel) {
         if (pLevel.isClientSide) return false;
-        return recipeItem.test(pContainer.getItem(0));
+        return input.test(pContainer.getItem(0));
     }
-
-
 
     @Override
     public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, @NotNull RegistryAccess registryAccess) {
@@ -81,13 +78,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
     public List<CountedIngredient> getOutputs() {
         return outputs;
     }
-    public CountedIngredient getInput() {return recipeItem;}
-
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
-    }
+    public CountedIngredient getInput() {return input;}
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
@@ -109,17 +100,16 @@ public class PixelSplitterRecipe extends BaseRecipe {
         public static final String ID = "pixel_splitting";
     }
 
-    public static class Serializer implements RecipeSerializer<PixelSplitterRecipe> {
+    public static class Serializer implements POMRecipeSerializer<PixelSplitterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("pixel_splitting");
 
         public @NotNull PixelSplitterRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
+            //input
+            CountedIngredient input = JsonRecipeUtils.CIFromJson(json, "input");
+            //structure
+            String structure = GsonHelper.getAsString(json, "structure");
             //outputs
-            JsonArray jsonOutputs = json.getAsJsonArray("outputs");
-            List<CountedIngredient> outputs = new ArrayList<>(jsonOutputs.size());
-            for (int i = 0; i < jsonOutputs.size(); i++) {
-                outputs.add(i, CountedIngredient.fromJson(jsonOutputs.get(i).getAsJsonObject()));
-            }
+            List<CountedIngredient> outputs = JsonRecipeUtils.CIListFromJson(json, "outputs");
             //colors
             JsonArray Colors = json.getAsJsonArray("colors");
             int[] r = new int[5];
@@ -130,17 +120,13 @@ public class PixelSplitterRecipe extends BaseRecipe {
                 g[i] = Colors.get(i).getAsJsonObject().get("G").getAsInt();
                 b[i] = Colors.get(i).getAsJsonObject().get("B").getAsInt();
             }
-            //structure
-            String structure = GsonHelper.getAsString(json, "structure");
-            //input
-            CountedIngredient input = CountedIngredient.fromJson(GsonHelper.getAsJsonObject(json,"input"));
 
             return new PixelSplitterRecipe(id, outputs, r, g, b, input, structure);
         }
 
-        public PixelSplitterRecipe fromNetwork(@NotNull ResourceLocation id, FriendlyByteBuf buf) {
+        public PixelSplitterRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             //input
-            CountedIngredient input = buf.readList(CountedIngredient::fromNetwork).get(0);
+            CountedIngredient input = CountedIngredient.fromNetwork(buf);
             //output
             List<CountedIngredient> outputs = buf.readList(CountedIngredient::fromNetwork);
             //colors
@@ -160,7 +146,7 @@ public class PixelSplitterRecipe extends BaseRecipe {
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, PixelSplitterRecipe recipe) {
             //input
-            recipe.recipeItem.toNetwork(buf);
+            recipe.input.toNetwork(buf);
             //output
             buf.writeCollection(recipe.outputs, (buffer, ing) -> ing.toNetwork(buffer));
             //colors
@@ -173,22 +159,10 @@ public class PixelSplitterRecipe extends BaseRecipe {
             buf.writeUtf(recipe.structure);
         }
 
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }

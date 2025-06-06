@@ -1,47 +1,42 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class BallMillRecipe extends BaseRecipe {
-    private final ResourceLocation id;
+public class BallMillRecipe extends BaseItemRecipe {
     private final ChanceIngredient output;
-    private final NonNullList<Ingredient> ball;
-    private final List<CountedIngredient> recipeItems;
-    public BallMillRecipe(ResourceLocation id, ChanceIngredient output, NonNullList<Ingredient> ball,
-                          List<CountedIngredient> recipeItems) {
-        this.id = id;
+    private final Ingredient ball;
+    private final List<CountedIngredient> inputs;
+    public BallMillRecipe(ResourceLocation id, ChanceIngredient output, Ingredient ball, List<CountedIngredient> inputs) {
+        super(id);
         this.output = output;
         this.ball = ball;
-        this.recipeItems = recipeItems;
+        this.inputs = inputs;
     }
 
     @Override
     public boolean matches(@NotNull SimpleContainer container, Level level) {
         if (level.isClientSide) return false;
-        return matchMultiInput(container, recipeItems, 0, 2) && ball.get(0).test(container.getItem(3)) && ball.size() <= 1;
+        return matchMultiInput(container, inputs, 0, 2) && ball.test(container.getItem(3));
     }
 
-    public NonNullList<Ingredient> getBall() {
+    public Ingredient getBall() {
         return ball;
     }
 
@@ -56,10 +51,10 @@ public class BallMillRecipe extends BaseRecipe {
     }
 
     public List<CountedIngredient> getInputs() {
-        return recipeItems;
+        return inputs;
     }
     public ItemStack getInput(int input) {
-        return recipeItems.get(input).getItems()[0];
+        return inputs.get(input).getItems()[0];
     }
 
 
@@ -74,12 +69,6 @@ public class BallMillRecipe extends BaseRecipe {
 
     public float getOutputChance() {
         return output.chance();
-    }
-
-
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return id;
     }
 
     @Override
@@ -97,87 +86,38 @@ public class BallMillRecipe extends BaseRecipe {
     }
 
     public static class Type implements RecipeType<BallMillRecipe> {
-        private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "ball_milling";
     }
 
-    public static class Serializer implements RecipeSerializer<BallMillRecipe> {
+    public static class Serializer implements POMRecipeSerializer<BallMillRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = Util.resourceLocation("ball_milling");
 
         public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
             //output
-            ChanceIngredient output = ChanceIngredient.fromJson(json.getAsJsonObject("output"));
-
+            ChanceIngredient output = JsonRecipeUtils.CHIFromJson(json, "output");
             //inputs
-            JsonArray jsonInputs = json.getAsJsonArray("inputs");
-            List<CountedIngredient> inputs = new ArrayList<>(jsonInputs.size());
-            for (int i = 0; i < jsonInputs.size(); i++) {
-                inputs.add(i, CountedIngredient.fromJson(jsonInputs.get(i).getAsJsonObject()));
-            }
-
-            JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ball");
-            NonNullList<Ingredient> ball = NonNullList.withSize(1, Ingredient.EMPTY);
-
-            for (int j = 0; j < ball.size(); j++) {
-                ball.set(j, Ingredient.fromJson(ingredients.get(j)));
-            }
-
-
+            List<CountedIngredient> inputs = JsonRecipeUtils.CIListFromJson(json, "inputs");
+            Ingredient ball = JsonRecipeUtils.IFromJson(json, "ball");
             return new BallMillRecipe(id, output, ball, inputs);
         }
 
         public BallMillRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
-            try {
-                List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
-
-                NonNullList<Ingredient> ball = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-                for (int i = 0; i < inputs.size(); i++) {
-                    ball.set(i, Ingredient.fromNetwork(buf));
-                }
-
-                ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
-
-                return new BallMillRecipe(id, output, ball, inputs);
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading ball mill recipe from packet.", ex);
-                throw ex;
-            }
+            List<CountedIngredient> inputs = buf.readList(CountedIngredient::fromNetwork);
+            Ingredient ball = Ingredient.fromNetwork(buf);
+            ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
+            return new BallMillRecipe(id, output, ball, inputs);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull BallMillRecipe recipe) {
-            try {
-                buf.writeCollection(recipe.recipeItems, (buffer, ing) -> ing.toNetwork(buffer));
-                buf.writeInt(recipe.getIngredients().size());
-                for (Ingredient ing : recipe.getIngredients()) {
-                    ing.toNetwork(buf);
-                }
-                recipe.output.toNetwork(buf);
-
-            } catch (Exception ex) {
-                PixelsOfMc.LOGGER.error("Error reading ball mill recipe from packet.", ex);
-                throw ex;
-            }
+            buf.writeCollection(recipe.inputs, (buffer, ing) -> ing.toNetwork(buffer));
+            recipe.ball.toNetwork(buf);
+            recipe.output.toNetwork(buf);
         }
-
-        public RecipeSerializer<?> setRegistryName(ResourceLocation name) {
-            return INSTANCE;
-        }
+        @Override
+        public RecipeSerializer<?> setRegistryName() {return INSTANCE;}
 
         @Nullable
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        @SuppressWarnings("unchecked") // Need this wrapper, because generics
-        private static <G> Class<G> castClass(Class<?> cls) {
-            return (Class<G>)cls;
-        }
-
+        public ResourceLocation getRegistryName() {return Util.resourceLocation(Type.ID);}
     }
 }

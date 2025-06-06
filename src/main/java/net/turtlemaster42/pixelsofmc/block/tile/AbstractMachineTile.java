@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -293,6 +294,29 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
     }
 
+    public static boolean canInsertOutputFluid(FluidStack resultFluid, FluidTank tank) {
+        return resultFluid.equals(tank.getFluid()) && resultFluid.getAmount() <= tank.getSpace() || tank.isEmpty() || resultFluid.isEmpty();
+    }
+
+    public static boolean canExtractInputFluid(FluidStack fluidInput, FluidTank tank) {
+        return fluidInput.equals(tank.getFluid()) && fluidInput.getAmount() <= tank.getFluidAmount() || fluidInput.isEmpty();
+    }
+
+    public void addFluidOutput(FluidStack fluidOutput, FluidTank tank) {
+        if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
+            return;
+        }
+        if (fluidOutput.equals(tank.getFluid()) || tank.isEmpty()) {
+            tank.fill(fluidOutput, IFluidHandler.FluidAction.EXECUTE);
+        }
+    }
+
+    public void removeFluidInput(FluidStack fluidInput, FluidTank tank) {
+        if (fluidInput.isEmpty() || fluidInput.getAmount() <= 0 || !fluidInput.equals(tank.getFluid())) {
+            return;
+        }
+        tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
+    }
 
     // -- ENERGY -- //
 

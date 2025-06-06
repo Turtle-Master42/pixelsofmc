@@ -63,6 +63,11 @@ public class Util {
         return new String[]{newNumber, compactName};
     }
 
+    public static String combinedCompactMetricNumber(long energy) {
+        String[] number = compactMetricNumber(energy);
+        return number[0] + " " + number[1];
+    }
+
     public static String formatNumber(int number) {
         return baseFormatNumber(String.valueOf(number));
     }
