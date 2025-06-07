@@ -22,8 +22,10 @@ public class FuelCellHolderRenderer implements BlockEntityRenderer<FuelCellHolde
     private static final ModelFuelCell MODEL_FUEL = new ModelFuelCell();
 
 
-    public FuelCellHolderRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public FuelCellHolderRenderer(BlockEntityRendererProvider.Context context) {}
+
+    @Override
+    public boolean shouldRenderOffScreen(FuelCellHolderTile pBlockEntity) {return true;}
 
     @Override
     public void render(FuelCellHolderTile pBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {

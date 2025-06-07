@@ -14,12 +14,10 @@ import net.turtlemaster42.pixelsofmc.util.renderer.block.models.ModelBallMill;
 import org.jetbrains.annotations.NotNull;
 
 public class BallMillRenderer<T extends BallMillTile> implements BlockEntityRenderer<T> {
-
     private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/block/ball_mill_box.png");
     private static final ModelBallMill MODEL = new ModelBallMill();
 
-    public BallMillRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public BallMillRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {

@@ -18,8 +18,7 @@ public class HotIsostaticPressRenderer<T extends HotIsostaticPressTile> implemen
     private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/block/hot_isostatic_press.png");
     private static final ModelHotIsostaticPress MODEL = new ModelHotIsostaticPress();
 
-    public HotIsostaticPressRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public HotIsostaticPressRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {

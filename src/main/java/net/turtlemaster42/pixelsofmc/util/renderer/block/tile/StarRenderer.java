@@ -22,8 +22,10 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
     private static final ResourceLocation HOLE = Util.resourceLocation("textures/block/black_hole.png");
     private static final StarModel MODEL = new StarModel();
 
-    public StarRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public StarRenderer(BlockEntityRendererProvider.Context context) {}
+
+    @Override
+    public boolean shouldRenderOffScreen(T pBlockEntity) {return true;}
 
     @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {

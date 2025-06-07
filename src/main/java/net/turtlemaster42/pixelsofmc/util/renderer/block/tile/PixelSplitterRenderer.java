@@ -19,8 +19,7 @@ import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterRenderer implements BlockEntityRenderer<PixelSplitterTile> {
-    public PixelSplitterRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public PixelSplitterRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
     public void render(PixelSplitterTile pBlockEntity, float pPartialTick, PoseStack pPoseStack,

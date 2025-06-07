@@ -12,8 +12,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class NuclearReactorRenderer<T extends NuclearReactorTile> implements BlockEntityRenderer<T> {
 
-    public NuclearReactorRenderer(BlockEntityRendererProvider.Context context) {
-    }
+    public NuclearReactorRenderer(BlockEntityRendererProvider.Context context) {}
+
+    @Override
+    public boolean shouldRenderOffScreen(T pBlockEntity) {return true;}
 
     @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
