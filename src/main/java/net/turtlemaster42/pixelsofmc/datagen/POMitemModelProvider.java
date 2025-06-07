@@ -42,6 +42,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         simpleItem(POMitems.CARBONARO_CLUMP);
         simpleItem(POMitems.BLACK_DIAMOND);
+        simpleItem(POMitems.PERFECT_DIAMOND);
         simpleItem(POMitems.VIOLET_DIAMOND);
         simpleItem(POMitems.RED_DIAMOND);
 
@@ -240,6 +241,7 @@ public class POMitemModelProvider extends ItemModelProvider {
 
         complexBlock(POMblocks.FUEL_CELL_HOLDER);
         complexBlock(POMblocks.NUCLEAR_REACTOR);
+        complexBlock(POMblocks.INDUSTRIAL_HEAT_EXCHANGER);
         complexBlock(POMblocks.FISSION_FLUID_PORT);
         complexBlock(POMblocks.FISSION_ENERGY_PORT);
         complexBlock(POMblocks.FLUID_PORT);

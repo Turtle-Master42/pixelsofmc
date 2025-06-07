@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:black_diamond"
+              "pixelsofmc:titanium_diboride_ingot"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:diamond"
+        "recipe": "pixelsofmc:nuclear_reactor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:diamond"
+      "pixelsofmc:nuclear_reactor"
     ]
   },
   "sends_telemetry_event": false

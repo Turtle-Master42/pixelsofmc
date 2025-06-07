@@ -4,7 +4,7 @@
   "input": {
     "count": 4,
     "ingredient": {
-      "item": "minecraft:diamond"
+      "tag": "forge:gems/diamond"
     }
   },
   "max_heat": 5000,

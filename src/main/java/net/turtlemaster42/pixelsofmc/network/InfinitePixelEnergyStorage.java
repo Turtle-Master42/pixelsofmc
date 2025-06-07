@@ -102,7 +102,7 @@ public class InfinitePixelEnergyStorage extends PixelEnergyStorage {
     }
 
     public void consumeEnergy(int energy) {
-        this.infiniteEnergy.add(energy);
+        this.infiniteEnergy.add(-energy);
         if (this.infiniteEnergy.isNegative()) {
             this.infiniteEnergy = new InfiniteNumber().fromInt(0);
         }
@@ -111,7 +111,7 @@ public class InfinitePixelEnergyStorage extends PixelEnergyStorage {
     }
 
     public void consumeEnergy(long energy) {
-        this.infiniteEnergy.add(energy);
+        this.infiniteEnergy.add(-energy);
         if (this.infiniteEnergy.isNegative()) {
             this.infiniteEnergy = new InfiniteNumber().fromInt(0);
         }
@@ -120,6 +120,7 @@ public class InfinitePixelEnergyStorage extends PixelEnergyStorage {
     }
 
     public void consumeEnergy(InfiniteNumber energy) {
+        energy.invert();
         this.infiniteEnergy.add(energy);
         if (this.infiniteEnergy.isNegative()) {
             this.infiniteEnergy = new InfiniteNumber().fromInt(0);

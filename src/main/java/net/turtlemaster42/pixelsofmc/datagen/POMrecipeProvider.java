@@ -217,13 +217,13 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.DIAMOND)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.PERFECT_DIAMOND.get())
                 .define('C', POMitems.BLACK_DIAMOND.get())
                 .pattern("CC")
                 .pattern("CC")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.BLACK_DIAMOND.get())))
-                .save(fConsumer, toRL(Items.DIAMOND.toString()));
+                .save(fConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.SCREWDRIVER.get())
@@ -676,6 +676,28 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CDE")
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
                 .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.NUCLEAR_REACTOR.get())
+                .define('A', Element.LEAD.itemTag())
+                .define('B', POMblocks.FISSION_CASING.get())
+                .define('C', POMitems.PERFECTED_CIRCUIT_BOARD_2.get())
+                .define('D', POMblocks.PERFECTED_CASING_2.get())
+                .define('E', POMitems.REDSTONE_COUNTER.get())
+                .pattern("AEA")
+                .pattern("BCB")
+                .pattern("ADA")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_DIBORIDE))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get())
+                .define('A', Element.TITANIUM.itemTag())
+                .define('B', POMitems.CARBON_HEAT_SINK.get())
+                .define('C', POMitems.PERFECTED_CIRCUIT_BOARD_1.get())
+                .define('D', POMblocks.PERFECTED_CASING_1.get())
+                .define('E', POMblocks.MACHINE_CASING.get())
+                .pattern("AEA")
+                .pattern("BCB")
+                .pattern("ADA")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
+                .save(fConsumer);
 
 
 
@@ -778,7 +800,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', POMitems.PYROLYTIC_CARBON_SHEET.get())
                 .pattern("AAA")
                 .pattern("AAA")
-                .pattern("AAA")
                 .unlockedBy("", inventoryTrigger(toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get())))
                 .save(fConsumer);
 
@@ -850,16 +871,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("A")
                 .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
                 .save(fConsumer);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.FUEL_CELL_HOLDER.get())
-                .define('A', POMitems.LEAD_PLATING.get())
+                .define('A', Element.LEAD.itemTag())
                 .define('B', POMitems.CARBON_HEAT_SINK.get())
                 .define('C', POMitems.SIMPLE_CIRCUIT_BOARD_2.get())
                 .define('D', POMblocks.FISSION_CASING.get())
                 .pattern("ACA")
                 .pattern("B B")
                 .pattern("ADA")
-                .unlockedBy("has_items", inventoryTrigger(toItemP(POMitems.LEAD_PLATING.get())))
+                .unlockedBy("has_items", inventoryTrigger(toItemP(Element.LEAD.itemTag())))
                 .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.FUSION_CASING.get())
@@ -1778,7 +1798,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         HotIsostaticPressRecipeBuilder.build(POMitems.VIOLET_DIAMOND.get()).ballMold()
-                .input(Items.DIAMOND, 4).heat(3500, 5000)
+                .input(Tags.Items.GEMS_DIAMOND, 4).heat(3500, 5000)
                 .finish(fConsumer, this);
         HotIsostaticPressRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get()).ballMold()
                 .input(POMitems.YELLOWCAKE_URANIUM.get(), 9).heat(3500, 5000)

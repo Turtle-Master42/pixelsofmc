@@ -27,13 +27,16 @@ public class InfiniteEnergyArea extends InfoArea {
 
     public List<Component> getTooltip() {
         if (!Screen.hasShiftDown()) {
-            String[] capacityStrings = Util.compactMetricNumber(energy.getInfiniteEnergy().toString());
-            String[] energyStrings = Util.compactMetricNumber(energy.getInfiniteCapacity().toString());
+            String[] energyStrings = Util.compactMetricNumber(energy.getInfiniteEnergy().toString());
+            String[] capacityStrings = Util.compactMetricNumber(energy.getInfiniteCapacity().toString());
             return List.of(
                     Component.literal("§6"+energyStrings[0]+"§r§7 " + energyStrings[1] + "FE"),
                     Component.literal("§e"+capacityStrings[0]+"§r§7 " + capacityStrings[1] + "FE"));
         }
-        return List.of(Component.literal("§6"+Util.formatNumber(energy.getInfiniteEnergy())+"§r§7 FE"), Component.literal("§e"+Util.formatNumber(energy.getInfiniteCapacity())+"§r§7 FE"));
+        return List.of(
+                Component.literal("§6"+Util.formatNumber(energy.getInfiniteEnergy())+"§r§7 FE"),
+                Component.literal("§e"+Util.formatNumber(energy.getInfiniteCapacity())+"§r§7 FE")
+        );
     }
 
     @Override

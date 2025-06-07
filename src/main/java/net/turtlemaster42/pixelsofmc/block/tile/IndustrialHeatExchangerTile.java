@@ -20,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.turtlemaster42.pixelsofmc.block.IndustrialHeatExchangerBlock;
+import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -230,12 +231,20 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, IndustrialHeatExchangerTile pBlockEntity) {
         if(hasRecipe(pBlockEntity) && getSwitch(0)) {
-            if (!pLevel.isClientSide())
+            if (!pLevel.isClientSide()) {
                 isCrafting = 1;
+                if (pState.getValue(SDSFusionControllerBlock.ACTIVE) != 3) {
+                    pLevel.setBlock(pPos, pState.setValue(SDSFusionControllerBlock.ACTIVE, 3), 2);
+                }
+            }
             craft(pBlockEntity);
         } else {
-            if (!pLevel.isClientSide())
+            if (!pLevel.isClientSide()) {
                 isCrafting = 0;
+                if (pState.getValue(SDSFusionControllerBlock.ACTIVE) == 3) {
+                    pLevel.setBlock(pPos, pState.setValue(SDSFusionControllerBlock.ACTIVE, 2), 2);
+                }
+            }
             setChanged(pLevel, pPos, pState);
         }
     }

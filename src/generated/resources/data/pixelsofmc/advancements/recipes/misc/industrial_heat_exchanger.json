@@ -5,10 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:hammer",
-              "pixelsofmc:wirecutter"
-            ]
+            "tag": "forge:ingots/titanium"
           }
         ]
       },
@@ -16,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:redstone_layered_copper_wire_2"
+        "recipe": "pixelsofmc:industrial_heat_exchanger"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:redstone_layered_copper_wire_2"
+      "pixelsofmc:industrial_heat_exchanger"
     ]
   },
   "sends_telemetry_event": false

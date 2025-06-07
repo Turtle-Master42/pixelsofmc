@@ -111,11 +111,11 @@ public class POMitems {
 	public static final RegistryObject<Item> LEAD_PLATING = ITEMS.register("lead_plating", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TUNGSTEN_PLATING = ITEMS.register("tungsten_plating", () -> new Item(new Item.Properties().fireResistant()));
 	public static final RegistryObject<Item> PYROLYTIC_CARBON_SHEET = ITEMS.register("pyrolytic_carbon_sheet", () -> new FuelItem(8000, new Item.Properties()));
-//	public static final RegistryObject<Item> COPPER_SHEET = ITEMS.register("copper_sheet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SILICON_SHEET = ITEMS.register("silicon_sheet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DENSE_CARBON_CUBE = ITEMS.register("dense_carbon_cube", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CARBONARO_CLUMP = ITEMS.register("carbonado_clump", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> BLACK_DIAMOND = ITEMS.register("black_diamond", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> PERFECT_DIAMOND = ITEMS.register("perfect_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> VIOLET_DIAMOND = ITEMS.register("violet_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> RED_DIAMOND = ITEMS.register("red_diamond", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MANA_AMALGAMATION = ITEMS.register("mana_amalgamation", () -> new Item(new Item.Properties()));

@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-05T20:17:16.609541	Item Models: pixelsofmc
+// 1.20.1	2025-06-07T21:09:32.560126	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -235,6 +235,7 @@ a08b5b920c1c22942e1bbed71d8003be236a6b73 assets/pixelsofmc/models/item/hydrogen_
 f6d68964d4d52b614326aabc4306eed9e98e2614 assets/pixelsofmc/models/item/indium_atom_512.json
 8c7d8b50adb22edc97b5e0d3c5fc443a9e3c4b7d assets/pixelsofmc/models/item/indium_atom_64.json
 608879c2e77e682066e6b40704a08d76f43935a5 assets/pixelsofmc/models/item/indium_ingot.json
+a21ff71c1f26726a31588b31427d99173ecf31be assets/pixelsofmc/models/item/industrial_heat_exchanger.json
 105837b64c8319cdc69f68b57684a1a2d133fa06 assets/pixelsofmc/models/item/infinite_power_cell.json
 6da151f38fba77e594908e4d1e5536c6deaa6053 assets/pixelsofmc/models/item/ingot_cast.json
 06105bb11fce5530db43f3f9c887795f717ff681 assets/pixelsofmc/models/item/iodine_atom_512.json
@@ -387,6 +388,7 @@ ca43abce39c8288204609ae28fce6ee0c0a581b6 assets/pixelsofmc/models/item/palladium
 79b022f104adaf4d7fb19d214742300057ef090d assets/pixelsofmc/models/item/palladium_atom_512.json
 4cc38bfa47b1179497a9f71105e0a73104c2b0be assets/pixelsofmc/models/item/palladium_atom_64.json
 349d4dae9449c746aa35559ee10680fdfb7e4485 assets/pixelsofmc/models/item/palladium_ingot.json
+369b5bb933dd93fd3c14fe1bd4aaf56463bfe35a assets/pixelsofmc/models/item/perfect_diamond.json
 13d4d896a2d6b36ef13ecd4214171945d596d5d4 assets/pixelsofmc/models/item/perfected_circuit_board_1.json
 f50a375238e2f3d4e491d10f4a3adb58cef7b22f assets/pixelsofmc/models/item/perfected_circuit_board_2.json
 dc4180d88c46c2d399aa33d7ec5dc9497157c1fa assets/pixelsofmc/models/item/phosphorus_atom_512.json

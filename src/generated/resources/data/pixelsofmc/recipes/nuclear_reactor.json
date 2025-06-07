@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/lead"
+    },
+    "B": {
+      "item": "pixelsofmc:fission_casing"
+    },
+    "C": {
+      "item": "pixelsofmc:perfected_circuit_board_2"
+    },
+    "D": {
+      "item": "pixelsofmc:perfected_casing_2"
+    },
+    "E": {
+      "item": "pixelsofmc:redstone_counter"
+    }
+  },
+  "pattern": [
+    "AEA",
+    "BCB",
+    "ADA"
+  ],
+  "result": {
+    "item": "pixelsofmc:nuclear_reactor"
+  },
+  "show_notification": true
+}

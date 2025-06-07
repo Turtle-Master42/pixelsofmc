@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "pixelsofmc:block/industrial_heat_exchanger_top_constructed",
+    "side": "pixelsofmc:block/port_back",
+    "bottom": "pixelsofmc:block/port_back"
+  }
+}

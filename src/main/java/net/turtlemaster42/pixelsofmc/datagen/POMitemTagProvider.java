@@ -95,6 +95,9 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());
         tag(Tags.Items.GLASS).add(POMblocks.REINFORCED_GLASS.get().asItem());
+        tag(Tags.Items.GEMS).add(POMitems.PERFECT_DIAMOND.get(), POMitems.VIOLET_DIAMOND.get(), POMitems.RED_DIAMOND.get());
+
+        tag(Tags.Items.GEMS_DIAMOND).add(POMitems.PERFECT_DIAMOND.get());
         tag(ItemTags.PIGLIN_LOVED)
                 .add(POMitems.TITANIUM_GOLD_INGOT.get())
                 .add(POMitems.TITANIUM_GOLD_DUST.get())

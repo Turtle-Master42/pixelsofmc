@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-17T14:35:09.744533	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-06-07T11:23:59.362143	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
@@ -34,6 +34,8 @@ d16281f910ce95b8cdad3a849a2057b8db629200 data/forge/tags/items/dusts/tin.json
 c6ba4b98cb3d79bd08a4fa096f69cac4331aabc9 data/forge/tags/items/dusts/uranium.json
 911e664419bed267837b965ccd8b1f84e07ad7b3 data/forge/tags/items/dusts/zinc.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine_cube.json
+09b67bf50b9e52dff88ef3a79ae5e8c9d0fd89f3 data/forge/tags/items/gems.json
+8d14f2dc59dd706a6d0c0faedcebff714c25a447 data/forge/tags/items/gems/diamond.json
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/items/glass.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium_canister.json
 48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen_canister.json

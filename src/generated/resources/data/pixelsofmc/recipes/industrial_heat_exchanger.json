@@ -3,25 +3,28 @@
   "category": "misc",
   "key": {
     "A": {
-      "tag": "forge:ingots/lead"
+      "tag": "forge:ingots/titanium"
     },
     "B": {
       "item": "pixelsofmc:carbon_heat_sink"
     },
     "C": {
-      "item": "pixelsofmc:simple_circuit_board_2"
+      "item": "pixelsofmc:perfected_circuit_board_1"
     },
     "D": {
-      "item": "pixelsofmc:fission_casing"
+      "item": "pixelsofmc:perfected_casing_1"
+    },
+    "E": {
+      "item": "pixelsofmc:machine_casing"
     }
   },
   "pattern": [
-    "ACA",
-    "B B",
+    "AEA",
+    "BCB",
     "ADA"
   ],
   "result": {
-    "item": "pixelsofmc:fuel_cell_holder"
+    "item": "pixelsofmc:industrial_heat_exchanger"
   },
   "show_notification": true
 }

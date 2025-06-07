@@ -9,6 +9,7 @@ public class Constants {
     public static final float fusionTemperatureDivider = 37.29243342f; // The constant to go from the required temperature for quantum-less fusion in the real world to the required temperature in minecraft, based of information from Mekanism.
     public static final int blockPixelDensity = 2_985_984; //amount of pixels in a solid block of 1 element
     public static final int plasmaHeatingPerJoule = 10; // in plasma 1 K = 10 J
+    public static final int plasmaHeatingPerFE = 4; // in plasma 1 K = 10 J
     public static final float normalHeatingPerJoule = 166.6666667f; // in air or other 1 K = 166.6666667 J
     public static final float J_FE_Constant = 0.4f; // 1 J = 0.4 FE
 

@@ -6,8 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:hammer",
-              "pixelsofmc:wirecutter"
+              "pixelsofmc:black_diamond"
             ]
           }
         ]
@@ -16,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:redstone_layered_copper_wire_2"
+        "recipe": "pixelsofmc:perfect_diamond"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:redstone_layered_copper_wire_2"
+      "pixelsofmc:perfect_diamond"
     ]
   },
   "sends_telemetry_event": false

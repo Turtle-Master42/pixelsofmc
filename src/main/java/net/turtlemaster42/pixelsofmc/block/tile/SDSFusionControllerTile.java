@@ -301,19 +301,17 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, SDSFusionControllerTile pBlockEntity) {
-        if (getSwitch(0)) {
-            if (getSwitch(2)) {
-                addFusionPower(75_000);
-                energyStorage.consumeEnergy((int) (300_000 * heatEnergyEfficiency));
-            } else {
-                addFusionPower(50_000);
-                energyStorage.consumeEnergy((int) (200_000 * heatEnergyEfficiency));
+        if (getSwitch(0)) {// generate plasma
+            if (getSwitch(2) && (energyStorage.getInfiniteEnergy().isBiggerThen((int) (30_000 * Constants.plasmaHeatingPerFE * heatEnergyEfficiency)))) {
+                addFusionPower(30_000);
+                energyStorage.consumeEnergy((int) (30_000 * Constants.plasmaHeatingPerFE * heatEnergyEfficiency));
+            } else if (energyStorage.getInfiniteEnergy().isBiggerThen((int) (20_000 * Constants.plasmaHeatingPerFE * heatEnergyEfficiency))) {
+                addFusionPower(20_000);
+                energyStorage.consumeEnergy((int) (20_000 * Constants.plasmaHeatingPerFE * heatEnergyEfficiency));
             }
         }
-        if (getSwitch(1)) {
 
-
-
+        if (getSwitch(1)) { //liquid cooling
             FluidContainer fluidInventory = new FluidContainer(1);
             fluidInventory.setFluid(0, fluidTank.getFluid());
             Optional<FluidHeatingRecipe> heat_match = level.getRecipeManager().getRecipeFor(FluidHeatingRecipe.Type.INSTANCE, fluidInventory, level);
@@ -394,8 +392,7 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
             inventory.setItem(i, tile.itemHandler.getStackInSlot(i));
         }
 
-        Optional<FusionRecipe> match = level.getRecipeManager()
-                .getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
+        Optional<FusionRecipe> match = level.getRecipeManager().getRecipeFor(FusionRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
             FusionRecipe recipe = match.get();
