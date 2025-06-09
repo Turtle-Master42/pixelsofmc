@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
@@ -23,9 +24,6 @@ public class FuelCellHolderRenderer implements BlockEntityRenderer<FuelCellHolde
 
 
     public FuelCellHolderRenderer(BlockEntityRendererProvider.Context context) {}
-
-    @Override
-    public boolean shouldRenderOffScreen(FuelCellHolderTile pBlockEntity) {return true;}
 
     @Override
     public void render(FuelCellHolderTile pBlockEntity, float pPartialTick, @NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {

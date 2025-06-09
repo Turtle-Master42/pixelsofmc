@@ -3,7 +3,11 @@
   "fluid_inputs": [
     {
       "Amount": 100,
-      "FluidName": "pixelsofmc:steam"
+      "FluidName": "pixelsofmc:hydrogen_gas"
+    },
+    {
+      "Amount": 50,
+      "FluidName": "pixelsofmc:oxygen_gas"
     }
   ],
   "fluid_outputs": [
@@ -12,5 +16,5 @@
       "FluidName": "minecraft:water"
     }
   ],
-  "temperature_state": 0
+  "temperature_state": 2
 }

@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;

@@ -11,7 +11,6 @@ public class ModelFuelCell extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox root;
     private final AdvancedModelBox fuel;
 
-
     public ModelFuelCell() {
         texWidth = 32;
         texHeight = 18;

@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.intergration.catagory.*;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;

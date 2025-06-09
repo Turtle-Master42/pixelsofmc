@@ -2,7 +2,7 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "top": "pixelsofmc:block/nuclear_reactor_top_constructed",
-    "side": "pixelsofmc:block/fission_casing",
+    "side": "pixelsofmc:block/fission_port_back",
     "bottom": "pixelsofmc:block/fission_port_back"
   }
 }

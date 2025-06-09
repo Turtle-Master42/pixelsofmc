@@ -42,7 +42,6 @@ public abstract class BaseItemRecipe implements Recipe<SimpleContainer> {
             ItemStack stack = container.getItem(slot);
             if (stack.isEmpty())
                 continue;
-
             if (!slotItems.contains(stack.getItem())) {
                 slotItems.add(stack.getItem());
                 slotCounts.add(stack.getCount());
@@ -59,15 +58,11 @@ public abstract class BaseItemRecipe implements Recipe<SimpleContainer> {
 
         // Iterates over the needed items
         for (CountedIngredient recipeItem : recipeItems) {
-            Item item = recipeItem.asItem();
             // Checks if the item is present in the slots
-            if (!slotItems.contains(item)) {
-                return false;
-            }
-            int index = slotItems.indexOf(item);
-            // Checks if there is enough items in the slots
-            if (recipeItem.count() > slotCounts.get(index)) {
-                return false;
+            for (int i = 0; i < slotItems.size(); i++) {
+                if (!recipeItem.test(new ItemStack(slotItems.get(i), slotCounts.get(i)))) {
+                    return false;
+                }
             }
             // We win, the item is present and there is enough
         }

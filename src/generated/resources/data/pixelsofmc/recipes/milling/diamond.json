@@ -1,0 +1,21 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": {
+    "tag": "pixelsofmc:ball_4"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:ores/diamond"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 3,
+    "ingredient": {
+      "item": "minecraft:diamond"
+    }
+  }
+}

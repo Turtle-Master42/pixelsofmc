@@ -17,27 +17,6 @@
       "ingredient": {
         "item": "pixelsofmc:copper_dust"
       }
-    },
-    {
-      "chance": 0.1,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:quartz_dust"
-      }
-    },
-    {
-      "chance": 0.05,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:sulfur_dust"
-      }
-    },
-    {
-      "chance": 0.05,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:coal_dust"
-      }
     }
   ]
 }

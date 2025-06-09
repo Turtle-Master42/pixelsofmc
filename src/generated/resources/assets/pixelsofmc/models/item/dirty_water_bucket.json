@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/sulfur"
+    "layer0": "pixelsofmc:item/dirty_water_bucket"
   }
 }

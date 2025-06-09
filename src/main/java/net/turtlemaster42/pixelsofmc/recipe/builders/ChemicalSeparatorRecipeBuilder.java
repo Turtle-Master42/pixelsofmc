@@ -63,11 +63,11 @@ public class ChemicalSeparatorRecipeBuilder extends POMRecipeBuilder {
     }
 
     public ChemicalSeparatorRecipeBuilder output(Item item) {
-        this.outputs.add(ChanceIngredient.of(item));
+        this.outputs.add(ChanceIngredient.of(1, 1f, item));
         return this;
     }
     public ChemicalSeparatorRecipeBuilder output(Item item, int count) {
-        this.outputs.add(ChanceIngredient.of(count, item));
+        this.outputs.add(ChanceIngredient.of(count, 1f, item));
         return this;
     }
     public ChemicalSeparatorRecipeBuilder output(Item item, float chance) {

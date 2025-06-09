@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -14,8 +14,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
+import net.turtlemaster42.pixelsofmc.intergration.IngredientDrawable;
+import net.turtlemaster42.pixelsofmc.intergration.JEIfluidRenderer;
+import net.turtlemaster42.pixelsofmc.intergration.JEItooltip;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
+import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -77,24 +81,60 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
     }
 
     @Override
-    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull T recipe, @NotNull IFocusGroup focuses) {
-    }
+    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull T recipe, @NotNull IFocusGroup focuses) {}
+
 
     public void addInputSlot(IRecipeLayoutBuilder builder, int x, int y, ItemStack stack) {
         if (!stack.isEmpty()) {
-            builder.addInputSlot(x, y).addIngredients(Ingredient.of(stack));
+            builder.addInputSlot(x, y)
+                    .addIngredients(Ingredient.of(stack));
         }
     }
 
     public void addInputSlot(IRecipeLayoutBuilder builder, int x, int y, Ingredient ingredient) {
         if (!ingredient.isEmpty()) {
-            builder.addInputSlot(x, y).addIngredients(ingredient);
+            builder.addInputSlot(x, y)
+                    .addIngredients(ingredient)
+                    .setOverlay(new IngredientDrawable(ingredient), 0, 0);
+        }
+    }
+
+    public void addInputSlot(IRecipeLayoutBuilder builder, int x, int y, CountedIngredient ingredient) {
+        if (!ingredient.isEmpty()) {
+            builder.addInputSlot(x, y)
+                    .addIngredients(ingredient.ingredient())
+                    .setOverlay(new IngredientDrawable(ingredient), 0, 0);
+        }
+    }
+
+    public void addInputSlot(IRecipeLayoutBuilder builder, int x, int y, ChanceIngredient ingredient) {
+        if (!ingredient.isEmpty()) {
+            builder.addInputSlot(x, y)
+                    .addIngredients(ingredient.ingredient())
+                    .setOverlay(new IngredientDrawable(ingredient), 0, 0);
         }
     }
 
     public void addOutputSlot(IRecipeLayoutBuilder builder, int x, int y, ItemStack stack) {
         if (!stack.isEmpty()) {
-            builder.addOutputSlot(x, y).addIngredients(Ingredient.of(stack));
+            builder.addOutputSlot(x, y)
+                    .addIngredients(Ingredient.of(stack));
+        }
+    }
+
+    public void addOutputSlot(IRecipeLayoutBuilder builder, int x, int y, Ingredient ingredient) {
+        if (!ingredient.isEmpty()) {
+            builder.addOutputSlot(x, y)
+                    .addIngredients(ingredient)
+                    .setOverlay(new IngredientDrawable(ingredient), 0, 0);
+        }
+    }
+
+    public void addOutputSlot(IRecipeLayoutBuilder builder, int x, int y, CountedIngredient ingredient) {
+        if (!ingredient.isEmpty()) {
+            builder.addOutputSlot(x, y)
+                    .addIngredients(ingredient.ingredient())
+                    .setOverlay(new IngredientDrawable(ingredient), 0, 0);
         }
     }
 
@@ -102,12 +142,19 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
         float chance = ingredient.chance();
         if (!ingredient.isEmpty() && chance > 0f) {
             if (chance < 1f) {
-                builder.addOutputSlot(x, y).addIngredients(ingredient.asIngredient()).setBackground(chance < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0).addRichTooltipCallback(new JEItooltip("§6"+Math.round(chance*100)+"%"));
+                builder.addOutputSlot(x, y)
+                        .addIngredients(ingredient.ingredient())
+                        .setOverlay(new IngredientDrawable(ingredient), 0, 0)
+                        .setBackground(chance < 0.5f ? smallChanceOverlay : chanceOverlay, 0, 0)
+                        .addRichTooltipCallback(new JEItooltip("§6"+Math.round(chance*100)+"%"));
             } else {
-                builder.addOutputSlot(x, y).addIngredients(ingredient.asOverflowIngredient());
+                builder.addOutputSlot(x, y)
+                        .addIngredients(ingredient.asOverflowIngredient())
+                        .setOverlay(new IngredientDrawable(ingredient), 0, 0);
             }
         }
     }
+
 
     public void addFluidInput(IRecipeLayoutBuilder builder, int x, int y, FluidStack fluidStack, int capacity, int width, int height) {
         if (!fluidStack.isEmpty()) {

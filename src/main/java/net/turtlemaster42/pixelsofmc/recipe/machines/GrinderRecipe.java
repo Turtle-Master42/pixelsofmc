@@ -88,7 +88,7 @@ public class GrinderRecipe extends BaseItemRecipe {
             //outputs
             List<ChanceIngredient> outputs = JsonRecipeUtils.CHIListFromJson(json, "outputs");
             //input
-            Ingredient input = JsonRecipeUtils.IFromJson(json, "intput");
+            Ingredient input = JsonRecipeUtils.IFromJson(json, "input");
             return new GrinderRecipe(id, input, outputs);
         }
 

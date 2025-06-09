@@ -1,6 +1,7 @@
-// 1.20.1	2025-06-04T20:40:45.984322	Tags for minecraft:block mod id pixelsofmc
+// 1.20.1	2025-06-09T10:21:53.427277	Tags for minecraft:block mod id pixelsofmc
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/blocks/glass.json
 15e868fc173ac4cb048c77e062805c2ed658a516 data/forge/tags/blocks/ores/titanium.json
+cb7580a89fdd7a2028eb93f52dfe76496a02c0f7 data/minecraft/tags/blocks/beacon_base_blocks.json
 7d0029e7c81491fa9e36c4cee5a5deab4fcc1d0e data/minecraft/tags/blocks/mineable/pickaxe.json
 d66b6da03a158bf60bb3dbb06185bab002dfcd12 data/minecraft/tags/blocks/needs_diamond_tool.json
 3995107084bbf55c743b89ed2cbd7bb32a5c817a data/minecraft/tags/blocks/needs_iron_tool.json

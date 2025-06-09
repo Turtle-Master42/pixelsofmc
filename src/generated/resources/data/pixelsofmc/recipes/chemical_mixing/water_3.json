@@ -1,0 +1,16 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 100,
+      "FluidName": "pixelsofmc:steam"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 100,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "temperature_state": 0
+}

@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "fluid_input": {
+    "Amount": 200,
+    "FluidName": "pixelsofmc:sulfuric_acid"
+  },
+  "fluid_output": {
+    "Amount": 300,
+    "FluidName": "pixelsofmc:dirty_water"
+  },
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ores/copper"
+    }
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 40,
+      "ingredient": {
+        "item": "minecraft:raw_copper"
+      }
+    }
+  ]
+}

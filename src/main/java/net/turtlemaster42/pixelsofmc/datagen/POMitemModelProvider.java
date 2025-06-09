@@ -156,6 +156,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.LIQUID_LEAD_BUCKET);
         simpleItem(POMitems.LEAD_GAS_BUCKET);
         simpleItem(POMitems.MERCURY_GAS_BUCKET);
+        simpleItem(POMitems.DIRTY_WATER_BUCKET);
 
         simpleItem(POMitems.ADVANCED_LASER);
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW);
@@ -204,7 +205,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.ROYAL_TUNGSTEN_DUST);
         dustItem(POMitems.REFINED_REDSTONE);
 
-        simpleItem(POMitems.SULFUR);
         simpleItem(POMitems.DENSE_CARBON_CUBE);
         simpleItem(POMitems.ALUMINIUM_SCRAP);
 

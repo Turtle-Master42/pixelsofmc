@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -40,7 +40,7 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
             int x = 7 + (2 * p);
             int y = 7 + (20 * p);
-            addInputSlot(builder, x, y, recipe.getInput(p));
+            addInputSlot(builder, x, y, recipe.getInputs().get(p));
         }
         addFluidInput(builder, 47, 8, recipe.getFluidInput(), 16000, 25, 11);
 

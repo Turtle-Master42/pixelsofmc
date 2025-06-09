@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-07T11:23:59.362143	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-06-09T10:30:52.299517	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
@@ -136,6 +136,10 @@ cda4b236c86e02bcd79233f7788adf9ac6b0998b data/forge/tags/items/nuggets/tungsten.
 ab72a5f9bd2078d6f33fa5b0908e7c54198ca506 data/forge/tags/items/radon_canister.json
 0a933678054d051ad970535d0afe82a891581fc7 data/forge/tags/items/silicon_cube.json
 6357a4e7208d953d95f05fcc15970c79ac4c8540 data/forge/tags/items/slimeballs.json
+7dce0fc3e6730f7e483c19fe4412e00568d11157 data/forge/tags/items/storage_blocks/lead.json
+75831e443c8580b4343a58cea82dc128b0610c37 data/forge/tags/items/storage_blocks/silver.json
+c6d05eea23a6a969a1f677c25bd306bc166a162b data/forge/tags/items/storage_blocks/titanium.json
+0fefa6288a83318d1833a4575cbfa58e1da4630a data/forge/tags/items/storage_blocks/tungsten.json
 d5310aa3b75666e0b349388f16371a481672620e data/forge/tags/items/sulfur_cube.json
 a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon_canister.json
 1d54571d738d58abf2aa002740383e3c92c7bd70 data/minecraft/tags/items/piglin_loved.json

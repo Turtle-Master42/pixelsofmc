@@ -15,9 +15,6 @@ public class NuclearReactorRenderer<T extends NuclearReactorTile> implements Blo
     public NuclearReactorRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
-    public boolean shouldRenderOffScreen(T pBlockEntity) {return true;}
-
-    @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.5F, 0.5F);

@@ -1320,25 +1320,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_IRON)
                 .output(Element.IRON.dust())
                 .output(Element.IRON.dust(), 0.5f)
-                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_COPPER)
                 .output(Element.COPPER.dust())
                 .output(Element.COPPER.dust(), 0.5f)
-                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
-                .output(Element.SULFUR.dust(), 0.05f)
-                .output(POMitems.COAL_DUST.get(), 0.05f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Tags.Items.RAW_MATERIALS_GOLD)
                 .output(Element.GOLD.dust())
                 .output(Element.GOLD.dust(), 0.5f)
-                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(POMitems.RAW_TITANIUM.get())
                 .output(Element.TITANIUM.dust())
                 .output(Element.TITANIUM.dust(), 0.5f)
-                .output(POMitems.QUARTZ_DUST.get(), 0.1f)
-                .output(Element.IRON.dust(), 0.05f)
                 .finish(fConsumer, this);
 
         GrinderRecipeBuilder.build(POMblocks.ACANTHITE.get().asItem())
@@ -1657,7 +1650,36 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMillRecipeBuilder.build(Items.WHITE_DYE, 4).ball(POMtags.Items.BALL_4)
                 .input(POMitems.TITANIUM_OXIDE_DUST.get())
                 .finish(fConsumer, this);
-
+        BallMillRecipeBuilder.build(Items.COAL, 4).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_COAL)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.DIAMOND, 3).ball(POMtags.Items.BALL_4)
+                .input(Tags.Items.ORES_DIAMOND)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.EMERALD, 3).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_EMERALD)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RAW_IRON, 4).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_IRON)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RAW_COPPER, 12).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_COPPER)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.RAW_GOLD, 4).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_GOLD)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.QUARTZ, 4).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_QUARTZ)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.LAPIS_LAZULI, 36).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_LAPIS)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(Items.REDSTONE, 8).ball(POMtags.Items.BALL_3)
+                .input(Tags.Items.ORES_REDSTONE)
+                .finish(fConsumer, this);
+        BallMillRecipeBuilder.build(POMitems.RAW_TITANIUM.get(), 4).ball(POMtags.Items.BALL_4)
+                .input(POMtags.Items.ORES_TITANIUM)
+                .finish(fConsumer, this);
 
         //dye source
         BallMillRecipeBuilder.build(Items.RED_DYE, 3).ball(POMtags.Items.BALL_2)
@@ -1877,10 +1899,47 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.NUCLEAR_WASTE.get(), 6000)
                 .output(POMitems.EMPTY_FUEL_CELL.get())
                 .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.PYROLYTIC_CARBON.get(), 2, POMfluids.OXYGEN_GAS.get(), 125)
+                .output(Element.CARBON.item())
+                .output(POMfluids.DIRTY_WATER.get(), 250)
+                .finish(fConsumer, this);
+
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_IRON, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.RAW_IRON, 6)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_GOLD, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.RAW_GOLD, 6)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMtags.Items.ORES_TITANIUM, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(POMitems.RAW_TITANIUM.get(), 6)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_COPPER, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.RAW_COPPER, 40)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_EMERALD, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.EMERALD, 4)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_DIAMOND, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.DIAMOND, 4)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_QUARTZ, 1, POMfluids.SULFURIC_ACID.get(), 200)
+                .output(Items.QUARTZ, 6)
+                .output(POMfluids.DIRTY_WATER.get(), 300)
+                .finish(fConsumer, this);
 
         // --CHEMICAL COMBINING--
         ChemicalCombinerRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())
                 .input(POMfluids.MERCURY.get(), 100)
+                .input(Element.SULFUR.dustTag())
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.SULFURIC_ACID.get(), 100)
+                .input(Fluids.WATER, 200)
                 .input(Element.SULFUR.dustTag())
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMitems.PYROLYTIC_CARBON.get())
@@ -1925,6 +1984,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .finish(fConsumer, this);
 
         // --CHEMICAL MIXING--
+        ChemicalMixerRecipeBuilder.build(4)
+                .input(POMfluids.DIRTY_WATER.get(), 100)
+                .output(Fluids.WATER, 100)
+                .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(2)
                 .input(POMfluids.HYDROGEN_GAS.get(), 100)
                 .input(POMfluids.OXYGEN_GAS.get(), 50)
@@ -2073,9 +2136,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleFullCrossRecipe(POMitems.TITANIUM_GOLD_NUGGET.get(), POMitems.TITANIUM_GOLD_INGOT.get(), POMitems.TITANIUM_GOLD_PLATING.get(), POMitems.TITANIUM_GOLD_CIRCLE_SAW.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.TITANIUM_DIBORIDE_NUGGET.get(), POMitems.TITANIUM_DIBORIDE_INGOT.get(), POMitems.TITANIUM_DIBORIDE_PLATING.get(), POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get(), fConsumer);
 
-        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), POMitems.COPPER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ENERGY_PORT.get(), fConsumer);
-        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), Items.HOPPER, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ITEM_PORT.get(), fConsumer);
-        SimpleFullCrossRecipe(POMitems.TITANIUM_PLATING.get(), Items.BUCKET, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.FLUID_PORT.get(), fConsumer);
+        SimpleFullCrossRecipe(Element.TITANIUM.item(), POMitems.COPPER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ENERGY_PORT.get(), fConsumer);
+        SimpleFullCrossRecipe(Element.TITANIUM.item(), Items.HOPPER, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.ITEM_PORT.get(), fConsumer);
+        SimpleFullCrossRecipe(Element.TITANIUM.item(), Items.BUCKET, POMitems.ADVANCED_CIRCUIT_BOARD_1.get(), POMblocks.FLUID_PORT.get(), fConsumer);
 
         SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), POMitems.SILVER_WIRE.get(), POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_ENERGY_PORT.get(), fConsumer);
         SimpleFullCrossRecipe(POMitems.FUSION_PLATING.get(), Items.HOPPER, POMitems.ADVANCED_CIRCUIT_BOARD_2.get(), POMblocks.FUSION_ITEM_PORT.get(), fConsumer);
@@ -2220,6 +2283,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 GrinderRecipeBuilder.build(e.itemTag())
                         .output(e.dust())
                         .finish(fConsumer, this);
+                if (!e.isMetal()) {
+                    HotIsostaticPressRecipeBuilder.build(e.itemTag())
+                            .input(e.dustTag()).mold(POMitems.INGOT_CAST.get())
+                            .heat(0, 40)
+                            .finish(fConsumer, this);
+                }
             }
             if (e.shouldAddNugget()) {
                 autoPixelSplittingAndAssembling(e.nugget(),  List.of(toCI(POMitems.PIXEL_PILE.get()), toCI(POMitems.PIXEL.get())), "element.pixelsofmc."+e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);

@@ -83,6 +83,7 @@ public class POMtags {
         public final TagKey<Item> dust;
         public final TagKey<Item> nugget;
         public final TagKey<Item> other;
+        public final TagKey<Item> block;
 
         private ElementTags(Element m)
         {
@@ -91,6 +92,8 @@ public class POMtags {
             nugget = createItemWrapper(getNugget(name));
             dust = createItemWrapper(getDust(name));
             other = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));
+            block = createItemWrapper(forgeLoc("storage_blocks/" + name));
+
         }
     }
 

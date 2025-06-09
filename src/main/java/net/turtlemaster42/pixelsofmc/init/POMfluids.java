@@ -96,6 +96,14 @@ public class POMfluids {
             POMFluidType.RED_OIL_FLUID_TYPE, RED_OIL, RED_OIL_FLOWING).slopeFindDistance(3).levelDecreasePerBlock(2)
             .block(POMblocks.RED_OIL_BLOCK).bucket(POMitems.RED_OIL_BUCKET);
 
+    public static final RegistryObject<FlowingFluid> DIRTY_WATER
+            = FLUIDS.register("dirty_water", () -> new ForgeFlowingFluid.Source(POMfluids.DIRTY_WATER_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLOWING
+            = FLUIDS.register("dirty_water_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.DIRTY_WATER_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties DIRTY_WATER_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.DIRTY_WATER_FLUID_TYPE, DIRTY_WATER, DIRTY_WATER_FLOWING).slopeFindDistance(3).levelDecreasePerBlock(2)
+            .block(POMblocks.DIRTY_WATER_BLOCK).bucket(POMitems.DIRTY_WATER_BUCKET);
+
 
     //-----------SUPERCOOLED-----------//
     public static final RegistryObject<FlowingFluid> HYDROGEN

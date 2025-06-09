@@ -192,13 +192,16 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             pBlockEntity.progress++;
             pBlockEntity.energyStorage.consumeEnergy(pBlockEntity.energyUpgrade());
             if (pBlockEntity.progress > 0 && !pState.getValue(BallMillBlock.ACTIVE)) {
-                level.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, true), 2);
+                pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, true), 2);
             }
             if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
                 craftItem(pBlockEntity);
-                level.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
+                pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
             }
         } else {
+            if (pState.getValue(BallMillBlock.ACTIVE) && !pLevel.isClientSide()) {
+                pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
+            }
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
         }

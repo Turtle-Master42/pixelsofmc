@@ -16,14 +16,14 @@
   },
   "outputs": [
     {
-      "chance": 0.0,
+      "chance": 1.0,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:titanium_dust"
       }
     },
     {
-      "chance": 0.0,
+      "chance": 1.0,
       "count": 2,
       "ingredient": {
         "item": "pixelsofmc:boron_dust"

@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "fluid_input": {
+    "Amount": 125,
+    "FluidName": "pixelsofmc:oxygen_gas"
+  },
+  "fluid_output": {
+    "Amount": 250,
+    "FluidName": "pixelsofmc:dirty_water"
+  },
+  "input": {
+    "count": 2,
+    "ingredient": {
+      "item": "pixelsofmc:pyrolytic_carbon"
+    }
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:carbon_cube"
+      }
+    }
+  ]
+}

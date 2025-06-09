@@ -91,6 +91,9 @@ public class POMitemTagProvider extends ItemTagsProvider {
             if (!element.isMetal() && !element.isVanilla()) {
                 tag(tags.other).add(element.item().asItem());
             }
+            if (element.shouldAddBlock()) {
+                tag(tags.block).add(element.block().asItem());
+            }
         }
 
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());

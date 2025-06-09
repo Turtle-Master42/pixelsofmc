@@ -70,6 +70,9 @@ public class POMblocks {
             () -> new LiquidBlock(POMfluids.PLUTONIUM_SOLUTION.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> RED_OIL_BLOCK = POMblocks.BLOCKS.register("red_oil",
             () -> new ExplosiveLiquidBlock(POMfluids.RED_OIL.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+    public static final RegistryObject<LiquidBlock> DIRTY_WATER_BLOCK = POMblocks.BLOCKS.register("dirty_water",
+            () -> new LiquidBlock(POMfluids.DIRTY_WATER.get(), BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+
 
     //gas
     public static final RegistryObject<LiquidBlock> STEAM_BLOCK = POMblocks.BLOCKS.register("steam",

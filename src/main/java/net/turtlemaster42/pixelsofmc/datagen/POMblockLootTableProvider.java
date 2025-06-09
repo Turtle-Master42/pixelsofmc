@@ -148,6 +148,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(POMblocks.URANIUM_SOLUTION_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.PLUTONIUM_SOLUTION_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.RED_OIL_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.DIRTY_WATER_BLOCK.get(), Items.AIR);
 
         this.dropOther(POMblocks.EXTENDER_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.EXTENDER_ENERGY_BLOCK.get(), Items.AIR);

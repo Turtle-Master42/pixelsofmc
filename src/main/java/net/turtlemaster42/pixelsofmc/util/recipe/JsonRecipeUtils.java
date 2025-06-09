@@ -20,7 +20,7 @@ public class JsonRecipeUtils {
     }
 
     public static Ingredient IFromJson(JsonObject json, String name) {
-        return Ingredient.fromJson(json.getAsJsonObject(name));
+        return Ingredient.fromJson(json.get(name));
     }
 
     public static List<ChanceIngredient> CHIListFromJson(JsonObject json, String name) {

@@ -117,7 +117,6 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.EXTENDER_ITEM_BLOCK.get()
         );
 
-
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
                 POMblocks.EXTENDER_BLOCK.get(),
@@ -249,6 +248,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
             if (element.shouldAddBlock()) {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(element.block());
                 this.tag(BlockTags.NEEDS_IRON_TOOL).add(element.block());
+                this.tag(BlockTags.BEACON_BASE_BLOCKS).add(element.block());
             }
         }
     }

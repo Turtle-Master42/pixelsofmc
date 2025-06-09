@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -40,7 +40,7 @@ public class PixelSplitterRecipeCategory extends BaseCategory<PixelSplitterRecip
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PixelSplitterRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        addInputSlot(builder, 35, 41, recipe.getInput().ingredient());
+        addInputSlot(builder, 35, 41, recipe.getInput());
 
         //grinding circle input
         addInputSlot(builder, 80, 18, Ingredient.of(POMtags.Items.CIRCLE_SAW));

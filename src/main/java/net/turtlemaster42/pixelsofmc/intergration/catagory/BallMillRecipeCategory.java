@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.intergration.JEItooltip;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +41,7 @@ public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         for (int p = 0; p < recipe.getInputs().size(); p++ ) {
-            addInputSlot(builder, 7, 7 + (22 * p), recipe.getInput(p));
+            addInputSlot(builder, 7, 7 + (22 * p), recipe.getInputs().get(p));
         }
         //grinding ball input
         addInputSlot(builder, 56, 29, recipe.getBall());

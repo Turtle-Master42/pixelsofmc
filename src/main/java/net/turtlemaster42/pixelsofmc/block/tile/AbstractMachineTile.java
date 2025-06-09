@@ -258,7 +258,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         for (CountedIngredient recipeItem : recipeItems) {
             // Iterate over the slots
             for (int slot = min_slot; slot <= max_slot; slot++) {
-                if (Ingredient.of(recipeItem.asItemStack()).test(itemHandler.getStackInSlot(slot))) {
+                if (recipeItem.ingredient().test(itemHandler.getStackInSlot(slot))) {
                     ItemStack slotStack = itemHandler.getStackInSlot(slot);
                     if (slotStack.getCount() < recipeItem.count()) {
                         itemHandler.extractItem(slot, slotStack.getCount(), false);
@@ -279,7 +279,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
             if (recipeItem.chance() >= random()) {
                 // Iterate over the slots
                 for (int slot = min_slot; slot <= max_slot; slot++) {
-                    if (Ingredient.of(recipeItem.asItemStack()).test(itemHandler.getStackInSlot(slot))) {
+                    if (recipeItem.ingredient().test(itemHandler.getStackInSlot(slot))) {
                         ItemStack slotStack = itemHandler.getStackInSlot(slot);
                         if (slotStack.getCount() < recipeItem.count()) {
                             itemHandler.extractItem(slot, slotStack.getCount(), false);

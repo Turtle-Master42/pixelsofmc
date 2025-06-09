@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.intergration;
+package net.turtlemaster42.pixelsofmc.intergration.catagory;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -38,7 +38,7 @@ public class ChemicalSeparatorRecipeCategory extends BaseCategory<ChemicalSepara
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ChemicalSeparatorRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
-        addInputSlot(builder, 7, 45, recipe.getInput().asItemStack());
+        addInputSlot(builder, 7, 45, recipe.getInput());
         addFluidInput(builder, 9, 9, recipe.getFluidInput(), 16000, 25, 11);
         //outputs
         for (int p = 0; p < recipe.getOutputs().size(); p++ ) {

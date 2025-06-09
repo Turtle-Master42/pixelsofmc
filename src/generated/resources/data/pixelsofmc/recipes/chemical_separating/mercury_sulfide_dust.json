@@ -16,7 +16,7 @@
   },
   "outputs": [
     {
-      "chance": 0.0,
+      "chance": 1.0,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:sulfur_dust"
