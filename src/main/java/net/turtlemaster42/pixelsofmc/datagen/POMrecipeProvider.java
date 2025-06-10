@@ -1669,7 +1669,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMillRecipeBuilder.build(Items.LAPIS_LAZULI, 36).ball(POMtags.Items.BALL_3)
                 .input(Tags.Items.ORES_LAPIS)
                 .finish(fConsumer, this);
-        BallMillRecipeBuilder.build(Items.REDSTONE, 8).ball(POMtags.Items.BALL_3)
+        BallMillRecipeBuilder.build(Items.REDSTONE, 12).ball(POMtags.Items.BALL_3)
                 .input(Tags.Items.ORES_REDSTONE)
                 .finish(fConsumer, this);
         BallMillRecipeBuilder.build(POMitems.RAW_TITANIUM.get(), 4).ball(POMtags.Items.BALL_4)
@@ -1981,6 +1981,18 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.OXYGEN_GAS.get(), 200)
                 .input(Element.URANIUM.dustTag())
                 .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 25)
+                .input(POMfluids.SULFURIC_ACID.get(), 250)
+                .input(Items.CALCITE)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), 125)
+                .input(POMfluids.HYDROFLUORIC_ACID.get(), 500)
+                .input(POMitems.URANIUM_FUEL_PELLET.get())
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_CORE.get(), POMfluids.DIRTY_WATER.get(), 450)
+                .input(POMfluids.ENRICHED_URANIUM_SOLUTION.get(), 875)
+                .input(POMitems.URANIUM_FUEL_PELLET.get(), 3)
+                .finish(fConsumer, this);
 
         // --CHEMICAL MIXING--
         ChemicalMixerRecipeBuilder.build(4)
@@ -2045,6 +2057,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.URANIUM_SOLUTION.get(), 3)
                 .output(POMfluids.PLUTONIUM_SOLUTION.get(), 1)
                 .output(POMfluids.RED_OIL.get(), 5)
+                .finish(fConsumer, this);
+        ChemicalMixerRecipeBuilder.build(4)
+                .input(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), 3)
+                .input(Fluids.WATER, 10)
+                .output(POMfluids.ENRICHED_URANIUM_SOLUTION.get(), 1)
+                .output(POMfluids.DIRTY_WATER.get(), 10)
                 .finish(fConsumer, this);
 
         //cooling and heating

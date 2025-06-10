@@ -208,11 +208,13 @@ public class POMitems {
 	public static final RegistryObject<Item> LIQUID_LEAD_BUCKET = BUCKETS.register("liquid_lead_bucket", () -> new BucketItem(POMfluids.LEAD, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> SULFURIC_ACID_BUCKET = BUCKETS.register("sulfuric_acid_bucket", () -> new BucketItem(POMfluids.SULFURIC_ACID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> NITRIC_ACID_BUCKET = BUCKETS.register("nitric_acid_bucket", () -> new BucketItem(POMfluids.NITRIC_ACID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> HYDROFLUORIC_ACID_BUCKET = BUCKETS.register("hydrofluoric_acid_bucket", () -> new BucketItem(POMfluids.HYDROFLUORIC_ACID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> PUREX_SOLUTION_BUCKET = BUCKETS.register("purex_solution_bucket", () -> new BucketItem(POMfluids.PUREX_SOLUTION, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> RED_OIL_BUCKET = BUCKETS.register("red_oil_bucket", () -> new BucketItem(POMfluids.RED_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> NUCLEAR_WASTE_BUCKET = BUCKETS.register("nuclear_waste_bucket", () -> new BucketItem(POMfluids.NUCLEAR_WASTE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> NUCLEAR_WASTE_SOLUTION_BUCKET = BUCKETS.register("nuclear_waste_solution_bucket", () -> new BucketItem(POMfluids.NUCLEAR_WASTE_SOLUTION, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> URANIUM_SOLUTION_BUCKET = BUCKETS.register("uranium_solution_bucket", () -> new BucketItem(POMfluids.URANIUM_SOLUTION, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> ENRICHED_URANIUM_SOLUTION_BUCKET = BUCKETS.register("enriched_uranium_solution_bucket", () -> new BucketItem(POMfluids.ENRICHED_URANIUM_SOLUTION, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> PLUTONIUM_SOLUTION_BUCKET = BUCKETS.register("plutonium_solution_bucket", () -> new BucketItem(POMfluids.PLUTONIUM_SOLUTION, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final RegistryObject<Item> LIQUID_HYDROGEN_BUCKET = BUCKETS.register("liquid_hydrogen_bucket", () -> new BucketItem(POMfluids.HYDROGEN, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -231,6 +233,7 @@ public class POMitems {
 	public static final RegistryObject<Item> CHLORINE_GAS_BUCKET = BUCKETS.register("chlorine_gas_bucket", () -> new GasBucketItem(POMfluids.CHLORINE_GAS, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> BROMINE_GAS_BUCKET = BUCKETS.register("bromine_gas_bucket", () -> new GasBucketItem(POMfluids.BROMINE_GAS, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final RegistryObject<Item> AMMONIA_GAS_BUCKET = BUCKETS.register("ammonia_gas_bucket", () -> new GasBucketItem(POMfluids.AMMONIA_GAS, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final RegistryObject<Item> URANIUM_HEXAFLUORIDE_GAS_BUCKET = BUCKETS.register("uranium_hexafluoride_gas_bucket", () -> new GasBucketItem(POMfluids.URANIUM_HEXAFLUORIDE_GAS, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
 
 	public static final class Elements {

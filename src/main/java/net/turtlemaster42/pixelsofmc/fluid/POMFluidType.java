@@ -46,6 +46,10 @@ public class POMFluidType {
             FluidType.Properties.create().temperature(300).density(1510).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
+    public static final RegistryObject<FluidType> HYDROFLUORIC_ACID_FLUID_TYPE = registerFluid("hydrofluoric_acid", 199, 249, 229,
+            FluidType.Properties.create().temperature(300).density(1150).viscosity(1000).canDrown(true).canPushEntity(true)
+                    .supportsBoating(true).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
     public static final RegistryObject<FluidType> PUREX_SOLUTION_FLUID_TYPE = registerThickFluid("purex_solution", 92, 170, 75,
             FluidType.Properties.create().temperature(300).density(1900).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
@@ -60,6 +64,10 @@ public class POMFluidType {
                     .supportsBoating(true).motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
     public static final RegistryObject<FluidType> URANIUM_SOLUTION_FLUID_TYPE = registerFluid("uranium_solution", 75, 201, 66,
+            FluidType.Properties.create().temperature(350).density(11000).viscosity(1000).canDrown(true).canPushEntity(true)
+                    .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> ENRICHED_URANIUM_SOLUTION_FLUID_TYPE = registerFluid("enriched_uranium_solution", 83, 242, 72,
             FluidType.Properties.create().temperature(350).density(11000).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
@@ -139,6 +147,10 @@ public class POMFluidType {
 
     public static final RegistryObject<FluidType> AMMONIA_GAS_TYPE = registerGas("ammonia_gas", 117, 56, 95,
             FluidType.Properties.create().temperature(300).density(-1).viscosity(0).canDrown(true).canPushEntity(false)
+                    .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> URANIUM_HEXAFLUORIDE_GAS_TYPE = registerGas("uranium_hexafluoride_gas", 228, 239, 71,
+            FluidType.Properties.create().temperature(300).density(0).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
 

@@ -109,9 +109,9 @@
   "item.pixelsofmc.liquid_chlorine_bucket": "Liquid Chlorine Bucket",
   "item.pixelsofmc.liquid_bromine_bucket": "Liquid Bromine Bucket",
   "item.pixelsofmc.liquid_lead_bucket": "Liquid Lead Bucket",
-  "item.pixelsofmc.mercury_gas_bucket": "Mercury Gas Bucket",
-  "item.pixelsofmc.lead_gas_bucket": "Lead Gas Bucket",
-
+  "item.pixelsofmc.dirty_water_bucket": "Dirty Water Bucket",
+  "item.pixelsofmc.hydrofluoric_acid_bucket": "Hydrofluoric Acid Bucket",
+  "item.pixelsofmc.enriched_uranium_solution_bucket": "Enriched Uranium Solution Bucket",
 
   "item.pixelsofmc.hydrogen_gas_bucket": "Hydrogen Bucket",
   "item.pixelsofmc.nitrogen_gas_bucket": "Nitrogen Bucket",
@@ -121,6 +121,9 @@
   "item.pixelsofmc.steam_bucket": "Steam Bucket",
   "item.pixelsofmc.blazing_steam_bucket": "Blazing Steam Bucket",
   "item.pixelsofmc.ammonia_gas_bucket": "Ammonia Bucket",
+  "item.pixelsofmc.mercury_gas_bucket": "Mercury Gas Bucket",
+  "item.pixelsofmc.lead_gas_bucket": "Lead Gas Bucket",
+  "item.pixelsofmc.uranium_hexafluoride_gas_bucket": "Uranium Hexafluoride Gas Bucket",
 
   "item.pixelsofmc.moving_parts": "Moving Parts",
   "item.pixelsofmc.empty_cell": "Empty Cell",
@@ -897,7 +900,8 @@
   "fluid.pixelsofmc.uranium_solution": "Uranium Solution",
   "fluid.pixelsofmc.plutonium_solution": "Plutonium Solution",
   "fluid.pixelsofmc.dirty_water": "Dirty Water",
-
+  "fluid.pixelsofmc.hydrofluoric_acid": "Hydrofluoric Acid",
+  "fluid.pixelsofmc.enriched_uranium_solution": "Enriched Uranium Solution",
 
   "fluid.pixelsofmc.hydrogen_gas": "Hydrogen Gas",
   "fluid.pixelsofmc.nitrogen_gas": "Nitrogen Gas",
@@ -909,6 +913,8 @@
   "fluid.pixelsofmc.lead_gas": "Lead Gas",
   "fluid.pixelsofmc.air": "Air",
   "fluid.pixelsofmc.ammonia_gas": "Ammonia",
+  "fluid.pixelsofmc.uranium_hexafluoride_gas": "Uranium Hexafluoride Gas",
+
 
   "fluid_type.pixelsofmc.hydrogen": "Liquid Hydrogen",
   "fluid_type.pixelsofmc.nitrogen": "Liquid Nitrogen",
@@ -926,6 +932,8 @@
   "fluid_type.pixelsofmc.uranium_solution": "Uranium Solution",
   "fluid_type.pixelsofmc.plutonium_solution": "Plutonium Solution",
   "fluid_type.pixelsofmc.dirty_water": "Dirty Water",
+  "fluid_type.pixelsofmc.hydrofluoric_acid": "Hydrofluoric Acid",
+  "fluid_type.pixelsofmc.enriched_uranium_solution": "Enriched Uranium Solution",
 
 
   "fluid_type.pixelsofmc.hydrogen_gas": "Hydrogen Gas",
@@ -939,6 +947,8 @@
   "fluid_type.pixelsofmc.lead_gas": "Lead Gas",
   "fluid_type.pixelsofmc.air": "Air",
   "fluid_type.pixelsofmc.ammonia_gas": "Ammonia",
+  "fluid_type.pixelsofmc.uranium_hexafluoride_gas": "Uranium Hexafluoride Gas",
+
 
   "itemGroup": "------------------------------TABS--------------------------------------------------------",
   "itemGroup.pixels_of_minecraft_tab": "The Pixels of Minecraft",
@@ -954,13 +964,13 @@
   "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
   "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking to check if everything is\nstill working",
 
-  "tooltip.pixelsofmc.block.ball_mill.shift": "§7Used to mix dusts together and crush down soft materials",
+  "tooltip.pixelsofmc.block.ball_mill.shift": "§7Used to mix dusts together and crush soft materials",
   "tooltip.pixelsofmc.block.ball_mill.alt": "§7This machine requires a §r§c3x3x2§r§7 area.",
 
   "tooltip.pixelsofmc.block.grinder.shift": "§7Used to crush materials down to dusts",
   "tooltip.pixelsofmc.block.grinder.alt": "§7This machine requires a §r§c3x3x2§r§7 area.",
 
-  "tooltip.pixelsofmc.block.hot_isostatic_press.shift": "§7Used to press materials into different shapes",
+  "tooltip.pixelsofmc.block.hot_isostatic_press.shift": "§7Used to press materials into different shapes based on inserted molds",
   "tooltip.pixelsofmc.block.hot_isostatic_press.alt": "§7This machine requires a §r§c2x2x3§r§7 area.",
 
   "tooltip.pixelsofmc.block.chemical_separator.shift": "§7Used to split chemicals and materials",
@@ -969,7 +979,7 @@
   "tooltip.pixelsofmc.block.chemical_combiner.shift": "§7Used to combine chemicals and materials",
   "tooltip.pixelsofmc.block.chemical_combiner.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",
 
-  "tooltip.pixelsofmc.block.chemical_mixer.shift": "§7Used to combine chemicals with each-other",
+  "tooltip.pixelsofmc.block.chemical_mixer.shift": "§7Used to combine and separate chemicals with each-other, by use of precise temperatures or centrifugal force",
   "tooltip.pixelsofmc.block.chemical_mixer.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",
 
   "tooltip.pixelsofmc.block.pixel_splitter.shift": "§7Used to split materials into their lose pixels",

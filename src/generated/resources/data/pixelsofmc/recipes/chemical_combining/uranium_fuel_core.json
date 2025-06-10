@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 875,
+    "FluidName": "pixelsofmc:enriched_uranium_solution"
+  },
+  "fluid_output": {
+    "Amount": 450,
+    "FluidName": "pixelsofmc:dirty_water"
+  },
+  "inputs": [
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "pixelsofmc:uranium_fuel_pellet"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:uranium_fuel_core"
+    }
+  }
+}

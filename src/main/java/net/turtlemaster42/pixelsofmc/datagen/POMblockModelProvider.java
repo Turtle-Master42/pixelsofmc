@@ -125,6 +125,10 @@ public class POMblockModelProvider extends BlockStateProvider {
         liquidBlock(POMblocks.URANIUM_SOLUTION_BLOCK);
         liquidBlock(POMblocks.PLUTONIUM_SOLUTION_BLOCK);
         liquidBlock(POMblocks.RED_OIL_BLOCK);
+        liquidBlock(POMblocks.DIRTY_WATER_BLOCK);
+        liquidBlock(POMblocks.HYDROFLUORIC_ACID_BLOCK);
+        liquidBlock(POMblocks.URANIUM_HEXAFLUORIDE_GAS_BLOCK);
+        liquidBlock(POMblocks.ENRICHED_URANIUM_SOLUTION_BLOCK);
     }
 
     public ModelFile flowerPotCross(String name) {

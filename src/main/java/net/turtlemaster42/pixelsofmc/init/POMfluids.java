@@ -48,6 +48,14 @@ public class POMfluids {
             POMFluidType.NITRIC_ACID_FLUID_TYPE, NITRIC_ACID, NITRIC_ACID_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.NITRIC_ACID_BLOCK).bucket(POMitems.NITRIC_ACID_BUCKET);
 
+    public static final RegistryObject<FlowingFluid> HYDROFLUORIC_ACID
+            = FLUIDS.register("hydrofluoric_acid", () -> new ForgeFlowingFluid.Source(POMfluids.HYDROFLUORIC_ACID_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> HYDROFLUORIC_ACID_FLOWING
+            = FLUIDS.register("hydrofluoric_acid_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.HYDROFLUORIC_ACID_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties HYDROFLUORIC_ACID_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.HYDROFLUORIC_ACID_FLUID_TYPE, HYDROFLUORIC_ACID, HYDROFLUORIC_ACID_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.HYDROFLUORIC_ACID_BLOCK).bucket(POMitems.HYDROFLUORIC_ACID_BUCKET);
+
     public static final RegistryObject<FlowingFluid> PUREX_SOLUTION
             = FLUIDS.register("purex_solution", () -> new ForgeFlowingFluid.Source(POMfluids.PUREX_SOLUTION_PROPERTIES));
     public static final RegistryObject<FlowingFluid> PUREX_SOLUTION_FLOWING
@@ -79,6 +87,15 @@ public class POMfluids {
     public static final ForgeFlowingFluid.Properties URANIUM_SOLUTION_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.URANIUM_SOLUTION_FLUID_TYPE, URANIUM_SOLUTION, URANIUM_SOLUTION_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.URANIUM_SOLUTION_BLOCK).bucket(POMitems.URANIUM_SOLUTION_BUCKET);
+
+    public static final RegistryObject<FlowingFluid> ENRICHED_URANIUM_SOLUTION
+            = FLUIDS.register("enriched_uranium_solution", () -> new ForgeFlowingFluid.Source(POMfluids.ENRICHED_URANIUM_SOLUTION_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> ENRICHED_URANIUM_SOLUTION_FLOWING
+            = FLUIDS.register("enriched_uranium_solution_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.ENRICHED_URANIUM_SOLUTION_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties ENRICHED_URANIUM_SOLUTION_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.ENRICHED_URANIUM_SOLUTION_FLUID_TYPE, ENRICHED_URANIUM_SOLUTION, ENRICHED_URANIUM_SOLUTION_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.ENRICHED_URANIUM_SOLUTION_BLOCK).bucket(POMitems.ENRICHED_URANIUM_SOLUTION_BUCKET);
+
 
     public static final RegistryObject<FlowingFluid> PLUTONIUM_SOLUTION
             = FLUIDS.register("plutonium_solution", () -> new ForgeFlowingFluid.Source(POMfluids.PLUTONIUM_SOLUTION_PROPERTIES));
@@ -235,6 +252,14 @@ public class POMfluids {
     public static final ForgeFlowingFluid.Properties AMMONIA_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
             POMFluidType.AMMONIA_GAS_TYPE, AMMONIA_GAS, AMMONIA_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.AMMONIA_GAS_BLOCK).bucket(POMitems.AMMONIA_GAS_BUCKET);
+
+    public static final RegistryObject<FlowingFluid> URANIUM_HEXAFLUORIDE_GAS
+            = FLUIDS.register("uranium_hexafluoride_gas", () -> new ForgeFlowingFluid.Source(POMfluids.URANIUM_HEXAFLUORIDE_GAS_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> URANIUM_HEXAFLUORIDE_GAS_FLOWING
+            = FLUIDS.register("uranium_hexafluoride_gas_flowing", () -> new ForgeFlowingFluid.Flowing(POMfluids.URANIUM_HEXAFLUORIDE_GAS_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties URANIUM_HEXAFLUORIDE_GAS_PROPERTIES = new ForgeFlowingFluid.Properties(
+            POMFluidType.URANIUM_HEXAFLUORIDE_GAS_TYPE, URANIUM_HEXAFLUORIDE_GAS, URANIUM_HEXAFLUORIDE_GAS_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
+            .block(POMblocks.URANIUM_HEXAFLUORIDE_GAS_BLOCK).bucket(POMitems.URANIUM_HEXAFLUORIDE_GAS_BUCKET);
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);

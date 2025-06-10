@@ -1,0 +1,24 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 3,
+      "FluidName": "pixelsofmc:uranium_hexafluoride_gas"
+    },
+    {
+      "Amount": 10,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 1,
+      "FluidName": "pixelsofmc:enriched_uranium_solution"
+    },
+    {
+      "Amount": 10,
+      "FluidName": "pixelsofmc:dirty_water"
+    }
+  ],
+  "temperature_state": 4
+}

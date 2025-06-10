@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-09T14:38:52.943655	Loot Tables
+// 1.20.1	2025-06-10T15:06:17.427312	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
@@ -24,6 +24,7 @@ e269bb9f9d9e6a6c7ec504e952359bcbc762f4a9 data/pixelsofmc/loot_tables/blocks/chem
 1ac73630e8276a1b711d28da8c1783190e2b498f data/pixelsofmc/loot_tables/blocks/dirty_water.json
 57fc4f01fcc5cb940a4d49193cc9e1fdf053bd2c data/pixelsofmc/loot_tables/blocks/endstone_titanium_ore.json
 a3e1b7974f481d981909def027b2d0df4c120cb2 data/pixelsofmc/loot_tables/blocks/energy_port.json
+f90d883897a583b6b2147976aced236060b1455b data/pixelsofmc/loot_tables/blocks/enriched_uranium_solution.json
 41d0562f9a519b49bc36557d81a19f2d0cea910d data/pixelsofmc/loot_tables/blocks/extender_block.json
 6d631ecf327e599f31f6ceea6c8f12ac967f9ee2 data/pixelsofmc/loot_tables/blocks/extender_energy_block.json
 3bd1bc094d72dff0063f14b4c4f2027c7c652083 data/pixelsofmc/loot_tables/blocks/extender_item_block.json
@@ -43,6 +44,7 @@ f21c3ca576f727353fecd2d2a892f3b5fa422f63 data/pixelsofmc/loot_tables/blocks/fusi
 0d075f6a0b03cb5ce0960496a5a8bd7466562729 data/pixelsofmc/loot_tables/blocks/grinder.json
 807396586bda37f91a4601e25e271a484bd09b0e data/pixelsofmc/loot_tables/blocks/heat_sink.json
 7ffe353003562ad32efa9845c87b2a98e1d6a589 data/pixelsofmc/loot_tables/blocks/hot_isostatic_press.json
+79b8fb4e351d25b56de0008d487858871a1f22cb data/pixelsofmc/loot_tables/blocks/hydrofluoric_acid.json
 31c6b54270b1191cdb79d0d710e617f5c877c1cc data/pixelsofmc/loot_tables/blocks/hydrogen.json
 e356c8cca629b02e3913a296f0321ec8f52d4188 data/pixelsofmc/loot_tables/blocks/hydrogen_gas.json
 1880ee112d3f0f2a712e048e639b71c768df7b6b data/pixelsofmc/loot_tables/blocks/industrial_heat_exchanger.json
@@ -124,5 +126,6 @@ b9b44b77ff3c66316e86c9355668991f97f68183 data/pixelsofmc/loot_tables/blocks/tung
 e8d84602f081071984c2712cbd75f17d8f14e280 data/pixelsofmc/loot_tables/blocks/tungsten_plating_slab.json
 d43ee1468ca8ddc7b2af41658400b0e25b9ada2d data/pixelsofmc/loot_tables/blocks/tungsten_plating_stairs.json
 0613cad22f97f7ea7114918650d12cf1f25742c3 data/pixelsofmc/loot_tables/blocks/tungsten_spool.json
+6cafc0f31b8b74b6e6732f20e8271f6e268af566 data/pixelsofmc/loot_tables/blocks/uranium_hexafluoride_gas.json
 fa9aa721b28ca3ac7bd3c7a8e94600d9cf7607ba data/pixelsofmc/loot_tables/blocks/uranium_solution.json
 ac6520ce58a809eafa816eb42327ca273be81029 data/pixelsofmc/loot_tables/blocks/violet_diamond_block.json

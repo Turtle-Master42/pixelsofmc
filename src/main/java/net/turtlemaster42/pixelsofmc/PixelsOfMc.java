@@ -188,7 +188,10 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER_FLOWING.get(), RenderType.translucent());
-
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROFLUORIC_ACID.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROFLUORIC_ACID_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.URANIUM_HEXAFLUORIDE_GAS_FLOWING.get(), RenderType.translucent());
 
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
 

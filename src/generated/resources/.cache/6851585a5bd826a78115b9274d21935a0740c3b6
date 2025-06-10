@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-09T22:57:16.690189	Item Models: pixelsofmc
+// 1.20.1	2025-06-10T15:06:17.435011	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -156,6 +156,7 @@ e2d6a2da2fdfc778f4ba63b38fa15134e688bc0e assets/pixelsofmc/models/item/ender_sen
 8bb9cb0fbbef606ec654857786e72ca1c473f749 assets/pixelsofmc/models/item/energy_upgrade_2.json
 9e1117a597d1ee040d1277ff18842afa07d0b0e8 assets/pixelsofmc/models/item/enriched_plutonium_fuel_cell.json
 39a524f8b6b5d4ee6a81e1bbf749b6644396b4c2 assets/pixelsofmc/models/item/enriched_uranium_fuel_cell.json
+b89ba51046c8ec5b6b61e34005e75933046805ee assets/pixelsofmc/models/item/enriched_uranium_solution_bucket.json
 38ee6d55b4f3229e387f858d1d79f6a039110bc5 assets/pixelsofmc/models/item/erbium_168_atom_512.json
 94144082a476c1c81dfcd310f0a7704a4e099ebb assets/pixelsofmc/models/item/erbium_168_atom_64.json
 833df2e216feb8046ef14f9fbf27f8e74142b9aa assets/pixelsofmc/models/item/erbium_atom_512.json
@@ -222,6 +223,7 @@ d47543c23e795d3d0d4d8feb7b619d518fd54daf assets/pixelsofmc/models/item/helium_at
 d3040e9f28d49197e6b955519ed98f61cd283fe1 assets/pixelsofmc/models/item/holmium_atom_512.json
 55cded3ad34d1362473de8eb1888f3771f65ae7f assets/pixelsofmc/models/item/holmium_atom_64.json
 867783ec346f5084be20f1ccf39189fa63258ef4 assets/pixelsofmc/models/item/holmium_ingot.json
+72ddcf4d64b7afc62ae222b1468ba24e71adcbce assets/pixelsofmc/models/item/hydrofluoric_acid_bucket.json
 8999657e66939a7fee73fdb9152430ec61fbfd6c assets/pixelsofmc/models/item/hydrogen_2_atom_512.json
 abb81db06576f4f3d25857cbf12903650e7e72ee assets/pixelsofmc/models/item/hydrogen_2_atom_64.json
 05f7e59d4ba56ee28da6c54e3e6ddd18204cb45f assets/pixelsofmc/models/item/hydrogen_3_atom_512.json
@@ -641,6 +643,7 @@ b2daf7f2a735a5c894cf30f6709b2fed1b533b68 assets/pixelsofmc/models/item/uranium_2
 6b290be5b1feac7debb7f2050764f2a496d43d01 assets/pixelsofmc/models/item/uranium_fuel_cell.json
 7a3bc62340fbeaf2bd65690adc0e60379567f267 assets/pixelsofmc/models/item/uranium_fuel_core.json
 5dfa995cc0c01a9c54930ec8cd5798d0a480d5d3 assets/pixelsofmc/models/item/uranium_fuel_pellet.json
+16106fe06c14a319c71e188b7da4b52c081516b5 assets/pixelsofmc/models/item/uranium_hexafluoride_gas_bucket.json
 39b850e7095691de07ec473a1f40957f904af5bd assets/pixelsofmc/models/item/uranium_ingot.json
 48d08433a14392a0d5d7ba1ede081488eaa7a4bc assets/pixelsofmc/models/item/uranium_solution_bucket.json
 0b2af6e16abb700a2ffa122051c3b296885ea387 assets/pixelsofmc/models/item/vanadium_50_atom_512.json

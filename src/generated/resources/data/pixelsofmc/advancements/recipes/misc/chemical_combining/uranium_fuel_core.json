@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:chemical_mixing/uranium_solution_plutonium_solution_red_oil_2"
+        "recipe": "pixelsofmc:chemical_combining/uranium_fuel_core"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:chemical_mixing/uranium_solution_plutonium_solution_red_oil_2"
+      "pixelsofmc:chemical_combining/uranium_fuel_core"
     ]
   },
   "sends_telemetry_event": true

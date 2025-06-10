@@ -1,0 +1,24 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 500,
+    "FluidName": "pixelsofmc:hydrofluoric_acid"
+  },
+  "fluid_output": {
+    "Amount": 125,
+    "FluidName": "pixelsofmc:uranium_hexafluoride_gas"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:uranium_fuel_pellet"
+      }
+    }
+  ],
+  "output": {
+    "chance": 0.0,
+    "count": 0,
+    "ingredient": []
+  }
+}
