@@ -1,11 +1,11 @@
 {
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
-    "Amount": 250,
+    "Amount": 200,
     "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
-    "Amount": 25,
+    "Amount": 50,
     "FluidName": "pixelsofmc:hydrofluoric_acid"
   },
   "inputs": [

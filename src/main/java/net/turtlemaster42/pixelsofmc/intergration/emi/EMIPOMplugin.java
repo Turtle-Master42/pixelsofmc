@@ -17,7 +17,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.turtlemaster42.pixelsofmc.gui.screen.AbstractPOMscreen;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.intergration.emi.catagory.*;
+import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
@@ -62,7 +64,10 @@ public class EMIPOMplugin implements EmiPlugin {
                 POMblocks.SDS_CONTROLLER.get().asItem(),
                 FusionRecipe.Type.INSTANCE,
                 (recipe, category) -> new FusionRecipeEmi((FusionRecipe) recipe, category));
-
+        addEmiCategory(registry, "decay",
+                POMitems.PLUTONIUM_FUEL_CELL.get(),
+                DecayRecipe.Type.INSTANCE,
+                (recipe, category) -> new DecayRecipeEmi((DecayRecipe) recipe, category));
     }
 
     private <CONTAINER extends Container, RECIPE extends Recipe<CONTAINER>> void addEmiCategory(

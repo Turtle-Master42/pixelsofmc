@@ -112,7 +112,7 @@ public class FusionRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<FusionRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull FusionRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             CountedIngredient output = JsonRecipeUtils.CIFromJson(json, "output");
             Element element = Element.fromJson(json);

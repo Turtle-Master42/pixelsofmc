@@ -39,6 +39,8 @@ public class POMrecipes {
 			SERIALIZERS.register("fluid_heating", () -> FluidHeatingRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FluidCoolingRecipe>> FLUID_COOLING_SERIALIZER =
 			SERIALIZERS.register("fluid_cooling", () -> FluidCoolingRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<DecayRecipe>> FUEL_CELL_SERIALIZER =
+			SERIALIZERS.register("decay", () -> DecayRecipe.Serializer.INSTANCE);
 
 
 	public static void register(IEventBus bus) {

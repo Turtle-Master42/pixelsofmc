@@ -1,37 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
-          {
-            "items": [
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:copper_wire"
-            ]
-          }
+          null
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:decaying/enriched_plutonium_fuel_cell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:decaying/enriched_plutonium_fuel_cell"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

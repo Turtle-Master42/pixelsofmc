@@ -80,6 +80,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.BH_CONTROLLER.get(),
                 POMblocks.NUCLEAR_REACTOR.get(),
                 POMblocks.CHEMICAL_MIXER.get(),
+                POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get(),
 
                 POMblocks.REINFORCED_GLASS.get(),
                 POMblocks.MACHINE_CASING.get(),

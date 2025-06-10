@@ -13,7 +13,7 @@
   ],
   "output": {
     "chance": 1.0,
-    "count": 8,
+    "count": 12,
     "ingredient": {
       "item": "minecraft:redstone"
     }

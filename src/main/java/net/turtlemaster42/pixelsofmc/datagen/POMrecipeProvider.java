@@ -21,6 +21,8 @@ import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
+import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
+import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -1872,8 +1874,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.MERCURY.get(), 100)
                 .output(Element.SULFUR.dust())
                 .finish(fConsumer, this);
-        ChemicalSeparatorRecipeBuilder.build(Items.REDSTONE, 8, Fluids.WATER, 500)
-                .output(POMfluids.HYDROGEN_GAS.get(), 500)
+        ChemicalSeparatorRecipeBuilder.build(Items.REDSTONE, 8, Fluids.WATER, 125)
+                .output(POMfluids.HYDROGEN_GAS.get(), 125)
                 .output(POMitems.YELLOWCAKE_URANIUM.get())
                 .output(POMitems.REFINED_REDSTONE.get(), 8)
                 .finish(fConsumer, this);
@@ -1934,7 +1936,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(Element.SULFUR.dustTag())
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMfluids.SULFURIC_ACID.get(), 100)
-                .input(Fluids.WATER, 200)
+                .input(Fluids.WATER, 100)
                 .input(Element.SULFUR.dustTag())
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMitems.PYROLYTIC_CARBON.get())
@@ -1981,8 +1983,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.OXYGEN_GAS.get(), 200)
                 .input(Element.URANIUM.dustTag())
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 25)
-                .input(POMfluids.SULFURIC_ACID.get(), 250)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 50)
+                .input(POMfluids.SULFURIC_ACID.get(), 200)
                 .input(Items.CALCITE)
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), 125)
@@ -2054,7 +2056,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.NUCLEAR_WASTE_SOLUTION.get(), 9)
                 .input(POMfluids.NITRIC_ACID.get(), 5)
                 .input(Fluids.WATER, 10)
-                .output(POMfluids.URANIUM_SOLUTION.get(), 3)
+                .output(POMfluids.URANIUM_SOLUTION.get(), 2)
                 .output(POMfluids.PLUTONIUM_SOLUTION.get(), 1)
                 .output(POMfluids.RED_OIL.get(), 5)
                 .finish(fConsumer, this);
@@ -2130,6 +2132,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.BROMINE.get(), 1)
                 .output(POMfluids.BROMINE_GAS.get(), 1)
                 .finish(fConsumer, this);
+
+        DecayRecipeBuilder.build((FuelCellItem) POMitems.URANIUM_FUEL_CELL.get()).finish(fConsumer, this);
+        DecayRecipeBuilder.build((FuelCellItem) POMitems.ENRICHED_URANIUM_FUEL_CELL.get()).finish(fConsumer, this);
+        DecayRecipeBuilder.build((FuelCellItem) POMitems.PLUTONIUM_FUEL_CELL.get()).finish(fConsumer, this);
+        DecayRecipeBuilder.build((FuelCellItem) POMitems.ENRICHED_PLUTONIUM_FUEL_CELL.get()).finish(fConsumer, this);
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);
