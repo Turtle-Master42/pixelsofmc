@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class GrinderRecipeBuilder extends POMRecipeBuilder {
-    private final Ingredient ingredient;
+    private final Ingredient input;
     private final List<ChanceIngredient> outputs;
 
-    public GrinderRecipeBuilder(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public GrinderRecipeBuilder(Ingredient input) {
+        this.input = input;
         this.outputs = new ArrayList<>();
     }
 
@@ -50,7 +50,7 @@ public class GrinderRecipeBuilder extends POMRecipeBuilder {
     }
 
     public void finish(Consumer<FinishedRecipe> consumer, POMrecipeProvider provider) {
-        this.unlockedBy("", ANY_CRITERION).save(consumer, provider.toRL("grinding/" + CountedIngredient.of(ingredient).asName()));
+        this.unlockedBy("", ANY_CRITERION).save(consumer, provider.toRL("grinding/" + CountedIngredient.of(input).asName()));
     }
 
     @Override
@@ -60,24 +60,24 @@ public class GrinderRecipeBuilder extends POMRecipeBuilder {
 
     @Override
     protected FinishedRecipe save(@NotNull ResourceLocation id) {
-        return new Result(id, this.ingredient, this.outputs, this.advancement);
+        return new Result(id, this.input, this.outputs, this.advancement);
     }
 
     public static class Result extends POMRecipeResult {
-        private final Ingredient ingredient;
-        private final List<ChanceIngredient> results;
+        private final Ingredient input;
+        private final List<ChanceIngredient> outputs;
 
         public Result(ResourceLocation pId, Ingredient pIngredient, List<ChanceIngredient> pResults, Advancement.Builder pAdvancement) {
             super(GrinderRecipe.Serializer.INSTANCE, pId, pAdvancement);
-            this.results = pResults;
-            this.ingredient = pIngredient;
+            this.outputs = pResults;
+            this.input = pIngredient;
         }
 
         @Override
         public void serializeRecipeData(@NotNull JsonObject pJson) {
-            pJson.add("input", ingredient.toJson());
+            pJson.add("input", input.toJson());
             JsonArray jsonarray = new JsonArray();
-            for (ChanceIngredient result : results) {
+            for (ChanceIngredient result : outputs) {
                 jsonarray.add(result.toJson());
             }
             pJson.add("outputs", jsonarray);

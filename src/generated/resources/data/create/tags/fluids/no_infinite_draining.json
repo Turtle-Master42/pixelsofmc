@@ -1,0 +1,32 @@
+{
+  "values": [
+    "pixelsofmc:mercury",
+    "pixelsofmc:mercury_flowing",
+    "pixelsofmc:lead",
+    "pixelsofmc:lead_flowing",
+    "pixelsofmc:sulfuric_acid",
+    "pixelsofmc:sulfuric_acid_flowing",
+    "pixelsofmc:nitric_acid",
+    "pixelsofmc:nitric_acid_flowing",
+    "pixelsofmc:purex_solution",
+    "pixelsofmc:purex_solution_flowing",
+    "pixelsofmc:nuclear_waste",
+    "pixelsofmc:nuclear_waste_flowing",
+    "pixelsofmc:nuclear_waste_solution",
+    "pixelsofmc:nuclear_waste_solution_flowing",
+    "pixelsofmc:uranium_solution",
+    "pixelsofmc:uranium_solution_flowing",
+    "pixelsofmc:plutonium_solution",
+    "pixelsofmc:plutonium_solution_flowing",
+    "pixelsofmc:hydrogen",
+    "pixelsofmc:hydrogen_flowing",
+    "pixelsofmc:nitrogen",
+    "pixelsofmc:nitrogen_flowing",
+    "pixelsofmc:oxygen",
+    "pixelsofmc:oxygen_flowing",
+    "pixelsofmc:chlorine",
+    "pixelsofmc:chlorine_flowing",
+    "pixelsofmc:bromine",
+    "pixelsofmc:bromine_flowing"
+  ]
+}

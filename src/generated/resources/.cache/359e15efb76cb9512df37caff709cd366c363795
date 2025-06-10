@@ -1,10 +1,12 @@
-// 1.20.1	2025-06-09T10:21:53.427277	Tags for minecraft:block mod id pixelsofmc
+// 1.20.1	2025-06-09T15:04:02.978191	Tags for minecraft:block mod id pixelsofmc
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/blocks/glass.json
 15e868fc173ac4cb048c77e062805c2ed658a516 data/forge/tags/blocks/ores/titanium.json
-cb7580a89fdd7a2028eb93f52dfe76496a02c0f7 data/minecraft/tags/blocks/beacon_base_blocks.json
-7d0029e7c81491fa9e36c4cee5a5deab4fcc1d0e data/minecraft/tags/blocks/mineable/pickaxe.json
-d66b6da03a158bf60bb3dbb06185bab002dfcd12 data/minecraft/tags/blocks/needs_diamond_tool.json
-3995107084bbf55c743b89ed2cbd7bb32a5c817a data/minecraft/tags/blocks/needs_iron_tool.json
+ca51cdbf5dae5423dbe975bb59820937fe2915c9 data/forge/tags/blocks/storage_blocks.json
+97b58c8a45b455a9d8bad117d0ff6ec75de294a5 data/forge/tags/blocks/storage_blocks/diamond.json
+542590a580872a21d6f4b6d5571a865cbacbdccf data/minecraft/tags/blocks/beacon_base_blocks.json
+c48608634cd6f3845094bbf7df7c42b4fdd2e24c data/minecraft/tags/blocks/mineable/pickaxe.json
+5f2f3ada92f48889e1fef364feabd8c21819dbf9 data/minecraft/tags/blocks/needs_diamond_tool.json
+35821bc8420970fd44e9b81b9b439d43faa7c05d data/minecraft/tags/blocks/needs_iron_tool.json
 cbfe24b4fa489dde23937d26d6250fd9d74e2878 data/minecraft/tags/blocks/needs_stone_tool.json
 4c614eafe36fc81ba51d76c585caaa85befee9ce data/pixelsofmc/tags/blocks/casing/decor.json
 d8c21e44bc2b0d7537329e2b338a1891d436d1df data/pixelsofmc/tags/blocks/casing/fission.json

@@ -9,10 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.turtlemaster42.pixelsofmc.gui.book.GuiBook1;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
-import net.turtlemaster42.pixelsofmc.particle.ColoredBlockParticle;
-import net.turtlemaster42.pixelsofmc.particle.ElectricSpark;
-import net.turtlemaster42.pixelsofmc.particle.FluidBubbleParticle;
-import net.turtlemaster42.pixelsofmc.particle.FluidBubblePopParticle;
+import net.turtlemaster42.pixelsofmc.particle.*;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = PixelsOfMc.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -36,6 +33,7 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getInstance().particleEngine.register(POMparticles.FLUID_BUBBLE.get(), FluidBubbleParticle.Provider::new);
 
         event.registerSpriteSet(POMparticles.ELECTRIC_SPARK.get(), ElectricSpark.Provider::new);
+        event.registerSpriteSet(POMparticles.SPARKLE.get(), Sparkle.Provider::new);
         event.registerSpecial(POMparticles.COLORED_BLOCK.get(), new ColoredBlockParticle.Provider());
     }
 

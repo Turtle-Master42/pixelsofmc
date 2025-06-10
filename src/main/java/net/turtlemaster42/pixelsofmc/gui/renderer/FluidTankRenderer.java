@@ -216,6 +216,10 @@ public class FluidTankRenderer {
         return tooltip;
     }
 
+    public long getCapacity() {
+        return capacity;
+    }
+
     public int getWidth() {
         return width;
     }

@@ -71,7 +71,7 @@ public class POMFluidType {
             FluidType.Properties.create().temperature(300).density(1450).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> DIRTY_WATER_FLUID_TYPE = registerThickFluid("dirty_water", 132, 118, 90,
+    public static final RegistryObject<FluidType> DIRTY_WATER_FLUID_TYPE = registerFluid("dirty_water", 132, 118, 90,
             FluidType.Properties.create().temperature(300).density(1000).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).canExtinguish(true).canConvertToSource(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 

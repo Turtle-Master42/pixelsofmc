@@ -1,0 +1,44 @@
+package net.turtlemaster42.pixelsofmc.intergration.jei;
+
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
+import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
+import net.turtlemaster42.pixelsofmc.util.Element;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public record PixelDecompactingExtension(PixelDecompactingRecipe recipe) implements ICraftingCategoryExtension {
+    @Override
+    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull ICraftingGridHelper craftingGridHelper, @NotNull IFocusGroup focuses) {
+        List<ItemStack> inputs = new ArrayList<>();
+        List<ItemStack> air = new ArrayList<>();
+        List<ItemStack> outputs = new ArrayList<>();
+
+        for (Element m : Element.values()) {
+            inputs.add(m.pixelPile());
+            ItemStack out = m.pixel();
+            out.setCount(8);
+            outputs.add(out);
+        }
+
+        List<IRecipeSlotBuilder> gridSlots = craftingGridHelper.createAndSetInputs(builder, Arrays.asList(inputs, air), 1, 1);
+        IRecipeSlotBuilder outSlot = craftingGridHelper.createAndSetOutputs(builder, outputs);
+
+        builder.createFocusLink(new IRecipeSlotBuilder[] {
+                 outSlot
+        });
+    }
+
+    @Override
+    public ResourceLocation getRegistryName() {
+        return recipe.getId();
+    }
+}

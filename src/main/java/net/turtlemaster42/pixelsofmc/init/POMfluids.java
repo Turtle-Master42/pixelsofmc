@@ -146,8 +146,8 @@ public class POMfluids {
             POMFluidType.BROMINE_FLUID_TYPE, BROMINE, BROMINE_FLOWING).slopeFindDistance(4).levelDecreasePerBlock(1)
             .block(POMblocks.BROMINE_BLOCK).bucket(POMitems.LIQUID_BROMINE_BUCKET);
 
-    //-----------GAS-----------//
 
+    //-----------GAS-----------//
     public static final RegistryObject<FlowingFluid> STEAM
             = FLUIDS.register("steam", () -> new ForgeFlowingFluid.Source(POMfluids.STEAM_PROPERTIES));
     public static final RegistryObject<FlowingFluid> STEAM_FLOWING

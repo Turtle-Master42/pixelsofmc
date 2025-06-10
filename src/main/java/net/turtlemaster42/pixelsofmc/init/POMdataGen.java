@@ -29,6 +29,7 @@ public class POMdataGen {
         BlockTagsProvider blockTagsProvider = new POMblockTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(true, blockTagsProvider);
         generator.addProvider(true, new POMitemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(true, new POMfluidTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, POMlootTableProvider.create(packOutput));
         generator.addProvider(true, new POMrecipeProvider(packOutput));
     }

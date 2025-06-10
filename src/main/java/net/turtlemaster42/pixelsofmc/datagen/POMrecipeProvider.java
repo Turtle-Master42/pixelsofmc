@@ -193,16 +193,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         toItemP(POMitems.MANA_SPHERE.get())))
                 .save(fConsumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.DENSE_CARBON_CUBE.get())
-                .define('C', Element.CARBON.item())
-                .pattern("CCC")
-                .pattern("CCC")
-                .pattern("CCC")
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(Element.CARBON.dust())))
-                .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CARBONARO_CLUMP.get())
-                .define('C', POMitems.DENSE_CARBON_CUBE.get())
+                .define('C', Element.CARBON.item())
                 .pattern("CCC")
                 .pattern("CCC")
                 .pattern("CCC")
@@ -1387,6 +1379,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         GrinderRecipeBuilder.build(Items.GLOWSTONE)
                 .output(Items.GLOWSTONE_DUST, 4)
                 .finish(fConsumer, this);
+        GrinderRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get())
+                .output(Element.URANIUM.dust(), 0.5f)
+                .finish(fConsumer, this);
 
         // --MILLING--
         BallMillRecipeBuilder.build(Items.AMETHYST_SHARD, 4).ball(POMtags.Items.BALL_4)
@@ -1976,11 +1971,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMtags.Items.DUST_COAL)
                 .finish(fConsumer, this);
 
-        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_PELLET.get())
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_PELLET.get(), POMfluids.DIRTY_WATER.get(), 50)
                 .input(POMfluids.PLUTONIUM_SOLUTION.get(), 125)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get())
+        ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get(), POMfluids.DIRTY_WATER.get(), 50)
                 .input(POMfluids.URANIUM_SOLUTION.get(), 125)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.YELLOWCAKE_URANIUM.get(), 16)
+                .input(POMfluids.OXYGEN_GAS.get(), 200)
+                .input(Element.URANIUM.dustTag())
                 .finish(fConsumer, this);
 
         // --CHEMICAL MIXING--
@@ -2044,7 +2043,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.NITRIC_ACID.get(), 5)
                 .input(Fluids.WATER, 10)
                 .output(POMfluids.URANIUM_SOLUTION.get(), 3)
-                .output(POMfluids.PLUTONIUM_SOLUTION.get(), 3)
+                .output(POMfluids.PLUTONIUM_SOLUTION.get(), 1)
                 .output(POMfluids.RED_OIL.get(), 5)
                 .finish(fConsumer, this);
 
@@ -2166,7 +2165,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCompactingRecipe(POMitems.SUPERCONDUCTIVE_NUGGET.get(), POMitems.SUPERCONDUCTIVE_INGOT.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.ROYAL_TUNGSTEN_NUGGET.get(), POMitems.ROYAL_TUNGSTEN_INGOT.get(), fConsumer);
         SimpleCompactingRecipe(Element.COPPER.nugget(), Items.COPPER_INGOT, fConsumer);
-        SimpleCompactingRecipe(POMitems.ALUMINIUM_SCRAP.get(), POMblocks.ALUMINIUM_SCRAP_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.COPPER_WIRE.get(), POMblocks.COPPER_SPOOL.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.SILVER_WIRE.get(), POMblocks.SILVER_SPOOL.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.TUNGSTEN_WIRE.get(), POMblocks.TUNGSTEN_SPOOL.get(), fConsumer);
@@ -2178,7 +2176,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleCompactingRecipe(POMitems.POWER_CELL.get(), POMblocks.POWER_CELL_ARRAY.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.OVERCHARGED_POWER_CELL.get(), POMblocks.OVERCHARGED_POWER_CELL_ARRAY.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.SUPERCHARGED_POWER_CELL.get(), POMblocks.SUPERCHARGED_POWER_CELL_ARRAY.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.BLACK_DIAMOND.get(), POMblocks.BLACK_DIAMOND_BLOCK.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.PERFECT_DIAMOND.get(), POMblocks.PERFECT_DIAMOND_BLOCK.get(), fConsumer);
         SimpleCompactingRecipe(POMitems.VIOLET_DIAMOND.get(), POMblocks.VIOLET_DIAMOND_BLOCK.get(), fConsumer);
+        SimpleCompactingRecipe(POMitems.RED_DIAMOND.get(), POMblocks.RED_DIAMOND_BLOCK.get(), fConsumer);
+
 
 
         //Furnace
@@ -2186,7 +2188,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         SimpleSmeltingRecipe(POMblocks.ENDSTONE_TITANIUM_ORE.get(), Element.TITANIUM.item(), 0.5f, fConsumer, toItemP(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem()), "_from_ore");
         SimpleSmeltingRecipe(POMitems.RUSTED_PLATING.get(), Items.NETHERITE_SCRAP, 0.5f, fConsumer, toItemP(POMitems.RUSTED_PLATING.get()), "");
         SimpleSmeltingRecipe(POMitems.ANCIENT_DEBRIS_DUST.get(), Items.NETHERITE_SCRAP, 0.5f, fConsumer, toItemP(Items.NETHERITE_SCRAP), "");
-        SimpleSmeltingRecipe(Element.ALUMINIUM.dust(), POMitems.ALUMINIUM_SCRAP.get(), 0.8f, fConsumer, toItemP(Element.ALUMINIUM.dustTag()), "");
 
         SimpleSmeltingRecipe(POMitems.TITANIUM_GOLD_DUST.get(), POMitems.TITANIUM_GOLD_INGOT.get(), 0.5f, fConsumer, toItemP(POMitems.TITANIUM_GOLD_DUST.get()), "");
         SimpleSmeltingRecipe(POMitems.RED_SILVER_DUST.get(), POMitems.RED_SILVER_INGOT.get(), 0.5f, fConsumer, toItemP(POMitems.RED_SILVER_DUST.get()), "");

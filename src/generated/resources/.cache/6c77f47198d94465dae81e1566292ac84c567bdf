@@ -1,0 +1,14 @@
+// 1.20.1	2025-06-09T14:25:59.324197	Tags for minecraft:fluid mod id pixelsofmc
+7709aa00acfa60c6722db31597cd0d63419c6324 data/create/tags/fluids/no_infinite_draining.json
+bda5db0700f3ef33edc46c6e2429c75bfc35ce5a data/forge/tags/fluids/ammonia.json
+67458af43a6f4f3179104e5e303c75719d805c64 data/forge/tags/fluids/bromine.json
+fce2c99f24d31c14b47c9a6fa83ebecadf83b59a data/forge/tags/fluids/chlorine.json
+26ac7102bafbabffa43337a77d22d2072a2336b5 data/forge/tags/fluids/hydrogen.json
+a932765528a9e6b5e00c9ce2310b5a099f90f4b7 data/forge/tags/fluids/lead.json
+47c9221dddb7cfe6ef1423b60708ae979fe8a251 data/forge/tags/fluids/mercury.json
+5108f66f2f22158552b85300476135ceddc81e7f data/forge/tags/fluids/nitric_acid.json
+28a0ba8dabd695e31e17941c5b505197a7388028 data/forge/tags/fluids/nitrogen.json
+0f92fbc36b9e3bd667991be6f23854486b520eb3 data/forge/tags/fluids/oxygen.json
+9dca41336ddbd65aa505e9d90edbacf086f6f1b3 data/forge/tags/fluids/steam.json
+1dc1857e3437bbb749d0f2f65b13ca68f896d1e9 data/forge/tags/fluids/sulfuric_acid.json
+9227c674f8d1847cd0fbe738e2e17c6cdbf24564 data/minecraft/tags/fluids/water.json

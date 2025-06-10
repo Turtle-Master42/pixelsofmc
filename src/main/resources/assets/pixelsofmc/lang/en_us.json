@@ -189,7 +189,6 @@
   "item.pixelsofmc.obsidian_dust": "Obsidian Dust",
   "item.pixelsofmc.crying_obsidian_dust": "Crying Dust",
   "item.pixelsofmc.acanthite_dust": "Acanthite Dust",
-  "item.pixelsofmc.mineral_grit": "Mineral Grit",
   "item.pixelsofmc.netherite_dust": "Netherite Dust",
   "item.pixelsofmc.potassium_dust": "Potassium Dust",
   "item.pixelsofmc.silicon_dust": "Silicon Dust",
@@ -217,7 +216,6 @@
 
   "item.pixelsofmc.river_shell": "River Shell",
 
-  "item.pixelsofmc.aluminium_scrap": "Aluminium Scrap",
   "item.pixelsofmc.uranium_dust": "Uranium Dust",
   "item.pixelsofmc.sulfur": "Sulfur",
   "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
@@ -805,7 +803,6 @@
   "block.pixelsofmc.tungsten_block": "Block of Tungsten",
   "block.pixelsofmc.lead_block": "Block of Lead",
   "block.pixelsofmc.titanium_diboride_block": "True Netherite Block",
-  "block.pixelsofmc.aluminium_scrap_block": "Block of Aluminium Scrap",
   "block.pixelsofmc.titanium_ore": "Titanium Ore",
   "block.pixelsofmc.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.pixelsofmc.endstone_titanium_ore": "Endstone Titanium Ore",
@@ -870,7 +867,11 @@
   "block.pixelsofmc.fusion_energy_port": "Fusion Energy Port",
   "block.pixelsofmc.fusion_item_port": "Fusion Item Port",
   "block.pixelsofmc.fusion_plasma_port": "Fusion Plasma Port",
+  "block.pixelsofmc.black_diamond_block": "Block of Black Diamond",
+  "block.pixelsofmc.perfect_diamond_block": "Block of Diamond",
   "block.pixelsofmc.violet_diamond_block": "Block of Violet Diamond",
+  "block.pixelsofmc.red_diamond_block": "Block of Red Diamond",
+
   "block.pixelsofmc.copper_spool": "Copper Spool",
   "block.pixelsofmc.silver_spool": "Silver Spool",
   "block.pixelsofmc.tungsten_spool": "Tungsten Spool",
@@ -1153,5 +1154,14 @@
   "potion.potency.7": "VII",
   "potion.potency.8": "VIII",
   "potion.potency.9": "IX",
-  "potion.potency.10": "X"
+  "potion.potency.10": "X",
+
+  "emi.category.pixelsofmc.pressing": "Pressing",
+  "emi.category.pixelsofmc.milling": "Milling",
+  "emi.category.pixelsofmc.grinding": "Grinding",
+  "emi.category.pixelsofmc.chemical_combining": "Chemical Combining",
+  "emi.category.pixelsofmc.chemical_separating": "Chemical Separating",
+  "emi.category.pixelsofmc.chemical_mixing": "Chemical Mixing",
+  "emi.category.pixelsofmc.fusing": "Fusing"
+
 }

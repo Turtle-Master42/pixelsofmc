@@ -110,7 +110,10 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_BLOCK.get(),
                 POMblocks.TITANIUM_GOLD_BLOCK.get(),
+                POMblocks.BLACK_DIAMOND_BLOCK.get(),
+                POMblocks.PERFECT_DIAMOND_BLOCK.get(),
                 POMblocks.VIOLET_DIAMOND_BLOCK.get(),
+                POMblocks.RED_DIAMOND_BLOCK.get(),
 
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ENERGY_BLOCK.get(),
@@ -136,13 +139,16 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.FISSION_CASING_STAIRS.get(),
                 POMblocks.FISSION_CASING_SLAB.get(),
                 POMblocks.ARMORED_MACHINE_CASING_STAIRS.get(),
-                POMblocks.ARMORED_MACHINE_CASING_SLAB.get()
+                POMblocks.ARMORED_MACHINE_CASING_SLAB.get(),
+                POMblocks.BLACK_DIAMOND_BLOCK.get(),
+                POMblocks.PERFECT_DIAMOND_BLOCK.get()
         );
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
                 POMblocks.TITANIUM_DIBORIDE_BLOCK.get(),
                 POMblocks.TITANIUM_GOLD_BLOCK.get(),
-                POMblocks.VIOLET_DIAMOND_BLOCK.get()
+                POMblocks.VIOLET_DIAMOND_BLOCK.get(),
+                POMblocks.RED_DIAMOND_BLOCK.get()
         );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(
@@ -159,6 +165,30 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.LEAD_PLATING_STAIRS.get(),
                 POMblocks.LEAD_PLATING_SLAB.get()
         );
+
+        this.tag(BlockTags.BEACON_BASE_BLOCKS).add(
+                POMblocks.TITANIUM_DIBORIDE_BLOCK.get(),
+                POMblocks.TITANIUM_GOLD_BLOCK.get(),
+                POMblocks.BLACK_DIAMOND_BLOCK.get(),
+                POMblocks.PERFECT_DIAMOND_BLOCK.get(),
+                POMblocks.VIOLET_DIAMOND_BLOCK.get(),
+                POMblocks.RED_DIAMOND_BLOCK.get()
+        );
+
+        this.tag(Tags.Blocks.STORAGE_BLOCKS_DIAMOND).add(
+                POMblocks.PERFECT_DIAMOND_BLOCK.get()
+        );
+
+        this.tag(Tags.Blocks.STORAGE_BLOCKS).add(
+                POMblocks.RAW_TITANIUM_BLOCK.get(),
+                POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
+                POMblocks.TITANIUM_GOLD_BLOCK.get(),
+                POMblocks.BLACK_DIAMOND_BLOCK.get(),
+                POMblocks.PERFECT_DIAMOND_BLOCK.get(),
+                POMblocks.VIOLET_DIAMOND_BLOCK.get(),
+                POMblocks.RED_DIAMOND_BLOCK.get()
+        );
+
 
         this.tag(POMtags.Blocks.ORES_TITANIUM).add(
                 POMblocks.TITANIUM_ORE.get(),
@@ -249,6 +279,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(element.block());
                 this.tag(BlockTags.NEEDS_IRON_TOOL).add(element.block());
                 this.tag(BlockTags.BEACON_BASE_BLOCKS).add(element.block());
+                this.tag(Tags.Blocks.STORAGE_BLOCKS).add(element.block());
             }
         }
     }

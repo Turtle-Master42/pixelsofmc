@@ -214,18 +214,25 @@ public class POMblocks {
     public static final RegistryObject<Block> RAW_TITANIUM_BLOCK = registerStorageBlock("raw_titanium_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.CLAY)
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ALUMINIUM_SCRAP_BLOCK = registerStorageBlock("aluminium_scrap_block",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.CLAY).sound(SoundType.ANCIENT_DEBRIS)
-                    .strength(4f, 6.0F).requiresCorrectToolForDrops()) );
     public static final RegistryObject<Block> TITANIUM_GOLD_BLOCK = registerStorageBlock("titanium_gold_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.NETHERITE_BLOCK)
                     .strength(12f, 50f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TITANIUM_DIBORIDE_BLOCK = registerStorageBlock("titanium_diboride_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).sound(SoundType.NETHERITE_BLOCK)
                     .strength(30f, 1200f).requiresCorrectToolForDrops()), true);
+    public static final RegistryObject<Block> BLACK_DIAMOND_BLOCK = registerStorageBlock("black_diamond_block",
+            () -> new SparkelingBlock(-1, 0.04f, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK)
+                    .strength(5F, 6F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> PERFECT_DIAMOND_BLOCK = registerStorageBlock("perfect_diamond_block",
+            () -> new SparkelingBlock(0, 0.25f, BlockBehaviour.Properties.of().mapColor(MapColor.DIAMOND)
+                    .strength(5F, 6F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final RegistryObject<Block> VIOLET_DIAMOND_BLOCK = registerStorageBlock("violet_diamond_block",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
-                    .strength(6f, 10f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+            () -> new SparkelingBlock(0, 0.5f, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                    .strength(5f, 8f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> RED_DIAMOND_BLOCK = registerStorageBlock("red_diamond_block",
+            () -> new SparkelingBlock(0, 0.75f, BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_NYLIUM)
+                    .strength(5f, 10f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
 
 
     public static final RegistryObject<RotatedPillarBlock> COPPER_SPOOL = registerBlock("copper_spool",

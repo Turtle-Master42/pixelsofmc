@@ -196,7 +196,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.ACANTHITE_DUST);
         dustItem(POMitems.OBSIDIAN_DUST);
         dustItem(POMitems.CRYING_OBSIDIAN_DUST);
-        dustItem(POMitems.MINERAL_GRIT);
         dustItem(POMitems.NETHERITE_DUST);
         dustItem(POMitems.TITANIUM_GOLD_DUST);
         dustItem(POMitems.TITANIUM_OXIDE_DUST);
@@ -204,10 +203,6 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.RED_SILVER_DUST);
         dustItem(POMitems.ROYAL_TUNGSTEN_DUST);
         dustItem(POMitems.REFINED_REDSTONE);
-
-        simpleItem(POMitems.DENSE_CARBON_CUBE);
-        simpleItem(POMitems.ALUMINIUM_SCRAP);
-
 
         simpleItem(POMitems.TEST_ITEM);
         simpleItem(POMitems.PLACE_HOLDER);

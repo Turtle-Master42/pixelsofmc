@@ -186,6 +186,9 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_FLOWING.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER_FLOWING.get(), RenderType.translucent());
+
 
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
 
@@ -464,6 +467,8 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.URANIUM_SOLUTION_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.PLUTONIUM_SOLUTION_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_LEAD_BUCKET.get(), bucketBehavior);
+		DispenserBlock.registerBehavior(POMitems.DIRTY_WATER_BUCKET.get(), bucketBehavior);
+
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);

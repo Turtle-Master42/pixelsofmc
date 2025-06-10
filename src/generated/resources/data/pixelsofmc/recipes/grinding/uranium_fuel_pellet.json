@@ -1,0 +1,15 @@
+{
+  "type": "pixelsofmc:grinding",
+  "input": {
+    "item": "pixelsofmc:uranium_fuel_pellet"
+  },
+  "outputs": [
+    {
+      "chance": 0.5,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:uranium_dust"
+      }
+    }
+  ]
+}

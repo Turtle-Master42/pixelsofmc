@@ -56,16 +56,14 @@ public class HotIsostaticPressRecipe extends BaseItemRecipe {
     public int getHeat() {return heat;}
     public int getMaxHeat() {return maxHeat;}
 
-    public ItemStack getInput() {
-        return input.getItems()[0];
-    }
-    public ItemStack getBaseOutput() {return output.getItems()[0];}
-    public ItemStack getMold() {
-        return mold.getItems()[0];
+    public CountedIngredient getInput() {
+        return input;
     }
 
-    public Ingredient getMoldAsI() {
-        return mold.ingredient();
+    public ItemStack getBaseOutput() {return output.getItems()[0];}
+    public Ingredient getOutput() {return output;}
+    public CountedIngredient getMold() {
+        return mold;
     }
 
     @Override

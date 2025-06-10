@@ -18,6 +18,8 @@ public class POMparticles {
             DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, PixelsOfMc.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> ELECTRIC_SPARK = PARTICLE_TYPES.register("electric_spark", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> SPARKLE = PARTICLE_TYPES.register("sparkle", () -> new SimpleParticleType(true));
+
     public static final RegistryObject<ParticleType<ColoredBlockParticleOptions>> COLORED_BLOCK = register("colored_block", false, ColoredBlockParticleOptions.DESERIALIZER, ColoredBlockParticleOptions::codec);
     public static final RegistryObject<ParticleType<FluidBubbleParticleOptions>> FLUID_BUBBLE_POP = register("fluid_bubble_pop", false, FluidBubbleParticleOptions.DESERIALIZER, FluidBubbleParticleOptions::codec);
     public static final RegistryObject<ParticleType<FluidBubbleParticleOptions>> FLUID_BUBBLE = register("fluid_bubble", false, FluidBubbleParticleOptions.DESERIALIZER, FluidBubbleParticleOptions::codec);

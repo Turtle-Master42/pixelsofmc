@@ -34,7 +34,6 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.RAW_TITANIUM_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_DIBORIDE_BLOCK.get());
         this.dropSelf(POMblocks.TITANIUM_GOLD_BLOCK.get());
-        this.dropSelf(POMblocks.ALUMINIUM_SCRAP_BLOCK.get());
         this.dropSelf(POMblocks.HOT_ISOSTATIC_PRESS.get());
         this.dropSelf(POMblocks.PIXEL_SPLITTER.get());
         this.dropSelf(POMblocks.PIXEL_ASSEMBLER.get());
@@ -65,7 +64,10 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.RED_SILVER_SPOOL.get());
         this.dropSelf(POMblocks.ROYAL_TUNGSTEN_SPOOL.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_SPOOL.get());
+        this.dropSelf(POMblocks.BLACK_DIAMOND_BLOCK.get());
+        this.dropSelf(POMblocks.PERFECT_DIAMOND_BLOCK.get());
         this.dropSelf(POMblocks.VIOLET_DIAMOND_BLOCK.get());
+        this.dropSelf(POMblocks.RED_DIAMOND_BLOCK.get());
 
         this.dropSelf(POMblocks.POWER_CELL_ARRAY.get());
         this.dropSelf(POMblocks.OVERCHARGED_POWER_CELL_ARRAY.get());

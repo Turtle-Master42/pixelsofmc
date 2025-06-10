@@ -37,7 +37,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 120;
+    private int maxProgress = 96;
     private int speedUpgrade = 0;
     private final int capacity = 1024000;
     private final int maxReceive = 1024000;

@@ -298,7 +298,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
 
         if(match.isPresent()) {
 
-            entity.removeInput(2, match.get().getInput().getCount());
+            entity.removeInput(2, match.get().getInput().count());
 
             entity.addOutput(match.get().getBaseOutput(), 3);
 

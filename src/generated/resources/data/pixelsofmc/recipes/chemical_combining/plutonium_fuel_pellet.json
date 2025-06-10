@@ -5,8 +5,8 @@
     "FluidName": "pixelsofmc:plutonium_solution"
   },
   "fluid_output": {
-    "Amount": 0,
-    "FluidName": "minecraft:empty"
+    "Amount": 50,
+    "FluidName": "pixelsofmc:dirty_water"
   },
   "inputs": [],
   "output": {

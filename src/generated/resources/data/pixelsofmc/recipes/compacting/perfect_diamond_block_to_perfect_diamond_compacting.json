@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pixelsofmc:perfect_diamond_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "pixelsofmc:perfect_diamond"
+  }
+}

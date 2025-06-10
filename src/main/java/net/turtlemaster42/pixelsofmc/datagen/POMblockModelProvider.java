@@ -43,7 +43,10 @@ public class POMblockModelProvider extends BlockStateProvider {
         blockWithItem(POMblocks.ACANTHITE_ORE);
         blockWithItem(POMblocks.LESSER_ACANTHITE_ORE);
 
+        blockWithItem(POMblocks.BLACK_DIAMOND_BLOCK);
+        blockWithItem(POMblocks.PERFECT_DIAMOND_BLOCK);
         blockWithItem(POMblocks.VIOLET_DIAMOND_BLOCK);
+        blockWithItem(POMblocks.RED_DIAMOND_BLOCK);
         blockWithItem(POMblocks.SIMPLE_CASING_1);
         blockWithItem(POMblocks.ADVANCED_CASING_1);
         blockWithItem(POMblocks.PERFECTED_CASING_1);

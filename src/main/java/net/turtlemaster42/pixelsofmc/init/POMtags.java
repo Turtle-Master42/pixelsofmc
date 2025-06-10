@@ -3,10 +3,12 @@ package net.turtlemaster42.pixelsofmc.init;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Util;
 
@@ -72,6 +74,30 @@ public class POMtags {
         public static final TagKey<Block> ORES_TITANIUM = BlockTags.create(forgeLoc("ores/titanium"));
 
     }
+
+    public static class Fluids {
+        private static void init() {}
+
+        //forge fluids
+        public static final TagKey<Fluid> SULFURIC_ACID = FluidTags.create(forgeLoc("sulfuric_acid"));
+        public static final TagKey<Fluid> NITRIC_ACID = FluidTags.create(forgeLoc("nitric_acid"));
+
+        public static final TagKey<Fluid> STEAM = FluidTags.create(forgeLoc("steam"));
+        public static final TagKey<Fluid> AMMONIA = FluidTags.create(forgeLoc("ammonia"));
+
+
+        public static final TagKey<Fluid> HYDROGEN = FluidTags.create(forgeLoc("hydrogen"));
+        public static final TagKey<Fluid> NITROGEN = FluidTags.create(forgeLoc("nitrogen"));
+        public static final TagKey<Fluid> OXYGEN = FluidTags.create(forgeLoc("oxygen"));
+        public static final TagKey<Fluid> CHLORINE = FluidTags.create(forgeLoc("chlorine"));
+        public static final TagKey<Fluid> BROMINE = FluidTags.create(forgeLoc("bromine"));
+
+        public static final TagKey<Fluid> MERCURY = FluidTags.create(forgeLoc("mercury"));
+        public static final TagKey<Fluid> LEAD = FluidTags.create(forgeLoc("lead"));
+        public static final TagKey<Fluid> NO_INFINITE_DRAINING = FluidTags.create(createModLoc("no_infinite_draining"));
+
+    }
+
     //CREDIT Immersive Engineering
     static
     {
@@ -93,7 +119,6 @@ public class POMtags {
             dust = createItemWrapper(getDust(name));
             other = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));
             block = createItemWrapper(forgeLoc("storage_blocks/" + name));
-
         }
     }
 
@@ -111,6 +136,8 @@ public class POMtags {
         return forgeLoc("nuggets/"+type);
     }
     protected static ResourceLocation forgeLoc(String path) {return Util.resourceLocation("forge", path);}
+    protected static ResourceLocation createModLoc(String path) {return Util.resourceLocation("create", path);}
+
     protected static TagKey<Item> createItemWrapper(ResourceLocation name) {
         return TagKey.create(Registries.ITEM, name);
     }
