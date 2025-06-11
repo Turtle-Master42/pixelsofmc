@@ -20,6 +20,7 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
     public final static ResourceLocation TEXTURE = Util.resourceLocation( "textures/gui/jei/chemical_combiner.png");
 
     public ChemicalCombinerRecipeCategory(IGuiHelper helper) {
+        super("chemical_combining", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 119, 69);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_COMBINER.get()));
     }
@@ -27,11 +28,6 @@ public class ChemicalCombinerRecipeCategory extends BaseCategory<ChemicalCombine
     @Override
     public @NotNull RecipeType<ChemicalCombinerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalCombinerRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.chemical_combiner");
     }
 
     @Override

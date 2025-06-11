@@ -13,6 +13,7 @@ import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.intergration.jei.catagory.*;
+import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelCompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.PixelDecompactingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.*;
@@ -40,6 +41,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipeCategories(new ChemicalSeparatorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalCombinerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemicalMixerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new DecayRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -71,6 +73,8 @@ public class JEIPOMPlugin implements IModPlugin {
         List<ChemicalSeparatorRecipe> separating = rm.getAllRecipesFor(ChemicalSeparatorRecipe.Type.INSTANCE);
         List<ChemicalCombinerRecipe> combining = rm.getAllRecipesFor(ChemicalCombinerRecipe.Type.INSTANCE);
         List<ChemicalMixerRecipe> mixing = rm.getAllRecipesFor(ChemicalMixerRecipe.Type.INSTANCE);
+        List<DecayRecipe> decay = rm.getAllRecipesFor(DecayRecipe.Type.INSTANCE);
+
 
         registration.addRecipes(new RecipeType<>(BallMillRecipeCategory.UID, BallMillRecipe.class), milling);
         registration.addRecipes(new RecipeType<>(GrinderRecipeCategory.UID, GrinderRecipe.class), grinding);
@@ -81,6 +85,7 @@ public class JEIPOMPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(ChemicalSeparatorRecipeCategory.UID, ChemicalSeparatorRecipe.class), separating);
         registration.addRecipes(new RecipeType<>(ChemicalCombinerRecipeCategory.UID, ChemicalCombinerRecipe.class), combining);
         registration.addRecipes(new RecipeType<>(ChemicalMixerRecipeCategory.UID, ChemicalMixerRecipe.class), mixing);
+        registration.addRecipes(new RecipeType<>(DecayRecipeCategory.UID, DecayRecipe.class), decay);
     }
 
     @Override

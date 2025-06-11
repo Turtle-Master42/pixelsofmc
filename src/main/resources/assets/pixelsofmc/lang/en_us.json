@@ -1172,6 +1172,6 @@
   "emi.category.pixelsofmc.chemical_combining": "Chemical Combining",
   "emi.category.pixelsofmc.chemical_separating": "Chemical Separating",
   "emi.category.pixelsofmc.chemical_mixing": "Chemical Mixing",
-  "emi.category.pixelsofmc.fusing": "Fusing"
-
+  "emi.category.pixelsofmc.fusing": "Fusing",
+  "emi.category.pixelsofmc.decay": "Decaying"
 }

@@ -35,7 +35,7 @@ public class FusionRecipeEmi extends BaseEmiRecipe<FusionRecipe> {
         return list;
     }
 
-    private void draw(WidgetHolder widgets) {
+    protected void draw(WidgetHolder widgets) {
         String proton = String.valueOf(recipe.getProtonCount());
         String neutron = String.valueOf(recipe.getNeutronCount());
 
@@ -55,7 +55,6 @@ public class FusionRecipeEmi extends BaseEmiRecipe<FusionRecipe> {
 
     @Override
     public void addWidgets(AdvancedWidgetHolder widgets) {
-        draw(widgets.getWidgetHolder());
         //output
         widgets.addSlot(recipe.getBaseOutput(), 82, 25).recipeContext(this);
     }

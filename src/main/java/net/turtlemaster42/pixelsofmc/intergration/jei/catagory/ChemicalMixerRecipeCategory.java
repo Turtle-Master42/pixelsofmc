@@ -29,6 +29,7 @@ public class ChemicalMixerRecipeCategory extends BaseCategory<ChemicalMixerRecip
     private final IDrawable hotIcon;
 
     public ChemicalMixerRecipeCategory(IGuiHelper helper) {
+        super("chemical_mixing", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 102, 68);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_MIXER.get()));
         this.freezeIcon = helper.drawableBuilder(TEXTURE, 0, 118, 10 ,10).build();
@@ -41,21 +42,6 @@ public class ChemicalMixerRecipeCategory extends BaseCategory<ChemicalMixerRecip
     @Override
     public @NotNull RecipeType<ChemicalMixerRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalMixerRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.chemical_mixer");
-    }
-
-    @Override
-    public IDrawable getBackground() {
-        return this.background;
-    }
-
-    @Override
-    public @NotNull IDrawable getIcon() {
-        return this.icon;
     }
 
     @Override

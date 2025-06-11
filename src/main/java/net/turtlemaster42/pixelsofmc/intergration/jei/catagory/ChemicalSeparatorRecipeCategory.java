@@ -20,7 +20,7 @@ public class ChemicalSeparatorRecipeCategory extends BaseCategory<ChemicalSepara
     public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/chemical_seperator.png");
 
     public ChemicalSeparatorRecipeCategory(IGuiHelper helper) {
-        super(helper);
+        super("chemical_separating", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 107, 86);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.CHEMICAL_SEPARATOR.get()));
     }
@@ -28,11 +28,6 @@ public class ChemicalSeparatorRecipeCategory extends BaseCategory<ChemicalSepara
     @Override
     public @NotNull RecipeType<ChemicalSeparatorRecipe> getRecipeType() {
         return new RecipeType<>(UID, ChemicalSeparatorRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.chemical_separator");
     }
 
     @Override

@@ -56,10 +56,13 @@ public class BaseEmiRecipe<R extends Recipe<?>> implements EmiRecipe {
         return texture.height;
     }
 
+    protected void draw(WidgetHolder widgetHolder) {}
+
     @Override
     public void addWidgets(WidgetHolder widgetHolder) {
         widgetHolder.addTexture(texture, 0, 0);
         addWidgets(new AdvancedWidgetHolder(widgetHolder));
+        draw(widgetHolder);
     }
 
     public void addWidgets(AdvancedWidgetHolder widgetHolder) {

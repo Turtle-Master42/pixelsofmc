@@ -32,6 +32,7 @@ public class HotIsostaticPressRecipeCategory extends BaseCategory<HotIsostaticPr
     private final IDrawable soul_flame_full;
 
     public HotIsostaticPressRecipeCategory(IGuiHelper helper) {
+        super("pressing", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 103, 85);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.HOT_ISOSTATIC_PRESS.get()));
 
@@ -46,11 +47,6 @@ public class HotIsostaticPressRecipeCategory extends BaseCategory<HotIsostaticPr
     @Override
     public @NotNull RecipeType<HotIsostaticPressRecipe> getRecipeType() {
         return new RecipeType<>(UID, HotIsostaticPressRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.hot_isostatic_press");
     }
 
     @Override

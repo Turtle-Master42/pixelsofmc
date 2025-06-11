@@ -41,7 +41,7 @@ public class ChemicalMixerRecipeEmi extends BaseEmiRecipe<ChemicalMixerRecipe> {
         return list;
     }
 
-    public void drawTemperatureWidget(WidgetHolder widgets) {
+    protected void draw(WidgetHolder widgets) {
         switch (recipe.getTemperatureState()) {
             case 0 -> widgets.addTexture(WIDGET, 46, 47, 10, 10, 0, 118);
             case 1 -> widgets.addTexture(WIDGET, 46, 47, 10, 10, 10, 118);
@@ -53,13 +53,10 @@ public class ChemicalMixerRecipeEmi extends BaseEmiRecipe<ChemicalMixerRecipe> {
 
     @Override
     public void addWidgets(AdvancedWidgetHolder widgets) {
-        drawTemperatureWidget(widgets.getWidgetHolder());
-
         //fluid input
         widgets.addTank(recipe.getInputFluid(0), 9, 9, 27, 14);
         widgets.addTank(recipe.getInputFluid(1), 9, 27, 27, 14);
         widgets.addTank(recipe.getInputFluid(2), 9, 45, 27, 14);
-
         //fluid output
         widgets.addTank(recipe.getResultFluid(0), 66, 9, 27, 14).recipeContext(this);
         widgets.addTank(recipe.getResultFluid(1), 66, 27, 27, 14).recipeContext(this);
