@@ -24,6 +24,7 @@ public class PixelAssemblerRecipeCategory extends BaseCategory<PixelAssemblerRec
     public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/pixel_assembler_gui.png");
 
     public PixelAssemblerRecipeCategory(IGuiHelper helper) {
+        super("pixel_assembling", helper);
         this.background = helper.createDrawable(TEXTURE, 25, 25, 120, 57);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.PIXEL_ASSEMBLER.get()));
     }
@@ -31,11 +32,6 @@ public class PixelAssemblerRecipeCategory extends BaseCategory<PixelAssemblerRec
     @Override
     public @NotNull RecipeType<PixelAssemblerRecipe> getRecipeType() {
         return new RecipeType<>(UID, PixelAssemblerRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.pixel_assembler");
     }
 
     @Override
@@ -50,22 +46,8 @@ public class PixelAssemblerRecipeCategory extends BaseCategory<PixelAssemblerRec
         for (CountedIngredient recipeInput : recipeInputs) {
             ItemStack pixel = recipeInput.asItemStack();
             PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
-            if (recipeInput.count() > 64) {
-                pixel.setCount(64);
-                input.add(pixel);
-                pixel.setCount(recipeInput.count() - 64);
-                if (pixel.getCount() > 64) {
-                    pixel.setCount(64);
-                    input.add(pixel);
-                    pixel.setCount(recipeInput.count() - 64);
-                    input.add(pixel);
-                } else {
-                    input.add(pixel);
-                }
-            } else {
-                pixel.setCount(recipeInput.count());
-                input.add(pixel);
-            }
+            pixel.setCount(recipeInput.count());
+            input.add(pixel);
         }
 
         addInputSlot(builder, 4, 13, input.get(0));

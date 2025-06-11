@@ -208,9 +208,12 @@
   "item.pixelsofmc.zinc_dust": "Zinc Dust",
   "item.pixelsofmc.silver_dust": "Silver Dust",
   "item.pixelsofmc.niobium_dust": "Niobium Dust",
+  "item.pixelsofmc.magnesium_dust": "Magnesium Dust",
+  "item.pixelsofmc.uranium_dust": "Uranium Dust",
+
+
   "item.pixelsofmc.yellowcake_uranium": "Yellowcake Uranium",
   "item.pixelsofmc.refined_redstone": "Refined Redstone",
-
 
   "item.pixelsofmc.pixel": "Pixel",
   "item.pixelsofmc.pixel_pile": "Pile O' Pixels",
@@ -219,9 +222,6 @@
 
   "item.pixelsofmc.river_shell": "River Shell",
 
-  "item.pixelsofmc.uranium_dust": "Uranium Dust",
-  "item.pixelsofmc.sulfur": "Sulfur",
-  "item.pixelsofmc.dense_carbon_cube": "Dense Carbon Cube",
   "item.pixelsofmc.mana_amalgamation": "Mana Amalgamation",
   "item.pixelsofmc.mana_sphere": "Mana Sphere",
   "item.pixelsofmc.gleaming_mana_sphere": "Gleaming Mana Sphere",
@@ -1172,6 +1172,27 @@
   "emi.category.pixelsofmc.chemical_combining": "Chemical Combining",
   "emi.category.pixelsofmc.chemical_separating": "Chemical Separating",
   "emi.category.pixelsofmc.chemical_mixing": "Chemical Mixing",
-  "emi.category.pixelsofmc.fusing": "Fusing"
+  "emi.category.pixelsofmc.fusing": "Fusing",
+  "emi.category.pixelsofmc.decay": "Decaying",
+  "emi.category.pixelsofmc.pixel_splitting": "Pixel Splitting",
+  "emi.category.pixelsofmc.pixel_assembling": "Pixel Assembling",
 
+
+  "tag.pixelsofmc.speed_upgrade": "Speed Upgrades",
+  "tag.pixelsofmc.heat_upgrade": "Heat Upgrades",
+  "tag.pixelsofmc.energy_upgrade": "Energy Upgrades",
+  "tag.pixelsofmc.soul_fuels": "Soul Fuels",
+  "tag.pixelsofmc.sds": "S.D.S",
+  "tag.pixelsofmc.mds": "M.D.S",
+  "tag.pixelsofmc.mns": "M.N.S",
+  "tag.pixelsofmc.milling_ball": "Milling Balls",
+  "tag.pixelsofmc.circle_saw": "Saws",
+  "tag.pixelsofmc.ball_1": "Soft Milling Balls",
+  "tag.pixelsofmc.ball_2": "Medium Milling Balls",
+  "tag.pixelsofmc.ball_3": "Hard Milling Balls",
+  "tag.pixelsofmc.ball_4": "Strong Milling Balls",
+  "tag.pixelsofmc.ball_5": "Tough Milling Balls",
+  "tag.pixelsofmc.atom": "Bit Pixels",
+  "tag.pixelsofmc.atom64": "64x Bit Pixels",
+  "tag.pixelsofmc.atom512": "512x Bit Pixels"
 }

@@ -29,12 +29,12 @@ public class DecayRecipeEmi extends BaseEmiRecipe<DecayRecipe> {
 
     @Override
     public List<EmiIngredient> getInputs() {
-        return List.of(EmiIngredient.of(Ingredient.of(recipe.getFuelCell())));
+        return parseInput(Ingredient.of(recipe.getFuelCell()));
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        return List.of(EmiStack.of(recipe.getBaseOutput()));
+        return parseOutput(recipe.getBaseOutput());
     }
 
     @Override

@@ -5,45 +5,45 @@
   },
   "outputs": [
     {
-      "chance": 0.4,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:boron_dust"
-      }
-    },
-    {
-      "chance": 0.4,
+      "chance": 0.66,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:iron_dust"
       }
     },
     {
-      "chance": 0.1,
+      "chance": 0.5,
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:quartz_dust"
+        "item": "pixelsofmc:boron_dust"
       }
     },
     {
-      "chance": 0.05,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:nickel_dust"
-      }
-    },
-    {
-      "chance": 0.05,
+      "chance": 0.25,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:cobalt_dust"
       }
     },
     {
-      "chance": 0.01,
+      "chance": 0.15,
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:platinum_dust"
+        "item": "pixelsofmc:lead_dust"
+      }
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:quartz_dust"
+      }
+    },
+    {
+      "chance": 0.02,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:gold_dust"
       }
     }
   ]

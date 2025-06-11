@@ -27,7 +27,7 @@ public class GrinderRecipeCategory extends BaseCategory<GrinderRecipe> {
     private final IDrawable slot;
 
     public GrinderRecipeCategory(IGuiHelper helper) {
-        super(helper);
+        super("grinding", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 98, 84);
         this.slot = helper.drawableBuilder(CHANCE, 32, 0, 16 ,16).build();
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.GRINDER.get()));
@@ -36,11 +36,6 @@ public class GrinderRecipeCategory extends BaseCategory<GrinderRecipe> {
     @Override
     public @NotNull RecipeType<GrinderRecipe> getRecipeType() {
         return new RecipeType<>(UID, GrinderRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.grinder");
     }
 
     @Override

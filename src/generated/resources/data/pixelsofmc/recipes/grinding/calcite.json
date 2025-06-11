@@ -28,7 +28,9 @@
     {
       "chance": 0.04,
       "count": 1,
-      "ingredient": []
+      "ingredient": {
+        "item": "pixelsofmc:magnesium_dust"
+      }
     }
   ]
 }

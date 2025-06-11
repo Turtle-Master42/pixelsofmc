@@ -12,7 +12,7 @@
     }
   ],
   "output": {
-    "chance": 1.5,
+    "chance": 1.0,
     "count": 1,
     "ingredient": {
       "item": "minecraft:brick"

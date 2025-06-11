@@ -12,8 +12,8 @@
     }
   ],
   "output": {
-    "chance": 4.33,
-    "count": 1,
+    "chance": 1.0,
+    "count": 4,
     "ingredient": {
       "item": "minecraft:prismarine_crystals"
     }

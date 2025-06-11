@@ -7,6 +7,9 @@ import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.TankWidget;
 import dev.emi.emi.api.widget.Widget;
 import dev.emi.emi.api.widget.WidgetHolder;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -45,6 +48,10 @@ public class AdvancedWidgetHolder implements WidgetHolder {
             return null;
         if (ingredient.chance() >= 1f)
             return widgetHolder.add(new SlotWidget(EmiIngredient.of(ingredient.ingredient(), ingredient.count()), x - 1, y - 1));
+
+        if (ingredient.chance() < 1f) {
+            widgetHolder.addText(Component.literal("§6"+Math.round(ingredient.chance() * 100) + "%"), x - 3, y, 0, true);
+        }
 
         return widgetHolder
                 .add(new SlotWidget(EmiIngredient.of(ingredient.ingredient(), ingredient.count()), x, y))

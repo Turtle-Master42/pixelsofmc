@@ -1,11 +1,11 @@
 {
   "type": "pixelsofmc:chemical_separating",
   "fluid_input": {
-    "Amount": 200,
+    "Amount": 50,
     "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
-    "Amount": 300,
+    "Amount": 75,
     "FluidName": "pixelsofmc:dirty_water"
   },
   "input": {

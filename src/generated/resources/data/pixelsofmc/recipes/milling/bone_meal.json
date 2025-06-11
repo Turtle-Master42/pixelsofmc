@@ -12,8 +12,8 @@
     }
   ],
   "output": {
-    "chance": 2.5,
-    "count": 2,
+    "chance": 1.0,
+    "count": 5,
     "ingredient": {
       "item": "minecraft:bone_meal"
     }

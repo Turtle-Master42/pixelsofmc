@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-10T15:06:17.435011	Item Models: pixelsofmc
+// 1.20.1	2025-06-12T20:51:25.059128	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -300,6 +300,7 @@ e7c0e799535631765eeabb1b010be4a11a8c66b0 assets/pixelsofmc/models/item/machine_c
 2c8f3ca1962e87ceb24d1e826d7444c4f7c5115e assets/pixelsofmc/models/item/magnesium_26_atom_64.json
 fab8a9318c8a6b2c160016c7074c079872e83b8c assets/pixelsofmc/models/item/magnesium_atom_512.json
 1611427a2e3bcaf844d901cfd1b9f21f2b66a3ec assets/pixelsofmc/models/item/magnesium_atom_64.json
+509ae6622b78bd4be35c272fc2983e85ef3107af assets/pixelsofmc/models/item/magnesium_dust.json
 221306cafb7c59d8bb2bde2b8f3de7eb7e9f0463 assets/pixelsofmc/models/item/magnesium_ingot.json
 ff3a9eadfcdfa146363545b78b8bb8ed9fa7a02d assets/pixelsofmc/models/item/mana_amalgamation.json
 1c50aaea04f10618972049a03ee4220984e50562 assets/pixelsofmc/models/item/mana_sphere.json

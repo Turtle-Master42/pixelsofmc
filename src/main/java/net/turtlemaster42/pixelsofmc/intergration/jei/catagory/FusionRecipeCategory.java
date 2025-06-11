@@ -25,6 +25,7 @@ public class FusionRecipeCategory extends BaseCategory<FusionRecipe> {
     public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/fusing.png");
 
     public FusionRecipeCategory(IGuiHelper helper) {
+        super("fusing", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 158, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.SDS_CONTROLLER.get()));
     }
@@ -32,11 +33,6 @@ public class FusionRecipeCategory extends BaseCategory<FusionRecipe> {
     @Override
     public @NotNull RecipeType<FusionRecipe> getRecipeType() {
         return new RecipeType<>(UID, FusionRecipe.class);
-    }
-
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.sds_controller");
     }
 
     @Override

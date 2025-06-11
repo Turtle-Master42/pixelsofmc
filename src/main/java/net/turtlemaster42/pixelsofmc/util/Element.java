@@ -48,7 +48,7 @@ public enum Element {
     SODIUM(12, 22.99f, true, false, false,
             new Isotopes(11, 21.99f, true),
             new Info(370, 1150, "FEEF7C", "CBB24A", "70581F", Danger.CORROSIVE, Danger.FLAMMABLE)), //yellow flame
-    MAGNESIUM(12, 24.31f,
+    MAGNESIUM(12, 24.31f, true, false, false,
             new Isotopes(new int[]{13, 14}, new float[]{24.99f, 25.98f}),
             new Info(900, 1350, "E7E4DF", "B3B0AB", "726E6A", Danger.FLAMMABLE)),
     ALUMINIUM(14, 26.98f, true, false, false,

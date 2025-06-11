@@ -12,7 +12,7 @@
     }
   ],
   "output": {
-    "chance": 0.8,
+    "chance": 1.0,
     "count": 1,
     "ingredient": {
       "item": "minecraft:amethyst_shard"

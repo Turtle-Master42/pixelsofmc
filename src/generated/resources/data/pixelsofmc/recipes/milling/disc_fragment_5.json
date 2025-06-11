@@ -12,8 +12,8 @@
     }
   ],
   "output": {
-    "chance": 2.3,
-    "count": 3,
+    "chance": 1.0,
+    "count": 6,
     "ingredient": {
       "item": "minecraft:disc_fragment_5"
     }

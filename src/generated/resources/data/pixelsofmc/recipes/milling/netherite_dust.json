@@ -19,7 +19,7 @@
   ],
   "output": {
     "chance": 1.0,
-    "count": 2,
+    "count": 1,
     "ingredient": {
       "item": "pixelsofmc:netherite_dust"
     }

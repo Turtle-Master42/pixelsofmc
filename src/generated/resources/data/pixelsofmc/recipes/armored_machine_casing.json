@@ -1,20 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
     "A": {
-      "item": "pixelsofmc:fusion_plating"
+      "item": "pixelsofmc:titanium_diboride_ingot"
     },
     "B": {
-      "item": "pixelsofmc:machine_casing"
+      "item": "pixelsofmc:fusion_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:simple_casing_2"
     }
   },
   "pattern": [
-    " A ",
     "ABA",
-    " A "
+    "BCB",
+    "ABA"
   ],
   "result": {
+    "count": 4,
     "item": "pixelsofmc:armored_machine_casing"
   },
   "show_notification": true

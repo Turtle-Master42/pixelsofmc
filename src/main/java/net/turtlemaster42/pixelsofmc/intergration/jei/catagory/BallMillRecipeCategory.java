@@ -22,7 +22,7 @@ public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
     public final static ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/jei/ball_mill.png");
 
     public BallMillRecipeCategory(IGuiHelper helper) {
-        super(helper);
+        super("milling", helper);
         this.background = helper.createDrawable(TEXTURE, 0, 0, 128, 75);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(POMblocks.BALL_MILL.get()));
     }
@@ -32,10 +32,6 @@ public class BallMillRecipeCategory extends BaseCategory<BallMillRecipe> {
         return new RecipeType<>(UID, BallMillRecipe.class);
     }
 
-    @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.ball_mill");
-    }
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull BallMillRecipe recipe, @Nonnull IFocusGroup focusGroup) {

@@ -1,21 +1,21 @@
 {
   "type": "pixelsofmc:ball_milling",
   "ball": {
-    "tag": "pixelsofmc:ball_3"
+    "tag": "pixelsofmc:ball_2"
   },
   "inputs": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:small_amethyst_bud"
+        "item": "pixelsofmc:mercury_sulfide_dust"
       }
     }
   ],
   "output": {
-    "chance": 0.2,
-    "count": 1,
+    "chance": 1.0,
+    "count": 3,
     "ingredient": {
-      "item": "minecraft:amethyst_shard"
+      "item": "minecraft:red_dye"
     }
   }
 }

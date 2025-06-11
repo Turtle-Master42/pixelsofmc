@@ -26,15 +26,15 @@ public class HotIsostaticPressRecipeEmi extends BaseEmiRecipe<HotIsostaticPressR
 
     @Override
     public List<EmiIngredient> getInputs() {
-        return List.of(EmiIngredient.of(recipe.getInput().ingredient(), recipe.getInput().count()));
+        return parseInput(recipe.getInput());
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        return List.of(EmiStack.of(recipe.getOutput().getItems()[0]));
+        return parseOutput(recipe.getOutput());
     }
 
-    private void drawFlame(WidgetHolder widgets) {
+    protected void draw(WidgetHolder widgets) {
         String heatString = String.valueOf(recipe.getHeat());
         String maxHeatString = String.valueOf(recipe.getMaxHeat());
         Font font =  Minecraft.getInstance().font;
@@ -60,9 +60,8 @@ public class HotIsostaticPressRecipeEmi extends BaseEmiRecipe<HotIsostaticPressR
 
     @Override
     public void addWidgets(AdvancedWidgetHolder widgets) {
-        drawFlame(widgets.getWidgetHolder());
         //input
-        widgets.addSlot(recipe.getInput(), 21, 6);
+        widgets.addSlot(recipe.getInput(), 21, 7);
         //mold
         widgets.addSlot(recipe.getMold(), 21, 32).catalyst(true);
         //output

@@ -5,10 +5,17 @@
   },
   "outputs": [
     {
-      "chance": 1.0,
-      "count": 2,
+      "chance": 0.5,
+      "count": 1,
       "ingredient": {
         "item": "pixelsofmc:quartz_dust"
+      }
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:iron_dust"
       }
     },
     {
@@ -22,7 +29,7 @@
       "chance": 0.05,
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:iron_dust"
+        "item": "pixelsofmc:cobalt_dust"
       }
     },
     {

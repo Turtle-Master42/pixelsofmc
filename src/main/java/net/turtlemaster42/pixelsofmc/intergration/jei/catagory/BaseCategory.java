@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.intergration.jei.IngredientDrawable;
 import net.turtlemaster42.pixelsofmc.intergration.jei.JEIfluidRenderer;
@@ -30,12 +31,15 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
     protected final IDrawable smallChanceOverlay;
     protected IDrawable background;
     protected IDrawable icon;
+    protected String uid;
 
-    public BaseCategory(IGuiHelper helper) {
+    public BaseCategory(String recipeName , IGuiHelper helper) {
         this.chanceOverlay = helper.drawableBuilder(CHANCE, 0, 0, 16 ,16).build();
         this.smallChanceOverlay = helper.drawableBuilder(CHANCE, 16, 0, 16 ,16).build();
+        this.uid = recipeName;
         this.background = null;
         this.icon = null;
+
     }
 
     public BaseCategory() {
@@ -43,6 +47,7 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
         this.smallChanceOverlay = null;
         this.background = null;
         this.icon = null;
+        this.uid = "";
     }
 
     @Override
@@ -62,7 +67,7 @@ public class BaseCategory<T> implements IRecipeCategory<T> {
 
     @Override
     public @NotNull Component getTitle() {
-        return null;
+        return Component.translatable("emi.category.pixelsofmc." + uid);
     }
 
     public Font getFont() {

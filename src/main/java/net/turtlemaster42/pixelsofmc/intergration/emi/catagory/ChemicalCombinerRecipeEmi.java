@@ -4,13 +4,11 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.stack.FluidEmiStack;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
-import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChemicalCombinerRecipeEmi extends BaseEmiRecipe<ChemicalCombinerRecipe> {
@@ -22,23 +20,20 @@ public class ChemicalCombinerRecipeEmi extends BaseEmiRecipe<ChemicalCombinerRec
 
     @Override
     public List<EmiIngredient> getInputs() {
-        List<EmiIngredient> list = new java.util.ArrayList<>();
-        for (CountedIngredient ingredient : recipe.getInputs()) {
-            list.add(EmiIngredient.of(ingredient.ingredient(), ingredient.count()));
-        }
+        List<EmiIngredient> list = parseCountedInput(recipe.getInputs());
         if (!recipe.getFluidInput().isEmpty()) {
-            list.add(EmiStack.of(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount()));
+            list.add(parseStack(recipe.getFluidInput()));
         }
         return list;
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        List<EmiStack> list = new java.util.ArrayList<>();
+        List<EmiStack> list = new ArrayList<>();
         if (!recipe.getOutput().isEmpty())
-            list.add(EmiStack.of(recipe.getOutput().asItemStack()));
+            list.add(parseStack(recipe.getOutput()));
         if (!recipe.getResultFluid().isEmpty()) {
-            list.add(EmiStack.of(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount()));
+            list.add(parseStack(recipe.getResultFluid()));
         }
         return list;
     }

@@ -4,16 +4,9 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
 import java.util.List;
 
@@ -26,16 +19,12 @@ public class BallMillRecipeEmi extends BaseEmiRecipe<BallMillRecipe> {
 
     @Override
     public List<EmiIngredient> getInputs() {
-        List<EmiIngredient> list = new java.util.ArrayList<>();
-        for (CountedIngredient ingredient : recipe.getInputs()) {
-            list.add(EmiIngredient.of(ingredient.ingredient(), ingredient.count()));
-        }
-        return list;
+        return parseCountedInput(recipe.getInputs());
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        return List.of(EmiStack.of(recipe.getOutput().getItems()[0]));
+        return parseOutput(recipe.getOutput());
     }
 
     @Override

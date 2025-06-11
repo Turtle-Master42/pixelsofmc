@@ -33,11 +33,6 @@ public class PixelSplitterRecipeCategory extends BaseCategory<PixelSplitterRecip
     }
 
     @Override
-    public @NotNull Component getTitle() {
-        return Component.translatable("block.pixelsofmc.pixel_splitter");
-    }
-
-    @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull PixelSplitterRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         //input
         addInputSlot(builder, 35, 41, recipe.getInput());

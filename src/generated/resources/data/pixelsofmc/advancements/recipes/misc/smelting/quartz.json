@@ -4,14 +4,18 @@
     "": {
       "conditions": {
         "items": [
-          null
+          {
+            "items": [
+              "minecraft:quartz"
+            ]
+          }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:milling/amethyst_shard_5"
+        "recipe": "pixelsofmc:smelting/quartz"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,8 +28,8 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:milling/amethyst_shard_5"
+      "pixelsofmc:smelting/quartz"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }

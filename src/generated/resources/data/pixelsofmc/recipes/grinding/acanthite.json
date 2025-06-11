@@ -19,10 +19,17 @@
       }
     },
     {
-      "chance": 0.02,
+      "chance": 0.1,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:silver_dust"
+      }
+    },
+    {
+      "chance": 0.04,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:platinum_dust"
       }
     }
   ]

@@ -1,20 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
     "A": {
-      "item": "pixelsofmc:lead_plating"
+      "tag": "forge:ingots/lead"
     },
     "B": {
-      "item": "pixelsofmc:machine_casing"
+      "item": "pixelsofmc:lead_plating"
+    },
+    "C": {
+      "item": "pixelsofmc:simple_casing_1"
     }
   },
   "pattern": [
-    " A ",
     "ABA",
-    " A "
+    "BCB",
+    "ABA"
   ],
   "result": {
+    "count": 4,
     "item": "pixelsofmc:fission_casing"
   },
   "show_notification": true

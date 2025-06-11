@@ -5,12 +5,10 @@ import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
-import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalCombinerRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalSeparatorRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChemicalSeperatorRecipeEmi extends BaseEmiRecipe<ChemicalSeparatorRecipe> {
@@ -22,23 +20,20 @@ public class ChemicalSeperatorRecipeEmi extends BaseEmiRecipe<ChemicalSeparatorR
 
     @Override
     public List<EmiIngredient> getInputs() {
-        List<EmiIngredient> list = new java.util.ArrayList<>();
+        List<EmiIngredient> list = new ArrayList<>();
         if (!recipe.getInput().isEmpty())
-            list.add(EmiStack.of(recipe.getInput().asItemStack()));
+            list.add(parseStack(recipe.getInput()));
         if (!recipe.getFluidInput().isEmpty()) {
-            list.add(EmiStack.of(recipe.getFluidInput().getFluid(), recipe.getFluidInput().getAmount()));
+            list.add(parseStack(recipe.getFluidInput()));
         }
         return list;
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        List<EmiStack> list = new java.util.ArrayList<>();
-        for (ChanceIngredient ingredient : recipe.getOutputs()) {
-            list.add(EmiStack.of(ingredient.asItemStack()));
-        }
+        List<EmiStack> list = parseChanceOutput(recipe.getOutputs());
         if (!recipe.getResultFluid().isEmpty()) {
-            list.add(EmiStack.of(recipe.getResultFluid().getFluid(), recipe.getResultFluid().getAmount()));
+            list.add(parseStack(recipe.getResultFluid()));
         }
         return list;
     }
