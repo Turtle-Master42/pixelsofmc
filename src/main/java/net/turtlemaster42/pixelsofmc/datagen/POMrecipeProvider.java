@@ -23,6 +23,7 @@ import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
+import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -1282,8 +1283,8 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(Element.COPPER.dust(),0.01f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.NETHERRACK)
-                .output(POMitems.MERCURY_SULFIDE_DUST.get(), 2)
-                .output(POMitems.MERCURY_SULFIDE_DUST.get(),0.33f)
+                .output(POMitems.MERCURY_SULFIDE_DUST.get(), 4)
+                .output(POMitems.MERCURY_SULFIDE_DUST.get(),2, 0.33f)
                 .output(POMitems.QUARTZ_DUST.get(), 0.4f)
                 .output(Element.SULFUR.dust(),0.05f)
                 .output(Element.GOLD.dust(),0.05f)
@@ -2347,6 +2348,33 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             }
         }
         calculatePossibleFusions();
+
+
+
+
+        //TEMP PLUTONIUM ENRICHMENT PLACEHOLDER
+        ChemicalCombinerRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_DUST.get()/*Plutonium Tetrafluoride Dust*/, POMfluids.DIRTY_WATER.get(), 250)
+                .input(POMitems.PLUTONIUM_FUEL_PELLET.get())
+                .input(POMfluids.HYDROFLUORIC_ACID.get(), 500)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(Element.COBALT.dust())/*Plutonium Hexafluoride Dust*/
+                .input(POMitems.ROYAL_TUNGSTEN_DUST.get())/*Plutonium Tetrafluoride Dust*/
+                .input(POMfluids.HYDROGEN.get(), 200)/*Fluorine Gas*/
+                .finish(fConsumer, this);
+        //LAZER//
+        BallMillRecipeBuilder.build(POMitems.ACANTHITE_DUST.get())/*Enriched Plutonium Hexafluoride Dust*/
+                .input(Element.COBALT.dust(), 3) /*Plutonium Hexafluoride Dust*/
+                .ball(POMitems.RUBBER_BALL.get())
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_CORE.get())
+                .input(POMitems.ACANTHITE_DUST.get(), 8)/*Enriched Plutonium Hexafluoride Dust*/
+                .input(Element.LITHIUM.dust(), 48)
+                .finish(fConsumer, this);
+
+
+
+
+
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {

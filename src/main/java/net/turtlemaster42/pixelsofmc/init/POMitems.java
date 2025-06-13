@@ -164,20 +164,21 @@ public class POMitems {
 	public static final RegistryObject<Item> PERFECTED_CIRCUIT_BOARD_2 = ITEMS.register("perfected_circuit_board_2", () -> new Item(new Item.Properties()));
 
 
-	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties()));
+	//cells
+	public static final RegistryObject<Item> EMPTY_CELL = ITEMS.register("empty_cell", () -> new Item(new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item> POWER_CELL = ITEMS.register("power_cell", () -> new PowerCellItem(new Item.Properties(), 8_000_000, new Color(0, 205 ,255).getRGB(), ChatFormatting.AQUA));
 	public static final RegistryObject<Item> OVERCHARGED_POWER_CELL = ITEMS.register("overcharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.UNCOMMON), 64_000_000, new Color(205, 100 ,255).getRGB(), ChatFormatting.LIGHT_PURPLE));
 	public static final RegistryObject<Item> SUPERCHARGED_POWER_CELL = ITEMS.register("supercharged_power_cell", () -> new PowerCellItem(new Item.Properties().rarity(Rarity.RARE), 512_000_000, 16733525, ChatFormatting.RED));
-	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> EMPTY_FUEL_CELL = ITEMS.register("empty_fuel_cell", () -> new Item(new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item> DEPLETED_URANIUM_FUEL_CELL = ITEMS.register("depleted_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), 20, "textures/item/depleted_uranium_fuel_model.png"));
+	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), DEPLETED_URANIUM_FUEL_CELL.get(), 500, new Color(0, 160, 0).getRGB(), "textures/item/uranium_fuel_model.png")); //total 8_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("depleted_enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), 80, "textures/item/depleted_enriched_uranium_fuel_model.png"));
+	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 2000, new Color(0, 255, 0).getRGB(), "textures/item/enriched_uranium_fuel_model.png")); //total 32_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), 320, "textures/item/depleted_plutonium_fuel_model.png"));
+	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), DEPLETED_PLUTONIUM_FUEL_CELL.get(), 8000, new Color(0, 200, 175).getRGB(), "textures/item/plutonium_fuel_model.png")); //total 128_000_000 FE
+	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), 1280, "textures/item/depleted_enriched_plutonium_fuel_model.png"));
+	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties().stacksTo(16), DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 32000, new Color(0, 255, 225).getRGB(), "textures/item/enriched_plutonium_fuel_model.png")); //total 512_000_000 FE
 
-	public static final RegistryObject<Item> DEPLETED_URANIUM_FUEL_CELL = ITEMS.register("depleted_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 20, "textures/item/depleted_uranium_fuel_model.png"));
-	public static final RegistryObject<Item> URANIUM_FUEL_CELL = ITEMS.register("uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_URANIUM_FUEL_CELL.get(), 500, new Color(0, 160, 0).getRGB(), "textures/item/uranium_fuel_model.png")); //total 8_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("depleted_enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 80, "textures/item/depleted_enriched_uranium_fuel_model.png"));
-	public static final RegistryObject<Item> ENRICHED_URANIUM_FUEL_CELL = ITEMS.register("enriched_uranium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_URANIUM_FUEL_CELL.get(), 2000, new Color(0, 255, 0).getRGB(), "textures/item/enriched_uranium_fuel_model.png")); //total 32_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 320, "textures/item/depleted_plutonium_fuel_model.png"));
-	public static final RegistryObject<Item> PLUTONIUM_FUEL_CELL = ITEMS.register("plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_PLUTONIUM_FUEL_CELL.get(), 8000, new Color(0, 200, 175).getRGB(), "textures/item/plutonium_fuel_model.png")); //total 128_000_000 FE
-	public static final RegistryObject<Item> DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("depleted_enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), 1280, "textures/item/depleted_enriched_plutonium_fuel_model.png"));
-	public static final RegistryObject<Item> ENRICHED_PLUTONIUM_FUEL_CELL = ITEMS.register("enriched_plutonium_fuel_cell", () -> new FuelCellItem(new Item.Properties(), DEPLETED_ENRICHED_PLUTONIUM_FUEL_CELL.get(), 32000, new Color(0, 255, 225).getRGB(), "textures/item/enriched_plutonium_fuel_model.png")); //total 512_000_000 FE
 	public static final RegistryObject<Item> ADVANCED_LASER = ITEMS.register("advanced_laser", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_LINING = ITEMS.register("fusion_lining", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> FUSION_PLATING = ITEMS.register("fusion_plating", () -> new Item(new Item.Properties()));

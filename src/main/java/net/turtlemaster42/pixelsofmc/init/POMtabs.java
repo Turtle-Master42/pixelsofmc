@@ -5,12 +5,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.item.PowerCellItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 
 import java.util.List;
@@ -25,15 +29,6 @@ public class POMtabs {
 			Registries.CREATIVE_MODE_TAB, PixelsOfMc.MOD_ID
 	);
 
-	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
-			"elements_tab",
-			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
-					.icon(() -> Element.CALIFORNIUM.atom64().asItem().getDefaultInstance())
-					.title(Component.literal("Elements"))
-					.withSearchBar()
-					.displayItems(POMtabs::elementsTab)
-					.build()
-	);
 
 	private static final RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = REGISTER.register(
 			"main_tab",
@@ -41,6 +36,16 @@ public class POMtabs {
 					.icon(() -> POMitems.NETHERITE_PLATING.get().getDefaultInstance())
 					.title(Component.literal("Pixels of Minecraft"))
 					.displayItems(POMtabs::pixelsOfMcTab)
+					.build()
+	);
+
+	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
+			"elements_tab",
+			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
+					.icon(() -> Element.CALIFORNIUM.atom64().asItem().getDefaultInstance())
+					.title(Component.literal("Elements"))
+					.withSearchBar()
+					.displayItems(POMtabs::elementsTab)
 					.build()
 	);
 
@@ -55,7 +60,7 @@ public class POMtabs {
 		}
 	}
 
-	private static void pixelsOfMcTab(CreativeModeTab.ItemDisplayParameters parms, CreativeModeTab.Output out)
+	private static void pixelsOfMcTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
 	{
 		for(final RegistryObject<Item> itemRef : POMitems.BLOCK_ITEMS.getEntries()) {
 			final Item item = itemRef.get();
@@ -74,6 +79,12 @@ public class POMtabs {
 			if(DONT_INCLUDE.contains(itemRef) || OP_ONLY.contains(itemRef))
 				continue;
 			out.accept(item);
+			if (item instanceof PowerCellItem powerCell) {
+				ItemStack powerStack = new ItemStack(powerCell);
+				IEnergyStorage energy =  powerStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+				energy.receiveEnergy(energy.getMaxEnergyStored(), false);
+				out.accept(powerStack);
+			}
 		}
 		for(final RegistryObject<Item> itemRef : POMitems.NUGGETS.getEntries()) {
 			final Item item = itemRef.get();
@@ -95,7 +106,7 @@ public class POMtabs {
 		}
 	}
 
-	private static void elementsTab(CreativeModeTab.ItemDisplayParameters parms, CreativeModeTab.Output out)
+	private static void elementsTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
 	{
 		for(final RegistryObject<Item> itemRef : POMitems.ELEMENTS.getEntries()) {
 			final Item item = itemRef.get();

@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "fluid_output": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "inputs": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "pixelsofmc:acanthite_dust"
+      }
+    },
+    {
+      "count": 48,
+      "ingredient": {
+        "item": "pixelsofmc:lithium_dust"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:plutonium_fuel_core"
+    }
+  }
+}

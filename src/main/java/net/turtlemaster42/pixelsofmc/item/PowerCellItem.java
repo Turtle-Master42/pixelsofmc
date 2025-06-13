@@ -12,6 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyItemProvider;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
@@ -51,10 +52,16 @@ public class PowerCellItem extends Item  {
     }
 
     @Override
+    public int getMaxStackSize(ItemStack stack) {
+        IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+        if (energy.getEnergyStored() != 0) {return 1;}
+        return 16;
+    }
+
+    @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
         return super.use(level, player, usedHand);
     }
-
 
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @org.jetbrains.annotations.Nullable Level level, @NotNull List<net.minecraft.network.chat.Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {

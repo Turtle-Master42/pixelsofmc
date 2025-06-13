@@ -45,6 +45,7 @@ import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.item.BigBucket;
+import net.turtlemaster42.pixelsofmc.item.PowerCellItem;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
 import org.jetbrains.annotations.NotNull;
@@ -277,84 +278,31 @@ public class PixelsOfMc {
 			}
 		};
 
-		//TODO:make dynamic
 		DispenseItemBehavior energyCell = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-				BlockState state = source.getLevel().getBlockState(blockpos);
 				BlockEntity entity = source.getLevel().getBlockEntity(blockpos);
 				if (entity != null) {
-					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
-					if (EnergyHandlerFrom != null) {
-						int maxReceive = 8000000;
-
-						if (EnergyHandlerFrom.canReceive()) {
-							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
-							stack.shrink(1);
+					IEnergyStorage energyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
+					IEnergyStorage powerCellHandler = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
+					if (energyHandlerFrom != null && powerCellHandler != null) {
+						if (energyHandlerFrom.canReceive()) {
+							int received =  energyHandlerFrom.receiveEnergy(powerCellHandler.getEnergyStored(), false);
+							powerCellHandler.extractEnergy(received, false);
 						}
 						return stack;
 					}
 				}
-				if (state.canBeReplaced()) {
-					source.getLevel().sendParticles(ParticleTypes.SOUL, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 50, 0.5f, 0.5f, 0.5f, 0.01);
-					stack.shrink(1);
-					return stack;
-				}
-				return stack;
+				//IMPLEMENT ON A LATER DAY
+//				if (state.canBeReplaced()) {
+//					source.getLevel().sendParticles(POMparticles.ELECTRIC_SPARK.get(), blockpos.getX(), blockpos.getY(), blockpos.getZ(), 50, 0.5f, 0.5f, 0.5f, 0.01);
+//					return stack;
+//				}
+				return defaultBehavior.dispense(source, stack);
 			}
 		};
-		//TODO:make dynamic
-		DispenseItemBehavior energyCell2 = new DefaultDispenseItemBehavior() {
-			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
-				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-				BlockState state = source.getLevel().getBlockState(blockpos);
-				BlockEntity entity = source.getLevel().getBlockEntity(blockpos);
-				if (entity != null) {
-					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
-					if (EnergyHandlerFrom != null) {
-						int maxReceive = 64000000;
 
-						if (EnergyHandlerFrom.canReceive()) {
-							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
-							stack.shrink(1);
-						}
-						return stack;
-					}
-				}
-				if (state.canBeReplaced()) {
-					source.getLevel().sendParticles(ParticleTypes.SOUL, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 150, 1.5f, 1.5f, 1.5f, 0.01);
-					stack.shrink(1);
-					return stack;
-				}
-				return stack;
-			}
-		};
-		//TODO:make dynamic
-		DispenseItemBehavior energyCell3 = new DefaultDispenseItemBehavior() {
-			public @NotNull ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
-				BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-				BlockState state = source.getLevel().getBlockState(blockpos);
-				BlockEntity entity = source.getLevel().getBlockEntity(blockpos);
-				if (entity != null) {
-					IEnergyStorage EnergyHandlerFrom = entity.getCapability(ForgeCapabilities.ENERGY, source.getBlockState().getValue(DispenserBlock.FACING).getOpposite()).orElse(null);
-					if (EnergyHandlerFrom != null) {
-						int maxReceive = 512000000;
-
-						if (EnergyHandlerFrom.canReceive()) {
-							EnergyHandlerFrom.receiveEnergy(maxReceive, false);
-							stack.shrink(1);
-						}
-						return stack;
-					}
-				}
-				if (state.canBeReplaced()) {
-					source.getLevel().sendParticles(ParticleTypes.SOUL, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 450, 2.5f, 2.5f, 2.5f, 0.01);
-					stack.shrink(1);
-					return stack;
-				}
-				return stack;
-			}
-		};
 		DispenseItemBehavior titaniumBucket = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
@@ -474,8 +422,8 @@ public class PixelsOfMc {
 
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
-		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell2);
-		DispenserBlock.registerBehavior(POMitems.SUPERCHARGED_POWER_CELL.get(), energyCell3);
+		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell);
+		DispenserBlock.registerBehavior(POMitems.SUPERCHARGED_POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.TITANIUM_BUCKET.get(), titaniumBucket);
 		DispenserBlock.registerBehavior(POMitems.REINFORCED_BUCKET.get(), reinforcedBucket);
 	}
