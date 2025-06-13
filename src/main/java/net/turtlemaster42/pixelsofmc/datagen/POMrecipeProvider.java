@@ -22,7 +22,6 @@ import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
-import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
@@ -1711,7 +1710,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         BallMillRecipeBuilder.build(Items.BLUE_DYE, 3).ball(POMtags.Items.BALL_2)
                 .input(Items.LAPIS_LAZULI)
                 .finish(fConsumer, this);
-        BallMillRecipeBuilder.build(Items.RED_DYE, 3).ball(POMtags.Items.BALL_2)
+        BallMillRecipeBuilder.build(Items.RED_DYE, 2).ball(POMtags.Items.BALL_2)
                 .input(POMitems.MERCURY_SULFIDE_DUST.get())
                 .finish(fConsumer, this);
 

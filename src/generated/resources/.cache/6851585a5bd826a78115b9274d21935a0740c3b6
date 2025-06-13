@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-12T20:51:25.059128	Item Models: pixelsofmc
+// 1.20.1	2025-06-13T09:51:47.149598	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -285,6 +285,7 @@ a6406c00b6e5c3747ec4edad1e6c3dc2cae495cd assets/pixelsofmc/models/item/liquid_ox
 09c1def48cd5ffb40b79a682e4aca7259bbd10f5 assets/pixelsofmc/models/item/lithium_6_atom_64.json
 6386b3cd54f4a2de6f593a943728e53b46728508 assets/pixelsofmc/models/item/lithium_atom_512.json
 99ee810c717d6a09a2103d161d25402a53f9984a assets/pixelsofmc/models/item/lithium_atom_64.json
+d9f25868a84b34b959ebe1da427f71797a0f96fe assets/pixelsofmc/models/item/lithium_dust.json
 909f7a52142de82fc335e3b99ecc0e75d7af93c4 assets/pixelsofmc/models/item/lithium_ingot.json
 f0e17b112e73586dabf72ba7299de271a1dea1b6 assets/pixelsofmc/models/item/lutetium_176_atom_512.json
 dd95c7c0c72e68b45b90b3608cf6ff6c33fbc01f assets/pixelsofmc/models/item/lutetium_176_atom_64.json

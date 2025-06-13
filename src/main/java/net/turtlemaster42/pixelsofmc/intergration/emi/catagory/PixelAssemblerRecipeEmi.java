@@ -4,12 +4,9 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
-import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelAssemblerRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -60,22 +57,8 @@ public class PixelAssemblerRecipeEmi extends BaseEmiRecipe<PixelAssemblerRecipe>
         for (CountedIngredient recipeInput : recipeInputs) {
             ItemStack pixel = recipeInput.asItemStack();
             PixelItem.createForPixel(pixel, color1, color2, color3, recipe.getStructure());
-            if (recipeInput.count() > 64) {
-                pixel.setCount(64);
-                input.add(pixel);
-                pixel.setCount(recipeInput.count() - 64);
-                if (pixel.getCount() > 64) {
-                    pixel.setCount(64);
-                    input.add(pixel);
-                    pixel.setCount(recipeInput.count() - 64);
-                    input.add(pixel);
-                } else {
-                    input.add(pixel);
-                }
-            } else {
-                pixel.setCount(recipeInput.count());
-                input.add(pixel);
-            }
+            pixel.setCount(recipeInput.count());
+            input.add(pixel);
         }
 
         widgets.addSlot(input.get(0), 4, 13);

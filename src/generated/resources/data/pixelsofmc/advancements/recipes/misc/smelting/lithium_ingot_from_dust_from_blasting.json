@@ -1,14 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:hammer",
-              "pixelsofmc:wirecutter"
-            ]
+            "tag": "forge:dusts/lithium"
           }
         ]
       },
@@ -16,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:redstone_layered_copper_wire_2"
+        "recipe": "pixelsofmc:smelting/lithium_ingot_from_dust_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:redstone_layered_copper_wire_2"
+      "pixelsofmc:smelting/lithium_ingot_from_dust_from_blasting"
     ]
   },
   "sends_telemetry_event": false

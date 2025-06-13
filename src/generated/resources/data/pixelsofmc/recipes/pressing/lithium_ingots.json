@@ -1,0 +1,23 @@
+{
+  "type": "pixelsofmc:pressing",
+  "heat": 450,
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:dusts/lithium"
+    }
+  },
+  "max_heat": 1600,
+  "mold": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:ingot_cast"
+    }
+  },
+  "output": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/lithium"
+    }
+  }
+}

@@ -29,9 +29,9 @@ public record PixelCompactingExtension(PixelCompactingRecipe recipe) implements 
         List<IRecipeSlotBuilder> gridSlots = craftingGridHelper.createAndSetInputs(builder, Arrays.asList(inputs, inputs, inputs, inputs, inputs, inputs, inputs, inputs), 0, 0);
         IRecipeSlotBuilder outSlot = craftingGridHelper.createAndSetOutputs(builder, outputs);
 
-        builder.createFocusLink(new IRecipeSlotBuilder[] {
-                gridSlots.get(0), gridSlots.get(1), gridSlots.get(2), gridSlots.get(3), gridSlots.get(4), gridSlots.get(5), gridSlots.get(6), gridSlots.get(7), outSlot
-        });
+        builder.createFocusLink(new IRecipeSlotBuilder[] {gridSlots.get(0), gridSlots.get(1), gridSlots.get(2), gridSlots.get(3), gridSlots.get(4), gridSlots.get(5), gridSlots.get(6), gridSlots.get(7), outSlot});
+
+
     }
 
     @Override

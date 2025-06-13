@@ -1,13 +1,12 @@
 package net.turtlemaster42.pixelsofmc.intergration.emi;
 
 import dev.emi.emi.api.EmiEntrypoint;
-import dev.emi.emi.api.EmiInitRegistry;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
+import dev.emi.emi.api.stack.Comparison;
 import dev.emi.emi.api.stack.EmiStack;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -29,6 +28,10 @@ public class EMIPOMplugin implements EmiPlugin {
     public void register(EmiRegistry registry) {
         //automatic exclusion areas
         registry.addGenericExclusionArea(new ExclusionArea());
+
+        //nbt stuffs
+        registry.setDefaultComparison(POMitems.PIXEL.get(), Comparison.compareNbt());
+        registry.setDefaultComparison(POMitems.PIXEL_PILE.get(), Comparison.compareNbt());
 
         addEmiCategory(registry, "pressing", 0, 0,
                 POMblocks.HOT_ISOSTATIC_PRESS.get(),
@@ -62,11 +65,11 @@ public class EMIPOMplugin implements EmiPlugin {
                 POMitems.PLUTONIUM_FUEL_CELL.get(),
                 DecayRecipe.Type.INSTANCE,
                 (recipe, category) -> new DecayRecipeEmi((DecayRecipe) recipe, category));
-        addEmiCategory(registry, "pixel_assembling", 240, 240,
+        addEmiCategory(registry, "pixel_assembling", 144, 0,
                 POMblocks.PIXEL_ASSEMBLER.get(),
                 PixelAssemblerRecipe.Type.INSTANCE,
                 (recipe, category) -> new PixelAssemblerRecipeEmi((PixelAssemblerRecipe) recipe, category));
-        addEmiCategory(registry, "pixel_splitting", 240, 240,
+        addEmiCategory(registry, "pixel_splitting", 128, 0,
                 POMblocks.PIXEL_SPLITTER.get(),
                 PixelSplitterRecipe.Type.INSTANCE,
                 (recipe, category) -> new PixelSplitterRecipeEmi((PixelSplitterRecipe) recipe, category));
@@ -82,7 +85,6 @@ public class EMIPOMplugin implements EmiPlugin {
                 EmiStack.of(icon),
                 new EmiTexture(Util.resourceLocation("textures/gui/emi/widgets.png"), textureX, textureY, 16, 16)
         );
-
         registry.addCategory(category);
         registry.addWorkstation(category, EmiStack.of(icon));
 

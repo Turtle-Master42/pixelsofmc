@@ -22,7 +22,7 @@ public enum Element {
     HELIUM(2, 4f, ItemType.CANISTER,
             new Isotopes(1, 3.01f),
             new Info(1, 5, "FFC977", "FFAA61", "794620")),
-    LITHIUM(4, 7f,
+    LITHIUM(4, 7f, true, false, false,
             new Isotopes(3, 6.02f),
             new Info(450, 1600, "A5BD9C", "5C6557", "323831", Danger.FLAMMABLE, Danger.CORROSIVE)), //red flame
     BERYLLIUM(5, 9.01f,

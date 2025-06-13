@@ -29,16 +29,10 @@ public class BallMillRecipeBuilder extends POMRecipeBuilder {
     }
 
     public static BallMillRecipeBuilder build(Item item) {
-        return build(item, 1, 1f);
+        return build(item, 1);
     }
     public static BallMillRecipeBuilder build(Item item, int count) {
-        return build(item, count, 1f);
-    }
-    public static BallMillRecipeBuilder build(Item item, float chance) {
-        return build(item, 1, chance);
-    }
-    public static BallMillRecipeBuilder build(Item item, int count, float chance) {
-        return new BallMillRecipeBuilder(ChanceIngredient.of(count, chance, item));
+        return new BallMillRecipeBuilder(ChanceIngredient.of(count, 1f, item));
     }
 
     public BallMillRecipeBuilder ball(Item item) {
