@@ -1,18 +1,18 @@
 {
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
-    "Amount": 500,
-    "FluidName": "pixelsofmc:hydrofluoric_acid"
+    "Amount": 200,
+    "FluidName": "pixelsofmc:fluorine_gas"
   },
   "fluid_output": {
-    "Amount": 250,
-    "FluidName": "pixelsofmc:dirty_water"
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
   },
   "inputs": [
     {
       "count": 1,
       "ingredient": {
-        "item": "pixelsofmc:plutonium_fuel_pellet"
+        "item": "pixelsofmc:plutonium_tetrafluoride_dust"
       }
     }
   ],
@@ -20,7 +20,7 @@
     "chance": 1.0,
     "count": 1,
     "ingredient": {
-      "item": "pixelsofmc:royal_tungsten_dust"
+      "item": "pixelsofmc:plutonium_hexafluoride_dust"
     }
   }
 }

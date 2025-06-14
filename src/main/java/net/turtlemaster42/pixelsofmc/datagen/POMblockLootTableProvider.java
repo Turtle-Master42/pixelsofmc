@@ -133,16 +133,6 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(POMblocks.OXYGEN_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.CHLORINE_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.BROMINE_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.HYDROGEN_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.NITROGEN_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.OXYGEN_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.CHLORINE_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.BROMINE_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.STEAM_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.MERCURY_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.LEAD_GAS_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.BLAZING_STEAM_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.AMMONIA_GAS_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.NITRIC_ACID_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.PUREX_SOLUTION_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.NUCLEAR_WASTE_BLOCK.get(), Items.AIR);
@@ -152,8 +142,9 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(POMblocks.RED_OIL_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.DIRTY_WATER_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.HYDROFLUORIC_ACID_BLOCK.get(), Items.AIR);
-        this.dropOther(POMblocks.URANIUM_HEXAFLUORIDE_GAS_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.ENRICHED_URANIUM_SOLUTION_BLOCK.get(), Items.AIR);
+        this.dropOther(POMblocks.ENRICHED_PLUTONIUM_SOLUTION_BLOCK.get(), Items.AIR);
+
 
         this.dropOther(POMblocks.EXTENDER_BLOCK.get(), Items.AIR);
         this.dropOther(POMblocks.EXTENDER_ENERGY_BLOCK.get(), Items.AIR);

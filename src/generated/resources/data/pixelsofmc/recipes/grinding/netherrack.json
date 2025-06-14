@@ -6,14 +6,14 @@
   "outputs": [
     {
       "chance": 1.0,
-      "count": 2,
+      "count": 4,
       "ingredient": {
         "item": "pixelsofmc:mercury_sulfide_dust"
       }
     },
     {
       "chance": 0.33,
-      "count": 1,
+      "count": 2,
       "ingredient": {
         "item": "pixelsofmc:mercury_sulfide_dust"
       }

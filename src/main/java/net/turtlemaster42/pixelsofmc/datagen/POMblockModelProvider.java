@@ -108,16 +108,6 @@ public class POMblockModelProvider extends BlockStateProvider {
         liquidBlock(POMblocks.OXYGEN_BLOCK);
         liquidBlock(POMblocks.CHLORINE_BLOCK);
         liquidBlock(POMblocks.BROMINE_BLOCK);
-        liquidBlock(POMblocks.HYDROGEN_GAS_BLOCK);
-        liquidBlock(POMblocks.NITROGEN_GAS_BLOCK);
-        liquidBlock(POMblocks.OXYGEN_GAS_BLOCK);
-        liquidBlock(POMblocks.CHLORINE_GAS_BLOCK);
-        liquidBlock(POMblocks.BROMINE_GAS_BLOCK);
-        liquidBlock(POMblocks.STEAM_BLOCK);
-        liquidBlock(POMblocks.LEAD_GAS_BLOCK);
-        liquidBlock(POMblocks.MERCURY_GAS_BLOCK);
-        liquidBlock(POMblocks.BLAZING_STEAM_BLOCK);
-        liquidBlock(POMblocks.AMMONIA_GAS_BLOCK);
         liquidBlock(POMblocks.NITRIC_ACID_BLOCK);
         liquidBlock(POMblocks.PUREX_SOLUTION_BLOCK);
         liquidBlock(POMblocks.NUCLEAR_WASTE_SOLUTION_BLOCK);
@@ -127,8 +117,8 @@ public class POMblockModelProvider extends BlockStateProvider {
         liquidBlock(POMblocks.RED_OIL_BLOCK);
         liquidBlock(POMblocks.DIRTY_WATER_BLOCK);
         liquidBlock(POMblocks.HYDROFLUORIC_ACID_BLOCK);
-        liquidBlock(POMblocks.URANIUM_HEXAFLUORIDE_GAS_BLOCK);
         liquidBlock(POMblocks.ENRICHED_URANIUM_SOLUTION_BLOCK);
+        liquidBlock(POMblocks.ENRICHED_PLUTONIUM_SOLUTION_BLOCK);
     }
 
     public ModelFile flowerPotCross(String name) {

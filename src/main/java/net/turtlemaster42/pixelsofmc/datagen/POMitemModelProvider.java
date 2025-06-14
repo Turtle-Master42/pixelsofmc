@@ -107,6 +107,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.RED_SILVER_INGOT);
         simpleItem(POMitems.ROYAL_TUNGSTEN_INGOT);
         simpleItem(POMitems.ROYAL_TUNGSTEN_AMALGAMATION);
+        simpleItem(POMitems.LITHIUM_FLUORIDE_CLUMP);
         simpleItem(POMitems.MANA_AMALGAMATION);
         simpleItem(POMitems.MANA_SPHERE);
         simpleItem(POMitems.CRIMSON_MANA_SPHERE);
@@ -160,6 +161,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.HYDROFLUORIC_ACID_BUCKET);
         simpleItem(POMitems.URANIUM_HEXAFLUORIDE_GAS_BUCKET);
         simpleItem(POMitems.ENRICHED_URANIUM_SOLUTION_BUCKET);
+        simpleItem(POMitems.FLUORINE_GAS_BUCKET);
+        simpleItem(POMitems.ENRICHED_PLUTONIUM_SOLUTION_BUCKET);
 
         simpleItem(POMitems.ADVANCED_LASER);
         simpleItem(POMitems.TITANIUM_CIRCLE_SAW);
@@ -206,6 +209,9 @@ public class POMitemModelProvider extends ItemModelProvider {
         dustItem(POMitems.RED_SILVER_DUST);
         dustItem(POMitems.ROYAL_TUNGSTEN_DUST);
         dustItem(POMitems.REFINED_REDSTONE);
+        dustItem(POMitems.PLUTONIUM_TETRAFLUORIDE_DUST);
+        dustItem(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST);
+        dustItem(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST);
 
         simpleItem(POMitems.TEST_ITEM);
         simpleItem(POMitems.PLACE_HOLDER);

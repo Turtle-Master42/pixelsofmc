@@ -75,6 +75,10 @@ public class POMFluidType {
             FluidType.Properties.create().temperature(350).density(11500).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
+    public static final RegistryObject<FluidType> ENRICHED_PLUTONIUM_SOLUTION_FLUID_TYPE = registerFluid("enriched_plutonium_solution", 81, 226, 183,
+            FluidType.Properties.create().temperature(350).density(11500).viscosity(1000).canDrown(true).canPushEntity(true)
+                    .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
     public static final RegistryObject<FluidType> RED_OIL_FLUID_TYPE = registerThickFluid("red_oil", 145, 13, 20,
             FluidType.Properties.create().temperature(300).density(1450).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.002f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
@@ -143,6 +147,10 @@ public class POMFluidType {
 
     public static final RegistryObject<FluidType> BROMINE_GAS_TYPE = registerGas("bromine_gas", 218, 146, 163,
             FluidType.Properties.create().temperature(300).density(3).viscosity(0).canDrown(true).canPushEntity(false)
+                    .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
+
+    public static final RegistryObject<FluidType> FLUORINE_GAS_TYPE = registerGas("fluorine_gas", 244, 236, 164,
+            FluidType.Properties.create().temperature(300).density(1).viscosity(0).canDrown(true).canPushEntity(false)
                     .sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
     public static final RegistryObject<FluidType> AMMONIA_GAS_TYPE = registerGas("ammonia_gas", 117, 56, 95,

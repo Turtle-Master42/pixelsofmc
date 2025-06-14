@@ -72,43 +72,17 @@ public class POMblocks {
             () -> new LiquidBlock(POMfluids.ENRICHED_URANIUM_SOLUTION.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> PLUTONIUM_SOLUTION_BLOCK = POMblocks.BLOCKS.register("plutonium_solution",
             () -> new LiquidBlock(POMfluids.PLUTONIUM_SOLUTION.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
+    public static final RegistryObject<LiquidBlock> ENRICHED_PLUTONIUM_SOLUTION_BLOCK = POMblocks.BLOCKS.register("enriched_plutonium_solution",
+            () -> new LiquidBlock(POMfluids.ENRICHED_PLUTONIUM_SOLUTION.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> RED_OIL_BLOCK = POMblocks.BLOCKS.register("red_oil",
             () -> new ExplosiveLiquidBlock(POMfluids.RED_OIL.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
     public static final RegistryObject<LiquidBlock> DIRTY_WATER_BLOCK = POMblocks.BLOCKS.register("dirty_water",
             () -> new LiquidBlock(POMfluids.DIRTY_WATER.get(), BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
 
-
-    //gas
-    public static final RegistryObject<LiquidBlock> STEAM_BLOCK = POMblocks.BLOCKS.register("steam",
-            () -> new LiquidBlock(POMfluids.STEAM.get(), BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> BLAZING_STEAM_BLOCK = POMblocks.BLOCKS.register("blazing_steam",
-            () -> new LiquidBlock(POMfluids.BLAZING_STEAM.get(), BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> MERCURY_GAS_BLOCK = POMblocks.BLOCKS.register("mercury_gas",
-            () -> new LiquidBlock(POMfluids.MERCURY_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PURPLE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> LEAD_GAS_BLOCK = POMblocks.BLOCKS.register("lead_gas",
-            () -> new LiquidBlock(POMfluids.LEAD_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PURPLE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> HYDROGEN_GAS_BLOCK = POMblocks.BLOCKS.register("hydrogen_gas",
-            () -> new LiquidBlock(POMfluids.HYDROGEN_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> NITROGEN_GAS_BLOCK = POMblocks.BLOCKS.register("nitrogen_gas",
-            () -> new LiquidBlock(POMfluids.NITROGEN_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> OXYGEN_GAS_BLOCK = POMblocks.BLOCKS.register("oxygen_gas",
-            () -> new LiquidBlock(POMfluids.OXYGEN_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.LAPIS).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> CHLORINE_GAS_BLOCK = POMblocks.BLOCKS.register("chlorine_gas",
-            () -> new LiquidBlock(POMfluids.CHLORINE_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> BROMINE_GAS_BLOCK = POMblocks.BLOCKS.register("bromine_gas",
-            () -> new LiquidBlock(POMfluids.BROMINE_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PINK).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> AMMONIA_GAS_BLOCK = POMblocks.BLOCKS.register("ammonia_gas",
-            () -> new LiquidBlock(POMfluids.AMMONIA_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_MAGENTA).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-    public static final RegistryObject<LiquidBlock> URANIUM_HEXAFLUORIDE_GAS_BLOCK = POMblocks.BLOCKS.register("uranium_hexafluoride_gas",
-            () -> new LiquidBlock(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).pushReaction(PushReaction.DESTROY).replaceable().liquid()));
-
-
     //machine block
     public static final RegistryObject<Block> EXTENDER_BLOCK = BLOCKS.register("extender_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> EXTENDER_ENERGY_BLOCK = BLOCKS.register("extender_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> EXTENDER_ITEM_BLOCK = BLOCKS.register("extender_item_block", DummyMachineItemBlock::new);
-
-
 
 
     public static final RegistryObject<Block> SIMPLE_CASING_1 = registerBlock("simple_casing_1",

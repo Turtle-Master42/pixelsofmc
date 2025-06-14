@@ -11,7 +11,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:milling/acanthite_dust"
+        "recipe": "pixelsofmc:chemical_combining/plutonium_tetrafluoride_dust"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,7 +24,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:milling/acanthite_dust"
+      "pixelsofmc:chemical_combining/plutonium_tetrafluoride_dust"
     ]
   },
   "sends_telemetry_event": true

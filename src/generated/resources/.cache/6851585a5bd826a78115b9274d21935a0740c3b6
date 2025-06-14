@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-13T09:51:47.149598	Item Models: pixelsofmc
+// 1.20.1	2025-06-14T20:29:59.523604	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -155,6 +155,8 @@ e2d6a2da2fdfc778f4ba63b38fa15134e688bc0e assets/pixelsofmc/models/item/ender_sen
 4d13df6dae1778b3919d02be0da65c3228b5399e assets/pixelsofmc/models/item/energy_upgrade_1.json
 8bb9cb0fbbef606ec654857786e72ca1c473f749 assets/pixelsofmc/models/item/energy_upgrade_2.json
 9e1117a597d1ee040d1277ff18842afa07d0b0e8 assets/pixelsofmc/models/item/enriched_plutonium_fuel_cell.json
+2fcb60146dc9d4d8902e794e40b179acae9cdf54 assets/pixelsofmc/models/item/enriched_plutonium_hexafluoride_dust.json
+e29ed30cbc3eba9e4d75e2ef1e8d8bc25bc45f81 assets/pixelsofmc/models/item/enriched_plutonium_solution_bucket.json
 39a524f8b6b5d4ee6a81e1bbf749b6644396b4c2 assets/pixelsofmc/models/item/enriched_uranium_fuel_cell.json
 b89ba51046c8ec5b6b61e34005e75933046805ee assets/pixelsofmc/models/item/enriched_uranium_solution_bucket.json
 38ee6d55b4f3229e387f858d1d79f6a039110bc5 assets/pixelsofmc/models/item/erbium_168_atom_512.json
@@ -178,6 +180,7 @@ b534f18d52a18bcf04fe58cc4115ab1981e19f89 assets/pixelsofmc/models/item/fire_proo
 a3df49ab3903d3d41f1bb40c7dbef2daaa782fc3 assets/pixelsofmc/models/item/fluorine_atom_512.json
 78a3c2c17975cba9b8755e014a32df6ed87af94d assets/pixelsofmc/models/item/fluorine_atom_64.json
 0204311244de86961c0de882a489b6999f849e14 assets/pixelsofmc/models/item/fluorine_cube.json
+1818be1db5dba7a45f33b4cba45f3eb493702f2b assets/pixelsofmc/models/item/fluorine_gas_bucket.json
 8cd1955ab35fd17e6f8e0041c23e676a74629e65 assets/pixelsofmc/models/item/francium_atom_512.json
 040feb644a3f3bd18a26769fe144d8a4f3b2f440 assets/pixelsofmc/models/item/francium_atom_64.json
 5b35cabf6910635c4687dd4562b32f271ba56b1b assets/pixelsofmc/models/item/francium_ingot.json
@@ -286,6 +289,7 @@ a6406c00b6e5c3747ec4edad1e6c3dc2cae495cd assets/pixelsofmc/models/item/liquid_ox
 6386b3cd54f4a2de6f593a943728e53b46728508 assets/pixelsofmc/models/item/lithium_atom_512.json
 99ee810c717d6a09a2103d161d25402a53f9984a assets/pixelsofmc/models/item/lithium_atom_64.json
 d9f25868a84b34b959ebe1da427f71797a0f96fe assets/pixelsofmc/models/item/lithium_dust.json
+fd8d063f315f0c124ff65b36f5e9f393e7804632 assets/pixelsofmc/models/item/lithium_fluoride_clump.json
 909f7a52142de82fc335e3b99ecc0e75d7af93c4 assets/pixelsofmc/models/item/lithium_ingot.json
 f0e17b112e73586dabf72ba7299de271a1dea1b6 assets/pixelsofmc/models/item/lutetium_176_atom_512.json
 dd95c7c0c72e68b45b90b3608cf6ff6c33fbc01f assets/pixelsofmc/models/item/lutetium_176_atom_64.json
@@ -410,8 +414,10 @@ fe13f8d5678658f919c31b6aaaf434ff42edbf94 assets/pixelsofmc/models/item/plutonium
 98af6986c08c4a6f131590f5767a6defe2a8dde8 assets/pixelsofmc/models/item/plutonium_fuel_cell.json
 20e65e83a374d1d8047f2530392c8f27a1ff4285 assets/pixelsofmc/models/item/plutonium_fuel_core.json
 c33b1ad104dec085c65ce548ad4455142e7535db assets/pixelsofmc/models/item/plutonium_fuel_pellet.json
+e11b194f79209444a382fece6a25ae81c16404f3 assets/pixelsofmc/models/item/plutonium_hexafluoride_dust.json
 2a5ac86d8edaadeeb7807663194187ddc3bc7993 assets/pixelsofmc/models/item/plutonium_ingot.json
 a85bd7f695af0d35b278ee1e405378c1d1c3d806 assets/pixelsofmc/models/item/plutonium_solution_bucket.json
+ea8f69f3ec06877f54243d138681c13bd18babcf assets/pixelsofmc/models/item/plutonium_tetrafluoride_dust.json
 0a1cb5e63643909fd7d3630c837fb7793b1e4af1 assets/pixelsofmc/models/item/polonium_atom_512.json
 49dd6cb3fb955a3a545a7d4f6cf419a1ed27fd9b assets/pixelsofmc/models/item/polonium_atom_64.json
 11d59899a79f51253c646d86fecfb3cfc31621e6 assets/pixelsofmc/models/item/polonium_ingot.json

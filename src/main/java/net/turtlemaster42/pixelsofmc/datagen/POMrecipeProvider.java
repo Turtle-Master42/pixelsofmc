@@ -1920,6 +1920,10 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(Element.CARBON.item())
                 .output(POMfluids.DIRTY_WATER.get(), 250)
                 .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMitems.LITHIUM_FLUORIDE_CLUMP.get(), Fluids.WATER, 400)
+                .output(POMfluids.HYDROFLUORIC_ACID.get(), 250)
+                .output(Element.LITHIUM.dust())
+                .finish(fConsumer, this);
 
         ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_IRON, 1, POMfluids.SULFURIC_ACID.get(), 50)
                 .output(Items.RAW_IRON, 6)
@@ -2016,6 +2020,23 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMitems.URANIUM_FUEL_PELLET.get(), 3)
                 .finish(fConsumer, this);
 
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_TETRAFLUORIDE_DUST.get(), POMfluids.DIRTY_WATER.get(), 250)
+                .input(POMitems.PLUTONIUM_FUEL_PELLET.get())
+                .input(POMfluids.HYDROFLUORIC_ACID.get(), 500)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get())
+                .input(POMitems.PLUTONIUM_TETRAFLUORIDE_DUST.get())
+                .input(POMfluids.FLUORINE_GAS.get(), 200)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.LITHIUM_FLUORIDE_CLUMP.get(), 6, POMfluids.ENRICHED_PLUTONIUM_SOLUTION.get(), 125)
+                .input(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
+                .input(Element.LITHIUM.dust(), 6)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_CORE.get(), POMfluids.DIRTY_WATER.get(), 450)
+                .input(POMitems.PLUTONIUM_FUEL_PELLET.get(), 3)
+                .input(POMfluids.ENRICHED_PLUTONIUM_SOLUTION.get(), 875)
+                .finish(fConsumer, this);
+
         // --CHEMICAL MIXING--
         ChemicalMixerRecipeBuilder.build(4)
                 .input(POMfluids.DIRTY_WATER.get(), 100)
@@ -2085,6 +2106,13 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(Fluids.WATER, 10)
                 .output(POMfluids.ENRICHED_URANIUM_SOLUTION.get(), 1)
                 .output(POMfluids.DIRTY_WATER.get(), 10)
+                .finish(fConsumer, this);
+
+        ChemicalMixerRecipeBuilder.build(1)
+                .input(POMfluids.HYDROFLUORIC_ACID.get(), 50)
+                .input(POMfluids.OXYGEN_GAS.get(), 25)
+                .output(POMfluids.FLUORINE_GAS.get(), 50)
+                .output(Fluids.WATER, 50)
                 .finish(fConsumer, this);
 
         //cooling and heating
@@ -2353,27 +2381,12 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //TEMP PLUTONIUM ENRICHMENT PLACEHOLDER
-        ChemicalCombinerRecipeBuilder.build(POMitems.ROYAL_TUNGSTEN_DUST.get()/*Plutonium Tetrafluoride Dust*/, POMfluids.DIRTY_WATER.get(), 250)
-                .input(POMitems.PLUTONIUM_FUEL_PELLET.get())
-                .input(POMfluids.HYDROFLUORIC_ACID.get(), 500)
-                .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(Element.COBALT.dust())/*Plutonium Hexafluoride Dust*/
-                .input(POMitems.ROYAL_TUNGSTEN_DUST.get())/*Plutonium Tetrafluoride Dust*/
-                .input(POMfluids.HYDROGEN.get(), 200)/*Fluorine Gas*/
-                .finish(fConsumer, this);
-        //LAZER//
-        BallMillRecipeBuilder.build(POMitems.ACANTHITE_DUST.get())/*Enriched Plutonium Hexafluoride Dust*/
-                .input(Element.COBALT.dust(), 3) /*Plutonium Hexafluoride Dust*/
-                .ball(POMitems.RUBBER_BALL.get())
-                .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMitems.PLUTONIUM_FUEL_CORE.get())
-                .input(POMitems.ACANTHITE_DUST.get(), 8)/*Enriched Plutonium Hexafluoride Dust*/
-                .input(Element.LITHIUM.dust(), 48)
-                .finish(fConsumer, this);
 
-
-
-
+//        //LAZER//
+//        BallMillRecipeBuilder.build(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
+//                .input(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
+//                .ball(POMitems.RUBBER_BALL.get())
+//                .finish(fConsumer, this);
 
     }
 

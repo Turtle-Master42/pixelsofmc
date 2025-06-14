@@ -1,0 +1,24 @@
+{
+  "type": "pixelsofmc:chemical_mixing",
+  "fluid_inputs": [
+    {
+      "Amount": 50,
+      "FluidName": "pixelsofmc:hydrofluoric_acid"
+    },
+    {
+      "Amount": 25,
+      "FluidName": "pixelsofmc:oxygen_gas"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "Amount": 50,
+      "FluidName": "pixelsofmc:fluorine_gas"
+    },
+    {
+      "Amount": 50,
+      "FluidName": "minecraft:water"
+    }
+  ],
+  "temperature_state": 1
+}

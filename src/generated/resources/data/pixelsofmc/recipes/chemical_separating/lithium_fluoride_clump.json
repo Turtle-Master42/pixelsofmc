@@ -1,0 +1,26 @@
+{
+  "type": "pixelsofmc:chemical_separating",
+  "fluid_input": {
+    "Amount": 400,
+    "FluidName": "minecraft:water"
+  },
+  "fluid_output": {
+    "Amount": 250,
+    "FluidName": "pixelsofmc:hydrofluoric_acid"
+  },
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:lithium_fluoride_clump"
+    }
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:lithium_dust"
+      }
+    }
+  ]
+}

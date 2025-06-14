@@ -1,0 +1,32 @@
+{
+  "type": "pixelsofmc:chemical_combining",
+  "fluid_input": {
+    "Amount": 0,
+    "FluidName": "minecraft:empty"
+  },
+  "fluid_output": {
+    "Amount": 125,
+    "FluidName": "pixelsofmc:enriched_plutonium_solution"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "pixelsofmc:enriched_plutonium_hexafluoride_dust"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "pixelsofmc:lithium_dust"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 6,
+    "ingredient": {
+      "item": "pixelsofmc:lithium_fluoride_clump"
+    }
+  }
+}
