@@ -22,7 +22,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FlowingFluid;
@@ -79,13 +82,22 @@ public class BigBucket extends Item {
         return getBarColor(stack);
     }
 
+    @Override
+    public int getMaxStackSize(ItemStack stack) {
+        IFluidHandlerItem fluidHandlerItem = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
+        if (fluidHandlerItem.getFluidInTank(0).isEmpty()) {return 16;}
+        return 1;
+    }
+
 
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pHand) {
-        ItemStack itemStack = pPlayer.getItemInHand(pHand);
+        ItemStack baseStack = pPlayer.getItemInHand(pHand);
+        ItemStack itemStack = baseStack.copyWithCount(1);
         BlockHitResult blockHitResult = getPlayerPOVHitResult(pLevel, pPlayer, getFluid(itemStack).getAmount() >= capacity ? ClipContext.Fluid.NONE : ClipContext.Fluid.SOURCE_ONLY);
         if (blockHitResult.getType() != HitResult.Type.BLOCK) {
             return InteractionResultHolder.pass(itemStack);
         }
+
         BlockPos blockpos = blockHitResult.getBlockPos();
         Direction direction = blockHitResult.getDirection();
         BlockPos relativePos = blockpos.relative(direction);
@@ -102,15 +114,29 @@ public class BigBucket extends Item {
             if (state.getBlock() instanceof LiquidBlock liquidBlock) {
                 if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
                     pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
-                    fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
 
+                    fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
+                    //stats, sounds and events
                     pPlayer.awardStat(Stats.ITEM_USED.get(this));
                     liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
                     pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
-
                     if (!pLevel.isClientSide) {
                         CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemStack);
                     }
+
+                    //stacked bucket logic
+                    if (fluid.isEmpty()) {
+                        baseStack.shrink(1);
+                        if (baseStack.isEmpty()) {
+                            return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+                        } else {
+                            if (!pPlayer.getInventory().add(itemStack)) {
+                                pPlayer.drop(itemStack, false);
+                            }
+                            return InteractionResultHolder.sidedSuccess(baseStack, pLevel.isClientSide());
+                        }
+                    }
+
                     return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
                 }
                 return InteractionResultHolder.fail(itemStack);

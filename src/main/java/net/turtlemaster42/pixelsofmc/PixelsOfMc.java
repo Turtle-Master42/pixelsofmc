@@ -10,14 +10,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -45,7 +48,6 @@ import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
 import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.item.BigBucket;
-import net.turtlemaster42.pixelsofmc.item.PowerCellItem;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
 import org.jetbrains.annotations.NotNull;
@@ -305,8 +307,9 @@ public class PixelsOfMc {
 
 		DispenseItemBehavior titaniumBucket = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
-			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
-				if (stack.getItem() instanceof BigBucket bucket) {
+			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack inputStack) {
+				if (inputStack.getItem() instanceof BigBucket bucket) {
+					ItemStack stack = inputStack.copyWithCount(1);
 					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					BlockState state = source.getLevel().getBlockState(relativePos);
 					BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
@@ -314,12 +317,22 @@ public class PixelsOfMc {
 
 					IFluidHandlerItem bucketCapability = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
 					FluidStack bucketFluid = bucketCapability.getFluidInTank(0);
+
 					if (bucketFluid.isEmpty()) {
+						// fill bucket
 						if (state.getBlock() instanceof LiquidBlock liquidBlock && state.getValue(LEVEL) == 0) {
-								level.setBlock(relativePos, Blocks.AIR.defaultBlockState(), 11);
-								bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
+							level.setBlock(relativePos, Blocks.AIR.defaultBlockState(), 11);
+							bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
 //								liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
+							inputStack.shrink(1);
+							if (inputStack.isEmpty()) {
 								return stack;
+							} else {
+								if (source.<DispenserBlockEntity>getEntity().addItem(stack) < 0) {
+									this.defaultBehavior.dispense(source, stack);
+								}
+								return inputStack;
+							}
 						}
 
 						if (tile != null) {
@@ -328,10 +341,18 @@ public class PixelsOfMc {
 								int maxFill = bucketCapability.fill(fluidHandlerFrom.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
 								bucketCapability.fill(fluidHandlerFrom.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
 							}
-							return stack;
+							inputStack.shrink(1);
+							if (inputStack.isEmpty()) {
+								return stack;
+							} else {
+								if (source.<DispenserBlockEntity>getEntity().addItem(stack) < 0) {
+									this.defaultBehavior.dispense(source, stack);
+								}
+								return inputStack;
+							}
 						}
-					}
-					if (!bucketFluid.isEmpty()) {
+					} else {
+						// empty bucket
 						if (tile != null) {
 							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
 							if (fluidHandlerFrom != null) {
@@ -346,13 +367,15 @@ public class PixelsOfMc {
 						}
 					}
 				}
-				return this.defaultBehavior.dispense(source, stack);
+				return this.defaultBehavior.dispense(source, inputStack);
 			}
 		};
+
 		DispenseItemBehavior reinforcedBucket = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
-			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
-				if (stack.getItem() instanceof BigBucket bucket) {
+			public @NotNull ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack inputStack) {
+				if (inputStack.getItem() instanceof BigBucket bucket) {
+					ItemStack stack = inputStack.copyWithCount(1);
 					BlockPos relativePos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
 					BlockState state = source.getLevel().getBlockState(relativePos);
 					BlockEntity tile = source.getLevel().getBlockEntity(relativePos);
@@ -360,6 +383,7 @@ public class PixelsOfMc {
 
 					IFluidHandlerItem bucketCapability = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
 					FluidStack fluid = bucketCapability.getFluidInTank(0);
+					//pickup
 					if (fluid.isEmpty() || fluid.getAmount() <= 3000) {
 						if (state.getBlock() instanceof LiquidBlock liquidBlock) {
 							if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
@@ -371,8 +395,17 @@ public class PixelsOfMc {
 									bucketCapability.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
 								}
 //								liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
-								return stack;
-							}
+
+								inputStack.shrink(1);
+								if (inputStack.isEmpty()) {
+									return stack;
+								} else {
+									if (source.<DispenserBlockEntity>getEntity().addItem(stack) < 0) {
+										this.defaultBehavior.dispense(source, stack);
+									}
+									return inputStack;
+								}
+                            }
 						}
 
 						if (tile != null) {
@@ -381,9 +414,18 @@ public class PixelsOfMc {
 								int maxFill = bucketCapability.fill(fluidHandlerFrom.getFluidInTank(0), IFluidHandler.FluidAction.SIMULATE);
 								bucketCapability.fill(fluidHandlerFrom.drain(maxFill, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
 							}
-							return stack;
+							inputStack.shrink(1);
+							if (inputStack.isEmpty()) {
+								return stack;
+							} else {
+								if (source.<DispenserBlockEntity>getEntity().addItem(stack) < 0) {
+									this.defaultBehavior.dispense(source, stack);
+								}
+								return inputStack;
+							}
 						}
 					}
+					//empty
 					if (!fluid.isEmpty()) {
 						if (tile != null) {
 							IFluidHandler fluidHandlerFrom = tile.getCapability(ForgeCapabilities.FLUID_HANDLER, source.getBlockState().getValue(DispenserBlock.FACING)).orElse(null);
@@ -399,7 +441,7 @@ public class PixelsOfMc {
 						}
 					}
 				}
-				return this.defaultBehavior.dispense(source, stack);
+				return this.defaultBehavior.dispense(source, inputStack);
 			}
 		};
 
