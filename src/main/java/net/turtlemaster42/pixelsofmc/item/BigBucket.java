@@ -109,125 +109,125 @@ public class BigBucket extends Item {
         IFluidHandlerItem fluidItem = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
         FluidStack fluid = fluidItem.getFluidInTank(0);
         BlockState state = pLevel.getBlockState(blockpos);
+        boolean inCreative = pPlayer.getAbilities().instabuild;
 
-        if (fluid.isEmpty() || fluid.getAmount() <= capacity - 1000) {
-            if (state.getBlock() instanceof LiquidBlock liquidBlock) {
-                if ((liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
-                    pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
+        //pickup
+        if (fluid.isEmpty() || (fluid.getAmount() <= capacity - 1000  && !pPlayer.isCrouching())) {
+            if (state.getBlock() instanceof LiquidBlock liquidBlock && (liquidBlock.getFluid().getSource().equals(fluid.getRawFluid()) || fluid.isEmpty()) && state.getValue(LEVEL) == 0) {
+                pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 
-                    fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
-                    //stats, sounds and events
-                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                    liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
-                    pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
-                    if (!pLevel.isClientSide) {
-                        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemStack);
-                    }
-
-                    //stacked bucket logic
-                    if (fluid.isEmpty()) {
-                        baseStack.shrink(1);
-                        if (baseStack.isEmpty()) {
-                            return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
-                        } else {
-                            if (!pPlayer.getInventory().add(itemStack)) {
-                                pPlayer.drop(itemStack, false);
-                            }
-                            return InteractionResultHolder.sidedSuccess(baseStack, pLevel.isClientSide());
-                        }
-                    }
-
-                    return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+                fluidItem.fill(new FluidStack(liquidBlock.getFluid().getSource(), 1000), IFluidHandler.FluidAction.EXECUTE);
+                //stats, sounds and events
+                pPlayer.awardStat(Stats.ITEM_USED.get(this));
+                liquidBlock.getPickupSound(state).ifPresent((p_150709_) -> pPlayer.playSound(p_150709_, 1.0F, 1.0F));
+                pLevel.gameEvent(pPlayer, GameEvent.FLUID_PICKUP, blockpos);
+                if (!pLevel.isClientSide) {
+                    CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) pPlayer, itemStack);
                 }
-                return InteractionResultHolder.fail(itemStack);
+
+                //stacked bucket logic
+                if (fluid.isEmpty()) {
+                    baseStack.shrink(1);
+                    if (baseStack.isEmpty()) {
+                        return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+                    } else {
+                        if (!pPlayer.getInventory().add(itemStack)) {
+                            pPlayer.drop(itemStack, false);
+                        }
+                        return InteractionResultHolder.sidedSuccess(baseStack, pLevel.isClientSide());
+                    }
+                }
+                return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
             }
         }
-
-        if (!fluid.isEmpty() && !pPlayer.isCrouching()) {
+        //place
+        if (!fluid.isEmpty()) {
             BlockPos placePos = canBlockContainFluid(pLevel, blockpos, state, fluid.getFluid()) ? blockpos : relativePos;
             if (this.emptyContents(pPlayer, pLevel, placePos, blockHitResult, itemStack)) {
                 if (pPlayer instanceof ServerPlayer serverPlayer) {
                     CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayer, placePos, itemStack);
                 }
-                fluidItem.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                if (!inCreative) {
+                    fluidItem.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                }
                 pPlayer.awardStat(Stats.ITEM_USED.get(this));
                 return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
             }
-            return InteractionResultHolder.fail(itemStack);
         }
         return InteractionResultHolder.fail(itemStack);
     }
 
     public boolean emptyContents(@Nullable Player pPlayer, Level pLevel, BlockPos pPos, @Nullable BlockHitResult pResult, @NotNull ItemStack pItemStack) {
         Fluid fluid = getFluid(pItemStack).getFluid();
-        if (!(fluid instanceof FlowingFluid)) {
-            return false;
+        if (!(fluid instanceof FlowingFluid)) {return false;}
+        BlockState blockstate = pLevel.getBlockState(pPos);
+        Block block = blockstate.getBlock();
+        boolean canBeReplaced = blockstate.canBeReplaced(fluid);
+        boolean conditionsMet = blockstate.isAir() || canBeReplaced || block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(pLevel, pPos, blockstate, fluid);
+        java.util.Optional<net.minecraftforge.fluids.FluidStack> containedFluidStack = java.util.Optional.of(pItemStack).flatMap(net.minecraftforge.fluids.FluidUtil::getFluidContained);
+        if (!conditionsMet) {
+            return pResult != null && this.emptyContents(pPlayer, pLevel, pResult.getBlockPos().relative(pResult.getDirection()), null, pItemStack);
 
+        //vaporize
+        } else if (containedFluidStack.isPresent() && fluid.getFluidType().isVaporizedOnPlacement(pLevel, pPos, containedFluidStack.get())) {
+            fluid.getFluidType().onVaporize(pPlayer, pLevel, pPos, containedFluidStack.get());
+            return true;
+
+        //vaporize water
+        } else if (pLevel.dimensionType().ultraWarm() && fluid.is(FluidTags.WATER)) {
+            int x = pPos.getX();
+            int y = pPos.getY();
+            int z = pPos.getZ();
+            pLevel.playSound(pPlayer, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (pLevel.random.nextFloat() - pLevel.random.nextFloat()) * 0.8F);
+            for(int l = 0; l < 8; ++l) {
+                pLevel.addParticle(ParticleTypes.LARGE_SMOKE, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
+            }
+            return true;
+
+        //gas
+        } else if (fluid.getFluidType().isLighterThanAir()) {
+            int x = pPos.getX();
+            int y = pPos.getY();
+            int z = pPos.getZ();
+            pLevel.playSound(pPlayer, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (pLevel.random.nextFloat() - pLevel.random.nextFloat()) * 0.8F);
+            for(int l = 0; l < 8; ++l) {
+                pLevel.addParticle(ParticleTypes.CLOUD, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
+                if (fluid.getFluidType().getTemperature() > 1000) {
+                    pLevel.addParticle(ParticleTypes.FLAME, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
+                }
+            }
+            return true;
+
+        //place lava
+        } else if (block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(pLevel, pPos, blockstate, fluid)) {
+            ((LiquidBlockContainer)block).placeLiquid(pLevel, pPos, blockstate, ((FlowingFluid)fluid).getSource(false));
+            SoundEvent soundevent = fluid.getFluidType().getSound(pPlayer, pLevel, pPos, net.minecraftforge.common.SoundActions.BUCKET_EMPTY);
+            if(soundevent == null) soundevent = fluid.is(FluidTags.LAVA) ? SoundEvents.BUCKET_EMPTY_LAVA : SoundEvents.BUCKET_EMPTY;
+            pLevel.playSound(pPlayer, pPos, soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
+            pLevel.gameEvent(pPlayer, GameEvent.FLUID_PLACE, pPos);
+            return true;
+
+        //place fluid
         } else {
-            BlockState blockstate = pLevel.getBlockState(pPos);
-            Block block = blockstate.getBlock();
-            boolean canBeReplaced = blockstate.canBeReplaced(fluid);
-            boolean conditionsMet = blockstate.isAir() || canBeReplaced || block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(pLevel, pPos, blockstate, fluid);
-            java.util.Optional<net.minecraftforge.fluids.FluidStack> containedFluidStack = java.util.Optional.of(pItemStack).flatMap(net.minecraftforge.fluids.FluidUtil::getFluidContained);
-            if (!conditionsMet) {
-                return pResult != null && this.emptyContents(pPlayer, pLevel, pResult.getBlockPos().relative(pResult.getDirection()), null, pItemStack);
+            if (!pLevel.isClientSide && canBeReplaced && !blockstate.liquid()) {
+                pLevel.destroyBlock(pPos, true);
+            }
 
-            } else if (containedFluidStack.isPresent() && fluid.getFluidType().isVaporizedOnPlacement(pLevel, pPos, containedFluidStack.get())) {
-                fluid.getFluidType().onVaporize(pPlayer, pLevel, pPos, containedFluidStack.get());
-                return true;
+            if (!pLevel.setBlock(pPos, fluid.defaultFluidState().createLegacyBlock(), 11) && !blockstate.getFluidState().isSource()) {
+                return false;
 
-            } else if (pLevel.dimensionType().ultraWarm() && fluid.is(FluidTags.WATER)) {
-                int x = pPos.getX();
-                int y = pPos.getY();
-                int z = pPos.getZ();
-                pLevel.playSound(pPlayer, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (pLevel.random.nextFloat() - pLevel.random.nextFloat()) * 0.8F);
-                for(int l = 0; l < 8; ++l) {
-                    pLevel.addParticle(ParticleTypes.LARGE_SMOKE, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
-                }
-                return true;
-
-            } else if (fluid.getFluidType().isLighterThanAir()) {
-                int x = pPos.getX();
-                int y = pPos.getY();
-                int z = pPos.getZ();
-                pLevel.playSound(pPlayer, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (pLevel.random.nextFloat() - pLevel.random.nextFloat()) * 0.8F);
-                for(int l = 0; l < 8; ++l) {
-                    pLevel.addParticle(ParticleTypes.CLOUD, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
-                    if (fluid.getFluidType().getTemperature() > 1000) {
-                        pLevel.addParticle(ParticleTypes.FLAME, (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
-                    }
-                }
-                return true;
-
-            } else if (block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(pLevel, pPos, blockstate, fluid)) {
-                ((LiquidBlockContainer)block).placeLiquid(pLevel, pPos, blockstate, ((FlowingFluid)fluid).getSource(false));
+            } else {
                 SoundEvent soundevent = fluid.getFluidType().getSound(pPlayer, pLevel, pPos, net.minecraftforge.common.SoundActions.BUCKET_EMPTY);
                 if(soundevent == null) soundevent = fluid.is(FluidTags.LAVA) ? SoundEvents.BUCKET_EMPTY_LAVA : SoundEvents.BUCKET_EMPTY;
                 pLevel.playSound(pPlayer, pPos, soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
                 pLevel.gameEvent(pPlayer, GameEvent.FLUID_PLACE, pPos);
                 return true;
-
-            } else {
-                if (!pLevel.isClientSide && canBeReplaced && !blockstate.liquid()) {
-                    pLevel.destroyBlock(pPos, true);
-                }
-
-                if (!pLevel.setBlock(pPos, fluid.defaultFluidState().createLegacyBlock(), 11) && !blockstate.getFluidState().isSource()) {
-                    return false;
-
-                } else {
-                    SoundEvent soundevent = fluid.getFluidType().getSound(pPlayer, pLevel, pPos, net.minecraftforge.common.SoundActions.BUCKET_EMPTY);
-                    if(soundevent == null) soundevent = fluid.is(FluidTags.LAVA) ? SoundEvents.BUCKET_EMPTY_LAVA : SoundEvents.BUCKET_EMPTY;
-                    pLevel.playSound(pPlayer, pPos, soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    pLevel.gameEvent(pPlayer, GameEvent.FLUID_PLACE, pPos);
-                    return true;
-                }
             }
         }
     }
 
     private boolean canBlockContainFluid(Level worldIn, BlockPos posIn, BlockState blockstate, Fluid fluid) {
-        return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, fluid);
+        return (blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, fluid)) || blockstate.getFluidState().is(fluid);
     }
 
     public int getBarWidth(ItemStack pStack) {

@@ -27,11 +27,11 @@ public class BaseFluidType extends FluidType {
 
     public BaseFluidType(int tintColor, Vector3f fogColor, Properties properties) {
         this(Util.resourceLocation("minecraft", "block/water_still"), Util.resourceLocation("minecraft","block/water_flow"),
-                Util.resourceLocation("minecraft","block/water_flow"), tintColor, fogColor,1f, 6f, properties);
+                Util.resourceLocation("minecraft","block/water_flow"), tintColor, fogColor,2f, 24f, properties);
     }
 
     public BaseFluidType(ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, Properties properties) {
-        this(stillTexture, flowingTexture, overlayTexture, tintColor, fogColor,1f, 6f, properties);
+        this(stillTexture, flowingTexture, overlayTexture, tintColor, fogColor,1f, 8f, properties);
     }
 
     public BaseFluidType(ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, float fogMinDistance, float fogMaxDistance, Properties properties) {

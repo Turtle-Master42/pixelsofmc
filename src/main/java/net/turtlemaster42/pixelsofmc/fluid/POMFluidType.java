@@ -63,19 +63,19 @@ public class POMFluidType {
             FluidType.Properties.create().temperature(400).density(17400).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.005f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> URANIUM_SOLUTION_FLUID_TYPE = registerFluid("uranium_solution", 75, 201, 66,
+    public static final RegistryObject<FluidType> URANIUM_SOLUTION_FLUID_TYPE = registerThickFluid("uranium_solution", 75, 201, 66,
             FluidType.Properties.create().temperature(350).density(11000).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> ENRICHED_URANIUM_SOLUTION_FLUID_TYPE = registerFluid("enriched_uranium_solution", 83, 242, 72,
+    public static final RegistryObject<FluidType> ENRICHED_URANIUM_SOLUTION_FLUID_TYPE = registerThickFluid("enriched_uranium_solution", 83, 242, 72,
             FluidType.Properties.create().temperature(350).density(11000).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> PLUTONIUM_SOLUTION_FLUID_TYPE = registerFluid("plutonium_solution", 66, 201, 147,
+    public static final RegistryObject<FluidType> PLUTONIUM_SOLUTION_FLUID_TYPE = registerThickFluid("plutonium_solution", 66, 201, 147,
             FluidType.Properties.create().temperature(350).density(11500).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
-    public static final RegistryObject<FluidType> ENRICHED_PLUTONIUM_SOLUTION_FLUID_TYPE = registerFluid("enriched_plutonium_solution", 81, 226, 183,
+    public static final RegistryObject<FluidType> ENRICHED_PLUTONIUM_SOLUTION_FLUID_TYPE = registerThickFluid("enriched_plutonium_solution", 81, 226, 183,
             FluidType.Properties.create().temperature(350).density(11500).viscosity(1000).canDrown(true).canPushEntity(true)
                     .supportsBoating(true).motionScale(0.008f).sound(SoundAction.get("drink"),SoundEvents.BUCKET_EMPTY));
 
@@ -173,7 +173,7 @@ public class POMFluidType {
 
     private static RegistryObject<FluidType> registerHeavyFluid(String name, int R, int G, int B, FluidType.Properties properties) {
         return FLUID_TYPES.register(name, () -> new HeavyLiquidType(HEAVY_LIQUID_STILL_RL, HEAVY_LIQUID_FLOWING_RL, HEAVY_LIQUID_FLOWING_RL,
-                new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), properties));
+                new Color(R, G, B).getRGB(), new Vector3f((float)R / 255f, (float)G / 255f, (float)B / 255f), 0f, 1f, properties));
     }
 
     private static RegistryObject<FluidType> registerGas(String name, int R, int G, int B, FluidType.Properties properties) {
