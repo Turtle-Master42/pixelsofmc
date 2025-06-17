@@ -44,10 +44,9 @@ public class FuelCellHolderRenderer implements BlockEntityRenderer<FuelCellHolde
             fuel = fuelCell.getTexture();
         }
 
-
-        MODEL_FUEL.renderFuelCell(pBlockEntity, pPartialTick, pBlockEntity.getBlockState().getValue(FuelCellHolderBlock.CELL_TYPE) == 1);
+        MODEL_FUEL.renderFuelCell(pBlockEntity.getBlockState().getValue(FuelCellHolderBlock.CELL_TYPE) == 1);
         MODEL_FUEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.entityCutoutNoCull(fuel)), 255, pPackedOverlay, 1, 1F, 1, 1);
-        MODEL_HOLDER.renderFuelCell(pBlockEntity, pPartialTick, pBlockEntity.getBlockState().getValue(FuelCellHolderBlock.CELL_TYPE) == 1);
+        MODEL_HOLDER.renderFuelCell(pBlockEntity.getBlockState().getValue(FuelCellHolderBlock.CELL_TYPE) == 1);
         MODEL_HOLDER.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_HOLDER)), 200, pPackedOverlay, 1, 1F, 1, 1);
         pPoseStack.popPose();
     }

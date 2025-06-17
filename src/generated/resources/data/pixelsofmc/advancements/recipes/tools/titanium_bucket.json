@@ -5,11 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:bio_plastic",
-              "pixelsofmc:copper_wire",
-              "pixelsofmc:micro_chip"
-            ]
+            "tag": "forge:ingots/titanium"
           }
         ]
       },
@@ -17,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:simple_circuit_board_1"
+        "recipe": "pixelsofmc:titanium_bucket"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:simple_circuit_board_1"
+      "pixelsofmc:titanium_bucket"
     ]
   },
   "sends_telemetry_event": false

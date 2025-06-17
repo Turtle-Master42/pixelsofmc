@@ -485,6 +485,19 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         toItemP(POMitems.DRAGON_EYE.get())))
                 .save(fConsumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.TITANIUM_BUCKET.get())
+                .define('A', Element.TITANIUM.itemTag())
+                .pattern("A A")
+                .pattern(" A ")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.REINFORCED_BUCKET.get())
+                .define('A', POMitems.TITANIUM_GOLD_INGOT.get())
+                .pattern("A A")
+                .pattern(" A ")
+                .unlockedBy("has_items", inventoryTrigger(HAS_TITANIUM_GOLD))
+                .save(fConsumer);
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.TITANIUM_UPGRADE_TEMPLATE.get(), 1)
                 .define('A', Element.TITANIUM.itemTag())

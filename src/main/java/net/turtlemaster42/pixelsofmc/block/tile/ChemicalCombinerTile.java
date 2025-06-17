@@ -50,7 +50,6 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
     private final int maxReceive = 512000;
     private static final int energyConsumption = 128;
 
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
     private final FluidTank fluidTank = new FluidTank(16000) {
         @Override
         protected void onContentsChanged() {
@@ -97,6 +96,7 @@ public class ChemicalCombinerTile extends AbstractMachineTile<ChemicalCombinerTi
         return this.duoFluidTank.getFluid();
     }
 
+    public final PixelEnergyStorage energyStorage = createEnergyStorage();
     @NotNull
     public PixelEnergyStorage createEnergyStorage() {
         return new PixelEnergyStorage(capacity, maxReceive, 512000) {

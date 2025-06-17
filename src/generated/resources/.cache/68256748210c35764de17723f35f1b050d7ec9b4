@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-13T09:51:47.141976	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-06-15T12:30:14.014555	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
@@ -150,7 +150,7 @@ a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon_canister.js
 3f2b3564b942f0e7148980423086b33a60efb1db data/pixelsofmc/tags/items/atom64.json
 fd6920e95b97c17cba9b06373fcb8bbef0315a4d data/pixelsofmc/tags/items/ball_1.json
 97c474318184433a1d4f2e29b9db92d2541b81e0 data/pixelsofmc/tags/items/ball_2.json
-3005c3cb0bc4d3421d9798f77d0850cfbde06a64 data/pixelsofmc/tags/items/ball_3.json
+c8fa5210e04a9266697116106963a07282ceb86c data/pixelsofmc/tags/items/ball_3.json
 d52490aa59098eb97174ec2036a4f383ed12c28c data/pixelsofmc/tags/items/ball_4.json
 03a939d1117f38d1e943036cc07bdd387fdc5cea data/pixelsofmc/tags/items/ball_5.json
 87a6a7373f14cd69ec47fc939ed94782ff2759c9 data/pixelsofmc/tags/items/circle_saw.json

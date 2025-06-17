@@ -12,13 +12,13 @@ public class ModelFuelCell extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox fuel;
 
     public ModelFuelCell() {
-        texWidth = 32;
-        texHeight = 18;
+        texWidth = 24;
+        texHeight = 15;
         root = new AdvancedModelBox(this, "root");
         root.setRotationPoint(0.0F, 0.0F, 0.0F);
 
         fuel = new AdvancedModelBox(this, "fuel");
-        fuel.setTextureOffset(0, 0).addBox(4f, -28F, -12F, 8f, 10f, 8f, 0.0f, false);
+        fuel.setTextureOffset(0, 0).addBox(5f, -27F, -11F, 6f, 9f, 6f, 0.0f, false);
         root.addChild(fuel);
 
         this.updateDefaultPose();
@@ -35,10 +35,9 @@ public class ModelFuelCell extends AdvancedEntityModel<Entity> {
     }
 
     @Override
-    public void setupAnim(Entity entity, float v, float v1, float v2, float v3, float v4) {
-    }
+    public void setupAnim(Entity entity, float v, float v1, float v2, float v3, float v4) {}
 
-    public void renderFuelCell(FuelCellHolderTile tile, float partialTick, boolean active) {
+    public void renderFuelCell(boolean active) {
         this.resetToDefaultPose();
         if (active) {
             root.rotateAngleX += (float) Math.PI;

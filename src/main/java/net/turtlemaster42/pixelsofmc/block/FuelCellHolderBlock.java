@@ -2,6 +2,8 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
@@ -44,18 +47,16 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
     // received redstone signal
     @Override
     public void neighborChanged(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
-        if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {
-//            if (pState.getValue(CELL_TYPE) == 1)
-//                ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, ParticleTypes.SMOKE, UniformInt.of(5, 8), pState.getValue(FACING), () -> Vec3.ZERO, 0.55D);
-            return;
-        }
-        pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);
+        if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {return;}
         if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
+
+            steamParticles((ServerLevel) pLevel, pState, pPos, fuelCellTile.isLocked(), fuelCellTile.hasFuelCell());
             fuelCellTile.cycleLocking();
             BlockPos mainPos = fuelCellTile.getMainPos();
             if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
+                pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);
                 Direction mainDirection = pLevel.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
-                if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) { //TODO: Needs to be made more pretty
+                if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) {
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());
                 } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, -1, 0, 0, mainPos).equals(pPos)) {
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 1, fuelCellTile.isLocked());
@@ -66,7 +67,18 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
                 }
             }
         }
+    }
 
+    public static void steamParticles(ServerLevel level, BlockState state, BlockPos pos, boolean isLocked, boolean hasFuelCell) {
+        if (isLocked && hasFuelCell) {
+            Vec3 particlePos = BigMachineBlockUtil.rotateVecOnDirection(state.getValue(FACING), 0, 0, 0.9f, pos, true);
+            Vec3 particleSpread = BigMachineBlockUtil.rotateVecOnDirection(state.getValue(FACING), 0.2f, 0.2f, 0.35f, new BlockPos(0, 0, 0), false);
+            level.sendParticles(ParticleTypes.CLOUD, particlePos.x, particlePos.y, particlePos.z, 20, particleSpread.x, particleSpread.y, particleSpread.z, 0f);
+        } else if (hasFuelCell) {
+            Vec3 particlePos = BigMachineBlockUtil.rotateVecOnDirection(state.getValue(FACING), 0, 0, 0.5, pos, true);
+            Vec3 particleSpread = BigMachineBlockUtil.rotateVecOnDirection(state.getValue(FACING), 0.3f, 0.3f, 0f, new BlockPos(0, 0, 0), false);
+            level.sendParticles(ParticleTypes.CLOUD, particlePos.x, particlePos.y, particlePos.z, 5, particleSpread.x, particleSpread.y, particleSpread.z, 0f);
+        }
     }
 
 
@@ -90,14 +102,12 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
                     return InteractionResult.SUCCESS;
                 }
             } else {
-                if (cellItemHandler.getStackInSlot(0).isEmpty()) {
-                    if (!pLevel.isClientSide()) {
-                        ItemStack newStack = handItem.copy();
-                        newStack.setCount(1);
-                        cellItemHandler.insertItem(0, newStack, false);
-                        pPlayer.setItemInHand(pHand, new ItemStack(handItem.getItem(), handItem.getCount() - 1, handItem.getTag()));
-                        return InteractionResult.SUCCESS;
-                    }
+                if (cellItemHandler.getStackInSlot(0).isEmpty() && !pLevel.isClientSide()) {
+                    ItemStack newStack = handItem.copy();
+                    newStack.setCount(1);
+                    cellItemHandler.insertItem(0, newStack, false);
+                    pPlayer.setItemInHand(pHand, new ItemStack(handItem.getItem(), handItem.getCount() - 1, handItem.getTag()));
+                    return InteractionResult.SUCCESS;
                 }
             }
         }

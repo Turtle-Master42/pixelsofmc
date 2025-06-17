@@ -134,8 +134,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMitems.TITANIUM_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_3)
-                .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_BALL.get())
+                .add(POMitems.NETHERITE_BALL.get())
                 .add(POMitems.TITANIUM_GOLD_BALL.get())
                 .add(POMitems.TITANIUM_DIBORIDE_BALL.get());
         tag(POMtags.Items.BALL_4)

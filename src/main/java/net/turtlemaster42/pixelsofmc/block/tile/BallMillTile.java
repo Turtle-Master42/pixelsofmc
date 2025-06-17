@@ -183,7 +183,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         e.tick(level, blockPos, blockState, e);
     }
 
-    public static <E extends BlockEntity> void clientTick(Level level, BlockPos blockPos, BlockState blockState, BallMillTile e) {
+    public static void clientTick(Level level, BlockPos blockPos, BlockState blockState, BallMillTile e) {
         e.tick(level, blockPos, blockState, e);
     }
 

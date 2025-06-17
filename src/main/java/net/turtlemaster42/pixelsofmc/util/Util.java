@@ -107,7 +107,7 @@ public class Util {
     }
 
     public static ResourceLocation resourceLocation(String path) {
-        return new ResourceLocation(PixelsOfMc.MOD_ID, path);
+        return resourceLocation(PixelsOfMc.MOD_ID, path);
     }
 
     public static ResourceLocation resourceLocation(String name, String path) {

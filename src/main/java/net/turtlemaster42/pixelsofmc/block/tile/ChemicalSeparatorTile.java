@@ -51,7 +51,6 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
     private final int maxReceive = 512000;
     private static final int energyConsumption = 128;
 
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
     private final FluidTank fluidTank = new FluidTank(16000) {
         @Override
         protected void onContentsChanged() {
@@ -98,6 +97,7 @@ public class ChemicalSeparatorTile extends AbstractMachineTile<ChemicalSeparator
         return this.duoFluidTank.getFluid();
     }
 
+    public final PixelEnergyStorage energyStorage = createEnergyStorage();
     @NotNull
     public PixelEnergyStorage createEnergyStorage() {
         return new PixelEnergyStorage(capacity, maxReceive) {

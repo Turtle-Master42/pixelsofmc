@@ -13,10 +13,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkStatus;
+import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -64,6 +66,25 @@ public class BigMachineBlockUtil {
             case WEST -> new BlockPos(X + zOffset, Y + yOffset, Z - xOffset);
             case UP -> new BlockPos(X + xOffset, Y - zOffset, Z + yOffset);
             case DOWN -> new BlockPos(X + xOffset, Y + zOffset, Z - yOffset);
+        };
+    }
+
+    public static Vec3 rotateVecOnDirection(Direction direction, double xOffset, double yOffset, double zOffset, BlockPos mainPos, boolean centered) {
+        double X = mainPos.getX();
+        double Y = mainPos.getY();
+        double Z = mainPos.getZ();
+        if (centered) {
+            X += 0.5;
+            Y += 0.5;
+            Z += 0.5;
+        }
+        return switch (direction) {
+            case NORTH -> new Vec3(X + xOffset, Y + yOffset, Z + zOffset);
+            case EAST -> new Vec3(X - zOffset, Y + yOffset, Z + xOffset);
+            case SOUTH -> new Vec3(X - xOffset, Y + yOffset, Z - zOffset);
+            case WEST -> new Vec3(X + zOffset, Y + yOffset, Z - xOffset);
+            case UP -> new Vec3(X + xOffset, Y + zOffset, Z + yOffset);
+            case DOWN -> new Vec3(X + xOffset, Y - zOffset, Z - yOffset);
         };
     }
 

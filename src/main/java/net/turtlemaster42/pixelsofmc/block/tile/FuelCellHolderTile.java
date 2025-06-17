@@ -3,16 +3,20 @@ package net.turtlemaster42.pixelsofmc.block.tile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
+import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import org.jetbrains.annotations.NotNull;
 
@@ -82,6 +86,28 @@ public class FuelCellHolderTile extends AbstractMultiBlockTile implements IInven
     }
 
     @Override
+    public void onInvalidation() {
+        if (level.isClientSide() || !this.isLocked()) {return;}
+        
+        FuelCellHolderBlock.steamParticles((ServerLevel) level,  level.getBlockState(worldPosition), worldPosition, isLocked(), hasFuelCell());
+        this.locked = false;
+        level.setBlock(worldPosition, level.getBlockState(worldPosition).setValue(FuelCellHolderBlock.CELL_TYPE, 0), 2);
+        BlockPos mainPos = getMainPos();
+        if (level.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
+            Direction mainDirection = level.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
+            if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(worldPosition)) {
+                reactorTile.handleFuelCellHolder(itemHandler, 0, false);
+            } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, -1, 0, 0, mainPos).equals(worldPosition)) {
+                reactorTile.handleFuelCellHolder(itemHandler, 1, false);
+            } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, -1, 0, mainPos).equals(worldPosition)) {
+                reactorTile.handleFuelCellHolder(itemHandler, 2, false);
+            } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 1, 0, 0, mainPos).equals(worldPosition)) {
+                reactorTile.handleFuelCellHolder(itemHandler, 3, false);
+            }
+        }
+    }
+
+    @Override
     public ItemStackHandler getItemStackHandler() {
         return this.itemHandler;
     }
@@ -90,7 +116,7 @@ public class FuelCellHolderTile extends AbstractMultiBlockTile implements IInven
         this.locked = !this.locked;
     }
 
-    public boolean isLocked() {
-        return locked;
-    }
+    public boolean hasFuelCell() {return !this.itemHandler.getStackInSlot(0).isEmpty();}
+
+    public boolean isLocked() {return locked;}
 }
