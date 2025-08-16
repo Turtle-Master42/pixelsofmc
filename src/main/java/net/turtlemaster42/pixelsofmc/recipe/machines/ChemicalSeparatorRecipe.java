@@ -93,7 +93,7 @@ public class ChemicalSeparatorRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<ChemicalSeparatorRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull ChemicalSeparatorRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull ChemicalSeparatorRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //outputs
             FluidStack fluidOutput = JsonRecipeUtils.FFromJson(json, "fluid_output");
             List<ChanceIngredient> outputs = JsonRecipeUtils.CHIListFromJson(json, "outputs");

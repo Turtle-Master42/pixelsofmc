@@ -1,23 +1,17 @@
 package net.turtlemaster42.pixelsofmc.recipe;
 
 import com.google.gson.JsonObject;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BaseFluidRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
-import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -67,7 +61,7 @@ public class FluidSuperHeatingRecipe extends BaseFluidRecipe {
     public static class Serializer implements POMRecipeSerializer<FluidSuperHeatingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull FluidSuperHeatingRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull FluidSuperHeatingRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             FluidStack fluidOutput = JsonRecipeUtils.FFromJson(json, "fluid_output");
             //input

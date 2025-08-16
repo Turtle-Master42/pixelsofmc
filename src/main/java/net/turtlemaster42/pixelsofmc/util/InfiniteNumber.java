@@ -141,7 +141,7 @@ public class InfiniteNumber {
     }
 
     public boolean equals(InfiniteNumber infiniteNumber) {
-        return INFINITE_NUMBER.equals(infiniteNumber);
+        return INFINITE_NUMBER.equals(infiniteNumber.getInfiniteNumber());
     }
 
     public boolean equals(int number) {

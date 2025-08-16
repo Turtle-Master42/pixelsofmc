@@ -22,8 +22,8 @@ import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncCurrentTankToClie
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncMainPosToClient;
 import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
-import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 

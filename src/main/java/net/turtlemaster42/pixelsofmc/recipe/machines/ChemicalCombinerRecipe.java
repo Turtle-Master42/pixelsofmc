@@ -93,7 +93,7 @@ public class ChemicalCombinerRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<ChemicalCombinerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull ChemicalCombinerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull ChemicalCombinerRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             FluidStack fluidOutput = JsonRecipeUtils.FFromJson(json, "fluid_output");
             ChanceIngredient output = JsonRecipeUtils.CHIFromJson(json, "output");

@@ -1,7 +1,6 @@
 package net.turtlemaster42.pixelsofmc.network;
 
 import net.minecraft.world.item.ItemStack;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;

@@ -4,20 +4,12 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
 import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
-import net.turtlemaster42.pixelsofmc.recipe.machines.FusionRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DecayRecipeEmi extends BaseEmiRecipe<DecayRecipe> {

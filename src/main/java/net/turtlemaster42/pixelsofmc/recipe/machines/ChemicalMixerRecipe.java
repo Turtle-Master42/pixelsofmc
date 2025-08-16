@@ -1,15 +1,12 @@
 package net.turtlemaster42.pixelsofmc.recipe.machines;
 
 import com.google.gson.JsonObject;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.recipe.POMRecipeSerializer;
@@ -19,7 +16,6 @@ import net.turtlemaster42.pixelsofmc.util.recipe.JsonRecipeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChemicalMixerRecipe extends BaseFluidRecipe {
@@ -83,7 +79,7 @@ public class ChemicalMixerRecipe extends BaseFluidRecipe {
     public static class Serializer implements POMRecipeSerializer<ChemicalMixerRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull ChemicalMixerRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull ChemicalMixerRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             List<FluidStack> fluidOutputs = JsonRecipeUtils.FListFromJson(json, "fluid_outputs");
             //input

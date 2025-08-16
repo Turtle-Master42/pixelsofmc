@@ -84,7 +84,7 @@ public class GrinderRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<GrinderRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull GrinderRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull GrinderRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //outputs
             List<ChanceIngredient> outputs = JsonRecipeUtils.CHIListFromJson(json, "outputs");
             //input

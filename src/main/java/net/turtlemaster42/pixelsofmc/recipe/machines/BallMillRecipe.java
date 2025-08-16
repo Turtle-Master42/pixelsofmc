@@ -93,7 +93,7 @@ public class BallMillRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<BallMillRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull BallMillRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             ChanceIngredient output = JsonRecipeUtils.CHIFromJson(json, "output");
             //inputs

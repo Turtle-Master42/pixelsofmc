@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
@@ -90,12 +88,12 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(BlockState pState) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState pState) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+    public int getAnalogOutputSignal(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile && fuelCellTile.getFuelCell().getItem() instanceof FuelCellItem cellItem) {
             if (fuelCellTile.hasFuelCell() && fuelCellTile.isLocked() && cellItem.getMaxTime() > 0)
                 return 15; // locked and not depleted

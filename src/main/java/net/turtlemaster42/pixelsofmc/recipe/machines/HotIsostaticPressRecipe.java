@@ -88,7 +88,7 @@ public class HotIsostaticPressRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<HotIsostaticPressRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public @NotNull HotIsostaticPressRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull HotIsostaticPressRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             //output
             CountedIngredient out = JsonRecipeUtils.CIFromJson(json, "output");
             Ingredient output = out.ingredient();

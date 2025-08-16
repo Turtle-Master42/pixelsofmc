@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;

@@ -4,10 +4,10 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.tags.FluidTags;
-import net.minecraftforge.common.Tags;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +17,7 @@ public class POMfluidTagProvider extends FluidTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider pProvider) {
+    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         PixelsOfMc.LOGGER.info("Generating Fluid Tags");
         this.tag(FluidTags.WATER).add(POMfluids.DIRTY_WATER.get(), POMfluids.DIRTY_WATER_FLOWING.get());
 

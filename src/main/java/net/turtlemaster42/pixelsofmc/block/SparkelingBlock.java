@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
+import org.jetbrains.annotations.NotNull;
 
 public class SparkelingBlock extends Block {
     private final int amount;
@@ -22,7 +23,7 @@ public class SparkelingBlock extends Block {
     }
 
     @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+    public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         for (Direction dir : Direction.values()) {
             if (RandomSource.create().nextFloat() <= chance)
                 ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, POMparticles.SPARKLE.get(), UniformInt.of(Math.max(amount, 0), amount + 2), dir, () -> new Vec3(0, 0, 0), 0.55D);

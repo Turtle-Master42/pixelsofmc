@@ -367,37 +367,40 @@ public enum Element {
         this.isotopes = new Isotopes(new int[0], new float[0]);
     }
 
-    public String elementName() {
-        return name().toLowerCase(Locale.US);
-    }
-    public String typeName() {
-        return type.toString().toLowerCase(Locale.US);
-    }
-    public Boolean shouldAddDust() {
-        return dust;
-    }
-    public Boolean shouldAddNugget() {
-        return nugget;
-    }
+    public String elementName() {return name().toLowerCase(Locale.US);}
+
+    public String typeName() {return type.toString().toLowerCase(Locale.US);}
+
+    public Boolean shouldAddDust() {return dust;}
+
+    public Boolean shouldAddNugget() {return nugget;}
+
     public Boolean shouldAddBlock() {return block;}
-    public Element.ItemType getType() {
-        return type;
-    }
+
+    @SuppressWarnings("ClassEscapesDefinedScope")
+    public Element.ItemType getType() {return type;}
+
     public Element.Isotopes getIsotopes() {return isotopes;}
+
     public String getState() {
         String state = "solid";
         if (info.getMeltingPoint() < 273) state = "liquid";
         if (info.getEvaporatingPoint() < 273) state = "gas";
         return state;
     }
+
     public boolean isMetal() {
         return getType() == ItemType.INGOT || getType() == ItemType.VANILLA;
     }
+
     public boolean isVanilla() {
         return getType() == ItemType.VANILLA;
     }
+
     public boolean isFireResistant() {return this.info.isFireProof();}
+
     public int getNeutrons() {return neutrons;}
+
     public Item item() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_INGOT;
@@ -408,15 +411,21 @@ public enum Element {
         }
         return POMitems.Elements.ELEMENTS.get(this).get();
     }
+
     public Item atom64() {return POMitems.Elements.ATOMX64.get(this).get();}
+
     public Item atom512() {return POMitems.Elements.ATOMX512.get(this).get();}
+
     public Item isotope64(int index) {
         return POMitems.Elements.ISOTOPEX64.get(this+"_"+(this.getIsotopes().getNeutrons()[index]+this.getElement())).get();
     }
+
     public Item isotope512(int index) {
         return POMitems.Elements.ISOTOPEX512.get(this+"_"+(this.getIsotopes().getNeutrons()[index]+this.getElement())).get();
     }
+
     public Block block() {return POMblocks.Elements.BLOCKS.get(this).get();}
+
     public Item blockItem() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_BLOCK;
@@ -428,6 +437,7 @@ public enum Element {
             return POMblocks.Elements.BLOCKS.get(this).asItem();
         return Items.AIR;
     }
+
     public Item nugget() {
         if (this.equals(Element.IRON)) {
             return Items.IRON_NUGGET;
@@ -437,11 +447,13 @@ public enum Element {
             return POMitems.Elements.NUGGETS.get(this).get();
         return Items.AIR;
     }
+
     public Item dust() {
         if (this.shouldAddDust())
             return POMitems.Elements.DUSTS.get(this).get();
         return Items.AIR;
     }
+
     public ItemStack pixel() {
         return PixelItem.createForPixel(POMitems.PIXEL.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
@@ -449,6 +461,7 @@ public enum Element {
                 new Color(this.hexToRGB(2)[0], this.hexToRGB(2)[1], this.hexToRGB(2)[2]).getRGB(),
                 "element.pixelsofmc."+this.elementName());
     }
+
     public ItemStack pixelPile() {
         return PixelItem.createForPixel(POMitems.PIXEL_PILE.get().getDefaultInstance(),
                 new Color(this.hexToRGB(0)[0], this.hexToRGB(0)[1], this.hexToRGB(0)[2]).getRGB(),
@@ -456,22 +469,27 @@ public enum Element {
                 new Color(this.hexToRGB(2)[0], this.hexToRGB(2)[1], this.hexToRGB(2)[2]).getRGB(),
                 "element.pixelsofmc."+this.elementName());
     }
+
     public TagKey<Item> itemTag() {
         if (this.isMetal())
             return POMtags.getTagsFor(this).metal;
         return POMtags.getTagsFor(this).other;
     }
+
     public TagKey<Item> nuggetTag() {
         return POMtags.getTagsFor(this).nugget;
     }
+
     public TagKey<Item> dustTag() {
         return POMtags.getTagsFor(this).dust;
     }
-    public Info getInfo() {
-        return this.info;
-    }
+
+    public Info getInfo() {return this.info;}
+
     public int getElement() {return this.ordinal()+1;}
+
     public float getBitMass() {return this.bitMass;}
+
     public double getMass() {return this.getBitMass() * 1.66f * Math.pow(10, -27);}
 
     public static class Isotopes {

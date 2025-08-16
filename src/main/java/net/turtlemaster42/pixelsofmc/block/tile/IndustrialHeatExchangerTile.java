@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.block.IndustrialHeatExchangerBlock;
 import net.turtlemaster42.pixelsofmc.block.SDSFusionControllerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;

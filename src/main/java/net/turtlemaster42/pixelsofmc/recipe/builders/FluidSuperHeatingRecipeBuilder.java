@@ -9,7 +9,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.datagen.POMrecipeProvider;
-import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.FluidSuperHeatingRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidJSONUtil;
 import org.jetbrains.annotations.NotNull;

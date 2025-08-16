@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
+import org.jetbrains.annotations.NotNull;
 
 public class IngredientDrawable implements IDrawable {
     private final int count;
@@ -46,7 +47,7 @@ public class IngredientDrawable implements IDrawable {
     }
 
     @Override
-    public void draw(GuiGraphics guiGraphics, int xOffset, int yOffset) {
+    public void draw(@NotNull GuiGraphics guiGraphics, int xOffset, int yOffset) {
         Font font = Minecraft.getInstance().font;
         if (count > 1 && chance == 1f) {
             int stringWidth = font.width(String.valueOf(count));

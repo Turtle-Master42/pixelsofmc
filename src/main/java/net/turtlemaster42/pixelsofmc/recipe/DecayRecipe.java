@@ -73,7 +73,7 @@ public class DecayRecipe extends BaseItemRecipe {
     public static class Serializer implements POMRecipeSerializer<DecayRecipe> {
         public static final DecayRecipe.Serializer INSTANCE = new DecayRecipe.Serializer();
 
-        public @NotNull DecayRecipe fromJson(@NotNull ResourceLocation id, JsonObject json) {
+        public @NotNull DecayRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
             Item fuelCell = GsonHelper.getAsItem(json, "decay_item");
             return new DecayRecipe(id, (FuelCellItem) fuelCell);
         }

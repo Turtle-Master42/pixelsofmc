@@ -13,7 +13,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.fluids.FluidStack;
 import net.turtlemaster42.pixelsofmc.intergration.jei.IngredientDrawable;
 import net.turtlemaster42.pixelsofmc.intergration.jei.JEIfluidRenderer;
