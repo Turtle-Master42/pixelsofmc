@@ -189,7 +189,19 @@ public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandl
         currentTank = nbt.getString("currentTank");
     }
 
+
+    public static void idleTick(Level level, BlockPos blockPos, BlockState blockState, FluidPortTile e) {
+        Direction direction = blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite();
+        if (level.getBlockState(blockPos.relative(direction)).is(Blocks.COMPARATOR)) {
+            level.scheduleTick(blockPos.relative(direction), Blocks.COMPARATOR, 0);
+        } else if (level.getBlockState(blockPos.relative(direction, 2)).is(Blocks.COMPARATOR)) {
+            level.scheduleTick(blockPos.relative(direction, 2), Blocks.COMPARATOR, 0);
+        }
+    }
+
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FluidPortTile e) {
+        idleTick(level, blockPos, blockState, e);
+
         if (blockState.getValue(AbstractPort.PUSHING) && e.isMainPosValid()) {
             Direction dir = blockState.getValue(AbstractPort.PUSH_DIRECTION) == Direction.UP || blockState.getValue(AbstractPort.PUSH_DIRECTION) == Direction.DOWN  ? blockState.getValue(AbstractPort.PUSH_DIRECTION) : blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite();
             BlockPos facingPos = blockPos.relative(dir);

@@ -10,14 +10,21 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.tile.EnergyPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,6 +48,23 @@ public class AbstractPort extends AbstractMultiBlock {
                 .setValue(PUSHING, false);
     }
 
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return hasComparatorOutput(pState);
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        return getComparatorOutput(pState, pLevel, pPos);
+    }
+
+    public boolean hasComparatorOutput(BlockState pState) {
+        return false;
+    }
+
+    public int getComparatorOutput(BlockState pState, Level pLevel, BlockPos pPos) {
+        return 0;
+    }
 
     @Deprecated
     @Override

@@ -5,7 +5,7 @@
     "FluidName": "minecraft:water"
   },
   "fluid_output": {
-    "Amount": 250,
+    "Amount": 350,
     "FluidName": "pixelsofmc:hydrofluoric_acid"
   },
   "input": {

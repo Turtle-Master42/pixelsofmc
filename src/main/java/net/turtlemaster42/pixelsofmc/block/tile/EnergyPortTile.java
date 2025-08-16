@@ -16,12 +16,13 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.AbstractPort;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
 import org.jetbrains.annotations.NotNull;
@@ -156,7 +157,20 @@ public class EnergyPortTile extends AbstractMultiBlockTile implements IEnergyHan
         energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
+
+    public static void idleTick(Level level, BlockPos blockPos, BlockState blockState, EnergyPortTile e) {
+        Direction direction = blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite();
+        if (level.getBlockState(blockPos.relative(direction)).is(Blocks.COMPARATOR)) {
+            PixelsOfMc.LOGGER.info("idle energy");
+            level.scheduleTick(blockPos.relative(direction), Blocks.COMPARATOR, 0);
+        } else if (level.getBlockState(blockPos.relative(direction, 2)).is(Blocks.COMPARATOR)) {
+            level.scheduleTick(blockPos.relative(direction, 2), Blocks.COMPARATOR, 0);
+        }
+    }
+
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, EnergyPortTile e) {
+        idleTick(level, blockPos, blockState, e);
+
         if (blockState.getValue(AbstractPort.PUSHING) && e.isMainPosValid()) {
             BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);

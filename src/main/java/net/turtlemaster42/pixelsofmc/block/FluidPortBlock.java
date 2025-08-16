@@ -17,9 +17,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.tile.EnergyPortTile;
 import net.turtlemaster42.pixelsofmc.block.tile.FluidPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -118,6 +121,36 @@ public class FluidPortBlock extends AbstractPort {
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
+    @Override
+    public boolean hasComparatorOutput(BlockState pState) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState pState, Level pLevel, BlockPos pPos) {
+        if (pLevel.getBlockEntity(pPos) instanceof FluidPortTile portTile) {
+            BlockEntity mainTile = pLevel.getBlockEntity(portTile.getMainPos());
+            if (mainTile == null || !portTile.isMainPosValid()) {return 0;}
+
+            // multi tank
+            if (mainTile instanceof IMultiFluidHandlingTile portLogicTile && !portTile.getCurrentTank().equals("null")) {
+                int fluid = portLogicTile.getFluidTank(portTile.getCurrentTank()).getFluidAmount();
+                int maxFluid = portLogicTile.getFluidTank(portTile.getCurrentTank()).getCapacity();
+                if (fluid == 0) {return 0;} // empty
+                if (fluid == maxFluid) {return 15;} // full
+                return 1 + Math.round((((float) fluid) / ((float) maxFluid)) * 13f); // partial
+            // single tank
+            } else if (mainTile instanceof IFluidHandlingTile fluidHandler) { // ONE TANK
+                int fluid = fluidHandler.getFluidTank().getFluidAmount();
+                int maxFluid = fluidHandler.getFluidTank().getCapacity();
+                if (fluid == 0) {return 0;} // empty
+                if (fluid == maxFluid) {return 15;} // full
+                return 1 + Math.round((((float) fluid) / ((float) maxFluid)) * 13f); // partial
+            }
+        }
+        return 0;
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
@@ -131,6 +164,6 @@ public class FluidPortBlock extends AbstractPort {
             return createTickerHelper(pBlockEntityType, POMtiles.FLUID_PORT.get(),
                     pLevel.isClientSide ? FluidPortTile::clientTick : FluidPortTile::serverTick);
         }
-        return null;
+        return pLevel.isClientSide ? null : createTickerHelper(pBlockEntityType, POMtiles.FLUID_PORT.get(), FluidPortTile::idleTick);
     }
 }

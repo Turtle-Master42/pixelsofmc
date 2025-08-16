@@ -1934,7 +1934,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.DIRTY_WATER.get(), 250)
                 .finish(fConsumer, this);
         ChemicalSeparatorRecipeBuilder.build(POMitems.LITHIUM_FLUORIDE_CLUMP.get(), Fluids.WATER, 400)
-                .output(POMfluids.HYDROFLUORIC_ACID.get(), 250)
+                .output(POMfluids.HYDROFLUORIC_ACID.get(), 350)
                 .output(Element.LITHIUM.dust())
                 .finish(fConsumer, this);
 
@@ -2020,9 +2020,17 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.OXYGEN_GAS.get(), 200)
                 .input(Element.URANIUM.dustTag())
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 50)
-                .input(POMfluids.SULFURIC_ACID.get(), 200)
+        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 100)
+                .input(POMfluids.SULFURIC_ACID.get(), 250)
                 .input(Items.CALCITE)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 20)
+                .input(POMfluids.SULFURIC_ACID.get(), 100)
+                .input(Tags.Items.GEMS_QUARTZ)
+                .finish(fConsumer, this);
+        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 50)
+                .input(POMfluids.SULFURIC_ACID.get(), 250)
+                .input(Tags.Items.ORES_QUARTZ)
                 .finish(fConsumer, this);
         ChemicalCombinerRecipeBuilder.build(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), 125)
                 .input(POMfluids.HYDROFLUORIC_ACID.get(), 500)
@@ -2049,6 +2057,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMitems.PLUTONIUM_FUEL_PELLET.get(), 3)
                 .input(POMfluids.ENRICHED_PLUTONIUM_SOLUTION.get(), 875)
                 .finish(fConsumer, this);
+
+
+//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
+//                .requires(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
+//                .unlockedBy("has_items", inventoryTrigger(
+//                        toItemP(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get())))
+//                .save(fConsumer);
+
 
         // --CHEMICAL MIXING--
         ChemicalMixerRecipeBuilder.build(4)
@@ -2121,7 +2137,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.DIRTY_WATER.get(), 10)
                 .finish(fConsumer, this);
 
-        ChemicalMixerRecipeBuilder.build(1)
+        ChemicalMixerRecipeBuilder.build(0)
                 .input(POMfluids.HYDROFLUORIC_ACID.get(), 50)
                 .input(POMfluids.OXYGEN_GAS.get(), 25)
                 .output(POMfluids.FLUORINE_GAS.get(), 50)

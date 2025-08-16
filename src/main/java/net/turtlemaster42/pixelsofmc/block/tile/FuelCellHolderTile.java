@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -114,6 +115,10 @@ public class FuelCellHolderTile extends AbstractMultiBlockTile implements IInven
 
     public void cycleLocking() {
         this.locked = !this.locked;
+    }
+
+    public ItemStack getFuelCell() {
+        return this.itemHandler.getStackInSlot(0);
     }
 
     public boolean hasFuelCell() {return !this.itemHandler.getStackInSlot(0).isEmpty();}

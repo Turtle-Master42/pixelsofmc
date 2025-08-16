@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,8 +19,10 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
@@ -50,11 +53,12 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
         if (pLevel.isClientSide || !pLevel.hasNeighborSignal(pPos)) {return;}
         if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
 
-            steamParticles((ServerLevel) pLevel, pState, pPos, fuelCellTile.isLocked(), fuelCellTile.hasFuelCell());
-            fuelCellTile.cycleLocking();
             BlockPos mainPos = fuelCellTile.getMainPos();
             if (pLevel.getBlockEntity(mainPos) instanceof NuclearReactorTile reactorTile) {
-                pLevel.setBlock(pPos, pState.cycle(FuelCellHolderBlock.CELL_TYPE), 2);
+
+                steamParticles((ServerLevel) pLevel, pState, pPos, fuelCellTile.isLocked(), fuelCellTile.hasFuelCell());
+                fuelCellTile.cycleLocking();
+                pLevel.setBlock(pPos, pState.cycle(CELL_TYPE), 2);
                 Direction mainDirection = pLevel.getBlockState(mainPos).getValue(NuclearReactorBlock.FACING);
                 if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 0, 1, 0, mainPos).equals(pPos)) {
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 0, fuelCellTile.isLocked());
@@ -65,6 +69,10 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
                 } else if (BigMachineBlockUtil.rotateBlockPosOnDirection(mainDirection, 1, 0, 0, mainPos).equals(pPos)) {
                     reactorTile.handleFuelCellHolder(fuelCellTile.getItemStackHandler(), 3, fuelCellTile.isLocked());
                 }
+            }
+
+            if (pState.getValue(CELL_TYPE) == 1 && fuelCellTile.isLocked()) { // de-sinc fix, looks unintuitive but works correctly
+                fuelCellTile.cycleLocking();
             }
         }
     }
@@ -81,6 +89,25 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
         }
     }
 
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile && fuelCellTile.getFuelCell().getItem() instanceof FuelCellItem cellItem) {
+            if (fuelCellTile.hasFuelCell() && fuelCellTile.isLocked() && cellItem.getMaxTime() > 0)
+                return 15; // locked and not depleted
+            else if (fuelCellTile.hasFuelCell() && cellItem.getMaxTime() > 0)
+                return 8; // not locked and not depleted
+            else if (fuelCellTile.hasFuelCell() && fuelCellTile.isLocked())
+                return 11; // locked and depleted
+            else if (fuelCellTile.hasFuelCell())
+                return 4; // not locked and depleted
+        }
+        return 0;
+    }
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, InteractionHand pHand, @NotNull BlockHitResult pHit) {

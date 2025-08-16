@@ -114,7 +114,6 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
         // if not, it will destroy itself and thereby update the surrounding dummy blocks
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
         BlockState mainState = pLevel.getBlockState(mainPos);
-
         if (mainPos == pPos || mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {
             pLevel.removeBlock(pPos, false);
             pLevel.removeBlockEntity(pPos);

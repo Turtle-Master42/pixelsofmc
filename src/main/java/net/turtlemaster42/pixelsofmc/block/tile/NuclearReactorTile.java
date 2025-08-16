@@ -322,11 +322,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
                     rebootCooldown = 200; // 10s
             }
         }
-
-        //debug water fill TODO: remove
-        if (getSwitch(2)) {
-            fluidTank.fill(new FluidStack(Fluids.WATER, 20_000), IFluidHandler.FluidAction.EXECUTE);
-        }
     }
 
     public void handleFuelCell(int slot) {

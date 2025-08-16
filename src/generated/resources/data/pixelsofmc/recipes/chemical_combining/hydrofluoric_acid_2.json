@@ -1,18 +1,18 @@
 {
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
-    "Amount": 250,
+    "Amount": 100,
     "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
-    "Amount": 100,
+    "Amount": 20,
     "FluidName": "pixelsofmc:hydrofluoric_acid"
   },
   "inputs": [
     {
       "count": 1,
       "ingredient": {
-        "item": "minecraft:calcite"
+        "tag": "forge:gems/quartz"
       }
     }
   ],
