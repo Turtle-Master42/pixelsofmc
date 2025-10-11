@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "pixelsofmc:tungsten_plating"
+      "item": "pixelsofmc:superconductive_ingot"
     },
     {
       "item": "minecraft:stick"
@@ -13,6 +13,6 @@
     }
   ],
   "result": {
-    "item": "pixelsofmc:tungsten_wire"
+    "item": "pixelsofmc:superconductive_wire"
   }
 }

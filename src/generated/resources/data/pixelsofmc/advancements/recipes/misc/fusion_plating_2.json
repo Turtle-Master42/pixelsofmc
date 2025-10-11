@@ -6,8 +6,12 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:hammer",
-              "pixelsofmc:wirecutter"
+              "pixelsofmc:pyrolytic_carbon_sheet"
+            ]
+          },
+          {
+            "items": [
+              "pixelsofmc:tungsten_plating"
             ]
           }
         ]
@@ -16,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:tungsten_wire_3"
+        "recipe": "pixelsofmc:fusion_plating_2"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +33,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:tungsten_wire_3"
+      "pixelsofmc:fusion_plating_2"
     ]
   },
   "sends_telemetry_event": false

@@ -1183,7 +1183,8 @@
   "emi.category.pixelsofmc.decay": "Decaying",
   "emi.category.pixelsofmc.pixel_splitting": "Pixel Splitting",
   "emi.category.pixelsofmc.pixel_assembling": "Pixel Assembling",
-  "emi.category.pixelsofmc.pixel_bombarder": "Pixel Bombarding",
+  "emi.category.pixelsofmc.bombarding": "Pixel Bombarding",
+  "emi.category.pixelsofmc.laser_source": "Laser Source",
 
 
   "tag.pixelsofmc.speed_upgrade": "Speed Upgrades",
@@ -1202,5 +1203,7 @@
   "tag.pixelsofmc.ball_5": "Tough Milling Balls",
   "tag.pixelsofmc.atom": "Bit Pixels",
   "tag.pixelsofmc.atom64": "64x Bit Pixels",
-  "tag.pixelsofmc.atom512": "512x Bit Pixels"
+  "tag.pixelsofmc.atom512": "512x Bit Pixels",
+  "tag.pixelsofmc.glass.dark": "Dark Glass",
+  "tag.pixelsofmc.glass.opaque": "Opaque Glass"
 }

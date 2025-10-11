@@ -23,7 +23,7 @@ WIP
 [[dependencies.pixelsofmc]]
     modId="citadel"
     mandatory=true
-    versionRange="[2.6.1]"
+    versionRange="[2.6.2]"
     ordering="NONE"
     side="BOTH"
 

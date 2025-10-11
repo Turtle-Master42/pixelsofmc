@@ -1,4 +1,4 @@
-// 1.20.1	2025-10-09T14:12:57.964492	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-10-11T15:34:09.977904	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon.json
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine.json
@@ -145,25 +145,31 @@ da620b41b82530bc3f9e182ffee75a1eaed00ce0 data/forge/tags/items/nuggets.json
 aa4dc9565236148de80b67fab9fc3984bc70f74c data/forge/tags/items/nuggets/silver.json
 f83d280484bdca1cc01147edafdf8828392f7bf0 data/forge/tags/items/nuggets/titanium.json
 cda4b236c86e02bcd79233f7788adf9ac6b0998b data/forge/tags/items/nuggets/tungsten.json
+6b1dd01d0798693eb0253548c99e71f0aec69e7f data/forge/tags/items/ores.json
 565c64621a42702e6e6287f7bf9b8b6b24657d63 data/forge/tags/items/ores/titanium.json
+a577fff936f2382b94d4a0579aeb867accfad4d8 data/forge/tags/items/ores_in_ground/deepslate.json
+7fd0f28337f532d261d3323f2de18fe8a621c0c6 data/forge/tags/items/ores_in_ground/stone.json
 3ef4fa4f26589ce34ccf8142190d9cbec2b29828 data/forge/tags/items/oxygen.json
 3ef4fa4f26589ce34ccf8142190d9cbec2b29828 data/forge/tags/items/oxygen_canister.json
 7fa2411b731c1908e037051090f4b30798f02254 data/forge/tags/items/phosphorus.json
 7fa2411b731c1908e037051090f4b30798f02254 data/forge/tags/items/phosphorus_cube.json
 ab72a5f9bd2078d6f33fa5b0908e7c54198ca506 data/forge/tags/items/radon.json
 ab72a5f9bd2078d6f33fa5b0908e7c54198ca506 data/forge/tags/items/radon_canister.json
+c9052658b115af3cbc0feccab69561fbf6ecce0f data/forge/tags/items/raw_materials.json
 0a933678054d051ad970535d0afe82a891581fc7 data/forge/tags/items/silicon.json
 0a933678054d051ad970535d0afe82a891581fc7 data/forge/tags/items/silicon_cube.json
 6357a4e7208d953d95f05fcc15970c79ac4c8540 data/forge/tags/items/slimeballs.json
+010c89c0ba31416f8ef3250ac9c7968ccbdfe6e3 data/forge/tags/items/storage_blocks.json
 7dce0fc3e6730f7e483c19fe4412e00568d11157 data/forge/tags/items/storage_blocks/lead.json
 75831e443c8580b4343a58cea82dc128b0610c37 data/forge/tags/items/storage_blocks/silver.json
 c6d05eea23a6a969a1f677c25bd306bc166a162b data/forge/tags/items/storage_blocks/titanium.json
 0fefa6288a83318d1833a4575cbfa58e1da4630a data/forge/tags/items/storage_blocks/tungsten.json
 d5310aa3b75666e0b349388f16371a481672620e data/forge/tags/items/sulfur.json
 d5310aa3b75666e0b349388f16371a481672620e data/forge/tags/items/sulfur_cube.json
+02cbfbe7e73f6e62e44756a5b8bcad9648d0d134 data/forge/tags/items/tools.json
 a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon.json
 a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon_canister.json
-1d54571d738d58abf2aa002740383e3c92c7bd70 data/minecraft/tags/items/piglin_loved.json
+2ec97dad60a4e2059dff9559a9f3a18ce107f9bf data/minecraft/tags/items/piglin_loved.json
 58c423beded31131937d55c5e494e841816725ef data/pixelsofmc/tags/items/atom.json
 553e48ff244756c4b29c10d02ff9512238792ed0 data/pixelsofmc/tags/items/atom512.json
 3f2b3564b942f0e7148980423086b33a60efb1db data/pixelsofmc/tags/items/atom64.json

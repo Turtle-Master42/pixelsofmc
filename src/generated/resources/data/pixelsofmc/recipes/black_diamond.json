@@ -7,9 +7,8 @@
     }
   },
   "pattern": [
-    "CCC",
-    "CCC",
-    "CCC"
+    "CC",
+    "CC"
   ],
   "result": {
     "item": "pixelsofmc:black_diamond"

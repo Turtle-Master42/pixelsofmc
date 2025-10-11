@@ -7,9 +7,9 @@
           {
             "items": [
               "minecraft:honeycomb",
+              "minecraft:warped_roots",
               "minecraft:kelp",
               "minecraft:sugar_cane",
-              "minecraft:warped_roots",
               "minecraft:warped_fungus"
             ]
           },

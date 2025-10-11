@@ -86,7 +86,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                         toItemP(POMitems.BIO_COMPOUND.get())))
                 .save(fConsumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SOUL_COAL.get(), 2)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SOUL_COAL.get(), 4)
                 .requires(Items.CHARCOAL)
                 .requires(POMitems.COAL_DUST.get(), 2)
                 .requires(Items.BLAZE_POWDER)
@@ -112,51 +112,43 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                        toItemP(POMitems.WIRECUTTER.get(), Items.COPPER_INGOT)))
                 .save(fConsumer, toRL("copper_wire_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SILVER_WIRE.get())
-                .requires(POMtags.getTagsFor(Element.SILVER).metal)
+                .requires(Element.SILVER.itemTag())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                        toItemP(POMitems.WIRECUTTER.get(), Element.SILVER.item())))
                 .save(fConsumer, toRL("silver_wire_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.TUNGSTEN_WIRE.get())
-                .requires(POMtags.getTagsFor(Element.TUNGSTEN).metal)
+                .requires(Element.TUNGSTEN.itemTag())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                        toItemP(POMitems.WIRECUTTER.get(), Element.TUNGSTEN.item())))
                 .save(fConsumer, toRL("tungsten_wire_2"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.TUNGSTEN_WIRE.get())
-                .requires(POMitems.TUNGSTEN_PLATING.get())
-                .requires(Items.STICK)
-                .requires(POMitems.WIRECUTTER.get())
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
-                .save(fConsumer, toRL("tungsten_wire_3"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
-                .requires(Tags.Items.INGOTS_COPPER)
-                .requires(Items.STICK)
-                .requires(POMitems.WIRECUTTER.get())
-                .requires(Items.REDSTONE, 4)
-                .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
-                .save(fConsumer, toRL("redstone_layered_copper_wire_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.RED_SILVER_WIRE.get())
                 .requires(POMitems.RED_SILVER_INGOT.get())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.RED_SILVER_INGOT.get())))
                 .save(fConsumer, toRL("red_silver_wire_2"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.ROYAL_TUNGSTEN_WIRE.get())
                 .requires(POMitems.ROYAL_TUNGSTEN_INGOT.get())
                 .requires(Items.STICK)
                 .requires(POMitems.WIRECUTTER.get())
                 .unlockedBy("has_items", inventoryTrigger(
-                        toItemP(POMitems.WIRECUTTER.get(), POMitems.HAMMER.get())))
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.ROYAL_TUNGSTEN_INGOT.get())))
                 .save(fConsumer, toRL("royal_tungsten_wire_2"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.SUPERCONDUCTIVE_WIRE.get())
+                .requires(POMitems.SUPERCONDUCTIVE_INGOT.get())
+                .requires(Items.STICK)
+                .requires(POMitems.WIRECUTTER.get())
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.WIRECUTTER.get(), POMitems.SUPERCONDUCTIVE_INGOT.get())))
+                .save(fConsumer, toRL("superconductive_wire_2"));
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.MANA_AMALGAMATION.get())
@@ -199,17 +191,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.CARBONARO_CLUMP.get())
                 .define('C', Element.CARBON.item())
-                .pattern("CCC")
-                .pattern("CCC")
-                .pattern("CCC")
+                .pattern("CC")
+                .pattern("CC")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.BLACK_DIAMOND.get())
                 .define('C', POMitems.CARBONARO_CLUMP.get())
-                .pattern("CCC")
-                .pattern("CCC")
-                .pattern("CCC")
+                .pattern("CC")
+                .pattern("CC")
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(Element.CARBON.dust())))
                 .save(fConsumer);
@@ -298,6 +288,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items",
                         inventoryTrigger(toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get()), toItemP(POMitems.TUNGSTEN_PLATING.get())))
                 .save(fConsumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, POMitems.FUSION_PLATING.get())
+                .requires(POMitems.TITANIUM_DIBORIDE_PLATING.get())
+                .requires(POMitems.LEAD_PLATING.get())
+                .requires(POMitems.TUNGSTEN_PLATING.get())
+                .requires(POMitems.PYROLYTIC_CARBON_SHEET.get())
+                .requires(POMitems.PYROLYTIC_CARBON_SHEET.get())
+                .unlockedBy("has_items",
+                        inventoryTrigger(toItemP(POMitems.PYROLYTIC_CARBON_SHEET.get()), toItemP(POMitems.TUNGSTEN_PLATING.get())))
+                .save(fConsumer, toRL("fusion_plating_2"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.REDSTONE_LAYERED_COPPER_WIRE.get())
                 .define('B', Tags.Items.DUSTS_REDSTONE)
                 .define('C', POMitems.COPPER_WIRE.get())

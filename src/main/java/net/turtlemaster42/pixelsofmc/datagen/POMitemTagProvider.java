@@ -95,6 +95,7 @@ public class POMitemTagProvider extends ItemTagsProvider {
             }
             if (element.shouldAddBlock()) {
                 tag(tags.block).add(element.block().asItem());
+                tag(Tags.Items.STORAGE_BLOCKS).add(element.block().asItem());
             }
         }
 
@@ -103,10 +104,39 @@ public class POMitemTagProvider extends ItemTagsProvider {
         tag(Tags.Items.GEMS).add(POMitems.PERFECT_DIAMOND.get(), POMitems.VIOLET_DIAMOND.get(), POMitems.RED_DIAMOND.get());
 
         tag(Tags.Items.GEMS_DIAMOND).add(POMitems.PERFECT_DIAMOND.get());
+        tag(Tags.Items.ORES)
+                .add(POMblocks.ACANTHITE_ORE.get().asItem())
+                .add(POMblocks.LESSER_ACANTHITE_ORE.get().asItem())
+                .add(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem())
+                .add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem())
+                .add(POMblocks.TITANIUM_ORE.get().asItem());
+        tag(Tags.Items.STORAGE_BLOCKS)
+                .add(POMblocks.ACANTHITE.get().asItem())
+                .add(POMblocks.TITANIUM_DIBORIDE_BLOCK.get().asItem())
+                .add(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem())
+                .add(POMblocks.RAW_TITANIUM_BLOCK.get().asItem())
+                .add(POMblocks.BLACK_DIAMOND_BLOCK.get().asItem())
+                .add(POMblocks.PERFECT_DIAMOND_BLOCK.get().asItem())
+                .add(POMblocks.VIOLET_DIAMOND_BLOCK.get().asItem())
+                .add(POMblocks.RED_DIAMOND_BLOCK.get().asItem());
+        tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE).add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
+        tag(Tags.Items.ORES_IN_GROUND_STONE).add(POMblocks.TITANIUM_ORE.get().asItem());
+        tag(Tags.Items.RAW_MATERIALS).add(POMitems.RAW_TITANIUM.get());
+        tag(Tags.Items.TOOLS)
+                .add(POMitems.SCREWDRIVER.get())
+                .add(POMitems.HAMMER.get())
+                .add(POMitems.CLEANING_CLOTH.get())
+                .add(POMitems.CLEANING_SPONGE.get())
+                .add(POMitems.WIRECUTTER.get());
+
+
         tag(ItemTags.PIGLIN_LOVED)
                 .add(POMitems.TITANIUM_GOLD_INGOT.get())
                 .add(POMitems.TITANIUM_GOLD_DUST.get())
                 .add(POMitems.TITANIUM_GOLD_PLATING.get())
+                .add(POMitems.TITANIUM_GOLD_NUGGET.get())
+                .add(POMitems.TITANIUM_GOLD_BALL.get())
+                .add(POMitems.TITANIUM_GOLD_CIRCLE_SAW.get())
                 .add(POMblocks.TITANIUM_GOLD_BLOCK.get().asItem())
                 .add(POMblocks.TITANIUM_GOLD_PLATING_BLOCK.get().asItem())
                 .add(POMblocks.TITANIUM_GOLD_PLATING_SLAB.get().asItem())

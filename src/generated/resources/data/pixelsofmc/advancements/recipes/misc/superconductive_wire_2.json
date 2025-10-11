@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:hammer",
+              "pixelsofmc:superconductive_ingot",
               "pixelsofmc:wirecutter"
             ]
           }
@@ -16,7 +16,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:redstone_layered_copper_wire_2"
+        "recipe": "pixelsofmc:superconductive_wire_2"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:redstone_layered_copper_wire_2"
+      "pixelsofmc:superconductive_wire_2"
     ]
   },
   "sends_telemetry_event": false
