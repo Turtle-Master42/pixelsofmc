@@ -1,0 +1,96 @@
+package net.turtlemaster42.pixelsofmc.gui.menu;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import net.turtlemaster42.pixelsofmc.block.tile.PixelBombarderTile;
+import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import org.jetbrains.annotations.NotNull;
+
+public class PixelBombarderMenu extends AbstractMachineMenu implements IEnergyMenu {
+    public final PixelBombarderTile blockEntity;
+    public final ItemStackHandler itemHandler;
+
+    public PixelBombarderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+    }
+
+    public PixelBombarderMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(7, inv, data, POMmenuType.PIXEL_BOMBARDER_MENU.get(), pContainerId);
+        blockEntity = ((PixelBombarderTile) entity);
+        itemHandler = blockEntity.getItemStackHandler();
+
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new SlotItemHandler(handler, 0, 116, 15));
+            this.addSlot(new ModMaxStackSizeSlot(handler, 1, 39, 37, 1));
+            this.addSlot(new ModMaxStackSizeSlot(handler, 2, 57, 37, 1));
+            this.addSlot(new ModMaxStackSizeSlot(handler, 3, 86, 37, 1));
+            this.addSlot(new ModResultSlot(handler, 4, 116, 58));
+        });
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+    public int getProgress() {return this.data.get(0);}
+    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int speedUpgrade = this.data.get(2); // Speed upgrades
+        int progressArrowSize = 24; // This is the height in pixels of your arrow
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+    }
+
+    public int getScaledEnergy() { //energy test
+        int energy = this.data.get(5); //stored energy
+        int maxEnergy = this.data.get(3);  // Max Energy
+        int progressArrowSize = 44; // This is the height in pixels of your arrow
+        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
+    }
+
+    public int getSmallLaserColor() {
+        return blockEntity.getSmallLaserColor();
+    }
+
+    public int getBigLaserColor() {
+        return blockEntity.getBigLaserColor();
+    }
+
+    public int getLaserType() {
+        return blockEntity.getLaserType();
+    }
+
+    public int getLaserSize() {
+        return blockEntity.getLaserSize();
+    }
+
+    @Override
+    public boolean stillValid(@NotNull Player pPlayer) {
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+                pPlayer, POMblocks.PIXEL_BOMBARDER.get());
+    }
+
+    @Override
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+}
+
+

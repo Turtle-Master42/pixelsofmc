@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:laser_source",
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:phosphorus_cube"
+    }
+  },
+  "input_color": -11075329,
+  "output_color": -3669981,
+  "output_type": 2
+}

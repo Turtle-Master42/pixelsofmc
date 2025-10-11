@@ -48,6 +48,9 @@ public class POMtags {
         public static final TagKey<Item> SOUL_FUELS = ItemTags.create(Util.resourceLocation("soul_fuels"));
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(forgeLoc("nuggets/netherite"));
 
+        public static final TagKey<Item> DARK_GLASS = ItemTags.create(Util.resourceLocation("glass/dark"));
+        public static final TagKey<Item> OPAQUE_GLASS = ItemTags.create(Util.resourceLocation("glass/opaque"));
+
         // forge items
         public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(forgeLoc("dusts/netherite"));
         public static final TagKey<Item> DUST_ANCIENT_DEBRIS = ItemTags.create(forgeLoc("dusts/ancient_debris"));
@@ -108,7 +111,8 @@ public class POMtags {
         public final TagKey<Item> metal;
         public final TagKey<Item> dust;
         public final TagKey<Item> nugget;
-        public final TagKey<Item> other;
+        public final TagKey<Item> other1;
+        public final TagKey<Item> other2;
         public final TagKey<Item> block;
 
         private ElementTags(Element m)
@@ -117,7 +121,8 @@ public class POMtags {
             metal = createItemWrapper(getIngot(name));
             nugget = createItemWrapper(getNugget(name));
             dust = createItemWrapper(getDust(name));
-            other = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));
+            other1 = createItemWrapper(forgeLoc(name));
+            other2 = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));
             block = createItemWrapper(forgeLoc("storage_blocks/" + name));
         }
     }

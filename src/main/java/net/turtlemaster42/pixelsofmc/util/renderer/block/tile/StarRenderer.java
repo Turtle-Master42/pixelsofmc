@@ -12,6 +12,7 @@ import net.turtlemaster42.pixelsofmc.block.StarBlock;
 import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
+import net.turtlemaster42.pixelsofmc.util.renderer.block.models.BlackHoleModel;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.StarModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +21,9 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
     private static final ResourceLocation BIG = Util.resourceLocation("textures/block/big_star.png");
     private static final ResourceLocation NEUTRON = Util.resourceLocation("textures/block/neutron_star.png");
     private static final ResourceLocation HOLE = Util.resourceLocation("textures/block/black_hole.png");
+    private static final ResourceLocation HOLE_2 = Util.resourceLocation("textures/block/black_hole2.png");
     private static final StarModel MODEL = new StarModel();
+    private static final BlackHoleModel BLACK_HOLE_MODEL = new BlackHoleModel();
 
     public StarRenderer(BlockEntityRendererProvider.Context context) {}
 

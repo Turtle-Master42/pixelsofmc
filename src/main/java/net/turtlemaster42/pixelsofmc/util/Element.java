@@ -473,7 +473,7 @@ public enum Element {
     public TagKey<Item> itemTag() {
         if (this.isMetal())
             return POMtags.getTagsFor(this).metal;
-        return POMtags.getTagsFor(this).other;
+        return POMtags.getTagsFor(this).other2;
     }
 
     public TagKey<Item> nuggetTag() {

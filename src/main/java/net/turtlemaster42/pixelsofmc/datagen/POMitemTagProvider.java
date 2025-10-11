@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -89,7 +90,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 tag(Tags.Items.NUGGETS).addTag(tags.nugget);
             }
             if (!element.isMetal() && !element.isVanilla()) {
-                tag(tags.other).add(element.item().asItem());
+                tag(tags.other1).add(element.item().asItem());
+                tag(tags.other2).add(element.item().asItem());
             }
             if (element.shouldAddBlock()) {
                 tag(tags.block).add(element.block().asItem());
@@ -152,6 +154,15 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMblocks.ENDSTONE_TITANIUM_ORE.get().asItem())
                 .add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem())
                 .add(POMblocks.TITANIUM_ORE.get().asItem());
+
+        tag(POMtags.Items.DARK_GLASS)
+                .addTag(Tags.Items.GLASS_GREEN)
+                .addTag(Tags.Items.GLASS_BROWN)
+                .addTag(Tags.Items.GLASS_CYAN)
+                .addTag(Tags.Items.GLASS_GRAY)
+                .addTag(Tags.Items.GLASS_BLACK);
+
+        tag(POMtags.Items.OPAQUE_GLASS).add(Items.TINTED_GLASS);
 
         //dusts
         tag(Tags.Items.DUSTS)

@@ -315,6 +315,10 @@ public class POMblocks {
     public static final RegistryObject<Block> PIXEL_ASSEMBLER = registerBlock("pixel_assembler",
             () -> new PixelAssemblerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
                     .noOcclusion()), "", "", "");
+    public static final RegistryObject<Block> PIXEL_BOMBARDER = registerBlock("pixel_bombarder",
+            () -> new PixelBombarderBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.CLAY)
+                    .noOcclusion()), "", "", "");
+
 
     //multi-block machines
     public static final RegistryObject<Block> NUCLEAR_REACTOR = registerBlock("nuclear_reactor",

@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:laser_source",
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:silicon_cube"
+    }
+  },
+  "input_color": -16711681,
+  "output_color": -6656,
+  "output_type": 1
+}

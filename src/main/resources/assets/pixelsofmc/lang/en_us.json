@@ -795,6 +795,7 @@
   "block.pixelsofmc.chemical_separator": "Chemical Separator",
   "block.pixelsofmc.chemical_combiner": "Chemical Combiner",
   "block.pixelsofmc.chemical_mixer": "Chemical Mixer",
+  "block.pixelsofmc.pixel_bombarder": "Pixel Bombarder",
   "block.pixelsofmc.star": "Fusion Star",
   "block.pixelsofmc.industrial_heat_exchanger": "Industrial Heat Exchanger",
 
@@ -970,9 +971,6 @@
   "book.pixelsofmc_guide_book_1.laws": "Laws of MC Physics",
 
   "tooltip": "------------------------------TOOLTIP--------------------------------------------------------",
-  "tooltip.pixelsofmc.block.pixel_splitter": "§7Used to split items into its lose pixels",
-  "tooltip.pixelsofmc.block.pixel_splitter2": "§7this does not have any data yet and im just talking to check if everything is\nstill working",
-
   "tooltip.pixelsofmc.block.ball_mill.shift": "§7Used to mix dusts together and crush soft materials",
   "tooltip.pixelsofmc.block.ball_mill.alt": "§7This machine requires a §r§c3x3x2§r§7 area.",
 
@@ -1185,6 +1183,7 @@
   "emi.category.pixelsofmc.decay": "Decaying",
   "emi.category.pixelsofmc.pixel_splitting": "Pixel Splitting",
   "emi.category.pixelsofmc.pixel_assembling": "Pixel Assembling",
+  "emi.category.pixelsofmc.pixel_bombarder": "Pixel Bombarding",
 
 
   "tag.pixelsofmc.speed_upgrade": "Speed Upgrades",

@@ -17,6 +17,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.block.tile.PixelBombarderTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
@@ -29,7 +30,9 @@ import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class POMrecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -1115,7 +1118,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.MACHINE_CASING.get(), 4)
                 .define('A', Element.TITANIUM.itemTag())
                 .define('B', POMitems.TITANIUM_PLATING.get())
-                .define('C', POMblocks.SIMPLE_CASING_1.get())
+                .define('C', Element.TITANIUM.blockItem())
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
@@ -1124,7 +1127,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.FISSION_CASING.get(), 4)
                 .define('A', Element.LEAD.itemTag())
                 .define('B', POMitems.LEAD_PLATING.get())
-                .define('C', POMblocks.SIMPLE_CASING_1.get())
+                .define('C', Element.TITANIUM.blockItem())
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
@@ -1133,7 +1136,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, POMblocks.ARMORED_MACHINE_CASING.get(), 4)
                 .define('A', POMitems.TITANIUM_DIBORIDE_INGOT.get())
                 .define('B', POMitems.FUSION_PLATING.get())
-                .define('C', POMblocks.SIMPLE_CASING_2.get())
+                .define('C', Element.TITANIUM.blockItem())
                 .pattern("ABA")
                 .pattern("BCB")
                 .pattern("ABA")
@@ -2209,10 +2212,34 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.BROMINE_GAS.get(), 1)
                 .finish(fConsumer, this);
 
+        // decay
         DecayRecipeBuilder.build((FuelCellItem) POMitems.URANIUM_FUEL_CELL.get()).finish(fConsumer, this);
         DecayRecipeBuilder.build((FuelCellItem) POMitems.ENRICHED_URANIUM_FUEL_CELL.get()).finish(fConsumer, this);
         DecayRecipeBuilder.build((FuelCellItem) POMitems.PLUTONIUM_FUEL_CELL.get()).finish(fConsumer, this);
         DecayRecipeBuilder.build((FuelCellItem) POMitems.ENRICHED_PLUTONIUM_FUEL_CELL.get()).finish(fConsumer, this);
+
+        // bombarding
+        PixelBombarderRecipeBuilder.build(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
+                .output(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
+                .lazer(new Color(200, 0, 35))
+                .finish(fConsumer, this);
+
+        // laser
+        LaserSourceRecipeBuilder.build(Element.PHOSPHORUS.itemTag(), PixelBombarderTile.mergeColors(Color.BLUE, new Color(175, 0, 255))) //blue and purple stained-glass
+                .outputLazer(new Color(200, 0, 35))
+                .outputType(2)
+                .finish(fConsumer, this);
+
+        LaserSourceRecipeBuilder.build(Element.LEAD.itemTag(), new Color(175, 0, 255)) //purple stained-glass
+                .outputLazer(new Color(255, 230, 0)) // ELECTRON
+                .outputType(1)
+                .finish(fConsumer, this);
+
+        LaserSourceRecipeBuilder.build(Element.SILICON.itemTag(), Color.CYAN) //light-blue stained-glass
+                .outputLazer(new Color(255, 230, 0)) // ELECTRON
+                .outputType(1)
+                .finish(fConsumer, this);
+
 
         //ez crafting
         SimpleSurroundRecipe(Element.TITANIUM.nugget(), Items.DIAMOND, POMitems.DIAMOND_LENS.get(), fConsumer);

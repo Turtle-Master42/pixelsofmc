@@ -1,7 +1,5 @@
 package net.turtlemaster42.pixelsofmc.init;
 
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.gui.menu.*;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -10,6 +8,8 @@ import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.menu.*;
 
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -32,6 +32,9 @@ public class POMmenuType {
             registerMenuType(ChemicalCombinerMenu::new, "chemical_combiner_menu");
     public static final RegistryObject<MenuType<ChemicalMixerMenu>> CHEMICAL_MIXER_MENU =
             registerMenuType(ChemicalMixerMenu::new, "chemical_mixer_menu");
+    public static final RegistryObject<MenuType<PixelBombarderMenu>> PIXEL_BOMBARDER_MENU =
+            registerMenuType(PixelBombarderMenu::new, "pixel_bombarder_menu");
+
 
     //multiblock
     public static final RegistryObject<MenuType<IndustrialHeatExchangerMenu>> INDUSTRIAL_HEAT_EXCHANGER_MENU =

@@ -76,6 +76,6 @@ public class AdvancedWidgetHolder implements WidgetHolder {
 
     @Override
     public <T extends Widget> T add(T t) {
-        return null;
+        return widgetHolder.add(t);
     }
 }

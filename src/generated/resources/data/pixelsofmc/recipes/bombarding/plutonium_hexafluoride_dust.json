@@ -1,0 +1,17 @@
+{
+  "type": "pixelsofmc:bombarding",
+  "color": -3669981,
+  "input": {
+    "count": 3,
+    "ingredient": {
+      "item": "pixelsofmc:plutonium_hexafluoride_dust"
+    }
+  },
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:enriched_plutonium_hexafluoride_dust"
+    }
+  }
+}

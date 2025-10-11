@@ -73,6 +73,14 @@ public class EMIPOMplugin implements EmiPlugin {
                 POMblocks.PIXEL_SPLITTER.get(),
                 PixelSplitterRecipe.Type.INSTANCE,
                 (recipe, category) -> new PixelSplitterRecipeEmi((PixelSplitterRecipe) recipe, category));
+        addEmiCategory(registry, "laser_source", 0, 0,
+                POMitems.ADVANCED_LASER.get(),
+                LaserSourceRecipe.Type.INSTANCE,
+                (recipe, category) -> new LaserSourceRecipeEmi((LaserSourceRecipe) recipe, category));
+        addEmiCategory(registry, "bombarding", 0, 0,
+                POMblocks.PIXEL_BOMBARDER.get(),
+                PixelBombarderRecipe.Type.INSTANCE,
+                (recipe, category) -> new PixelBombarderRecipeEmi((PixelBombarderRecipe) recipe, category));
     }
 
 

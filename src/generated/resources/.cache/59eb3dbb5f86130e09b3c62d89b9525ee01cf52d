@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-14T19:59:17.77041	Loot Tables
+// 1.20.1	2025-08-19T15:07:43.679401	Loot Tables
 c90c5c755ef81b233b875357e3cbdae63e4d441f data/pixelsofmc/loot_tables/blocks/acanthite.json
 4ddbbb7073ebdee52f5dd9051c3a58c7a5f548c0 data/pixelsofmc/loot_tables/blocks/acanthite_ore.json
 dae44c30353d5c2f98f903f5643f9701c9993529 data/pixelsofmc/loot_tables/blocks/acanthite_spike.json
@@ -72,6 +72,7 @@ dd1b06a5dab532ec0a7d43ab171395cfd8917796 data/pixelsofmc/loot_tables/blocks/perf
 8ccb960b8be7a3afaff417319778f98282261cb8 data/pixelsofmc/loot_tables/blocks/perfected_casing_1.json
 50758a574fbdd24b1cfe6d4f10384db164e95828 data/pixelsofmc/loot_tables/blocks/perfected_casing_2.json
 d0c322a3e182a0d843c0ef5083708b8403b0b790 data/pixelsofmc/loot_tables/blocks/pixel_assembler.json
+ade9c4fd34fd6787153090360e9243184883c578 data/pixelsofmc/loot_tables/blocks/pixel_bombarder.json
 d83ff6a7490d5ac93bc55f1ecd52f8e967bf0818 data/pixelsofmc/loot_tables/blocks/pixel_splitter.json
 cde6e08ced971f26047d0892a243c9dbcbaef9e9 data/pixelsofmc/loot_tables/blocks/plutonium_solution.json
 0e91ee580e4c018070ab2040bad66b0fd3f0c587 data/pixelsofmc/loot_tables/blocks/power_cell_array.json

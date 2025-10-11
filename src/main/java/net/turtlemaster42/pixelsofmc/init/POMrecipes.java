@@ -31,6 +31,9 @@ public class POMrecipes {
 			SERIALIZERS.register("chemical_mixing", () -> ChemicalMixerRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER =
 			SERIALIZERS.register("fusing", () -> FusionRecipe.Serializer.INSTANCE);
+	public static final RegistryObject<RecipeSerializer<PixelBombarderRecipe>> PIXEL_BOMBARDER_SERIALIZER =
+			SERIALIZERS.register("bombarding", () -> PixelBombarderRecipe.Serializer.INSTANCE);
+
 
 	//general
 	public static final RegistryObject<RecipeSerializer<FluidSuperHeatingRecipe>> FLUID_SUPER_HEATING_SERIALIZER =
@@ -41,6 +44,8 @@ public class POMrecipes {
 			SERIALIZERS.register("fluid_cooling", () -> FluidCoolingRecipe.Serializer.INSTANCE);
 	public static final RegistryObject<RecipeSerializer<DecayRecipe>> FUEL_CELL_SERIALIZER =
 			SERIALIZERS.register("decay", () -> DecayRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<LaserSourceRecipe>> LASER_SOURCE_SERIALIZER =
+            SERIALIZERS.register("laser_source", () -> LaserSourceRecipe.Serializer.INSTANCE);
 
 
 	public static void register(IEventBus bus) {

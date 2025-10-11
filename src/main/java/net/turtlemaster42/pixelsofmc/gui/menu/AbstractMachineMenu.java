@@ -43,7 +43,7 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (!sourceSlot.hasItem()) {return ItemStack.EMPTY;}  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
@@ -75,23 +75,23 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
 
 
     protected boolean customMoveItemStackTo(ItemStack pStack, int pStartIndex, int pEndIndex, boolean pReverseDirection) {
-        boolean flag = false;
-        int i = pStartIndex;
+        boolean move = false;
+        int index = pStartIndex;
         if (pReverseDirection) {
-            i = pEndIndex - 1;
+            index = pEndIndex - 1;
         }
 
         if (pStack.isStackable()) {
             while(!pStack.isEmpty()) {
                 if (pReverseDirection) {
-                    if (i < pStartIndex) {
+                    if (index < pStartIndex) {
                         break;
                     }
-                } else if (i >= pEndIndex) {
+                } else if (index >= pEndIndex) {
                     break;
                 }
 
-                Slot slot = this.slots.get(i);
+                Slot slot = this.slots.get(index);
                 ItemStack itemstack = slot.getItem();
                 if (!itemstack.isEmpty() && ItemStack.isSameItemSameTags(pStack, itemstack)) {
                     int j = itemstack.getCount() + pStack.getCount();
@@ -100,40 +100,40 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
                         pStack.setCount(0);
                         itemstack.setCount(j);
                         slot.setChanged();
-                        flag = true;
+                        move = true;
                     } else if (itemstack.getCount() < maxSize) {
                         pStack.shrink(maxSize - itemstack.getCount());
                         itemstack.setCount(maxSize);
                         slot.setChanged();
-                        flag = true;
+                        move = true;
                     }
                 }
 
                 if (pReverseDirection) {
-                    --i;
+                    --index;
                 } else {
-                    ++i;
+                    ++index;
                 }
             }
         }
 
         if (!pStack.isEmpty()) {
             if (pReverseDirection) {
-                i = pEndIndex - 1;
+                index = pEndIndex - 1;
             } else {
-                i = pStartIndex;
+                index = pStartIndex;
             }
 
             while(true) {
                 if (pReverseDirection) {
-                    if (i < pStartIndex) {
+                    if (index < pStartIndex) {
                         break;
                     }
-                } else if (i >= pEndIndex) {
+                } else if (index >= pEndIndex) {
                     break;
                 }
 
-                Slot slot1 = this.slots.get(i);
+                Slot slot1 = this.slots.get(index);
                 ItemStack itemStack1 = slot1.getItem();
                 if (itemStack1.isEmpty() && slot1.getMaxStackSize() > 0 && slot1.mayPlace(pStack)) {
                     if (pStack.getCount() > slot1.getMaxStackSize()) {
@@ -143,19 +143,19 @@ public abstract class AbstractMachineMenu extends AbstractContainerMenu {
                     }
 
                     slot1.setChanged();
-                    flag = true;
+                    move = true;
                     break;
                 }
 
                 if (pReverseDirection) {
-                    --i;
+                    --index;
                 } else {
-                    ++i;
+                    ++index;
                 }
             }
         }
 
-        return flag;
+        return move;
     }
 
     protected int playerInventoryHeightStart() {

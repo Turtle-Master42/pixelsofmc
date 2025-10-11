@@ -1,9 +1,15 @@
-// 1.20.1	2025-06-15T12:30:14.014555	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-10-09T14:12:57.964492	Tags for minecraft:item mod id pixelsofmc
+3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon.json
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
+d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine_cube.json
+3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron.json
 3757c86b98dd57115a606347f84bfb728be32106 data/forge/tags/items/boron_cube.json
+6f554d1ec1248dcde24f686f081db713245b4bac data/forge/tags/items/bromine.json
 6f554d1ec1248dcde24f686f081db713245b4bac data/forge/tags/items/bromine_canister.json
+de43d80de3b8e1e262baeb5094ea6d120154018e data/forge/tags/items/carbon.json
 de43d80de3b8e1e262baeb5094ea6d120154018e data/forge/tags/items/carbon_cube.json
+4d3bbbcdae7e42f8d4efbf5b6316481d4b971bf2 data/forge/tags/items/chlorine.json
 4d3bbbcdae7e42f8d4efbf5b6316481d4b971bf2 data/forge/tags/items/chlorine_canister.json
 71bf86e8a54d8c0c1ef87bb509322bc14e6cb1b7 data/forge/tags/items/dusts.json
 e53f5d2a87fd27108c77dd6dfa5fb64fd1a265c8 data/forge/tags/items/dusts/aluminium.json
@@ -35,11 +41,14 @@ d16281f910ce95b8cdad3a849a2057b8db629200 data/forge/tags/items/dusts/tin.json
 4e1fe7708999ca938636c7c704ca89e4ffef82b2 data/forge/tags/items/dusts/tungsten.json
 c6ba4b98cb3d79bd08a4fa096f69cac4331aabc9 data/forge/tags/items/dusts/uranium.json
 911e664419bed267837b965ccd8b1f84e07ad7b3 data/forge/tags/items/dusts/zinc.json
+931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine_cube.json
 09b67bf50b9e52dff88ef3a79ae5e8c9d0fd89f3 data/forge/tags/items/gems.json
 8d14f2dc59dd706a6d0c0faedcebff714c25a447 data/forge/tags/items/gems/diamond.json
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/items/glass.json
+e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium_canister.json
+48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen.json
 48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen_canister.json
 8b3486a6e5c4760a2bbc2af564cc1fcf2e43fd9d data/forge/tags/items/ingots.json
 28cee7b5e0b7f26632ddef7b45ef49575d291974 data/forge/tags/items/ingots/actinium.json
@@ -122,9 +131,13 @@ e34bd7bc2028d00756bb530bf966347c32086e85 data/forge/tags/items/ingots/vanadium.j
 25f78c88dd82de120eea86283d3dcfabe8946387 data/forge/tags/items/ingots/yttrium.json
 e086203a3eb334b779e641a03abbbd7bc3687120 data/forge/tags/items/ingots/zinc.json
 3e0f642f7dc2e716f58947b162941e7b14bf3245 data/forge/tags/items/ingots/zirconium.json
+df915371d85f3f28519fbfaa27f06ed32f6c1206 data/forge/tags/items/iodine.json
 df915371d85f3f28519fbfaa27f06ed32f6c1206 data/forge/tags/items/iodine_cube.json
+97b71448b11adb09a015100b6212cd1478e78e35 data/forge/tags/items/krypton.json
 97b71448b11adb09a015100b6212cd1478e78e35 data/forge/tags/items/krypton_canister.json
+1c5760a1d5eadcbdc6283e78b04f855b63e47216 data/forge/tags/items/neon.json
 1c5760a1d5eadcbdc6283e78b04f855b63e47216 data/forge/tags/items/neon_canister.json
+8e42f0025f7390f4cd3e2546ad97da8e9965cbb7 data/forge/tags/items/nitrogen.json
 8e42f0025f7390f4cd3e2546ad97da8e9965cbb7 data/forge/tags/items/nitrogen_canister.json
 da620b41b82530bc3f9e182ffee75a1eaed00ce0 data/forge/tags/items/nuggets.json
 2ae94496cb1f0df6a185df50a219eb5cc1f8a3fc data/forge/tags/items/nuggets/copper.json
@@ -133,16 +146,22 @@ aa4dc9565236148de80b67fab9fc3984bc70f74c data/forge/tags/items/nuggets/silver.js
 f83d280484bdca1cc01147edafdf8828392f7bf0 data/forge/tags/items/nuggets/titanium.json
 cda4b236c86e02bcd79233f7788adf9ac6b0998b data/forge/tags/items/nuggets/tungsten.json
 565c64621a42702e6e6287f7bf9b8b6b24657d63 data/forge/tags/items/ores/titanium.json
+3ef4fa4f26589ce34ccf8142190d9cbec2b29828 data/forge/tags/items/oxygen.json
 3ef4fa4f26589ce34ccf8142190d9cbec2b29828 data/forge/tags/items/oxygen_canister.json
+7fa2411b731c1908e037051090f4b30798f02254 data/forge/tags/items/phosphorus.json
 7fa2411b731c1908e037051090f4b30798f02254 data/forge/tags/items/phosphorus_cube.json
+ab72a5f9bd2078d6f33fa5b0908e7c54198ca506 data/forge/tags/items/radon.json
 ab72a5f9bd2078d6f33fa5b0908e7c54198ca506 data/forge/tags/items/radon_canister.json
+0a933678054d051ad970535d0afe82a891581fc7 data/forge/tags/items/silicon.json
 0a933678054d051ad970535d0afe82a891581fc7 data/forge/tags/items/silicon_cube.json
 6357a4e7208d953d95f05fcc15970c79ac4c8540 data/forge/tags/items/slimeballs.json
 7dce0fc3e6730f7e483c19fe4412e00568d11157 data/forge/tags/items/storage_blocks/lead.json
 75831e443c8580b4343a58cea82dc128b0610c37 data/forge/tags/items/storage_blocks/silver.json
 c6d05eea23a6a969a1f677c25bd306bc166a162b data/forge/tags/items/storage_blocks/titanium.json
 0fefa6288a83318d1833a4575cbfa58e1da4630a data/forge/tags/items/storage_blocks/tungsten.json
+d5310aa3b75666e0b349388f16371a481672620e data/forge/tags/items/sulfur.json
 d5310aa3b75666e0b349388f16371a481672620e data/forge/tags/items/sulfur_cube.json
+a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon.json
 a049a05fe2924575ad3695220e38c36056276e74 data/forge/tags/items/xenon_canister.json
 1d54571d738d58abf2aa002740383e3c92c7bd70 data/minecraft/tags/items/piglin_loved.json
 58c423beded31131937d55c5e494e841816725ef data/pixelsofmc/tags/items/atom.json
@@ -154,6 +173,8 @@ c8fa5210e04a9266697116106963a07282ceb86c data/pixelsofmc/tags/items/ball_3.json
 d52490aa59098eb97174ec2036a4f383ed12c28c data/pixelsofmc/tags/items/ball_4.json
 03a939d1117f38d1e943036cc07bdd387fdc5cea data/pixelsofmc/tags/items/ball_5.json
 87a6a7373f14cd69ec47fc939ed94782ff2759c9 data/pixelsofmc/tags/items/circle_saw.json
+3c87af6e5efd6918ca6a8505f1cf60bf7e463e37 data/pixelsofmc/tags/items/glass/dark.json
+db3b4937187ef184e426e8c2635cf3498272ef93 data/pixelsofmc/tags/items/glass/opaque.json
 17312b47c9f26bb67f46f6d42018beebcc8d139b data/pixelsofmc/tags/items/mds.json
 49d7962816514716994370617a885d5a0832c944 data/pixelsofmc/tags/items/milling_ball.json
 a06dcbd0d44c242bbb5144c195fbde569219fbe4 data/pixelsofmc/tags/items/mns.json
