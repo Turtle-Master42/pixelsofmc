@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-14T20:29:59.523604	Item Models: pixelsofmc
+// 1.20.1	2025-10-11T18:11:41.593141	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -400,6 +400,7 @@ f50a375238e2f3d4e491d10f4a3adb58cef7b22f assets/pixelsofmc/models/item/perfected
 dc4180d88c46c2d399aa33d7ec5dc9497157c1fa assets/pixelsofmc/models/item/phosphorus_atom_512.json
 b400a151ed33fa3dc8ead736dbe32cc8b082e223 assets/pixelsofmc/models/item/phosphorus_atom_64.json
 72ecf39ce11b6d02ca1a90ce0e74c9476a1dfcf5 assets/pixelsofmc/models/item/phosphorus_cube.json
+593ef53f50e22cf62a1c8e537bd9629ee050d1e6 assets/pixelsofmc/models/item/pixel_bombarder.json
 681831af31c87d599bb26a7345dc0b280b3ee741 assets/pixelsofmc/models/item/pixel_splitter.json
 a7f6fff5a22c6761961577db885c9f704740340c assets/pixelsofmc/models/item/place_holder.json
 2ed0bdb460b5d9051972ec957b21afb280510442 assets/pixelsofmc/models/item/plate_cast.json

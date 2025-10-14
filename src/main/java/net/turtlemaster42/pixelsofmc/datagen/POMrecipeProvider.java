@@ -1883,7 +1883,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(Items.SPONGE).heat(200, 400)
                 .finish(fConsumer, this);
         HotIsostaticPressRecipeBuilder.build(POMitems.SILICON_SHEET.get()).plateMold()
-                .input(Items.QUARTZ).heat(600, 1000)
+                .input(POMitems.QUARTZ_DUST.get()).heat(600, 1000)
                 .finish(fConsumer, this);
         HotIsostaticPressRecipeBuilder.build(POMitems.SILICON_SHEET.get()).plateMold()
                 .input(Element.SILICON.dustTag()).heat(600, 1000)
@@ -1938,6 +1938,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.HYDROFLUORIC_ACID.get(), 350)
                 .output(Element.LITHIUM.dust())
                 .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMtags.Items.DUST_QUARTZ, POMfluids.HYDROGEN_GAS.get(), 200)
+                .output(Fluids.WATER, 100)
+                .output(Element.SILICON.dust())
+                .finish(fConsumer, this);
+        ChemicalSeparatorRecipeBuilder.build(POMtags.Items.DUST_COAL, POMfluids.OXYGEN_GAS.get(), 50)
+                .output(POMfluids.DIRTY_WATER.get(), 50)
+                .output(Element.CARBON.dust())
+                .finish(fConsumer, this);
 
         ChemicalSeparatorRecipeBuilder.build(Tags.Items.ORES_IRON, 1, POMfluids.SULFURIC_ACID.get(), 50)
                 .output(Items.RAW_IRON, 6)
@@ -1967,6 +1975,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(Items.QUARTZ, 6)
                 .output(POMfluids.DIRTY_WATER.get(), 75)
                 .finish(fConsumer, this);
+
 
         // --CHEMICAL COMBINING--
         ChemicalCombinerRecipeBuilder.build(POMitems.MERCURY_SULFIDE_DUST.get())

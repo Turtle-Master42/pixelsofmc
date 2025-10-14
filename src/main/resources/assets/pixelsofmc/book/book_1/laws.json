@@ -28,6 +28,15 @@
       "page": 0,
       "scale": 1
     }
+  ,
+    {
+      "linked_page": "test.json",
+      "text": "§lTEST",
+      "x": 290,
+      "y": 125,
+      "page": 0,
+      "scale": 1
+    }
   ],
   "images": [],
   "item_renders": [],

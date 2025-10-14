@@ -995,6 +995,10 @@
   "tooltip.pixelsofmc.block.pixel_assembler.shift": "§7Used to split materials into their lose pixels",
   "tooltip.pixelsofmc.block.pixel_assembler.alt": "§7This machine requires a §r§c1x1x2§r§7 area.",
 
+  "tooltip.pixelsofmc.block.pixel_bombarder.shift": "§7Used to...",
+  "tooltip.pixelsofmc.block.pixel_bombarder.alt": "§7This machine requires a §r§c3x1x1§r§7 area.",
+
+
   "tooltip.pixelsofmc.block.sds_controller.shift": "§7Small Dying Star Fusion Reactor Controller, the lowest tier fusion reactor, can only fuse low elements",
   "tooltip.pixelsofmc.block.sds_controller.alt": "§7This machine requires a §r§c3x1x1§r§7 area.",
 

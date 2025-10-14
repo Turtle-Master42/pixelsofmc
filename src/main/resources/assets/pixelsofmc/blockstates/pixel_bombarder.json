@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/pixel_bombarder"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/pixel_bombarder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/pixel_bombarder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/pixel_bombarder",
+      "y": 270
+    }
+  }
+}

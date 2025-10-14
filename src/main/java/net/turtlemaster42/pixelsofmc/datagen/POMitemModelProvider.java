@@ -233,6 +233,8 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.GRINDER);
         complexBlock(POMblocks.CHEMICAL_MIXER);
         complexBlock(POMblocks.SDS_CONTROLLER);
+        complexBlock(POMblocks.PIXEL_BOMBARDER);
+
 
         complexBlock(POMblocks.FUSION_CASING);
         complexBlock(POMblocks.FUSION_CORNER);

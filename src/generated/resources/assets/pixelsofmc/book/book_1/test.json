@@ -1,0 +1,30 @@
+{
+  "parent": "root.json",
+  "entity_renders": [
+    {
+      "entity": "pixelsofmc:river_shell",
+      "scale": 1.0
+    }
+  ],
+  "images": [
+    {
+      "height": 256,
+      "scale": 1.0,
+      "texture": "pixelsofmc:textures/block/advanced_casing_2.png",
+      "width": 256,
+      "x": 50,
+      "y": 35
+    }
+  ],
+  "linked_page_buttons": [
+    {
+      "item": "pixelsofmc:quartz_dust",
+      "linked_page": "test.json",
+      "text": "Crushing",
+      "x": 50,
+      "y": 25
+    }
+  ],
+  "text": "empty.txt",
+  "title": "Testing if this works"
+}

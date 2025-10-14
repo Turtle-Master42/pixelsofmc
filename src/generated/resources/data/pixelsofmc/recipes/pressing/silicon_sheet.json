@@ -4,7 +4,7 @@
   "input": {
     "count": 1,
     "ingredient": {
-      "item": "minecraft:quartz"
+      "item": "pixelsofmc:quartz_dust"
     }
   },
   "max_heat": 1000,

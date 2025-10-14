@@ -28,6 +28,7 @@ import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.block.tile.PixelBombarderTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -45,7 +46,7 @@ public class PixelBombarderBlock extends BaseEntityBlock {
 
 
     private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 16, 16) //base
+            box(0, 0, -16, 16, 16, 32) //base
     );
     @Override
     @Deprecated
@@ -66,31 +67,15 @@ public class PixelBombarderBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockPos blockpos = pContext.getClickedPos();
         Level level = pContext.getLevel();
-        if (blockpos.getY() < level.getMaxBuildHeight() - 1
-//                level.getBlockState(blockpos.north()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.east()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.south()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.west()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.north().east()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.east().south()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.south().west()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.west().north()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.north().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.east().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.south().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.west().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.north().east().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.east().south().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.south().west().above()).canBeReplaced(pContext) &&
-//                level.getBlockState(blockpos.west().north().above()).canBeReplaced(pContext)
-
+        if (
+                level.getBlockState(blockpos.relative(pContext.getHorizontalDirection().getClockWise())).canBeReplaced(pContext) &&
+                level.getBlockState(blockpos.relative(pContext.getHorizontalDirection().getCounterClockWise())).canBeReplaced(pContext)
         ) {
             return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(ACTIVE, false);
         } else {
             Player player = Minecraft.getInstance().player;
             if (player != null && pContext.getLevel().isClientSide()) {
-                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.grinder.alt"));
+                Minecraft.getInstance().player.sendSystemMessage(Component.translatable("tooltip.pixelsofmc.block.pixel_bombarder.alt"));
             }
             return null;
         }
@@ -160,24 +145,8 @@ public class PixelBombarderBlock extends BaseEntityBlock {
             Direction direction = pState.getValue(FACING);
 
             //these are the location based on the default (NORTH) direction, they get turned automatically
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, 1, MACHINE_ENERGY_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 0, -1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, -1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, -1, MACHINE_BLOCK, pPos);
-//
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 0, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 0, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 0, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, 1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,0, 1, -1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, 1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 1, -1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, 1, MACHINE_BLOCK, pPos);
-//            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 1, -1, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,1, 0, 0, MACHINE_BLOCK, pPos);
+            BigMachineBlockUtil.setMachineBlock(pLevel, direction,-1, 0, 0, MACHINE_BLOCK, pPos);
         }
     }
 
