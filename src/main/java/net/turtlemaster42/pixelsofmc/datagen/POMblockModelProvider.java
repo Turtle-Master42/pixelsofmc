@@ -28,9 +28,9 @@ public class POMblockModelProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        for (Element m : Element.values()) {
-            if (m.shouldAddBlock())
-                blockWithItem(POMblocks.Elements.BLOCKS.get(m));
+        for (Element e : Element.validValues()) {
+            if (e.shouldAddBlock())
+                blockWithItem(POMblocks.Elements.BLOCKS.get(e));
         }
 
         blockWithItem(POMblocks.ENDSTONE_TITANIUM_ORE);

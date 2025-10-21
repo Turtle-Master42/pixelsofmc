@@ -13,7 +13,11 @@ import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.PixelItem;
 
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 public enum Element {
     HYDROGEN(0, 1.01f, ItemType.CANISTER,
@@ -518,6 +522,10 @@ public enum Element {
             this.radioactive = new boolean[isotopes.length];
         }
 
+        public int getAmount() {
+            return isotopes.length;
+        }
+
         public int[] getNeutrons() {
             return isotopes;
         }
@@ -652,5 +660,12 @@ public enum Element {
 
     public void toNetwork(FriendlyByteBuf buffer) {
         buffer.writeInt(this.getElement());
+    }
+
+    public static Element[] validValues() {
+        Element[] empty = {};
+        return Arrays.stream(Element.values()).filter(element -> (
+                !element.equals(DEBUGIUM))
+        ).toList().toArray(empty);
     }
 }

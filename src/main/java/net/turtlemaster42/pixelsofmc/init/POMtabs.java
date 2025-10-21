@@ -114,10 +114,9 @@ public class POMtabs {
 				continue;
 			out.accept(item);
 		}
-		for (Element m: Element.values()) {
-			if (m.equals(Element.DEBUGIUM)) continue;
-			out.accept(m.pixel());
-			out.accept(m.pixelPile());
+		for (Element e: Element.validValues()) {
+			out.accept(e.pixel());
+			out.accept(e.pixelPile());
 		}
 		for(final RegistryObject<Item> itemRef : POMitems.ATOMS.getEntries()) {
 			final Item item = itemRef.get();

@@ -2403,8 +2403,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(fConsumer, toRL(getItemName(POMblocks.ARMORED_MACHINE_CASING_SLAB.get()))+"_cutting");
 
         //auto
-        for(Element e : Element.values()) {
-            if (e.equals(Element.DEBUGIUM)) continue;
+        for(Element e : Element.validValues()) {
             SimpleAtomCompacting(e.atom64(), e.atom512(), fConsumer);
             Fusing(e, fConsumer);
             autoPixelSplittingAndAssembling(e.item(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "element.pixelsofmc." + e.elementName(), e.hexToRGB(0), e.hexToRGB(1), e.hexToRGB(2), fConsumer);
@@ -2439,18 +2438,6 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
             }
         }
         calculatePossibleFusions();
-
-
-
-
-        //TEMP PLUTONIUM ENRICHMENT PLACEHOLDER
-
-//        //LAZER//
-//        BallMillRecipeBuilder.build(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
-//                .input(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
-//                .ball(POMitems.RUBBER_BALL.get())
-//                .finish(fConsumer, this);
-
     }
 
     private void SimpleFurnaceRecipe(ItemLike input, ItemLike output, float xp, int smeltingTime, Consumer<FinishedRecipe> consumer, ItemPredicate trigger, String extra) {

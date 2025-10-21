@@ -16,6 +16,14 @@
       "y": 35
     }
   ],
+  "item_renders": [
+    {
+      "item": "pixelsofmc:black_diamond",
+      "scale": 0.5,
+      "x": 100.0,
+      "y": 400.0
+    }
+  ],
   "linked_page_buttons": [
     {
       "item": "pixelsofmc:quartz_dust",

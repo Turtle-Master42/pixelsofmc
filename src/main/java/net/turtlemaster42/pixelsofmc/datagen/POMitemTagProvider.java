@@ -27,75 +27,74 @@ public class POMitemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 
-        for(Element element : Element.values()) {
-            if (element.equals(Element.DEBUGIUM)) continue;
-            POMtags.ElementTags tags = POMtags.getTagsFor(element);
+        for(Element e : Element.validValues()) {
+            POMtags.ElementTags tags = POMtags.getTagsFor(e);
 
-            tag(POMtags.Items.ATOM).add(element.atom64().asItem());
-            tag(POMtags.Items.ATOM).add(element.atom512().asItem());
-            tag(POMtags.Items.ATOM64).add(element.atom64().asItem());
-            tag(POMtags.Items.ATOM512).add(element.atom512().asItem());
+            tag(POMtags.Items.ATOM).add(e.atom64().asItem());
+            tag(POMtags.Items.ATOM).add(e.atom512().asItem());
+            tag(POMtags.Items.ATOM64).add(e.atom64().asItem());
+            tag(POMtags.Items.ATOM512).add(e.atom512().asItem());
 
-            if(element.getElement() >= 3 && element.getElement() <= 7) {
-                tag(POMtags.Items.SDS).add(element.atom64().asItem());
-                tag(POMtags.Items.SDS).add(element.atom512().asItem());
+            if(e.getElement() >= 3 && e.getElement() <= 7) {
+                tag(POMtags.Items.SDS).add(e.atom64().asItem());
+                tag(POMtags.Items.SDS).add(e.atom512().asItem());
             }
-            if(element.getElement() >= 38 && element.getElement() <= 41) {
-                tag(POMtags.Items.SDS).add(element.atom64().asItem());
-                tag(POMtags.Items.SDS).add(element.atom512().asItem());
+            if(e.getElement() >= 38 && e.getElement() <= 41) {
+                tag(POMtags.Items.SDS).add(e.atom64().asItem());
+                tag(POMtags.Items.SDS).add(e.atom512().asItem());
             }
-            if(element.getElement() >= 8 && element.getElement() <= 37) {
-                tag(POMtags.Items.MDS).add(element.atom64().asItem());
-                tag(POMtags.Items.MDS).add(element.atom512().asItem());
+            if(e.getElement() >= 8 && e.getElement() <= 37) {
+                tag(POMtags.Items.MDS).add(e.atom64().asItem());
+                tag(POMtags.Items.MDS).add(e.atom512().asItem());
             }
-            if(element.getElement() >= 42 && element.getElement() <= 94) {
-                tag(POMtags.Items.MNS).add(element.atom64().asItem());
-                tag(POMtags.Items.MNS).add(element.atom512().asItem());
+            if(e.getElement() >= 42 && e.getElement() <= 94) {
+                tag(POMtags.Items.MNS).add(e.atom64().asItem());
+                tag(POMtags.Items.MNS).add(e.atom512().asItem());
             }
 
-            for (int i = 0; i < element.getIsotopes().getNeutrons().length; i++) {
-                tag(POMtags.Items.ATOM).add(element.isotope64(i).asItem());
-                tag(POMtags.Items.ATOM).add(element.isotope512(i).asItem());
-                tag(POMtags.Items.ATOM64).add(element.isotope64(i).asItem());
-                tag(POMtags.Items.ATOM512).add(element.isotope512(i).asItem());
+            for (int i = 0; i < e.getIsotopes().getNeutrons().length; i++) {
+                tag(POMtags.Items.ATOM).add(e.isotope64(i).asItem());
+                tag(POMtags.Items.ATOM).add(e.isotope512(i).asItem());
+                tag(POMtags.Items.ATOM64).add(e.isotope64(i).asItem());
+                tag(POMtags.Items.ATOM512).add(e.isotope512(i).asItem());
 
-                if (element.getElement() >= 3 && element.getElement() <= 7) {
-                    tag(POMtags.Items.SDS).add(element.isotope64(i).asItem());
-                    tag(POMtags.Items.SDS).add(element.isotope512(i).asItem());
+                if (e.getElement() >= 3 && e.getElement() <= 7) {
+                    tag(POMtags.Items.SDS).add(e.isotope64(i).asItem());
+                    tag(POMtags.Items.SDS).add(e.isotope512(i).asItem());
                 }
-                if (element.getElement() >= 38 && element.getElement() <= 41) {
-                    tag(POMtags.Items.SDS).add(element.isotope64(i).asItem());
-                    tag(POMtags.Items.SDS).add(element.isotope512(i).asItem());
+                if (e.getElement() >= 38 && e.getElement() <= 41) {
+                    tag(POMtags.Items.SDS).add(e.isotope64(i).asItem());
+                    tag(POMtags.Items.SDS).add(e.isotope512(i).asItem());
                 }
-                if (element.getElement() >= 8 && element.getElement() <= 37) {
-                    tag(POMtags.Items.MDS).add(element.isotope64(i).asItem());
-                    tag(POMtags.Items.MDS).add(element.isotope512(i).asItem());
+                if (e.getElement() >= 8 && e.getElement() <= 37) {
+                    tag(POMtags.Items.MDS).add(e.isotope64(i).asItem());
+                    tag(POMtags.Items.MDS).add(e.isotope512(i).asItem());
                 }
-                if (element.getElement() >= 42 && element.getElement() <= 94) {
-                    tag(POMtags.Items.MNS).add(element.isotope64(i).asItem());
-                    tag(POMtags.Items.MNS).add(element.isotope512(i).asItem());
+                if (e.getElement() >= 42 && e.getElement() <= 94) {
+                    tag(POMtags.Items.MNS).add(e.isotope64(i).asItem());
+                    tag(POMtags.Items.MNS).add(e.isotope512(i).asItem());
                 }
             }
 
-            if(element.shouldAddDust()) {
-                tag(tags.dust).add(element.dust().asItem());
+            if(e.shouldAddDust()) {
+                tag(tags.dust).add(e.dust().asItem());
                 tag(Tags.Items.DUSTS).addTag(tags.dust);
             }
-            if (element.isMetal()) {
-                tag(tags.metal).add(element.item().asItem());
+            if (e.isMetal()) {
+                tag(tags.metal).add(e.item().asItem());
                 tag(Tags.Items.INGOTS).addTag(tags.metal);
             }
-            if (element.shouldAddNugget()) {
-                tag(tags.nugget).add(element.nugget().asItem());
+            if (e.shouldAddNugget()) {
+                tag(tags.nugget).add(e.nugget().asItem());
                 tag(Tags.Items.NUGGETS).addTag(tags.nugget);
             }
-            if (!element.isMetal() && !element.isVanilla()) {
-                tag(tags.other1).add(element.item().asItem());
-                tag(tags.other2).add(element.item().asItem());
+            if (!e.isMetal() && !e.isVanilla()) {
+                tag(tags.other1).add(e.item().asItem());
+                tag(tags.other2).add(e.item().asItem());
             }
-            if (element.shouldAddBlock()) {
-                tag(tags.block).add(element.block().asItem());
-                tag(Tags.Items.STORAGE_BLOCKS).add(element.block().asItem());
+            if (e.shouldAddBlock()) {
+                tag(tags.block).add(e.block().asItem());
+                tag(Tags.Items.STORAGE_BLOCKS).add(e.block().asItem());
             }
         }
 

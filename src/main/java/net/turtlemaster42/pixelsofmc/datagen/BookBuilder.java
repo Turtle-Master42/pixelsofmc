@@ -482,15 +482,15 @@ public class BookBuilder<B extends BookBuilder<B>> {
             JsonObject json = new JsonObject();
 
             if (x != 0) {
-                json.addProperty("x", x);
+                json.addProperty("x", x / scale);
             }
             if (y != 0) {
-                json.addProperty("y", y);
+                json.addProperty("y", y / scale);
             }
             if (page != 0) {
                 json.addProperty("page", page);
             }
-            if (scale >= 0) {
+            if (scale > 0) {
                 json.addProperty("scale", scale);
             }
             if (item != null) {

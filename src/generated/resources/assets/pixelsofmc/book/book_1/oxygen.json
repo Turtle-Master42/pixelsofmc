@@ -1,0 +1,25 @@
+{
+  "parent": "elements.json",
+  "item_renders": [
+    {
+      "item": "pixelsofmc:oxygen_canister",
+      "scale": 2.5,
+      "x": 6.0,
+      "y": 10.8
+    },
+    {
+      "item": "pixelsofmc:oxygen_17_atom_64",
+      "scale": 1.5,
+      "x": 143.33333333333334,
+      "y": 12.0
+    },
+    {
+      "item": "pixelsofmc:oxygen_18_atom_64",
+      "scale": 1.5,
+      "x": 143.33333333333334,
+      "y": 28.0
+    }
+  ],
+  "text": "empty.txt",
+  "title": "element.pixelsofmc.oxygen"
+}

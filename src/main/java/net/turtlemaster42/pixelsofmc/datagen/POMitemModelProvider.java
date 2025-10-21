@@ -22,12 +22,11 @@ public class POMitemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        for(Element m : Element.values()) {
-            if (m.equals(Element.DEBUGIUM)) continue;
-            createElementModels(m);
-            createDustModels(m);
-            createNuggetModels(m);
-            createAtomModels(m);
+        for(Element e : Element.validValues()) {
+            createElementModels(e);
+            createDustModels(e);
+            createNuggetModels(e);
+            createAtomModels(e);
         }
 
         simpleItem(POMitems.BOOK_1);

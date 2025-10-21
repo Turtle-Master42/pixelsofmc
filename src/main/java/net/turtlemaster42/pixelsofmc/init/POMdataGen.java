@@ -32,7 +32,6 @@ public class POMdataGen {
         generator.addProvider(true, new POMfluidTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, POMlootTableProvider.create(packOutput));
         generator.addProvider(true, new POMrecipeProvider(packOutput));
-
         generator.addProvider(true, new POMBookProvider(packOutput, existingFileHelper));
     }
 }

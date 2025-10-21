@@ -104,8 +104,8 @@ public class POMtags {
     //CREDIT Immersive Engineering
     static
     {
-        for(Element m : Element.values())
-            elements.put(m, new ElementTags(m));
+        for(Element e : Element.validValues())
+            elements.put(e, new ElementTags(e));
     }
     public static class ElementTags {
         public final TagKey<Item> metal;
@@ -115,14 +115,14 @@ public class POMtags {
         public final TagKey<Item> other2;
         public final TagKey<Item> block;
 
-        private ElementTags(Element m)
+        private ElementTags(Element e)
         {
-            String name = m.elementName();
+            String name = e.elementName();
             metal = createItemWrapper(getIngot(name));
             nugget = createItemWrapper(getNugget(name));
             dust = createItemWrapper(getDust(name));
             other1 = createItemWrapper(forgeLoc(name));
-            other2 = createItemWrapper(forgeLoc(name+"_"+m.typeName().toLowerCase()));
+            other2 = createItemWrapper(forgeLoc(name+"_"+e.typeName().toLowerCase()));
             block = createItemWrapper(forgeLoc("storage_blocks/" + name));
         }
     }

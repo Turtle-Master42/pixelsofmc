@@ -1,0 +1,13 @@
+{
+  "parent": "elements.json",
+  "item_renders": [
+    {
+      "item": "pixelsofmc:mercury_ingot",
+      "scale": 2.5,
+      "x": 6.0,
+      "y": 10.8
+    }
+  ],
+  "text": "empty.txt",
+  "title": "element.pixelsofmc.mercury"
+}

@@ -255,10 +255,9 @@ public class POMitems {
 		public static final Map<Element, RegistryObject<Item>> BLOCKS = new EnumMap<>(Element.class);
 
 		private static void init() {
-			for(Element m : Element.values()) {
-				if (m.equals(Element.DEBUGIUM)) continue;
-				String elementName = m.elementName();
-				String type = m.typeName();
+			for(Element e : Element.validValues()) {
+				String elementName = e.elementName();
+				String type = e.typeName();
 				ItemRegObject<Item> atomx512;
 				ItemRegObject<Item> atomx64;
 				ItemRegObject<Item> nugget = null;
@@ -267,34 +266,34 @@ public class POMitems {
 				ItemRegObject<Item> block = null;
 
 				Item.Properties properties = new Item.Properties();
-				if (m.isFireResistant())
+				if (e.isFireResistant())
 					properties = new Item.Properties().fireResistant();
 				final Item.Properties finalProperties = properties;
 
-				if (m.shouldAddBlock()) block = registerStorageBlockItem(elementName+"_block", () -> new ElementBlockItem(m, m.block(), finalProperties));
-				if (!m.isVanilla()) element = registerElement(elementName+"_"+type, () -> new ElementItem(m, finalProperties));
-				if (m.shouldAddNugget()) nugget = registerNugget(elementName+"_nugget", () -> new ElementItem(m, finalProperties));
-				if (m.shouldAddDust()) dust = registerDust(elementName+"_dust", () -> new ElementItem(m, finalProperties));
-				atomx64 = registerAtom(elementName+"_atom_64", () -> new AtomItem(m, finalProperties));
-				atomx512 = registerAtom(elementName+"_atom_512", () -> new AtomItem(m, finalProperties));
-				ATOMX64.put(m, atomx64.regObject);
-				ATOMX512.put(m, atomx512.regObject);
-				for (int i = 0; i < m.getIsotopes().getNeutrons().length; i++) {
-					int extraNeutrons = m.getIsotopes().getNeutrons()[i] - m.getNeutrons();
-					ItemRegObject<Item> isotopex64 = registerAtom(elementName+"_"+(m.getIsotopes().getNeutrons()[i] + m.getElement())+"_atom_64", () -> new AtomItem(m, extraNeutrons, finalProperties));
-					ItemRegObject<Item> isotopex512 = registerAtom(elementName+"_"+(m.getIsotopes().getNeutrons()[i] + m.getElement())+"_atom_512", () -> new AtomItem(m, extraNeutrons, finalProperties));
-					ISOTOPEX64.put(m + "_" + (m.getIsotopes().getNeutrons()[i] + m.getElement()), isotopex64.regObject);
-					ISOTOPEX512.put(m + "_" + (m.getIsotopes().getNeutrons()[i] + m.getElement()), isotopex512.regObject);
+				if (e.shouldAddBlock()) block = registerStorageBlockItem(elementName+"_block", () -> new ElementBlockItem(e, e.block(), finalProperties));
+				if (!e.isVanilla()) element = registerElement(elementName+"_"+type, () -> new ElementItem(e, finalProperties));
+				if (e.shouldAddNugget()) nugget = registerNugget(elementName+"_nugget", () -> new ElementItem(e, finalProperties));
+				if (e.shouldAddDust()) dust = registerDust(elementName+"_dust", () -> new ElementItem(e, finalProperties));
+				atomx64 = registerAtom(elementName+"_atom_64", () -> new AtomItem(e, finalProperties));
+				atomx512 = registerAtom(elementName+"_atom_512", () -> new AtomItem(e, finalProperties));
+				ATOMX64.put(e, atomx64.regObject);
+				ATOMX512.put(e, atomx512.regObject);
+				for (int i = 0; i < e.getIsotopes().getNeutrons().length; i++) {
+					int extraNeutrons = e.getIsotopes().getNeutrons()[i] - e.getNeutrons();
+					ItemRegObject<Item> isotopex64 = registerAtom(elementName+"_"+(e.getIsotopes().getNeutrons()[i] + e.getElement())+"_atom_64", () -> new AtomItem(e, extraNeutrons, finalProperties));
+					ItemRegObject<Item> isotopex512 = registerAtom(elementName+"_"+(e.getIsotopes().getNeutrons()[i] + e.getElement())+"_atom_512", () -> new AtomItem(e, extraNeutrons, finalProperties));
+					ISOTOPEX64.put(e + "_" + (e.getIsotopes().getNeutrons()[i] + e.getElement()), isotopex64.regObject);
+					ISOTOPEX512.put(e + "_" + (e.getIsotopes().getNeutrons()[i] + e.getElement()), isotopex512.regObject);
 				}
 
 				if (dust != null)
-					DUSTS.put(m, dust.regObject);
+					DUSTS.put(e, dust.regObject);
 				if (nugget != null)
-					NUGGETS.put(m, nugget.regObject);
+					NUGGETS.put(e, nugget.regObject);
 				if (element != null)
-					ELEMENTS.put(m, element.regObject);
+					ELEMENTS.put(e, element.regObject);
 				if (block != null)
-					BLOCKS.put(m, block.regObject);
+					BLOCKS.put(e, block.regObject);
 			}
 		}
 	}

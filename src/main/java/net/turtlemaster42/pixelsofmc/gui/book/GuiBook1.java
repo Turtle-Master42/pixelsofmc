@@ -49,8 +49,7 @@ public class GuiBook1 extends GuiBasicBook {
     }
 
     @Override
-    protected void playBookClosingSound() {
-    }
+    protected void playBookClosingSound() {}
 
     @Override
     protected ResourceLocation getBookPageTexture() {

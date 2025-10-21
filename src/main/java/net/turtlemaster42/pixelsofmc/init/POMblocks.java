@@ -344,9 +344,9 @@ public class POMblocks {
     public static final class Elements {
         public static final Map<Element, BlockRegObject<BaseBlock>> BLOCKS = new EnumMap<>(Element.class);
         private static void init() {
-            for (Element m : Element.values()) {
-                if (m.shouldAddBlock()) {
-                    String elementName = m.elementName();
+            for (Element e : Element.validValues()) {
+                if (e.shouldAddBlock()) {
+                    String elementName = e.elementName();
                     BlockRegObject<BaseBlock> block;
 
                     BlockBehaviour.Properties properties = Block.Properties
@@ -359,7 +359,7 @@ public class POMblocks {
 
                     PixelsOfMc.LOGGER.info("Registered Metals Blocks");
 
-                    BLOCKS.put(m, block);
+                    BLOCKS.put(e, block);
                 }
             }
         }

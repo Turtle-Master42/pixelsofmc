@@ -275,12 +275,12 @@ public class POMblockTagProvider extends BlockTagsProvider {
         );
 
         //auto gen
-        for(Element element : Element.values()) {
-            if (element.shouldAddBlock()) {
-                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(element.block());
-                this.tag(BlockTags.NEEDS_IRON_TOOL).add(element.block());
-                this.tag(BlockTags.BEACON_BASE_BLOCKS).add(element.block());
-                this.tag(Tags.Blocks.STORAGE_BLOCKS).add(element.block());
+        for(Element e : Element.validValues()) {
+            if (e.shouldAddBlock()) {
+                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(e.block());
+                this.tag(BlockTags.NEEDS_IRON_TOOL).add(e.block());
+                this.tag(BlockTags.BEACON_BASE_BLOCKS).add(e.block());
+                this.tag(Tags.Blocks.STORAGE_BLOCKS).add(e.block());
             }
         }
     }

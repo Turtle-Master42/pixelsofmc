@@ -1,0 +1,19 @@
+{
+  "parent": "elements.json",
+  "item_renders": [
+    {
+      "item": "pixelsofmc:palladium_ingot",
+      "scale": 2.5,
+      "x": 6.0,
+      "y": 10.8
+    },
+    {
+      "item": "pixelsofmc:palladium_108_atom_64",
+      "scale": 1.5,
+      "x": 143.33333333333334,
+      "y": 12.0
+    }
+  ],
+  "text": "empty.txt",
+  "title": "element.pixelsofmc.palladium"
+}
