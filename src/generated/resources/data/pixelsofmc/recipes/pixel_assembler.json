@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:titanium_diboride_plating"
+    },
+    "B": {
+      "item": "pixelsofmc:perfected_circuit_board_2"
+    },
+    "C": {
+      "item": "minecraft:piston"
+    },
+    "D": {
+      "item": "pixelsofmc:simple_casing_2"
+    },
+    "E": {
+      "item": "pixelsofmc:perfected_casing_2"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "DED"
+  ],
+  "result": {
+    "item": "pixelsofmc:pixel_assembler"
+  },
+  "show_notification": true
+}

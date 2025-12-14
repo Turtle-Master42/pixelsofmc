@@ -1,0 +1,21 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": {
+    "tag": "pixelsofmc:ball_3"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:gilded_blackstone"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 6,
+    "ingredient": {
+      "item": "minecraft:gold_nugget"
+    }
+  }
+}

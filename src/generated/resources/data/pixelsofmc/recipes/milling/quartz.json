@@ -7,13 +7,13 @@
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:ores/quartz"
+        "item": "minecraft:quartz_block"
       }
     }
   ],
   "output": {
     "chance": 1.0,
-    "count": 4,
+    "count": 3,
     "ingredient": {
       "item": "minecraft:quartz"
     }

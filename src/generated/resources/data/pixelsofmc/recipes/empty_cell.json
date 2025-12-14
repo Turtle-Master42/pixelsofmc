@@ -15,6 +15,7 @@
     "ABA"
   ],
   "result": {
+    "count": 4,
     "item": "pixelsofmc:empty_cell"
   },
   "show_notification": true

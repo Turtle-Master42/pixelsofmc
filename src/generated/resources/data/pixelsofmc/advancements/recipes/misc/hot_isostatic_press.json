@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/titanium"
+            "items": [
+              "pixelsofmc:titanium_gold_ingot"
+            ]
           }
         ]
       },

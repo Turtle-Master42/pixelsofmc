@@ -164,7 +164,8 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.PYROLYTIC_CARBON_SHEET_SLAB.get(),
                 POMblocks.LEAD_PLATING_BLOCK.get(),
                 POMblocks.LEAD_PLATING_STAIRS.get(),
-                POMblocks.LEAD_PLATING_SLAB.get()
+                POMblocks.LEAD_PLATING_SLAB.get(),
+                POMblocks.PYROLYTIC_CARBON_BLOCK.get()
         );
 
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(
@@ -184,6 +185,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.RAW_TITANIUM_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
                 POMblocks.TITANIUM_GOLD_BLOCK.get(),
+                POMblocks.PYROLYTIC_CARBON_BLOCK.get(),
                 POMblocks.BLACK_DIAMOND_BLOCK.get(),
                 POMblocks.PERFECT_DIAMOND_BLOCK.get(),
                 POMblocks.VIOLET_DIAMOND_BLOCK.get(),

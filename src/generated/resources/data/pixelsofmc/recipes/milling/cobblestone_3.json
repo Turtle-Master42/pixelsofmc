@@ -1,0 +1,21 @@
+{
+  "type": "pixelsofmc:ball_milling",
+  "ball": {
+    "tag": "pixelsofmc:ball_3"
+  },
+  "inputs": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:chiseled_stone_bricks"
+      }
+    }
+  ],
+  "output": {
+    "chance": 1.0,
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}

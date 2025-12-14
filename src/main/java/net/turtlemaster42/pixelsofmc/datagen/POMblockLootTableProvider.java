@@ -69,6 +69,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.PERFECT_DIAMOND_BLOCK.get());
         this.dropSelf(POMblocks.VIOLET_DIAMOND_BLOCK.get());
         this.dropSelf(POMblocks.RED_DIAMOND_BLOCK.get());
+        this.dropSelf(POMblocks.PYROLYTIC_CARBON_BLOCK.get());
 
         this.dropSelf(POMblocks.POWER_CELL_ARRAY.get());
         this.dropSelf(POMblocks.OVERCHARGED_POWER_CELL_ARRAY.get());

@@ -3,22 +3,22 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "pixelsofmc:strong_casing"
+      "item": "pixelsofmc:titanium_diboride_plating"
     },
     "B": {
-      "item": "pixelsofmc:power_cell"
+      "item": "pixelsofmc:carbon_heat_sink"
     },
     "C": {
-      "item": "minecraft:copper_ingot"
+      "item": "pixelsofmc:tungsten_wire"
     },
     "D": {
       "item": "minecraft:beacon"
     },
     "E": {
-      "item": "pixelsofmc:netherite_plating"
+      "item": "pixelsofmc:titanium_diboride_nugget"
     },
     "F": {
-      "item": "pixelsofmc:power_orb"
+      "item": "pixelsofmc:violet_diamond"
     }
   },
   "pattern": [

@@ -117,7 +117,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMblocks.BLACK_DIAMOND_BLOCK.get().asItem())
                 .add(POMblocks.PERFECT_DIAMOND_BLOCK.get().asItem())
                 .add(POMblocks.VIOLET_DIAMOND_BLOCK.get().asItem())
-                .add(POMblocks.RED_DIAMOND_BLOCK.get().asItem());
+                .add(POMblocks.RED_DIAMOND_BLOCK.get().asItem())
+                .add(POMblocks.PYROLYTIC_CARBON_BLOCK.get().asItem());
         tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE).add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem());
         tag(Tags.Items.ORES_IN_GROUND_STONE).add(POMblocks.TITANIUM_ORE.get().asItem());
         tag(Tags.Items.RAW_MATERIALS).add(POMitems.RAW_TITANIUM.get());

@@ -11,6 +11,7 @@
     "pixelsofmc:pyrolytic_carbon_sheet_slab",
     "pixelsofmc:lead_plating_block",
     "pixelsofmc:lead_plating_stairs",
-    "pixelsofmc:lead_plating_slab"
+    "pixelsofmc:lead_plating_slab",
+    "pixelsofmc:pyrolytic_carbon_block"
   ]
 }
