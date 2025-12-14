@@ -26,8 +26,7 @@ public class AbstractPOMscreen<MENU extends AbstractContainerMenu> extends Abstr
     }
 
     @Override
-    protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-    }
+    protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {}
 
     protected void renderArea(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
         renderArea(pGuiGraphics, pMouseX, pMouseY, 0 ,0, x, y, fromX, fromY, toX, toY, tooltip);

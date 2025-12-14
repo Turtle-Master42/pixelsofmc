@@ -60,7 +60,7 @@ public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
 
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
     }
 
     @Override

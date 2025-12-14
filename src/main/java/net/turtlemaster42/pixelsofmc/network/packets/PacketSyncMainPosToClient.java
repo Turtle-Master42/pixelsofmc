@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.block.tile.AbstractMultiBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.IDummyMachineTile;
 
 import java.util.function.Supplier;

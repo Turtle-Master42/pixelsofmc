@@ -37,7 +37,7 @@ public class PixelAssemblerScreen extends AbstractPOMscreen<PixelAssemblerMenu> 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         fluidArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
     }
 
 

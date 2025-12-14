@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
+import net.turtlemaster42.pixelsofmc.tile.BallMillTile;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.ModelBallMill;
 import org.jetbrains.annotations.NotNull;

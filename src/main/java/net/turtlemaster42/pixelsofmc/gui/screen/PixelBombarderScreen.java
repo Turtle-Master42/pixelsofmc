@@ -39,7 +39,7 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
     }
 
 

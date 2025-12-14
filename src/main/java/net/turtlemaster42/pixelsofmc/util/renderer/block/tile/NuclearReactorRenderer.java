@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 import org.jetbrains.annotations.NotNull;

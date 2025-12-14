@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.turtlemaster42.pixelsofmc.block.PixelSplitterBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
+import net.turtlemaster42.pixelsofmc.tile.PixelSplitterTile;
 import org.jetbrains.annotations.NotNull;
 
 public class PixelSplitterRenderer implements BlockEntityRenderer<PixelSplitterTile> {

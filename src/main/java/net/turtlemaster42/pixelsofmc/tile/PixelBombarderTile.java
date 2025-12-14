@@ -1,8 +1,7 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,14 +16,9 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelBombarderMenu;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.recipe.machines.LaserSourceRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelBombarderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
@@ -38,46 +32,21 @@ import java.util.Optional;
 public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 300;
-    private int speedUpgrade = 0;
-    private final int capacity = 1024000;
-    private final int maxReceive = 1024000;
-    private static final int energyConsumption = 256;
     private int smallLaserColor = Color.WHITE.getRGB();
     private int bigLaserColor = Color.WHITE.getRGB();
     private int laserType = 0;
     private int laserSize = 2;
 
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-                setChanged();
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                setChanged();
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-        };
-    }
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
-
     public PixelBombarderTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.PIXEL_BOMBARDER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.PIXEL_BOMBARDER.get(), pWorldPosition, pBlockState, 1024000, 256);
+        defineMaxProgress(300);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> PixelBombarderTile.this.progress;
                     case 1 -> PixelBombarderTile.this.maxProgress;
-                    case 2 -> PixelBombarderTile.this.speedUpgrade;
+                    case 2 -> PixelBombarderTile.this.requiredProgress;
                     case 3 -> PixelBombarderTile.this.capacity;
                     case 4 -> PixelBombarderTile.this.maxReceive;
                     case 5 -> PixelBombarderTile.this.energyStorage.getEnergyStored();
@@ -89,7 +58,7 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
                 switch (index) {
                     case 0 -> PixelBombarderTile.this.progress = value;
                     case 1 -> PixelBombarderTile.this.maxProgress = value;
-                    case 2 -> PixelBombarderTile.this.speedUpgrade = value;
+                    case 2 -> PixelBombarderTile.this.requiredProgress = value;
                 }
             }
             public int getCount() {
@@ -112,9 +81,7 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
     @Override
     protected int itemHandlerSize() {return 7;}
     protected void contentsChanged(int slot) {
-        if (slot==5) {
-            speedUpgradeCheck();
-        }
+        if (slot==5) {speedUpgradeCheck(5);}
         else if (slot == 1 || slot == 2 || slot == 3) {
             calculateLaserType();
         }
@@ -143,39 +110,6 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
         return super.getCapability(cap, side);
     }
 
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
-    }
-
-    @Override
-    public void invalidateCaps()  {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
-    }
-
-    @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
-        super.saveAdditional(tag);
-    }
-
-    @Override
-    public void load(@NotNull CompoundTag nbt) {
-        super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
-    }
-
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, PixelBombarderTile e) {
@@ -188,11 +122,10 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelBombarderTile pBlockEntity) {
         if(hasRecipe(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
             pBlockEntity.progress++;
-//            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
+//            consumePower(6, 5);
 
-            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
                 craftItem(pBlockEntity);
             }
         } else {
@@ -213,12 +146,6 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
 
         return match.isPresent() && canInsertItemIntoOutputSlot(inventory, match.get().getOutput()) && match.get().getColor() == entity.bigLaserColor;
     }
-
-    private static boolean hasPower(PixelBombarderTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
-    }
-
 
     private static void craftItem(PixelBombarderTile entity) {
         Level level = entity.level;
@@ -313,20 +240,6 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
         return new Color((int) (r * f), (int) (g * f), (int) (b * f));
     }
 
-    private void resetProgress() {this.progress = 0;}
-
-    private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress - speedUpgrade();
-    }
-
-    private int energyUpgrade() {
-        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(6).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
-    }
-
-    private int speedUpgrade() {
-        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(5).getCount()));
-    }
-
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ChanceIngredient output) {
         return (inventory.getItem(4).getItem() == output.asItem() && inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + output.count())
                 || inventory.getItem(4).isEmpty();
@@ -347,25 +260,6 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
     public int getLaserSize() {
         return laserSize;
     }
-
-    //---ENERGY---//
-
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}",energyStorage.getEnergyStored() ,energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
-
 }
 
 

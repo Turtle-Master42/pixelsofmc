@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
+import net.turtlemaster42.pixelsofmc.tile.StarTile;
 import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;

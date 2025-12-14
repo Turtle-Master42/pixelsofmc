@@ -6,7 +6,7 @@ import com.github.alexthe666.citadel.client.model.basic.BasicModelPart;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.turtlemaster42.pixelsofmc.block.tile.BallMillTile;
+import net.turtlemaster42.pixelsofmc.tile.BallMillTile;
 
 public class ModelBallMill extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox root;

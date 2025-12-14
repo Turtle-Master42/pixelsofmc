@@ -40,7 +40,7 @@ public class ChemicalCombinerScreen extends AbstractPOMscreen<ChemicalCombinerMe
 
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
     }
 
     @Override

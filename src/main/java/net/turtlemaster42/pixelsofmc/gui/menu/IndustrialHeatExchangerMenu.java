@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.IndustrialHeatExchangerTile;
+import net.turtlemaster42.pixelsofmc.tile.IndustrialHeatExchangerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
 
-public class IndustrialHeatExchangerMenu extends AbstractMachineMenu implements IEnergyMenu, IFluidMenu, IDuoFluidMenu, ITriFluidMenu, IQuadFluidMenu {
+public class IndustrialHeatExchangerMenu extends AbstractMachineMenu implements IFluidMenu, IDuoFluidMenu, ITriFluidMenu, IQuadFluidMenu {
     public final IndustrialHeatExchangerTile blockEntity;
     public final ItemStackHandler itemHandler;
     private FluidStack fluid;

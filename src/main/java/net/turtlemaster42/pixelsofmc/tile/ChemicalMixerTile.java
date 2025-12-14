@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,18 +15,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.ChemicalMixerBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalMixerMenu;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.*;
 import net.turtlemaster42.pixelsofmc.network.packets.*;
 import net.turtlemaster42.pixelsofmc.recipe.machines.ChemicalMixerRecipe;
 import net.turtlemaster42.pixelsofmc.util.block.*;
@@ -42,12 +39,6 @@ import java.util.Optional;
 public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> implements IDuoFluidHandlingTile, ITriFluidHandlingTile, IQuadFluidHandlingTile, IQuinFluidHandlingTile, IHexaFluidHandlingTile, IButtonTile {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 16;
-    private int speedUpgrade = 0;
-    private final int capacity = 512000;
-    private final int maxReceive = 512000;
-    private static final int energyConsumption = 128;
     public boolean[] switches = new boolean[]{false, false, false};
     public int temperatureState = 2;
 
@@ -190,33 +181,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         return this.hexaFluidTank.getFluid();
     }
 
-
-
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive, 512000) {
-            @Override
-            public void onEnergyChanged() {
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-                setChanged();
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                setChanged();
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-            @Override
-            public int extractEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                setChanged();
-                return super.extractEnergy(maxReceive, simulate);
-            }
-        };
-    }
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyDuoFluidHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyTriFluidHandler = LazyOptional.empty();
@@ -226,13 +190,15 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
 
 
     public ChemicalMixerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.CHEMICAL_MIXER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.CHEMICAL_MIXER.get(), pWorldPosition, pBlockState, 512000, 128);
+        defineMaxProgress(16);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> ChemicalMixerTile.this.progress;
                     case 1 -> ChemicalMixerTile.this.maxProgress;
-                    case 2 -> ChemicalMixerTile.this.speedUpgrade;
+                    case 2 -> ChemicalMixerTile.this.requiredProgress;
                     case 3 -> ChemicalMixerTile.this.capacity;
                     case 4 -> ChemicalMixerTile.this.maxReceive;
                     case 5 -> ChemicalMixerTile.this.energyStorage.getEnergyStored();
@@ -244,7 +210,7 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
                 switch (index) {
                     case 0 -> ChemicalMixerTile.this.progress = value;
                     case 1 -> ChemicalMixerTile.this.maxProgress = value;
-                    case 2 -> ChemicalMixerTile.this.speedUpgrade = value;
+                    case 2 -> ChemicalMixerTile.this.requiredProgress = value;
                 }
             }
             public int getCount() {
@@ -267,8 +233,7 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     @Override
     protected int itemHandlerSize() {return 8;}
     protected void contentsChanged(int slot) {
-        if (slot==6)
-            speedUpgradeCheck();
+        if (slot==6) speedUpgradeCheck(6);
     }
 
     @Override
@@ -368,8 +333,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
         lazyFluidHandler = LazyOptional.of(() -> fluidTank);
         lazyDuoFluidHandler = LazyOptional.of(() -> duoFluidTank);
         lazyTriFluidHandler = LazyOptional.of(() -> triFluidTank);
@@ -381,8 +344,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
         lazyFluidHandler.invalidate();
         lazyDuoFluidHandler.invalidate();
         lazyTriFluidHandler.invalidate();
@@ -393,11 +354,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
         tag.putInt("temperatureState", temperatureState);
         tag.putBoolean("switch1", switches[0]);
         tag.putBoolean("switch2", switches[1]);
@@ -414,10 +370,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
         temperatureState = nbt.getInt("temperatureState");
         switches[0] = nbt.getBoolean("switch1");
         switches[1] = nbt.getBoolean("switch2");
@@ -471,11 +423,9 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
         }
 
         if(hasRecipe(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(6).getCount();
             pBlockEntity.progress++;
-            //pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
 
-            if (pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            if (pBlockEntity.progress > pBlockEntity.requiredProgress) {
                 craftItem(pBlockEntity);
             }
         } else {
@@ -608,20 +558,13 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
                     FluidStack drainedStack = tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
                     // not everything was drained
                     if (drainedStack.getAmount() < fluidInput.getAmount()) {
-                        PixelsOfMc.LOGGER.info("not everything was drained: {} < {}, {} left", drainedStack.getAmount(), fluidInput.getAmount(), fluidInput.getAmount() - drainedStack.getAmount());
                         fluidInput.setAmount(fluidInput.getAmount() - drainedStack.getAmount());
                     } else { // everything was inserted
-                        PixelsOfMc.LOGGER.info("everything was inserted, {} == {}", drainedStack.getAmount(), fluidInput.getAmount());
                         break;
                     }
                 }
             }
         }
-    }
-
-    private static boolean hasPower(ChemicalMixerTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(4).getCount();
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
     private static void craftItem(ChemicalMixerTile entity) {
@@ -643,38 +586,6 @@ public class ChemicalMixerTile extends AbstractMachineTile<ChemicalMixerTile> im
             entity.errorEnergyReset();
         }
     }
-
-    private void resetProgress() {this.progress = 0;}
-
-    private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress - speedUpgrade();
-    }
-
-    private int energyUpgrade() {
-        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(5).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
-    }
-
-    private int speedUpgrade() {
-        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(4).getCount()));
-    }
-
-    //---ENERGY---//
-
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}",energyStorage.getEnergyStored() ,energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-    @Override
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
     public FluidTank getFluidTank() { return fluidTank; }
 

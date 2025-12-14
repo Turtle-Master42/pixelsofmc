@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.turtlemaster42.pixelsofmc.block.tile.PixelSplitterTile;
+import net.turtlemaster42.pixelsofmc.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;

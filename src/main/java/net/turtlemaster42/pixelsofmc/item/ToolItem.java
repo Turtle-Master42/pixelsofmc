@@ -14,7 +14,7 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import org.jetbrains.annotations.NotNull;
 

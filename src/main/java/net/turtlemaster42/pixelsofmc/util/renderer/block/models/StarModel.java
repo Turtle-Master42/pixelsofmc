@@ -8,7 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import net.turtlemaster42.pixelsofmc.block.tile.StarTile;
+import net.turtlemaster42.pixelsofmc.tile.StarTile;
 
 public class StarModel extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox root;

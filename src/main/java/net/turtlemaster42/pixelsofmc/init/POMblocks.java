@@ -26,6 +26,7 @@ import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
 import net.turtlemaster42.pixelsofmc.fluid.*;
+import net.turtlemaster42.pixelsofmc.item.FuelBlockItem;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -195,6 +196,9 @@ public class POMblocks {
     public static final RegistryObject<Block> RAW_TITANIUM_BLOCK = registerStorageBlock("raw_titanium_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.CLAY)
                     .strength(5f, 10f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PYROLYTIC_CARBON_BLOCK = registerFuelStorageBlock("pyrolytic_carbon_block",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK)
+                    .strength(2f, 8f).requiresCorrectToolForDrops()), 18000);
     public static final RegistryObject<Block> TITANIUM_GOLD_BLOCK = registerStorageBlock("titanium_gold_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.NETHERITE_BLOCK)
                     .strength(12f, 50f).requiresCorrectToolForDrops()));
@@ -425,10 +429,21 @@ public class POMblocks {
         }
     }
 
+    private static <T extends Block> RegistryObject<T> registerFuelStorageBlock(String name, Supplier<T> block, int fuel) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerBlockStorageFuelItem(name, toReturn, fuel);
+        return toReturn;
+    }
+
     private static <T extends Block> RegistryObject<T> registerStorageBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockStorageItem(name, toReturn);
         return toReturn;
+    }
+
+    private static <T extends Block> RegistryObject<Item> registerBlockStorageFuelItem(String name, RegistryObject<T> block, int fuel) {
+        return POMitems.STORAGE_BLOCK_ITEMS.register(name, () -> new FuelBlockItem(block.get(),
+                new Item.Properties(), fuel));
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockStorageItem(String name, RegistryObject<T> block) {

@@ -44,13 +44,13 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
 
         if (menu.isHeating()) {
             int offsetY = 0;
             if (hoveredSlot != null && hoveredSlot.hasItem())
                 offsetY = -15;
-            renderArea(guiGraphics, mouseX, mouseY, 0, offsetY, x, y, 50, 56, 67, 75, new GuiTooltips().getTimeArea(menu.getTime() + menu.getSoulTime()));
+            renderArea(guiGraphics, mouseX, mouseY, 0, offsetY, x, y, 50, 56, 67, 75, new GuiTooltips().getTimeArea( (menu.getTime() + menu.getSoulTime()) / (menu.blockEntity.getItemStackHandler().getStackInSlot(6).getCount() + 1)));
         }
         renderArea(guiGraphics, mouseX, mouseY, x, y, 37, 56, 49, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));
         renderArea(guiGraphics, mouseX, mouseY, x, y, 50, 77, 67, 81, new GuiTooltips().getHeatArea(menu.getHeat(), menu.getRequiredHeat(), menu.getRequiredMaxHeat()));

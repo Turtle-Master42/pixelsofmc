@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.turtlemaster42.pixelsofmc.block.tile.EnergyPortTile;
+import net.turtlemaster42.pixelsofmc.tile.EnergyPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.util.InfiniteNumber;
 import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;

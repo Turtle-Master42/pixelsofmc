@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.ChemicalMixerTile;
+import net.turtlemaster42.pixelsofmc.tile.ChemicalMixerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
@@ -63,7 +63,7 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
         return data.get(0) > 0;
     }
     public int getProgress() {return this.data.get(0);}
-    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
+    public int getMaxProgress() {return this.blockEntity.requiredProgress(6);}
 
     public void setSwitch(boolean on, int currentSwitch) {
         this.blockEntity.setSwitch(currentSwitch, on);
@@ -87,9 +87,8 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 16; // This is the height in pixels of your arrow
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
 
     public int getScaledEnergy() { //energy test

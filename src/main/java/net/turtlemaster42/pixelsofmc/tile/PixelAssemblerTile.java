@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,19 +16,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelAssemblerMenu;
-import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelAssemblerRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -42,14 +37,6 @@ import java.util.Optional;
 public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 72;
-    private int speedUpgrade = 0;
-    private int energyUpgrade = 0;
-    private final int capacity = 1024000;
-    private final int maxReceive = 1024000;
-    private static final int energyConsumption = 256;
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
 
     private final FluidTank fluidTank = new FluidTank(4000) {
         @Override
@@ -74,32 +61,18 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
         return this.fluidTank.getFluid();
     }
 
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                setChanged();
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-        };
-    }
-
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
     public PixelAssemblerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.PIXEL_ASSEMBLER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.PIXEL_ASSEMBLER.get(), pWorldPosition, pBlockState, 1024000, 256);
+        defineMaxProgress(72);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> PixelAssemblerTile.this.progress;
                     case 1 -> PixelAssemblerTile.this.maxProgress;
-                    case 2 -> PixelAssemblerTile.this.speedUpgrade;
+                    case 2 -> PixelAssemblerTile.this.requiredProgress;
                     case 3 -> PixelAssemblerTile.this.capacity;
                     case 4 -> PixelAssemblerTile.this.maxReceive;
                     case 5 -> PixelAssemblerTile.this.energyStorage.getEnergyStored();
@@ -110,7 +83,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
                 switch (index) {
                     case 0 -> PixelAssemblerTile.this.progress = value;
                     case 1 -> PixelAssemblerTile.this.maxProgress = value;
-                    case 2 -> PixelAssemblerTile.this.speedUpgrade = value;
+                    case 2 -> PixelAssemblerTile.this.requiredProgress = value;
                 }
             }
             public int getCount() {
@@ -136,8 +109,7 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     @Override
     protected int itemHandlerSize() {return 7;}
     protected void contentsChanged(int slot) {
-        if (slot==5)
-            speedUpgradeCheck();
+        if (slot==5) speedUpgradeCheck(5);
     }
 
     @Override
@@ -148,7 +120,6 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         return new PixelAssemblerMenu(pContainerId, pInventory, this, this.data);
     }
@@ -172,26 +143,17 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
         lazyFluidHandler = LazyOptional.of(() -> fluidTank);
     }
 
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
         lazyFluidHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
         tag = fluidTank.writeToNBT(tag);
         super.saveAdditional(tag);
     }
@@ -199,10 +161,6 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
         fluidTank.readFromNBT(nbt);
     }
 
@@ -218,12 +176,10 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelAssemblerTile pBlockEntity) {
         transferFluidToItem(pBlockEntity, fluidTank, 4);
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(4).getCount();
-            pBlockEntity.energyUpgradeCheck();
+        if(hasRecipe(pBlockEntity) && hasPower(6, 5)) {
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(speedAmount != 0 ? speedAmount * energyConsumption - pBlockEntity.energyUpgrade * speedAmount : energyConsumption);
-            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            consumePower(6, 5);
+            if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
                    craftItem(pBlockEntity);
             }
         } else {
@@ -245,10 +201,6 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
         return match.isPresent();
 //                && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
 //                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
-    }
-
-    private static boolean hasPower(PixelAssemblerTile entity) {
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption - entity.energyUpgrade);
     }
 
     private static void craftItem(PixelAssemblerTile entity) {
@@ -278,28 +230,6 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
     private static boolean canInsertItemIntoSlot(ItemStack stackInSlot, ItemStack newStack, PixelAssemblerRecipe pixelSplitterRecipe) {
         return false;
     }
-
-    private void resetProgress() {
-        this.progress = 0;
-    }
-
-    private void speedUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(5).getItem() == POMitems.SPEED_UPGRADE_1.get()) {
-            this.speedUpgrade = this.maxProgress / 10 * this.itemHandler.getStackInSlot(5).getCount();
-        } else {
-            this.speedUpgrade = 0;
-        }
-    }
-    private void energyUpgradeCheck() {
-        if (this.itemHandler.getStackInSlot(6).getItem() == POMitems.ENERGY_UPGRADE_1.get()) {
-            this.energyUpgrade = energyConsumption / 10 * this.itemHandler.getStackInSlot(6).getCount();
-        } else {
-            this.energyUpgrade = 0;
-        }
-    }
-
-    public int getProgress() {return progress;}
-    public int getMaxProgress() {return maxProgress;}
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
@@ -350,21 +280,6 @@ public class PixelAssemblerTile extends AbstractMachineTile<PixelAssemblerTile> 
         pBlockEntity.itemHandler.insertItem(slot, item, false);
     }
 
-
-    //---ENERGY---//
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
     public FluidTank getFluidTank() {
         return fluidTank;
     }

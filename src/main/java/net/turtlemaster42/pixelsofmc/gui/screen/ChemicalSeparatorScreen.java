@@ -8,7 +8,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorMenu;
-import net.turtlemaster42.pixelsofmc.gui.renderer.*;
+import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +40,7 @@ public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparator
 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
         fluidArea1.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         fluidArea2.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
     }

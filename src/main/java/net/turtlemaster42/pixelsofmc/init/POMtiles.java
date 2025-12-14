@@ -7,10 +7,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineEnergyBlockTile;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.DummyMachineItemBlockTile;
-import net.turtlemaster42.pixelsofmc.block.tile.*;
+import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineEnergyBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineItemBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.*;
 
 public class POMtiles {
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, PixelsOfMc.MOD_ID);

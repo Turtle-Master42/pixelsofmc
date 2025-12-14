@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.PixelAssemblerTile;
+import net.turtlemaster42.pixelsofmc.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
@@ -50,10 +50,9 @@ public class PixelAssemblerMenu extends AbstractMachineMenu implements IEnergyMe
     public int getScaledProgressOne() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 61; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
 
     public int getScaledEnergy() { //energy test
@@ -69,7 +68,7 @@ public class PixelAssemblerMenu extends AbstractMachineMenu implements IEnergyMe
     }
 
     public int getMaxProgress() {
-        return this.data.get(1);
+        return this.blockEntity.requiredProgress(5);
     }
 
     public FluidStack getFluid() {

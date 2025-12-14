@@ -1,9 +1,8 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
@@ -17,15 +16,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillMenu;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.BallMillRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -39,45 +33,18 @@ import java.util.Optional;
 public class BallMillTile extends AbstractMachineTile<BallMillTile> {
 
     protected final ContainerData data;
-    public int progress = 0;
-    public int maxProgress = 96;
-    private int speedUpgrade = 0;
-    private final int capacity = 1024000;
-    private final int maxReceive = 1024000;
-    private static final int energyConsumption = 512;
     public int rotation = 0;
-
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-                setChanged();
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                setChanged();
-                if (maxReceive > 0 && !simulate) {
-                    onEnergyChanged();
-                }
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-        };
-    }
-
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
     public BallMillTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.BALL_MILL.get(), pWorldPosition, pBlockState);
+        defineMaxProgress(96);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> BallMillTile.this.progress;
                     case 1 -> BallMillTile.this.maxProgress;
-                    case 2 -> BallMillTile.this.speedUpgrade;
+                    case 2 -> BallMillTile.this.requiredProgress;
                     case 3 -> BallMillTile.this.capacity;
                     case 4 -> BallMillTile.this.maxReceive;
                     case 5 -> BallMillTile.this.energyStorage.getEnergyStored();
@@ -89,7 +56,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
                 switch (index) {
                     case 0 -> BallMillTile.this.progress = value;
                     case 1 -> BallMillTile.this.maxProgress = value;
-                    case 2 -> BallMillTile.this.speedUpgrade = value;
+                    case 2 -> BallMillTile.this.requiredProgress = value;
                 }
             }
 
@@ -115,8 +82,7 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     protected int itemHandlerSize() {return 7;}
 
     protected void contentsChanged(int slot) {
-        if (slot==5)
-            speedUpgradeCheck();
+        if (slot==5) speedUpgradeCheck(5);
     }
 
 
@@ -143,39 +109,6 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         return super.getCapability(cap, side);
     }
 
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
-    }
-
-    @Override
-    public void invalidateCaps()  {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
-    }
-
-    @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
-        super.saveAdditional(tag);
-    }
-
-    @Override
-    public void load(@NotNull CompoundTag nbt) {
-        super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
-    }
-
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, BallMillTile e) {
@@ -187,13 +120,13 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, BallMillTile pBlockEntity) {
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(pBlockEntity.energyUpgrade());
+        if(hasRecipe(pBlockEntity) && hasPower(6, 5)) {
+            progress++;
+            consumePower(6, 5);
             if (pBlockEntity.progress > 0 && !pState.getValue(BallMillBlock.ACTIVE)) {
                 pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, true), 2);
             }
-            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
                 craftItem(pBlockEntity);
                 pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
             }
@@ -201,11 +134,11 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
             if (pState.getValue(BallMillBlock.ACTIVE) && !pLevel.isClientSide()) {
                 pLevel.setBlock(pPos, pState.setValue(BallMillBlock.ACTIVE, false), 2);
             }
-            pBlockEntity.resetProgress();
+            resetProgress();
             setChanged(pLevel, pPos, pState);
         }
         if (pState.getValue(BallMillBlock.ACTIVE)) {
-            pBlockEntity.rotation++;
+            rotation++;
         }
     }
 
@@ -222,11 +155,6 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         return match.isPresent()
                 && canInsertAmountIntoOutputSlot(inventory, match.get().getOutputCount())
                 && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().asItemStack());
-    }
-
-    private static boolean hasPower(BallMillTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
     }
 
 
@@ -258,46 +186,11 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         }
     }
 
-    private void resetProgress() {this.progress = 0;}
-
-    private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress - speedUpgrade();
-    }
-
-    private int energyUpgrade() {
-        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(6).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
-    }
-
-    private int speedUpgrade() {
-        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(5).getCount()));
-    }
-
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(4).getItem() == output.getItem() || inventory.getItem(4).isEmpty();
     }
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
         return inventory.getItem(4).getMaxStackSize() >= inventory.getItem(4).getCount() + count;
     }
-
-
-    //---ENERGY---//
-
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-
-    @Override
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
-
 }
 

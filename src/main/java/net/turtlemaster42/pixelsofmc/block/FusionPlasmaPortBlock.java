@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.turtlemaster42.pixelsofmc.block.tile.PlasmaPortTile;
+import net.turtlemaster42.pixelsofmc.tile.PlasmaPortTile;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

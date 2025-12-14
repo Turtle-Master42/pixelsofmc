@@ -14,7 +14,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.turtlemaster42.pixelsofmc.block.dummy.tile.AbstractDummyMachineBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.entity.RiverShellEntity;
 import net.turtlemaster42.pixelsofmc.init.POMentities;
 import net.turtlemaster42.pixelsofmc.init.POMitems;

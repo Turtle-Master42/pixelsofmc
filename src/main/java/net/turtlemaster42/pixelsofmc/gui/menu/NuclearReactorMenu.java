@@ -10,7 +10,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.block.tile.NuclearReactorTile;
+import net.turtlemaster42.pixelsofmc.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IButtonMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;

@@ -49,14 +49,5 @@ public class EnergyArea extends InfoArea {
     }
 
     @Override
-    public void draw(GuiGraphics graphics) {
-        final int height = area.getHeight();
-        int stored = (int)(height*(energy.getEnergyStored()/(float)energy.getMaxEnergyStored()));
-        graphics.fillGradient(
-                area.getX(), area.getY()+(height - stored),
-                area.getX() + area.getWidth(), area.getY() +area.getHeight(),
-                0xffb51500, 0xff600b00
-        );
-    }
-
+    public void draw(GuiGraphics graphics) {}
 }

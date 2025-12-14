@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ProgressArea extends InfoArea {
 
-    private final int progress;
-    private final int maxProgress;
+    private int progress;
+    private int maxProgress;
     private final Rect2i[] areas;
 
     public ProgressArea(int progress, int maxProgress, Rect2i... area)  {
@@ -24,27 +25,30 @@ public class ProgressArea extends InfoArea {
     }
 
     public List<Component> getTooltips() {
-        if (Screen.hasShiftDown())
-            return List.of(
-                    Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"),
-                    Component.literal("§9"+((maxProgress/20)-(progress/20))+" s")
-            );
-        else return List.of(Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"));
+        List<Component> tooltip = new ArrayList<>();
+
+        tooltip.add(Component.literal("§7"+ (int)((100f / (float)maxProgress * (float)progress)) +"%"));
+        if (Screen.hasShiftDown()) {
+            float seconds = (maxProgress - progress) / 20f;
+            if (seconds < 1) {
+                tooltip.add(Component.literal("§9" + (Math.round(seconds * 10f) / 10f) + " s"));
+            } else {
+                tooltip.add(Component.literal("§9" + (int)seconds + " s"));
+            }
+        }
+        return tooltip;
     }
 
-    @Override
-    public void fillTooltip(GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY)
-    {
-        boolean inArea = false;
+    public void fillTooltip(GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, int progress, int maxProgress) {
+        if (progress <= 0) return;
+        this.progress = progress;
+        this.maxProgress = maxProgress;
         for (Rect2i rect2i : areas) {
             if (rect2i.contains(mouseX, mouseY)) {
-                inArea = true;
+                fillTooltipOverArea(guiGraphics, mouseX - x, mouseY - y);
                 break;
             }
         }
-
-        if(inArea)
-            fillTooltipOverArea(guiGraphics, mouseX - x, mouseY - y);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class ProgressArea extends InfoArea {
         guiGraphics.renderTooltip(Minecraft.getInstance().font, getTooltips(), Optional.empty(), mouseX, mouseY);
     }
 
+    //Debug drawer
     @Override
     public void draw(GuiGraphics guiGraphics) {
         for (Rect2i area : areas) {

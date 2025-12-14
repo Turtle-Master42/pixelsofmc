@@ -16,6 +16,7 @@ public class GuiTooltips {
             );
         else return List.of(Component.literal("§7"+(int)(100f/(float)maxProgress*(float)progress)+"%"));
     }
+
     public List<Component> getHeatArea(int heat, int requiredHeat, int requiredMaxHeat) {
         List<Component> text = new java.util.ArrayList<>(List.of());
         if (Screen.hasShiftDown())
@@ -42,7 +43,11 @@ public class GuiTooltips {
     }
 
     public List<Component> getTimeArea(int time) {
-        return List.of(Component.literal("§9"+(time/20)+" s"));
+        if (time < 20) {
+            return List.of(Component.literal("§9" + (Math.round(time * 0.5f) / 10f) + " s"));
+        } else {
+            return List.of(Component.literal("§9"+(time/20)+" s"));
+        }
     }
 
     public List<Component> getEnergyArea(int energy, int maxEnergy) {

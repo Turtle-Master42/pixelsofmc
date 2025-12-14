@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

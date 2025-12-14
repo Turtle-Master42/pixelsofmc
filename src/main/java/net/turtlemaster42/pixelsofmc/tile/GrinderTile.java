@@ -1,8 +1,7 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -16,14 +15,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.GrinderMenu;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.GrinderRecipe;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import org.jetbrains.annotations.NotNull;
@@ -36,42 +30,17 @@ import java.util.Optional;
 public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 96;
-    private int speedUpgrade = 0;
-    private final int capacity = 1024000;
-    private final int maxReceive = 1024000;
-    private static final int energyConsumption = 256;
-
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-                setChanged();
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                setChanged();
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-        };
-    }
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
 
     public GrinderTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.GRINDER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.GRINDER.get(), pWorldPosition, pBlockState, 1024000, 256);
+        defineMaxProgress(96);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> GrinderTile.this.progress;
                     case 1 -> GrinderTile.this.maxProgress;
-                    case 2 -> GrinderTile.this.speedUpgrade;
+                    case 2 -> GrinderTile.this.requiredProgress;
                     case 3 -> GrinderTile.this.capacity;
                     case 4 -> GrinderTile.this.maxReceive;
                     case 5 -> GrinderTile.this.energyStorage.getEnergyStored();
@@ -83,7 +52,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
                 switch (index) {
                     case 0 -> GrinderTile.this.progress = value;
                     case 1 -> GrinderTile.this.maxProgress = value;
-                    case 2 -> GrinderTile.this.speedUpgrade = value;
+                    case 2 -> GrinderTile.this.requiredProgress = value;
                 }
             }
             public int getCount() {
@@ -106,8 +75,7 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     @Override
     protected int itemHandlerSize() {return 7;}
     protected void contentsChanged(int slot) {
-        if (slot==5)
-            speedUpgradeCheck();
+        if (slot==5) speedUpgradeCheck(5);
     }
 
     @Override
@@ -133,39 +101,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         return super.getCapability(cap, side);
     }
 
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
-    }
-
-    @Override
-    public void invalidateCaps()  {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
-    }
-
-    @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
-        super.saveAdditional(tag);
-    }
-
-    @Override
-    public void load(@NotNull CompoundTag nbt) {
-        super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
-    }
-
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, GrinderTile e) {
@@ -177,12 +112,10 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, GrinderTile pBlockEntity) {
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(5).getCount();
+        if(hasRecipe(pBlockEntity) && hasPower(6, 5)) {
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
-
-            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            consumePower(6, 5);
+            if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
                 craftItem(pBlockEntity);
             }
         } else {
@@ -203,12 +136,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
 
         return match.isPresent() && canInsertIntoOutputSlot(entity, match.get());
     }
-
-    private static boolean hasPower(GrinderTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(5).getCount();
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
-    }
-
 
     private static void craftItem(GrinderTile entity) {
         Level level = entity.level;
@@ -231,21 +158,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
             entity.errorEnergyReset();
         }
     }
-
-    private void resetProgress() {this.progress = 0;}
-
-    private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress - speedUpgrade();
-    }
-
-    private int energyUpgrade() {
-        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(6).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
-    }
-
-    private int speedUpgrade() {
-        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(5).getCount()));
-    }
-
 
     private static boolean canInsertItemIntoSlot(ItemStack slotStack, ItemStack inputStack) {
         return (inputStack.getItem()==slotStack.getItem() && slotStack.getCount() + inputStack.getCount() <= slotStack.getMaxStackSize()) || slotStack.isEmpty();
@@ -289,25 +201,6 @@ public class GrinderTile extends AbstractMachineTile<GrinderTile> {
         }
         return true;
     }
-
-    //---ENERGY---//
-
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}",energyStorage.getEnergyStored() ,energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
-
 }
 
 

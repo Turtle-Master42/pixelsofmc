@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -136,7 +136,8 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
     private LazyOptional<IFluidHandler> lazyQuadFluidHandler = LazyOptional.empty();
 
     public IndustrialHeatExchangerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.INDUSTRIAL_HEAT_EXCHANGER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.INDUSTRIAL_HEAT_EXCHANGER.get(), pWorldPosition, pBlockState, 0, 0);
+        defineMaxProgress(0);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {return isCrafting;}
@@ -181,7 +182,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
         lazyFluidHandler = LazyOptional.of(() -> fluidTank);
         lazyDuoFluidHandler = LazyOptional.of(() -> duoFluidTank);
         lazyTriFluidHandler = LazyOptional.of(() -> triFluidTank);
@@ -191,7 +191,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
         lazyFluidHandler.invalidate();
         lazyDuoFluidHandler.invalidate();
         lazyTriFluidHandler.invalidate();
@@ -200,7 +199,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
         tag.put("tank1", fluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank2", duoFluidTank.writeToNBT(new CompoundTag()));
         tag.put("tank3", triFluidTank.writeToNBT(new CompoundTag()));
@@ -211,7 +209,6 @@ public class IndustrialHeatExchangerTile extends AbstractMachineTile<IndustrialH
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
         fluidTank.readFromNBT(nbt.getCompound("tank1"));
         duoFluidTank.readFromNBT(nbt.getCompound("tank2"));
         triFluidTank.readFromNBT(nbt.getCompound("tank3"));

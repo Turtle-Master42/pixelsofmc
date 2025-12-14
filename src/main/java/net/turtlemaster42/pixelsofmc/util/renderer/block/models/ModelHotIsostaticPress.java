@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
+import net.turtlemaster42.pixelsofmc.tile.HotIsostaticPressTile;
 
 public class ModelHotIsostaticPress extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox root;

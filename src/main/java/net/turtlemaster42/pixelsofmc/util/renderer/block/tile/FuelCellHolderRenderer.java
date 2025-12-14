@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.turtlemaster42.pixelsofmc.block.FuelCellHolderBlock;
-import net.turtlemaster42.pixelsofmc.block.tile.FuelCellHolderTile;
+import net.turtlemaster42.pixelsofmc.tile.FuelCellHolderTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.models.ModelFuelCell;

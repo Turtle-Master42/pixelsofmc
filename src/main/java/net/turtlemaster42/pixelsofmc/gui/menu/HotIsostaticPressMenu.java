@@ -7,7 +7,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
-import net.turtlemaster42.pixelsofmc.block.tile.HotIsostaticPressTile;
+import net.turtlemaster42.pixelsofmc.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
@@ -54,23 +54,21 @@ public class HotIsostaticPressMenu extends AbstractMachineMenu implements IEnerg
     public int getEnergy() {return blockEntity.getEnergyStorage().getEnergyStored();}
     public int getMaxEnergy() {return blockEntity.getEnergyStorage().getMaxEnergyStored();}
     public int getProgress() {return this.data.get(0);}
-    public int getMaxProgress() {return this.data.get(1) - this.data.get(2);}
+    public int getMaxProgress() {return this.blockEntity.requiredProgress(4);}
 
     public int getScaledProgressOne() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 39; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
     public int getScaledProgressTwo() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int speedUpgrade = this.data.get(2); // Speed upgrades
         int progressArrowSize = 12; // This is the height in pixels of your arrow
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / (maxProgress - speedUpgrade) : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
 
     public int getScaledHeat() {

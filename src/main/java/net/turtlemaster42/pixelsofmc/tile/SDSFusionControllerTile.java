@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,8 +51,6 @@ import java.util.Optional;
 public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionControllerTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, IInfiniteEnergyHandlingTile, IButtonTile {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 8;
     private final InfiniteNumber capacity = new InfiniteNumber().fromLong(4096000000L);
     private final int maxReceive = 2048000000;
     private static final int energyConsumption = 12000;
@@ -64,7 +62,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     private int heatSinkAmount = 0;
 
     private final float heatEnergyEfficiency = 1.5f;
-    public int inputSlotLimit = 64;
     public boolean[] switches = new boolean[]{false, false, false};
 
     public final InfinitePixelEnergyStorage energyStorage = createEnergyStorage();
@@ -153,7 +150,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
 
     public SDSFusionControllerTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState);
+        super(POMtiles.SDS_CONTROLLER.get(), pWorldPosition, pBlockState, 0, 0);
+        defineMaxProgress(8);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
@@ -234,7 +233,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
         lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
         lazyFluidHandler = LazyOptional.of(() -> fluidTank);
         lazyDuoFluidHandler = LazyOptional.of(() -> duoFluidTank);
@@ -243,7 +241,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
         lazyEnergyHandler.invalidate();
         lazyFluidHandler.invalidate();
         lazyDuoFluidHandler.invalidate();
@@ -251,12 +248,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
         tag.putInt("Energy", energyStorage.getEnergyStored());
         tag.putString("InfiniteEnergy", energyStorage.getInfiniteEnergy().toString());
         tag.putLong("fusionPower", fusionPower);
-        tag.putInt("slotLimit", inputSlotLimit);
         tag = fluidTank.writeToNBT(tag);
         CompoundTag fluidTag = new CompoundTag();
         fluidTag = duoFluidTank.writeToNBT(fluidTag);
@@ -273,12 +267,9 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
         energyStorage.setEnergy(nbt.getInt("Energy"));
         energyStorage.setInfiniteEnergy(new InfiniteNumber().fromString(nbt.getString("InfiniteEnergy")));
         fusionPower = nbt.getLong("fusionPower");
-        inputSlotLimit = nbt.getInt("slotLimit");
         fluidTank.readFromNBT(nbt);
         duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
         switches[0] = nbt.getBoolean("switch1");
@@ -426,8 +417,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
         }
     }
 
-    private void resetProgress() {this.progress = 0;}
-
     private static boolean canInsertItemIntoSlot(ItemStack stack, ItemStack item) {
         return item.getItem()==stack.getItem() && stack.getCount() + item.getCount() <= stack.getMaxStackSize() || stack.isEmpty();
     }
@@ -560,14 +549,6 @@ public class SDSFusionControllerTile extends AbstractMachineTile<SDSFusionContro
 
     //---ENERGY---//
 
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
 
     @Override
     public void setEnergyLevel(InfiniteNumber energyLevel) {

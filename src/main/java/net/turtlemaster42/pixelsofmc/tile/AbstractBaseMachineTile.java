@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -13,17 +13,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncItemStackToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
-import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
-import net.turtlemaster42.pixelsofmc.util.block.IFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncItemStackToClient;
 import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
@@ -34,12 +28,49 @@ import java.util.List;
 
 import static java.lang.Math.random;
 
-public abstract class AbstractMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile, IEnergyHandlingTile, IFluidHandlingTile {
-
+// the base machine tile, without any of the special functionalities like energy or fluid handling
+public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile {
     Tile tile;
-    public AbstractMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
+    public int progress = 0;
+    public int maxProgress = 80;
+    public int requiredProgress = maxProgress;
+
+    public AbstractBaseMachineTile(BlockEntityType<?> pType, BlockPos pWorldPosition, BlockState pBlockState) {
         super(pType, pWorldPosition, pBlockState);
     }
+
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        lazyItemHandler.invalidate();
+    }
+
+    @Override
+    protected void saveAdditional(@NotNull CompoundTag tag) {
+        tag.put("Inventory", itemHandler.serializeNBT());
+        tag.putInt("progress", progress);
+        tag.putInt("requiredProgress", requiredProgress);
+        super.saveAdditional(tag);
+    }
+
+    @Override
+    public void load(@NotNull CompoundTag nbt) {
+        super.load(nbt);
+        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
+        progress = nbt.getInt("progress");
+        requiredProgress = nbt.getInt("requiredProgress");
+    }
+
+
+    // -- ITEM HANDLING -- //
+
     protected final ItemStackHandler itemHandler = new PixelItemStackHandler(itemHandlerSize()) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -61,8 +92,7 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
 
         @Override
-        public int getSlotLimit(int slot)
-        {
+        public int getSlotLimit(int slot) {
             return getSlotLimits(slot);
         }
     };
@@ -70,11 +100,15 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
     protected boolean isInputValid(int slot, @Nonnull ItemStack stack) {
         return true;
     }
+
     protected boolean isSlotValidOutput(int slot) {
         return true;
     }
+
     protected int itemHandlerSize() {return 1;}
+
     protected void contentsChanged(int slot) {}
+
     protected int getSlotLimits(int slot) {return 64;}
 
     @Override
@@ -116,13 +150,14 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         return compound;
     }
 
+
     // -- CRAFTING -- //
 
     public ItemStack insertItemStack(int slot, ItemStack stack, boolean simulate) {
         if (stack.isEmpty())
             return ItemStack.EMPTY;
         ItemStack existing = this.itemHandler.getStackInSlot(slot);
-        int limit =  Math.min(itemHandler.getSlotLimit(slot), stack.getMaxStackSize());
+        int limit = Math.min(itemHandler.getSlotLimit(slot), stack.getMaxStackSize());
         boolean limitReached = existing.getCount() + stack.getCount() > limit;
 
         if (existing.getItem() != stack.getItem() && !existing.isEmpty()) {
@@ -130,12 +165,12 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
 
         if (!limitReached && !simulate)
-            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), existing.getCount()+stack.getCount()));
+            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), existing.getCount() + stack.getCount()));
         if (limitReached) {
             if (!simulate) {
                 itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), stack.getMaxStackSize()));
             }
-            return new ItemStack(stack.getItem(), existing.getCount()+stack.getCount()-stack.getMaxStackSize());
+            return new ItemStack(stack.getItem(), existing.getCount() + stack.getCount() - stack.getMaxStackSize());
         }
         return ItemStack.EMPTY;
     }
@@ -293,50 +328,36 @@ public abstract class AbstractMachineTile<Tile extends BlockEntity> extends Bloc
         }
     }
 
-    public static boolean canInsertOutputFluid(FluidStack resultFluid, FluidTank tank) {
-        return resultFluid.equals(tank.getFluid()) && resultFluid.getAmount() <= tank.getSpace() || tank.isEmpty() || resultFluid.isEmpty();
+
+    // -- PROGRESS -- //
+
+    public int getProgress() {
+        return this.progress;
     }
 
-    public static boolean canExtractInputFluid(FluidStack fluidInput, FluidTank tank) {
-        return fluidInput.equals(tank.getFluid()) && fluidInput.getAmount() <= tank.getFluidAmount() || fluidInput.isEmpty();
+    public int getMaxProgress() {
+        return this.maxProgress;
     }
 
-    public void addFluidOutput(FluidStack fluidOutput, FluidTank tank) {
-        if (fluidOutput.isEmpty() || fluidOutput.getAmount() <= 0) {
-            return;
-        }
-        if (fluidOutput.equals(tank.getFluid()) || tank.isEmpty()) {
-            tank.fill(fluidOutput, IFluidHandler.FluidAction.EXECUTE);
-        }
+    public void defineMaxProgress(int maxProgress) {
+        this.maxProgress = maxProgress;
+        this.requiredProgress = maxProgress;
     }
 
-    public void removeFluidInput(FluidStack fluidInput, FluidTank tank) {
-        if (fluidInput.isEmpty() || fluidInput.getAmount() <= 0 || !fluidInput.equals(tank.getFluid())) {
-            return;
-        }
-        tank.drain(fluidInput.getAmount(), IFluidHandler.FluidAction.EXECUTE);
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
-    // -- ENERGY -- //
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {}
-
-    @Override
-    public PixelEnergyStorage getEnergyStorage() {
-        return null;
+    public void resetProgress() {
+        this.progress = 0;
     }
 
-    // -- FLUIDS -- //
-
-    @Override
-    public void setFluid(FluidStack fluid) {}
-
-    @Override
-    public FluidStack getFluid() {
-        return null;
+    protected void speedUpgradeCheck(int speedSlot) {
+        this.requiredProgress = requiredProgress(speedSlot);
     }
 
-    @Override
-    public FluidTank getFluidTank() {return null;}
+    public int requiredProgress(int speedSlot) {
+        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(speedSlot).getCount()));
+    }
+
 }

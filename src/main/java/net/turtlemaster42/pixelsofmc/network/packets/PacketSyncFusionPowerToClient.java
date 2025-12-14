@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.turtlemaster42.pixelsofmc.block.tile.SDSFusionControllerTile;
+import net.turtlemaster42.pixelsofmc.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.gui.menu.SDSFusionControllerMenu;
 
 import java.util.function.Supplier;

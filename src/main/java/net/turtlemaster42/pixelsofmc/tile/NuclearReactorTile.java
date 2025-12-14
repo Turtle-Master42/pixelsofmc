@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,18 +16,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.NuclearReactorMenu;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncDuoFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
@@ -47,9 +44,6 @@ import java.util.Optional;
 public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> implements IMultiFluidHandlingTile, IDuoFluidHandlingTile, IEnergyHandlingTile, IButtonTile {
 
     protected final ContainerData data;
-    private final int capacity = 8_192_000;
-    private final int maxReceive = 512_000;
-    private static final int energyConsumption = 100;
     private float efficiency_bonus = 1f;
     private int internalHeat = 0;
     private final int internalHeatCapacity = 10_000_000;
@@ -57,37 +51,9 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
 
     public boolean[] switches = new boolean[]{false, false, true, false};
 
-
-
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                setChanged();
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-
-            @Override
-            public int extractEnergy(int maxExtract, boolean simulate) {
-                onEnergyChanged();
-                return super.extractEnergy(maxExtract, simulate);
-            }
-        };
-    }
-
     public long getEnergyPercentage() {
         return energyStorage.getEnergyStored() / capacity;
     }
-
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
     public final FluidTank fluidTank = new FluidTank(250000) {
         @Override
@@ -142,7 +108,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     private LazyOptional<IFluidHandler> lazyDuoFluidHandler = LazyOptional.empty();
 
     public NuclearReactorTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.NUCLEAR_REACTOR.get(), pWorldPosition, pBlockState);
+        super(POMtiles.NUCLEAR_REACTOR.get(), pWorldPosition, pBlockState, 8_192_000, 512_000, 100);
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
@@ -178,7 +144,7 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pInventory, @NotNull Player pPlayer) {
-        POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energyStorage.getEnergyStored(), getBlockPos()));
+        POMmessages.sendToClients(new PacketSyncEnergyToClient(this.getEnergyStorage().getEnergyStored(), worldPosition));
         POMmessages.sendToClients(new PacketSyncFluidToClient(this.getFluid(), worldPosition));
         POMmessages.sendToClients(new PacketSyncDuoFluidToClient(this.getDuoFluid(), worldPosition));
         return new NuclearReactorMenu(pContainerId, pInventory, this, this.data);
@@ -204,8 +170,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
         lazyFluidHandler = LazyOptional.of(() -> fluidTank);
         lazyDuoFluidHandler = LazyOptional.of(() -> duoFluidTank);
     }
@@ -213,16 +177,12 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
         lazyFluidHandler.invalidate();
         lazyDuoFluidHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("Energy", energyStorage.getEnergyStored());
         tag.putInt("internalHeat", internalHeat);
         tag = fluidTank.writeToNBT(tag);
         CompoundTag fluidTag = new CompoundTag();
@@ -242,8 +202,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        energyStorage.setEnergy(nbt.getInt("Energy"));
         internalHeat = nbt.getInt("internalHeat");
         fluidTank.readFromNBT(nbt);
         duoFluidTank.readFromNBT(nbt.getCompound("outFluid"));
@@ -374,22 +332,6 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
             itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
         }
     }
-
-    //---ENERGY---//
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    @Override
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 
     public FluidTank getFluidTank() {
         return fluidTank;

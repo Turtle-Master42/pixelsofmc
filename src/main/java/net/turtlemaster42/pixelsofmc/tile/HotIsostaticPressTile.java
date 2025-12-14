@@ -1,4 +1,4 @@
-package net.turtlemaster42.pixelsofmc.block.tile;
+package net.turtlemaster42.pixelsofmc.tile;
 
 
 import net.minecraft.core.BlockPos;
@@ -19,14 +19,9 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.HotIsostaticPressMenu;
-import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
-import net.turtlemaster42.pixelsofmc.network.PixelEnergyStorage;
 import net.turtlemaster42.pixelsofmc.recipe.machines.HotIsostaticPressRecipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,15 +33,9 @@ import java.util.Optional;
 public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPressTile> {
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 144;
-    private int speedUpgrade = 0;
-    private final int capacity = 1024000;
-    private final int maxReceive = 1024000;
-    private static final int energyConsumption = 512;
     private int heat;
-    private int maxHeat = 2500;
-    private int maxSoulHeat = 5000;
+    private final int maxHeat = 2500;
+    private final int maxSoulHeat = 5000;
 
     private static int requiredHeat = -1;
     private static int requiredMaxHeat = -1;
@@ -54,35 +43,16 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     private int soulBurnTime = 0;
     private int maxBurnTime = 0;
 
-    public final PixelEnergyStorage energyStorage = createEnergyStorage();
-
-    @NotNull
-    public PixelEnergyStorage createEnergyStorage() {
-        return new PixelEnergyStorage(capacity, maxReceive) {
-            @Override
-            public void onEnergyChanged() {
-                POMmessages.sendToClients(new PacketSyncEnergyToClient(this.energy, worldPosition));
-                setChanged();
-            }
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
-                onEnergyChanged();
-                setChanged();
-                return super.receiveEnergy(maxReceive, simulate);
-            }
-        };
-    }
-
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-
     public HotIsostaticPressTile(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(POMtiles.HOT_ISOSTATIC_PRESS.get(), pWorldPosition, pBlockState);
+        super(POMtiles.HOT_ISOSTATIC_PRESS.get(), pWorldPosition, pBlockState, 1024000, 512);
+        defineMaxProgress(144);
+
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> HotIsostaticPressTile.this.progress;
                     case 1 -> HotIsostaticPressTile.this.maxProgress;
-                    case 2 -> HotIsostaticPressTile.this.speedUpgrade;
+                    case 2 -> HotIsostaticPressTile.this.requiredProgress;
                     case 3 -> HotIsostaticPressTile.this.capacity;
                     case 4 -> HotIsostaticPressTile.this.maxReceive;
                     case 5 -> HotIsostaticPressTile.this.energyStorage.getEnergyStored();
@@ -99,13 +69,11 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
                 switch (index) {
                     case 0 -> HotIsostaticPressTile.this.progress = value;
                     case 1 -> HotIsostaticPressTile.this.maxProgress = value;
-                    case 2 -> HotIsostaticPressTile.this.speedUpgrade = value;
+                    case 2 -> HotIsostaticPressTile.this.requiredProgress = value;
                     case 6 -> HotIsostaticPressTile.this.heat = value;
-                    case 7 -> HotIsostaticPressTile.this.maxHeat = value;
                     case 8 -> HotIsostaticPressTile.this.burnTime = value;
                     case 9 -> HotIsostaticPressTile.this.soulBurnTime = value;
                     case 10 -> HotIsostaticPressTile.this.maxBurnTime = value;
-                    case 11 -> HotIsostaticPressTile.this.maxSoulHeat = value;
                 }
             }
 
@@ -129,8 +97,7 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     @Override
     protected int itemHandlerSize() {return 7;}
     protected void contentsChanged(int slot) {
-        if (slot==4)
-            speedUpgradeCheck();
+        if (slot==4) speedUpgradeCheck(4);
         else if (slot==1)
             if (itemHandler.getStackInSlot(1).is(Items.ICE)) {
                 heat = heat - 50;
@@ -174,44 +141,21 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
     }
 
     @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyEnergyHandler = LazyOptional.of(() -> energyStorage);
-    }
-
-    @Override
-    public void invalidateCaps()  {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyEnergyHandler.invalidate();
-    }
-
-    @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.put("Inventory", itemHandler.serializeNBT());
-        tag.putInt("progress", progress);
         tag.putInt("heat", heat);
         tag.putInt("burnTime", burnTime);
         tag.putInt("soulBurnTime", soulBurnTime);
         tag.putInt("maxBurnTime", maxBurnTime);
-        tag.putInt("speedUpgrade", speedUpgrade);
-        tag.putInt("powerCapacity", capacity);
-        tag.putInt("Energy", energyStorage.getEnergyStored());
         super.saveAdditional(tag);
     }
 
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("progress");
         heat = nbt.getInt("heat");
         burnTime = nbt.getInt("burnTime");
         soulBurnTime = nbt.getInt("soulBurnTime");
         maxBurnTime = nbt.getInt("maxBurnTime");
-        speedUpgrade = nbt.getInt("speedUpgrade");
-        energyStorage.setEnergy(nbt.getInt("Energy"));
     }
 
     //---RECIPE---//
@@ -242,12 +186,10 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         createHeat();
         createSoulHeat();
 
-        if(hasRecipe(pBlockEntity) && hasPower(pBlockEntity)) {
-            int speedAmount = pBlockEntity.itemHandler.getStackInSlot(4).getCount();
-            pBlockEntity.speedUpgradeCheck();
+        if(hasRecipe(pBlockEntity) && hasPower(5, 4)) {
             pBlockEntity.progress++;
-            pBlockEntity.energyStorage.consumeEnergy(energyConsumption + (speedAmount * energyConsumption) - (pBlockEntity.energyUpgrade() * speedAmount));
-            if(pBlockEntity.progress > pBlockEntity.maxProgress - pBlockEntity.speedUpgrade) {
+            consumePower(5, 4);
+            if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
                 craftItem(pBlockEntity);
             }
         } else {
@@ -277,14 +219,9 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         else return false;
     }
 
-    private static boolean hasPower(HotIsostaticPressTile entity) {
-        int speedAmount = entity.itemHandler.getStackInSlot(4).getCount();
-        return entity.energyStorage.getEnergyStored() >= (energyConsumption + (speedAmount * energyConsumption) - (entity.energyUpgrade() * speedAmount));
-    }
     private static boolean hasHeat(HotIsostaticPressTile entity, int heat) {
         return entity.getHeat() > heat;
     }
-
 
     private static void craftItem(HotIsostaticPressTile entity) {
         Level level = entity.level;
@@ -310,11 +247,10 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         }
     }
 
-    private void resetProgress() {this.progress = 0;}
     private void createHeat() {
         if (burnTime > 0) {
-            int upgrade = this.itemHandler.getStackInSlot(6).getCount() + 1;
-            this.burnTime = this.burnTime - upgrade;
+            int upgrade = this.itemHandler.getStackInSlot(6).getCount();
+            this.burnTime = this.burnTime - 1 - upgrade;
             if (this.burnTime < 0) this.burnTime = 0;
             if (heat < maxHeat) {
                 this.heat = this.heat + upgrade;
@@ -334,40 +270,11 @@ public class HotIsostaticPressTile extends AbstractMachineTile<HotIsostaticPress
         }
     }
 
-    private void speedUpgradeCheck() {
-        this.speedUpgrade = this.maxProgress - speedUpgrade();
-    }
-
-    private int energyUpgrade() {
-        return Math.round(energyConsumption / (1 + 0.125f * (this.itemHandler.getStackInSlot(5).getCount() - this.itemHandler.getStackInSlot(5).getCount())));
-    }
-
-    private int speedUpgrade() {
-        return Math.round(this.maxProgress / (1 + 0.125f * this.itemHandler.getStackInSlot(4).getCount()));
-    }
-
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
     }
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int count) {
         return inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount() + count;
     }
-
-
-    //---ENERGY---//
-
-
-    private void errorEnergyReset() {
-        if (energyStorage.getEnergyStored() > energyStorage.getMaxEnergyStored() || energyStorage.getEnergyStored() < 0) {
-            PixelsOfMc.LOGGER.error("Energy {} is higher than max {}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-            energyStorage.setEnergy(0);
-            PixelsOfMc.LOGGER.error("Stored energy of block at {} was outside limits, energy reverted to 0", this.getBlockPos());
-        }
-    }
-
-    public void setEnergyLevel(int energyLevel) {
-        this.energyStorage.setEnergy(energyLevel);
-    }
-    public PixelEnergyStorage getEnergyStorage() { return energyStorage; }
 }
 

@@ -197,6 +197,8 @@ public class PixelsOfMc {
 		ItemBlockRenderTypes.setRenderLayer(POMfluids.URANIUM_HEXAFLUORIDE_GAS_FLOWING.get(), RenderType.translucent());
 
 		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_BOMBARDER.get(), RenderType.cutout());
+
 
 		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterScreen::new);
 		MenuScreens.register(POMmenuType.PIXEL_ASSEMBLER_MENU.get(), PixelAssemblerScreen::new);
