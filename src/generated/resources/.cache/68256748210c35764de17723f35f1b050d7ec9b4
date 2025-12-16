@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-10T19:40:37.387614	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2025-12-16T17:42:42.428217	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon.json
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine.json
@@ -43,14 +43,14 @@ c6ba4b98cb3d79bd08a4fa096f69cac4331aabc9 data/forge/tags/items/dusts/uranium.jso
 911e664419bed267837b965ccd8b1f84e07ad7b3 data/forge/tags/items/dusts/zinc.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine_cube.json
-4e0c6f7d22fad7ed516938b048d906ae020a81fb data/forge/tags/items/gems.json
+338ae38f45bc6894f1f1d0d50d928c68b275d2da data/forge/tags/items/gems.json
 8d14f2dc59dd706a6d0c0faedcebff714c25a447 data/forge/tags/items/gems/diamond.json
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/items/glass.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium_canister.json
 48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen.json
 48897184595f685f32c3af9af21651c5eddd2234 data/forge/tags/items/hydrogen_canister.json
-8b3486a6e5c4760a2bbc2af564cc1fcf2e43fd9d data/forge/tags/items/ingots.json
+56649704fa75bec14bbb233270cbfeada9e5dbec data/forge/tags/items/ingots.json
 28cee7b5e0b7f26632ddef7b45ef49575d291974 data/forge/tags/items/ingots/actinium.json
 1199b6b43f9d3840ab981c3dfde11e0636dcf53c data/forge/tags/items/ingots/aluminium.json
 0d93d8aa18d6fc2ef1842675bfc85527c66cb67f data/forge/tags/items/ingots/americium.json
@@ -139,7 +139,7 @@ df915371d85f3f28519fbfaa27f06ed32f6c1206 data/forge/tags/items/iodine_cube.json
 1c5760a1d5eadcbdc6283e78b04f855b63e47216 data/forge/tags/items/neon_canister.json
 8e42f0025f7390f4cd3e2546ad97da8e9965cbb7 data/forge/tags/items/nitrogen.json
 8e42f0025f7390f4cd3e2546ad97da8e9965cbb7 data/forge/tags/items/nitrogen_canister.json
-da620b41b82530bc3f9e182ffee75a1eaed00ce0 data/forge/tags/items/nuggets.json
+6ce2037edce548fbbfabbf9dc6fde2b2fe8e15a5 data/forge/tags/items/nuggets.json
 2ae94496cb1f0df6a185df50a219eb5cc1f8a3fc data/forge/tags/items/nuggets/copper.json
 6375c381a05fdf319eedbdbbb558fb9381d4d4af data/forge/tags/items/nuggets/netherite.json
 aa4dc9565236148de80b67fab9fc3984bc70f74c data/forge/tags/items/nuggets/silver.json

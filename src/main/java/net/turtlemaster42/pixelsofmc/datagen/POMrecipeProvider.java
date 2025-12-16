@@ -210,7 +210,41 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_items", inventoryTrigger(
                         toItemP(POMitems.BLACK_DIAMOND.get())))
                 .save(fConsumer);
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.BROWN_DIAMOND.get())
+                .define('A', POMitems.NITROGEN_GAS_BUCKET.get())
+                .define('C', POMitems.CARBONARO_CLUMP.get())
+                .pattern(" C ")
+                .pattern("CAC")
+                .pattern(" C ")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NITROGEN_GAS_BUCKET.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.YELLOW_DIAMOND.get())
+                .define('A', POMitems.NITROGEN_GAS_BUCKET.get())
+                .define('C', POMitems.BLACK_DIAMOND.get())
+                .pattern(" C ")
+                .pattern("CAC")
+                .pattern(" C ")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NITROGEN_GAS_BUCKET.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.ORANGE_DIAMOND.get())
+                .define('A', POMitems.NITROGEN_GAS_BUCKET.get())
+                .define('C', POMitems.BLACK_DIAMOND.get())
+                .pattern("AC")
+                .pattern("CC")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(POMitems.NITROGEN_GAS_BUCKET.get())))
+                .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMitems.BLUE_DIAMOND.get())
+                .define('A', Element.BORON.dustTag())
+                .define('C', POMitems.BLACK_DIAMOND.get())
+                .pattern(" C ")
+                .pattern("CAC")
+                .pattern(" C ")
+                .unlockedBy("has_items", inventoryTrigger(
+                        toItemP(Element.BORON.dustTag())))
+                .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, POMitems.SCREWDRIVER.get())
                 .define('A', POMitems.BIO_PLASTIC.get())
@@ -2012,6 +2046,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         HotIsostaticPressRecipeBuilder.build(POMitems.VIOLET_DIAMOND.get()).ballMold()
                 .input(Tags.Items.GEMS_DIAMOND, 4).heat(3500, 5000)
                 .finish(fConsumer, this);
+        HotIsostaticPressRecipeBuilder.build(POMitems.PINK_DIAMOND.get()).ballMold()
+                .input(POMitems.VIOLET_DIAMOND.get(), 4).heat(3500, 5000)
+                .finish(fConsumer, this);
         HotIsostaticPressRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get()).ballMold()
                 .input(POMitems.YELLOWCAKE_URANIUM.get(), 9).heat(3500, 5000)
                 .finish(fConsumer, this);
@@ -2389,6 +2426,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         PixelBombarderRecipeBuilder.build(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
                 .output(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
                 .lazer(new Color(200, 0, 35))
+                .finish(fConsumer, this);
+        PixelBombarderRecipeBuilder.build(Tags.Items.GEMS_DIAMOND)
+                .output(POMitems.GREEN_DIAMOND.get())
+                .lazer(new Color(100, 255, 30))
+                .finish(fConsumer, this);
+        PixelBombarderRecipeBuilder.build(POMitems.GREEN_DIAMOND.get())
+                .output(POMitems.DARK_GREEN_DIAMOND.get())
+                .lazer(new Color(100, 255, 30))
                 .finish(fConsumer, this);
 
         // laser

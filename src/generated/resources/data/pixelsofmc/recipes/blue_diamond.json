@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:dusts/boron"
+    },
+    "C": {
+      "item": "pixelsofmc:black_diamond"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CAC",
+    " C "
+  ],
+  "result": {
+    "item": "pixelsofmc:blue_diamond"
+  },
+  "show_notification": true
+}

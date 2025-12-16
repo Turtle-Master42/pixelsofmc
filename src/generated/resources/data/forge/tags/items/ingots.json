@@ -81,6 +81,9 @@
     "#forge:ingots/californium",
     "#forge:ingots/einsteinium",
     "pixelsofmc:titanium_diboride_ingot",
-    "pixelsofmc:titanium_gold_ingot"
+    "pixelsofmc:titanium_gold_ingot",
+    "pixelsofmc:superconductive_ingot",
+    "pixelsofmc:royal_tungsten_ingot",
+    "pixelsofmc:red_silver_ingot"
   ]
 }

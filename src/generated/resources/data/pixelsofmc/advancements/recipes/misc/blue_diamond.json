@@ -5,10 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "pixelsofmc:wirecutter",
-              "minecraft:copper_ingot"
-            ]
+            "tag": "forge:dusts/boron"
           }
         ]
       },
@@ -16,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:copper_wire_2"
+        "recipe": "pixelsofmc:blue_diamond"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:copper_wire_2"
+      "pixelsofmc:blue_diamond"
     ]
   },
   "sends_telemetry_event": false

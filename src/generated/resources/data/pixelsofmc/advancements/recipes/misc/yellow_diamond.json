@@ -6,8 +6,7 @@
         "items": [
           {
             "items": [
-              "pixelsofmc:wirecutter",
-              "minecraft:copper_ingot"
+              "pixelsofmc:nitrogen_gas_bucket"
             ]
           }
         ]
@@ -16,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:copper_wire_2"
+        "recipe": "pixelsofmc:yellow_diamond"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:copper_wire_2"
+      "pixelsofmc:yellow_diamond"
     ]
   },
   "sends_telemetry_event": false

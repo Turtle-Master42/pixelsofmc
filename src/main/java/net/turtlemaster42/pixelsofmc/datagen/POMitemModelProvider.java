@@ -44,6 +44,13 @@ public class POMitemModelProvider extends ItemModelProvider {
         simpleItem(POMitems.PERFECT_DIAMOND);
         simpleItem(POMitems.VIOLET_DIAMOND);
         simpleItem(POMitems.RED_DIAMOND);
+        simpleItem(POMitems.BROWN_DIAMOND);
+        simpleItem(POMitems.ORANGE_DIAMOND);
+        simpleItem(POMitems.YELLOW_DIAMOND);
+        simpleItem(POMitems.GREEN_DIAMOND);
+        simpleItem(POMitems.DARK_GREEN_DIAMOND);
+        simpleItem(POMitems.BLUE_DIAMOND);
+        simpleItem(POMitems.PINK_DIAMOND);
 
         simpleItem(POMitems.COPPER_WIRE);
         simpleItem(POMitems.SILVER_WIRE);

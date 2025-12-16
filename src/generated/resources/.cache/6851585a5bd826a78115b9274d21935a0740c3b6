@@ -1,4 +1,4 @@
-// 1.20.1	2025-10-11T18:11:41.593141	Item Models: pixelsofmc
+// 1.20.1	2025-12-16T17:31:36.07725	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -52,6 +52,7 @@ d9c821da244de1bf182564d19a2d195349cdd3d6 assets/pixelsofmc/models/item/bismuth_a
 04c0bf105140905b4170fff00330b0f25d2b777f assets/pixelsofmc/models/item/bismuth_ingot.json
 8a1e6c0b7b050e23ca8e6e2d2418d5468f381859 assets/pixelsofmc/models/item/black_diamond.json
 489d72ae9135a81b486563722e7fbbf5820837e8 assets/pixelsofmc/models/item/blazing_steam_bucket.json
+f79e6d37adce1cbe08c555ea992bea3daddcd990 assets/pixelsofmc/models/item/blue_diamond.json
 049ded1e0ead767a0fcbf4dcd6081525a9d12ed1 assets/pixelsofmc/models/item/book_1.json
 4e0c7cde73ab11b52141ad5e250dc7a1b766a931 assets/pixelsofmc/models/item/boron_10_atom_512.json
 84229284a1f446cef19b0faf2b128a8939a7006b assets/pixelsofmc/models/item/boron_10_atom_64.json
@@ -65,6 +66,7 @@ f673541b7718d9915e05ec3a9ece55d48fbffddf assets/pixelsofmc/models/item/bromine_8
 781d2f9d63b8182be7ea2339555535513719cdfd assets/pixelsofmc/models/item/bromine_atom_64.json
 e629347257adf3758b5d32728100167c6ffde6cb assets/pixelsofmc/models/item/bromine_canister.json
 4aae41909ac6780ce68a5f63b103b2a83607d575 assets/pixelsofmc/models/item/bromine_gas_bucket.json
+aef0aa3952f1dc6a95cf1e52fc20b55d9f5c428e assets/pixelsofmc/models/item/brown_diamond.json
 8148621a88f6286808610c64e085db761710c610 assets/pixelsofmc/models/item/cadmium_112_atom_512.json
 041d209a21512f3bf1f1219e86fdd8c8470de5b7 assets/pixelsofmc/models/item/cadmium_112_atom_64.json
 3c8e8791d7b0027a591e919ab44a635e9cef7784 assets/pixelsofmc/models/item/cadmium_atom_512.json
@@ -133,6 +135,7 @@ cdfccd6fc950da68452dc90e793688f95c2beaca assets/pixelsofmc/models/item/copper_wi
 51830f2bbed9f64cad5b6a30cd877e4b176f0b0c assets/pixelsofmc/models/item/curium_atom_512.json
 e90c7f42c682dc1ac1b38b56e4c69b4601fdc5c5 assets/pixelsofmc/models/item/curium_atom_64.json
 f6b5f89b5745ce098e7779c222b6a2f842f18963 assets/pixelsofmc/models/item/curium_ingot.json
+bd6dabdccfb83fdcd28b4f5ec13ab2a8daf683d2 assets/pixelsofmc/models/item/dark_green_diamond.json
 c021adf753feeb4691994467ea6c351e77fccff5 assets/pixelsofmc/models/item/debugium_ingot.json
 2c1267bb20e68de7d3f9a6f2ad3b850594c7bdd7 assets/pixelsofmc/models/item/depleted_enriched_plutonium_fuel_cell.json
 a708cb27878aa0ba7c51abe9c1d593fab64a4c8e assets/pixelsofmc/models/item/depleted_enriched_uranium_fuel_cell.json
@@ -208,6 +211,7 @@ d41874f0b00f7503d3ab15018ed0e952aeab57b5 assets/pixelsofmc/models/item/germanium
 c3391de38b06ab9a7ac0fed1efbe314c93d25be1 assets/pixelsofmc/models/item/gold_atom_512.json
 aab67ebd174f8822e7fe44c3c9ad23a83a765345 assets/pixelsofmc/models/item/gold_atom_64.json
 073665a6a2397143155d9a4e116b29ddaf0eae34 assets/pixelsofmc/models/item/gold_dust.json
+31f88b2bbfdda6ec143e8a7547e041a8ec075fef assets/pixelsofmc/models/item/green_diamond.json
 ef60be60fbfa71724b39b2c54df23371a5ded503 assets/pixelsofmc/models/item/grinder.json
 dbf6008a429f59ffb7071ba2f09b253526c72a8d assets/pixelsofmc/models/item/hafnium_176_atom_512.json
 3e14c532c4210f419d1897a0a0f567bf0e0fde06 assets/pixelsofmc/models/item/hafnium_176_atom_64.json
@@ -376,6 +380,7 @@ ba6fa448ae8913a2c1553587e7231b42e3a29bd4 assets/pixelsofmc/models/item/nuclear_r
 57cc21591133f1410dcebfef8488ac27e2c0f1ba assets/pixelsofmc/models/item/nuclear_waste_solution_bucket.json
 03ac720c8c8771b9c2589b384b5a2cb1a8491edc assets/pixelsofmc/models/item/obsidian_dust.json
 015350d52b5c539453d2ec778c219e9df2e2fe13 assets/pixelsofmc/models/item/obsidian_plating.json
+6fa517ef3b9c414197ea5a688f160e3991676993 assets/pixelsofmc/models/item/orange_diamond.json
 33bf86b50f89884ec3a196269caf5b64fee243cf assets/pixelsofmc/models/item/osmium_atom_512.json
 1b696e605c9cccf8261139f8565f0a541718b7d9 assets/pixelsofmc/models/item/osmium_atom_64.json
 48ccf59a478b0e2f8ecd2f4f3bd83f7713fe11e8 assets/pixelsofmc/models/item/osmium_ingot.json
@@ -400,6 +405,7 @@ f50a375238e2f3d4e491d10f4a3adb58cef7b22f assets/pixelsofmc/models/item/perfected
 dc4180d88c46c2d399aa33d7ec5dc9497157c1fa assets/pixelsofmc/models/item/phosphorus_atom_512.json
 b400a151ed33fa3dc8ead736dbe32cc8b082e223 assets/pixelsofmc/models/item/phosphorus_atom_64.json
 72ecf39ce11b6d02ca1a90ce0e74c9476a1dfcf5 assets/pixelsofmc/models/item/phosphorus_cube.json
+1620b26f64b5fff49cb49d5e792d03b8e7e57b8a assets/pixelsofmc/models/item/pink_diamond.json
 593ef53f50e22cf62a1c8e537bd9629ee050d1e6 assets/pixelsofmc/models/item/pixel_bombarder.json
 681831af31c87d599bb26a7345dc0b280b3ee741 assets/pixelsofmc/models/item/pixel_splitter.json
 a7f6fff5a22c6761961577db885c9f704740340c assets/pixelsofmc/models/item/place_holder.json
@@ -670,6 +676,7 @@ d47d88d43edab4083c560b95b412e2adda4c59c1 assets/pixelsofmc/models/item/xenon_129
 fa8e202d4a749891fbeaa198aa9f24a864ef247a assets/pixelsofmc/models/item/xenon_atom_512.json
 f7d562ac68f3e78d1ae2b49a311d52f0216e2bf1 assets/pixelsofmc/models/item/xenon_atom_64.json
 a7a5cf80751495e827f7f5e6d8093dee2a543fe9 assets/pixelsofmc/models/item/xenon_canister.json
+2a399c6ea111e7fe68a94bc444dddb0a51c29c2c assets/pixelsofmc/models/item/yellow_diamond.json
 da85e9a4e104a67e6e1a08bcf297b72dedae50b5 assets/pixelsofmc/models/item/yellowcake_uranium.json
 f136a91c3fa79364f0cc0098dce72bb9ac726465 assets/pixelsofmc/models/item/ytterbium_174_atom_512.json
 4f7d134e7791989468cdc25243bcd6ae9480328a assets/pixelsofmc/models/item/ytterbium_174_atom_64.json

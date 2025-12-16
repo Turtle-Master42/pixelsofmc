@@ -4,6 +4,11 @@
     "#forge:nuggets/copper",
     "#forge:nuggets/silver",
     "#forge:nuggets/tungsten",
-    "#forge:nuggets/netherite"
+    "pixelsofmc:netherite_nugget",
+    "pixelsofmc:superconductive_nugget",
+    "pixelsofmc:titanium_diboride_nugget",
+    "pixelsofmc:royal_tungsten_nugget",
+    "pixelsofmc:titanium_gold_nugget",
+    "pixelsofmc:red_silver_nugget"
   ]
 }

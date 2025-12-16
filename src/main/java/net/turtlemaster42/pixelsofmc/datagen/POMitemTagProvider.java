@@ -100,7 +100,19 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         tag(Tags.Items.SLIMEBALLS).add(POMitems.BIO_COMPOUND.get()).add(POMitems.FIRE_PROOF_COMPOUND.get()).add(POMitems.REPELLING_COMPOUND.get());
         tag(Tags.Items.GLASS).add(POMblocks.REINFORCED_GLASS.get().asItem());
-        tag(Tags.Items.GEMS).add(POMitems.PERFECT_DIAMOND.get(), POMitems.VIOLET_DIAMOND.get(), POMitems.RED_DIAMOND.get(), POMitems.BLACK_DIAMOND.get());
+        tag(Tags.Items.GEMS)
+                .add(POMitems.PERFECT_DIAMOND.get(),
+                        POMitems.VIOLET_DIAMOND.get(),
+                        POMitems.RED_DIAMOND.get(),
+                        POMitems.BLACK_DIAMOND.get(),
+                        POMitems.BROWN_DIAMOND.get(),
+                        POMitems.ORANGE_DIAMOND.get(),
+                        POMitems.YELLOW_DIAMOND.get(),
+                        POMitems.GREEN_DIAMOND.get(),
+                        POMitems.DARK_GREEN_DIAMOND.get(),
+                        POMitems.BLUE_DIAMOND.get(),
+                        POMitems.PINK_DIAMOND.get()
+                );
 
         tag(Tags.Items.GEMS_DIAMOND).add(POMitems.PERFECT_DIAMOND.get());
         tag(Tags.Items.ORES)
@@ -220,13 +232,20 @@ public class POMitemTagProvider extends ItemTagsProvider {
 
         //ingots
         tag(Tags.Items.INGOTS)
-                .add(POMitems.TITANIUM_DIBORIDE_INGOT.get()).add(POMitems.TITANIUM_GOLD_INGOT.get());
-
-
+                .add(POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .add(POMitems.TITANIUM_GOLD_INGOT.get())
+                .add(POMitems.SUPERCONDUCTIVE_INGOT.get())
+                .add(POMitems.ROYAL_TUNGSTEN_INGOT.get())
+                .add(POMitems.RED_SILVER_INGOT.get());
 
         //nuggets
         tag(Tags.Items.NUGGETS)
-                .addTag(POMtags.Items.NUGGET_NETHERITE);
+                .add(POMitems.NETHERITE_NUGGET.get())
+                .add(POMitems.SUPERCONDUCTIVE_NUGGET.get())
+                .add(POMitems.TITANIUM_DIBORIDE_NUGGET.get())
+                .add(POMitems.ROYAL_TUNGSTEN_NUGGET.get())
+                .add(POMitems.TITANIUM_GOLD_NUGGET.get())
+                .add(POMitems.RED_SILVER_NUGGET.get());
 
         tag(POMtags.Items.NUGGET_NETHERITE).add(POMitems.NETHERITE_NUGGET.get());
 

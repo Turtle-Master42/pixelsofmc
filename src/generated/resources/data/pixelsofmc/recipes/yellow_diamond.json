@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "pixelsofmc:nitrogen_gas_bucket"
+    },
+    "C": {
+      "item": "pixelsofmc:black_diamond"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CAC",
+    " C "
+  ],
+  "result": {
+    "item": "pixelsofmc:yellow_diamond"
+  },
+  "show_notification": true
+}
