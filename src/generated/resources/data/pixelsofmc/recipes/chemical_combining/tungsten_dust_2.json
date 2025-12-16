@@ -1,24 +1,26 @@
 {
   "type": "pixelsofmc:chemical_combining",
   "fluid_input": {
-    "Amount": 100,
+    "Amount": 250,
     "FluidName": "pixelsofmc:sulfuric_acid"
   },
   "fluid_output": {
-    "Amount": 20,
+    "Amount": 50,
     "FluidName": "pixelsofmc:hydrofluoric_acid"
   },
   "inputs": [
     {
       "count": 1,
       "ingredient": {
-        "tag": "forge:gems/quartz"
+        "tag": "forge:ores/quartz"
       }
     }
   ],
   "output": {
-    "chance": 0.0,
-    "count": 0,
-    "ingredient": []
+    "chance": 0.075,
+    "count": 1,
+    "ingredient": {
+      "item": "pixelsofmc:tungsten_dust"
+    }
   }
 }

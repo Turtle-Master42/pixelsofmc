@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:laser_source",
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "input_color": -65281,
+  "output_color": -3319041,
+  "output_type": 1
+}

@@ -19,21 +19,21 @@
       }
     },
     {
-      "chance": 0.05,
+      "chance": 0.085,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:iron_dust"
       }
     },
     {
-      "chance": 0.01,
+      "chance": 0.035,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:aluminium_dust"
       }
     },
     {
-      "chance": 0.01,
+      "chance": 0.035,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:lithium_dust"

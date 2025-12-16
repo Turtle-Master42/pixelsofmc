@@ -19,17 +19,10 @@
       }
     },
     {
-      "chance": 0.05,
+      "chance": 0.075,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:iron_dust"
-      }
-    },
-    {
-      "chance": 0.01,
-      "count": 1,
-      "ingredient": {
-        "item": "pixelsofmc:tungsten_dust"
       }
     }
   ]

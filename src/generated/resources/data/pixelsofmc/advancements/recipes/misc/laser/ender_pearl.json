@@ -1,37 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_items": {
+    "": {
       "conditions": {
         "items": [
-          {
-            "items": [
-              "pixelsofmc:micro_chip",
-              "pixelsofmc:copper_wire",
-              "pixelsofmc:bio_plastic"
-            ]
-          }
+          null
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pixelsofmc:perfected_circuit_board_1"
+        "recipe": "pixelsofmc:laser/ender_pearl"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_items",
+      "",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "pixelsofmc:perfected_circuit_board_1"
+      "pixelsofmc:laser/ender_pearl"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

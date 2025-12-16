@@ -26,14 +26,14 @@
       }
     },
     {
-      "chance": 0.02,
+      "chance": 0.035,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:calcium_dust"
       }
     },
     {
-      "chance": 0.01,
+      "chance": 0.02,
       "count": 1,
       "ingredient": {
         "item": "pixelsofmc:magnesium_dust"

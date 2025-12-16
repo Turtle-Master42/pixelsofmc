@@ -1,0 +1,12 @@
+{
+  "type": "pixelsofmc:laser_source",
+  "input": {
+    "count": 1,
+    "ingredient": {
+      "tag": "forge:ingots/plutonium"
+    }
+  },
+  "input_color": -1,
+  "output_color": -10158306,
+  "output_type": 1
+}

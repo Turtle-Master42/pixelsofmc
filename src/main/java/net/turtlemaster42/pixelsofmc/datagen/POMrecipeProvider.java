@@ -1237,72 +1237,71 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.ALUMINIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.COBBLESTONE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.ALUMINIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.GRAVEL)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.2f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.ALUMINIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.SAND)
                 .output(POMitems.QUARTZ_DUST.get())
                 .output(POMitems.QUARTZ_DUST.get(), 0.2f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.ALUMINIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.SANDSTONE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
+                .output(Element.ALUMINIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.RED_SAND)
                 .output(POMitems.QUARTZ_DUST.get())
                 .output(POMitems.QUARTZ_DUST.get(), 0.2f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.GOLD.dust(),0.01f)
+                .output(Element.GOLD.dust(),0.025f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.RED_SANDSTONE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.GOLD.dust(),0.01f)
+                .output(Element.GOLD.dust(),0.025f)
                 .finish(fConsumer, this);
 
         GrinderRecipeBuilder.build(Items.DEEPSLATE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
-                .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
-                .output(Element.LITHIUM.dust(),0.01f)
+                .output(Element.IRON.dust(),0.085f)
+                .output(Element.ALUMINIUM.dust(),0.035f)
+                .output(Element.LITHIUM.dust(),0.035f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.COBBLED_DEEPSLATE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.8f)
-                .output(Element.IRON.dust(),0.05f)
-                .output(Element.ALUMINIUM.dust(),0.01f)
-                .output(Element.LITHIUM.dust(),0.01f)
+                .output(Element.IRON.dust(),0.085f)
+                .output(Element.ALUMINIUM.dust(),0.035f)
+                .output(Element.LITHIUM.dust(),0.035f)
                 .finish(fConsumer, this);
 
         GrinderRecipeBuilder.build(Items.GRANITE)
                 .output(POMitems.QUARTZ_DUST.get(), 3)
                 .output(POMitems.QUARTZ_DUST.get(), 0.2f)
-                .output(Element.IRON.dust(),0.05f)
-                .output(Element.TUNGSTEN.dust(),0.01f)
+                .output(Element.IRON.dust(),0.075f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.DIORITE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
                 .output(POMitems.QUARTZ_DUST.get(), 0.4f)
                 .output(Element.IRON.dust(),0.05f)
-                .output(Element.CALCIUM.dust(),0.02f)
-                .output(Element.MAGNESIUM.dust(),0.01f)
+                .output(Element.CALCIUM.dust(),0.035f)
+                .output(Element.MAGNESIUM.dust(),0.02f)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(Items.ANDESITE)
                 .output(POMitems.QUARTZ_DUST.get(), 2)
@@ -1947,11 +1946,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_NUGGET.get(), List.of(toCI(POMitems.PIXEL.get(), 9)), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
         PixelSplittingAndAssembling(POMitems.TITANIUM_GOLD_INGOT.get(), List.of(toCI(POMitems.PIXEL_PILE.get(), 10), toCI(POMitems.PIXEL.get())), "structure.pixelsofmc.titanium_gold", toAInt(232, 197, 152), toAInt(229, 153, 95), toAInt(166, 81, 53), fConsumer);
 
-        //pixel assembler
+        // --PIXEL ASSEMBLER--
 //        PixelAssembling(POMitems.VOID_EYE.get(), List.of(toCI(POMitems.DRAGON_EYE.get(), 9)), "", fConsumer);
 //        autoPixelAssembling(Items.AMETHYST_SHARD, List.of(toCI(POMitems.PIXEL.get(), 9), toCI(Items.LAPIS_LAZULI, 9)), "element.pixelsofmc.helium", Element.HELIUM.hexToRGB(0), Element.HELIUM.hexToRGB(1), Element.HELIUM.hexToRGB(2),  fConsumer);
 
-        // --PIXEL ASSEMBLER--
+        // -- HOT ISOSTATIC PRESS --
         HotIsostaticPressRecipeBuilder.build(POMitems.RUBBER_BALL.get()).mold(POMitems.BALL_CAST.get())
                 .input(POMitems.BIO_COMPOUND.get(), 4).heat(0, 80)
                 .finish(fConsumer, this);
@@ -2049,7 +2048,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(Element.SILICON.dustTag()).heat(600, 1000)
                 .finish(fConsumer, this);
 
-        // --CHEMICAL COMBINING--
+        // --CHEMICAL SEPARATING--
         ChemicalSeparatorRecipeBuilder.build(POMitems.ACANTHITE_DUST.get(), 2, Fluids.WATER, 200)
                 .output(POMfluids.SULFURIC_ACID.get(), 50)
                 .output(Element.SILVER.dust())
@@ -2194,11 +2193,11 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMfluids.SULFURIC_ACID.get(), 250)
                 .input(Items.CALCITE)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 20)
+        ChemicalCombinerRecipeBuilder.build(Element.TUNGSTEN.dust(), 0.03125f, POMfluids.HYDROFLUORIC_ACID.get(), 20)
                 .input(POMfluids.SULFURIC_ACID.get(), 100)
                 .input(Tags.Items.GEMS_QUARTZ)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMfluids.HYDROFLUORIC_ACID.get(), 50)
+        ChemicalCombinerRecipeBuilder.build(Element.TUNGSTEN.dust(), 0.075f, POMfluids.HYDROFLUORIC_ACID.get(), 50)
                 .input(POMfluids.SULFURIC_ACID.get(), 250)
                 .input(Tags.Items.ORES_QUARTZ)
                 .finish(fConsumer, this);
@@ -2260,9 +2259,9 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(POMfluids.STEAM.get(), 20)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(0)
-                .input(POMfluids.AIR.get(), 10)
-                .output(POMfluids.NITROGEN_GAS.get(), 8)
-                .output(POMfluids.OXYGEN_GAS.get(), 2)
+                .input(POMfluids.AIR.get(), 25)
+                .output(POMfluids.NITROGEN_GAS.get(), 20)
+                .output(POMfluids.OXYGEN_GAS.get(), 5)
                 .finish(fConsumer, this);
         ChemicalMixerRecipeBuilder.build(3)
                 .input(POMfluids.HYDROGEN_GAS.get(), 300)
@@ -2394,7 +2393,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         // laser
         LaserSourceRecipeBuilder.build(Element.PHOSPHORUS.itemTag(), PixelBombarderTile.mergeColors(Color.BLUE, new Color(175, 0, 255))) //blue and purple stained-glass
-                .outputLazer(new Color(200, 0, 35))
+                .outputLazer(new Color(200, 0, 35)) //infrared
                 .outputType(2)
                 .finish(fConsumer, this);
 
@@ -2405,6 +2404,21 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
 
         LaserSourceRecipeBuilder.build(Element.SILICON.itemTag(), Color.CYAN) //light-blue stained-glass
                 .outputLazer(new Color(255, 230, 0)) // ELECTRON
+                .outputType(1)
+                .finish(fConsumer, this);
+
+        LaserSourceRecipeBuilder.build(Element.URANIUM.itemTag(), new Color(255, 255, 255)) //light-blue stained-glass
+                .outputLazer(new Color(100, 255, 30)) // ALPHA
+                .outputType(1)
+                .finish(fConsumer, this);
+
+        LaserSourceRecipeBuilder.build(Element.PLUTONIUM.itemTag(), new Color(255, 255, 255)) //light-blue stained-glass
+                .outputLazer(new Color(100, 255, 30)) // ALPHA
+                .outputType(1)
+                .finish(fConsumer, this);
+
+        LaserSourceRecipeBuilder.build(Items.ENDER_PEARL, Color.MAGENTA) //magenta stained-glass
+                .outputLazer(new Color(205, 90, 255)) // ARCANE
                 .outputType(1)
                 .finish(fConsumer, this);
 

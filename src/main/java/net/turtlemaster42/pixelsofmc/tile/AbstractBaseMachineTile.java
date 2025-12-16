@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncItemStackToClient;
@@ -219,7 +220,7 @@ public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends 
                 // tries to insert output
                 ItemStack stack = insertItemStack(slot, output.asItemStack(), false);
                 // sets output to the not inserted stack and tries to add it to other slots
-                output = CountedIngredient.of(stack);
+                output = CountedIngredient.of(stack.getCount(), stack);
             }
         }
     }
@@ -237,7 +238,7 @@ public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends 
                     // tries to insert output
                     ItemStack stack = insertItemStack(slot, output.asItemStack(), false);
                     // sets output to the not inserted stack and tries to add it to other slots
-                    output = ChanceIngredient.of(stack);
+                    output = ChanceIngredient.of(stack.getCount(), stack);
                 }
             }
         }

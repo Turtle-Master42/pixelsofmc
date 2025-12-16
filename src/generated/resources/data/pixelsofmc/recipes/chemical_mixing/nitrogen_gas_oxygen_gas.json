@@ -2,17 +2,17 @@
   "type": "pixelsofmc:chemical_mixing",
   "fluid_inputs": [
     {
-      "Amount": 10,
+      "Amount": 25,
       "FluidName": "pixelsofmc:air"
     }
   ],
   "fluid_outputs": [
     {
-      "Amount": 8,
+      "Amount": 20,
       "FluidName": "pixelsofmc:nitrogen_gas"
     },
     {
-      "Amount": 2,
+      "Amount": 5,
       "FluidName": "pixelsofmc:oxygen_gas"
     }
   ],
