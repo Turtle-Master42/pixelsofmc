@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:chemical_seperator",
+  "criteria": {
+    "mercury": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:mercury_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.mercury.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:mercury_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.mercury.title"
+    }
+  },
+  "requirements": [
+    [
+      "mercury"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

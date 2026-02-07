@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:root",
+  "criteria": {
+    "bio_compound": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:bio_compound"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.bio_compound.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:bio_compound"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.bio_compound.title"
+    }
+  },
+  "requirements": [
+    [
+      "bio_compound"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

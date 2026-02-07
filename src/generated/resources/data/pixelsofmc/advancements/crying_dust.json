@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:grinder",
+  "criteria": {
+    "crying_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:crying_obsidian_dust"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.crying_dust.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:crying_obsidian_dust"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.crying_dust.title"
+    }
+  },
+  "requirements": [
+    [
+      "crying_dust"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

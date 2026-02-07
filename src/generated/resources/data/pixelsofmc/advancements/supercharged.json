@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:overcharged",
+  "criteria": {
+    "supercharged": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:supercharged_power_orb"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.supercharged.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:supercharged_power_orb"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.supercharged.title"
+    }
+  },
+  "requirements": [
+    [
+      "supercharged"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

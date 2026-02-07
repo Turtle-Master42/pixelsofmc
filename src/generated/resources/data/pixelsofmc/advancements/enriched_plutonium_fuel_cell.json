@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:enriched_plutonium_hexafluoride_dust",
+  "criteria": {
+    "enriched_plutonium_fuel_cell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:enriched_plutonium_fuel_cell"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.enriched_plutonium_fuel_cell.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:enriched_plutonium_fuel_cell"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.enriched_plutonium_fuel_cell.title"
+    }
+  },
+  "requirements": [
+    [
+      "enriched_plutonium_fuel_cell"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

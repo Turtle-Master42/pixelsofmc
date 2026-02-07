@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:grinder",
+  "criteria": {
+    "titanium_gold": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:titanium_gold_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.titanium_gold.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:titanium_gold_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.titanium_gold.title"
+    }
+  },
+  "requirements": [
+    [
+      "titanium_gold"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

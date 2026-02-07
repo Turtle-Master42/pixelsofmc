@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.init;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.minecraft.data.DataGenerator;
@@ -11,6 +12,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.turtlemaster42.pixelsofmc.datagen.*;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = PixelsOfMc.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -32,6 +35,7 @@ public class POMdataGen {
         generator.addProvider(true, new POMfluidTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, POMlootTableProvider.create(packOutput));
         generator.addProvider(true, new POMrecipeProvider(packOutput));
+        generator.addProvider(true, new ForgeAdvancementProvider(packOutput, lookupProvider, existingFileHelper, Collections.singletonList(new POMadvancementProvider())));
         generator.addProvider(true, new POMBookProvider(packOutput, existingFileHelper));
     }
 }

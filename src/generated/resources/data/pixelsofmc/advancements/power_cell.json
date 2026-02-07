@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:power_orb",
+  "criteria": {
+    "power_cell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:power_cell"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.power_cell.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:power_cell"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.power_cell.title"
+    }
+  },
+  "requirements": [
+    [
+      "power_cell"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:root",
+  "criteria": {
+    "titanium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:titanium_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.titanium.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:titanium_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.titanium.title"
+    }
+  },
+  "requirements": [
+    [
+      "titanium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

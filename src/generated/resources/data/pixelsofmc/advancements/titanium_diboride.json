@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:hot_isostatic_press",
+  "criteria": {
+    "titanium_diboride": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:titanium_diboride_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.titanium_diboride.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:titanium_diboride_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.titanium_diboride.title"
+    }
+  },
+  "requirements": [
+    [
+      "titanium_diboride"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

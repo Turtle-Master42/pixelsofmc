@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:titanium",
+  "criteria": {
+    "ball_mill": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:ball_mill"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.ball_mill.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:ball_mill"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.ball_mill.title"
+    }
+  },
+  "requirements": [
+    [
+      "ball_mill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

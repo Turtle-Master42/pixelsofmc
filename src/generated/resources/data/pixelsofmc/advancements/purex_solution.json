@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:nuclear_waste_bucket",
+  "criteria": {
+    "purex_solution": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:purex_solution_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.purex_solution.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:purex_solution_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.purex_solution.title"
+    }
+  },
+  "requirements": [
+    [
+      "purex_solution"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

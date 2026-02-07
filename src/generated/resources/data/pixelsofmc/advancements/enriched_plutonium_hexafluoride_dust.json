@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:purex_solution",
+  "criteria": {
+    "enriched_plutonium_hexafluoride_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:enriched_plutonium_hexafluoride_dust"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.enriched_plutonium_hexafluoride_dust.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:enriched_plutonium_hexafluoride_dust"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.enriched_plutonium_hexafluoride_dust.title"
+    }
+  },
+  "requirements": [
+    [
+      "enriched_plutonium_hexafluoride_dust"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

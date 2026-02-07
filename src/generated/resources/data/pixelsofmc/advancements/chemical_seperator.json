@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:titanium_diboride",
+  "criteria": {
+    "chemical_seperator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:chemical_separator"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.chemical_seperator.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:chemical_separator"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.chemical_seperator.title"
+    }
+  },
+  "requirements": [
+    [
+      "chemical_seperator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

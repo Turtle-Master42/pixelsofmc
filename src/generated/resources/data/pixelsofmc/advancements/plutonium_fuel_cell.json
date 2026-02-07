@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:purex_solution",
+  "criteria": {
+    "plutonium_fuel_cell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:plutonium_fuel_cell"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.plutonium_fuel_cell.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:plutonium_fuel_cell"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.plutonium_fuel_cell.title"
+    }
+  },
+  "requirements": [
+    [
+      "plutonium_fuel_cell"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:bio_compound",
+  "criteria": {
+    "fire_proof_compound": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:fire_proof_compound"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.fire_proof_compound.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:fire_proof_compound"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.fire_proof_compound.title"
+    }
+  },
+  "requirements": [
+    [
+      "fire_proof_compound"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:titanium_gold",
+  "criteria": {
+    "hot_isostatic_press": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:hot_isostatic_press"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.hot_isostatic_press.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:hot_isostatic_press"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.hot_isostatic_press.title"
+    }
+  },
+  "requirements": [
+    [
+      "hot_isostatic_press"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

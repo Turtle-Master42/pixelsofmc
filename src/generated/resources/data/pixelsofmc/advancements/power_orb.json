@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:bio_compound",
+  "criteria": {
+    "power_orb": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:power_orb"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.power_orb.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:power_orb"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.power_orb.title"
+    }
+  },
+  "requirements": [
+    [
+      "power_orb"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

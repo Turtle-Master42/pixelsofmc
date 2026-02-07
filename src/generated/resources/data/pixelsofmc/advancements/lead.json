@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:grinder",
+  "criteria": {
+    "lead": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:lead_dust"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.lead.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:lead_dust"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.lead.title"
+    }
+  },
+  "requirements": [
+    [
+      "lead"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:fire_proof_compound",
+  "criteria": {
+    "repelling_compound": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:repelling_compound"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.repelling_compound.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:repelling_compound"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.repelling_compound.title"
+    }
+  },
+  "requirements": [
+    [
+      "repelling_compound"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

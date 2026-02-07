@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:chemical_combiner",
+  "criteria": {
+    "royal_tungsten": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:royal_tungsten_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.royal_tungsten.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:royal_tungsten_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.royal_tungsten.title"
+    }
+  },
+  "requirements": [
+    [
+      "royal_tungsten"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

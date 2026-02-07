@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:ball_mill",
+  "criteria": {
+    "grinder": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:grinder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.grinder.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:grinder"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.grinder.title"
+    }
+  },
+  "requirements": [
+    [
+      "grinder"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

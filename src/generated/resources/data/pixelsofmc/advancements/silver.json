@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:grinder",
+  "criteria": {
+    "silver": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:silver_dust"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.silver.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:silver_dust"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.silver.title"
+    }
+  },
+  "requirements": [
+    [
+      "silver"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "pixelsofmc:uranium_fuel_cell",
+  "criteria": {
+    "nuclear_waste_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:nuclear_waste_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.nuclear_waste_bucket.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:nuclear_waste_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.nuclear_waste_bucket.title"
+    }
+  },
+  "requirements": [
+    [
+      "nuclear_waste_bucket"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
