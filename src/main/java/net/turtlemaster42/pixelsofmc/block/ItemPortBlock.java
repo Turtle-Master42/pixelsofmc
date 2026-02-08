@@ -33,7 +33,7 @@ public class ItemPortBlock extends AbstractPort {
     public int getComparatorOutput(BlockState pState, Level pLevel, BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof ItemPortTile portTile) {
             BlockEntity mainTile = pLevel.getBlockEntity(portTile.getMainPos());
-            if (mainTile == null || !portTile.isMainPosValid()) {return 0;}
+            if (mainTile == null || !portTile.hasValidMainPos()) {return 0;}
             else if (mainTile instanceof IInventoryHandlingTile inventory) {
                 int slots = inventory.getItemStackHandler().getSlots();
                 float partial = 0f;

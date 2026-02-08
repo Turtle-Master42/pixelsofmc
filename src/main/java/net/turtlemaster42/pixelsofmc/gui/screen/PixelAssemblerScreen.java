@@ -48,16 +48,15 @@ public class PixelAssemblerScreen extends AbstractPOMscreen<PixelAssemblerMenu> 
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
-
-        nameArea.draw(guiGraphics);
-        fluidArea.draw(guiGraphics);
 
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 65, y + 41, 0, 168, menu.getScaledProgressOne(), 11);
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
+
+        nameArea.draw(guiGraphics);
+        fluidArea.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
     }
 
     @Override
@@ -71,8 +70,8 @@ public class PixelAssemblerScreen extends AbstractPOMscreen<PixelAssemblerMenu> 
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22,
+                menu.blockEntity.getEnergyStorage(), EnergyArea.EnergyType.OVERCHARGED);
         fluidArea = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
                 new Rect2i(x + 128, y + 63, 16, 14));
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);

@@ -171,7 +171,7 @@ public class EnergyPortTile extends AbstractMultiBlockTile implements IEnergyHan
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, EnergyPortTile e) {
         idleTick(level, blockPos, blockState, e);
 
-        if (blockState.getValue(AbstractPort.PUSHING) && e.isMainPosValid()) {
+        if (blockState.getValue(AbstractPort.PUSHING) && e.hasValidMainPos()) {
             BlockPos facingPos = BigMachineBlockUtil.rotateBlockPosOnDirection(blockState.getValue(AbstractPort.PUSH_DIRECTION), 0, 0, 1, blockPos);
             BlockState facingState = level.getBlockState(facingPos);
             e.energyStorage.extractEnergy(1, true);

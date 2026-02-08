@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.*;
+import net.turtlemaster42.pixelsofmc.tile.IndustrialTurbineTile;
 
 public class POMmenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -39,6 +40,9 @@ public class POMmenuType {
     //multiblock
     public static final RegistryObject<MenuType<IndustrialHeatExchangerMenu>> INDUSTRIAL_HEAT_EXCHANGER_MENU =
             registerMenuType(IndustrialHeatExchangerMenu::new, "industrial_heat_exchanger_menu");
+    public static final RegistryObject<MenuType<IndustrialTurbineMenu>> INDUSTRIAL_TURBINE_MENU =
+            registerMenuType(IndustrialTurbineMenu::new, "industrial_turbine_menu");
+
 
     //reactor
     public static final RegistryObject<MenuType<NuclearReactorMenu>> NUCLEAR_REACTOR_MENU =

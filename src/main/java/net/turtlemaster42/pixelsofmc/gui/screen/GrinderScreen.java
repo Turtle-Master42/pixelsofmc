@@ -46,16 +46,14 @@ public class GrinderScreen extends AbstractPOMscreen<GrinderMenu> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
-
-        nameArea.draw(guiGraphics);
 
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 59, y + 14, 0, 168, menu.getScaledProgress(), 61);
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
 
+        nameArea.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
     }
 
     @Override
@@ -69,8 +67,7 @@ public class GrinderScreen extends AbstractPOMscreen<GrinderMenu> {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage());
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 61, y + 38, 37, 12),

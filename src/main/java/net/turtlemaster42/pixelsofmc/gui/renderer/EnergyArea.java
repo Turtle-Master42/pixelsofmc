@@ -7,9 +7,14 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+import net.turtlemaster42.pixelsofmc.gui.widget.SwitchButton;
 import net.turtlemaster42.pixelsofmc.util.Util;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,15 +26,22 @@ import java.util.Optional;
  *  Details can be found in the license file in the root folder of this project
  */
 public class EnergyArea extends InfoArea {
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/widgets/widgets.png");
     private final IEnergyStorage energy;
+    private final EnergyArea.EnergyType type;
 
-    public EnergyArea(int xMin, int yMin, IEnergyStorage energy)  {
-        this(xMin, yMin, energy,8,64);
+    public EnergyArea(int x, int y, IEnergyStorage energy)  {
+        this(x, y, energy, 10, 44, EnergyType.NORMAL);
     }
 
-    public EnergyArea(int xMin, int yMin, IEnergyStorage energy, int width, int height)  {
-        super(new Rect2i(xMin, yMin, width, height));
+    public EnergyArea(int x, int y, IEnergyStorage energy, EnergyArea.EnergyType type)  {
+        this(x, y, energy, 10, 44, type);
+    }
+
+    public EnergyArea(int x, int y, IEnergyStorage energy, int width, int height, EnergyArea.EnergyType type)  {
+        super(new Rect2i(x, y, width, height));
         this.energy = energy;
+        this.type = type;
     }
 
     public List<Component> getTooltips() {
@@ -49,5 +61,26 @@ public class EnergyArea extends InfoArea {
     }
 
     @Override
-    public void draw(GuiGraphics graphics) {}
+    public void draw(GuiGraphics guiGraphics) {
+        int scaledEnergy = this.energy.getMaxEnergyStored() != 0 && this.energy.getEnergyStored() != 0 ? (this.energy.getEnergyStored() * area.getHeight() / this.energy.getMaxEnergyStored()) : 0;
+        guiGraphics.blit(TEXTURE, area.getX(), area.getY() + area.getHeight() - scaledEnergy, type.getX(), area.getHeight() - scaledEnergy, area.getWidth(), area.getHeight());
+    }
+
+    public enum EnergyType {
+        NORMAL(100),
+        OVERCHARGED(122),
+        SUPERCHARGED(144),
+        INFINITE(166);
+
+        private final int x;
+
+        EnergyType(int pX) {
+            this.x = pX;
+        }
+
+        public int getX() {
+            return this.x;
+        }
+
+    }
 }

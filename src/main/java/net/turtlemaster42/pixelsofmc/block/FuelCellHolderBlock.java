@@ -115,7 +115,7 @@ public class FuelCellHolderBlock extends AbstractMultiBlock {
         ItemStack handItem = pPlayer.getItemInHand(pHand);
         if (pLevel.getBlockEntity(pPos) instanceof FuelCellHolderTile fuelCellTile) {
             PixelItemStackHandler cellItemHandler = (PixelItemStackHandler) fuelCellTile.getItemStackHandler();
-            if (fuelCellTile.isLocked() || !fuelCellTile.isMainPosValid())
+            if (fuelCellTile.isLocked() || !fuelCellTile.hasValidMainPos())
                 return InteractionResult.PASS;
 
             if (handItem.isEmpty()) {

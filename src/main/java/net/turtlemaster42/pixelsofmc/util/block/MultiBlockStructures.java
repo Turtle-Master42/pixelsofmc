@@ -12,6 +12,7 @@ public class MultiBlockStructures {
     private static final GhostBlockState CASING = new GhostBlockState(POMblocks.MACHINE_CASING.get());
     private static final GhostBlockState ARMORED_CASING = new GhostBlockState(POMblocks.ARMORED_MACHINE_CASING.get());
     private static final GhostBlockState HEAT_SINK = new GhostBlockState(POMblocks.HEAT_SINK.get());
+    private static final GhostBlockState MACHINE_COIL = new GhostBlockState(POMblocks.MACHINE_COIL.get());
 
     //decoration
     private static final GhostBlockState DECOR = new GhostBlockState(POMblocks.MACHINE_CASING_STAIRS.get());
@@ -20,6 +21,7 @@ public class MultiBlockStructures {
 
     //ports
     private static final GhostBlockState FLUID_PORT = new GhostBlockState(POMblocks.FLUID_PORT.get());
+    private static final GhostBlockState ENERGY_PORT = new GhostBlockState(POMblocks.ENERGY_PORT.get());
 
     //fission
     private static final GhostBlockState FISSION_CASING = new GhostBlockState(POMblocks.FISSION_CASING.get());
@@ -306,7 +308,7 @@ public class MultiBlockStructures {
             }
     };
 
-    //INDUSTRIAL COOLER
+    //INDUSTRIAL HEAT EXCHANGER
     public static final GhostBlockState[][][] INDUSTRIAL_HEAT_EXCHANGER = {
             {
                     {DECOR, CASING, DECOR},
@@ -328,6 +330,55 @@ public class MultiBlockStructures {
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {HEAT_SINK, GLASS, HEAT_SINK},
                     {DECOR, CASING, DECOR}
+            }
+    };
+
+    //INDUSTRIAL TURBINE
+    public static final GhostBlockState[][][] INDUSTRIAL_TURBINE = {
+            {
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, DECOR, CASING, DECOR, null},
+                    {null, GLASS, GLASS, GLASS, null},
+                    {null, DECOR, CASING, DECOR, null},
+                    {null, null, null, null, null}
+            },
+            {
+                    {null, DECOR, CASING, DECOR, null},
+                    {null, DECOR, MACHINE_COIL, DECOR, null},
+                    {null, DECOR, MACHINE_COIL, DECOR, null},
+                    {DECOR, CASING, CASING, CASING, DECOR},
+                    {GLASS, AIR, AIR, AIR, GLASS},
+                    {DECOR, CASING, CASING, CASING, DECOR},
+                    {null, CASING, CASING, CASING, null}
+            },
+            {
+                    {null, CASING, ENERGY_PORT, CASING, null},
+                    {null, MACHINE_COIL, AIR, MACHINE_COIL, null},
+                    {null, MACHINE_COIL, AIR, MACHINE_COIL, null},
+                    {CASING, CASING, AIR, CASING, CASING},
+                    {GLASS, AIR, AIR, AIR, GLASS},
+                    {CASING, CASING, AIR, CASING, CASING},
+                    {null, CASING, FLUID_PORT, CASING, null}
+            },
+            {
+                    {null, DECOR, null, DECOR, null},
+                    {null, DECOR, MACHINE_COIL, DECOR, null},
+                    {null, DECOR, MACHINE_COIL, DECOR, null},
+                    {DECOR, CASING, CASING, CASING, DECOR},
+                    {GLASS, AIR, AIR, AIR, GLASS},
+                    {DECOR, CASING, CASING, CASING, DECOR},
+                    {null, CASING, CASING, CASING, null}
+            },
+            {
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, DECOR, CASING, DECOR, null},
+                    {null, GLASS, GLASS, GLASS, null},
+                    {null, DECOR, CASING, DECOR, null},
+                    {null, null, null, null, null}
             }
     };
     

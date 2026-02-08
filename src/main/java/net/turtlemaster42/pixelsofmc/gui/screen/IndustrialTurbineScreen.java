@@ -7,30 +7,32 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.turtlemaster42.pixelsofmc.gui.menu.ChemicalSeparatorMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
+import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialTurbineMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
-import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
+import net.turtlemaster42.pixelsofmc.gui.widget.BigSwitchButton;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
-public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparatorMenu> {
-    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/chemical_seperator_gui.png");
-    private EnergyArea energyArea;
+public class IndustrialTurbineScreen extends AbstractPOMscreen<IndustrialTurbineMenu> {
+    private static final ResourceLocation TEXTURE = Util.resourceLocation("textures/gui/industrial_turbine.png");
     private FluidArea fluidArea1;
     private FluidArea fluidArea2;
     private NameArea nameArea;
-    private ProgressArea progressArea;
+    private EnergyArea energyArea;
+    private BigSwitchButton switch1;
 
-    public ChemicalSeparatorScreen(ChemicalSeparatorMenu guiMenu, Inventory playerInventory, Component title) {
-        super(guiMenu, playerInventory, title);
+    public IndustrialTurbineScreen(IndustrialTurbineMenu guiMenu, Inventory inventory, Component title) {
+        super(guiMenu, inventory, title);
     }
 
     @Override
     protected void init() {
         super.init();
         assignAreas();
+        assignButtons();
     }
 
     @Override
@@ -38,11 +40,10 @@ public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparator
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
-        progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
         fluidArea1.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         fluidArea2.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
+        nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
     }
 
     @Override
@@ -50,18 +51,17 @@ public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparator
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - imageWidth) / 2 ;
+        int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight - 16);
 
-        nameArea.draw(guiGraphics);
-
-        if(menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 66, y + 34, 0, 168, menu.getScaledProgress(), 43);
+        if (menu.isActive()) {
+            guiGraphics.blit(TEXTURE, x + 77, y + 19, 0, 150, 32, 27);
         }
-        energyArea.draw(guiGraphics);
         fluidArea1.draw(guiGraphics);
         fluidArea2.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
+        nameArea.draw(guiGraphics);
     }
 
     @Override
@@ -75,17 +75,24 @@ public class ChemicalSeparatorScreen extends AbstractPOMscreen<ChemicalSeparator
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage());
         fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
-                new Rect2i(x + 58, y + 8, 25, 11));
-        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
-                new Rect2i(x + 58, y + 23, 25, 11));
+                new Rect2i(x + 54, y + 6, 15, 53));
+        fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.output"),
+                new Rect2i(x + 116, y + 6, 15, 53));
+        energyArea = new EnergyArea(x + 9, y + 8, menu.blockEntity.getEnergyStorage());
+
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
-        progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
-                new Rect2i(x + 66, y + 50, 55, 10),
-                new Rect2i(x + 110, y + 34, 12, 16),
-                new Rect2i(x + 110, y + 61, 9, 15)
-        );
+    }
+
+    private void assignButtons() {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        this.switch1 = new BigSwitchButton(x + 34, y + 19, BigSwitchButton.Color.RED, Component.translatable("tooltip.pixelsofmc.button.on_off"), (pButton) -> {
+            switch1.cycleOn();
+            menu.setSwitch(switch1.isOn(), 0);
+        });
+        this.switch1.setOn(menu.getSwitch(0));
+        this.addRenderableWidget(this.switch1);
     }
 }
 

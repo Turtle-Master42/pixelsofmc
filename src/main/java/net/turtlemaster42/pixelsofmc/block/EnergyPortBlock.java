@@ -34,7 +34,7 @@ public class EnergyPortBlock extends AbstractPort {
     public int getComparatorOutput(BlockState pState, Level pLevel, BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof EnergyPortTile portTile) {
             BlockEntity mainTile = pLevel.getBlockEntity(portTile.getMainPos());
-            if (mainTile == null || !portTile.isMainPosValid()) {return 0;}
+            if (mainTile == null || !portTile.hasValidMainPos()) {return 0;}
 
             // Infinite Energy
             if (mainTile instanceof IInfiniteEnergyHandlingTile infiniteStorage) {

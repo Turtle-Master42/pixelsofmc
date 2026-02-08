@@ -92,13 +92,6 @@ public class HotIsostaticPressMenu extends AbstractMachineMenu implements IEnerg
         return time * progressArrowSize / maxTime;
     }
 
-    public int getScaledEnergy() { //energy test
-        int energy = this.data.get(5); //stored energy
-        int maxEnergy = this.data.get(3);  // Max Energy
-        int progressArrowSize = 44; // This is the height in pixels of your arrow
-        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
-    }
-
     @Override
     public boolean stillValid(@NotNull Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),

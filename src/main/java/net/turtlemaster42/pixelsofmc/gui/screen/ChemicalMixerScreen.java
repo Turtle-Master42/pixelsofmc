@@ -75,8 +75,7 @@ public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 84, y + 26, 0, 168, menu.getScaledProgress(), 10);
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
-
+        energyArea.draw(guiGraphics);
         fluidArea1.draw(guiGraphics);
         fluidArea2.draw(guiGraphics);
         fluidArea3.draw(guiGraphics);
@@ -97,8 +96,7 @@ public class ChemicalMixerScreen extends AbstractPOMscreen<ChemicalMixerMenu> {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage());
 
         fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.input"),
                 new Rect2i(x + 50, y + 6, 27, 14));

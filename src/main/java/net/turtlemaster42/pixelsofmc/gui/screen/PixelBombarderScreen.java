@@ -50,16 +50,15 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
 
-        nameArea.draw(guiGraphics);
 
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 119, y + 33, 0, 168, 11, menu.getScaledProgress());
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
 
+        nameArea.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
     }
 
     private double laserTime = 0;
@@ -118,8 +117,7 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage(), EnergyArea.EnergyType.OVERCHARGED);
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 120, y + 33, 8, 22)

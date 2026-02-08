@@ -18,9 +18,7 @@ public class NameArea extends InfoArea {
     }
 
     @Override
-    protected void fillTooltipOverArea(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-//        guiGraphics.renderTooltip(Minecraft.getInstance().font, name, mouseX, mouseY);
-    }
+    protected void fillTooltipOverArea(GuiGraphics guiGraphics, int mouseX, int mouseY) {}
 
     @Override
     public void draw(GuiGraphics guiGraphics) {

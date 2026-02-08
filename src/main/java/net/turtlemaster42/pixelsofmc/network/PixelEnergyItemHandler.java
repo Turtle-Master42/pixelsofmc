@@ -46,10 +46,9 @@ public class PixelEnergyItemHandler extends PixelEnergyStorage {
     }
 
     @Override
-    public int setEnergy(int energy) {
+    public void setEnergy(int energy) {
         this.energy = energy;
         stack.getOrCreateTag().putInt("Energy", this.energy);
-        return energy;
     }
 
     @Override

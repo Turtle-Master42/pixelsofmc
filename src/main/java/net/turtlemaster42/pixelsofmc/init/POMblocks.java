@@ -329,19 +329,22 @@ public class POMblocks {
             () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
 
     public static final RegistryObject<Block> INDUSTRIAL_HEAT_EXCHANGER = registerBlock("industrial_heat_exchanger",
-            () -> new IndustrialHeatExchangerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+            () -> new IndustrialHeatExchangerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+    public static final RegistryObject<Block> INDUSTRIAL_TURBINE = registerBlock("industrial_turbine",
+            () -> new IndustrialTurbineBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)), "", "", "");
+
 
     public static final RegistryObject<Block> SDS_CONTROLLER = registerBlock("sds_controller",
-            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new SDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.sds_controller.shift", "", "tooltip.pixelsofmc.block.sds_controller.alt");
     public static final RegistryObject<Block> MDS_CONTROLLER = registerBlock("mds_controller",
-            () -> new MDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new MDSFusionControllerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.mds_controller.shift", "", "tooltip.pixelsofmc.block.mds_controller.alt");
     public static final RegistryObject<Block> MNS_CONTROLLER = registerBlock("mns_controller",
-            () -> new MNSFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new MNSFusionControllerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.mns_controller.shift", "", "tooltip.pixelsofmc.block.mns_controller.alt");
     public static final RegistryObject<Block> BH_CONTROLLER = registerBlock("bh_controller",
-            () -> new BHFusionControllerBlock(BlockBehaviour.Properties.of().strength(4.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
+            () -> new BHFusionControllerBlock(BlockBehaviour.Properties.of().strength(6.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()), "tooltip.pixelsofmc.block.bh_controller.shift", "", "tooltip.pixelsofmc.block.bh_controller.alt");
 
 

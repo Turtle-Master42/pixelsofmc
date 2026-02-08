@@ -47,13 +47,6 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
 
     }
 
-    public int getScaledEnergy() { //energy test
-        long energyPercent = this.blockEntity.getEnergyPercentage();
-        int progressArrowSize = 44; // This is the height in pixels of your arrow
-
-        return (int) (progressArrowSize / 100f * energyPercent);
-    }
-
     public void setSwitch(int currentSwitch, boolean on) {
         this.blockEntity.setSwitch(currentSwitch, on);
         sendToServer(new PacketSyncSwitchToServer(blockEntity.getBlockPos(), on, currentSwitch));

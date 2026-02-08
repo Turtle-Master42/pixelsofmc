@@ -93,14 +93,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 33, imageHeight);
-
-        nameArea.draw(guiGraphics);
-        fluidArea1.draw(guiGraphics);
-        fluidArea2.draw(guiGraphics);
-
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 209, 44 - menu.getScaledEnergy(), 10, 44);
 
         if (fuelCellUp && fuelCellLeft) {
             guiGraphics.blit(TEXTURE, x + 70, y + 25, 0, 168, 5, 5);
@@ -119,6 +112,10 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
             guiGraphics.blit(TEXTURE, x + 81, y + 47, 3, 173, 3, 3);
         }
 
+        nameArea.draw(guiGraphics);
+        fluidArea1.draw(guiGraphics);
+        fluidArea2.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
     }
 
     @Override
@@ -132,8 +129,7 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 9, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage());
         fluidArea1 = new FluidArea(menu.blockEntity.getFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_input"),
                 new Rect2i(x + 169, y + 6, 15, 67));
         fluidArea2 = new FluidArea(menu.blockEntity.getDuoFluidTank(), Component.translatable("tooltip.pixelsofmc.fluid.coolant_output"),

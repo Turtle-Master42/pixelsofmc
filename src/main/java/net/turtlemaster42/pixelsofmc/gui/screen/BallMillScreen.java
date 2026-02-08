@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
@@ -53,7 +54,7 @@ public class BallMillScreen extends AbstractPOMscreen<BallMillMenu> {
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 47, y + 19, 0, 168, menu.getScaledProgressOne(), 51);
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);
+        energyArea.draw(guiGraphics);
         nameArea.draw(guiGraphics);
     }
 
@@ -68,8 +69,7 @@ public class BallMillScreen extends AbstractPOMscreen<BallMillMenu> {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11,
-                y + 22, menu.blockEntity.energyStorage, 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.energyStorage);
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 49, y + 19, 28, 50),

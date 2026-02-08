@@ -38,7 +38,7 @@ public class AbstractMultiBlockTile extends BlockEntity {
         return mainPos;
     }
 
-    public boolean isMainPosValid() {
+    public boolean hasValidMainPos() {
         return !(mainPos.getX() == worldPosition.getX() && mainPos.getY() == worldPosition.getY() && mainPos.getZ() == worldPosition.getZ());
     }
 

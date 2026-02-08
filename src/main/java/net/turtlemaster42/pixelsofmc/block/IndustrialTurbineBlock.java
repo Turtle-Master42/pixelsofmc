@@ -23,7 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.tile.IndustrialHeatExchangerTile;
+import net.turtlemaster42.pixelsofmc.tile.IndustrialTurbineTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
@@ -71,8 +71,8 @@ public class IndustrialTurbineBlock extends AbstractMultiControllerBlock {
                                           @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (!pLevel.isClientSide() && pState.getValue(ACTIVE) != 1) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof IndustrialHeatExchangerTile) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (IndustrialHeatExchangerTile)entity, pPos);
+            if(entity instanceof IndustrialTurbineTile) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (IndustrialTurbineTile)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -83,29 +83,29 @@ public class IndustrialTurbineBlock extends AbstractMultiControllerBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new IndustrialHeatExchangerTile(pPos, pState);
+        return new IndustrialTurbineTile(pPos, pState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, POMtiles.INDUSTRIAL_HEAT_EXCHANGER.get(),
-                pLevel.isClientSide ? IndustrialHeatExchangerTile::clientTick : IndustrialHeatExchangerTile::serverTick);
+        return createTickerHelper(pBlockEntityType, POMtiles.INDUSTRIAL_TURBINE.get(),
+                pLevel.isClientSide ? IndustrialTurbineTile::clientTick : IndustrialTurbineTile::serverTick);
     }
 
     // --- Multi Block --- //
     @Override
     public GhostBlockState[][][] getMultiblockStructure() {
-        return MultiBlockStructures.INDUSTRIAL_HEAT_EXCHANGER;
+        return MultiBlockStructures.INDUSTRIAL_TURBINE;
     }
     @Override
-    public int getHeight() {return 3;}
+    public int getHeight() {return 5;}
     @Override
-    public int getWidth() {return 3;}
+    public int getWidth() {return 5;}
     @Override
-    public int getLength() {return 5;}
+    public int getLength() {return 7;}
     @Override
     public BlockPos offsetMultiBlock(BlockPos pos, Direction direction) {
-        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -1, -2, 0, pos);
+        return BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -2, -3, 0, pos);
     }
 }

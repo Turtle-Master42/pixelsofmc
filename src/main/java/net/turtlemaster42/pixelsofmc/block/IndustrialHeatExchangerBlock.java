@@ -37,7 +37,7 @@ public class IndustrialHeatExchangerBlock extends AbstractMultiControllerBlock {
 
 
     public IndustrialHeatExchangerBlock(Properties properties) {
-        super(POMtags.Blocks.FUSION_CASINGS, properties);
+        super(POMtags.Blocks.MACHINE_CASINGS, properties);
     }
 
     @Override

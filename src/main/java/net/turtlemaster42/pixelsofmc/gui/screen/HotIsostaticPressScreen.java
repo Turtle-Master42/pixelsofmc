@@ -70,21 +70,20 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2 ;
         int y = (height - imageHeight) / 2;
-
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth + 9, imageHeight + 2);
-
-        nameArea.draw(guiGraphics);
 
         if(menu.isCrafting()) {
             guiGraphics.blit(TEXTURE, x + 69, y + 38, 0, 168, menu.getScaledProgressOne(), 11);
             guiGraphics.blit(TEXTURE, x + 55, y + 27, 39, 168, 9, menu.getScaledProgressTwo());
         }
-        guiGraphics.blit(TEXTURE, x + 9, y + 66 - menu.getScaledEnergy(), 185, 44-menu.getScaledEnergy(), 10, 44);//energy
 
-        guiGraphics.blit(TEXTURE, x + 36, y + 82 - menu.getScaledSoulHeat(), 195, 69-menu.getScaledSoulHeat(), 45, menu.getScaledSoulHeat());//soul heat
+        guiGraphics.blit(TEXTURE, x + 36, y + 82 - menu.getScaledSoulHeat(), 195, 69-menu.getScaledSoulHeat(), 45, menu.getScaledSoulHeat()); //soul heat
         guiGraphics.blit(TEXTURE, x + 36, y + 55, 195, 14, 45, menu.getScaledHeat());//heat
         if(menu.isHeating())
-            guiGraphics.blit(TEXTURE, x + 51, y + 75 - menu.getScaledBurnTime(), 240, 29-menu.getScaledBurnTime(), 16, menu.getScaledBurnTime());//time
+            guiGraphics.blit(TEXTURE, x + 51, y + 75 - menu.getScaledBurnTime(), 240, 29-menu.getScaledBurnTime(), 16, menu.getScaledBurnTime()); //time
+
+        nameArea.draw(guiGraphics);
+        energyArea.draw(guiGraphics);
     }
 
     @Override
@@ -98,8 +97,7 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);
 
-        energyArea = new EnergyArea(x + 11, y + 22,
-                menu.blockEntity.getEnergyStorage(), 10, 44);
+        energyArea = new EnergyArea(x + 9, y + 22, menu.blockEntity.getEnergyStorage());
         nameArea = new NameArea(menu.blockEntity.getDisplayName(), x, y - 16);
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 54, y + 27, 10, 5),

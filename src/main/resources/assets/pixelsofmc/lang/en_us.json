@@ -805,6 +805,7 @@
   "block.pixelsofmc.pixel_bombarder": "Pixel Bombarder",
   "block.pixelsofmc.star": "Fusion Star",
   "block.pixelsofmc.industrial_heat_exchanger": "Industrial Heat Exchanger",
+  "block.pixelsofmc.industrial_turbine": "Industrial Turbine",
 
   "block.pixelsofmc.nuclear_reactor": "Nuclear Reactor",
   "block.pixelsofmc.sds_controller": "S.D.S Fusion Reactor Controller",

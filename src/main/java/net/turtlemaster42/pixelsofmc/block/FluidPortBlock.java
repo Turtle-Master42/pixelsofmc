@@ -29,6 +29,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
+import java.util.Arrays;
+
 public class FluidPortBlock extends AbstractPort {
     public FluidPortBlock(Properties pProperties) {
         super(pProperties);
@@ -40,9 +42,6 @@ public class FluidPortBlock extends AbstractPort {
 
         if (pHand.equals(InteractionHand.MAIN_HAND) && handItem.isEmpty()) {
             if (pLevel.getBlockEntity(pPos) instanceof FluidPortTile portTile) {
-                if (!portTile.isMainPosValid() && !portTile.getCurrentTank().equals("null")) {
-                    portTile.setCurrentTank("null");
-                }
 
                 if (pPlayer.isCrouching()) {
                     if (pLevel.isClientSide()) {
@@ -57,7 +56,7 @@ public class FluidPortBlock extends AbstractPort {
                 if (mainTile instanceof IMultiFluidHandlingTile portLogicTile) {
                     String[] tankNames = portLogicTile.getFluidTankNames();
                     for (int i = 0; i < tankNames.length; i++) {
-                        if (tankNames[i].equals(portTile.getCurrentTank()) || portTile.getCurrentTank().equals("null")) {
+                        if (tankNames[i].equals(portTile.getCurrentTank()) || !Arrays.stream(tankNames).toList().contains(portTile.getCurrentTank())) {
                             int index = i + 1;
                             if (index == tankNames.length) {
                                 index = 0;
@@ -127,7 +126,7 @@ public class FluidPortBlock extends AbstractPort {
     public int getComparatorOutput(BlockState pState, Level pLevel, BlockPos pPos) {
         if (pLevel.getBlockEntity(pPos) instanceof FluidPortTile portTile) {
             BlockEntity mainTile = pLevel.getBlockEntity(portTile.getMainPos());
-            if (mainTile == null || !portTile.isMainPosValid()) {return 0;}
+            if (mainTile == null || !portTile.hasValidMainPos()) {return 0;}
 
             // multi tank
             if (mainTile instanceof IMultiFluidHandlingTile portLogicTile && !portTile.getCurrentTank().equals("null")) {

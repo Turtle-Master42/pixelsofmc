@@ -211,7 +211,8 @@ public class PixelsOfMc {
 		MenuScreens.register(POMmenuType.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
 		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerScreen::new);
 		MenuScreens.register(POMmenuType.INDUSTRIAL_HEAT_EXCHANGER_MENU.get(), IndustrialHeatExchangerScreen::new);
-		MenuScreens.register(POMmenuType.PIXEL_BOMBARDER_MENU.get(), PixelBombarderScreen::new);
+        MenuScreens.register(POMmenuType.INDUSTRIAL_TURBINE_MENU.get(), IndustrialTurbineScreen::new);
+        MenuScreens.register(POMmenuType.PIXEL_BOMBARDER_MENU.get(), PixelBombarderScreen::new);
 
 
 		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);

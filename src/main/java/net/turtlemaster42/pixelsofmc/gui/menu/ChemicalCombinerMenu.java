@@ -64,13 +64,6 @@ public class ChemicalCombinerMenu extends AbstractMachineMenu implements IEnergy
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
 
-    public int getScaledEnergy() { //energy test
-        int energy = this.data.get(5); //stored energy
-        int maxEnergy = this.data.get(3);  // Max Energy
-        int progressArrowSize = 44; // This is the height in pixels of your arrow
-        return maxEnergy != 0 && energy != 0 ? (energy * progressArrowSize / maxEnergy) : 0;
-    }
-
     @Override
     public void setDuoFluid(FluidStack fluidStack) {
         this.duoFluid = fluidStack;

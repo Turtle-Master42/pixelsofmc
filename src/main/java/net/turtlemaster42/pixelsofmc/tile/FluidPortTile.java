@@ -28,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandlingTile {
 
@@ -137,8 +138,6 @@ public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandl
     @Override
     public void onInvalidation() {
         POMmessages.sendToClients(new PacketSyncMainPosToClient(worldPosition, worldPosition));
-        POMmessages.sendToClients(new PacketSyncCurrentTankToClient("null", worldPosition));
-        currentTank = "null";
         setChanged();
     }
 
@@ -146,7 +145,7 @@ public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandl
     public void onValidation() {
         if (level != null && !level.isClientSide()) {
             POMmessages.sendToClients(new PacketSyncMainPosToClient(getMainPos(), worldPosition));
-            if (level.getBlockEntity(getMainPos()) instanceof IMultiFluidHandlingTile fluidHandlingTile) {
+            if (level.getBlockEntity(getMainPos()) instanceof IMultiFluidHandlingTile fluidHandlingTile && !Arrays.stream(fluidHandlingTile.getFluidTankNames()).toList().contains(currentTank)) { // only update the currentTank if the value is invalid
                 currentTank = fluidHandlingTile.getFluidTankNames()[0];
                 POMmessages.sendToClients(new PacketSyncCurrentTankToClient(currentTank, worldPosition));
             }
@@ -202,11 +201,11 @@ public class FluidPortTile extends AbstractMultiBlockTile implements IFluidHandl
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, FluidPortTile e) {
         idleTick(level, blockPos, blockState, e);
 
-        if (blockState.getValue(AbstractPort.PUSHING) && e.isMainPosValid()) {
+        if (blockState.getValue(AbstractPort.PUSHING) && e.hasValidMainPos()) {
             Direction dir = blockState.getValue(AbstractPort.PUSH_DIRECTION) == Direction.UP || blockState.getValue(AbstractPort.PUSH_DIRECTION) == Direction.DOWN  ? blockState.getValue(AbstractPort.PUSH_DIRECTION) : blockState.getValue(AbstractPort.PUSH_DIRECTION).getOpposite();
             BlockPos facingPos = blockPos.relative(dir);
             BlockState facingState = level.getBlockState(facingPos);
-            if ((facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR))) {
+            if (facingState.getBlock().equals(Blocks.AIR) || facingState.getBlock().equals(Blocks.CAVE_AIR)) {
                 if (e.fluidPlaceProgress > 200 && !e.fluidTank.getFluid().getFluid().getFluidType().isLighterThanAir()) {
                     e.fluidPlaceProgress = 0;
                     level.setBlock(facingPos, e.fluidTank.getFluid().getRawFluid().defaultFluidState().createLegacyBlock(), 3);

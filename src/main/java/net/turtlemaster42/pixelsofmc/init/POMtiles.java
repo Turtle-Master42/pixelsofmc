@@ -64,6 +64,9 @@ public class POMtiles {
 	//multi-blocks
 	public static final RegistryObject<BlockEntityType<IndustrialHeatExchangerTile>> INDUSTRIAL_HEAT_EXCHANGER =
 			TILES.register("industrial_heat_exchanger", () -> BlockEntityType.Builder.of(IndustrialHeatExchangerTile::new, POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<IndustrialTurbineTile>> INDUSTRIAL_TURBINE =
+            TILES.register("industrial_turbine", () -> BlockEntityType.Builder.of(IndustrialTurbineTile::new, POMblocks.INDUSTRIAL_TURBINE.get()).build(null));
+
 
 	//reactors
 	public static final RegistryObject<BlockEntityType<NuclearReactorTile>> NUCLEAR_REACTOR =
