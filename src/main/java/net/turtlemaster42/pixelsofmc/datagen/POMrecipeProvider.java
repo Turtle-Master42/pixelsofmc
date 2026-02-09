@@ -1486,7 +1486,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .output(Items.GLOWSTONE_DUST, 4)
                 .finish(fConsumer, this);
         GrinderRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get())
-                .output(Element.URANIUM.dust(), 0.5f)
+                .output(Element.URANIUM.dust(), 0.333f)
                 .finish(fConsumer, this);
 
         // --MILLING--
@@ -2050,7 +2050,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .input(POMitems.VIOLET_DIAMOND.get(), 4).heat(3500, 5000)
                 .finish(fConsumer, this);
         HotIsostaticPressRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get()).ballMold()
-                .input(POMitems.YELLOWCAKE_URANIUM.get(), 9).heat(3500, 5000)
+                .input(POMitems.YELLOWCAKE_URANIUM.get(), 3).heat(3500, 5000)
                 .finish(fConsumer, this);
 
         HotIsostaticPressRecipeBuilder.build(Items.NETHERITE_INGOT).ingotMold()
@@ -2222,7 +2222,7 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         ChemicalCombinerRecipeBuilder.build(POMitems.URANIUM_FUEL_PELLET.get(), POMfluids.DIRTY_WATER.get(), 50)
                 .input(POMfluids.URANIUM_SOLUTION.get(), 125)
                 .finish(fConsumer, this);
-        ChemicalCombinerRecipeBuilder.build(POMitems.YELLOWCAKE_URANIUM.get(), 16)
+        ChemicalCombinerRecipeBuilder.build(POMitems.YELLOWCAKE_URANIUM.get(), 9)
                 .input(POMfluids.OXYGEN_GAS.get(), 200)
                 .input(Element.URANIUM.dustTag())
                 .finish(fConsumer, this);

@@ -254,6 +254,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.FUEL_CELL_HOLDER);
         complexBlock(POMblocks.NUCLEAR_REACTOR);
         complexBlock(POMblocks.INDUSTRIAL_HEAT_EXCHANGER);
+        complexBlock(POMblocks.INDUSTRIAL_TURBINE);
         complexBlock(POMblocks.FISSION_FLUID_PORT);
         complexBlock(POMblocks.FISSION_ENERGY_PORT);
         complexBlock(POMblocks.FLUID_PORT);

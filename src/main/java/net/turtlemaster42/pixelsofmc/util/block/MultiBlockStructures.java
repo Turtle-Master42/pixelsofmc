@@ -33,6 +33,9 @@ public class MultiBlockStructures {
     private static final GhostBlockState SUPERCONDUCTIVE = new GhostBlockState(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());
     private static final GhostBlockState FUSION_CORNER = new GhostBlockState(POMblocks.FUSION_CORNER.get());
 
+    //odd
+    private static final GhostBlockState IRON_BLOCK = new GhostBlockState(Blocks.IRON_BLOCK);
+
 
     //BlockState[y][z][x]
     // ^ facing you
@@ -355,11 +358,11 @@ public class MultiBlockStructures {
             },
             {
                     {null, CASING, ENERGY_PORT, CASING, null},
-                    {null, MACHINE_COIL, AIR, MACHINE_COIL, null},
-                    {null, MACHINE_COIL, AIR, MACHINE_COIL, null},
-                    {CASING, CASING, AIR, CASING, CASING},
-                    {GLASS, AIR, AIR, AIR, GLASS},
-                    {CASING, CASING, AIR, CASING, CASING},
+                    {null, MACHINE_COIL, IRON_BLOCK, MACHINE_COIL, null},
+                    {null, MACHINE_COIL, IRON_BLOCK, MACHINE_COIL, null},
+                    {CASING, CASING, IRON_BLOCK, CASING, CASING},
+                    {GLASS, AIR, IRON_BLOCK, AIR, GLASS},
+                    {CASING, CASING, IRON_BLOCK, CASING, CASING},
                     {null, CASING, FLUID_PORT, CASING, null}
             },
             {

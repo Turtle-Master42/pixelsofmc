@@ -18,7 +18,7 @@
   ],
   "output": {
     "chance": 1.0,
-    "count": 16,
+    "count": 9,
     "ingredient": {
       "item": "pixelsofmc:yellowcake_uranium"
     }

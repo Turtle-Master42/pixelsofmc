@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-16T17:31:36.07725	Item Models: pixelsofmc
+// 1.20.1	2026-02-09T11:37:11.65081	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -244,6 +244,7 @@ f6d68964d4d52b614326aabc4306eed9e98e2614 assets/pixelsofmc/models/item/indium_at
 8c7d8b50adb22edc97b5e0d3c5fc443a9e3c4b7d assets/pixelsofmc/models/item/indium_atom_64.json
 608879c2e77e682066e6b40704a08d76f43935a5 assets/pixelsofmc/models/item/indium_ingot.json
 a21ff71c1f26726a31588b31427d99173ecf31be assets/pixelsofmc/models/item/industrial_heat_exchanger.json
+b9047c4e61cc3be127bc5b8694e58e8db5983ea7 assets/pixelsofmc/models/item/industrial_turbine.json
 105837b64c8319cdc69f68b57684a1a2d133fa06 assets/pixelsofmc/models/item/infinite_power_cell.json
 6da151f38fba77e594908e4d1e5536c6deaa6053 assets/pixelsofmc/models/item/ingot_cast.json
 06105bb11fce5530db43f3f9c887795f717ff681 assets/pixelsofmc/models/item/iodine_atom_512.json
