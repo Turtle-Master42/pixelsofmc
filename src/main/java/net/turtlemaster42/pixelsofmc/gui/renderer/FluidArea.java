@@ -36,14 +36,12 @@ public class FluidArea extends InfoArea {
 
         FluidStack fluidStack = fluidTank.getFluid();
         try {
-            if (fluidStack.getFluid().isSame(Fluids.EMPTY)) {
-                return tooltip;
-            }
             if (!tankDescription.equals(Component.empty()))
                 tooltip.add(tankDescription);
 
-            Component displayName = fluidStack.getDisplayName();
-            tooltip.add(displayName);
+            if (!fluidStack.getFluid().isSame(Fluids.EMPTY)) {
+                tooltip.add(fluidStack.getDisplayName());
+            }
 
             long amount = fluidStack.getAmount();
             long milliBuckets = (amount * 1000) / FluidType.BUCKET_VOLUME;
