@@ -4,9 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.block.NuclearReactorBlock;
 import net.turtlemaster42.pixelsofmc.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
+import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.renderer.RenderHelper;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,34 +22,43 @@ public class NuclearReactorRenderer<T extends NuclearReactorTile> implements Blo
 
     @Override
     public void render(T pBlockEntity, float pPartialTick, PoseStack pPoseStack, @NotNull MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+        BlockState state = pBlockEntity.getBlockState();
+        BlockPos pos = pBlockEntity.getBlockPos();
+        ItemStackHandler itemHandler = pBlockEntity.getItemStackHandler();
+        Direction direction = state.getValue(DirectionalBlock.FACING);
+
         pPoseStack.pushPose();
         pPoseStack.translate(0.5f, 0.5F, 0.5F);
-        int seed = pBlockEntity.getBlockPos().getX() + pBlockEntity.getBlockPos().getY() + pBlockEntity.getBlockPos().getZ();
+        int seed = pos.getX() + pos.getY() + pos.getZ();
         //renderToBuffer(PoseStack, VertexConsumer, light, colorOverlay?, red, green, blue, ?)
-        if (pBlockEntity.getBlockState().getValue(NuclearReactorBlock.ACTIVE) == 3) {
-            if (pBlockEntity.getItemStackHandler().getStackInSlot(0).getItem() instanceof FuelCellItem fuelCell1) {
-                pPoseStack.translate(0f, -1f, 1f);
+        if (state.getValue(NuclearReactorBlock.ACTIVE) == 3) {
+            if (itemHandler.getStackInSlot(0).getItem() instanceof FuelCellItem fuelCell1) {
+                BlockPos rotatedPos = BigMachineBlockUtil.rotateBlockPosOnDirection(direction, 0, 1, 1, new BlockPos(0, 0, 0));
+                pPoseStack.translate(rotatedPos.getX(), rotatedPos.getY(), rotatedPos.getZ());
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell1.getColor(), 0.9f, 0.04f,  0.02f, 0.04f, seed + 1);
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell1.getColor(), 0.9f, 0.05f,  0.03f, 0.05f, seed + 1);
-                pPoseStack.translate(0f, 1f, -1f);
+                pPoseStack.translate(-rotatedPos.getX(), -rotatedPos.getY(), -rotatedPos.getZ());
             }
-            if (pBlockEntity.getItemStackHandler().getStackInSlot(1).getItem() instanceof FuelCellItem fuelCell2) {
-                pPoseStack.translate(-1f, -1f, 0f);
+            if (itemHandler.getStackInSlot(1).getItem() instanceof FuelCellItem fuelCell2) {
+                BlockPos rotatedPos = BigMachineBlockUtil.rotateBlockPosOnDirection(direction, -1, 0, 1, new BlockPos(0, 0, 0));
+                pPoseStack.translate(rotatedPos.getX(), rotatedPos.getY(), rotatedPos.getZ());
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell2.getColor(), 0.9f, 0.04f,  0.02f, 0.04f, seed + 2);
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell2.getColor(), 0.9f, 0.05f,  0.03f, 0.05f, seed + 2);
-                pPoseStack.translate(1f, 1f, 0f);
+                pPoseStack.translate(-rotatedPos.getX(), -rotatedPos.getY(), -rotatedPos.getZ());
             }
-            if (pBlockEntity.getItemStackHandler().getStackInSlot(2).getItem() instanceof FuelCellItem fuelCell3) {
-                pPoseStack.translate(0f, -1f, -1f);
+            if (itemHandler.getStackInSlot(2).getItem() instanceof FuelCellItem fuelCell3) {
+                BlockPos rotatedPos = BigMachineBlockUtil.rotateBlockPosOnDirection(direction, 0, -1, 1, new BlockPos(0, 0, 0));
+                pPoseStack.translate(rotatedPos.getX(), rotatedPos.getY(), rotatedPos.getZ());
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell3.getColor(), 0.9f, 0.04f,  0.02f, 0.04f, seed + 3);
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell3.getColor(), 0.9f, 0.05f,  0.03f, 0.05f, seed + 3);
-                pPoseStack.translate(0f, 1f, 1f);
+                pPoseStack.translate(-rotatedPos.getX(), -rotatedPos.getY(), -rotatedPos.getZ());
             }
-            if (pBlockEntity.getItemStackHandler().getStackInSlot(3).getItem() instanceof FuelCellItem fuelCell4) {
-                pPoseStack.translate(1f, -1f, 0f);
+            if (itemHandler.getStackInSlot(3).getItem() instanceof FuelCellItem fuelCell4) {
+                BlockPos rotatedPos = BigMachineBlockUtil.rotateBlockPosOnDirection(direction, 1, 0, 1, new BlockPos(0, 0, 0));
+                pPoseStack.translate(rotatedPos.getX(), rotatedPos.getY(), rotatedPos.getZ());
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell4.getColor(), 0.9f, 0.04f,  0.02f, 0.04f, seed + 4);
                 RenderHelper.renderStar(pPoseStack, pBufferSource, fuelCell4.getColor(), 0.9f, 0.05f,  0.03f, 0.05f, seed + 4);
-                pPoseStack.translate(-1f, 1f, 0f);
+                pPoseStack.translate(-rotatedPos.getX(), -rotatedPos.getY(), -rotatedPos.getZ());
             }
         }
         pPoseStack.popPose();
