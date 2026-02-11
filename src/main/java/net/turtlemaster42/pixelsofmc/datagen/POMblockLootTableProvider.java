@@ -89,6 +89,7 @@ public class POMblockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(POMblocks.FLUID_PORT.get());
         this.dropSelf(POMblocks.ITEM_PORT.get());
         this.dropSelf(POMblocks.MACHINE_COIL.get());
+        this.dropSelf(POMblocks.TURBINE_BLADES.get());
 
         this.dropSelf(POMblocks.FUSION_CASING.get());
         this.dropSelf(POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get());

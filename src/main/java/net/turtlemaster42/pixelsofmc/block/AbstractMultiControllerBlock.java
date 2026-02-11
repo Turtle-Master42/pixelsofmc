@@ -2,7 +2,9 @@ package net.turtlemaster42.pixelsofmc.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -14,9 +16,12 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.tile.AbstractMultiBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
+import net.turtlemaster42.pixelsofmc.particle.options.ColoredBlockParticleOptions;
+import net.turtlemaster42.pixelsofmc.tile.AbstractMultiBlockTile;
+import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.IMultiControllerBlock;
@@ -101,7 +106,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
         return state.getValue(FACING);
     }
 
-    public Map<Block, Integer> validateMultiBlock(Level level, BlockPos controllerPos) {
+    public Map<Block, Integer> validateMultiBlock(Level level, BlockPos controllerPos, boolean feedback) {
         Map<Block, Integer> blocks = new HashMap<>();
         if (level.isClientSide()) return blocks;
 
@@ -128,40 +133,55 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                         blocks.put(block, 1);
                     }
 
+                    boolean isCorrect = false;
+
                     //GLASS
                     if (multiBlockState.is(POMblocks.REINFORCED_GLASS.get()) && blockState.is(glassReplaceable)) {
-                        correctBlocks++;
+                        isCorrect = true;
                     } else if (multiBlockState.presentIn(blockState)) {
-                        correctBlocks++;
-                    }
-                    //CASING
-                    else if (multiBlockState.is(POMblocks.FISSION_CASING.get()) && blockState.is(POMblocks.ARMORED_MACHINE_CASING.get())) {
-                        correctBlocks++;
-                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING.get()) && (blockState.is(POMblocks.FISSION_CASING.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING.get()))) {
-                        correctBlocks++;
-                    }
-                    //DECOR
-                    else if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FUSION_DECOR)) {
-                        correctBlocks++;
-                    } else if (multiBlockState.is(POMblocks.FISSION_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FISSION_DECOR)) {
-                        correctBlocks++;
-                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.CASINGS_DECOR)) {
-                        correctBlocks++;
+                        isCorrect = true;
                     }
 
-                    // TILE VALIDATION
-                    if (block instanceof AbstractMultiBlock) {
-                        if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile) {
-                            multiBlockTile.setMainPos(controllerPos);
-                            multiBlockTile.onValidation();
-                        }
+                    //CASING
+                    else if (multiBlockState.is(POMblocks.FISSION_CASING.get()) && blockState.is(POMblocks.ARMORED_MACHINE_CASING.get())) {
+                        isCorrect = true;
+                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING.get()) && (blockState.is(POMblocks.FISSION_CASING.get()) || blockState.is(POMblocks.ARMORED_MACHINE_CASING.get()))) {
+                        isCorrect = true;
                     }
+
+                    //DECOR
+                    else if (multiBlockState.is(POMblocks.ARMORED_MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FUSION_DECOR)) {
+                        isCorrect = true;
+                    } else if (multiBlockState.is(POMblocks.FISSION_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.FISSION_DECOR)) {
+                        isCorrect = true;
+                    } else if (multiBlockState.is(POMblocks.MACHINE_CASING_STAIRS.get()) && blockState.is(POMtags.Blocks.CASINGS_DECOR)) {
+                        isCorrect = true;
+                    }
+
+                    // IS CORRECT
+                    if (isCorrect) {
+                        correctBlocks++;
+                        if (feedback && !blockState.is(Blocks.AIR)) {
+                            Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, blockPos, POMparticles.GREEN_CROSS.get(), UniformInt.of(1, 1));
+                        }
+                        // TILE VALIDATION
+                        if (block instanceof AbstractMultiBlock) {
+                            if (level.getBlockEntity(blockPos) instanceof AbstractMultiBlockTile multiBlockTile) {
+                                multiBlockTile.setMainPos(controllerPos);
+                                multiBlockTile.onValidation();
+                            }
+                        }
+
+                    } else if (feedback) {
+                        Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, blockPos, POMparticles.RED_CROSS.get(), UniformInt.of(2, 4));
+                        Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, blockPos, new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), blockState), UniformInt.of(9, 12));
+                    }
+
                 }
 
             }
 
         }
-        PixelsOfMc.LOGGER.info("{} out of {}", correctBlocks, totalBlocks);
         if (correctBlocks == totalBlocks) {
             if (controllerState.getValue(ACTIVE) != 3)
                 level.setBlock(controllerPos, controllerState.setValue(ACTIVE, 2), 2);
@@ -177,7 +197,6 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
 
         BlockState controllerState = level.getBlockState(controllerPos);
         Direction direction = getControllerDirection(controllerState);
-        int totalBlocks = 0;
 
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
@@ -190,26 +209,28 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                         if (level.getBlockEntity(rotatedOffsetPos) instanceof AbstractMultiBlockTile multiBlockTile) {
                             multiBlockTile.onInvalidation();
                             multiBlockTile.setMainPos(rotatedOffsetPos);
-                            totalBlocks++;
                         }
                     }
                 }
             }
         }
         level.setBlock(controllerPos, controllerState.setValue(ACTIVE, 1), 2);
-        PixelsOfMc.LOGGER.info("invalidated {} blocks", totalBlocks);
     }
 
     public void forcePlaceMultiBlock(Level level, BlockPos controllerPos) {
-        if (level.isClientSide()) return;
         Direction direction = getControllerDirection(level.getBlockState(controllerPos));
+        if (level.isClientSide()) {return;}
         int totalBlocks = 0;
         for (int y = 0; y < getHeight(); y++) {
             for (int z = 0; z < getLength(); z++) {
                 for (int x = 0; x < getWidth(); x++) {
                     if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
                     totalBlocks++;
-                    level.setBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), MULTIBLOCK_STRUCTURE[y][z][x].toBlockState(), 2);
+                    BlockPos offsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
+                    BlockState offsetState = MULTIBLOCK_STRUCTURE[y][z][x].toBlockState();
+                    Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, offsetPos, new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), offsetState), UniformInt.of(2, 4));
+
+                    level.setBlock(offsetPos, offsetState, 2);
                 }
             }
         }

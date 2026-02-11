@@ -16,7 +16,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncTemperatureSwitchToServer;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
     }
 
     public ChemicalMixerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(8, inv, data, POMmenuType.CHEMICAL_MIXER_MENU.get(), pContainerId);
+        super(8, inv, data, POMmenus.CHEMICAL_MIXER_MENU.get(), pContainerId);
         blockEntity = ((ChemicalMixerTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();

@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
 
 public class GrinderMenu extends AbstractMachineMenu implements IEnergyMenu {
@@ -26,7 +26,7 @@ public class GrinderMenu extends AbstractMachineMenu implements IEnergyMenu {
     }
 
     public GrinderMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(7, inv, data, POMmenuType.GRINDER_MENU.get(), pContainerId);
+        super(7, inv, data, POMmenus.GRINDER_MENU.get(), pContainerId);
         blockEntity = ((GrinderTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
 

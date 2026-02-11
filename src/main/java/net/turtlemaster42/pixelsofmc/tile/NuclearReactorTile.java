@@ -2,8 +2,10 @@ package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -11,6 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,10 +33,7 @@ import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncEnergyToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncFluidToClient;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToClient;
 import net.turtlemaster42.pixelsofmc.recipe.FluidHeatingRecipe;
-import net.turtlemaster42.pixelsofmc.util.block.IButtonTile;
-import net.turtlemaster42.pixelsofmc.util.block.IDuoFluidHandlingTile;
-import net.turtlemaster42.pixelsofmc.util.block.IEnergyHandlingTile;
-import net.turtlemaster42.pixelsofmc.util.block.IMultiFluidHandlingTile;
+import net.turtlemaster42.pixelsofmc.util.block.*;
 import net.turtlemaster42.pixelsofmc.util.recipe.FluidContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -226,6 +226,8 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+        overHeatingParticles(pLevel);
+
         //cooldown and reboot
         if (rebootCooldown > 0) {
             rebootCooldown--;
@@ -315,6 +317,50 @@ public class NuclearReactorTile extends AbstractMachineTile<NuclearReactorTile> 
             efficiency_bonus += 0.125f;
         }
     }
+
+    private void overHeatingParticles(Level level) {
+        if (internalHeat >= internalHeatCapacity && !level.isClientSide()) {
+            BlockState state = level.getBlockState(worldPosition);
+
+            if (!itemHandler.getStackInSlot(0).isEmpty()) {
+                BlockPos pos = BigMachineBlockUtil.rotateBlockPosOnDirection(state.getValue(DirectionalBlock.FACING), 0, 1, 1, worldPosition);
+                ((ServerLevel)level).sendParticles(
+                        ParticleTypes.BUBBLE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        8,
+                        0.25, 0.25, 0.25,
+                        0.1
+                );
+            }
+            if (!itemHandler.getStackInSlot(3).isEmpty()) {
+                BlockPos pos = BigMachineBlockUtil.rotateBlockPosOnDirection(state.getValue(DirectionalBlock.FACING), 1, 0, 1, worldPosition);
+                ((ServerLevel)level).sendParticles(
+                        ParticleTypes.BUBBLE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        8,
+                        0.25, 0.25, 0.25,
+                        0.1
+                );
+            }
+            if (!itemHandler.getStackInSlot(1).isEmpty()) {
+                BlockPos pos = BigMachineBlockUtil.rotateBlockPosOnDirection(state.getValue(DirectionalBlock.FACING), -1, 0, 1, worldPosition);
+                ((ServerLevel)level).sendParticles(
+                        ParticleTypes.BUBBLE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        8,
+                        0.25, 0.25, 0.25,
+                        0.1
+                );
+            }
+            if (!itemHandler.getStackInSlot(2).isEmpty()) {
+                BlockPos pos = BigMachineBlockUtil.rotateBlockPosOnDirection(state.getValue(DirectionalBlock.FACING), 0, -1, 1, worldPosition);
+                ((ServerLevel)level).sendParticles(
+                        ParticleTypes.BUBBLE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        8,
+                        0.25, 0.25, 0.25,
+                        0.1
+                );
+            }
+        }
+    }
+
 
     public boolean getSwitch(int currentSwitch) {
         return switches[currentSwitch];

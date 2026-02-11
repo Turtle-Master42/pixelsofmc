@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,12 +26,12 @@ public class POMtabs {
 	private static final List<RegistryObject<Item>> DONT_INCLUDE = List.of(POMitems.PIXEL, POMitems.PIXEL_PILE, POMitems.PLACE_HOLDER);
 	private static final List<RegistryObject<Item>> OP_ONLY = List.of(POMitems.DEBUGIUM_INGOT, POMitems.TEST_ITEM, POMitems.INFINITE_POWER_CELL);
 
-	public static final DeferredRegister<CreativeModeTab> REGISTER = DeferredRegister.create(
+	public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(
 			Registries.CREATIVE_MODE_TAB, PixelsOfMc.MOD_ID
 	);
 
 
-	private static final RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = REGISTER.register(
+	private static final RegistryObject<CreativeModeTab> PIXELS_OF_MINECRAFT_TAB = TABS.register(
 			"main_tab",
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
 					.icon(() -> POMitems.NETHERITE_PLATING.get().getDefaultInstance())
@@ -39,7 +40,7 @@ public class POMtabs {
 					.build()
 	);
 
-	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = REGISTER.register(
+	private static final RegistryObject<CreativeModeTab> ELEMENTS_TAB = TABS.register(
 			"elements_tab",
 			() -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0)
 					.icon(() -> Element.CALIFORNIUM.atom64().asItem().getDefaultInstance())
@@ -125,4 +126,8 @@ public class POMtabs {
 			out.accept(item);
 		}
 	}
+
+    public static void register(IEventBus bus) {
+        TABS.register(bus);
+    }
 }

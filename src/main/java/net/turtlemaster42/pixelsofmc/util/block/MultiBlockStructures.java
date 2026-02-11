@@ -361,7 +361,7 @@ public class MultiBlockStructures {
                     {null, MACHINE_COIL, IRON_BLOCK, MACHINE_COIL, null},
                     {null, MACHINE_COIL, IRON_BLOCK, MACHINE_COIL, null},
                     {CASING, CASING, IRON_BLOCK, CASING, CASING},
-                    {GLASS, AIR, IRON_BLOCK, AIR, GLASS},
+                    {GLASS, AIR, new GhostBlockState(POMblocks.TURBINE_BLADES.get()), AIR, GLASS},
                     {CASING, CASING, IRON_BLOCK, CASING, CASING},
                     {null, CASING, FLUID_PORT, CASING, null}
             },

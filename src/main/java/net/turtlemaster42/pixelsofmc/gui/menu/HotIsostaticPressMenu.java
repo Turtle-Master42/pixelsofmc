@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
 
 public class HotIsostaticPressMenu extends AbstractMachineMenu implements IEnergyMenu {
@@ -25,7 +25,7 @@ public class HotIsostaticPressMenu extends AbstractMachineMenu implements IEnerg
     }
 
     public HotIsostaticPressMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(7, inv, data, POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), pContainerId);
+        super(7, inv, data, POMmenus.HOT_ISOTOPIC_PRESS_MENU.get(), pContainerId);
         blockEntity = ((HotIsostaticPressTile) entity);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {

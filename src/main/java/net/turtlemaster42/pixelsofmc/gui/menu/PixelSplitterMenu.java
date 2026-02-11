@@ -11,7 +11,7 @@ import net.turtlemaster42.pixelsofmc.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.*;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +23,7 @@ public class PixelSplitterMenu extends AbstractMachineMenu implements IEnergyMen
     }
 
     public PixelSplitterMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(7, inv, data, POMmenuType.PIXEL_SPLITTER_MENU.get(), pContainerId);
+        super(7, inv, data, POMmenus.PIXEL_SPLITTER_MENU.get(), pContainerId);
         blockEntity = ((PixelSplitterTile) entity);
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));

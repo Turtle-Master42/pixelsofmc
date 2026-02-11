@@ -11,14 +11,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class POMadvancementProvider implements ForgeAdvancementProvider.AdvancementGenerator {
@@ -38,7 +36,7 @@ public class POMadvancementProvider implements ForgeAdvancementProvider.Advancem
         Advancement crying_dust = itemTask(POMitems.CRYING_OBSIDIAN_DUST.get(), "crying_dust", grinder);
         Advancement lead = itemTask(Element.LEAD.dust(), "lead", grinder);
         Advancement silver = itemTask(Element.SILVER.dust(), "silver", grinder);
-//        Advancement full_cast = itemGoalTask("full_cast", crying_dust, POMitems.INGOT_CAST.get(), POMitems.BALL_CAST.get(), POMitems.INGOT_CAST.get()); doesn't require all in the inventory
+        Advancement full_cast = itemGoalTask("full_cast", crying_dust, POMitems.INGOT_CAST.get(), POMitems.BALL_CAST.get(), POMitems.PLATE_CAST.get());
         Advancement titanium_gold = itemTask(POMitems.TITANIUM_GOLD_INGOT.get(), "titanium_gold", grinder);
         Advancement hot_isostatic_press = itemTask(POMblocks.HOT_ISOSTATIC_PRESS.get(), "hot_isostatic_press", titanium_gold);
         Advancement titanium_diboride = itemTask(POMitems.TITANIUM_DIBORIDE_INGOT.get(), "titanium_diboride", hot_isostatic_press);
@@ -54,7 +52,7 @@ public class POMadvancementProvider implements ForgeAdvancementProvider.Advancem
         Advancement purex_solution = itemTask(POMitems.PUREX_SOLUTION_BUCKET.get(), "purex_solution", nuclear_waste_bucket);
         Advancement plutonium_fuel_cell = itemTask(POMitems.PLUTONIUM_FUEL_CELL.get(), "plutonium_fuel_cell", purex_solution);
         Advancement enriched_plutonium_hexafluoride_dust = itemTask(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get(), "enriched_plutonium_hexafluoride_dust", purex_solution);
-        Advancement enriched_plutonium_fuel_cell = itemTask(POMitems.ENRICHED_PLUTONIUM_FUEL_CELL.get(), "enriched_plutonium_fuel_cell", enriched_plutonium_hexafluoride_dust);
+        Advancement enriched_plutonium_fuel_cell = itemChallenge(POMitems.ENRICHED_PLUTONIUM_FUEL_CELL.get(), "enriched_plutonium_fuel_cell", enriched_plutonium_hexafluoride_dust);
 
 
         Advancement bio_compound = itemTask(POMitems.BIO_COMPOUND.get(), "bio_compound", root);
@@ -84,16 +82,28 @@ public class POMadvancementProvider implements ForgeAdvancementProvider.Advancem
                 .save(consumer, id(id), existingFileHelper);
     }
 
-    private Advancement itemListTask(String id, Advancement parent, ItemLike... items) {
-        return createTask(items[0], id).parent(parent)
-                .addCriterion(id, InventoryChangeTrigger.TriggerInstance.hasItems(items))
+    private Advancement itemChallenge(ItemLike item, String id, Advancement parent) {
+        return createChallenge(item, id).parent(parent)
+                .addCriterion(id, InventoryChangeTrigger.TriggerInstance.hasItems(item))
                 .save(consumer, id(id), existingFileHelper);
     }
 
+    private Advancement itemListTask(String id, Advancement parent, ItemLike... items) {
+        Advancement.Builder task = createTask(items[0], id).parent(parent);
+        for (ItemLike item : items) {
+            task.addCriterion(item.toString(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
+        }
+        task.requirements(RequirementsStrategy.AND);
+        return task.save(consumer, id(id), existingFileHelper);
+    }
+
     private Advancement itemGoalTask(String id, Advancement parent, ItemLike... items) {
-        return createGoal(items[0], id).parent(parent)
-                .addCriterion(id, InventoryChangeTrigger.TriggerInstance.hasItems(items))
-                .save(consumer, id(id), existingFileHelper);
+        Advancement.Builder task = createGoal(items[0], id).parent(parent);
+        for (ItemLike item : items) {
+            task.addCriterion(item.toString(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
+        }
+        task.requirements(RequirementsStrategy.AND);
+        return task.save(consumer, id(id), existingFileHelper);
     }
 
     private Advancement.Builder createTask(ItemLike item, String id) {
@@ -122,7 +132,6 @@ public class POMadvancementProvider implements ForgeAdvancementProvider.Advancem
 
 
     private Advancement.Builder createBase(ItemLike item, String id, ResourceLocation background) {
-        PixelsOfMc.LOGGER.info("base id:{}", id(id));
         return Advancement.Builder.advancement()
                 .display(item, Component.translatable(String.format("advancements.pixelsofmc.%s.title", id)), Component.translatable(String.format("advancements.pixelsofmc.%s.description", id)), background, FrameType.TASK, false, false, false)
                 .requirements(RequirementsStrategy.OR)

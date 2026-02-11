@@ -19,6 +19,9 @@ public class POMparticles {
 
     public static final RegistryObject<SimpleParticleType> ELECTRIC_SPARK = PARTICLE_TYPES.register("electric_spark", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> SPARKLE = PARTICLE_TYPES.register("sparkle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> RED_CROSS = PARTICLE_TYPES.register("red_cross", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> GREEN_CROSS = PARTICLE_TYPES.register("green_cross", () -> new SimpleParticleType(true));
+
 
     public static final RegistryObject<ParticleType<ColoredBlockParticleOptions>> COLORED_BLOCK = register("colored_block", false, ColoredBlockParticleOptions.DESERIALIZER, ColoredBlockParticleOptions::codec);
     public static final RegistryObject<ParticleType<FluidBubbleParticleOptions>> FLUID_BUBBLE_POP = register("fluid_bubble_pop", false, FluidBubbleParticleOptions.DESERIALIZER, FluidBubbleParticleOptions::codec);

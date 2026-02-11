@@ -282,6 +282,7 @@ public class POMitemModelProvider extends ItemModelProvider {
         complexBlock(POMblocks.ARMORED_MACHINE_CASING_STAIRS);
         complexBlock(POMblocks.ARMORED_MACHINE_CASING_SLAB);
         complexBlock(POMblocks.MACHINE_COIL);
+        complexBlock(POMblocks.TURBINE_BLADES);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

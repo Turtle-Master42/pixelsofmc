@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
 import net.turtlemaster42.pixelsofmc.tile.IndustrialTurbineTile;
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +32,7 @@ public class IndustrialTurbineMenu extends AbstractMachineMenu implements IFluid
     }
 
     public IndustrialTurbineMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(1, inv, data, POMmenuType.INDUSTRIAL_TURBINE_MENU.get(), pContainerId);
+        super(1, inv, data, POMmenus.INDUSTRIAL_TURBINE_MENU.get(), pContainerId);
         blockEntity = ((IndustrialTurbineTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();

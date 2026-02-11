@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +26,7 @@ public class BallMillMenu extends AbstractMachineMenu implements IEnergyMenu {
     }
 
     public BallMillMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(7, inv, data, POMmenuType.BALL_MILL_MENU.get(), pContainerId);
+        super(7, inv, data, POMmenus.BALL_MILL_MENU.get(), pContainerId);
         blockEntity = ((BallMillTile) entity);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {

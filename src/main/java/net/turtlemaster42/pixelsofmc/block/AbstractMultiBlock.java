@@ -48,7 +48,7 @@ public class AbstractMultiBlock extends BaseEntityBlock {
             AbstractMultiBlockTile tile = BigMachineBlockUtil.getTileEntity(AbstractMultiBlockTile.class, pLevel, pPos);
             BlockPos mainPos = tile.getMainPos();
             if (pLevel.getBlockState(mainPos).getBlock() instanceof AbstractMultiControllerBlock controller) {
-                controller.validateMultiBlock(pLevel, mainPos);
+                controller.validateMultiBlock(pLevel, mainPos, false);
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);

@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.tile.IndustrialHeatExchangerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,7 +33,7 @@ public class IndustrialHeatExchangerMenu extends AbstractMachineMenu implements 
     }
 
     public IndustrialHeatExchangerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(1, inv, data, POMmenuType.INDUSTRIAL_HEAT_EXCHANGER_MENU.get(), pContainerId);
+        super(1, inv, data, POMmenus.INDUSTRIAL_HEAT_EXCHANGER_MENU.get(), pContainerId);
         blockEntity = ((IndustrialHeatExchangerTile) entity);
         itemHandler = blockEntity.getItemStackHandler();
         this.fluid = blockEntity.getFluid();

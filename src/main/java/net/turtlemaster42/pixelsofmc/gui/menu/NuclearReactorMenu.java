@@ -10,15 +10,15 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.turtlemaster42.pixelsofmc.tile.NuclearReactorTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IButtonMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModDisplaySlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
+import net.turtlemaster42.pixelsofmc.tile.NuclearReactorTile;
 import org.jetbrains.annotations.NotNull;
 
 import static net.turtlemaster42.pixelsofmc.init.POMmessages.sendToServer;
@@ -33,7 +33,7 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
     }
 
     public NuclearReactorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(4, inv, data, POMmenuType.NUCLEAR_REACTOR_MENU.get(), pContainerId);
+        super(4, inv, data, POMmenus.NUCLEAR_REACTOR_MENU.get(), pContainerId);
         this.blockEntity = (NuclearReactorTile) entity;
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();

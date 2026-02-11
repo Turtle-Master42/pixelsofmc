@@ -80,6 +80,7 @@ public class POMtiles {
 			BlockEntityType.BlockEntitySupplier<?> supplier) {
 		return TILES.register(registryName, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
+
 	public static void register(IEventBus bus) {
 		TILES.register(bus);
 	}

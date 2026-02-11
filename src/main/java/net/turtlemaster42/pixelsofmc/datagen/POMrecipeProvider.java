@@ -960,6 +960,14 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ADA")
                 .unlockedBy("has_items", inventoryTrigger(toItemP(Element.LEAD.itemTag())))
                 .save(fConsumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.TURBINE_BLADES.get())
+                .define('A', POMitems.TITANIUM_DIBORIDE_PLATING.get())
+                .define('B', POMitems.TITANIUM_DIBORIDE_INGOT.get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .unlockedBy("has_items", inventoryTrigger(toItemP(POMitems.TITANIUM_DIBORIDE_PLATING.get())))
+                .save(fConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, POMblocks.FUSION_CASING.get())
                 .define('A', POMitems.FUSION_PLATING.get())

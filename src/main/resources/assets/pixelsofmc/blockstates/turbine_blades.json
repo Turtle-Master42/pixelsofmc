@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pixelsofmc:block/turbine_blades"
+    },
+    "facing=east": {
+      "model": "pixelsofmc:block/turbine_blades",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pixelsofmc:block/turbine_blades",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pixelsofmc:block/turbine_blades",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "pixelsofmc:block/turbine_blades",
+      "x": 90
+    },
+    "facing=down": {
+      "model": "pixelsofmc:block/turbine_blades",
+      "x": 270
+    }
+  }
+}

@@ -18,8 +18,8 @@ public abstract class AbstractFusionControllerBlock extends AbstractMultiControl
 
     // --- Multi Block --- //
 
-    public Map<Block, Integer> validateMultiBlock(Level level, BlockPos controllerPos) {
-        Map<Block, Integer> blocks = super.validateMultiBlock(level, controllerPos);
+    public Map<Block, Integer> validateMultiBlock(Level level, BlockPos controllerPos, boolean feedback) {
+        Map<Block, Integer> blocks = super.validateMultiBlock(level, controllerPos, feedback);
         if (blocks.isEmpty()) {
             return blocks;
         }

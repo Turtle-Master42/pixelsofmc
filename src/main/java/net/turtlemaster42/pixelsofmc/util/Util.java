@@ -1,8 +1,12 @@
 package net.turtlemaster42.pixelsofmc.util;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.joml.Vector3f;
@@ -153,5 +157,32 @@ public class Util {
             case "e" -> new Vector3f(1, 1, 85/255f);
             default -> new Vector3f(1, 1, 1);
         };
+    }
+
+    public static void spawnServerParticlesOnBlockFaces(ServerLevel pLevel, BlockPos pPos, ParticleOptions pParticle, IntProvider pCount) {
+        for(Direction direction : Direction.values()) {
+            spawnServerParticlesOnBlockFace(pLevel, pPos, pParticle, pCount, direction, 0.55D);
+        }
+
+    }
+
+    public static void spawnServerParticlesOnBlockFace(ServerLevel pLevel, BlockPos pPos, ParticleOptions pParticle, IntProvider pCount, Direction pDirection, double p_216325_) {
+        int i = pCount.sample(pLevel.random);
+
+        for(int j = 0; j < i; ++j) {
+            spawnServerParticleOnFace(pLevel, pPos, pDirection, pParticle, p_216325_);
+        }
+
+    }
+
+    public static void spawnServerParticleOnFace(ServerLevel pLevel, BlockPos pPos, Direction pDirection, ParticleOptions pParticle, double p_216312_) {
+        Vec3 vec3 = Vec3.atCenterOf(pPos);
+        int i = pDirection.getStepX();
+        int j = pDirection.getStepY();
+        int k = pDirection.getStepZ();
+        double d0 = vec3.x + (i == 0 ? Mth.nextDouble(pLevel.random, -0.5D, 0.5D) : (double)i * p_216312_);
+        double d1 = vec3.y + (j == 0 ? Mth.nextDouble(pLevel.random, -0.5D, 0.5D) : (double)j * p_216312_);
+        double d2 = vec3.z + (k == 0 ? Mth.nextDouble(pLevel.random, -0.5D, 0.5D) : (double)k * p_216312_);
+        pLevel.sendParticles(pParticle, d0, d1, d2, 1, 0, 0, 0, 0);
     }
 }

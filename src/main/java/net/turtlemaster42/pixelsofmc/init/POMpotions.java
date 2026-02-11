@@ -58,7 +58,6 @@ public class POMpotions {
 
     public static void register(IEventBus eventBus) {
         PixelsOfMc.LOGGER.info("registering POM potions");
-        PixelsOfMc.LOGGER.info(ForgeRegistries.POTIONS.getEntries().toString());
         POTIONS.register(eventBus);
         ExtendedPotions.init();
     }

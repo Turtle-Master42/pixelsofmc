@@ -1,11 +1,6 @@
 package net.turtlemaster42.pixelsofmc;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -22,8 +17,6 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -36,20 +29,16 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
-import net.turtlemaster42.pixelsofmc.entity.client.RiverShellRenderer;
 import net.turtlemaster42.pixelsofmc.events.EventListener;
 import net.turtlemaster42.pixelsofmc.fluid.POMFluidType;
-import net.turtlemaster42.pixelsofmc.gui.screen.*;
 import net.turtlemaster42.pixelsofmc.init.*;
 import net.turtlemaster42.pixelsofmc.item.BigBucket;
 import net.turtlemaster42.pixelsofmc.util.Util;
-import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -66,7 +55,7 @@ public class PixelsOfMc {
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(Util.resourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+	public static POMCommonProxy PROXY = DistExecutor.runForDist(() -> POMClientProxy::new, () -> POMCommonProxy::new);
 	private static int messageID = 0;
 
 	@SuppressWarnings("marked for removal")
@@ -79,20 +68,16 @@ public class PixelsOfMc {
 		POMentities.register(bus);
 		POMFluidType.register(bus);
 		POMfeature.register(bus);
-
-		POMmenuType.MENUS.register(bus);
-		POMtabs.REGISTER.register(bus);
-
+		POMmenus.register(bus);
+		POMtabs.register(bus);
 		POMrecipes.register(bus);
 		POMparticles.register(bus);
 		POMtags.register();
-		
-		POMtiles.TILES.register(bus);
-
+		POMtiles.register(bus);
 		POMpotions.register(bus);
 
-		bus.addListener(this::clientSetup);
-		bus.addListener(this::registerRenderers);
+		bus.addListener(POMClientProxy::clientSetup);
+		bus.addListener(POMClientProxy::registerTileRenderer);
 		bus.addListener(this::setup);
 
 		MinecraftForge.EVENT_BUS.register(new EventListener());
@@ -172,90 +157,6 @@ public class PixelsOfMc {
 		);
 
 	}
-
-	@SuppressWarnings("marked for removal")
-	private void clientSetup(final FMLClientSetupEvent event) {
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITROGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.OXYGEN_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.CHLORINE_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.BROMINE_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.SULFURIC_ACID_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.NITRIC_ACID_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.DIRTY_WATER_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROFLUORIC_ACID.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.HYDROFLUORIC_ACID_FLOWING.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.URANIUM_HEXAFLUORIDE_GAS.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(POMfluids.URANIUM_HEXAFLUORIDE_GAS_FLOWING.get(), RenderType.translucent());
-
-		ItemBlockRenderTypes.setRenderLayer(POMblocks.ACANTHITE_SPIKE.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(POMblocks.PIXEL_BOMBARDER.get(), RenderType.cutout());
-
-
-		MenuScreens.register(POMmenuType.PIXEL_SPLITTER_MENU.get(), PixelSplitterScreen::new);
-		MenuScreens.register(POMmenuType.PIXEL_ASSEMBLER_MENU.get(), PixelAssemblerScreen::new);
-		MenuScreens.register(POMmenuType.BALL_MILL_MENU.get(), BallMillScreen::new);
-		MenuScreens.register(POMmenuType.GRINDER_MENU.get(), GrinderScreen::new);
-		MenuScreens.register(POMmenuType.HOT_ISOTOPIC_PRESS_MENU.get(), HotIsostaticPressScreen::new);
-		MenuScreens.register(POMmenuType.CHEMICAL_SEPARATOR_MENU.get(), ChemicalSeparatorScreen::new);
-		MenuScreens.register(POMmenuType.CHEMICAL_COMBINER_MENU.get(), ChemicalCombinerScreen::new);
-		MenuScreens.register(POMmenuType.CHEMICAL_MIXER_MENU.get(), ChemicalMixerScreen::new);
-		MenuScreens.register(POMmenuType.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
-		MenuScreens.register(POMmenuType.SDS_CONTROLLER_MENU.get(), SDSFusionControllerScreen::new);
-		MenuScreens.register(POMmenuType.INDUSTRIAL_HEAT_EXCHANGER_MENU.get(), IndustrialHeatExchangerScreen::new);
-        MenuScreens.register(POMmenuType.INDUSTRIAL_TURBINE_MENU.get(), IndustrialTurbineScreen::new);
-        MenuScreens.register(POMmenuType.PIXEL_BOMBARDER_MENU.get(), PixelBombarderScreen::new);
-
-
-		EntityRenderers.register(POMentities.RIVER_SHELL.get(), RiverShellRenderer::new);
-
-		ItemProperties.register(POMitems.POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
-			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-			return energy.getEnergyStored() <= 0 ? 1 : 0;
-		});
-		ItemProperties.register(POMitems.OVERCHARGED_POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
-			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-			return energy.getEnergyStored() <= 0 ? 1 : 0;
-		});
-		ItemProperties.register(POMitems.SUPERCHARGED_POWER_CELL.get(), Util.resourceLocation("empty"), (stack, world, entity, seed) -> {
-			IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-			return energy.getEnergyStored() <= 0 ? 1 : 0;
-		});
-		ItemProperties.register(POMitems.TITANIUM_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
-			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
-			if (fluid.isEmpty()) return 0;
-			else if (fluid.getFluid().isSame(Fluids.WATER)) return 3;
-			else if (fluid.getFluid().isSame(Fluids.LAVA)) return 4;
-			else if (fluid.getFluid().getFluidType().isLighterThanAir()) return 2;
-			else return 1;
-		});
-		ItemProperties.register(POMitems.REINFORCED_BUCKET.get(), Util.resourceLocation("bucket_state"), (stack, world, entity, seed) -> {
-			FluidStack fluid = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null).getFluidInTank(0);
-			if (fluid.isEmpty()) return 0;
-			else if (fluid.getFluid().isSame(Fluids.WATER)) return 3;
-			else if (fluid.getFluid().isSame(Fluids.LAVA)) return 4;
-			else if (fluid.getFluid().getFluidType().isLighterThanAir()) return 2;
-			else return 1;
-		});
-    }
-
-	public void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-		//BlockEntityRenderers.register(POMtiles.HOT_ISOSTATIC_PRESS.get(), HotIsostaticPressRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.PIXEL_SPLITTER.get(), PixelSplitterRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.STAR.get(), StarRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.BALL_MILL.get(), BallMillRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.FUEL_CELL_HOLDER.get(), FuelCellHolderRenderer::new);
-		event.registerBlockEntityRenderer(POMtiles.NUCLEAR_REACTOR.get(), NuclearReactorRenderer::new);
-	}
-
 
 	public void setupBlockBehavior() {
 		PixelsOfMc.LOGGER.info("Setting up Dispenser Behavior");
@@ -449,6 +350,7 @@ public class PixelsOfMc {
 			}
 		};
 
+        //BUCKETS
 		DispenserBlock.registerBehavior(POMitems.LIQUID_HYDROGEN_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_NITROGEN_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_OXYGEN_BUCKET.get(), bucketBehavior);
@@ -465,7 +367,6 @@ public class PixelsOfMc {
 		DispenserBlock.registerBehavior(POMitems.PLUTONIUM_SOLUTION_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.LIQUID_LEAD_BUCKET.get(), bucketBehavior);
 		DispenserBlock.registerBehavior(POMitems.DIRTY_WATER_BUCKET.get(), bucketBehavior);
-
 
 		DispenserBlock.registerBehavior(POMitems.POWER_CELL.get(), energyCell);
 		DispenserBlock.registerBehavior(POMitems.OVERCHARGED_POWER_CELL.get(),  energyCell);

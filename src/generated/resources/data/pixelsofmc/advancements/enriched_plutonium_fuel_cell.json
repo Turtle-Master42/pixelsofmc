@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.pixelsofmc.enriched_plutonium_fuel_cell.description"
     },
-    "frame": "task",
+    "frame": "challenge",
     "hidden": false,
     "icon": {
       "item": "pixelsofmc:enriched_plutonium_fuel_cell"

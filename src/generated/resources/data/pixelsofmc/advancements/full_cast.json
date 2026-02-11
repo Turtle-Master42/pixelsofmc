@@ -1,0 +1,68 @@
+{
+  "parent": "pixelsofmc:crying_dust",
+  "criteria": {
+    "ball_cast": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:ball_cast"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ingot_cast": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:ingot_cast"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "plate_cast": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pixelsofmc:plate_cast"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.pixelsofmc.full_cast.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "pixelsofmc:ingot_cast"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.pixelsofmc.full_cast.title"
+    }
+  },
+  "requirements": [
+    [
+      "ingot_cast"
+    ],
+    [
+      "ball_cast"
+    ],
+    [
+      "plate_cast"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

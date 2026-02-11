@@ -254,6 +254,8 @@ public class POMblocks {
             () -> new AbstractPillarCasing(BlockBehaviour.Properties.copy(POMblocks.MACHINE_CASING.get())));
     public static final RegistryObject<AbstractMultiBlock> HEAT_SINK = registerBlock("heat_sink",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));
+    public static final RegistryObject<PillarBlock> TURBINE_BLADES = registerBlock("turbine_blades",
+            () -> new PillarBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_2.get())));
 
     public static final RegistryObject<AbstractMultiBlock> FISSION_CASING = registerBlock("fission_casing",
             () -> new AbstractMultiBlock(BlockBehaviour.Properties.copy(POMblocks.SIMPLE_CASING_1.get())));

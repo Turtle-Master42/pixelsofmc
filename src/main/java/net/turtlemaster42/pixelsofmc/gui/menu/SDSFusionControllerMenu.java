@@ -15,7 +15,7 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
 import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMmenuType;
+import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.AtomItem;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
@@ -34,7 +34,7 @@ public class SDSFusionControllerMenu extends AbstractMachineMenu implements IEne
     }
 
     public SDSFusionControllerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(5, inv, data, POMmenuType.SDS_CONTROLLER_MENU.get(), pContainerId);
+        super(5, inv, data, POMmenus.SDS_CONTROLLER_MENU.get(), pContainerId);
         blockEntity = ((SDSFusionControllerTile) entity);
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();
