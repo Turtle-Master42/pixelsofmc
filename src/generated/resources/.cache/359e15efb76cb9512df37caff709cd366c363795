@@ -1,10 +1,10 @@
-// 1.20.1	2025-10-21T20:03:27.477812	Tags for minecraft:block mod id pixelsofmc
+// 1.20.1	2026-02-13T10:51:50.085527	Tags for minecraft:block mod id pixelsofmc
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/blocks/glass.json
 15e868fc173ac4cb048c77e062805c2ed658a516 data/forge/tags/blocks/ores/titanium.json
 c8faae9e1e99368590d36f23d4b60ecb61d5ebbf data/forge/tags/blocks/storage_blocks.json
 97b58c8a45b455a9d8bad117d0ff6ec75de294a5 data/forge/tags/blocks/storage_blocks/diamond.json
 542590a580872a21d6f4b6d5571a865cbacbdccf data/minecraft/tags/blocks/beacon_base_blocks.json
-2a04518d16e1a253fb6d28489eb931ece5f3c6e9 data/minecraft/tags/blocks/mineable/pickaxe.json
+23524b6b857653fdb6d84bc32a79fcbd9b1637fc data/minecraft/tags/blocks/mineable/pickaxe.json
 5f2f3ada92f48889e1fef364feabd8c21819dbf9 data/minecraft/tags/blocks/needs_diamond_tool.json
 35821bc8420970fd44e9b81b9b439d43faa7c05d data/minecraft/tags/blocks/needs_iron_tool.json
 544215f7cb760f6f97ab6c48f951172fd3bde1f5 data/minecraft/tags/blocks/needs_stone_tool.json

@@ -70,7 +70,7 @@ public class AbstractPort extends AbstractMultiBlock {
             pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + "." + pState.getValue(MODE)), true);
             return InteractionResult.SUCCESS;
         }
-        if (mainHand == POMitems.HAMMER.get() || offHand == POMitems.HAMMER.get()) {
+        if ((mainHand == POMitems.HAMMER.get() || offHand == POMitems.HAMMER.get()) && !pPlayer.getCooldowns().isOnCooldown(POMitems.HAMMER.get())) {
             Direction hitDirection =  pHit.getDirection().equals(Direction.UP) || pHit.getDirection().equals(Direction.DOWN) ? pHit.getDirection() : pHit.getDirection().getOpposite();
             if (pState.getValue(PUSH_DIRECTION).equals(hitDirection)) {
                 pLevel.setBlock(pPos, pState.cycle(PUSHING).setValue(MODE, 2), 3);
@@ -83,6 +83,7 @@ public class AbstractPort extends AbstractMultiBlock {
                 pLevel.setBlock(pPos, pState.setValue(PUSH_DIRECTION, hitDirection).setValue(PUSHING, true).setValue(MODE, 2), 3);
                 pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".force_output"), true);
             }
+            pPlayer.getCooldowns().addCooldown(POMitems.HAMMER.get(), 8);
             pLevel.playLocalSound(pPos, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.6f, 0.7f, false);
             return InteractionResult.SUCCESS;
         }

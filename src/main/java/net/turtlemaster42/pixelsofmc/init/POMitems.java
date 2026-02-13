@@ -63,10 +63,10 @@ public class POMitems {
 	public static final RegistryObject<Item> PLATE_CAST = ITEMS.register("plate_cast", () -> new SawItem(new Item.Properties()));
 
 	//tools
-	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new ToolItem(new Item.Properties().durability(80)));
-	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new ToolItem(new Item.Properties().durability(240)));
-	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new ToolItem(new Item.Properties().durability(240)));
-	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new ToolItem(new Item.Properties().durability(380).fireResistant()));
+	public static final RegistryObject<Item> CLEANING_CLOTH = ITEMS.register("cleaning_cloth", () -> new CleaningClothItem(new Item.Properties().durability(192)));
+	public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new ScrewDriverItem(new Item.Properties().durability(300)));
+	public static final RegistryObject<Item> WIRECUTTER = ITEMS.register("wirecutter", () -> new ToolItem(new Item.Properties().durability(300)));
+	public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new ToolItem(new Item.Properties().durability(540).fireResistant()));
 	public static final RegistryObject<Item> CLEANING_SPONGE = ITEMS.register("cleaning_sponge", () -> new SpongeItem(new Item.Properties().stacksTo(1)));
 
 

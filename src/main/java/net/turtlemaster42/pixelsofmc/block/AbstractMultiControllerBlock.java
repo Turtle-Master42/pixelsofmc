@@ -228,7 +228,7 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                     totalBlocks++;
                     BlockPos offsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
                     BlockState offsetState = MULTIBLOCK_STRUCTURE[y][z][x].toBlockState();
-                    Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, offsetPos, new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), offsetState), UniformInt.of(2, 4));
+                    Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, offsetPos, new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), offsetState), UniformInt.of(1, 3));
 
                     level.setBlock(offsetPos, offsetState, 2);
                 }
@@ -246,6 +246,9 @@ public abstract class AbstractMultiControllerBlock extends BaseEntityBlock imple
                 for (int x = 0; x < getWidth(); x++) {
                     if (MULTIBLOCK_STRUCTURE[y][z][x] == null) continue;
                     totalBlocks++;
+                    BlockPos offsetPos = rotatedOffsetBlock(direction, x, y, z, controllerPos);
+                    BlockState offsetState = MULTIBLOCK_STRUCTURE[y][z][x].toBlockState();
+                    Util.spawnServerParticlesOnBlockFaces((ServerLevel) level, offsetPos, new ColoredBlockParticleOptions(POMparticles.COLORED_BLOCK.get(), offsetState), UniformInt.of(3, 7));
                     level.removeBlock(rotatedOffsetBlock(direction, x, y, z, controllerPos), false);
                 }
             }

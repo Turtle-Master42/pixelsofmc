@@ -1,5 +1,8 @@
 {
   "textures": [
-    "pixelsofmc:electric_spark"
+    "pixelsofmc:electric_spark_0",
+    "pixelsofmc:electric_spark_1",
+    "pixelsofmc:electric_spark_2",
+    "pixelsofmc:electric_spark_3"
   ]
 }

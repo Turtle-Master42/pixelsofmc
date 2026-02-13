@@ -81,6 +81,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.NUCLEAR_REACTOR.get(),
                 POMblocks.CHEMICAL_MIXER.get(),
                 POMblocks.INDUSTRIAL_HEAT_EXCHANGER.get(),
+                POMblocks.INDUSTRIAL_TURBINE.get(),
 
                 POMblocks.REINFORCED_GLASS.get(),
                 POMblocks.MACHINE_CASING.get(),

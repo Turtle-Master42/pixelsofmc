@@ -155,7 +155,10 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMblocks.TITANIUM_GOLD_PLATING_STAIRS.get().asItem())
                 .add(Element.GOLD.dust().asItem());
 
-        tag(POMtags.Items.CIRCLE_SAW).add(POMitems.TITANIUM_CIRCLE_SAW.get()).add(POMitems.TITANIUM_GOLD_CIRCLE_SAW.get()).add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
+        tag(POMtags.Items.CIRCLE_SAW)
+                .add(POMitems.TITANIUM_CIRCLE_SAW.get())
+                .add(POMitems.TITANIUM_GOLD_CIRCLE_SAW.get())
+                .add(POMitems.TITANIUM_DIBORIDE_CIRCLE_SAW.get());
         tag(POMtags.Items.MILLING_BALL)
                 .add(POMitems.RUBBER_BALL.get())
                 .add(POMitems.FIRE_PROOF_RUBBER_BALL.get())
