@@ -55,7 +55,7 @@ public class PixelsOfMc {
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(Util.resourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-	public static POMCommonProxy PROXY = DistExecutor.runForDist(() -> POMClientProxy::new, () -> POMCommonProxy::new);
+	public static POMCommonProxy PROXY = DistExecutor.safeRunForDist(() -> POMClientProxy::new, () -> POMCommonProxy::new);
 	private static int messageID = 0;
 
 	@SuppressWarnings("marked for removal")

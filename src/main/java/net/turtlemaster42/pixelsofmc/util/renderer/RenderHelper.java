@@ -7,7 +7,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
@@ -98,7 +100,26 @@ public final class RenderHelper extends RenderType {
         }
     }
 
+    public static RenderType starShine(ResourceLocation location) {
+        RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()
+                .setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
+                .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
+                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                .setWriteMaskState(COLOR_DEPTH_WRITE)
+                .createCompositeState(false);
+        return create("star_shine", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, 256, false, true, rendertype$compositestate);
+    }
+
     public static RenderType plasmaShine(ResourceLocation location) {
-        return create("plasma_shine", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, true, true, CompositeState.builder().setShaderState(RENDERTYPE_ENTITY_GLINT_SHADER).setTextureState(new TextureStateShard(location, false, true)).setLightmapState(LIGHTMAP).setCullState(RenderStateShard.NO_CULL).setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY).setOverlayState(OVERLAY).setDepthTestState(LEQUAL_DEPTH_TEST).createCompositeState(true));
+        return create("plasma_shine", DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, true, true,
+                CompositeState.builder()
+                        .setShaderState(RENDERTYPE_ENTITY_GLINT_SHADER)
+                        .setTextureState(new TextureStateShard(location, false, true))
+                        .setLightmapState(LIGHTMAP)
+                        .setCullState(RenderStateShard.NO_CULL)
+                        .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
+//                        .setOverlayState(OVERLAY)
+                        .setDepthTestState(LEQUAL_DEPTH_TEST)
+                        .createCompositeState(false));
     }
 }

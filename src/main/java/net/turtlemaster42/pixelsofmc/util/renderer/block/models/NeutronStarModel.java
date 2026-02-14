@@ -8,11 +8,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.turtlemaster42.pixelsofmc.tile.StarTile;
 
-public class StarModel extends AdvancedEntityModel<Entity> {
+public class NeutronStarModel extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox root;
     private final AdvancedModelBox star_1;
-
-    public StarModel() {
+    private final AdvancedModelBox star_2;
+    public NeutronStarModel() {
         texWidth = 64;
         texHeight = 32;
 
@@ -25,14 +25,18 @@ public class StarModel extends AdvancedEntityModel<Entity> {
         star_1.setTextureOffset(0, 0).addBox(-8.0F, -8.0F, -8.0F, 16.0F, 16.0F, 16.0F, 0.0F, false);
         star_1.setScale(0, 0, 0);
 
-        //box(locX, locY, locZ, sizeX, sizeY, sizeZ, ?, flip?)
+        star_2 = new AdvancedModelBox(this, "star_2");
+        star_2.setRotationPoint(0F, 0F, 0F);
+        root.addChild(star_2);
+        star_2.setTextureOffset(0, 0).addBox(-8.0F, -8.0F, -8.0F, 16.0F, 16.0F, 16.0F, 0.0F, false);
+        star_2.setScale(0, 0, 0);
         this.updateDefaultPose();
     }
 
 
     @Override
     public Iterable<AdvancedModelBox> getAllParts() {
-        return ImmutableList.of(root, star_1);
+        return ImmutableList.of(root, star_1, star_2);
     }
 
     @Override
@@ -43,35 +47,24 @@ public class StarModel extends AdvancedEntityModel<Entity> {
     @Override
     public void setupAnim(Entity entity, float v, float v1, float v2, float v3, float v4) {}
 
-    public void renderStar(StarTile tile, float partialTick) {
+    public void renderNeutronStar(StarTile tile, float partialTick) {
         this.resetToDefaultPose();
 
-        float rotation = (tile.ticksExisted + partialTick + (tile.getBlockPos().getX()+tile.getBlockPos().getY()+tile.getBlockPos().getZ())) / 32;
-        float scale = 1 + (Mth.sin(rotation) / 8);
+        float rotation = (tile.ticksExisted + partialTick + (tile.getBlockPos().getX()+tile.getBlockPos().getY()+tile.getBlockPos().getZ())) / 8;
+        float scale = 1 + (Mth.sin(rotation) / 6);
+        float orbit_x = (Mth.cos(5*rotation)) * 5;
+        float orbit_z = (Mth.sin(5*rotation)) * 5;
+
+        star_1.setPos(star_1.defaultPositionX + orbit_x, star_1.defaultPositionY, star_1.defaultPositionZ + orbit_z);
+        star_2.setPos(star_2.defaultPositionX - orbit_x, star_2.defaultPositionY, star_2.defaultPositionZ - orbit_z);
+
         star_1.rotateAngleX = rotation;
         star_1.rotateAngleY = rotation * 0.8f;
         star_1.rotateAngleZ = rotation * 1.2f;
         star_1.setScale(scale, scale, scale);
+        star_2.rotateAngleX = rotation * -0.9f;
+        star_2.rotateAngleY = rotation;
+        star_2.rotateAngleZ = rotation * -1.1f;
+        star_2.setScale(scale, scale, scale);
     }
-
-//    protected static double getXRotD(Vec3 toPos, Vec3 fromPos) {
-//        double dx = toPos.x - fromPos.x;
-//        double dy = toPos.y - fromPos.y;
-//        double dz = toPos.z - fromPos.z;
-//        double sqrt = Math.sqrt(dx * dx + dz * dz);
-//        if (dy < 0) {
-//            return Mth.atan2(dy, sqrt);
-//        }
-//        return -Mth.atan2(dy, sqrt);
-//    }
-//
-//    protected static double getYRotD(Vec3 toPos, Vec3 fromPos) {
-//        double dx = toPos.x - fromPos.x;
-//        double dy = toPos.y - fromPos.y;
-//        double dz = toPos.z - fromPos.z;
-//        if (dy < 0) {
-//            return -Mth.atan2(-dz, -dx);
-//        }
-//        return -Mth.atan2(dz, dx);
-//    }
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -20,6 +21,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.turtlemaster42.pixelsofmc.entity.client.RiverShellRenderer;
 import net.turtlemaster42.pixelsofmc.gui.book.GuiBook1;
 import net.turtlemaster42.pixelsofmc.init.*;
+import net.turtlemaster42.pixelsofmc.item.BigBucket;
+import net.turtlemaster42.pixelsofmc.item.PixelItem;
 import net.turtlemaster42.pixelsofmc.particle.*;
 import net.turtlemaster42.pixelsofmc.util.Util;
 import net.turtlemaster42.pixelsofmc.util.renderer.block.tile.*;
@@ -86,6 +89,12 @@ public class POMClientProxy extends POMCommonProxy {
         event.registerSpecial(POMparticles.COLORED_BLOCK.get(), new ColoredBlockParticle.Provider());
         event.registerSpriteSet(POMparticles.RED_CROSS.get(), CrossParticle.RedCrossProvider::new);
         event.registerSpriteSet(POMparticles.GREEN_CROSS.get(), CrossParticle.GreenCrossProvider::new);
+    }
+
+    @SubscribeEvent
+    public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, index) -> ((PixelItem) stack.getItem()).getColor(stack, index), POMitems.PIXEL.get(), POMitems.PIXEL_PILE.get());
+        event.register((stack, index) -> index == 1 ? ((BigBucket) stack.getItem()).getColor(stack) : -1, POMitems.TITANIUM_BUCKET.get(), POMitems.REINFORCED_BUCKET.get());
     }
 
     @SuppressWarnings("marked for removal")

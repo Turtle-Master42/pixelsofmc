@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "pixelsofmc:block/machine_casing"
+		"all": "pixelsofmc:block/small_star"
 	}
 }
