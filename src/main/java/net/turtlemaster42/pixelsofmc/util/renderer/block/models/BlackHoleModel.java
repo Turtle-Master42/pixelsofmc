@@ -16,8 +16,8 @@ public class BlackHoleModel extends AdvancedEntityModel<Entity> {
     private final AdvancedModelBox plasma_4;
 
     public BlackHoleModel() {
-        texWidth = 192;
-        texHeight = 208;
+        texWidth = 64;
+        texHeight = 160;
 
         root = new AdvancedModelBox(this, "root");
         root.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -53,7 +53,7 @@ public class BlackHoleModel extends AdvancedEntityModel<Entity> {
         plasma_4.setScale(0, 0, 0);
 
 
-        //box(locX, locY, locZ, sizeX, sizeY, sizeZ, ?, flip?)
+        //box(locX, locY, locZ, sizeX, sizeY, sizeZ, ?, mirror?)
         this.updateDefaultPose();
     }
 

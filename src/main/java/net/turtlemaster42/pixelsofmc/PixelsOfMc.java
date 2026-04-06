@@ -201,11 +201,11 @@ public class PixelsOfMc {
 						return stack;
 					}
 				}
-				//IMPLEMENT ON A LATER DAY
-//				if (state.canBeReplaced()) {
-//					source.getLevel().sendParticles(POMparticles.ELECTRIC_SPARK.get(), blockpos.getX(), blockpos.getY(), blockpos.getZ(), 50, 0.5f, 0.5f, 0.5f, 0.01);
-//					return stack;
-//				}
+				//TODO:IMPLEMENT ON A LATER DAY
+                // if (state.canBeReplaced()) {
+                //source.getLevel().sendParticles(POMparticles.ELECTRIC_SPARK.get(), blockpos.getX(), blockpos.getY(), blockpos.getZ(), 50, 0.5f, 0.5f, 0.5f, 0.01);
+                //return stack;
+                //}
 				return defaultBehavior.dispense(source, stack);
 			}
 		};

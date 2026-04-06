@@ -1,5 +1,6 @@
 package net.turtlemaster42.pixelsofmc.block;
 
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -36,8 +37,14 @@ public class AbstractPort extends AbstractMultiBlock {
     }
 
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
+        Direction facing_direction;
+        if (pContext.getPlayer().isCrouching()) {
+            facing_direction = pContext.getNearestLookingDirection().equals(Direction.UP) || pContext.getNearestLookingDirection().equals(Direction.DOWN) ? pContext.getNearestLookingDirection() : pContext.getNearestLookingDirection().getOpposite();
+        } else {
+            facing_direction = pContext.getNearestLookingDirection().equals(Direction.UP) || pContext.getNearestLookingDirection().equals(Direction.DOWN) ? pContext.getNearestLookingDirection().getOpposite() : pContext.getNearestLookingDirection();
+        }
         return this.defaultBlockState().setValue(MODE, 0)
-                .setValue(PUSH_DIRECTION, pContext.getNearestLookingDirection().equals(Direction.UP) || pContext.getNearestLookingDirection().equals(Direction.DOWN) ? pContext.getNearestLookingDirection().getOpposite() : pContext.getNearestLookingDirection())
+                .setValue(PUSH_DIRECTION, facing_direction)
                 .setValue(PUSHING, false);
     }
 
@@ -72,7 +79,7 @@ public class AbstractPort extends AbstractMultiBlock {
         }
         if ((mainHand == POMitems.HAMMER.get() || offHand == POMitems.HAMMER.get()) && !pPlayer.getCooldowns().isOnCooldown(POMitems.HAMMER.get())) {
             Direction hitDirection =  pHit.getDirection().equals(Direction.UP) || pHit.getDirection().equals(Direction.DOWN) ? pHit.getDirection() : pHit.getDirection().getOpposite();
-            if (pState.getValue(PUSH_DIRECTION).equals(hitDirection)) {
+            if (pState.getValue(PUSH_DIRECTION).equals(hitDirection) && !Screen.hasShiftDown()) {
                 pLevel.setBlock(pPos, pState.cycle(PUSHING).setValue(MODE, 2), 3);
                 if (!pState.getValue(PUSHING))
                     pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".force_output"), true);
@@ -80,7 +87,7 @@ public class AbstractPort extends AbstractMultiBlock {
                     pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".1"), true);
 
             } else {
-                pLevel.setBlock(pPos, pState.setValue(PUSH_DIRECTION, hitDirection).setValue(PUSHING, true).setValue(MODE, 2), 3);
+                pLevel.setBlock(pPos, pState.setValue(PUSH_DIRECTION, Screen.hasShiftDown() ? hitDirection.getOpposite() : hitDirection).setValue(PUSHING, true).setValue(MODE, 2), 3);
                 pPlayer.displayClientMessage(Component.translatable("message.pixelsofmc.block." + pState.getBlock().asItem() + ".force_output"), true);
             }
             pPlayer.getCooldowns().addCooldown(POMitems.HAMMER.get(), 8);

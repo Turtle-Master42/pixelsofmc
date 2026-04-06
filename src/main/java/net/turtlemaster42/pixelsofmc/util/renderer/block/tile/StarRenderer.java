@@ -42,7 +42,6 @@ public class StarRenderer<T extends StarTile> implements BlockEntityRenderer<T> 
             BLACK_HOLE_MODEL.renderToBuffer(pPoseStack, pBufferSource.getBuffer(RenderHelper.starShine(HOLE)), 255, pPackedOverlay, 1f, 1f, 1f, 1f);
             float scale = Mth.sin(time / 32) * 0.05f + 0.08f;
 
-
             //out
             pPoseStack.rotateAround(Axis.YP.rotationDegrees(time*0.25f), 0.0f, 0.0f, 0.0f);
             RenderHelper.renderStar(pPoseStack, pBufferSource, 0xF83300, 1f, 0.13f, 0.01f, 0.13f, seed + 18);
