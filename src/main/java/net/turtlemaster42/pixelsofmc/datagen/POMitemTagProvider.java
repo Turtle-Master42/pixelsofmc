@@ -108,8 +108,8 @@ public class POMitemTagProvider extends ItemTagsProvider {
                         POMitems.BROWN_DIAMOND.get(),
                         POMitems.ORANGE_DIAMOND.get(),
                         POMitems.YELLOW_DIAMOND.get(),
+                        POMitems.LIME_DIAMOND.get(),
                         POMitems.GREEN_DIAMOND.get(),
-                        POMitems.DARK_GREEN_DIAMOND.get(),
                         POMitems.BLUE_DIAMOND.get(),
                         POMitems.PINK_DIAMOND.get()
                 );
@@ -200,14 +200,63 @@ public class POMitemTagProvider extends ItemTagsProvider {
                 .add(POMblocks.DEEPSLATE_TITANIUM_ORE.get().asItem())
                 .add(POMblocks.TITANIUM_ORE.get().asItem());
 
-        tag(POMtags.Items.DARK_GLASS)
+        tag(POMtags.Items.FOCUS_LENS)
+                .add(POMitems.VIOLET_DIAMOND.get())
+                .add(POMitems.RED_DIAMOND.get())
+                .add(POMitems.PERFECT_DIAMOND.get());
+        tag(POMtags.Items.DARK_LENS)
+                .add(POMitems.BLACK_DIAMOND.get())
+                .add(POMitems.GREEN_DIAMOND.get())
+                .addTag(Tags.Items.GLASS_RED)
+                .addTag(Tags.Items.GLASS_ORANGE)
+                .addTag(Tags.Items.GLASS_YELLOW)
+                .addTag(Tags.Items.GLASS_LIME)
                 .addTag(Tags.Items.GLASS_GREEN)
-                .addTag(Tags.Items.GLASS_BROWN)
                 .addTag(Tags.Items.GLASS_CYAN)
+                .addTag(Tags.Items.GLASS_LIGHT_BLUE)
+                .addTag(Tags.Items.GLASS_BLUE)
+                .addTag(Tags.Items.GLASS_PURPLE)
+                .addTag(Tags.Items.GLASS_MAGENTA)
+                .addTag(Tags.Items.GLASS_PINK)
+                .addTag(Tags.Items.GLASS_WHITE)
+                .addTag(Tags.Items.GLASS_LIGHT_GRAY)
                 .addTag(Tags.Items.GLASS_GRAY)
-                .addTag(Tags.Items.GLASS_BLACK);
-
-        tag(POMtags.Items.OPAQUE_GLASS).add(Items.TINTED_GLASS);
+                .addTag(Tags.Items.GLASS_BLACK)
+                .addTag(Tags.Items.GLASS_BROWN)
+        ;
+        tag(POMtags.Items.OPAQUE_LENS).add(Items.TINTED_GLASS);
+        tag(POMtags.Items.RED_LENS)
+                .addTag(Tags.Items.GLASS_RED)
+                .add(POMitems.RED_DIAMOND.get());
+        tag(POMtags.Items.ORANGE_LENS)
+                .addTag(Tags.Items.GLASS_ORANGE)
+                .addTag(Tags.Items.GLASS_BROWN)
+                .add(POMitems.ORANGE_DIAMOND.get());
+        tag(POMtags.Items.YELLOW_LENS)
+                .addTag(Tags.Items.GLASS_YELLOW)
+                .add(POMitems.YELLOW_DIAMOND.get());
+        tag(POMtags.Items.LIME_LENS)
+                .addTag(Tags.Items.GLASS_LIME)
+                .addTag(Tags.Items.GLASS_GREEN)
+                .add(POMitems.GREEN_DIAMOND.get())
+                .add(POMitems.LIME_DIAMOND.get());
+        tag(POMtags.Items.LIGHT_BLUE_LENS)
+                .addTag(Tags.Items.GLASS_LIGHT_BLUE)
+                .addTag(Tags.Items.GLASS_CYAN);
+        tag(POMtags.Items.BLUE_LENS)
+                .addTag(Tags.Items.GLASS_BLUE)
+                .add(POMitems.BLUE_DIAMOND.get());
+        tag(POMtags.Items.PURPLE_LENS)
+                .addTag(Tags.Items.GLASS_PURPLE)
+                .add(POMitems.VIOLET_DIAMOND.get());
+        tag(POMtags.Items.MAGENTA_LENS)
+                .addTag(Tags.Items.GLASS_PINK)
+                .add(POMitems.PINK_DIAMOND.get())
+                .addTag(Tags.Items.GLASS_MAGENTA);
+        tag(POMtags.Items.WHITE_LENS)
+                .addTag(Tags.Items.GLASS)
+                .addTag(Tags.Items.GLASS_WHITE)
+                .addTag(Tags.Items.GLASS_LIGHT_GRAY);
 
         //dusts
         tag(Tags.Items.DUSTS)

@@ -17,13 +17,13 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.tile.PixelBombarderTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMfluids;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 import net.turtlemaster42.pixelsofmc.item.FuelCellItem;
 import net.turtlemaster42.pixelsofmc.recipe.builders.*;
+import net.turtlemaster42.pixelsofmc.tile.PixelBombarderTile;
 import net.turtlemaster42.pixelsofmc.util.Constants;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -2436,43 +2436,53 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
                 .lazer(new Color(200, 0, 35))
                 .finish(fConsumer, this);
         PixelBombarderRecipeBuilder.build(Tags.Items.GEMS_DIAMOND)
-                .output(POMitems.GREEN_DIAMOND.get())
+                .output(POMitems.LIME_DIAMOND.get())
                 .lazer(new Color(100, 255, 30))
                 .finish(fConsumer, this);
-        PixelBombarderRecipeBuilder.build(POMitems.GREEN_DIAMOND.get())
-                .output(POMitems.DARK_GREEN_DIAMOND.get())
+        PixelBombarderRecipeBuilder.build(POMitems.LIME_DIAMOND.get())
+                .output(POMitems.GREEN_DIAMOND.get())
                 .lazer(new Color(100, 255, 30))
                 .finish(fConsumer, this);
 
         // laser
-        LaserSourceRecipeBuilder.build(Element.PHOSPHORUS.itemTag(), PixelBombarderTile.mergeColors(Color.BLUE, new Color(175, 0, 255))) //blue and purple stained-glass
-                .outputLazer(new Color(200, 0, 35)) //infrared
+        LaserSourceRecipeBuilder.build(Element.PHOSPHORUS.itemTag(), PixelBombarderTile.mergeColors(Color.BLUE, new Color(175, 50, 255))) //blue and purple stained-glass
+                .outputLaser(new Color(200, 0, 35)) //infrared
                 .outputType(2)
                 .finish(fConsumer, this);
 
-        LaserSourceRecipeBuilder.build(Element.LEAD.itemTag(), new Color(175, 0, 255)) //purple stained-glass
-                .outputLazer(new Color(255, 230, 0)) // ELECTRON
+        LaserSourceRecipeBuilder.build(Element.LEAD.itemTag(), new Color(87, 25, 255)) //purple stained-glass
+                .outputLaser(new Color(255, 230, 0)) // ELECTRON
                 .outputType(1)
+                .sizeModifier(-1)
+                .sizeRequirement(2)
                 .finish(fConsumer, this);
 
         LaserSourceRecipeBuilder.build(Element.SILICON.itemTag(), Color.CYAN) //light-blue stained-glass
-                .outputLazer(new Color(255, 230, 0)) // ELECTRON
+                .outputLaser(new Color(255, 230, 0)) // ELECTRON
                 .outputType(1)
+                .sizeRequirement(2)
+                .sizeModifier(-1)
                 .finish(fConsumer, this);
 
         LaserSourceRecipeBuilder.build(Element.URANIUM.itemTag(), new Color(255, 255, 255)) //light-blue stained-glass
-                .outputLazer(new Color(100, 255, 30)) // ALPHA
+                .outputLaser(new Color(100, 255, 30)) // ALPHA
                 .outputType(1)
+                .sizeRequirement(3)
+                .sizeModifier(-2)
                 .finish(fConsumer, this);
 
         LaserSourceRecipeBuilder.build(Element.PLUTONIUM.itemTag(), new Color(255, 255, 255)) //light-blue stained-glass
-                .outputLazer(new Color(100, 255, 30)) // ALPHA
+                .outputLaser(new Color(100, 255, 30)) // ALPHA
                 .outputType(1)
+                .sizeRequirement(2)
+                .sizeModifier(-1)
                 .finish(fConsumer, this);
 
         LaserSourceRecipeBuilder.build(Items.ENDER_PEARL, Color.MAGENTA) //magenta stained-glass
-                .outputLazer(new Color(205, 90, 255)) // ARCANE
+                .outputLaser(new Color(205, 90, 255)) // ARCANE
                 .outputType(1)
+                .sizeModifier(-1)
+                .sizeRequirement(2)
                 .finish(fConsumer, this);
 
 

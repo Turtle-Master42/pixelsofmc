@@ -20,6 +20,8 @@ public class LaserSourceRecipeBuilder extends POMRecipeBuilder {
     private final int inputColor;
     private int outputColor = 0;
     private int outputType = 0;
+    private int sizeModifier = 0;
+    private int sizeRequirement = 1;
 
     public LaserSourceRecipeBuilder(CountedIngredient input, int color) {
         this.input = input;
@@ -39,18 +41,28 @@ public class LaserSourceRecipeBuilder extends POMRecipeBuilder {
         return new LaserSourceRecipeBuilder(CountedIngredient.of(1, tag), color);
     }
 
-    public LaserSourceRecipeBuilder outputLazer(Color color) {
+    public LaserSourceRecipeBuilder outputLaser(Color color) {
         this.outputColor = color.getRGB();
         return this;
     }
 
-    public LaserSourceRecipeBuilder outputLazer(int color) {
+    public LaserSourceRecipeBuilder outputLaser(int color) {
         this.outputColor = color;
         return this;
     }
 
     public LaserSourceRecipeBuilder outputType(int type) {
         this.outputType = type;
+        return this;
+    }
+
+    public LaserSourceRecipeBuilder sizeModifier(int modifier) {
+        this.sizeModifier = modifier;
+        return this;
+    }
+
+    public LaserSourceRecipeBuilder sizeRequirement(int requirement) {
+        this.sizeRequirement = requirement;
         return this;
     }
 
@@ -65,7 +77,7 @@ public class LaserSourceRecipeBuilder extends POMRecipeBuilder {
 
     @Override
     protected FinishedRecipe save(@NotNull ResourceLocation id) {
-        return new Result(id, this.inputColor, this.input, this.outputColor, this.outputType, this.advancement);
+        return new Result(id, this.inputColor, this.input, sizeRequirement, this.outputColor, this.outputType, this.sizeModifier, this.advancement);
     }
 
     public static class Result extends POMRecipeResult {
@@ -73,13 +85,18 @@ public class LaserSourceRecipeBuilder extends POMRecipeBuilder {
         private final CountedIngredient input;
         private final int outputColor;
         private final int outputType;
+        private final int sizeRequirement;
+        private final int sizeModifier;
 
-        public Result(ResourceLocation pId, int pInputColor, CountedIngredient pIngredient, int pOutputColor, int pOutputType, Advancement.Builder pAdvancement) {
+
+        public Result(ResourceLocation pId, int pInputColor, CountedIngredient pIngredient, int pSizeRequirement, int pOutputColor, int pOutputType, int pSizeModifier, Advancement.Builder pAdvancement) {
             super(LaserSourceRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.inputColor = pInputColor;
             this.input = pIngredient;
             this.outputColor = pOutputColor;
             this.outputType = pOutputType;
+            this.sizeRequirement = pSizeRequirement;
+            this.sizeModifier = pSizeModifier;
         }
 
         @Override
@@ -88,6 +105,8 @@ public class LaserSourceRecipeBuilder extends POMRecipeBuilder {
             pJson.addProperty("input_color", inputColor);
             pJson.addProperty("output_color", outputColor);
             pJson.addProperty("output_type", outputType);
+            pJson.addProperty("size_modifier", sizeModifier);
+            pJson.addProperty("min_size", sizeRequirement);
         }
     }
 }

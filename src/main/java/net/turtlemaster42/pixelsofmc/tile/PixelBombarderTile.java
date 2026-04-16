@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -32,14 +31,15 @@ import java.util.Optional;
 public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> {
 
     protected final ContainerData data;
-    private int smallLaserColor = Color.WHITE.getRGB();
-    private int bigLaserColor = Color.WHITE.getRGB();
+    private int sourceColor = Color.WHITE.getRGB();
+    private int sourceSize = 2;
+    private int laserColor = Color.WHITE.getRGB();
     private int laserType = 0;
     private int laserSize = 2;
 
     public PixelBombarderTile(BlockPos pWorldPosition, BlockState pBlockState) {
         super(POMtiles.PIXEL_BOMBARDER.get(), pWorldPosition, pBlockState, 1024000, 256);
-        defineMaxProgress(300);
+        defineMaxProgress(600);
 
         this.data = new ContainerData() {
             public int get(int index) {
@@ -122,7 +122,7 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, PixelBombarderTile pBlockEntity) {
         if(hasRecipe(pBlockEntity)) {
-            pBlockEntity.progress++;
+            pBlockEntity.progress += laserSize;
 //            consumePower(6, 5);
 
             if(pBlockEntity.progress > pBlockEntity.requiredProgress) {
@@ -144,7 +144,9 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
         Optional<PixelBombarderRecipe> match = level.getRecipeManager()
                 .getRecipeFor(PixelBombarderRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertItemIntoOutputSlot(inventory, match.get().getOutput()) && match.get().getColor() == entity.bigLaserColor;
+        return match.isPresent() &&
+                canInsertItemIntoOutputSlot(inventory, match.get().getOutput()) &&
+                match.get().getColor() == entity.laserColor;
     }
 
     private static void craftItem(PixelBombarderTile entity) {
@@ -170,42 +172,48 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
     }
 
     public void calculateLaserType() {
-        laserSize = 2;
+        sourceSize = 2;
         Color lastColor = Color.WHITE;
-        smallLaserColor = Color.WHITE.getRGB();
-        for (int i = 1; i < 3; i++) {
+        sourceColor = Color.WHITE.getRGB();
+        for (int i = 1; i <= 2; i++) {
             ItemStack stack = this.itemHandler.getStackInSlot(i);
             // color
-            if (stack.is(Tags.Items.GLASS_RED)) {
+            if (stack.is(POMtags.Items.RED_LENS)) {
                 lastColor = mergeColors(lastColor, Color.RED);
-            } else if (stack.is(Tags.Items.GLASS_ORANGE) || stack.is(Tags.Items.GLASS_BROWN)) {
-                lastColor = mergeColors(lastColor, new Color(255, 150, 0));
-            } else if (stack.is(Tags.Items.GLASS_YELLOW)) {
+            } else if (stack.is(POMtags.Items.ORANGE_LENS)) {
+                lastColor = mergeColors(lastColor, new Color(255, 130, 0));
+            } else if (stack.is(POMtags.Items.YELLOW_LENS)) {
                 lastColor = mergeColors(lastColor, Color.YELLOW);
-            } else if (stack.is(Tags.Items.GLASS_LIME) || stack.is(Tags.Items.GLASS_GREEN)) {
+            } else if (stack.is(POMtags.Items.LIME_LENS)) {
                 lastColor = mergeColors(lastColor, Color.GREEN);
-            } else if (stack.is(Tags.Items.GLASS_LIGHT_BLUE) || stack.is(Tags.Items.GLASS_CYAN)) {
+            } else if (stack.is(POMtags.Items.LIGHT_BLUE_LENS)) {
                 lastColor = mergeColors(lastColor, Color.CYAN);
-            } else if (stack.is(Tags.Items.GLASS_BLUE)) {
+            } else if (stack.is(POMtags.Items.BLUE_LENS)) {
                 lastColor = mergeColors(lastColor, Color.BLUE);
-            } else if (stack.is(Tags.Items.GLASS_PURPLE)) {
-                lastColor = mergeColors(lastColor, new Color(175, 0, 255));
-            } else if (stack.is(Tags.Items.GLASS_MAGENTA)) {
+            } else if (stack.is(POMtags.Items.PURPLE_LENS)) {
+                lastColor = mergeColors(lastColor, new Color(175, 50, 255));
+            } else if (stack.is(POMtags.Items.MAGENTA_LENS)) {
                 lastColor = mergeColors(lastColor, Color.MAGENTA);
+            } else if (stack.is(POMtags.Items.WHITE_LENS)) {
+                lastColor = mergeColors(lastColor, new Color(254, 254, 254));
             }
 
             //size
-            if (stack.is(POMtags.Items.OPAQUE_GLASS)) { //tinted glass
-                laserSize -= 2;
-            } else if (stack.is(POMtags.Items.DARK_GLASS)) { //glass like black, brown or cyan
-                laserSize -= 1;
+            if (stack.is(POMtags.Items.OPAQUE_LENS)) { //tinted glass
+                sourceSize = -1;
+            } else if (stack.is(POMtags.Items.DARK_LENS)) { //glass like black, brown or cyan
+                sourceSize -= 1;
+            } else if (stack.is(POMtags.Items.FOCUS_LENS)) {
+                sourceSize += 1;
             }
         }
-        smallLaserColor = lastColor.getRGB();
+        sourceSize = Math.min(sourceSize, 3);
+        sourceColor = lastColor.getRGB();
 
 
         if (itemHandler.getStackInSlot(3).isEmpty()) {
-            bigLaserColor = smallLaserColor;
+            laserColor = sourceColor;
+            laserSize = sourceSize;
             laserType = 0;
         } else {
             SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
@@ -214,14 +222,19 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
             }
             Optional<LaserSourceRecipe> match = level.getRecipeManager()
                     .getRecipeFor(LaserSourceRecipe.Type.INSTANCE, inventory, level);
-            if (match.isPresent() && laserSize > 0) {
+            if (match.isPresent() && sourceSize >= match.get().getSizeRequirement()) {
                 LaserSourceRecipe recipe = match.get();
-                if (smallLaserColor == recipe.getInputColor()) {
-                    bigLaserColor = recipe.getOutputColor();
+                if (sourceColor == recipe.getInputColor()) {
+                    laserColor = recipe.getOutputColor();
                     laserType = recipe.getOutputType();
+                    laserSize = Math.min(sourceSize + match.get().getSizeModifier(), 3);
                 } else {
-                    bigLaserColor = 0;
+                    laserColor = 0;
                 }
+            } else {
+                laserSize = 0;
+                laserType = 0;
+                laserColor = 0;
             }
         }
     }
@@ -245,12 +258,16 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
                 || inventory.getItem(4).isEmpty();
     }
 
-    public int getSmallLaserColor() {
-        return smallLaserColor;
+    public int getSourceColor() {
+        return sourceColor;
     }
 
-    public int getBigLaserColor() {
-        return bigLaserColor;
+    public int getSourceSize() {
+        return sourceSize;
+    }
+
+    public int getLaserColor() {
+        return laserColor;
     }
 
     public int getLaserType() {

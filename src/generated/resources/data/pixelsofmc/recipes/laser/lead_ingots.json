@@ -6,7 +6,9 @@
       "tag": "forge:ingots/lead"
     }
   },
-  "input_color": -5308161,
+  "input_color": -11068929,
+  "min_size": 2,
   "output_color": -6656,
-  "output_type": 1
+  "output_type": 1,
+  "size_modifier": -1
 }

@@ -4,14 +4,14 @@
   "input": {
     "count": 1,
     "ingredient": {
-      "item": "pixelsofmc:green_diamond"
+      "item": "pixelsofmc:lime_diamond"
     }
   },
   "output": {
     "chance": 1.0,
     "count": 1,
     "ingredient": {
-      "item": "pixelsofmc:dark_green_diamond"
+      "item": "pixelsofmc:green_diamond"
     }
   }
 }

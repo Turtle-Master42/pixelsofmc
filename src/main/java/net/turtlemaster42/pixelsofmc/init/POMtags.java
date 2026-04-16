@@ -48,8 +48,20 @@ public class POMtags {
         public static final TagKey<Item> SOUL_FUELS = ItemTags.create(Util.resourceLocation("soul_fuels"));
         public static final TagKey<Item> NUGGET_NETHERITE = ItemTags.create(forgeLoc("nuggets/netherite"));
 
-        public static final TagKey<Item> DARK_GLASS = ItemTags.create(Util.resourceLocation("glass/dark"));
-        public static final TagKey<Item> OPAQUE_GLASS = ItemTags.create(Util.resourceLocation("glass/opaque"));
+        public static final TagKey<Item> FOCUS_LENS = ItemTags.create(Util.resourceLocation("lens/focus"));
+        public static final TagKey<Item> DARK_LENS = ItemTags.create(Util.resourceLocation("lens/dark"));
+        public static final TagKey<Item> OPAQUE_LENS = ItemTags.create(Util.resourceLocation("lens/opaque"));
+
+        public static final TagKey<Item> RED_LENS = ItemTags.create(Util.resourceLocation("lens/red"));
+        public static final TagKey<Item> ORANGE_LENS = ItemTags.create(Util.resourceLocation("lens/orange"));
+        public static final TagKey<Item> YELLOW_LENS = ItemTags.create(Util.resourceLocation("lens/yellow"));
+        public static final TagKey<Item> LIME_LENS = ItemTags.create(Util.resourceLocation("lens/lime"));
+        public static final TagKey<Item> LIGHT_BLUE_LENS = ItemTags.create(Util.resourceLocation("lens/light_blue"));
+        public static final TagKey<Item> BLUE_LENS = ItemTags.create(Util.resourceLocation("lens/blue"));
+        public static final TagKey<Item> PURPLE_LENS = ItemTags.create(Util.resourceLocation("lens/purple"));
+        public static final TagKey<Item> MAGENTA_LENS = ItemTags.create(Util.resourceLocation("lens/magenta"));
+        public static final TagKey<Item> WHITE_LENS = ItemTags.create(Util.resourceLocation("lens/white"));
+
 
         // forge items
         public static final TagKey<Item> DUST_NETHERITE = ItemTags.create(forgeLoc("dusts/netherite"));

@@ -1,0 +1,22 @@
+{
+  "values": [
+    "pixelsofmc:black_diamond",
+    "pixelsofmc:green_diamond",
+    "#forge:glass/red",
+    "#forge:glass/orange",
+    "#forge:glass/yellow",
+    "#forge:glass/lime",
+    "#forge:glass/green",
+    "#forge:glass/cyan",
+    "#forge:glass/light_blue",
+    "#forge:glass/blue",
+    "#forge:glass/purple",
+    "#forge:glass/magenta",
+    "#forge:glass/pink",
+    "#forge:glass/white",
+    "#forge:glass/light_gray",
+    "#forge:glass/gray",
+    "#forge:glass/black",
+    "#forge:glass/brown"
+  ]
+}

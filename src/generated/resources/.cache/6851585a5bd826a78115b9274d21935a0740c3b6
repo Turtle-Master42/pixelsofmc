@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-09T21:39:00.585282	Item Models: pixelsofmc
+// 1.20.1	2026-04-16T14:46:13.141013	Item Models: pixelsofmc
 a4ea31f4f8c94a80ae2dfd1319b334f0b5eced3f assets/pixelsofmc/models/item/acanthite_dust.json
 0bd2a56648aaddc5ecef74e7200c7bffc6c52b02 assets/pixelsofmc/models/item/actinium_atom_512.json
 e0247e493b2e6a501734f9666ef256d7bdd30ef7 assets/pixelsofmc/models/item/actinium_atom_64.json
@@ -135,7 +135,6 @@ cdfccd6fc950da68452dc90e793688f95c2beaca assets/pixelsofmc/models/item/copper_wi
 51830f2bbed9f64cad5b6a30cd877e4b176f0b0c assets/pixelsofmc/models/item/curium_atom_512.json
 e90c7f42c682dc1ac1b38b56e4c69b4601fdc5c5 assets/pixelsofmc/models/item/curium_atom_64.json
 f6b5f89b5745ce098e7779c222b6a2f842f18963 assets/pixelsofmc/models/item/curium_ingot.json
-bd6dabdccfb83fdcd28b4f5ec13ab2a8daf683d2 assets/pixelsofmc/models/item/dark_green_diamond.json
 c021adf753feeb4691994467ea6c351e77fccff5 assets/pixelsofmc/models/item/debugium_ingot.json
 2c1267bb20e68de7d3f9a6f2ad3b850594c7bdd7 assets/pixelsofmc/models/item/depleted_enriched_plutonium_fuel_cell.json
 a708cb27878aa0ba7c51abe9c1d593fab64a4c8e assets/pixelsofmc/models/item/depleted_enriched_uranium_fuel_cell.json
@@ -283,6 +282,7 @@ a1777cb4a9c880203e40f14c9d378fb65c17b843 assets/pixelsofmc/models/item/lead_gas_
 9d00ec7ea3885b63d1b26eef342bfe6d86a9557e assets/pixelsofmc/models/item/lead_plating.json
 570106b86e3cf5d90666ac9af4943f219381a56e assets/pixelsofmc/models/item/lead_plating_slab.json
 75af80ccfc1134f2ebb79d774662a8dd92ad5aff assets/pixelsofmc/models/item/lead_plating_stairs.json
+05227b526c0968cc21cd22d163a8bca829d3353f assets/pixelsofmc/models/item/lime_diamond.json
 6ca973e3208d653824e59d7c2cabd6795fb1224b assets/pixelsofmc/models/item/liquid_bromine_bucket.json
 0074b76a377a59b9d3e37de49c38d38000604e33 assets/pixelsofmc/models/item/liquid_chlorine_bucket.json
 30992556a44bb164786a92a85c99f5c56000980b assets/pixelsofmc/models/item/liquid_hydrogen_bucket.json

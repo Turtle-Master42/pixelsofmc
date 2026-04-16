@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pixelsofmc:item/dark_green_diamond"
+    "layer0": "pixelsofmc:item/lime_diamond"
   }
 }

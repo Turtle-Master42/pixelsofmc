@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-16T17:42:42.428217	Tags for minecraft:item mod id pixelsofmc
+// 1.20.1	2026-04-16T14:46:13.132537	Tags for minecraft:item mod id pixelsofmc
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon.json
 3c6c8b9710826c15d53a0c1ba767b105a5a45c5e data/forge/tags/items/argon_canister.json
 d999f34aa0d81d7d484a51f0532c9b3cc9131758 data/forge/tags/items/astatine.json
@@ -43,7 +43,7 @@ c6ba4b98cb3d79bd08a4fa096f69cac4331aabc9 data/forge/tags/items/dusts/uranium.jso
 911e664419bed267837b965ccd8b1f84e07ad7b3 data/forge/tags/items/dusts/zinc.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine.json
 931cb1eff566663ff658ea197521e0d80656ff09 data/forge/tags/items/fluorine_cube.json
-338ae38f45bc6894f1f1d0d50d928c68b275d2da data/forge/tags/items/gems.json
+806ff0f8f83f11b187768a9109593b4b5066f5c4 data/forge/tags/items/gems.json
 8d14f2dc59dd706a6d0c0faedcebff714c25a447 data/forge/tags/items/gems/diamond.json
 d9c842ec2d8de9eaf1ecc14ab44b4dfe34fccf6a data/forge/tags/items/glass.json
 e7c6b997be4e966ad1e1e4d6ffcad7ea6676cda6 data/forge/tags/items/helium.json
@@ -179,8 +179,18 @@ c8fa5210e04a9266697116106963a07282ceb86c data/pixelsofmc/tags/items/ball_3.json
 d52490aa59098eb97174ec2036a4f383ed12c28c data/pixelsofmc/tags/items/ball_4.json
 03a939d1117f38d1e943036cc07bdd387fdc5cea data/pixelsofmc/tags/items/ball_5.json
 87a6a7373f14cd69ec47fc939ed94782ff2759c9 data/pixelsofmc/tags/items/circle_saw.json
-3c87af6e5efd6918ca6a8505f1cf60bf7e463e37 data/pixelsofmc/tags/items/glass/dark.json
-db3b4937187ef184e426e8c2635cf3498272ef93 data/pixelsofmc/tags/items/glass/opaque.json
+8d19bf58b0d3956a99c8c702f747b35feedd1276 data/pixelsofmc/tags/items/lens/blue.json
+d717e3b9b674f53d8f29f644a4b08305025e1a27 data/pixelsofmc/tags/items/lens/dark.json
+37cf5b164da91548110a5cf4c1478353347428cf data/pixelsofmc/tags/items/lens/focus.json
+4ddc970c2a847284e118c87fd16cbe58ed1cfe09 data/pixelsofmc/tags/items/lens/light_blue.json
+fc0251d808f9cfe994f12d40a7246fe1cca8d8c3 data/pixelsofmc/tags/items/lens/lime.json
+060176d350ed3a9c14679c80244ac3525879df11 data/pixelsofmc/tags/items/lens/magenta.json
+db3b4937187ef184e426e8c2635cf3498272ef93 data/pixelsofmc/tags/items/lens/opaque.json
+b7889bb0b2bfd29bc8758003f85611db78ad94e4 data/pixelsofmc/tags/items/lens/orange.json
+7c9f84d0c349172e81fd69f4f702adc3ebd8b986 data/pixelsofmc/tags/items/lens/purple.json
+68d01499454531ac301aad1af7cbe10d042dd00d data/pixelsofmc/tags/items/lens/red.json
+cc203517f92ce9fa8631c02f035363a5e47a2501 data/pixelsofmc/tags/items/lens/white.json
+4e28366bf1f895369e79ef0758827b07001a7480 data/pixelsofmc/tags/items/lens/yellow.json
 17312b47c9f26bb67f46f6d42018beebcc8d139b data/pixelsofmc/tags/items/mds.json
 49d7962816514716994370617a885d5a0832c944 data/pixelsofmc/tags/items/milling_ball.json
 a06dcbd0d44c242bbb5144c195fbde569219fbe4 data/pixelsofmc/tags/items/mns.json

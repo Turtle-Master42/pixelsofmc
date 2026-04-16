@@ -14,7 +14,7 @@ public class LaserWidget extends TextureWidget {
     private final Color color;
 
     public LaserWidget(int x, int y, int size, int type, Color color) {
-        super(Util.resourceLocation("textures/gui/jei/laser_source.png"), x, y, 18, 6, 0, 34, 18, 6, 256, 256);
+        super(Util.resourceLocation("textures/gui/jei/laser_source.png"), x, y, 26, 8, 0, 34, 18, 8, 256, 256);
         this.size = size;
         this.type = type;
         this.color = color;
@@ -27,19 +27,17 @@ public class LaserWidget extends TextureWidget {
     @Override
     public void render(GuiGraphics draw, int mouseX, int mouseY, float partialTicks) {
         laserTime += partialTicks * 1.5f;
-        if (laserTime > 8) {laserTime = 0;}
+        if (laserTime > 16) {laserTime = 0;}
         int laserSpeed = Math.round(laserTime);
 
         //size
-        int vThin = 0;
-        if (this.size < 2)
-            vThin = 7;
+        int size = (this.size-1) * 9;
 
         EmiDrawContext context = EmiDrawContext.wrap(draw);
         context.setColor(this.color.getRed()/255f, this.color.getGreen()/255f, this.color.getBlue()/255f, 1f);
-        context.drawTexture(this.texture, this.x, this.y+1, 1, 4, (float)this.u, (float)this.v + vThin + 1, 1, 4, this.textureWidth, this.textureHeight);
-        context.drawTexture(this.texture, this.x+1, this.y, 16, 6, (float)this.u + (27*this.type)  + 10 - laserSpeed, (float)this.v + vThin, 16, 6, this.textureWidth, this.textureHeight);
-        context.drawTexture(this.texture, this.x+17, this.y+1, 1, 4, (float)this.u, (float)this.v + vThin + 1, 1, 4, this.textureWidth, this.textureHeight);
+        context.drawTexture(this.texture, this.x, this.y, 1, 8, (float)this.u, (float)this.v + size, 1, 8, this.textureWidth, this.textureHeight);
+        context.drawTexture(this.texture, this.x+1, this.y, 16, 8, (float)this.u + (35 * this.type)  + 18 - laserSpeed, (float)this.v + size, 16, 8, this.textureWidth, this.textureHeight);
+        context.drawTexture(this.texture, this.x+17, this.y, 1, 8, (float)this.u, (float)this.v + size, 1, 8, this.textureWidth, this.textureHeight);
         context.resetColor();
     }
 }

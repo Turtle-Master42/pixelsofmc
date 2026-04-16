@@ -23,13 +23,17 @@ public class LaserSourceRecipe extends BaseItemRecipe {
     private final CountedIngredient source;
     private final int outputColor;
     private final int outputType;
+    private final int sizeRequirement;
+    private final int sizeModifier;
 
-    public LaserSourceRecipe(ResourceLocation id, int intputColor, CountedIngredient source, int outputColor, int outputType) {
+    public LaserSourceRecipe(ResourceLocation id, int intputColor, CountedIngredient source, int sizeRequirement, int outputColor, int outputType, int sizeModifier) {
         super(id);
         this.inputColor = intputColor;
         this.source = source;
+        this.sizeRequirement = sizeRequirement;
         this.outputColor = outputColor;
         this.outputType = outputType;
+        this.sizeModifier = sizeModifier;
     }
 
     @Override
@@ -54,6 +58,10 @@ public class LaserSourceRecipe extends BaseItemRecipe {
     public int getOutputColor() {return outputColor;}
 
     public int getOutputType() {return outputType;}
+
+    public int getSizeModifier() {return sizeModifier;}
+
+    public int getSizeRequirement() {return sizeRequirement;}
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
@@ -80,7 +88,9 @@ public class LaserSourceRecipe extends BaseItemRecipe {
             CountedIngredient source = JsonRecipeUtils.CIFromJson(json, "input");
             int outputColor = JsonRecipeUtils.intFromJson(json, "output_color");
             int outputType = JsonRecipeUtils.intFromJson(json, "output_type");
-            return new LaserSourceRecipe(id, inputColor, source, outputColor, outputType);
+            int sizeModifier = JsonRecipeUtils.intFromJson(json, "size_modifier");
+            int sizeRequirement = JsonRecipeUtils.intFromJson(json, "min_size");
+            return new LaserSourceRecipe(id, inputColor, source, sizeRequirement, outputColor, outputType, sizeModifier);
         }
 
         public LaserSourceRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
@@ -88,7 +98,9 @@ public class LaserSourceRecipe extends BaseItemRecipe {
             CountedIngredient source = CountedIngredient.fromNetwork(buf);
             int outputColor = buf.readInt();
             int outputType = buf.readInt();
-            return new LaserSourceRecipe(id, inputColor, source, outputColor, outputType);
+            int sizeModifier = buf.readInt();
+            int sizeRequirement = buf.readInt();
+            return new LaserSourceRecipe(id, inputColor, source, sizeRequirement, outputColor, outputType, sizeModifier);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull LaserSourceRecipe recipe) {
@@ -96,6 +108,8 @@ public class LaserSourceRecipe extends BaseItemRecipe {
             recipe.source.toNetwork(buf);
             buf.writeInt(recipe.outputColor);
             buf.writeInt(recipe.outputType);
+            buf.writeInt(recipe.sizeModifier);
+            buf.writeInt(recipe.sizeRequirement);
         }
 
         @Override

@@ -7,6 +7,8 @@
     }
   },
   "input_color": -65281,
+  "min_size": 2,
   "output_color": -3319041,
-  "output_type": 1
+  "output_type": 1,
+  "size_modifier": -1
 }

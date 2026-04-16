@@ -65,20 +65,20 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
 
     protected void renderLaser(@NotNull GuiGraphics guiGraphics, float partialTicks) {
         laserTime += partialTicks * 1.5f;
-        if (laserTime > 8) {laserTime = 0;}
+        if (laserTime > 16) {laserTime = 0;}
         int laserSpeed = (int) Math.round(laserTime);
+        int sourceSize = menu.getSourceSize();
         int laserSize = menu.getLaserSize();
         int laserType = menu.getLaserType();
-        Color SmallLaserColor = new Color(menu.getSmallLaserColor());
-        Color bigLaserColor = new Color(menu.getBigLaserColor());
+        Color sourceColor = new Color(menu.getSourceColor());
+        Color laserColor = new Color(menu.getLaserColor());
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(SmallLaserColor.getRed()/255f, SmallLaserColor.getGreen()/255f, SmallLaserColor.getBlue()/255f, 1f);
+        RenderSystem.setShaderColor(sourceColor.getRed()/255f, sourceColor.getGreen()/255f, sourceColor.getBlue()/255f, 1f);
 
         //size
-        int vThin = 0;
-        if (laserSize < 2)
-            vThin = 7;
+        int source_size = 9 * (sourceSize - 1);
+        int laser_size = 9 * (laserSize - 1);
 
         RenderSystem.setShaderTexture(0, TEXTURE);
         RenderSystem.enableBlend();
@@ -86,20 +86,20 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
         int y = (height - imageHeight) / 2;
 
         // short lazer
-        if (laserSize > 0) {
-            guiGraphics.blit(TEXTURE, x + 79, y + 43, 0, 196 + vThin, 1, 4);
-            guiGraphics.blit(TEXTURE, x + 84, y + 43, 0, 196 + vThin, 1, 4);
-            guiGraphics.blit(TEXTURE, x + 80, y + 42, 10 - laserSpeed, 195 + vThin, 4, 6);
+        if (sourceSize > 0) {
+            guiGraphics.blit(TEXTURE, x + 79, y + 41, 0, 194 + source_size, 1, 8);
+            guiGraphics.blit(TEXTURE, x + 84, y + 41, 0, 194 + source_size, 1, 8);
+            guiGraphics.blit(TEXTURE, x + 80, y + 41, 18 - laserSpeed, 194 + source_size, 4, 8);
         }
         RenderSystem.disableBlend();
 
-        RenderSystem.setShaderColor(bigLaserColor.getRed()/255f, bigLaserColor.getGreen()/255f, bigLaserColor.getBlue()/255f, 1f);
+        RenderSystem.setShaderColor(laserColor.getRed()/255f, laserColor.getGreen()/255f, laserColor.getBlue()/255f, 1f);
         RenderSystem.enableBlend();
         // long lazer
-        if (laserSize > 0 && bigLaserColor.getRGB() != -16777216) {
-            guiGraphics.blit(TEXTURE, x + 103, y + 43, 0, 196 + vThin, 1, 4);
-            guiGraphics.blit(TEXTURE, x + 120, y + 43, 0, 196 + vThin, 1, 4);
-            guiGraphics.blit(TEXTURE, x + 104, y + 42, (laserType * 27) + 10 - laserSpeed, 195 + vThin, 16, 6);
+        if (laserSize > 0 && laserColor.getRGB() != -16777216) {
+            guiGraphics.blit(TEXTURE, x + 103, y + 41, 0, 194 + laser_size, 1, 8);
+            guiGraphics.blit(TEXTURE, x + 120, y + 41, 0, 194 + laser_size, 1, 8);
+            guiGraphics.blit(TEXTURE, x + 104, y + 41, (laserType * 35) + 18 - laserSpeed, 194 + laser_size, 16, 8);
         }
         RenderSystem.disableBlend();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

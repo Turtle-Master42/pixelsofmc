@@ -120,8 +120,8 @@ public class POMitems {
     public static final RegistryObject<Item> BROWN_DIAMOND = ITEMS.register("brown_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ORANGE_DIAMOND = ITEMS.register("orange_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> YELLOW_DIAMOND = ITEMS.register("yellow_diamond", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LIME_DIAMOND = ITEMS.register("lime_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GREEN_DIAMOND = ITEMS.register("green_diamond", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> DARK_GREEN_DIAMOND = ITEMS.register("dark_green_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_DIAMOND = ITEMS.register("blue_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PINK_DIAMOND = ITEMS.register("pink_diamond", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MANA_AMALGAMATION = ITEMS.register("mana_amalgamation", () -> new Item(new Item.Properties()));

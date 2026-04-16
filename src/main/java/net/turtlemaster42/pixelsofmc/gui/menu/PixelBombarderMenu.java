@@ -57,12 +57,16 @@ public class PixelBombarderMenu extends AbstractMachineMenu implements IEnergyMe
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / getMaxProgress() : 0;
     }
 
-    public int getSmallLaserColor() {
-        return blockEntity.getSmallLaserColor();
+    public int getSourceColor() {
+        return blockEntity.getSourceColor();
     }
 
-    public int getBigLaserColor() {
-        return blockEntity.getBigLaserColor();
+    public int getSourceSize() {
+        return blockEntity.getSourceSize();
+    }
+
+    public int getLaserColor() {
+        return blockEntity.getLaserColor();
     }
 
     public int getLaserType() {

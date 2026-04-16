@@ -16,7 +16,6 @@ public class POMBookProvider extends BookProvider<POMBookBuilder> {
     @Override
     void generatePages() {
         for(Element e : Element.validValues()) {
-            PixelsOfMc.LOGGER.info(e.toString());
             BookBuilder<POMBookBuilder> book1 = page("book_1", e.elementName(), "element.pixelsofmc." + e.elementName());
 
             book1.pageParent("elements.json")
