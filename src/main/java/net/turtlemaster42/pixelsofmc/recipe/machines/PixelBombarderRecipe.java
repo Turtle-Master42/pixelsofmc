@@ -22,13 +22,15 @@ import javax.annotation.Nullable;
 public class PixelBombarderRecipe extends BaseItemRecipe {
     private final CountedIngredient input;
     private final int color;
+    private final int type;
     private final ChanceIngredient output;
 
-    public PixelBombarderRecipe(ResourceLocation id, CountedIngredient input, ChanceIngredient output, int color) {
+    public PixelBombarderRecipe(ResourceLocation id, CountedIngredient input, ChanceIngredient output, int type, int color) {
         super(id);
         this.input = input;
         this.output = output;
         this.color = color;
+        this.type = type;
     }
 
     @Override
@@ -56,11 +58,14 @@ public class PixelBombarderRecipe extends BaseItemRecipe {
         return output;
     }
 
-    public int getColor() {return color;}
+    public int getLaserColor() {return color;}
+
+    public int getLaserType() {return type;}
 
     public float getOutputChance() {
         return output.chance();
     }
+
 
 
     @Override
@@ -88,19 +93,22 @@ public class PixelBombarderRecipe extends BaseItemRecipe {
             ChanceIngredient output = JsonRecipeUtils.CHIFromJson(json, "output");
             //input
             CountedIngredient input = JsonRecipeUtils.CIFromJson(json, "input");
-            int color = JsonRecipeUtils.intFromJson(json, "color");
-            return new PixelBombarderRecipe(id, input, output, color);
+            int type = JsonRecipeUtils.intFromJson(json, "laser_type");
+            int color = JsonRecipeUtils.intFromJson(json, "laser_color");
+            return new PixelBombarderRecipe(id, input, output, type, color);
         }
 
         public PixelBombarderRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buf) {
             CountedIngredient input = CountedIngredient.fromNetwork(buf);
+            int type = buf.readInt();
             int color = buf.readInt();
             ChanceIngredient output = ChanceIngredient.fromNetwork(buf);
-            return new PixelBombarderRecipe(id, input, output, color);
+            return new PixelBombarderRecipe(id, input, output, type, color);
         }
 
         public void toNetwork(@NotNull FriendlyByteBuf buf, @NotNull PixelBombarderRecipe recipe) {
             recipe.input.toNetwork(buf);
+            buf.writeInt(recipe.type);
             buf.writeInt(recipe.color);
             recipe.output.toNetwork(buf);
         }

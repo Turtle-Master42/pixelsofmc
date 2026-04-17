@@ -11,6 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import org.joml.Vector3f;
 
+import java.awt.*;
 import java.util.List;
 
 public class Util {
@@ -30,6 +31,11 @@ public class Util {
         int G = DEC.get(HEX.indexOf(aHex.get(2))) * 16 + HEX.indexOf(aHex.get(3));
         int B = DEC.get(HEX.indexOf(aHex.get(4))) * 16 + HEX.indexOf(aHex.get(5));
         return new int[]{R, G, B};
+    }
+
+    public static String RGBToHex(int rgb) {
+        Color color = new Color(rgb);
+        return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
     public static BlockPos blockPos(Vec3 vec3) {

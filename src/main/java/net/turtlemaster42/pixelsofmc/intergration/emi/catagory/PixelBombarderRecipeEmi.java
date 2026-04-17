@@ -4,11 +4,8 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.turtlemaster42.pixelsofmc.intergration.emi.AdvancedWidgetHolder;
 import net.turtlemaster42.pixelsofmc.intergration.emi.LaserWidget;
-import net.turtlemaster42.pixelsofmc.recipe.DecayRecipe;
 import net.turtlemaster42.pixelsofmc.recipe.machines.PixelBombarderRecipe;
 import net.turtlemaster42.pixelsofmc.util.Util;
 
@@ -39,6 +36,6 @@ public class PixelBombarderRecipeEmi extends BaseEmiRecipe<PixelBombarderRecipe>
         //output
         widgets.addSlot(recipe.getOutput(), 13, 50).recipeContext(this);
 
-        widgets.add(new LaserWidget(0, 34, new Color(recipe.getColor())));
+        widgets.add(new LaserWidget(0, 33, recipe.getLaserType(), 1, new Color(recipe.getLaserColor())));
     }
 }

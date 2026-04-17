@@ -1100,6 +1100,19 @@
   "tooltip.pixelsofmc.gui.info.lock_slots":  "§aLock slot",
   "tooltip.pixelsofmc.gui.info.fusion_power": "§6%s / %s Fusion Power",
 
+  "tooltip.pixelsofmc.gui.info.beam.color": "§7Color: ",
+  "tooltip.pixelsofmc.gui.info.beam.size": "§7Size: %s",
+  "tooltip.pixelsofmc.gui.info.beam.type": "§7Type: %s",
+  "tooltip.pixelsofmc.gui.info.laser_type.visible_light": "Visible Light",
+  "tooltip.pixelsofmc.gui.info.laser_type.particles": "Bits",
+  "tooltip.pixelsofmc.gui.info.laser_type.broad_spectrum": "Broad Spectrum",
+
+  "tooltip.pixelsofmc.gui.info.beam.1.64ff1e": "Alpha Radiation",
+  "tooltip.pixelsofmc.gui.info.beam.1.cd5aff": "Arcane Radiation",
+  "tooltip.pixelsofmc.gui.info.beam.1.ffe600": "Electrobit Radiation",
+  "tooltip.pixelsofmc.gui.info.beam.2.c80023": "Infrared Light",
+
+
   "tooltip.pixelsofmc.energy.dot": ".",
 
   "tooltip.pixelsofmc.noshift": "§7Press §r§e§i[SHIFT]§r§7 for description",
@@ -1172,7 +1185,6 @@
   "tooltip.pixelsofmc.entity.age": "%s ⏳",
   "tooltip.pixelsofmc.entity.effects": "Effects \uD83E\uDDEA:",
   "tooltip.pixelsofmc.entity.effect": "  %s %s %s ⏳",
-
 
   "death.attack.super_cooled": "%1$s went swimming in supercooled liquid",
   "death.attack.super_cooled.player": "%1$s went swimming in supercooled liquid trying to escape %2$s",
@@ -1263,6 +1275,7 @@
   "emi.category.pixelsofmc.pixel_assembling": "Pixel Assembling",
   "emi.category.pixelsofmc.bombarding": "Pixel Bombarding",
   "emi.category.pixelsofmc.laser_source": "Laser Source",
+  "emi.tooltip.pixelsofmc.minimum_laser_size": "§7Minimum Size: %s",
 
 
   "tag.pixelsofmc.speed_upgrade": "Speed Upgrades",

@@ -110,6 +110,12 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
         return super.getCapability(cap, side);
     }
 
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        calculateLaserType();
+    }
+
     //---RECIPE---//
 
     public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, PixelBombarderTile e) {
@@ -146,7 +152,8 @@ public class PixelBombarderTile extends AbstractMachineTile<PixelBombarderTile> 
 
         return match.isPresent() &&
                 canInsertItemIntoOutputSlot(inventory, match.get().getOutput()) &&
-                match.get().getColor() == entity.laserColor;
+                match.get().getLaserColor() == entity.laserColor &&
+                match.get().getLaserType() == entity.laserType;
     }
 
     private static void craftItem(PixelBombarderTile entity) {

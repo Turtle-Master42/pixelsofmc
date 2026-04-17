@@ -2433,15 +2433,15 @@ public class POMrecipeProvider extends RecipeProvider implements IConditionBuild
         // bombarding
         PixelBombarderRecipeBuilder.build(POMitems.PLUTONIUM_HEXAFLUORIDE_DUST.get(), 3)
                 .output(POMitems.ENRICHED_PLUTONIUM_HEXAFLUORIDE_DUST.get())
-                .lazer(new Color(200, 0, 35))
+                .laser(new Color(200, 0, 35), 2)
                 .finish(fConsumer, this);
         PixelBombarderRecipeBuilder.build(Tags.Items.GEMS_DIAMOND)
                 .output(POMitems.LIME_DIAMOND.get())
-                .lazer(new Color(100, 255, 30))
+                .laser(new Color(100, 255, 30), 1)
                 .finish(fConsumer, this);
         PixelBombarderRecipeBuilder.build(POMitems.LIME_DIAMOND.get())
                 .output(POMitems.GREEN_DIAMOND.get())
-                .lazer(new Color(100, 255, 30))
+                .laser(new Color(100, 255, 30), 1)
                 .finish(fConsumer, this);
 
         // laser

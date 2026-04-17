@@ -21,6 +21,7 @@ import java.util.function.Consumer;
 public class PixelBombarderRecipeBuilder extends POMRecipeBuilder {
     private final CountedIngredient input;
     private int color;
+    private int type = 0;
     private final List<ChanceIngredient> output;
 
     public PixelBombarderRecipeBuilder(CountedIngredient input) {
@@ -42,13 +43,21 @@ public class PixelBombarderRecipeBuilder extends POMRecipeBuilder {
         return new PixelBombarderRecipeBuilder(CountedIngredient.of(1, tag));
     }
 
-    public PixelBombarderRecipeBuilder lazer(Color color) {
-        this.color = color.getRGB();
-        return this;
+    public PixelBombarderRecipeBuilder laser(Color color) {
+        return laser(color, 0);
     }
 
-    public PixelBombarderRecipeBuilder lazer(int color) {
+    public PixelBombarderRecipeBuilder laser(int color) {
+        return laser(color, 0);
+    }
+
+    public PixelBombarderRecipeBuilder laser(Color color, int type) {
+        return laser(color.getRGB(), type);
+    }
+
+    public PixelBombarderRecipeBuilder laser(int color, int type) {
         this.color = color;
+        this.type = type;
         return this;
     }
 
@@ -80,25 +89,28 @@ public class PixelBombarderRecipeBuilder extends POMRecipeBuilder {
 
     @Override
     protected FinishedRecipe save(@NotNull ResourceLocation id) {
-        return new Result(id, this.input, this.output, this.color, this.advancement);
+        return new Result(id, this.input, this.output, this.type, this.color, this.advancement);
     }
 
     public static class Result extends POMRecipeResult {
         private final CountedIngredient input;
         private final int color;
+        private final int type;
         private final List<ChanceIngredient> outputs;
 
-        public Result(ResourceLocation pId, CountedIngredient pIngredient, List<ChanceIngredient> pResults, int pColor, Advancement.Builder pAdvancement) {
+        public Result(ResourceLocation pId, CountedIngredient pIngredient, List<ChanceIngredient> pResults, int pType, int pColor, Advancement.Builder pAdvancement) {
             super(PixelBombarderRecipe.Serializer.INSTANCE, pId, pAdvancement);
             this.outputs = pResults;
             this.input = pIngredient;
+            this.type = pType;
             this.color = pColor;
         }
 
         @Override
         public void serializeRecipeData(@NotNull JsonObject pJson) {
             pJson.add("input", input.toJson());
-            pJson.addProperty("color", color);
+            pJson.addProperty("laser_type", type);
+            pJson.addProperty("laser_color", color);
             pJson.add("output", outputs.get(0).toJson());
         }
     }

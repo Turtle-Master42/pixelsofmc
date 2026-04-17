@@ -27,7 +27,7 @@ public class LaserSourceRecipeEmi extends BaseEmiRecipe<LaserSourceRecipe> {
     public void addWidgets(AdvancedWidgetHolder widgets) {
         //input
         widgets.addSlot(recipe.getSource().asIngredient(), 18, 7).recipeContext(this);
-        widgets.add(new LaserWidget(-1, 11, recipe.getSizeRequirement(), 0, new Color(recipe.getInputColor())));
-        widgets.add(new LaserWidget(35, 11, recipe.getSizeRequirement() + recipe.getSizeModifier(), recipe.getOutputType(), new Color(recipe.getOutputColor())));
+        widgets.add(new LaserWidget(-1, 11, 0, recipe.getSizeRequirement(), new Color(recipe.getInputColor())));
+        widgets.add(new LaserWidget(35, 11, recipe.getOutputType(), recipe.getSizeRequirement() + recipe.getSizeModifier(), new Color(recipe.getOutputColor())));
     }
 }

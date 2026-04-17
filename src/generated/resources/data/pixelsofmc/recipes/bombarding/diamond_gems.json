@@ -1,12 +1,13 @@
 {
   "type": "pixelsofmc:bombarding",
-  "color": -10158306,
   "input": {
     "count": 1,
     "ingredient": {
       "tag": "forge:gems/diamond"
     }
   },
+  "laser_color": -10158306,
+  "laser_type": 1,
   "output": {
     "chance": 1.0,
     "count": 1,

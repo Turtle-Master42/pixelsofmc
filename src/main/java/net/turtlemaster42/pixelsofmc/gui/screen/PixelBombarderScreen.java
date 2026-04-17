@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.turtlemaster42.pixelsofmc.gui.menu.PixelBombarderMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
+import net.turtlemaster42.pixelsofmc.gui.renderer.LaserArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.NameArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.ProgressArea;
 import net.turtlemaster42.pixelsofmc.util.Util;
@@ -21,6 +22,8 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
     private EnergyArea energyArea;
     private NameArea nameArea;
     private ProgressArea progressArea;
+    private LaserArea laserArea;
+    private LaserArea sourceArea;
 
     public PixelBombarderScreen(PixelBombarderMenu guiMenu, Inventory playerInventory, Component title) {
         super(guiMenu, playerInventory, title);
@@ -40,6 +43,8 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
         nameArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         energyArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY);
         progressArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getProgress(), menu.getMaxProgress());
+        laserArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, menu.getLaserType(), menu.getLaserSize(), menu.getLaserColor());
+        sourceArea.fillTooltip(guiGraphics, x, y, mouseX, mouseY, 0, menu.getSourceSize(), menu.getSourceColor());
     }
 
 
@@ -122,6 +127,8 @@ public class PixelBombarderScreen extends AbstractPOMscreen<PixelBombarderMenu> 
         progressArea = new ProgressArea(menu.getProgress(), menu.getMaxProgress(),
                 new Rect2i(x + 120, y + 33, 8, 22)
         );
+        laserArea = new LaserArea(x + 103, y + 41, 16, 8, menu.getLaserType(), menu.getLaserSize(), menu.getLaserColor());
+        sourceArea = new LaserArea(x + 79, y + 41, 5, 8, 0, menu.getSourceSize(), menu.getSourceColor());
     }
 }
 

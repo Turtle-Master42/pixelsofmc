@@ -3,25 +3,34 @@ package net.turtlemaster42.pixelsofmc.intergration.emi;
 import dev.emi.emi.api.widget.TextureWidget;
 import dev.emi.emi.runtime.EmiDrawContext;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.turtlemaster42.pixelsofmc.gui.renderer.LaserArea;
 import net.turtlemaster42.pixelsofmc.util.Util;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LaserWidget extends TextureWidget {
     private float laserTime = 0;
     private final int size;
     private final int type;
     private final Color color;
+    private final LaserArea laserArea;
 
-    public LaserWidget(int x, int y, int size, int type, Color color) {
+    public LaserWidget(int x, int y, int type, int size, Color color) {
         super(Util.resourceLocation("textures/gui/jei/laser_source.png"), x, y, 26, 8, 0, 34, 18, 8, 256, 256);
         this.size = size;
         this.type = type;
         this.color = color;
+        this.laserArea = new LaserArea(0, 0, 1, 1, type, size, color.getRGB());
     }
 
-    public LaserWidget(int x, int y, Color color) {
-        this(x, y, 2, 0, color);
+    @Override
+    public List<ClientTooltipComponent> getTooltip(int mouseX, int mouseY) {
+        List<ClientTooltipComponent> tooltip = new ArrayList<>();
+        laserArea.getTooltips().forEach((line) -> tooltip.add(ClientTooltipComponent.create(line.getVisualOrderText())));
+        return tooltip;
     }
 
     @Override

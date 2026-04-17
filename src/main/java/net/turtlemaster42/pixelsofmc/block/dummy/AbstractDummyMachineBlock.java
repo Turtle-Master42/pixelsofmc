@@ -112,6 +112,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
         //when a dummy block receives a block-update it will check if the main block still exists,
         // if not, it will destroy itself and thereby update the surrounding dummy blocks
+        if (pLevel.isClientSide()) {return;}
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
         BlockState mainState = pLevel.getBlockState(mainPos);
         if (mainPos == pPos || mainState.getBlock() == Blocks.AIR || mainState.getBlock() == Blocks.VOID_AIR || mainState.getBlock() == Blocks.CAVE_AIR) {

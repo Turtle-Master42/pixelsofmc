@@ -1,12 +1,13 @@
 {
   "type": "pixelsofmc:bombarding",
-  "color": -3669981,
   "input": {
     "count": 3,
     "ingredient": {
       "item": "pixelsofmc:plutonium_hexafluoride_dust"
     }
   },
+  "laser_color": -3669981,
+  "laser_type": 2,
   "output": {
     "chance": 1.0,
     "count": 1,
