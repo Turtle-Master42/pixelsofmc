@@ -2,6 +2,7 @@ package net.turtlemaster42.pixelsofmc.fluid;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -15,9 +16,19 @@ import net.turtlemaster42.pixelsofmc.init.POMparticles;
 import net.turtlemaster42.pixelsofmc.particle.options.FluidBubbleParticleOptions;
 import org.jetbrains.annotations.NotNull;
 
-public class AcidLiquidBlock extends LiquidBlock {
-    public AcidLiquidBlock(FlowingFluid pFluid, Properties pProperties) {
+import java.util.List;
+
+public class AcidLiquidBlock extends POMLiquidBlock {
+    private final float damage;
+
+    public AcidLiquidBlock(float damage, FlowingFluid pFluid, Properties pProperties) {
         super(pFluid, pProperties);
+        this.damage = damage;
+    }
+
+    public AcidLiquidBlock(float damage, FlowingFluid pFluid, Properties pProperties, List<MobEffectInstance> effects) {
+        super(pFluid, pProperties, effects);
+        this.damage = damage;
     }
 
     @Override
@@ -40,7 +51,8 @@ public class AcidLiquidBlock extends LiquidBlock {
 
     @Override
     public void entityInside(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Entity pEntity) {
-        pEntity.hurt(POMdamage.acid(pLevel), 1);
+        pEntity.hurt(POMdamage.acid(pLevel), damage);
+        super.entityInside(pState, pLevel, pPos, pEntity);
     }
 
     public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {

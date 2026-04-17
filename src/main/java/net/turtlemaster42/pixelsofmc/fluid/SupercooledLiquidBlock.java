@@ -3,6 +3,7 @@ package net.turtlemaster42.pixelsofmc.fluid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -12,11 +13,18 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.turtlemaster42.pixelsofmc.init.POMdamage;
 import org.jetbrains.annotations.NotNull;
 
-public class SupercooledLiquidBlock extends LiquidBlock {
+import java.util.List;
+
+public class SupercooledLiquidBlock extends POMLiquidBlock {
 
     public SupercooledLiquidBlock(FlowingFluid pFluid, Properties pProperties) {
         super(pFluid, pProperties);
     }
+
+    public SupercooledLiquidBlock(FlowingFluid pFluid, Properties pProperties, List<MobEffectInstance> effects) {
+        super(pFluid, pProperties, effects);
+    }
+
 
     @Override
     public void animateTick(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, RandomSource pRandom) {
@@ -35,5 +43,6 @@ public class SupercooledLiquidBlock extends LiquidBlock {
         pEntity.setIsInPowderSnow(true);
         if (pEntity.isFullyFrozen())
             pEntity.hurt(POMdamage.super_cooled(pLevel), 4);
+        super.entityInside(pState, pLevel, pPos, pEntity);
     }
 }
