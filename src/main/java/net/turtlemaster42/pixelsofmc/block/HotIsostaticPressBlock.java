@@ -25,45 +25,43 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.HotIsostaticPressTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class HotIsostaticPressBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
 
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(-16, 0, -16, 16, 4, 16), //base
+                        box(-16, 4, 6, 16, 16, 16), //furnace
+                        box(-16, 4, -6, 16, 48, 6), //frame
+                        box(-10, 12, -10, 10, 44, 10), //mold
+                        box(-12, 16, -12, 12, 20, 12), //ring 1
+                        box(-12, 26, -12, 12, 30, 12), //ring 2
+                        box(-12, 36, -12, 12, 40, 12), //ring 3
+                        box(6, 4, -14, 14, 24, -6) //vent
+                ), SHAPES, false);
+    }
 
     public HotIsostaticPressBlock(Properties properties) {
         super(properties);
     }
 
-
-    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, -16, 16, 4, 16), //base
-            box(-16, 4, 6, 16, 16, 16), //furnace
-            box(-16, 4, -6, 16, 48, 6), //frame
-            box(-10, 12, -10, 10, 44, 10), //mold
-            box(-12, 16, -12, 12, 20, 12), //ring 1
-            box(-12, 26, -12, 12, 30, 12), //ring 2
-            box(-12, 36, -12, 12, 40, 12), //ring 3
-            box(6, 4, -14, 14, 24, -6) //vent
-    );
-
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH -> SHAPE;
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        };
+        return SHAPES.get(pState.getValue(FACING).getOpposite());
     }
 
 

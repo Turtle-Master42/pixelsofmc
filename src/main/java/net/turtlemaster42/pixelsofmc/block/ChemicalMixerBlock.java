@@ -25,30 +25,36 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.ChemicalMixerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.ChemicalMixerTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class ChemicalMixerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 12, 16), //base
-            box(0, 12, 2, 16, 31, 12), //tanks
-            box(2, 31, 4, 14, 32, 10), //cap
-            box(4, 12, 12, 12, 15, 14), //screen 1
-            box(4, 12, 14, 12, 14, 15), //screen 2
-            box(4, 12, 15, 12, 13, 16), //screen 3
-            box(2, 12, 0, 14, 14, 2), //back bar 1
-            box(2, 17, 0, 14, 21, 2), //back bar 2
-            box(2, 24, 0, 14, 28, 2), //back bar 3
-            box(5, 14, 0, 11, 29, 2) //back spine
-    );
+
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(0, 0, 0, 16, 12, 16), //base
+                        box(0, 12, 2, 16, 31, 12), //tanks
+                        box(2, 31, 4, 14, 32, 10), //cap
+                        box(4, 12, 12, 12, 15, 14), //screen 1
+                        box(4, 12, 14, 12, 14, 15), //screen 2
+                        box(4, 12, 15, 12, 13, 16), //screen 3
+                        box(2, 12, 0, 14, 14, 2), //back bar 1
+                        box(2, 17, 0, 14, 21, 2), //back bar 2
+                        box(2, 24, 0, 14, 28, 2), //back bar 3
+                        box(5, 14, 0, 11, 29, 2) //back spine
+        ), SHAPES, false);
+    }
 
     public ChemicalMixerBlock(Properties properties) {
         super(properties);
@@ -57,12 +63,8 @@ public class ChemicalMixerBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH -> SHAPE;
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        };
+        return SHAPES.get(pState.getValue(FACING).getOpposite());
+//        return VoxelShapeUtils.rotateHorizontal(SHAPE, pState.getValue(FACING).getOpposite());
     }
 
 

@@ -25,40 +25,38 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.GrinderTile;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class GrinderBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
 
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(-16, 0, -16, 32, 4, 32), //baseplate
+                        box(-16, 4, 0, 32, 32, 32) //base
+                ), SHAPES, false);
+    }
 
     public GrinderBlock(Properties properties) {
         super(properties);
     }
 
-
-    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, -16, 32, 4, 32), //baseplate
-            box(-16, 4, 0, 32, 32, 32) //base
-
-    );
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case WEST -> SHAPE;
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-        };
+        return SHAPES.get(pState.getValue(FACING).getClockWise());
     }
 
 

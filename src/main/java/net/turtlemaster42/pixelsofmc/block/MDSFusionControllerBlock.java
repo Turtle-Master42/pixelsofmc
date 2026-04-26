@@ -10,7 +10,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,9 +24,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.turtlemaster42.pixelsofmc.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.GhostBlockState;
 import net.turtlemaster42.pixelsofmc.util.block.MultiBlockStructures;
@@ -31,32 +34,31 @@ import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class MDSFusionControllerBlock extends AbstractFusionControllerBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty ACTIVE = IntegerProperty.create("state", 1, 3);
 
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(-32, 0, 2, 48, 11, 16), //base
+                        box(-32, 10, 4, 48, 13, 16), //first slope
+                        box(-32, 12, 8, 48, 15, 16), //second slope
+                        box(-32, 14, 12, 48, 17, 16) //third slope
+                ), SHAPES, false);
+    }
 
     public MDSFusionControllerBlock(Properties properties) {
         super(properties);
     }
 
-    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-32, 0, 2, 48, 11, 16), //base
-            box(-32, 10, 4, 48, 13, 16), //first slope
-            box(-32, 12, 8, 48, 15, 16), //second slope
-            box(-32, 14, 12, 48, 17, 16) //third slope
-    );
-
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            default -> SHAPE;
-        };
+        return SHAPES.get(pState.getValue(FACING));
     }
 
 

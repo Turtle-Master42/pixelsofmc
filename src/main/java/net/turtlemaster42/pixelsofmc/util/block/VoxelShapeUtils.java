@@ -1,11 +1,8 @@
 // --- MEKANISM --- //
+/* VoxelShapeUtils class from mekanism, made by pupnewfster, modified by Turtle-Master42 */
 package net.turtlemaster42.pixelsofmc.util.block;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.function.UnaryOperator;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.AABB;
@@ -14,6 +11,12 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.function.UnaryOperator;
 
 public final class VoxelShapeUtils {
 
@@ -225,18 +228,19 @@ public final class VoxelShapeUtils {
         return simplify ? combinedShape.optimize() : combinedShape;
     }
 
-    public static void setShape(VoxelShape shape, VoxelShape[] dest, boolean verticalAxis) {
-        setShape(shape, dest, verticalAxis, false);
+    //custom setShape using HashMaps instead of Arrays
+    public static void setShape(VoxelShape shape, HashMap<Direction, VoxelShape> dest) {
+        setShape(shape, dest, false);
     }
 
-    public static void setShape(VoxelShape shape, VoxelShape[] dest, boolean verticalAxis, boolean invert) {
+    public static void setShape(VoxelShape shape, HashMap<Direction, VoxelShape> dest, boolean verticalAxis) {
         Direction[] dirs = verticalAxis ? DIRECTIONS : HORIZONTAL_DIRECTIONS;
         for (Direction side : dirs) {
-            dest[verticalAxis ? side.ordinal() : side.ordinal() - 2] = verticalAxis ? VoxelShapeUtils.rotate(shape, invert ? side.getOpposite() : side) : VoxelShapeUtils.rotateHorizontal(shape, side);
+            if (verticalAxis) {
+                dest.put(side, VoxelShapeUtils.rotate(shape, side));
+            } else {
+                dest.put(side, VoxelShapeUtils.rotateHorizontal(shape, side));
+            }
         }
-    }
-
-    public static void setShape(VoxelShape shape, VoxelShape[] dest) {
-        setShape(shape, dest, false, false);
     }
 }

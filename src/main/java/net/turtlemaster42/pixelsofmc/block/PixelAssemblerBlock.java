@@ -24,29 +24,36 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+
 public class PixelAssemblerBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 6, 16), // base bottom
-            box(1, 6, 1, 15, 10, 15), // base middel
-            box(0, 10, 0, 16, 16, 16), // base top
-            box(0, 6, 3, 16, 10, 13), // plates
-            box(2, 16, 2, 14, 32, 14), // compressor
-            box(1, 17, 1, 15, 19, 15), // ring 1
-            box(1, 21, 1, 15, 23, 15), // ring 2
-            box(1, 25, 1, 15, 27, 15), // ring 3
-            box(1, 29, 1, 15, 31, 15), // ring 4
-            box(0, 16, 5, 16, 32, 11) // vents
-    );
+
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(0, 0, 0, 16, 6, 16), // base bottom
+                        box(1, 6, 1, 15, 10, 15), // base middel
+                        box(0, 10, 0, 16, 16, 16), // base top
+                        box(0, 6, 3, 16, 10, 13), // plates
+                        box(2, 16, 2, 14, 32, 14), // compressor
+                        box(1, 17, 1, 15, 19, 15), // ring 1
+                        box(1, 21, 1, 15, 23, 15), // ring 2
+                        box(1, 25, 1, 15, 27, 15), // ring 3
+                        box(1, 29, 1, 15, 31, 15), // ring 4
+                        box(0, 16, 5, 16, 32, 11) // vents
+                ), SHAPES, false);
+    }
 
     public PixelAssemblerBlock(Properties properties) {
         super(properties);
@@ -55,12 +62,7 @@ public class PixelAssemblerBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH -> SHAPE;
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        };
+        return SHAPES.get(pState.getValue(FACING).getOpposite());
     }
 	
 

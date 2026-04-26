@@ -95,8 +95,8 @@ public class BigMachineBlockUtil {
     }
 
 
-    public static void setMainPos(AbstractDummyMachineBlockTile tile, BlockPos mainPos) {
-            tile.setMainPos(mainPos);
+    public static void setMainPos(@NotNull AbstractDummyMachineBlockTile tile, @NotNull BlockPos mainPos) {
+        tile.setMainPos(mainPos);
     }
 
     public static BlockPos getMainPos(Level pLevel, BlockPos pPos) {

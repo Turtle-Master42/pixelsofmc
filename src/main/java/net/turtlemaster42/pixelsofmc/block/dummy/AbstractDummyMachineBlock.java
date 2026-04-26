@@ -25,8 +25,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
-import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
+import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,7 +81,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
 
     @Override
     public ItemStack getCloneItemStack(BlockState pState, HitResult pTarget, BlockGetter pWorld, BlockPos pPos, Player pPlayer) {
-        //gets the main block and returns its getCloneItemStack
+        // gets the main block and returns its getCloneItemStack
         BlockPos mainPos = getMainBlockPos(pWorld, pPos);
         if (mainPos != null && mainPos.equals(pPos))
             return ItemStack.EMPTY;
@@ -91,7 +91,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     @Deprecated
     public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(pState, pLevel, pPos, pPlayer, hand, hit);
-        //when clicked on a dummy block it will go and click on the main block as well
+        // when clicked on a dummy block it will go and click on the main block as well
         if (!pLevel.isClientSide()) {
             BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
             BlockState mainState = pLevel.getBlockState(mainPos);
@@ -110,7 +110,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
 
     @Deprecated
     public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
-        //when a dummy block receives a block-update it will check if the main block still exists,
+        // when a dummy block receives a block-update it will check if the main block still exists,
         // if not, it will destroy itself and thereby update the surrounding dummy blocks
         if (pLevel.isClientSide()) {return;}
         BlockPos mainPos = BigMachineBlockUtil.getMainPos(pLevel, pPos);
@@ -123,7 +123,7 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     }
 
     public void playerWillDestroy(Level pLevel, BlockPos pPos, @NotNull BlockState pState, @NotNull Player pPlayer) {
-        //when a dummy block is destroyed it will remove the main block from the world and drop
+        // when a dummy block is destroyed it will remove the main block from the world and drop
         // the main block as item on its location
         pLevel.playLocalSound(pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.METAL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F, false);
         if (!pLevel.isClientSide()) {
@@ -178,8 +178,9 @@ public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implemen
     @Override
     @Deprecated
     public VoxelShape getInteractionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
-        return proxyShape(world, pos, null, (s, level, p, ctx) -> s.getInteractionShape(level, p));
+         return proxyShape(world, pos, null, (s, level, p, ctx) -> s.getInteractionShape(level, p));
     }
+
 
     //Context should only be null if there is none, and it isn't used in the shape proxy
     private VoxelShape proxyShape(BlockGetter world, BlockPos pos, @Nullable CollisionContext context, ShapeProxy proxy) {

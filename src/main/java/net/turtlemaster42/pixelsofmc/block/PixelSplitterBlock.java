@@ -1,14 +1,8 @@
 package net.turtlemaster42.pixelsofmc.block;
 
 
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.PushReaction;
-import net.turtlemaster42.pixelsofmc.tile.PixelSplitterTile;
-import net.turtlemaster42.pixelsofmc.init.POMblocks;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,31 +16,43 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-
+import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.PixelSplitterTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+
 public class PixelSplitterBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 14, 16), //base
-            box(0, 22, 0, 16, 30, 16), //base top
-            box(2, 30, 2, 14, 32, 14), //top
-            box(1, 14, 2, 4, 22, 5), //pillar back left
-            box(12, 14, 2, 15, 22, 5), //pillar back right
-            box(1, 14, 11, 4, 22, 14), //pillar front left
-            box(12, 14, 11, 15, 22, 14), //pillar front right
-            box(2, 14, 5, 3, 22, 11), //wall left
-            box(13, 14, 5, 14, 22, 11) //wall right
-    );
+
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(0, 0, 0, 16, 14, 16), //base
+                        box(0, 22, 0, 16, 30, 16), //base top
+                        box(2, 30, 2, 14, 32, 14), //top
+                        box(1, 14, 2, 4, 22, 5), //pillar back left
+                        box(12, 14, 2, 15, 22, 5), //pillar back right
+                        box(1, 14, 11, 4, 22, 14), //pillar front left
+                        box(12, 14, 11, 15, 22, 14), //pillar front right
+                        box(2, 14, 5, 3, 22, 11), //wall left
+                        box(13, 14, 5, 14, 22, 11) //wall right
+                ), SHAPES, false);
+    }
 
     public PixelSplitterBlock(Properties properties) {
         super(properties);
@@ -55,12 +61,7 @@ public class PixelSplitterBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH -> SHAPE;
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        };
+        return SHAPES.get(pState.getValue(FACING).getOpposite());
     }
 	
 

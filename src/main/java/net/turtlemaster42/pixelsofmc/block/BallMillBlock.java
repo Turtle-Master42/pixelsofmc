@@ -25,45 +25,44 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.BallMillTile;
-import net.turtlemaster42.pixelsofmc.init.POMtiles;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
+import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.BallMillTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class BallMillBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
 
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(-16, 0, -16, 32, 4, 32), //base
+                        box(-6, 4, -6, 29, 30, 22), //barrel
+                        box(-10, 4, -8, -6, 32, 24), //barrel rim
+                        box(-16, 4, 16, -10, 16, 32), //electric intake
+                        box(-14, 4, 2, -10, 8, 14), //support 1
+                        box(-16, 8, 0, -10, 24, 16), //hinge 1
+                        box(29, 4, 2, 32, 8, 14), //support 2
+                        box(29, 8, 0, 32, 24, 16) //hinge 2
+                ), SHAPES, false);
+    }
 
     public BallMillBlock(Properties properties) {
         super(properties);
     }
 
 
-    private static final VoxelShape SHAPE =  VoxelShapeUtils.combine(
-            box(-16, 0, -16, 32, 4, 32), //base
-            box(-6, 4, -6, 29, 30, 22), //barrel
-            box(-10, 4, -8, -6, 32, 24), //barrel rim
-            box(-16, 4, 16, -10, 16, 32), //electric intake
-            box(-14, 4, 2, -10, 8, 14), //support 1
-            box(-16, 8, 0, -10, 24, 16), //hinge 1
-            box(29, 4, 2, 32, 8, 14), //support 2
-            box(29, 8, 0, 32, 24, 16) //hinge 2
-    );
-
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-            case SOUTH -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case WEST -> SHAPE;
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-        };
+        return SHAPES.get(pState.getValue(FACING).getClockWise());
     }
 
 

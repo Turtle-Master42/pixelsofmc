@@ -125,8 +125,10 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:emi-580555:${emi_version}"))
     runtimeOnly(fg.deobf("curse.maven:emi-580555:${emi_version}"))
 
-    runtimeOnly(fg.deobf("curse.maven:ferritecore-429235:${ferritecore_version}"))
+    //runtimeOnly(fg.deobf("curse.maven:ferritecore-429235:${ferritecore_version}"))
     runtimeOnly(fg.deobf("curse.maven:mekanism-268560:5919382"))
+    runtimeOnly(fg.deobf("curse.maven:spark-361579:4738952"))
+
 }
 
 mixin {

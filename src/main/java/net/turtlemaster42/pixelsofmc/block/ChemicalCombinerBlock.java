@@ -25,30 +25,36 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import net.turtlemaster42.pixelsofmc.tile.ChemicalCombinerTile;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
+import net.turtlemaster42.pixelsofmc.tile.ChemicalCombinerTile;
 import net.turtlemaster42.pixelsofmc.util.block.BigMachineBlockUtil;
 import net.turtlemaster42.pixelsofmc.util.block.VoxelShapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class ChemicalCombinerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BlockStateProperties.LIT;
-    private static final VoxelShape SHAPE =   VoxelShapeUtils.combine(
-            box(0, 0, 0, 16, 12, 16), //base
-            box(0, 12, 0, 16, 24, 8), //tanks
-            box(2, 24, 2, 14, 26, 6), //tank thingy
-            box(5, 12, 8, 11, 19, 12), //combiner
-            box(11, 12, 8, 15, 16, 12), //combiner extend
-            box(3, 19, 8, 13, 21, 10), //tube
-            box(7, 19, 10, 9, 21, 11), //tube thingy
-            box(0, 12, 12, 8, 13, 16), //screen 1
-            box(0, 13, 12, 8, 14, 15), //screen 2
-            box(0, 14, 12, 8, 15, 14) //screen 3
-    );
+
+    private static final HashMap<Direction, VoxelShape> SHAPES = new HashMap<>();
+    static {
+        VoxelShapeUtils.setShape(
+                VoxelShapeUtils.combine(
+                        box(0, 0, 0, 16, 12, 16), //base
+                        box(0, 12, 0, 16, 24, 8), //tanks
+                        box(2, 24, 2, 14, 26, 6), //tank thingy
+                        box(5, 12, 8, 11, 19, 12), //combiner
+                        box(11, 12, 8, 15, 16, 12), //combiner extend
+                        box(3, 19, 8, 13, 21, 10), //tube
+                        box(7, 19, 10, 9, 21, 11), //tube thingy
+                        box(0, 12, 12, 8, 13, 16), //screen 1
+                        box(0, 13, 12, 8, 14, 15), //screen 2
+                        box(0, 14, 12, 8, 15, 14) //screen 3
+                ), SHAPES, false);
+    }
 
     public ChemicalCombinerBlock(Properties properties) {
         super(properties);
@@ -57,12 +63,7 @@ public class ChemicalCombinerBlock extends BaseEntityBlock {
     @Override
     @Deprecated
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        return switch (pState.getValue(FACING)) {
-            case EAST -> VoxelShapeUtils.rotate(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-            case SOUTH -> SHAPE;
-            case WEST -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_90);
-            default -> VoxelShapeUtils.rotate(SHAPE, Rotation.CLOCKWISE_180);
-        };
+        return SHAPES.get(pState.getValue(FACING).getOpposite());
     }
 
 
