@@ -34,9 +34,9 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractDummyMachineBlock extends BaseEntityBlock implements EntityBlock {
+public abstract class AbstractExtenderBlock extends BaseEntityBlock implements EntityBlock {
 
-    public AbstractDummyMachineBlock(Properties pProp) {
+    public AbstractExtenderBlock(Properties pProp) {
         super(pProp);
     }
 

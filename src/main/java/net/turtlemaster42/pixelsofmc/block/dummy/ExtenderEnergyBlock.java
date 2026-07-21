@@ -14,21 +14,21 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineEnergyBlockTile;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.init.POMtiles;
-import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineFluidBlockTile;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class DummyMachineFluidBlock extends AbstractDummyMachineBlock {
-    public DummyMachineFluidBlock() {
+public class ExtenderEnergyBlock extends AbstractExtenderBlock {
+    public ExtenderEnergyBlock() {
         super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).dynamicShape().strength(4f, 3600000f).noOcclusion()
                 .isRedstoneConductor((bs, br, bp) -> false));
     }
 
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new DummyMachineFluidBlockTile(pos, state);
+        return new DummyMachineEnergyBlockTile(pos, state);
     }
 
     @Deprecated
@@ -43,7 +43,7 @@ public class DummyMachineFluidBlock extends AbstractDummyMachineBlock {
         if (pLevel.isClientSide()) {
             ItemStack itemstack = Minecraft.getInstance().player.getMainHandItem();
             if (itemstack.is(POMitems.DEBUGIUM_INGOT.get())) {
-                pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK_MARKER, Blocks.MAGENTA_STAINED_GLASS_PANE.defaultBlockState()), (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+                pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK_MARKER, Blocks.LIME_STAINED_GLASS.defaultBlockState()), (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -52,7 +52,7 @@ public class DummyMachineFluidBlock extends AbstractDummyMachineBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if (!pLevel.isClientSide())
-            return createTickerHelper(pBlockEntityType, POMtiles.EXTENDER_FLUID_BLOCK.get(), DummyMachineFluidBlockTile::serverTick);
+            return createTickerHelper(pBlockEntityType, POMtiles.EXTENDER_ENERGY_BLOCK.get(), DummyMachineEnergyBlockTile::serverTick);
         return null;
     }
 }

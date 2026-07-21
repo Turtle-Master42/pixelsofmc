@@ -9,7 +9,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
-import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
+import net.turtlemaster42.pixelsofmc.block.dummy.AbstractExtenderBlock;
 import net.turtlemaster42.pixelsofmc.init.POMitems;
 import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +31,7 @@ public class ScrewDriverItem extends ToolItem {
             Map<Block, Integer> blocks;
             if (level.getBlockState(pos).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
                 blocks = multiControllerBlock.validateMultiBlock(level, pos, true);
-            } else if (level.getBlockState(pos).getBlock() instanceof AbstractDummyMachineBlock) {
+            } else if (level.getBlockState(pos).getBlock() instanceof AbstractExtenderBlock) {
                 if (level.getBlockEntity(pos) instanceof AbstractDummyMachineBlockTile dummyTile) {
                     if (level.getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiControllerBlock) {
                         blocks = multiControllerBlock.validateMultiBlock(level, dummyTile.getMainPos(), true);

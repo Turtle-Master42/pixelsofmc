@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.turtlemaster42.pixelsofmc.block.AbstractMultiControllerBlock;
-import net.turtlemaster42.pixelsofmc.block.dummy.AbstractDummyMachineBlock;
+import net.turtlemaster42.pixelsofmc.block.dummy.AbstractExtenderBlock;
 import net.turtlemaster42.pixelsofmc.tile.dummy.AbstractDummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.util.Element;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +24,7 @@ public class Debugium extends ElementItem {
         if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
             multiController.forcePlaceMultiBlock(context.getLevel(), context.getClickedPos());
             return InteractionResult.SUCCESS;
-        } else if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractDummyMachineBlock) {
+        } else if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AbstractExtenderBlock) {
             if (context.getLevel().getBlockEntity(context.getClickedPos()) instanceof AbstractDummyMachineBlockTile dummyTile) {
                 if (context.getLevel().getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
                     multiController.forcePlaceMultiBlock(context.getLevel(), dummyTile.getMainPos());
@@ -42,7 +42,7 @@ public class Debugium extends ElementItem {
 
         if (level.getBlockState(pos).getBlock() instanceof AbstractMultiControllerBlock multiController) {
             multiController.forceRemoveMultiBlock(level, pos);
-        } else if (level.getBlockState(pos).getBlock() instanceof AbstractDummyMachineBlock) {
+        } else if (level.getBlockState(pos).getBlock() instanceof AbstractExtenderBlock) {
             if (level.getBlockEntity(pos) instanceof AbstractDummyMachineBlockTile dummyTile) {
                 if (level.getBlockState(dummyTile.getMainPos()).getBlock() instanceof AbstractMultiControllerBlock multiController) {
                     multiController.forceRemoveMultiBlock(level, dummyTile.getMainPos());

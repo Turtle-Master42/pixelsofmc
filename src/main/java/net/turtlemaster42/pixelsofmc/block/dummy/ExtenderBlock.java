@@ -25,9 +25,9 @@ import org.joml.Vector3f;
 import javax.annotation.Nullable;
 import java.awt.*;
 
-public class DummyMachineBlock extends AbstractDummyMachineBlock {
+public class ExtenderBlock extends AbstractExtenderBlock {
 	private final Vector3f DUST_COLOR = Vec3.fromRGB24(new Color(255, 255, 255).getRGB()).toVector3f();
-	public DummyMachineBlock() {
+	public ExtenderBlock() {
 		super(Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).strength(4f, 3600000f).noOcclusion()
 				.isRedstoneConductor((bs, br, bp) -> false));
 	}

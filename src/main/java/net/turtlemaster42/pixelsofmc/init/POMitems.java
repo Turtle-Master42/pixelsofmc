@@ -49,13 +49,13 @@ public class POMitems {
 
 
 	//milling balls
-	public static final RegistryObject<Item> RUBBER_BALL = ITEMS.register("rubber_ball", () -> new Item(new Item.Properties().durability(100)));
-	public static final RegistryObject<Item> FIRE_PROOF_RUBBER_BALL = ITEMS.register("fire_proof_rubber_ball", () -> new Item(new Item.Properties().durability(120).fireResistant()));
-	public static final RegistryObject<Item> REPELLING_RUBBER_BALL = ITEMS.register("repelling_rubber_ball", () -> new Item(new Item.Properties().durability(80)));
-	public static final RegistryObject<Item> NETHERITE_BALL = ITEMS.register("netherite_ball", () -> new Item(new Item.Properties().durability(300).fireResistant()));
-	public static final RegistryObject<Item> TITANIUM_BALL = ITEMS.register("titanium_ball", () -> new Item(new Item.Properties().durability(250)));
-	public static final RegistryObject<Item> TITANIUM_GOLD_BALL = ITEMS.register("titanium_gold_ball", () -> new Item(new Item.Properties().durability(400)));
-	public static final RegistryObject<Item> TITANIUM_DIBORIDE_BALL = ITEMS.register("titanium_diboride_ball", () -> new Item(new Item.Properties().durability(500).fireResistant()));
+	public static final RegistryObject<Item> RUBBER_BALL = ITEMS.register("rubber_ball", () -> new Item(new Item.Properties().durability(128)));
+	public static final RegistryObject<Item> FIRE_PROOF_RUBBER_BALL = ITEMS.register("fire_proof_rubber_ball", () -> new Item(new Item.Properties().durability(128).fireResistant()));
+	public static final RegistryObject<Item> REPELLING_RUBBER_BALL = ITEMS.register("repelling_rubber_ball", () -> new Item(new Item.Properties().durability(128)));
+	public static final RegistryObject<Item> NETHERITE_BALL = ITEMS.register("netherite_ball", () -> new Item(new Item.Properties().durability(1024).fireResistant()));
+	public static final RegistryObject<Item> TITANIUM_BALL = ITEMS.register("titanium_ball", () -> new Item(new Item.Properties().durability(512)));
+	public static final RegistryObject<Item> TITANIUM_GOLD_BALL = ITEMS.register("titanium_gold_ball", () -> new Item(new Item.Properties().durability(1024)));
+	public static final RegistryObject<Item> TITANIUM_DIBORIDE_BALL = ITEMS.register("titanium_diboride_ball", () -> new Item(new Item.Properties().durability(1536).fireResistant()));
 
 	public static final RegistryObject<Item> TITANIUM_CIRCLE_SAW = ITEMS.register("titanium_circle_saw", () -> new SawItem(new Item.Properties().durability(256)));
 	public static final RegistryObject<Item> TITANIUM_GOLD_CIRCLE_SAW = ITEMS.register("titanium_gold_circle_saw", () -> new SawItem(new Item.Properties().durability(1280)));
