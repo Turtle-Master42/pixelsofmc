@@ -5,8 +5,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class ModResultSlot extends SlotItemHandler {
-    public ModResultSlot(IItemHandler itemHandler, int index, int x, int y) {
+public class ResultSlot extends SlotItemHandler {
+    public ResultSlot(IItemHandler itemHandler, int index, int x, int y) {
         super(itemHandler, index, x, y);
     }
 

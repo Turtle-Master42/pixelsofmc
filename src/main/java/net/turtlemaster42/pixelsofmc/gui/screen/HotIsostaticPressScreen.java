@@ -86,13 +86,6 @@ public class HotIsostaticPressScreen extends AbstractPOMscreen<HotIsostaticPress
         energyArea.draw(guiGraphics);
     }
 
-    @Override
-    public void render(@NotNull GuiGraphics pGuiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(pGuiGraphics);
-        super.render(pGuiGraphics, mouseX, mouseY, delta);
-        renderTooltip(pGuiGraphics, mouseX, mouseY);
-    }
-
     private void assignAreas() {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);

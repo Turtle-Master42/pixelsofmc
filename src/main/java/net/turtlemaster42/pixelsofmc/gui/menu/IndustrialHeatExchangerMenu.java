@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.tile.IndustrialHeatExchangerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModHeatUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.HeatUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
@@ -41,7 +41,7 @@ public class IndustrialHeatExchangerMenu extends AbstractMachineMenu implements 
         this.triFluid = blockEntity.getTriFluid();
         this.quadFluid = blockEntity.getQuadFluid();
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> this.addSlot(new ModHeatUpgradeSlot(handler, 0, 161, 8)));
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> this.addSlot(new HeatUpgradeSlot(handler, 0, 161, 8)));
     }
 
     public boolean isCrafting() {return data.get(0) != 0;}

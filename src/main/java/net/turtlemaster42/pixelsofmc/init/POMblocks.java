@@ -26,6 +26,7 @@ import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.block.*;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineEnergyBlock;
+import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineFluidBlock;
 import net.turtlemaster42.pixelsofmc.block.dummy.DummyMachineItemBlock;
 import net.turtlemaster42.pixelsofmc.fluid.*;
 import net.turtlemaster42.pixelsofmc.item.FuelBlockItem;
@@ -86,6 +87,7 @@ public class POMblocks {
     public static final RegistryObject<Block> EXTENDER_BLOCK = BLOCKS.register("extender_block", DummyMachineBlock::new);
     public static final RegistryObject<Block> EXTENDER_ENERGY_BLOCK = BLOCKS.register("extender_energy_block", DummyMachineEnergyBlock::new);
     public static final RegistryObject<Block> EXTENDER_ITEM_BLOCK = BLOCKS.register("extender_item_block", DummyMachineItemBlock::new);
+    public static final RegistryObject<Block> EXTENDER_FLUID_BLOCK = BLOCKS.register("extender_fluid_block", DummyMachineFluidBlock::new);
 
 
     public static final RegistryObject<Block> SIMPLE_CASING_1 = registerBlock("simple_casing_1",

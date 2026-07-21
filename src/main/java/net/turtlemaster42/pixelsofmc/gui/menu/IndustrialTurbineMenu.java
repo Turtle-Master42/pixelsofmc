@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
@@ -38,7 +38,7 @@ public class IndustrialTurbineMenu extends AbstractMachineMenu implements IFluid
         this.fluid = blockEntity.getFluid();
         this.duoFluid = blockEntity.getDuoFluid();
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> this.addSlot(new ModEnergyUpgradeSlot(handler, 0, 161, 8)));
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> this.addSlot(new EnergyUpgradeSlot(handler, 0, 161, 8)));
     }
 
     public boolean isActive() {return data.get(0) != 0;}

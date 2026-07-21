@@ -5,12 +5,12 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
 
-public class ModHeatUpgradeSlot extends SlotItemHandler {
-    public ModHeatUpgradeSlot(IItemHandler itemHandler, int index, int x, int y) {
+public class EnergyUpgradeSlot extends SlotItemHandler {
+    public EnergyUpgradeSlot(IItemHandler itemHandler, int index, int x, int y) {
         super(itemHandler, index, x, y);
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return stack.is(POMtags.Items.HEAT_UPGRADE);
+        return stack.is(POMtags.Items.ENERGY_UPGRADE);
     }
 }

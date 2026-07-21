@@ -120,13 +120,6 @@ public class SDSFusionControllerScreen extends AbstractPOMscreen<SDSFusionContro
         guiGraphics.blit(TEXTURE, x + 80, y + 6, 209 + 2 * Math.round((float) Math.max(0, menu.getScaledFusionPower() - 37) / 2), 88, Math.min(36, menu.getScaledFusionPower()), 6);
     }
 
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-    }
-
     private void assignAreas() {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);

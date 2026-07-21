@@ -119,7 +119,8 @@ public class POMblockTagProvider extends BlockTagsProvider {
 
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ENERGY_BLOCK.get(),
-                POMblocks.EXTENDER_ITEM_BLOCK.get()
+                POMblocks.EXTENDER_ITEM_BLOCK.get(),
+                POMblocks.EXTENDER_FLUID_BLOCK.get()
         );
 
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(
@@ -127,6 +128,7 @@ public class POMblockTagProvider extends BlockTagsProvider {
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ENERGY_BLOCK.get(),
                 POMblocks.EXTENDER_ITEM_BLOCK.get(),
+                POMblocks.EXTENDER_FLUID_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_BLOCK.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_STAIRS.get(),
                 POMblocks.TITANIUM_DIBORIDE_PLATING_SLAB.get(),
@@ -203,7 +205,8 @@ public class POMblockTagProvider extends BlockTagsProvider {
         this.tag(POMtags.Blocks.EXTENDER_BLOCK).add(
                 POMblocks.EXTENDER_BLOCK.get(),
                 POMblocks.EXTENDER_ITEM_BLOCK.get(),
-                POMblocks.EXTENDER_ENERGY_BLOCK.get()
+                POMblocks.EXTENDER_ENERGY_BLOCK.get(),
+                POMblocks.EXTENDER_FLUID_BLOCK.get()
         );
 
         this.tag(POMtags.Blocks.MACHINE_CASINGS).add(

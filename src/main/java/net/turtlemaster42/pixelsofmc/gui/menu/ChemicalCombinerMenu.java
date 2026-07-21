@@ -13,10 +13,10 @@ import net.turtlemaster42.pixelsofmc.tile.ChemicalCombinerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.StackLimitedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
@@ -39,12 +39,12 @@ public class ChemicalCombinerMenu extends AbstractMachineMenu implements IEnergy
         this.duoFluid = blockEntity.getDuoFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 4, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 5, 161, 26));
+            this.addSlot(new SpeedUpgradeSlot(handler, 4, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 5, 161, 26));
             this.addSlot(new SlotItemHandler(handler, 6, 90, 5));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 7, 135, 5, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 8, 135, 21, 1));
-            this.addSlot(new ModResultSlot(handler, 3, 118, 55));
+            this.addSlot(new StackLimitedSlot(handler, 7, 135, 5, 1));
+            this.addSlot(new StackLimitedSlot(handler, 8, 135, 21, 1));
+            this.addSlot(new ResultSlot(handler, 3, 118, 55));
             this.addSlot(new SlotItemHandler(handler, 0, 42, 16));
             this.addSlot(new SlotItemHandler(handler, 1, 44, 36));
             this.addSlot(new SlotItemHandler(handler, 2, 46, 56));

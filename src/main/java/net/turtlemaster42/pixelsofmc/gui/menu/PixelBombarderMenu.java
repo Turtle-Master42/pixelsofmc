@@ -12,10 +12,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.tile.PixelBombarderTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.StackLimitedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
@@ -34,13 +34,13 @@ public class PixelBombarderMenu extends AbstractMachineMenu implements IEnergyMe
         itemHandler = blockEntity.getItemStackHandler();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new SpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 6, 161, 26));
             this.addSlot(new SlotItemHandler(handler, 0, 116, 15));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 1, 39, 37, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 2, 57, 37, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 3, 86, 37, 1));
-            this.addSlot(new ModResultSlot(handler, 4, 116, 58));
+            this.addSlot(new StackLimitedSlot(handler, 1, 39, 37, 1));
+            this.addSlot(new StackLimitedSlot(handler, 2, 57, 37, 1));
+            this.addSlot(new StackLimitedSlot(handler, 3, 86, 37, 1));
+            this.addSlot(new ResultSlot(handler, 4, 116, 58));
         });
     }
 

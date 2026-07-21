@@ -12,9 +12,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.turtlemaster42.pixelsofmc.tile.ChemicalMixerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.*;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.StackLimitedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
@@ -48,14 +48,14 @@ public class ChemicalMixerMenu extends AbstractMachineMenu implements IEnergyMen
         this.hexaFluid = blockEntity.getHexaFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 6, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 7, 161, 26));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 0, 32, 5, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 1, 32, 23, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 2, 32, 41, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 3, 136, 5, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 4, 136, 23, 1));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 5, 136, 41, 1));
+            this.addSlot(new SpeedUpgradeSlot(handler, 6, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 7, 161, 26));
+            this.addSlot(new StackLimitedSlot(handler, 0, 32, 5, 1));
+            this.addSlot(new StackLimitedSlot(handler, 1, 32, 23, 1));
+            this.addSlot(new StackLimitedSlot(handler, 2, 32, 41, 1));
+            this.addSlot(new StackLimitedSlot(handler, 3, 136, 5, 1));
+            this.addSlot(new StackLimitedSlot(handler, 4, 136, 23, 1));
+            this.addSlot(new StackLimitedSlot(handler, 5, 136, 41, 1));
         });
     }
 

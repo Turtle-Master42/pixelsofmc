@@ -8,10 +8,10 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.function.Supplier;
 
-public class ModTagRestrictedSlot extends SlotItemHandler {
+public class TagRestrictedSlot extends SlotItemHandler {
     protected final Supplier<TagKey<Item>> possibleTag;
 
-    public ModTagRestrictedSlot(IItemHandler itemHandler, int index, int x, int y, Supplier<TagKey<Item>> itemTag) {
+    public TagRestrictedSlot(IItemHandler itemHandler, int index, int x, int y, Supplier<TagKey<Item>> itemTag) {
         super(itemHandler, index, x, y);
         this.possibleTag = itemTag;
     }

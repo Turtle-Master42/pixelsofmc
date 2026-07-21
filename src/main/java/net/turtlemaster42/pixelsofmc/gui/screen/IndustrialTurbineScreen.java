@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialHeatExchangerMenu;
 import net.turtlemaster42.pixelsofmc.gui.menu.IndustrialTurbineMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.EnergyArea;
 import net.turtlemaster42.pixelsofmc.gui.renderer.FluidArea;
@@ -62,13 +61,6 @@ public class IndustrialTurbineScreen extends AbstractPOMscreen<IndustrialTurbine
         fluidArea2.draw(guiGraphics);
         energyArea.draw(guiGraphics);
         nameArea.draw(guiGraphics);
-    }
-
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     private void assignAreas() {

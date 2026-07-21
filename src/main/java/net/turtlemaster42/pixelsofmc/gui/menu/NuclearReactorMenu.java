@@ -14,7 +14,7 @@ import net.turtlemaster42.pixelsofmc.gui.renderer.IButtonMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModDisplaySlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.DisplaySlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncSwitchToServer;
@@ -39,10 +39,10 @@ public class NuclearReactorMenu extends AbstractMachineMenu implements IEnergyMe
         this.duoFluid = blockEntity.getDuoFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(handler -> {
-            this.addSlot(new ModDisplaySlot(handler, 0, 80, 15)); // up
-            this.addSlot(new ModDisplaySlot(handler, 1, 100, 35)); // right
-            this.addSlot(new ModDisplaySlot(handler, 2, 80, 55)); // down
-            this.addSlot(new ModDisplaySlot(handler, 3, 60, 35)); // left
+            this.addSlot(new DisplaySlot(handler, 0, 80, 15)); // up
+            this.addSlot(new DisplaySlot(handler, 1, 100, 35)); // right
+            this.addSlot(new DisplaySlot(handler, 2, 80, 55)); // down
+            this.addSlot(new DisplaySlot(handler, 3, 60, 35)); // left
         });
 
     }

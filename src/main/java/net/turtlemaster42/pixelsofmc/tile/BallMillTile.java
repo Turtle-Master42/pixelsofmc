@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.turtlemaster42.pixelsofmc.block.BallMillBlock;
 import net.turtlemaster42.pixelsofmc.gui.menu.BallMillMenu;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -85,6 +87,19 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
         if (slot==5) speedUpgradeCheck(5);
     }
 
+    @Override
+    protected LazyOptional<? extends IItemHandler>[] createSidedInventory() {
+        return SidedInvWrapper.create(this, Direction.UP, Direction.NORTH, Direction.DOWN);
+    }
+
+    @Override
+    public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
+        return switch (side) {
+            case UP -> new int[]{0, 1, 2};
+            case DOWN -> new int[]{4};
+            default -> new int[]{3};
+        };
+    }
 
     @Override
     public @NotNull Component getDisplayName() {
@@ -101,6 +116,13 @@ public class BallMillTile extends AbstractMachineTile<BallMillTile> {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (lazyPartialItemHandlers != null && side != null) {
+                return switch (side) {
+                    case UP -> lazyPartialItemHandlers[0].cast();
+                    case DOWN -> lazyPartialItemHandlers[2].cast();
+                    default -> lazyPartialItemHandlers[1].cast();
+                };
+            }
             return lazyItemHandler.cast();
         }
         if (cap == ForgeCapabilities.ENERGY) {

@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-public class ModRestrictedSlot extends SlotItemHandler {
+public class RestrictedSlot extends SlotItemHandler {
     protected final Supplier<Item>[] possibleItems;
 
     @SafeVarargs
-    public ModRestrictedSlot(IItemHandler itemHandler, int index, int x, int y, Supplier<Item>... possibleItems) {
+    public RestrictedSlot(IItemHandler itemHandler, int index, int x, int y, Supplier<Item>... possibleItems) {
         super(itemHandler, index, x, y);
         this.possibleItems = possibleItems;
     }

@@ -118,13 +118,6 @@ public class NuclearReactorScreen extends AbstractPOMscreen<NuclearReactorMenu> 
         energyArea.draw(guiGraphics);
     }
 
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-    }
-
     private void assignAreas() {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);

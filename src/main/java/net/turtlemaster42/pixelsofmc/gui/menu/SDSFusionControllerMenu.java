@@ -12,8 +12,8 @@ import net.turtlemaster42.pixelsofmc.tile.SDSFusionControllerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IDuoFluidMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IInfiniteEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.TagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -40,11 +40,11 @@ public class SDSFusionControllerMenu extends AbstractMachineMenu implements IEne
         this.duoFluid = blockEntity.getDuoFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModResultSlot(handler, 2, 95, 24));
-            this.addSlot(new ModResultSlot(handler, 3, 95, 42));
-            this.addSlot(new ModResultSlot(handler, 4, 95, 60));
-            this.addSlot(new ModTagRestrictedSlot(handler, 0, 38, 29, () -> POMtags.Items.ATOM));
-            this.addSlot(new ModTagRestrictedSlot(handler, 1, 38, 55, () -> POMtags.Items.ATOM));
+            this.addSlot(new ResultSlot(handler, 2, 95, 24));
+            this.addSlot(new ResultSlot(handler, 3, 95, 42));
+            this.addSlot(new ResultSlot(handler, 4, 95, 60));
+            this.addSlot(new TagRestrictedSlot(handler, 0, 38, 29, () -> POMtags.Items.ATOM));
+            this.addSlot(new TagRestrictedSlot(handler, 1, 38, 55, () -> POMtags.Items.ATOM));
         });
     }
 

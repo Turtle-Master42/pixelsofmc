@@ -1,13 +1,13 @@
 package net.turtlemaster42.pixelsofmc.tile;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.init.POMmessages;
 import net.turtlemaster42.pixelsofmc.network.PixelItemStackHandler;
 import net.turtlemaster42.pixelsofmc.network.packets.PacketSyncItemStackToClient;
@@ -23,6 +22,7 @@ import net.turtlemaster42.pixelsofmc.util.block.IInventoryHandlingTile;
 import net.turtlemaster42.pixelsofmc.util.recipe.ChanceIngredient;
 import net.turtlemaster42.pixelsofmc.util.recipe.CountedIngredient;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -30,7 +30,7 @@ import java.util.List;
 import static java.lang.Math.random;
 
 // the base machine tile, without any of the special functionalities like energy or fluid handling
-public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends BlockEntity implements MenuProvider, IInventoryHandlingTile {
+public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends BlockEntity implements WorldlyContainer, MenuProvider, IInventoryHandlingTile {
     Tile tile;
     public int progress = 0;
     public int maxProgress = 80;
@@ -40,17 +40,26 @@ public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends 
         super(pType, pWorldPosition, pBlockState);
     }
 
-
     @Override
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+
+        LazyOptional<? extends IItemHandler>[] sidedHandler = createSidedInventory();
+        if (sidedHandler != null && sidedHandler.length > 0) {
+            lazyPartialItemHandlers = sidedHandler;
+        }
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        if (lazyPartialItemHandlers != null) {
+            for (LazyOptional<? extends IItemHandler> lazyPartialItemHandler : lazyPartialItemHandlers) {
+                lazyPartialItemHandler.invalidate();
+            }
+        }
     }
 
     @Override
@@ -129,6 +138,7 @@ public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends 
     }
 
     protected LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    protected LazyOptional<? extends IItemHandler>[] lazyPartialItemHandlers = null;
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
@@ -151,6 +161,71 @@ public abstract class AbstractBaseMachineTile<Tile extends BlockEntity> extends 
         return compound;
     }
 
+    // - WorldlyContainer - //
+    @Override
+    public int getContainerSize() {return itemHandlerSize();}
+
+    @Override
+    public @NotNull ItemStack getItem(int pSlot) {return itemHandler.getStackInSlot(pSlot);}
+
+    @Override
+    public void setItem(int pSlot, @NotNull ItemStack pStack) {itemHandler.setStackInSlot(pSlot, pStack);}
+
+    @Override
+    public @NotNull ItemStack removeItem(int pSlot, int pAmount) {
+        return itemHandler.extractItem(pSlot, pAmount, false);
+    }
+
+    @Override
+    public @NotNull ItemStack removeItemNoUpdate(int pSlot) {
+        itemHandler.setStackInSlot(pSlot, ItemStack.EMPTY);
+        return itemHandler.getStackInSlot(pSlot);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for (int i = 0; i < itemHandlerSize(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean stillValid(Player pPlayer) {
+        return Container.stillValidBlockEntity(this, pPlayer);
+    }
+
+    @Override
+    public void clearContent() {
+        for (int i = 0; i < itemHandlerSize(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+    }
+
+    protected LazyOptional<? extends IItemHandler>[] createSidedInventory() {
+        return null;
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int pIndex, @NotNull ItemStack pItemStack, @Nullable Direction pDirection) {
+        return isInputValid(pIndex, pItemStack);
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int pIndex, @NotNull ItemStack pStack, @NotNull Direction pDirection) {
+        return true;
+    }
+
+    @Override
+    public int @NotNull [] getSlotsForFace(@NotNull Direction pSide) {
+        int[] slots = new int[itemHandlerSize()];
+        for (int i = 0; i < slots.length; i++) {
+            slots[i] = i;
+        }
+        return slots;
+    }
 
     // -- CRAFTING -- //
 

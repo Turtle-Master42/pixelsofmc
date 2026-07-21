@@ -28,6 +28,13 @@ public class AbstractPOMscreen<MENU extends AbstractContainerMenu> extends Abstr
     @Override
     protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {}
 
+    @Override
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
     protected void renderArea(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int x, int y, int fromX, int fromY, int toX, int toY, List<Component> tooltip) {
         renderArea(pGuiGraphics, pMouseX, pMouseY, 0 ,0, x, y, fromX, fromY, toX, toY, tooltip);
     }

@@ -6,8 +6,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class ModDisplaySlot extends SlotItemHandler {
-    public ModDisplaySlot(IItemHandler itemHandler, int index, int x, int y) {
+public class DisplaySlot extends SlotItemHandler {
+    public DisplaySlot(IItemHandler itemHandler, int index, int x, int y) {
         super(itemHandler, index, x, y);
     }
 

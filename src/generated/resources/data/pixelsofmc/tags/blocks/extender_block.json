@@ -2,6 +2,7 @@
   "values": [
     "pixelsofmc:extender_block",
     "pixelsofmc:extender_item_block",
-    "pixelsofmc:extender_energy_block"
+    "pixelsofmc:extender_energy_block",
+    "pixelsofmc:extender_fluid_block"
   ]
 }

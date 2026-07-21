@@ -9,10 +9,10 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.tile.BallMillTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModTagRestrictedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.TagRestrictedSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import net.turtlemaster42.pixelsofmc.init.POMtags;
@@ -30,10 +30,10 @@ public class BallMillMenu extends AbstractMachineMenu implements IEnergyMenu {
         blockEntity = ((BallMillTile) entity);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 4, 129, 36));
-            this.addSlot(new ModTagRestrictedSlot(handler, 3, 80, 36,  () -> POMtags.Items.MILLING_BALL));
+            this.addSlot(new SpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new ResultSlot(handler, 4, 129, 36));
+            this.addSlot(new TagRestrictedSlot(handler, 3, 80, 36,  () -> POMtags.Items.MILLING_BALL));
             this.addSlot(new SlotItemHandler(handler, 0, 31, 14));
             this.addSlot(new SlotItemHandler(handler, 1, 31, 36));
             this.addSlot(new SlotItemHandler(handler, 2, 31, 58));

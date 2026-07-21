@@ -11,10 +11,10 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.tile.PixelAssemblerTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IFluidMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModMaxStackSizeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.StackLimitedSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
@@ -33,13 +33,13 @@ public class PixelAssemblerMenu extends AbstractMachineMenu implements IEnergyMe
         this.fluid = blockEntity.getFluid();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 3, 128, 38));
+            this.addSlot(new SpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new ResultSlot(handler, 3, 128, 38));
             this.addSlot(new SlotItemHandler(handler, 0, 29, 38));
             this.addSlot(new SlotItemHandler(handler, 1, 47, 29));
             this.addSlot(new SlotItemHandler(handler, 2, 47, 47));
-            this.addSlot(new ModMaxStackSizeSlot(handler, 4, 146, 62, 1));
+            this.addSlot(new StackLimitedSlot(handler, 4, 146, 62, 1));
         });
     }
 

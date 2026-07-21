@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "pixelsofmc:block/extender_item_block"
+      "model": "pixelsofmc:block/extender_block"
     }
   }
 }

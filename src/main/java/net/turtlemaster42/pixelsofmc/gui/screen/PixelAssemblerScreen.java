@@ -59,13 +59,6 @@ public class PixelAssemblerScreen extends AbstractPOMscreen<PixelAssemblerMenu> 
         energyArea.draw(guiGraphics);
     }
 
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-    }
-
     private void assignAreas() {
         int x = ((width - imageWidth) / 2);
         int y = ((height - imageHeight) / 2);

@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.turtlemaster42.pixelsofmc.PixelsOfMc;
 import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineBlockTile;
 import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineEnergyBlockTile;
+import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineFluidBlockTile;
 import net.turtlemaster42.pixelsofmc.tile.dummy.DummyMachineItemBlockTile;
 import net.turtlemaster42.pixelsofmc.tile.*;
 
@@ -21,6 +22,9 @@ public class POMtiles {
 			TILES.register("extender_energy_block", () -> BlockEntityType.Builder.of(DummyMachineEnergyBlockTile::new, POMblocks.EXTENDER_ENERGY_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<DummyMachineItemBlockTile>> EXTENDER_ITEM_BLOCK =
 			TILES.register("extender_item_block", () -> BlockEntityType.Builder.of(DummyMachineItemBlockTile::new, POMblocks.EXTENDER_ITEM_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<DummyMachineFluidBlockTile>> EXTENDER_FLUID_BLOCK =
+			TILES.register("extender_fluid_block", () -> BlockEntityType.Builder.of(DummyMachineFluidBlockTile::new, POMblocks.EXTENDER_FLUID_BLOCK.get()).build(null));
+
 
 	public static final RegistryObject<BlockEntityType<MultiBlockTile>> MULTIBLOCK =
 			TILES.register("multiblock", () -> BlockEntityType.Builder.of(MultiBlockTile::new, POMblocks.REINFORCED_GLASS.get(), POMblocks.SUPERCONDUCTIVE_FUSION_CASING.get(), POMblocks.FUSION_CASING.get(), POMblocks.FUSION_CORNER.get(), POMblocks.MACHINE_CASING.get(), POMblocks.ARMORED_MACHINE_CASING.get(), POMblocks.FISSION_CASING.get(), POMblocks.MACHINE_COIL.get()).build(null));

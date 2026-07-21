@@ -5,9 +5,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class ModMaxStackSizeSlot extends SlotItemHandler {
+public class StackLimitedSlot extends SlotItemHandler {
     private final int maxSize;
-    public ModMaxStackSizeSlot(IItemHandler itemHandler, int index, int x, int y, int maxSize) {
+    public StackLimitedSlot(IItemHandler itemHandler, int index, int x, int y, int maxSize) {
         super(itemHandler, index, x, y);
         this.maxSize = maxSize;
     }

@@ -10,9 +10,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.turtlemaster42.pixelsofmc.tile.GrinderTile;
 import net.turtlemaster42.pixelsofmc.gui.renderer.IEnergyMenu;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModEnergyUpgradeSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModResultSlot;
-import net.turtlemaster42.pixelsofmc.gui.slots.ModSpeedUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.EnergyUpgradeSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.ResultSlot;
+import net.turtlemaster42.pixelsofmc.gui.slots.SpeedUpgradeSlot;
 import net.turtlemaster42.pixelsofmc.init.POMblocks;
 import net.turtlemaster42.pixelsofmc.init.POMmenus;
 import org.jetbrains.annotations.NotNull;
@@ -31,12 +31,12 @@ public class GrinderMenu extends AbstractMachineMenu implements IEnergyMenu {
         itemHandler = blockEntity.getItemStackHandler();
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new ModSpeedUpgradeSlot(handler, 5, 161, 8));
-            this.addSlot(new ModEnergyUpgradeSlot(handler, 6, 161, 26));
-            this.addSlot(new ModResultSlot(handler, 1, 111, 9));
-            this.addSlot(new ModResultSlot(handler, 2, 111, 27));
-            this.addSlot(new ModResultSlot(handler, 3, 111, 45));
-            this.addSlot(new ModResultSlot(handler, 4, 111, 63));
+            this.addSlot(new SpeedUpgradeSlot(handler, 5, 161, 8));
+            this.addSlot(new EnergyUpgradeSlot(handler, 6, 161, 26));
+            this.addSlot(new ResultSlot(handler, 1, 111, 9));
+            this.addSlot(new ResultSlot(handler, 2, 111, 27));
+            this.addSlot(new ResultSlot(handler, 3, 111, 45));
+            this.addSlot(new ResultSlot(handler, 4, 111, 63));
             this.addSlot(new SlotItemHandler(handler, 0, 43, 36));
         });
     }
